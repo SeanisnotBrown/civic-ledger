@@ -85,12 +85,20 @@ Resolved and locked in `uv.lock` (Python) and `site/package-lock.json` (Node).
   `roll_call_lists/vote_menu_{c}_{s}.xml`; detail:
   `roll_call_votes/vote{c}{s}/vote_{c}_{s}_{NNNNN}.xml`. The spec's assumed
   `vote{cc}{s}/vote_menu_…` path 301-redirects to "not available". `SHAPES.md §6`.
-- **2026-08-11 — CREC `/congressional-record` is a date index, not full-text search.**
-  It cannot be queried for "personal explanation"; INC-6 must use a full-text source
-  (govinfo CREC). Risk recorded in `SHAPES.md §5` so INC-6 does not assume otherwise.
-- **2026-08-11 — MS state verdict = DEFER** (H2/LegiScan key pending; GO unverifiable
-  → DEFER by rule). Evidence in `data/quality/ms-state-verdict.md`; per D18 no other
-  increment is affected.
+- **2026-08-11 — CREC full-text search is via govinfo `POST /search`, not
+  Congress.gov `/congressional-record` (a date index only).** Verified the govinfo
+  search accepts the SAME api.data.gov key (H1) and returns 15,998 CREC hits for
+  "personal explanation" with granule text/metadata links — so INC-6 has a real
+  source and no risk is carried forward. `ingest/sources/govinfo.py::crec_search`;
+  shapes in `SHAPES.md §5/§8`. (govinfo.py also carries the INC-19 USLM bill-text role.)
+- **2026-08-11 — MS state verdict = DEFER, but feasibility is GO-positive.** H2
+  (LegiScan key) was completed **mid-session**; the spike then confirmed LegiScan
+  carries per-person MS positions with resolvable `people_id`s (`getRollCall` →
+  `{people_id, vote_id, vote_text}`, 122 votes on a sampled roll call). The sole
+  remaining GO gate — 5-bill match vs MS Journal PDFs — is deferred to INC-12
+  branch A per D18/§0.4 (ship federal MVP first). Verdict stays DEFER by the binary
+  rule until that cross-check runs. Evidence: `data/quality/ms-state-verdict.md`,
+  `samples/legiscan_session_list_ms.json`. No other increment affected.
 - **2026-08-11 — `spike.py` forces UTF-8 stdout.** §0.6 (PowerShell): status output
   uses non-cp1252 glyphs (`→`); `sys.stdout.reconfigure(encoding="utf-8")` prevents a
   `UnicodeEncodeError` crash regardless of the console codepage.

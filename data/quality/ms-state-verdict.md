@@ -1,43 +1,43 @@
 # Mississippi state-layer verdict (INC-1 step 4/5)
 
-## Verdict: **DEFER**
+## Verdict: **DEFER** — but feasibility is GO-positive; sole remaining gate is the Journal cross-check (→ INC-12)
 
-Recorded 2026-08-11. Governs INC-12 (Decision D18): the DEFER branch activates
-**as documentation only**; **no other increment changes**; the federal build
-proceeds to INC-2 untouched.
+Recorded 2026-08-11. **H2 (LegiScan key) was completed mid-session**, so this
+supersedes the earlier "DEFER because no key" reading. Per Decision D18 and §0.4
+(ship the federal MVP first), the formal GO gate — a 5-bill position match against
+MS Journal PDF excerpts — is **deferred to INC-12 branch A** (which the spec
+already scopes to do a Journal spot-check). The federal build proceeds to INC-2
+untouched.
 
-## Why DEFER (evidence)
+## Evidence (INC-1 step 4)
 
 | Test (§7 INC-1 step 4) | Result |
 |---|---|
-| `LEGISCAN_API_KEY` present? | **No — H2 pending** at execution date |
-| `getSessionList(MS)` reachable | Not run (no key) |
-| `roll_call` records carry per-person positions w/ resolvable `people_id`? | Untested (no key) |
-| 5-bill position match vs chamber Journal PDFs | Untested (no key) |
+| `LEGISCAN_API_KEY` present? | **Yes** (H2 completed 2026-08-11) |
+| `getSessionList(MS)` reachable | **Yes** — 2026 Regular Session (`session_id` 2249). Sample: `samples/legiscan_session_list_ms.json` |
+| `roll_call` carries per-person positions w/ resolvable `people_id`? | **Yes** — `getRollCall` → `votes[]` of `{people_id, vote_id, vote_text}` (122 per-person votes on a sampled MS roll call); `people_id` resolves via `getPerson`/masterlist |
+| 5-bill position match vs chamber Journal PDFs | **Not yet run** — deferred to INC-12 branch A (Journal PDF tractability unassessed; may be scanned) |
 
-The verdict rule is explicit: the only outcomes are **GO** (LegiScan carries
-positions, verified 5/5 against Journal PDFs) or **DEFER**; "if ambiguous, verdict
-is DEFER (correctness outranks scope, §0.4)." With no key, GO cannot be
-established, so the verdict is **DEFER** by rule — not a judgment that LegiScan
-lacks the data, only that it is **unverified**.
+The core feasibility question the spike exists to answer — *does LegiScan carry
+per-person MS positions with resolvable ids?* — is **YES**. The only reason the
+verdict is DEFER rather than GO is the binary rule: GO requires the 5/5 Journal
+cross-check, which is intentionally deferred to INC-12 (not blocking federal).
 
-## What is already built (so GO is a fast follow, per §0.2)
+## What is already built
 
-- `ingest/sources/legiscan.py` — callable code path (`session_list`,
-  `dataset_list`, `get_dataset`), with the key handled as a query param that is
-  kept out of the cache key and `.meta` sidecar.
-- `.env.example` names `LEGISCAN_API_KEY`; `docs/HUMAN-TASKS.md` H2 has the
-  registration instruction.
-- `ingest/spike.py::_run_state_verdict()` runs the reachability step and writes
-  `legiscan_session_list_ms.json` automatically **the moment a key is present** —
-  re-run `uv run ingest spike` after H2 to gather the GO evidence.
+- `ingest/sources/legiscan.py` — callable path (`session_list`, `dataset_list`,
+  `get_dataset`); key handled as a query param kept out of the cache key and
+  `.meta` sidecar (verified: no key on disk).
+- `ingest/spike.py::_run_state_verdict()` captures `getSessionList(MS)` whenever a
+  key is present (it did, this session).
 
-## To convert DEFER → GO (owner)
+## To convert DEFER → GO (INC-12 branch A opener)
 
-1. Complete **H2** (register LegiScan free-tier key → `.env` + repo secret).
-2. Re-run `uv run ingest spike`; it captures `getSessionList(MS)` and the current
-   session dataset.
-3. Sample 5 bills; compare `roll_call` per-person positions to the corresponding
-   MS House/Senate Journal PDF pages (download 2 Journal excerpts). **5-of-5 match
-   = GO**; update this file's verdict to GO and activate INC-12 branch A.
-4. Any absence/unverifiability/ambiguity → the verdict stays **DEFER**.
+1. Sample 5 MS bills with recorded roll calls; pull `getRollCall` per-person
+   positions.
+2. Download 2 MS House/Senate Journal PDF excerpts covering those votes; compare
+   per-person positions. **5-of-5 match = GO** → activate INC-12 branch A full
+   ingest.
+3. If Journal PDFs are scanned/untractable or any mismatch → verdict stays DEFER;
+   run the Branch B parseability assessment + public `/methodology#mississippi`
+   note (D18).

@@ -3,8 +3,11 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-11, end of INC-1 session.
-**Git:** committing INC-1 on `master`.
+**Last updated:** 2026-08-11, end of INC-1 session (day close).
+**Git:** INC-1 core pushed on `master` (CI run `31527883913` = success). A
+follow-up commit (govinfo CREC resolution + exclusion test + H2/state
+re-evaluation + these docs) is being pushed now — confirm its CI is green in the
+next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 ---
@@ -13,8 +16,16 @@ Single source of truth for: current increment, acceptance status, blocked H-task
 
 **INC-1 — Source feasibility spike — ✅ COMPLETE.**
 All six federal sources reached; samples committed to `data/quality/samples/`
-with `SHAPES.md`; MS-state verdict = **DEFER** (H2 pending, D18) in
-`data/quality/ms-state-verdict.md`. Acceptance met. See "INC-1 output" below.
+with `SHAPES.md`. **H2 (LegiScan) was completed mid-session** → spike confirmed
+LegiScan carries per-person MS positions with `people_id`s (GO-positive). MS-state
+verdict = **DEFER by rule**, with the sole remaining gate (5-bill Journal PDF
+cross-check) deferred to **INC-12 branch A** per D18/§0.4 — federal MVP proceeds.
+Full write-up: `data/quality/ms-state-verdict.md`. See "INC-1 output" below.
+
+> **Open decision left for the owner (asked at day close, unanswered):** whether
+> to run the Journal-PDF GO cross-check *now* (flip to GO, unlock INC-12) or fold
+> it into INC-12. Default applied = fold into INC-12 (spec-aligned, D18). Revisit
+> at the top of the next session if the owner wants GO sooner.
 
 **Next: INC-2 — Canonical members & schema layer — NOT STARTED.** Unblocked
 (no human task gates INC-2→INC-8; H4/H5 next gate at INC-9). Working tree clean
@@ -31,8 +42,8 @@ after commit — a fresh session starts cleanly.
    - Bash tool: `export PATH="$PATH:/c/Users/SB/AppData/Roaming/Python/Python314/Scripts"`.
 2. **Re-verify acceptance is still green before building INC-2:**
    `uv run checks && uv run pytest && (cd site && npm run build)` (Bash tool —
-   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, **21 tests** pass, 1 page
-   built. (`uv run ingest spike` re-runs the INC-1 pull; it is cached, not CI.)
+   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, **23 tests** pass, 1 page
+   built. (`uv run ingest spike` re-runs the INC-1 pull; cached, not a CI job.)
 3. Python is uv-managed **3.12.13** (system Python is 3.14; project pins 3.12 via
    `.python-version`). `uv sync --frozen` is what CI runs; lockfile is consistent.
 4. **Secrets:** `.env` holds `CONGRESS_API_KEY` (H1 done) and empty
@@ -50,16 +61,20 @@ for INC-2/3/4/5/6. Key discovered deviations from IMPLEMENTATION.md's assumption
 - **`bioguideId` (member list) vs `bioguideID` (house-vote positions)** — case differs.
 - **Senate menu & detail are in different dirs**; the spec's `vote_menu` path
   301-redirects. Menu `roll_call_lists/`, detail `roll_call_votes/vote{c}{s}/`.
-- **CREC `/congressional-record` is a date index, not full-text search** — INC-6
-  must use govinfo CREC for the "personal explanation" extraction.
+- **CREC full-text search RESOLVED** — Congress.gov `/congressional-record` is a
+  date index only, but **govinfo `POST /search` does full-text with the SAME
+  api.data.gov key** (15,998 "personal explanation" CREC hits). INC-6 has a real
+  source; no risk carried forward.
 - **Crosswalk joins:** house `bioguideID`→`id.bioguide`; senate `lis_member_id`→
   `id.lis` (both in `legislators_current_ms.yaml`).
 
 Modules created: `ingest/env.py` (`.env` reader), `ingest/cache.py` (header-auth
 disk cache; **credential never in URL/key/meta**), `ingest/spike.py` (`ingest
 spike`, with secret-guard), sources `congress_gov.py` / `senate_xml.py` /
-`legislators.py` / `clerk_house.py` (stub) / `legiscan.py` (state, DEFER path).
-Tests: `tests/test_cache.py` (6, offline). MS verdict: **DEFER**.
+`legislators.py` / `clerk_house.py` (stub) / `legiscan.py` (state, DEFER path) /
+`govinfo.py` (CREC search, INC-6). Tests: `tests/test_cache.py` (6) +
+`tests/test_banned_words_scope.py` (2), all offline. MS verdict: **DEFER**
+(feasibility GO-positive; Journal cross-check → INC-12). 11 samples committed.
 
 ## INC-2 — where to pick up
 
@@ -124,7 +139,7 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | H | Blocks | Status |
 |---|--------|--------|
 | H1 | INC-1 | ✅ done — CONGRESS_API_KEY in .env + GitHub secret |
-| H2 | INC-1 state branch | ⬜ pending — LegiScan API key. Absence → INC-1 verdict = DEFER (no other impact) |
+| H2 | INC-1 state branch | ✅ done (mid-session) — LegiScan key present; feasibility GO-positive; Journal cross-check → INC-12 |
 | H3 | INC-0 push / all CI | ✅ done — repo live, pushed, CI green |
 | H4 | INC-9, INC-16 | ⬜ pending — Cloudflare Pages + token |
 | H5 | INC-9 | ⬜ pending — domain |
@@ -137,10 +152,11 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 
 **INC-1 additions:** `ingest/env.py`, `ingest/cache.py`, `ingest/spike.py`,
 `ingest/sources/{congress_gov,senate_xml,legislators,clerk_house,legiscan}.py`,
-`tests/test_cache.py` (6 offline tests), and the committed
-`data/quality/samples/` (9 samples + `SHAPES.md`) + `data/quality/ms-state-verdict.md`.
+`tests/test_cache.py` (6) + `tests/test_banned_words_scope.py` (2) offline tests,
+`ingest/sources/govinfo.py`, and the committed `data/quality/samples/`
+(11 samples + `SHAPES.md`) + `data/quality/ms-state-verdict.md`.
 `banned_words.py` now excludes `data/quality/samples/` (ADR). `ingest spike`
-subcommand wired in `cli.py`. Test count 15 → 21.
+subcommand wired in `cli.py`. Test count 15 → 23.
 
 ## Prior state (INC-0 output)
 

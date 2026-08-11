@@ -8,7 +8,7 @@ the owner completes each task.
 | # | Task | Blocks | Status | Instructions |
 |---|------|--------|--------|--------------|
 | **H1** | Register Congress.gov / api.data.gov API key | INC-1 | ✅ done | https://api.congress.gov/sign-up/ → key by email → `.env` `CONGRESS_API_KEY` + GitHub repo secret of same name |
-| **H2** | Register LegiScan API key | INC-1 (state verdict only) | ⬜ pending | https://legiscan.com/legiscan → free tier → `.env` / secret `LEGISCAN_API_KEY`. **Consequence:** absent at INC-1 → state verdict resolved **DEFER** (D18); federal build unaffected. To convert to GO, add the key and follow `data/quality/ms-state-verdict.md`. |
+| **H2** | Register LegiScan API key | INC-1 (state verdict only) | ✅ done | Key in `.env` (added mid-INC-1). Spike confirmed LegiScan carries per-person MS positions with `people_id`s (GO-positive). Formal GO gate (Journal PDF cross-check) deferred to INC-12 branch A per D18. See `data/quality/ms-state-verdict.md`. |
 | **H3** | Create public GitHub repo + add secrets | INC-0 (push / CI) | ✅ done | Suggest name `civic-ledger`. Secrets: `CONGRESS_API_KEY`, `LEGISCAN_API_KEY`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `IA_S3_ACCESS`, `IA_S3_SECRET` |
 | **H4** | Cloudflare account + Pages project + API token | INC-9 (deploy), INC-16 | ⬜ pending | Pages project connected to repo, root `site/`, build `npm run build`, output `dist/`. Token with Pages+Workers+D1 edit → secret `CLOUDFLARE_API_TOKEN`; account ID → `CLOUDFLARE_ACCOUNT_ID` |
 | **H5** | Purchase domain with WHOIS privacy | INC-9 | ⬜ pending | Any registrar with privacy default (Cloudflare Registrar). Point at Pages. **Never** point any record at the homelab. |

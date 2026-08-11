@@ -23,7 +23,7 @@ import yaml
 from ingest import env
 from ingest.cache import repo_root
 from ingest.config import COVERED_STATE
-from ingest.sources import congress_gov, legiscan, legislators, senate_xml
+from ingest.sources import congress_gov, govinfo, legiscan, legislators, senate_xml
 
 SAMPLES = repo_root() / "data" / "quality" / "samples"
 
@@ -84,10 +84,18 @@ def run() -> int:
     has_cbo = "cboCostEstimates" in json.loads(bill.text).get("bill", {})
     print(f"  hr1-119 cboCostEstimates present: {has_cbo}")
 
-    # 4. Congressional Record index (full-text 'personal explanation' search
-    #    is not offered by this endpoint — INC-6 concern; see SHAPES.md) -----
-    crec = congress_gov.congressional_record(limit=5)
-    _write_sample("congress_congressional_record_index.json", _pretty_json(crec.text))
+    # 4. CREC "personal explanation" search. The Congress.gov
+    #    /congressional-record endpoint is only a date index (captured for the
+    #    record), but govinfo /search DOES full-text search with the SAME
+    #    api.data.gov key — that is the real INC-6 source.
+    crec_index = congress_gov.congressional_record(limit=5)
+    _write_sample("congress_congressional_record_index.json", _pretty_json(crec_index.text))
+    crec_search = govinfo.crec_search("personal explanation", page_size=5)
+    _write_sample(
+        "govinfo_crec_search_personal_explanation.json",
+        json.dumps(crec_search, indent=2, sort_keys=True, ensure_ascii=False),
+    )
+    print(f"  govinfo CREC 'personal explanation' hits: {crec_search.get('count')}")
 
     # 5. Senate: menu (discover a real vote number), then detail -------------
     menu = senate_xml.vote_menu(119, 1)

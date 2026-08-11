@@ -102,3 +102,35 @@ Resolved and locked in `uv.lock` (Python) and `site/package-lock.json` (Node).
 - **2026-08-11 — `spike.py` forces UTF-8 stdout.** §0.6 (PowerShell): status output
   uses non-cp1252 glyphs (`→`); `sys.stdout.reconfigure(encoding="utf-8")` prevents a
   `UnicodeEncodeError` crash regardless of the console codepage.
+
+### INC-2 (2026-08-11)
+
+- **D20 — three `Member` mapping choices where §5 left the shape to the builder.**
+  All in `ingest/sources/legislators.py`, tested in `tests/test_models.py`:
+  1. **`ids.fec` list → comma-joined string.** congress-legislators gives `fec` as a
+     list (Wicker: `["H4MS01078","S8MS00196"]`), but §5 types `ids: dict[str, str]`.
+     The list is joined with `,` to honor the contract; INC-10b splits on `,` when it
+     needs the individual committee IDs. All other crosswalk values are already scalar.
+  2. **Curated `CROSSWALK_KEYS`, not the whole `id` blob.** `ids` carries
+     `{govtrack, lis, fec, opensecrets, thomas, icpsr}` (present-only). `bioguide` is
+     omitted because it IS `Member.id`; research chrome (`wikidata`, `ballotpedia`,
+     `google_entity_id`, …) is dropped. The two load-bearing joins are kept: `lis`
+     (senate XML, INC-4) and `fec` (funding, INC-10b). `legiscan` is **absent from
+     the source** — it would be added by INC-12 branch A if that is ever built.
+  3. **`serving` = the latest term overlaps the latest covered Congress**
+     (`max(CONGRESSES)` = 119), computed from committed term dates via
+     `congress_window(N)` = `(1789+2·(N−1))-01-03 … +2yr` with strict inequalities.
+     This is deterministic with NO wall-clock (§6.3): a `now()`-based "currently in
+     office" would flip a member's `serving` mid-window and break the double-export
+     byte-identity guarantee. Covered-set filtering runs on the **raw dicts before**
+     `Member` construction, so a non-D/R/I party on any non-covered member cannot
+     crash the MS ingest.
+- **2026-08-11 — INC-2 exports members in-memory → JSON, no SQLite yet.** §4 names
+  `build.db` and `export.py` is specced "SQLite → JSON", but INC-2's acceptance
+  (models.py + 6 files + determinism) needs only a pure `list[Member]` → JSON step.
+  The full SQLite export contracts land in INC-7 (per `export.py`'s own docstring);
+  building the DB layer now would be scope ahead of a passing acceptance gate.
+- **2026-08-11 — shared `party_code()` mapper handles both spellings.**
+  congress-legislators says `"Democrat"`, Congress.gov says `"Democratic"`; both map
+  to `"D"`. The mapper raises on any unmapped word (the §6.1 quarantine path) and is
+  exported so INC-3's `voteParty` reuses one source of truth.

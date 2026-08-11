@@ -3,33 +3,32 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-11, end of INC-1 session (day close).
-**Git:** INC-1 core pushed on `master` (CI run `31527883913` = success). A
-follow-up commit (govinfo CREC resolution + exclusion test + H2/state
-re-evaluation + these docs) is being pushed now — confirm its CI is green in the
-next session.
+**Last updated:** 2026-08-11, end of INC-2 session.
+**Git:** INC-1 fully closed (follow-up CI run `31528769266` = success, confirmed
+this session). INC-2 commit being pushed now — confirm its CI is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 ---
 
 ## Current increment
 
-**INC-1 — Source feasibility spike — ✅ COMPLETE.**
-All six federal sources reached; samples committed to `data/quality/samples/`
-with `SHAPES.md`. **H2 (LegiScan) was completed mid-session** → spike confirmed
-LegiScan carries per-person MS positions with `people_id`s (GO-positive). MS-state
-verdict = **DEFER by rule**, with the sole remaining gate (5-bill Journal PDF
-cross-check) deferred to **INC-12 branch A** per D18/§0.4 — federal MVP proceeds.
-Full write-up: `data/quality/ms-state-verdict.md`. See "INC-1 output" below.
+**INC-2 — Canonical members & schema layer — ✅ COMPLETE.**
+`ingest/models.py` holds the full §5 schema layer (Member, Bill, RollCall,
+MemberVote, Absence, Statement, Candidate, QuizQuestion + Term/CboRef/PageCapture/
+QuizOption/Provenance); Tier-1 records use `extra="forbid"`. `ingest members`
+fetches congress-legislators, filters to the 6-member MS delegation, and exports
+deterministic `data/members/{bioguide}.json`. **11 new tests** in
+`tests/test_models.py` (schema edge cases incl. a synthetic party switch, the
+6-member covered set, double-export byte-identity). Three builder judgment calls
+recorded as **D20** in `decisions.md`. Acceptance gate green (2 checks, 35 tests,
+1 page). See "INC-2 output" below.
 
-> **Open decision left for the owner (asked at day close, unanswered):** whether
-> to run the Journal-PDF GO cross-check *now* (flip to GO, unlock INC-12) or fold
-> it into INC-12. Default applied = fold into INC-12 (spec-aligned, D18). Revisit
-> at the top of the next session if the owner wants GO sooner.
+**Next: INC-3 — House vote ingest — NOT STARTED.** Unblocked (no human task gates
+INC-3→INC-8; H4/H5 next gate at INC-9). Working tree clean after the INC-2 commit.
 
-**Next: INC-2 — Canonical members & schema layer — NOT STARTED.** Unblocked
-(no human task gates INC-2→INC-8; H4/H5 next gate at INC-9). Working tree clean
-after commit — a fresh session starts cleanly.
+> **Still-open owner decision (carried from INC-1, unanswered):** run the MS
+> Journal-PDF GO cross-check now (flip DEFER→GO, unlock INC-12) or fold it into
+> INC-12? Default applied = fold into INC-12 (D18-aligned). Not blocking federal work.
 
 ---
 
@@ -42,8 +41,10 @@ after commit — a fresh session starts cleanly.
    - Bash tool: `export PATH="$PATH:/c/Users/SB/AppData/Roaming/Python/Python314/Scripts"`.
 2. **Re-verify acceptance is still green before building INC-2:**
    `uv run checks && uv run pytest && (cd site && npm run build)` (Bash tool —
-   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, **23 tests** pass, 1 page
-   built. (`uv run ingest spike` re-runs the INC-1 pull; cached, not a CI job.)
+   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, **35 tests** pass, 1 page
+   built. Also run `uv run ruff check .` (CI runs ruff separately from `checks`).
+   (`uv run ingest members` re-exports the 6 member files; `ingest spike` re-runs
+   the INC-1 pull — both cached, neither is a CI job.)
 3. Python is uv-managed **3.12.13** (system Python is 3.14; project pins 3.12 via
    `.python-version`). `uv sync --frozen` is what CI runs; lockfile is consistent.
 4. **Secrets:** `.env` holds `CONGRESS_API_KEY` (H1 done) and empty
@@ -76,29 +77,50 @@ spike`, with secret-guard), sources `congress_gov.py` / `senate_xml.py` /
 `tests/test_banned_words_scope.py` (2), all offline. MS verdict: **DEFER**
 (feasibility GO-positive; Journal cross-check → INC-12). 11 samples committed.
 
-## INC-2 — where to pick up
+## INC-2 output (done — the schema layer INC-3+ import from)
 
-Spec: IMPLEMENTATION.md §7 "INC-2", §5 schemas. Goal: `models.py` complete; six
-MS members exported to `data/members/*.json`; determinism holds.
+`ingest/models.py` = the complete §5 layer. Reuse these; do not redefine records.
+- **`Member`** exported to `data/members/{bioguide}.json` (6 files, committed).
+  `id`=bioguide; `ids`=curated string crosswalk (D20 — `fec` comma-joined,
+  `lis`/`fec` are the join keys INC-4/INC-10b need); `terms` = full history,
+  start-sorted, party switches preserved; `serving` = latest term overlaps
+  congress 119 (deterministic, no wall-clock).
+- `legislators.party_code(word)` — shared "Democrat"/"Democratic"→"D" mapper;
+  **INC-3 reuses it for `voteParty`.** Raises on unmapped (→ quarantine, §6.1).
+- `legislators.congress_window(N)` / `_term_overlaps` — congress↔date helpers;
+  **INC-3 uses these to bucket roll calls into 118 vs 119.**
+- `export._dumps(obj)` — the canonical serializer (sorted keys, 2-space, LF,
+  trailing newline). Every INC-7 export contract should route through it.
+- Tier-1 records (`Member`, `Bill`, `RollCall`, `MemberVote`, `Absence`, …) set
+  `extra="forbid"` — an unexpected upstream field raises `ValidationError`
+  (→ quarantine), it never silently rides into the published dataset.
+
+## INC-3 — where to pick up
+
+Spec: IMPLEMENTATION.md §7 "INC-3"; shapes in `SHAPES.md §2/§3`. Goal: every House
+roll call, 118th–119th, with MS member positions.
 
 Concrete steps (in order):
-1. Implement the §5 pydantic v2 schemas in `ingest/models.py` (Member, Bill,
-   RollCall, MemberVote, Absence, Statement, Candidate, QuizQuestion, + the
-   Term/CboRef/etc. sub-models). Field names mirror the JSON export exactly.
-2. Ingest `congress-legislators` (`ingest/sources/legislators.py::current()`) →
-   `Member` records. Use the crosswalk `id` dict for `Member.ids`; map `terms`
-   (full history, party switches preserved). Filter covered set = MS delegation
-   (`terms[-1].state == "MS"`), congresses per `config.CONGRESSES`.
-   - **Map `partyName`/`party` full words → `"D"|"R"|"I"`**; `type`
-     `"sen"|"rep"` → chamber; `district` from the House term.
-3. `ingest/export.py` (replace stub) → deterministic sorted JSON (§6.3): sorted
-   keys, LF, 2-space indent, no wall-clock inside records. Write
-   `data/members/{bioguide}.json`.
-4. Tests `tests/test_models.py`: validation edge cases incl. a party switch in
-   `terms`; assert 6 member files; **double-export byte-identical** determinism.
+1. `ingest/sources/congress_gov.py`: enumerate roll calls per session
+   (`/house-vote/{congress}/{session}`, paginate), fetch each detail + `/members`.
+   **Case trap (SHAPES §3):** member positions use `bioguideID` (capital ID),
+   the member endpoint uses `bioguideId`. Join `bioguideID` → `Member.id`.
+2. Parse to `RollCall` + `MemberVote` per MS member. `voteCast`
+   `"Yea"|"Nay"|"Present"|"Not Voting"` → `position` enum; `"Not Voting"` →
+   `not_voting` AND seeds an `Absence` stub (reason `None`). `vote_class` is
+   REQUIRED — until INC-5's classifier exists, fill a provisional value + rule id
+   (or land INC-5 first; the spec orders 3→4→5, so a temporary `"other"`/rule
+   `"unclassified"` is acceptable and replaced in INC-5).
+3. `ingest/sources/clerk_house.py` (currently a stub): implement the clerk XML
+   parse for the `checks/integrity.py` 10-sample cross-check (positions must match
+   exactly). `sourceDataURL` on each vote is the clerk XML link, handed to us
+   directly (SHAPES §2) — no separate discovery.
+4. Export `data/votes/` + `data/absences/`; register the vote-coverage symmetry
+   rule (§6.5) into `checks/run.py`.
 
-**INC-2 acceptance:** `uv run pytest tests/test_models.py` passes; 6 member files
-exported; determinism check passes.
+**INC-3 acceptance:** ingested House roll-call count per session matches the
+clerk's official session total; 10-sample clerk cross-check passes; no covered-
+member vote gaps (symmetry). On count mismatch → `data/quality/house-gaps.md`.
 
 Register data-dependent checks into `ingest/checks/run.py` as they gain real
 logic (symmetry/archive/integrity still no-ops until they have data).
@@ -111,8 +133,8 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 |-----|-------|--------|------------|
 | INC-0 | Repo bootstrap | ✅ done (CI green) | `uv run checks && uv run pytest && (cd site && npm run build)` — local + CI green 2026-08-11 |
 | INC-1 | Source feasibility spike | ✅ done | samples + SHAPES.md committed; verdict = DEFER (H2 pending). All 6 federal sources reached |
-| INC-2 | Canonical members & schema | **not started (next)** | models.py + 6 MS members exported + determinism |
-| INC-3 | House vote ingest | not started | — |
+| INC-2 | Canonical members & schema | ✅ done | models.py complete + 6 MS members exported + double-export determinism; 35 tests green |
+| INC-3 | House vote ingest | **not started (next)** | — |
 | INC-4 | Senate vote ingest ∥ | not started | — |
 | INC-5 | vote_class classifier | not started | — |
 | INC-6 | Absences & explanations | not started | content = H9 |
@@ -148,7 +170,14 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0 + INC-1 output)
+## What exists in the repo now (INC-0 + INC-1 + INC-2 output)
+
+**INC-2 additions:** `ingest/models.py` (full §5 schema layer), the raw→`Member`
+parser in `ingest/sources/legislators.py` (`party_code`, `congress_window`,
+`is_covered`, `covered_members`), the deterministic serializer + `export_members`
+in `ingest/export.py`, the `members` subcommand in `cli.py`, `tests/test_models.py`
+(11 offline tests), and 6 committed `data/members/*.json`. D20 in `decisions.md`.
+Test count 23 → 35.
 
 **INC-1 additions:** `ingest/env.py`, `ingest/cache.py`, `ingest/spike.py`,
 `ingest/sources/{congress_gov,senate_xml,legislators,clerk_house,legiscan}.py`,

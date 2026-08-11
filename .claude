@@ -1,0 +1,11 @@
+# CLAUDE.md
+Read IMPLEMENTATION.md in full before any work. It is the sole specification.
+
+Rules:
+- Follow §0 ground rules exactly. Never ask the owner a question.
+- Track state in docs/PROGRESS.md: current increment, acceptance status,
+  blocked H-tasks. Update it before ending any session.
+- One increment at a time. Do not start INC-N+1 until INC-N acceptance
+  criteria pass, except increments marked ∥.
+- Commit at every passing acceptance criterion with message "INC-N: <what>".
+- Secrets come from .env — never hardcode, never commit.

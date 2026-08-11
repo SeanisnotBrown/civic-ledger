@@ -7,9 +7,9 @@ the owner completes each task.
 
 | # | Task | Blocks | Status | Instructions |
 |---|------|--------|--------|--------------|
-| **H1** | Register Congress.gov / api.data.gov API key | INC-1 | ⬜ pending | https://api.congress.gov/sign-up/ → key by email → `.env` `CONGRESS_API_KEY` + GitHub repo secret of same name |
+| **H1** | Register Congress.gov / api.data.gov API key | INC-1 | ✅ done | https://api.congress.gov/sign-up/ → key by email → `.env` `CONGRESS_API_KEY` + GitHub repo secret of same name |
 | **H2** | Register LegiScan API key | INC-1 (state verdict only) | ⬜ pending | https://legiscan.com/legiscan → free tier → `.env` / secret `LEGISCAN_API_KEY` |
-| **H3** | Create public GitHub repo + add secrets | INC-0 (push / CI) | ⬜ pending | Suggest name `civic-ledger`. Secrets: `CONGRESS_API_KEY`, `LEGISCAN_API_KEY`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `IA_S3_ACCESS`, `IA_S3_SECRET` |
+| **H3** | Create public GitHub repo + add secrets | INC-0 (push / CI) | ✅ done | Suggest name `civic-ledger`. Secrets: `CONGRESS_API_KEY`, `LEGISCAN_API_KEY`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `IA_S3_ACCESS`, `IA_S3_SECRET` |
 | **H4** | Cloudflare account + Pages project + API token | INC-9 (deploy), INC-16 | ⬜ pending | Pages project connected to repo, root `site/`, build `npm run build`, output `dist/`. Token with Pages+Workers+D1 edit → secret `CLOUDFLARE_API_TOKEN`; account ID → `CLOUDFLARE_ACCOUNT_ID` |
 | **H5** | Purchase domain with WHOIS privacy | INC-9 | ⬜ pending | Any registrar with privacy default (Cloudflare Registrar). Point at Pages. **Never** point any record at the homelab. |
 | **H6** | archive.org account + S3-like API keys | INC-11 | ⬜ pending | https://archive.org/account/s3.php → `IA_S3_ACCESS` / `IA_S3_SECRET`. Enables authenticated SPN. Falls back to unauthenticated until present. |

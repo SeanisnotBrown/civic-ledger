@@ -5,7 +5,7 @@ Single source of truth for: current increment, acceptance status, blocked H-task
 
 ## Current increment
 
-**INC-0 — Repo bootstrap** — status: **acceptance passing locally; CI pending H3**
+**INC-0 — Repo bootstrap** — status: **✅ COMPLETE — CI green on master (run 31525155390, 2026-08-11)**
 
 Next: **INC-1 — Source feasibility spike** (blocked by H1; H2 for state branch).
 Cannot start until H1 provides `CONGRESS_API_KEY`. Per §0.2, build the code path
@@ -15,7 +15,7 @@ and stub the credential; INC-1 acceptance needs real API responses to cache.
 
 | INC | Title | Status | Acceptance |
 |-----|-------|--------|------------|
-| INC-0 | Repo bootstrap | ✅ local green / CI pending H3 | `uv run checks && uv run pytest && (cd site && npm run build)` — all pass locally 2026-08-11 |
+| INC-0 | Repo bootstrap | ✅ done (CI green) | `uv run checks && uv run pytest && (cd site && npm run build)` — local + CI green 2026-08-11 |
 | INC-1 | Source feasibility spike | not started | blocked by H1 (H2 for state branch) |
 | INC-2 | Canonical members & schema | not started | — |
 | INC-3 | House vote ingest | not started | — |
@@ -44,9 +44,9 @@ and stub the credential; INC-1 acceptance needs real API responses to cache.
 
 | H | Blocks | Status |
 |---|--------|--------|
-| H1 | INC-1 | pending — Congress.gov API key |
+| H1 | INC-1 | ✅ done — CONGRESS_API_KEY in .env + GitHub secret |
 | H2 | INC-1 state branch | pending — LegiScan API key |
-| H3 | INC-0 push / all CI | **pending — no GitHub repo/remote yet; local acceptance only** |
+| H3 | INC-0 push / all CI | ✅ done — repo live, pushed, CI green |
 | H4 | INC-9, INC-16 | pending — Cloudflare Pages + token |
 | H5 | INC-9 | pending — domain |
 | H6 | INC-11 auth SPN | pending — archive.org S3 keys |

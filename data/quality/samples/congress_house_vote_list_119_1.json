@@ -1,0 +1,89 @@
+{
+  "houseRollCallVotes": [
+    {
+      "congress": 119,
+      "identifier": 11912025240,
+      "legislationNumber": "3424",
+      "legislationType": "HR",
+      "legislationUrl": "https://www.congress.gov/bill/119/house-bill/3424",
+      "result": "Passed",
+      "rollCallNumber": 240,
+      "sessionNumber": 1,
+      "sourceDataURL": "https://clerk.house.gov/evs/2025/roll240.xml",
+      "startDate": "2025-09-08T18:56:00-04:00",
+      "updateDate": "2025-09-09T18:53:19-04:00",
+      "url": "https://api.congress.gov/v3/house-vote/119/1/240",
+      "voteType": "2/3 Yea-And-Nay"
+    },
+    {
+      "congress": 119,
+      "identifier": 11912025306,
+      "legislationNumber": "5348",
+      "legislationType": "HR",
+      "legislationUrl": "https://www.congress.gov/bill/119/house-bill/5348",
+      "result": "Passed",
+      "rollCallNumber": 306,
+      "sessionNumber": 1,
+      "sourceDataURL": "https://clerk.house.gov/evs/2025/roll306.xml",
+      "startDate": "2025-12-01T18:57:00-05:00",
+      "updateDate": "2025-12-19T09:53:45-05:00",
+      "url": "https://api.congress.gov/v3/house-vote/119/1/306",
+      "voteType": "2/3 Yea-And-Nay"
+    },
+    {
+      "congress": 119,
+      "identifier": 11912025241,
+      "legislationNumber": "3425",
+      "legislationType": "HR",
+      "legislationUrl": "https://www.congress.gov/bill/119/house-bill/3425",
+      "result": "Passed",
+      "rollCallNumber": 241,
+      "sessionNumber": 1,
+      "sourceDataURL": "https://clerk.house.gov/evs/2025/roll241.xml",
+      "startDate": "2025-09-08T19:02:00-04:00",
+      "updateDate": "2025-09-09T18:53:25-04:00",
+      "url": "https://api.congress.gov/v3/house-vote/119/1/241",
+      "voteType": "2/3 Yea-And-Nay"
+    },
+    {
+      "congress": 119,
+      "identifier": 11912025116,
+      "legislationNumber": "36",
+      "legislationType": "HR",
+      "legislationUrl": "https://www.congress.gov/bill/119/house-bill/36",
+      "result": "Passed",
+      "rollCallNumber": 116,
+      "sessionNumber": 1,
+      "sourceDataURL": "https://clerk.house.gov/evs/2025/roll116.xml",
+      "startDate": "2025-05-05T18:56:00-04:00",
+      "updateDate": "2025-06-24T08:37:00-04:00",
+      "url": "https://api.congress.gov/v3/house-vote/119/1/116",
+      "voteType": "2/3 Yea-And-Nay"
+    },
+    {
+      "congress": 119,
+      "identifier": 11912025122,
+      "legislationNumber": "276",
+      "legislationType": "HR",
+      "legislationUrl": "https://www.congress.gov/bill/119/house-bill/276",
+      "result": "Passed",
+      "rollCallNumber": 122,
+      "sessionNumber": 1,
+      "sourceDataURL": "https://clerk.house.gov/evs/2025/roll122.xml",
+      "startDate": "2025-05-08T10:42:00-04:00",
+      "updateDate": "2025-06-24T08:37:50-04:00",
+      "url": "https://api.congress.gov/v3/house-vote/119/1/122",
+      "voteType": "Recorded Vote"
+    }
+  ],
+  "pagination": {
+    "count": 362,
+    "next": "https://api.congress.gov/v3/house-vote/119/1?offset=5&limit=5&format=json"
+  },
+  "request": {
+    "congress": "119",
+    "contentType": "application/json",
+    "format": "json",
+    "session": "1"
+  }
+}

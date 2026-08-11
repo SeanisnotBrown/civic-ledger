@@ -64,6 +64,13 @@ ALLOWLIST: frozenset[str] = frozenset(
     }
 )
 
+# Excluded subtrees (ADR 2026-08-11): raw upstream source captures are verbatim
+# government responses committed for audit/reproducibility (§6.2), NOT published
+# fields authored or framed by the platform. §6.4 guards partisan-lean framing in
+# our rendered content; floor speech in a CREC capture may contain "contradicts"
+# etc. and must not fail the build. Nothing here is ever rendered on the site.
+EXCLUDE_PREFIXES: tuple[str, ...] = ("data/quality/samples/",)
+
 
 def repo_root() -> Path:
     # ingest/checks/banned_words.py -> repo root is two parents up from ingest/.
@@ -82,6 +89,8 @@ def _iter_text_files(root: Path):
                 continue
             relposix = path.relative_to(root).as_posix()
             if relposix in ALLOWLIST:
+                continue
+            if relposix.startswith(EXCLUDE_PREFIXES):
                 continue
             yield path, relposix
 

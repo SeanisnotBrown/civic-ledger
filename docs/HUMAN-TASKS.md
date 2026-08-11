@@ -8,7 +8,7 @@ the owner completes each task.
 | # | Task | Blocks | Status | Instructions |
 |---|------|--------|--------|--------------|
 | **H1** | Register Congress.gov / api.data.gov API key | INC-1 | ✅ done | https://api.congress.gov/sign-up/ → key by email → `.env` `CONGRESS_API_KEY` + GitHub repo secret of same name |
-| **H2** | Register LegiScan API key | INC-1 (state verdict only) | ⬜ pending | https://legiscan.com/legiscan → free tier → `.env` / secret `LEGISCAN_API_KEY` |
+| **H2** | Register LegiScan API key | INC-1 (state verdict only) | ⬜ pending | https://legiscan.com/legiscan → free tier → `.env` / secret `LEGISCAN_API_KEY`. **Consequence:** absent at INC-1 → state verdict resolved **DEFER** (D18); federal build unaffected. To convert to GO, add the key and follow `data/quality/ms-state-verdict.md`. |
 | **H3** | Create public GitHub repo + add secrets | INC-0 (push / CI) | ✅ done | Suggest name `civic-ledger`. Secrets: `CONGRESS_API_KEY`, `LEGISCAN_API_KEY`, `CLOUDFLARE_API_TOKEN`, `CLOUDFLARE_ACCOUNT_ID`, `IA_S3_ACCESS`, `IA_S3_SECRET` |
 | **H4** | Cloudflare account + Pages project + API token | INC-9 (deploy), INC-16 | ⬜ pending | Pages project connected to repo, root `site/`, build `npm run build`, output `dist/`. Token with Pages+Workers+D1 edit → secret `CLOUDFLARE_API_TOKEN`; account ID → `CLOUDFLARE_ACCOUNT_ID` |
 | **H5** | Purchase domain with WHOIS privacy | INC-9 | ⬜ pending | Any registrar with privacy default (Cloudflare Registrar). Point at Pages. **Never** point any record at the homelab. |
@@ -23,9 +23,10 @@ the owner completes each task.
 
 Legend: ⬜ pending · 🟨 in progress · ✅ done
 
-## Impact on current build (INC-0)
+## Impact on current build (INC-1 done)
 
-INC-0 requires no human task to build. **H3** (repo + secrets) is the only one
-that gates INC-0's "green in CI" clause: no GitHub remote exists yet, so CI has
-not run. Local acceptance is green. Once H3 is done, push and confirm `ci.yml`
-passes. Everything else (H1, H2, H4–H13) blocks later increments as tabled.
+INC-0 and INC-1 are complete. **H1** (Congress.gov key) unblocked the INC-1
+federal spike — all six federal sources reached, samples committed. **H2**
+(LegiScan) remained pending, so the MS-state verdict resolved **DEFER** by rule
+(D18) with no effect on the federal path. The next gating human tasks are **H4**
++ **H5** (Cloudflare + domain) at INC-9; nothing blocks INC-2→INC-8.

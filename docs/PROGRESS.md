@@ -3,24 +3,22 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-11, end of session.
-**Git:** HEAD `fd39489` on `master`, pushed, in sync with `origin/master`, working tree clean.
+**Last updated:** 2026-08-11, end of INC-1 session.
+**Git:** committing INC-1 on `master`.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 ---
 
 ## Current increment
 
-**INC-0 — Repo bootstrap — ✅ COMPLETE (local + CI green).**
-CI run `31525155390` passed both jobs (`python`, `site-and-checks`); doc-update
-run `31525263905` also green.
+**INC-1 — Source feasibility spike — ✅ COMPLETE.**
+All six federal sources reached; samples committed to `data/quality/samples/`
+with `SHAPES.md`; MS-state verdict = **DEFER** (H2 pending, D18) in
+`data/quality/ms-state-verdict.md`. Acceptance met. See "INC-1 output" below.
 
-**Next: INC-1 — Source feasibility spike — NOT STARTED.**
-Federal branch is now **unblocked** (H1 done → `CONGRESS_API_KEY` present).
-The state-branch verdict portion still needs **H2** (LegiScan); if H2 is still
-pending when INC-1 runs, the verdict defaults to **DEFER** and the federal build
-continues untouched (§0.2, Decision D18). Nothing else is in progress. Working
-tree is clean — a fresh session starts cleanly.
+**Next: INC-2 — Canonical members & schema layer — NOT STARTED.** Unblocked
+(no human task gates INC-2→INC-8; H4/H5 next gate at INC-9). Working tree clean
+after commit — a fresh session starts cleanly.
 
 ---
 
@@ -31,9 +29,10 @@ tree is clean — a fresh session starts cleanly.
    to the **user** PATH (takes effect in new shells). If `uv` is not found:
    - PowerShell: it should be on PATH now; if not, prepend that Scripts dir.
    - Bash tool: `export PATH="$PATH:/c/Users/SB/AppData/Roaming/Python/Python314/Scripts"`.
-2. **Re-verify INC-0 acceptance is still green before building INC-1:**
+2. **Re-verify acceptance is still green before building INC-2:**
    `uv run checks && uv run pytest && (cd site && npm run build)` (Bash tool —
-   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, 15 tests pass, 1 page built.
+   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, **21 tests** pass, 1 page
+   built. (`uv run ingest spike` re-runs the INC-1 pull; it is cached, not CI.)
 3. Python is uv-managed **3.12.13** (system Python is 3.14; project pins 3.12 via
    `.python-version`). `uv sync --frozen` is what CI runs; lockfile is consistent.
 4. **Secrets:** `.env` holds `CONGRESS_API_KEY` (H1 done) and empty
@@ -42,53 +41,52 @@ tree is clean — a fresh session starts cleanly.
 
 ---
 
-## INC-1 — detailed plan / where to pick up
+## INC-1 output (done — read `SHAPES.md` before writing any parser)
 
-Spec: IMPLEMENTATION.md §7 "INC-1", §6.2 (raw cache), §A1 context. Goal: raw
-samples on disk from every federal source + a written MS-state GO/DEFER verdict.
-**No parser is written in later increments against spec assumptions — they are
-written against the field shapes observed here (`SHAPES.md`).**
+`data/quality/samples/SHAPES.md` is the **authoritative field-shape contract**
+for INC-2/3/4/5/6. Key discovered deviations from IMPLEMENTATION.md's assumptions
+(all in SHAPES.md + `decisions.md`):
+- **Members by state = PATH `/member/{stateCode}`, NOT `?stateCode=` (503).** (D19)
+- **`bioguideId` (member list) vs `bioguideID` (house-vote positions)** — case differs.
+- **Senate menu & detail are in different dirs**; the spec's `vote_menu` path
+  301-redirects. Menu `roll_call_lists/`, detail `roll_call_votes/vote{c}{s}/`.
+- **CREC `/congressional-record` is a date index, not full-text search** — INC-6
+  must use govinfo CREC for the "personal explanation" extraction.
+- **Crosswalk joins:** house `bioguideID`→`id.bioguide`; senate `lis_member_id`→
+  `id.lis` (both in `legislators_current_ms.yaml`).
 
-Concrete first steps (in order):
-1. Build `ingest/cache.py` first — disk cache at
-   `data/raw/{source}/{sha256(url+params)[:16]}.json|xml` + `.meta` sidecar
-   (url, fetched_at, status). Gitignored (`data/raw/` already in `.gitignore`).
-   Honor rate ceilings (§6.1/§6.3): Congress.gov ≤ 1 req/sec; never re-fetch a
-   cached URL within 20h. All fetches go through this module.
-2. `ingest/sources/congress_gov.py` — pull, into the cache and then copy the
-   sample into `data/quality/samples/` (committed — the INC-1 exception to the
-   gitignore, §6.2):
-   - member list: `/member?currentMember=true&stateCode=MS`
-   - one House roll call: `/house-vote/119/1/{n}` — **if the beta path 404s,
-     fall back** to `https://clerk.house.gov/evs/2025/roll{NNN}.xml` and record
-     the deviation in `docs/decisions.md`.
-   - one bill detail carrying `cboCostEstimates`.
-   - one CREC search hit for `"personal explanation"`.
-3. Senate: one vote XML. **Discover the exact filename pattern from the session's
-   `vote_menu` XML first — do not assume** the
-   `vote_119_1_{NNNNN}.xml` shape (§7 INC-1 step 1).
-4. `ingest/sources/legislators.py` — pull `legislators-current.yaml` from
-   `unitedstates/congress-legislators`.
-5. Write `data/quality/samples/SHAPES.md` documenting observed field names per
-   source (this is the contract later parsers target).
-6. **State branch (needs H2):** LegiScan `getSessionList(MS)` → `getDataset` →
-   verdict test (do `roll_call` records carry per-person positions with
-   resolvable `people_id`s? sample 5 bills vs Journal PDF pages; 5/5 = GO).
-   If H2 pending / LegiScan unreachable / ambiguous → **DEFER** (correctness
-   outranks scope). Write `data/quality/ms-state-verdict.md` with an unambiguous
-   GO/DEFER + evidence table.
+Modules created: `ingest/env.py` (`.env` reader), `ingest/cache.py` (header-auth
+disk cache; **credential never in URL/key/meta**), `ingest/spike.py` (`ingest
+spike`, with secret-guard), sources `congress_gov.py` / `senate_xml.py` /
+`legislators.py` / `clerk_house.py` (stub) / `legiscan.py` (state, DEFER path).
+Tests: `tests/test_cache.py` (6, offline). MS verdict: **DEFER**.
 
-**INC-1 acceptance:** samples committed; `SHAPES.md` complete; verdict file
-exists with unambiguous GO/DEFER + evidence.
-**On failure:** any single federal source unreachable → note in `SHAPES.md`,
-continue (its ingest increment carries the risk). LegiScan unreachable → DEFER.
+## INC-2 — where to pick up
 
-Modules to create in INC-1: `ingest/cache.py`, `ingest/sources/congress_gov.py`,
-`ingest/sources/senate_xml.py`, `ingest/sources/legislators.py`,
-`ingest/sources/legiscan.py` (state branch), and (stub, for cross-check later)
-`ingest/sources/clerk_house.py`. Register any new blocking check into
-`ingest/checks/run.py` as it gains real logic (currently only banned_words +
-no_llm are wired; symmetry/archive/integrity are no-ops on empty data).
+Spec: IMPLEMENTATION.md §7 "INC-2", §5 schemas. Goal: `models.py` complete; six
+MS members exported to `data/members/*.json`; determinism holds.
+
+Concrete steps (in order):
+1. Implement the §5 pydantic v2 schemas in `ingest/models.py` (Member, Bill,
+   RollCall, MemberVote, Absence, Statement, Candidate, QuizQuestion, + the
+   Term/CboRef/etc. sub-models). Field names mirror the JSON export exactly.
+2. Ingest `congress-legislators` (`ingest/sources/legislators.py::current()`) →
+   `Member` records. Use the crosswalk `id` dict for `Member.ids`; map `terms`
+   (full history, party switches preserved). Filter covered set = MS delegation
+   (`terms[-1].state == "MS"`), congresses per `config.CONGRESSES`.
+   - **Map `partyName`/`party` full words → `"D"|"R"|"I"`**; `type`
+     `"sen"|"rep"` → chamber; `district` from the House term.
+3. `ingest/export.py` (replace stub) → deterministic sorted JSON (§6.3): sorted
+   keys, LF, 2-space indent, no wall-clock inside records. Write
+   `data/members/{bioguide}.json`.
+4. Tests `tests/test_models.py`: validation edge cases incl. a party switch in
+   `terms`; assert 6 member files; **double-export byte-identical** determinism.
+
+**INC-2 acceptance:** `uv run pytest tests/test_models.py` passes; 6 member files
+exported; determinism check passes.
+
+Register data-dependent checks into `ingest/checks/run.py` as they gain real
+logic (symmetry/archive/integrity still no-ops until they have data).
 
 ---
 
@@ -97,8 +95,8 @@ no_llm are wired; symmetry/archive/integrity are no-ops on empty data).
 | INC | Title | Status | Acceptance |
 |-----|-------|--------|------------|
 | INC-0 | Repo bootstrap | ✅ done (CI green) | `uv run checks && uv run pytest && (cd site && npm run build)` — local + CI green 2026-08-11 |
-| INC-1 | Source feasibility spike | **not started (next)** | samples committed + SHAPES.md + GO/DEFER verdict. Federal unblocked (H1); state needs H2 else DEFER |
-| INC-2 | Canonical members & schema | not started | — |
+| INC-1 | Source feasibility spike | ✅ done | samples + SHAPES.md committed; verdict = DEFER (H2 pending). All 6 federal sources reached |
+| INC-2 | Canonical members & schema | **not started (next)** | models.py + 6 MS members exported + determinism |
 | INC-3 | House vote ingest | not started | — |
 | INC-4 | Senate vote ingest ∥ | not started | — |
 | INC-5 | vote_class classifier | not started | — |
@@ -135,7 +133,16 @@ no_llm are wired; symmetry/archive/integrity are no-ops on empty data).
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0 output)
+## What exists in the repo now (INC-0 + INC-1 output)
+
+**INC-1 additions:** `ingest/env.py`, `ingest/cache.py`, `ingest/spike.py`,
+`ingest/sources/{congress_gov,senate_xml,legislators,clerk_house,legiscan}.py`,
+`tests/test_cache.py` (6 offline tests), and the committed
+`data/quality/samples/` (9 samples + `SHAPES.md`) + `data/quality/ms-state-verdict.md`.
+`banned_words.py` now excludes `data/quality/samples/` (ADR). `ingest spike`
+subcommand wired in `cli.py`. Test count 15 → 21.
+
+## Prior state (INC-0 output)
 
 - **Python (uv):** `pyproject.toml` (console scripts `ingest`/`export`/`curate`/
   `checks`; hatchling ships two packages `ingest` + `curation`), `uv.lock`,

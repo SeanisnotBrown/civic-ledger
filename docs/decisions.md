@@ -57,3 +57,40 @@ Resolved and locked in `uv.lock` (Python) and `site/package-lock.json` (Node).
   `site/dist/**`; that tree only exists after the build. Local acceptance runs
   checks before build (per the INC-0 acceptance string) where dist is simply
   absent and skipped-with-note; CI scans the real built output.
+
+### INC-1 (2026-08-11)
+
+- **D19 — Congress.gov members-by-state is a PATH segment `/member/{stateCode}`,
+  not the spec's `?stateCode=` query param.** The query form returns HTTP 503; the
+  path form returns clean JSON and `?currentMember=true` filters it to the 6 current
+  MS members. Discovered in the INC-1 spike; documented in `SHAPES.md §1`. Later
+  member ingest (INC-2) uses the path form.
+- **2026-08-11 — Credentials are header-only (`X-Api-Key`), never in URL/params.**
+  `ingest/cache.py` keys the disk cache on `sha256(url+params)` and writes a `.meta`
+  sidecar with the URL; putting the key in the query would leak it into the cache key
+  and into committed INC-1 samples. `ingest/spike.py::_assert_no_secret` additionally
+  refuses to write any sample containing a key value. (LegiScan requires the key as a
+  query param; `legiscan.py` computes its cache key/meta from op+params only, so the
+  secret still never lands on disk.)
+- **2026-08-11 — Hand-rolled `.env` reader (`ingest/env.py`), not python-dotenv.**
+  Avoids adding a dependency (keeps `uv.lock` and the no-LLM lockfile scan simple);
+  process env overrides the file so CI (secrets as env vars) and local dev both work.
+- **2026-08-11 — `banned_words.py` excludes `data/quality/samples/`.** Raw upstream
+  captures are verbatim government responses committed for audit/reproducibility
+  (§6.2), not published fields the platform authors or frames; floor speech in a CREC
+  capture can contain "contradicts" etc. §6.4 guards partisan-lean framing in rendered
+  content, and nothing under `samples/` is ever rendered. Rationale in the check's
+  `EXCLUDE_PREFIXES` comment.
+- **2026-08-11 — Senate LIS menu and detail are in different directories.** Menu:
+  `roll_call_lists/vote_menu_{c}_{s}.xml`; detail:
+  `roll_call_votes/vote{c}{s}/vote_{c}_{s}_{NNNNN}.xml`. The spec's assumed
+  `vote{cc}{s}/vote_menu_…` path 301-redirects to "not available". `SHAPES.md §6`.
+- **2026-08-11 — CREC `/congressional-record` is a date index, not full-text search.**
+  It cannot be queried for "personal explanation"; INC-6 must use a full-text source
+  (govinfo CREC). Risk recorded in `SHAPES.md §5` so INC-6 does not assume otherwise.
+- **2026-08-11 — MS state verdict = DEFER** (H2/LegiScan key pending; GO unverifiable
+  → DEFER by rule). Evidence in `data/quality/ms-state-verdict.md`; per D18 no other
+  increment is affected.
+- **2026-08-11 — `spike.py` forces UTF-8 stdout.** §0.6 (PowerShell): status output
+  uses non-cp1252 glyphs (`→`); `sys.stdout.reconfigure(encoding="utf-8")` prevents a
+  `UnicodeEncodeError` crash regardless of the console codepage.

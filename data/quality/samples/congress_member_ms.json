@@ -1,0 +1,140 @@
+{
+  "members": [
+    {
+      "bioguideId": "E000235",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/e000235_200.jpg"
+      },
+      "district": 4,
+      "name": "Ezell, Mike",
+      "partyName": "Republican",
+      "state": "Mississippi",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2023
+          }
+        ]
+      },
+      "updateDate": "2026-08-11T07:40:25Z",
+      "url": "https://api.congress.gov/v3/member/E000235?format=json"
+    },
+    {
+      "bioguideId": "G000591",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/g000591_200.jpg"
+      },
+      "district": 3,
+      "name": "Guest, Michael",
+      "partyName": "Republican",
+      "state": "Mississippi",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2019
+          }
+        ]
+      },
+      "updateDate": "2026-08-11T07:40:24Z",
+      "url": "https://api.congress.gov/v3/member/G000591?format=json"
+    },
+    {
+      "bioguideId": "K000388",
+      "depiction": {
+        "attribution": "Congressional Pictorial Directory",
+        "imageUrl": "https://www.congress.gov/img/member/116_rp_ms_1_kelly_trent_200.jpg"
+      },
+      "district": 1,
+      "name": "Kelly, Trent",
+      "partyName": "Republican",
+      "state": "Mississippi",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 2015
+          }
+        ]
+      },
+      "updateDate": "2026-08-11T07:40:23Z",
+      "url": "https://api.congress.gov/v3/member/K000388?format=json"
+    },
+    {
+      "bioguideId": "T000193",
+      "depiction": {
+        "attribution": "Image, Congressional Pictorial Directory, 109th.",
+        "imageUrl": "https://www.congress.gov/img/member/t000193_200.jpg"
+      },
+      "district": 2,
+      "name": "Thompson, Bennie G.",
+      "partyName": "Democratic",
+      "state": "Mississippi",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "startYear": 1993
+          }
+        ]
+      },
+      "updateDate": "2026-08-11T07:40:22Z",
+      "url": "https://api.congress.gov/v3/member/T000193?format=json"
+    },
+    {
+      "bioguideId": "W000437",
+      "depiction": {
+        "attribution": "Image courtesy of the Member",
+        "imageUrl": "https://www.congress.gov/img/member/f49ac425119375e9fe6a075762734079_200.jpg"
+      },
+      "name": "Wicker, Roger F.",
+      "partyName": "Republican",
+      "state": "Mississippi",
+      "terms": {
+        "item": [
+          {
+            "chamber": "House of Representatives",
+            "endYear": 2007,
+            "startYear": 1995
+          },
+          {
+            "chamber": "Senate",
+            "startYear": 2007
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:33:05Z",
+      "url": "https://api.congress.gov/v3/member/W000437?format=json"
+    },
+    {
+      "bioguideId": "H001079",
+      "depiction": {
+        "attribution": "<a href=\"http://www.senate.gov/artandhistory/history/common/generic/Photo_Collection_of_the_Senate_Historical_Office.htm\">Courtesy U.S. Senate Historical Office</a>",
+        "imageUrl": "https://www.congress.gov/img/member/h001079_200.jpg"
+      },
+      "name": "Hyde-Smith, Cindy",
+      "partyName": "Republican",
+      "state": "Mississippi",
+      "terms": {
+        "item": [
+          {
+            "chamber": "Senate",
+            "startYear": 2018
+          }
+        ]
+      },
+      "updateDate": "2026-03-08T10:31:33Z",
+      "url": "https://api.congress.gov/v3/member/H001079?format=json"
+    }
+  ],
+  "pagination": {
+    "count": 6
+  },
+  "request": {
+    "contentType": "application/json",
+    "format": "json"
+  }
+}

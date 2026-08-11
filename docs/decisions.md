@@ -17,7 +17,7 @@ Resolved and locked in `uv.lock` (Python) and `site/package-lock.json` (Node).
 | httpx | ^0.27 | 0.27.2 |
 | tenacity | ^9 | 9.1.4 |
 | PyYAML | ^6 | 6.0.3 |
-| Flask | ^3 | 3.x (curation only) |
+| Flask | ^3 | 3.1.3 (curation only) |
 | pytest | ^8 | 8.4.2 |
 | ruff | latest | 0.16.2 |
 

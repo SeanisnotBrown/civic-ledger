@@ -1,0 +1,56 @@
+name: ci
+
+# PR + push checks (§9). Any red blocks merge. Runs on Ubuntu; the same
+# commands the owner runs locally on Windows (uv run ..., npm run build) are
+# invoked here so both platforms exercise the identical entrypoints (§0.6).
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Sync (pinned Python 3.12 from .python-version)
+        run: uv sync --frozen
+      - name: Ruff
+        run: uv run ruff check .
+      - name: Pytest
+        run: uv run pytest -q
+
+  site-and-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Sync Python
+        run: uv sync --frozen
+      - name: Install site deps
+        working-directory: site
+        run: npm ci
+      # Build BEFORE checks so §6.4 banned-words scans the real site/dist/**.
+      - name: Astro build
+        working-directory: site
+        run: npm run build
+      - name: Checks (banned-words, no-llm, ...)
+        run: uv run checks

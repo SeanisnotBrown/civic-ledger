@@ -1,0 +1,11 @@
+# Enforce LF everywhere. Export determinism (§6.3) requires LF endings in the
+# published dataset; normalizing the whole repo keeps CRLF off Windows dev
+# boxes from ever entering data/ and breaking byte-identical double-export.
+* text=auto eol=lf
+
+# Binary assets are never touched.
+*.png binary
+*.jpg binary
+*.ico binary
+*.woff binary
+*.woff2 binary

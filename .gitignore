@@ -1,6 +1,21 @@
+# Secrets
 .env
+
+# Raw source cache and build DB are dev conveniences; the PUBLISHED dataset is
+# the exported JSON/YAML under data/ (§4). uv.lock and site/package-lock.json
+# are intentionally NOT ignored — they pin the reproducible build.
 data/raw/
 build.db
+
+# Python
 __pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Node / Astro
 node_modules/
 dist/
+site/dist/
+.astro/

@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0461"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0461"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0461"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0461"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr8446-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-11-14T14:19:00-05:00",
+    "id": "h-118-2-0461",
+    "number": 461,
+    "question": "On Motion to Recommit",
+    "result": "Failed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll461.xml",
+    "totals": {
+      "nay": 206,
+      "not_voting": 27,
+      "present": 0,
+      "yea": 199
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

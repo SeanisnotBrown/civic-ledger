@@ -18,9 +18,12 @@ import sys
 from pathlib import Path
 
 from ingest.cache import repo_root
-from ingest.models import Member
+from ingest.models import Absence, Member, MemberVote, RollCall
 
-MEMBERS_DIR = repo_root() / "data" / "members"
+DATA_DIR = repo_root() / "data"
+MEMBERS_DIR = DATA_DIR / "members"
+VOTES_DIR = DATA_DIR / "votes"
+ABSENCES_DIR = DATA_DIR / "absences"
 
 
 def _dumps(obj: object) -> str:
@@ -39,6 +42,31 @@ def export_members(members: list[Member], out_dir: Path = MEMBERS_DIR) -> list[P
         path.write_text(_dumps(member.model_dump()), encoding="utf-8", newline="\n")
         written.append(path)
     return sorted(written)
+
+
+def export_rollcall(
+    rollcall: RollCall, member_votes: list[MemberVote], out_dir: Path = VOTES_DIR
+) -> Path:
+    """Write data/votes/{id}.json: the chamber RollCall with the covered
+    delegation's votes embedded (sorted by member_id for determinism)."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{rollcall.id}.json"
+    record = {
+        "rollcall": rollcall.model_dump(),
+        "member_votes": [mv.model_dump() for mv in sorted(member_votes, key=lambda m: m.member_id)],
+    }
+    path.write_text(_dumps(record), encoding="utf-8", newline="\n")
+    return path
+
+
+def export_absence(absence: Absence, out_dir: Path = ABSENCES_DIR) -> Path:
+    """One file per absence: data/absences/{member_id}--{rollcall_id}.json. Kept
+    separate from vote files so INC-6 curation can add a stated_reason without
+    rewriting the (much larger) vote record."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{absence.member_id}--{absence.rollcall_id}.json"
+    path.write_text(_dumps(absence.model_dump()), encoding="utf-8", newline="\n")
+    return path
 
 
 def main(argv: list[str] | None = None) -> int:

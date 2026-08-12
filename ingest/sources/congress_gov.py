@@ -52,6 +52,29 @@ def house_vote_detail(congress: int, session: int, roll: int) -> CachedResponse:
     return _get(f"house-vote/{congress}/{session}/{roll}")
 
 
+def house_vote_roll_numbers(congress: int, session: int) -> tuple[list[int], int]:
+    """Enumerate every roll-call number for a session via the paginated list.
+
+    Returns (sorted unique roll numbers, official `pagination.count`). The count is
+    the acceptance's "official session total"; the caller asserts the two agree so
+    a pagination gap can never masquerade as a complete ingest.
+    """
+    page = house_vote_list(congress, session, limit=250, offset=0).json()
+    count = int(page["pagination"]["count"])
+    rolls: set[int] = set()
+    offset = 0
+    while True:
+        data = house_vote_list(congress, session, limit=250, offset=offset).json()
+        votes = data.get("houseRollCallVotes", [])
+        if not votes:
+            break
+        rolls.update(int(v["rollCallNumber"]) for v in votes)
+        offset += 250
+        if offset >= count:
+            break
+    return sorted(rolls), count
+
+
 def house_vote_members(congress: int, session: int, roll: int) -> CachedResponse:
     return _get(f"house-vote/{congress}/{session}/{roll}/members")
 

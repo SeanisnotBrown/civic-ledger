@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0044"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0044"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0044"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0044"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hres966-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-02-14T16:49:00-05:00",
+    "id": "h-118-2-0044",
+    "number": 44,
+    "question": "On Motion to Suspend the Rules and Agree",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll044.xml",
+    "totals": {
+      "nay": 0,
+      "not_voting": 12,
+      "present": 1,
+      "yea": 418
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

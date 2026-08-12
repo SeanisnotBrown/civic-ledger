@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0425"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0425"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0425"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0425"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr1513-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-09-18T14:18:00-04:00",
+    "id": "h-118-2-0425",
+    "number": 425,
+    "question": "On Motion to Suspend the Rules and Pass",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll425.xml",
+    "totals": {
+      "nay": 22,
+      "not_voting": 15,
+      "present": 0,
+      "yea": 393
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-119-1-0154"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-119-1-0154"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-119-1-0154"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0154"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr2987-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2025-06-05T16:55:00-04:00",
+    "id": "h-119-1-0154",
+    "number": 154,
+    "question": "On Motion to Recommit",
+    "result": "Failed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2025/roll154.xml",
+    "totals": {
+      "nay": 212,
+      "not_voting": 19,
+      "present": 0,
+      "yea": 201
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

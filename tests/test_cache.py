@@ -114,6 +114,26 @@ def test_non_accepted_status_raises(raw_dir, monkeypatch):
         cache.fetch("s", "https://api.congress.gov/v3/house-vote/119/1/9999")
 
 
+def test_live_get_retries_on_timeout(raw_dir, monkeypatch):
+    # §6.1: network timeouts must retry, not crash. Regression for the INC-3 run
+    # that died on a single httpx.ReadTimeout among ~1,886 fetches.
+    calls = {"n": 0}
+
+    def flaky(url, **kw):
+        calls["n"] += 1
+        if calls["n"] < 3:
+            raise httpx.ReadTimeout("transient")
+        return _FakeResp(text='{"ok": 1}')
+
+    monkeypatch.setattr(cache.httpx, "get", flaky)
+    monkeypatch.setattr(cache, "_throttle", lambda host: None)
+    monkeypatch.setattr(cache._live_get.retry, "sleep", lambda s: None)  # no backoff wait
+
+    resp = cache.fetch("s", "https://example.gov/timeout")
+    assert calls["n"] == 3  # failed twice, succeeded on the 3rd attempt
+    assert resp.json() == {"ok": 1}
+
+
 def test_302_is_accepted_by_default(raw_dir, monkeypatch):
     monkeypatch.setattr(cache, "_live_get", lambda *a, **k: _FakeResp(text="ok", status_code=302))
     resp = cache.fetch("s", "https://example.gov/redirect", ext="xml")

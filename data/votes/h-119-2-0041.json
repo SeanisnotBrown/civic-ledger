@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0041"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0041"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0041"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-119-2-0041"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hres1014-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2026-01-22T11:52:00-05:00",
+    "id": "h-119-2-0041",
+    "number": 41,
+    "question": "On Agreeing to the Resolution, as Amended",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2026/roll041.xml",
+    "totals": {
+      "nay": 213,
+      "not_voting": 4,
+      "present": 0,
+      "yea": 214
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

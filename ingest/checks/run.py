@@ -15,13 +15,17 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from ingest.checks import banned_words, no_llm
+from ingest.checks import banned_words, integrity, no_llm, symmetry
 
 # (name, callable-returning-exit-code). Ordered; all run even if one fails so
-# the operator sees every problem in a single pass.
+# the operator sees every problem in a single pass. symmetry + integrity are
+# no-ops until their data exists (INC-3 activates House vote coverage + the clerk
+# cross-check); they stay green on an empty dataset.
 CHECKS: list[tuple[str, Callable[[], int]]] = [
     ("banned_words", banned_words.main),
     ("no_llm", no_llm.main),
+    ("symmetry", symmetry.main),
+    ("integrity", integrity.main),
 ]
 
 

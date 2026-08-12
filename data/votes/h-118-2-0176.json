@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0176"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0176"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0176"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0176"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hres1112-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-05-01T17:20:00-04:00",
+    "id": "h-118-2-0176",
+    "number": 176,
+    "question": "On Agreeing to the Resolution",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll176.xml",
+    "totals": {
+      "nay": 191,
+      "not_voting": 15,
+      "present": 0,
+      "yea": 223
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

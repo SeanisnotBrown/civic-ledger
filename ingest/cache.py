@@ -113,7 +113,11 @@ def _throttle(host: str) -> None:
 
 
 @retry(
-    retry=retry_if_exception_type(RetryableHTTPError),
+    # §6.1: retry on 429/5xx AND timeouts/network errors. httpx.TransportError is
+    # the base for ReadTimeout/ConnectTimeout/ConnectError/ReadError/etc., so a
+    # transient blip on any one of ~1,886 sequential fetches self-heals instead of
+    # crashing the whole run.
+    retry=retry_if_exception_type((RetryableHTTPError, httpx.TransportError)),
     stop=stop_after_attempt(5),
     wait=wait_exponential(multiplier=1, min=2, max=60),
     reraise=True,

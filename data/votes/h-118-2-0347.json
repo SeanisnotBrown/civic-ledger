@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0347"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0347"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0347"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0347"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hres1344-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-07-10T17:41:00-04:00",
+    "id": "h-118-2-0347",
+    "number": 347,
+    "question": "On Motion to Refer",
+    "result": "Failed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll347.xml",
+    "totals": {
+      "nay": 211,
+      "not_voting": 15,
+      "present": 0,
+      "yea": 207
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

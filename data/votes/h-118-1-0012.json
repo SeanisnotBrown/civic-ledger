@@ -1,0 +1,25 @@
+{
+  "member_votes": [],
+  "rollcall": {
+    "bill_id": null,
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-01-05T17:52:00-05:00",
+    "id": "h-118-1-0012",
+    "number": 12,
+    "question": "Election of the Speaker",
+    "result": "Jeffries",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll012.xml",
+    "totals": {
+      "Donalds": 13,
+      "Hern": 7,
+      "Jeffries": 212,
+      "McCarthy": 200,
+      "Not Voting": 1,
+      "Present": 1
+    },
+    "vote_class": "other",
+    "vote_class_rule": "non_position"
+  }
+}

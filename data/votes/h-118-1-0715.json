@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0715"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0715"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0715"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0715"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr4531-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-12-12T14:29:00-05:00",
+    "id": "h-118-1-0715",
+    "number": 715,
+    "question": "On Motion to Suspend the Rules and Pass, as Amended",
+    "result": "Passed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll715.xml",
+    "totals": {
+      "nay": 37,
+      "not_voting": 10,
+      "present": 0,
+      "yea": 386
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0393"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0393"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0393"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0393"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hres1367-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-07-24T21:20:00-04:00",
+    "id": "h-118-2-0393",
+    "number": 393,
+    "question": "On Motion to Suspend the Rules and Agree, as Amended",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll393.xml",
+    "totals": {
+      "nay": 0,
+      "not_voting": 16,
+      "present": 0,
+      "yea": 416
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

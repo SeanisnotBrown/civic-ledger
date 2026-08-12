@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0071"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0071"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0071"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0071"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr6329-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2026-02-24T13:57:00-05:00",
+    "id": "h-119-2-0071",
+    "number": 71,
+    "question": "On Motion to Suspend the Rules and Pass",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2026/roll071.xml",
+    "totals": {
+      "nay": 1,
+      "not_voting": 69,
+      "present": 0,
+      "yea": 362
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

@@ -169,3 +169,78 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   reconciliation rules are captured in `ms_vote_xcheck/README.md` for INC-12 reuse;
   the committed PDFs + `.txt` are the reviewable evidence. (Mirrors INC-1: markdown
   verdict + committed samples, no one-off script beyond the reusable `spike.py`.)
+
+### INC-3 (2026-08-11) — House vote ingest
+
+- **D22 — one `/members` fetch per roll; chamber totals computed from results.**
+  The `/house-vote/{c}/{s}/{roll}/members` response carries `voteQuestion`,
+  `voteType`, `result`, `sourceDataURL`, `startDate` **and** every member's
+  position (verified live), so the whole `RollCall` + positions come from a single
+  fetch — no separate `/detail` call. `totals` (yea/nay/present/not_voting) are
+  counted from the full results list, not read from `votePartyTotal`, keeping them
+  independent and self-checking (`sum(totals) == len(results)`; e.g. 435 at session
+  start, 430 after vacancies). ~1,886 rolls across 118/1-2 + 119/1-2; the beta
+  endpoint covers the 118th (no clerk fallback needed for enumeration).
+- **`vote_class` is provisional `other` / rule `unclassified` until INC-5.** §5
+  requires `vote_class` non-null but the §A1 classifier is INC-5 (build order
+  3→4→5). INC-5 rewrites every roll's class; the resulting whole-dataset diff is
+  real-change noise, accepted.
+- **`voteCast` has two yea/nay spellings + a candidate-vote form (found mid-run).**
+  The first ingest quarantined 72 of 118/1's first 90 rolls; investigation split
+  them cleanly:
+  1. **`Aye`/`No` ≡ `Yea`/`Nay`.** "Recorded Vote" ballots (Committee of the
+     Whole, amendments) return `Aye`/`No`; "Yea-and-Nay" ballots (final passage)
+     return `Yea`/`Nay`. Both are the same position — `VOTE_MAP` maps all four
+     (matching the clerk XML, which uses `Aye`/`No` there too).
+  2. **Speaker-election rolls are `non_position`.** Members vote for a candidate by
+     surname (`McCarthy`, `Jeffries`, …), which cannot be a yea/nay `MemberVote`.
+     Such a roll still gets a `RollCall` (it counts toward the session total) with
+     `vote_class_rule="non_position"`, an accurate **raw candidate tally** in
+     `totals` (dict[str,int], keyed by candidate, not the yea/nay buckets), and
+     **no** `member_votes`; it is excluded from vote-coverage symmetry and from the
+     integrity sample. Detection is by **majority** unmappable `voteCast` (a lone
+     stray cast on a normal roll instead quarantines — a real glitch, not scope).
+     15 such rolls in 118/1 (the Jan-2023 15-ballot Speaker election).
+- **Export layout:** `data/votes/{h-c-s-NNNN}.json` = the chamber `RollCall` with
+  the MS delegation's `member_votes` embedded (sorted by member_id). **Absence
+  stubs live in their own `data/absences/{member}--{rollcall}.json` files**, not
+  embedded — INC-6 curation adds a `stated_reason` to an Absence and must not have
+  to rewrite the (larger, more-linked) vote record. `not_voting` seeds both a
+  `MemberVote` (position `not_voting`) and an Absence stub.
+- **`source_url` = the clerk `sourceDataURL`** (the public, authoritative XML the
+  record was cross-checked against), not the API URL — a reader can verify it.
+- **Integrity cross-check (`checks/integrity.py`)** samples 10 rolls seeded from a
+  hash of the sorted roll-id set: reproducible per dataset, re-rolls as data grows.
+  A position **mismatch fails CI**; a clerk **network** failure only **warns** (an
+  outage must not read as corruption). The clerk HTML vote index bot-blocks
+  automated fetches (**403**), so completeness rests on API `pagination.count` +
+  contiguous roll numbering + this per-roll clerk-XML cross-check, not the HTML
+  index page.
+- **Quarantine (§6.1) goes live.** A roll that fails validation is written to
+  `data/quality/quarantine/` and skipped; because every roll carries MS members, a
+  parse failure is treated as an MS-delegation failure → the run hard-fails at the
+  end (correctness outranks completeness). Covered-member gaps (a roll missing an MS
+  member) are written to `data/quality/house-gaps.md` and also fail.
+- **`checks/symmetry.py` activates the vote-coverage rule** (§6.5) over the exported
+  data (not the ingest run), publishing `data/quality/symmetry-report.json`; the
+  covered House set is derived from `data/members/*.json` (`chamber=="house"`), never
+  hardcoded.
+- **`cache.py` now retries timeouts/network errors, not just 429/5xx (bug fix).**
+  §6.1 says "retry on 429/5xx/**timeouts**", but `_live_get` only retried
+  `RetryableHTTPError`. The first full run died at 539/1,886 on a lone
+  `httpx.ReadTimeout`. Fix: retry on `(RetryableHTTPError, httpx.TransportError)`
+  (covers Read/Connect timeouts + network errors). Regression test in
+  `test_cache.py`.
+- **`house_votes.run()` is per-roll fault-tolerant + resumable.** A fetch that
+  survives all retries (persistent 5xx → `RetryableHTTPError`, timeout →
+  `httpx.HTTPError`, disk → `OSError`) is recorded to a `fetch_failures` list and
+  skipped, not raised — one bad request can't discard a 30-minute run. The run
+  fails at the end if any remain; a re-run retries only those (cached rolls are
+  instant). The full 1,886-roll backfill took **4 runs** to complete (two crashes
+  from the above gaps, one external kill at ~11 min likely a background-task
+  duration cap) — each resumed from cache; the final pass reported all four
+  sessions at their exact official counts (724/517/362/283).
+- **Completeness proof = contiguous roll numbering + count.** House roll calls are
+  numbered 1..N sequentially per session; all four sessions verified contiguous
+  `1..N` with `N == pagination.count`, which (with the 10/10 clerk cross-check) is
+  the "official session total" evidence, since the clerk HTML index is 403-blocked.

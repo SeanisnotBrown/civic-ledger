@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0282"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0282"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0282"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0282"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr3799-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-06-21T18:35:00-04:00",
+    "id": "h-118-1-0282",
+    "number": 282,
+    "question": "On Passage",
+    "result": "Passed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll282.xml",
+    "totals": {
+      "nay": 209,
+      "not_voting": 5,
+      "present": 0,
+      "yea": 220
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

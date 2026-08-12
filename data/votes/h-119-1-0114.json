@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0114"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0114"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0114"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0114"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hjres88-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2025-05-01T10:37:00-04:00",
+    "id": "h-119-1-0114",
+    "number": 114,
+    "question": "On Passage",
+    "result": "Passed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2025/roll114.xml",
+    "totals": {
+      "nay": 164,
+      "not_voting": 22,
+      "present": 0,
+      "yea": 246
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

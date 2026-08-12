@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-119-1-0150"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-119-1-0150"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-119-1-0150"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0150"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr2483-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2025-06-04T16:59:00-04:00",
+    "id": "h-119-1-0150",
+    "number": 150,
+    "question": "On Agreeing to the Amendment",
+    "result": "Failed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2025/roll150.xml",
+    "totals": {
+      "nay": 213,
+      "not_voting": 12,
+      "present": 0,
+      "yea": 213
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-119-2-0150"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-119-2-0150"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-119-2-0150"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-119-2-0150"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr7567-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2026-04-30T10:52:00-04:00",
+    "id": "h-119-2-0150",
+    "number": 150,
+    "question": "On Agreeing to the Amendment, as Modified",
+    "result": "Agreed to",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2026/roll150.xml",
+    "totals": {
+      "nay": 194,
+      "not_voting": 8,
+      "present": 0,
+      "yea": 233
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

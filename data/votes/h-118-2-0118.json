@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0118"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0118"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0118"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0118"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr7888-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-04-12T12:45:00-04:00",
+    "id": "h-118-2-0118",
+    "number": 118,
+    "question": "On Agreeing to the Amendment",
+    "result": "Agreed to",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll118.xml",
+    "totals": {
+      "nay": 186,
+      "not_voting": 14,
+      "present": 0,
+      "yea": 236
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

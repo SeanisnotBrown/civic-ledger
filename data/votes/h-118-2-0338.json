@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0338"
+    },
+    {
+      "member_id": "G000591",
+      "position": "not_voting",
+      "rollcall_id": "h-118-2-0338"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0338"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0338"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hres1341-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-07-09T13:50:00-04:00",
+    "id": "h-118-2-0338",
+    "number": 338,
+    "question": "On Ordering the Previous Question",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll338.xml",
+    "totals": {
+      "nay": 186,
+      "not_voting": 53,
+      "present": 0,
+      "yea": 194
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

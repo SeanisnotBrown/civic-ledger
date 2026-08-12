@@ -1,0 +1,24 @@
+{
+  "member_votes": [],
+  "rollcall": {
+    "bill_id": null,
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-01-06T23:07:00-05:00",
+    "id": "h-118-1-0018",
+    "number": 18,
+    "question": "Election of the Speaker",
+    "result": "McCarthy",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll018.xml",
+    "totals": {
+      "Biggs": 2,
+      "Jeffries": 212,
+      "Jordan": 2,
+      "McCarthy": 216,
+      "Present": 2
+    },
+    "vote_class": "other",
+    "vote_class_rule": "non_position"
+  }
+}

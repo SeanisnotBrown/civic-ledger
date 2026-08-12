@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0106"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0106"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0106"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0106"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "s2051-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-04-09T19:11:00-04:00",
+    "id": "h-118-2-0106",
+    "number": 106,
+    "question": "On Motion to Suspend the Rules and Pass, as Amended",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll106.xml",
+    "totals": {
+      "nay": 0,
+      "not_voting": 24,
+      "present": 0,
+      "yea": 406
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

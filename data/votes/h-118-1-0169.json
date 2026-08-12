@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0169"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0169"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0169"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0169"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr1-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-03-29T18:13:00-04:00",
+    "id": "h-118-1-0169",
+    "number": 169,
+    "question": "On Agreeing to the Amendment",
+    "result": "Agreed to",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll169.xml",
+    "totals": {
+      "nay": 189,
+      "not_voting": 6,
+      "present": 0,
+      "yea": 245
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

@@ -3,29 +3,29 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-11, end of INC-2 session (+ MS GO-gate resolution).
-**Git:** INC-1 fully closed; INC-2 pushed (CI run `31547777613` = success). The MS
-state-verdict flip (DEFER → GO) + evidence is being committed now — confirm its CI
-is green next session.
+**Last updated:** 2026-08-11, end of INC-3 session (House vote ingest).
+**Git:** INC-1/INC-2 + MS GO-gate closed & pushed (all CI green). INC-3 being
+committed now — confirm its CI is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 ---
 
 ## Current increment
 
-**INC-2 — Canonical members & schema layer — ✅ COMPLETE.**
-`ingest/models.py` holds the full §5 schema layer (Member, Bill, RollCall,
-MemberVote, Absence, Statement, Candidate, QuizQuestion + Term/CboRef/PageCapture/
-QuizOption/Provenance); Tier-1 records use `extra="forbid"`. `ingest members`
-fetches congress-legislators, filters to the 6-member MS delegation, and exports
-deterministic `data/members/{bioguide}.json`. **11 new tests** in
-`tests/test_models.py` (schema edge cases incl. a synthetic party switch, the
-6-member covered set, double-export byte-identity). Three builder judgment calls
-recorded as **D20** in `decisions.md`. Acceptance gate green (2 checks, 35 tests,
-1 page). See "INC-2 output" below.
+**INC-3 — House vote ingest — ✅ COMPLETE.**
+Every House roll call for 118/1-2 + 119/1-2 ingested with MS positions:
+**1,886 roll calls** (724/517/362/283 — each matching the official session count,
+roll numbers contiguous 1..N), **156 absence stubs**, **0 quarantine**. One
+`/members` fetch per roll yields the whole `RollCall` + positions + clerk URL.
+Exports `data/votes/{h-c-s-NNNN}.json` (RollCall + embedded MS `member_votes`) and
+`data/absences/{member}--{rollcall}.json`. `checks/symmetry.py` (vote coverage) and
+`checks/integrity.py` (**10/10** clerk-XML cross-check) now active. Mid-build fixes:
+Aye/No→yea/nay mapping, Speaker-election `non_position` handling, and a real §6.1
+bug (retry timeouts, not just 5xx). Design + findings in **D22** (`decisions.md`).
+Acceptance gate green (4 checks, 47 tests, 1 page). See "INC-3 output" below.
 
-**Next: INC-3 — House vote ingest — NOT STARTED.** Unblocked (no human task gates
-INC-3→INC-8; H4/H5 next gate at INC-9). Build order is unchanged by the GO flip.
+**Next: INC-4 — Senate vote ingest (∥) — NOT STARTED.** Mirrors INC-3 against
+senate.gov LIS XML (SHAPES §6). Unblocked (H4/H5 next gate at INC-9).
 
 > **RESOLVED (2026-08-11): MS state verdict flipped DEFER → GO.** Owner chose
 > option A — ran the 5-bill Journal cross-check now. **5/5 votes matched** (470
@@ -47,10 +47,13 @@ INC-3→INC-8; H4/H5 next gate at INC-9). Build order is unchanged by the GO fli
    - Bash tool: `export PATH="$PATH:/c/Users/SB/AppData/Roaming/Python/Python314/Scripts"`.
 2. **Re-verify acceptance is still green before building INC-2:**
    `uv run checks && uv run pytest && (cd site && npm run build)` (Bash tool —
-   PowerShell 5.1 rejects `&&`). Expect: 2 checks pass, **35 tests** pass, 1 page
-   built. Also run `uv run ruff check .` (CI runs ruff separately from `checks`).
-   (`uv run ingest members` re-exports the 6 member files; `ingest spike` re-runs
-   the INC-1 pull — both cached, neither is a CI job.)
+   PowerShell 5.1 rejects `&&`). Expect: **4 checks** pass (banned_words, no_llm,
+   symmetry, integrity), **47 tests** pass, 1 page built. Also run
+   `uv run ruff check .` (CI runs ruff separately from `checks`).
+   (`uv run ingest house-votes` re-syncs `data/votes/` + `data/absences/` — cached,
+   re-runnable, resumes on interruption; `ingest members` / `spike` likewise cached.)
+   Note: the `integrity` check makes ~10 live clerk.house.gov fetches; a clerk
+   outage warns (not a failure).
 3. Python is uv-managed **3.12.13** (system Python is 3.14; project pins 3.12 via
    `.python-version`). `uv sync --frozen` is what CI runs; lockfile is consistent.
 4. **Secrets:** `.env` holds `CONGRESS_API_KEY` (H1 done) and empty
@@ -102,35 +105,58 @@ RESOLVED callout above). 11 samples committed.
   `extra="forbid"` — an unexpected upstream field raises `ValidationError`
   (→ quarantine), it never silently rides into the published dataset.
 
-## INC-3 — where to pick up
+## INC-3 output (done — the vote layer INC-4/5/6 build on)
 
-Spec: IMPLEMENTATION.md §7 "INC-3"; shapes in `SHAPES.md §2/§3`. Goal: every House
-roll call, 118th–119th, with MS member positions.
+- **`ingest/house_votes.py`** — `parse_rollcall(members_json, congress, session)`
+  (pure) → `(RollCall, list[MemberVote], list[Absence])`, and `run()` (the
+  `ingest house-votes` pipeline: enumerate → fetch `/members` per roll → quarantine
+  → gaps → export). **Re-runnable/resumable** (cache); fault-tolerant per roll.
+  - `VOTE_MAP` maps **both** Yea/Nay **and** Aye/No → yea/nay. **INC-4 senate
+    parsing should reuse this insight** (LIS XML `vote_cast` is Yea/Nay; SHAPES §6).
+  - Speaker elections = **`non_position`** rolls: a `RollCall` (counts) with a raw
+    candidate tally in `totals`, **no** `member_votes`, excluded from symmetry +
+    integrity. Detected by majority-unmappable `voteCast`.
+  - `vote_class` provisional `other`/`unclassified` (INC-5 §A1 rewrites; leaves
+    `non_position` alone).
+- **`data/votes/{h-c-s-NNNN}.json`** = `{"rollcall": {...}, "member_votes": [...]}`
+  (MS only, sorted). **`data/absences/{member}--{rollcall}.json`** = one stub per
+  not_voting. `source_url` = clerk `sourceDataURL`.
+- **`ingest/sources/clerk_house.py::parse_positions(xml, state)`** — bioguide→
+  position from clerk XML (maps Aye/No too); the D6 independent cross-check source.
+- **`checks/symmetry.py`** (vote coverage, §6.5) + **`checks/integrity.py`**
+  (seeded 10-sample clerk cross-check; mismatch fails, unreachable warns) — both
+  registered in `run.py`, both no-op on empty data.
+- **`cache.py`** now retries timeouts/network errors (§6.1 bug fix) — reuse holds
+  for every future source.
+
+## INC-4 — where to pick up
+
+Spec: IMPLEMENTATION.md §7 "INC-4" (∥); shapes in `SHAPES.md §6`. Goal: every
+**Senate** roll call, 118th–119th, with both MS senators' positions — mirrors INC-3.
 
 Concrete steps (in order):
-1. `ingest/sources/congress_gov.py`: enumerate roll calls per session
-   (`/house-vote/{congress}/{session}`, paginate), fetch each detail + `/members`.
-   **Case trap (SHAPES §3):** member positions use `bioguideID` (capital ID),
-   the member endpoint uses `bioguideId`. Join `bioguideID` → `Member.id`.
-2. Parse to `RollCall` + `MemberVote` per MS member. `voteCast`
-   `"Yea"|"Nay"|"Present"|"Not Voting"` → `position` enum; `"Not Voting"` →
-   `not_voting` AND seeds an `Absence` stub (reason `None`). `vote_class` is
-   REQUIRED — until INC-5's classifier exists, fill a provisional value + rule id
-   (or land INC-5 first; the spec orders 3→4→5, so a temporary `"other"`/rule
-   `"unclassified"` is acceptable and replaced in INC-5).
-3. `ingest/sources/clerk_house.py` (currently a stub): implement the clerk XML
-   parse for the `checks/integrity.py` 10-sample cross-check (positions must match
-   exactly). `sourceDataURL` on each vote is the clerk XML link, handed to us
-   directly (SHAPES §2) — no separate discovery.
-4. Export `data/votes/` + `data/absences/`; register the vote-coverage symmetry
-   rule (§6.5) into `checks/run.py`.
+1. `ingest/sources/senate_xml.py`: fetch the session `vote_menu_{c}_{s}.xml`
+   (dir `roll_call_lists/`) to enumerate votes, then each detail
+   `roll_call_votes/vote{c}{s}/vote_{c}_{s}_{NNNNN}.xml` (**5-digit** roll; the two
+   live in **different dirs** — SHAPES §6 / D-note). Senate vote number is
+   newest-first in the menu; discover the filename, don't assume.
+2. Parse detail → `RollCall` (`chamber="senate"`, `rollcall_id` prefix `s-`,
+   reuse `house_votes.rollcall_id`) + `MemberVote` for the 2 MS senators.
+   **Crosswalk (SHAPES §6/§7):** senate XML gives `lis_member_id` (e.g. `S318`),
+   **not** bioguide → join via `Member.ids["lis"]` → `Member.id`. Map `vote_cast`
+   Yea/Nay/Present/Not Voting via a shared position mapper. Watch for Senate
+   non-position votes (nominations use Yea/Nay; but confirm no candidate-name form).
+3. Cross-check source = the same XML re-fetched + the printed vote-number totals
+   (INC-4 has no separate clerk; extend `checks/integrity.py` for senate or add a
+   senate check). Both MS senators complete = coverage.
+4. Export to `data/votes/s-*.json`; symmetry already covers senate once
+   `_covered("senate")` sees senate rolls (generalize `symmetry.py` beyond `h-*`).
 
-**INC-3 acceptance:** ingested House roll-call count per session matches the
-clerk's official session total; 10-sample clerk cross-check passes; no covered-
-member vote gaps (symmetry). On count mismatch → `data/quality/house-gaps.md`.
+**INC-4 acceptance:** ingested Senate roll-call count per session matches the
+official total; both MS senators complete (symmetry); cross-check passes.
 
-Register data-dependent checks into `ingest/checks/run.py` as they gain real
-logic (symmetry/archive/integrity still no-ops until they have data).
+**Note for INC-4:** `symmetry.py` currently globs `h-*.json` and `integrity.py` is
+House/clerk-specific — generalize both to the senate when INC-4 lands.
 
 ---
 
@@ -141,8 +167,8 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | INC-0 | Repo bootstrap | ✅ done (CI green) | `uv run checks && uv run pytest && (cd site && npm run build)` — local + CI green 2026-08-11 |
 | INC-1 | Source feasibility spike | ✅ done | samples + SHAPES.md committed; all 6 federal sources reached; MS verdict **GO** (cross-check run 2026-08-11) |
 | INC-2 | Canonical members & schema | ✅ done | models.py complete + 6 MS members exported + double-export determinism; 35 tests green |
-| INC-3 | House vote ingest | **not started (next)** | — |
-| INC-4 | Senate vote ingest ∥ | not started | — |
+| INC-3 | House vote ingest | ✅ done | 1,886 rolls (counts match, contiguous), 10/10 clerk cross-check, symmetry OK; 47 tests |
+| INC-4 | Senate vote ingest ∥ | **not started (next)** | — |
 | INC-5 | vote_class classifier | not started | — |
 | INC-6 | Absences & explanations | not started | content = H9 |
 | INC-7 | JSON export contracts | not started | — |
@@ -177,7 +203,16 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0 + INC-1 + INC-2 output)
+## What exists in the repo now (INC-0 + INC-1 + INC-2 + INC-3 output)
+
+**INC-3 additions:** `ingest/house_votes.py` (parser + `run()` pipeline,
+`house-votes` subcommand), `parse_positions` in `ingest/sources/clerk_house.py`,
+`house_vote_roll_numbers` enumeration in `congress_gov.py`, `export_rollcall`/
+`export_absence` in `export.py`, `checks/symmetry.py` + `checks/integrity.py`
+(registered in `run.py`), the `cache.py` timeout-retry fix,
+`tests/test_house_votes.py` (10) + a cache retry test, and the committed dataset:
+**1,886 `data/votes/*.json` + 156 `data/absences/*.json`** +
+`data/quality/symmetry-report.json`. D22 in `decisions.md`. Test count 36 → 47.
 
 **INC-2 additions:** `ingest/models.py` (full §5 schema layer), the raw→`Member`
 parser in `ingest/sources/legislators.py` (`party_code`, `congress_window`,

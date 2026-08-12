@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0201"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0201"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0201"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0201"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hconres30-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-04-27T16:32:00-04:00",
+    "id": "h-118-1-0201",
+    "number": 201,
+    "question": "On Agreeing to the Resolution",
+    "result": "Failed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll201.xml",
+    "totals": {
+      "nay": 321,
+      "not_voting": 11,
+      "present": 0,
+      "yea": 102
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

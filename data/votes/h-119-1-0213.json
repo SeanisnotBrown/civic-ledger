@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0213"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0213"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0213"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-119-1-0213"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr3095-119",
+    "chamber": "house",
+    "congress": 119,
+    "date": "2025-07-21T18:58:00-04:00",
+    "id": "h-119-1-0213",
+    "number": 213,
+    "question": "On Motion to Suspend the Rules and Pass, as Amended",
+    "result": "Passed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2025/roll213.xml",
+    "totals": {
+      "nay": 121,
+      "not_voting": 31,
+      "present": 0,
+      "yea": 278
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

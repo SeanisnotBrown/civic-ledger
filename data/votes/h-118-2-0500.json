@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0500"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0500"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0500"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0500"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr5009-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-12-11T16:36:00-05:00",
+    "id": "h-118-2-0500",
+    "number": 500,
+    "question": "On Motion to Concur in the Senate Amendment with an Amendment",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll500.xml",
+    "totals": {
+      "nay": 140,
+      "not_voting": 10,
+      "present": 0,
+      "yea": 281
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0200"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0200"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0200"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0200"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hr3935-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-05-15T14:16:00-04:00",
+    "id": "h-118-2-0200",
+    "number": 200,
+    "question": "On Motion to Suspend the Rules and Concur in the Senate Amendment",
+    "result": "Passed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll200.xml",
+    "totals": {
+      "nay": 26,
+      "not_voting": 17,
+      "present": 0,
+      "yea": 387
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

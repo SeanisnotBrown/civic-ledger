@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0338"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0338"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0338"
+    },
+    {
+      "member_id": "T000193",
+      "position": "yea",
+      "rollcall_id": "h-118-1-0338"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hconres57-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-07-18T18:25:00-04:00",
+    "id": "h-118-1-0338",
+    "number": 338,
+    "question": "On Motion to Suspend the Rules and Agree",
+    "result": "Passed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll338.xml",
+    "totals": {
+      "nay": 9,
+      "not_voting": 11,
+      "present": 1,
+      "yea": 412
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

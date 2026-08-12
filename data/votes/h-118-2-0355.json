@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0355"
+    },
+    {
+      "member_id": "G000591",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0355"
+    },
+    {
+      "member_id": "K000388",
+      "position": "yea",
+      "rollcall_id": "h-118-2-0355"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-2-0355"
+    }
+  ],
+  "rollcall": {
+    "bill_id": "hjres109-118",
+    "chamber": "house",
+    "congress": 118,
+    "date": "2024-07-11T11:32:00-04:00",
+    "id": "h-118-2-0355",
+    "number": 355,
+    "question": "Passage, Objections of the President To The Contrary Notwithstanding",
+    "result": "Failed",
+    "session": 2,
+    "source_url": "https://clerk.house.gov/evs/2024/roll355.xml",
+    "totals": {
+      "nay": 184,
+      "not_voting": 21,
+      "present": 0,
+      "yea": 228
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

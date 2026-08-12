@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0512"
+    },
+    {
+      "member_id": "G000591",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0512"
+    },
+    {
+      "member_id": "K000388",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0512"
+    },
+    {
+      "member_id": "T000193",
+      "position": "nay",
+      "rollcall_id": "h-118-1-0512"
+    }
+  ],
+  "rollcall": {
+    "bill_id": null,
+    "chamber": "house",
+    "congress": 118,
+    "date": "2023-09-30T13:03:00-04:00",
+    "id": "h-118-1-0512",
+    "number": 512,
+    "question": "On Motion to Adjourn",
+    "result": "Failed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2023/roll512.xml",
+    "totals": {
+      "nay": 427,
+      "not_voting": 6,
+      "present": 0,
+      "yea": 0
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

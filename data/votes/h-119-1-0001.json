@@ -1,0 +1,44 @@
+{
+  "member_votes": [
+    {
+      "member_id": "E000235",
+      "position": "present",
+      "rollcall_id": "h-119-1-0001"
+    },
+    {
+      "member_id": "G000591",
+      "position": "present",
+      "rollcall_id": "h-119-1-0001"
+    },
+    {
+      "member_id": "K000388",
+      "position": "present",
+      "rollcall_id": "h-119-1-0001"
+    },
+    {
+      "member_id": "T000193",
+      "position": "present",
+      "rollcall_id": "h-119-1-0001"
+    }
+  ],
+  "rollcall": {
+    "bill_id": null,
+    "chamber": "house",
+    "congress": 119,
+    "date": "2025-01-03T12:33:00-05:00",
+    "id": "h-119-1-0001",
+    "number": 1,
+    "question": "Call by States",
+    "result": "Passed",
+    "session": 1,
+    "source_url": "https://clerk.house.gov/evs/2025/roll001.xml",
+    "totals": {
+      "nay": 0,
+      "not_voting": 2,
+      "present": 433,
+      "yea": 0
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

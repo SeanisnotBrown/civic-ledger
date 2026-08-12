@@ -36,9 +36,14 @@ def main(argv: list[str] | None = None) -> int:
         return spike.run()
     if args and args[0] == "members":
         return _members()
+    if args and args[0] == "house-votes":
+        from ingest import house_votes
+
+        return house_votes.run(args[1:])
     print("civic-ledger ingest — available subcommands:")
-    print("  spike     INC-1 source feasibility spike (needs CONGRESS_API_KEY)")
-    print("  members   INC-2 canonical members → data/members/*.json")
+    print("  spike        INC-1 source feasibility spike (needs CONGRESS_API_KEY)")
+    print("  members      INC-2 canonical members → data/members/*.json")
+    print("  house-votes  INC-3 House roll calls → data/votes/ + data/absences/")
     if args:
         print(f"unknown args: {args}")
         return 2

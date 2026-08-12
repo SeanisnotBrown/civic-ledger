@@ -911,3 +911,18 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   `--force` bypasses the gate for a manual full re-ingest. CI needs no LegiScan key — it
   builds + checks from the committed MS data offline (checks/ms + the MS pages + the
   source-link/e2e gates all run on committed data).
+
+### D56 (2026-08-12) — MS data-limitations page (spec acceptance)
+
+- **`/methods#mississippi` publicly documents what the MS layer does and does not cover**
+  (the INC-12 acceptance "gaps documented publicly"), linked from the `/ms` index and the
+  federal home. It states, in plain language: the source is LegiScan mirroring the official
+  `billstatus.ls.state.ms.us` record, with scrape fidelity verified against the official
+  per-vote PDFs (470 positions; the CI spot-check re-confirms sampled tallies); coverage is
+  the current regular session only; positions are Yea/Nay/not-voting only (not-voting folds
+  absent + present, and there is no personal-explanation process); LegiScan's one
+  "Nonpartisan" member is shown as Independent; only vote-referenced bills are published;
+  and the Tier-2 metrics are not yet computed for MS members. A plain `<h2 id="mississippi">`
+  section — it carries no `data-metric`, so the metrics-sections set-equality check is
+  unaffected. `data-contract.md` gains the matching `data/state/ms/` file-format section.
+  **INC-12 complete** (all 6 phases; ADRs D51–D56).

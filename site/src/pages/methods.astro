@@ -1,10 +1,11 @@
 ---
 import Layout from "../components/Layout.astro";
-import { getManifest, getMetrics } from "../lib/data";
+import { getManifest, getMetrics, getMsManifest } from "../lib/data";
 import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
 import type { VoteClass } from "../lib/data";
 
 const manifest = getManifest();
+const ms = getMsManifest();
 const classes = Object.keys(VOTE_CLASS_LABEL) as VoteClass[];
 const rollcallCount = (manifest.counts as Record<string, unknown>).rollcalls;
 
@@ -66,8 +67,55 @@ const paragraphs = (text: string): string[] =>
     ))}
   </dl>
 
+  <h2 id="mississippi" class="mt-10 border-t border-neutral-100 pt-6 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    Mississippi Legislature — sources &amp; limits
+  </h2>
+  <p class="mt-2 max-w-prose text-sm text-neutral-700">
+    The Mississippi state layer covers the {ms.session_name}
+    ({Number(ms.counts.rollcalls).toLocaleString()} roll calls,
+    {String(ms.counts.members)} legislators). It follows the same "publish the record,
+    draw no conclusion" rules as the federal data, with these specific sources and limits:
+  </p>
+  <ul class="mt-2 max-w-prose list-disc space-y-2 pl-5 text-sm text-neutral-700">
+    <li>
+      <strong>Source and verification.</strong> State roll calls come from
+      <span class="whitespace-nowrap">LegiScan</span>, which mirrors the official
+      Mississippi Legislature record at <code>billstatus.ls.state.ms.us</code>. Because
+      LegiScan is a mirror of that record rather than a second independent origin, we
+      verify its fidelity: a sample of votes was matched person-by-person against the
+      official per-vote PDFs (470 individual positions, zero mismatches), and an automated
+      check re-confirms each sampled vote's official Yeas/Nays/Absent totals on every build.
+      Individual roll calls link to their LegiScan vote page; bills link to the official
+      Mississippi record where available.
+    </li>
+    <li>
+      <strong>Coverage.</strong> Only the current regular session is included; earlier
+      sessions are not yet published.
+    </li>
+    <li>
+      <strong>Recorded positions.</strong> The official record distinguishes Yea, Nay, and
+      not-voting only. A "Not voting" row combines members recorded absent and present-but-
+      not-voting. Unlike the federal record, there is no personal-explanation process, so a
+      missed state vote carries no stated reason.
+    </li>
+    <li>
+      <strong>Party.</strong> One member is recorded by LegiScan as "Nonpartisan"; in the
+      Democrat/Republican/Independent model used here that member is shown as Independent.
+    </li>
+    <li>
+      <strong>Bills.</strong> Only measures that received a recorded roll-call vote are
+      published as bill pages (not every measure introduced).
+    </li>
+    <li>
+      <strong>No computed statistics yet.</strong> The state layer shows the vote record
+      itself; the per-member statistics computed for the federal delegation are not yet
+      computed for Mississippi legislators.
+    </li>
+  </ul>
+
   <p class="mt-8 text-xs text-neutral-500">
     Coverage: {manifest.congresses.join("–")}th Congresses ·
-    {String(rollcallCount)} roll calls.
+    {String(rollcallCount)} roll calls (federal). Mississippi: {ms.session_name} ·
+    {Number(ms.counts.rollcalls).toLocaleString()} roll calls.
   </p>
 </Layout>

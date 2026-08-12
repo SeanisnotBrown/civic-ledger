@@ -270,3 +270,28 @@ is exempt from the no-network/no-wall-clock rules that bind `build()`), and it e
 the recorded values verbatim — no aggregation, ranking, or score. Snapshots where the
 member is absent are skipped; snapshots predating R-3 carry `schema_version: null` and
 no digests, and parse leniently.
+
+## Mississippi state layer — `data/state/ms/` (INC-12)
+
+State data is **partitioned** under `data/state/ms/` so the federal checks (which glob
+`data/{members,votes,bills}/*.json` non-recursively) never see it. It uses the **same
+canonical models** as the federal data (extend, don't fork), with a `jurisdiction` field
+distinguishing the two.
+
+| Path | Contents |
+|------|----------|
+| `data/state/ms/members/ms-{people_id}.json` | `Member`, `jurisdiction: "ms"`, `id` = `ms-<LegiScan people_id>`, `district` = the HD/SD ordinal, `ids.legiscan` set. One synthesized `Term` for the session. |
+| `data/state/ms/votes/ms-{h\|s}-{session_id}-{roll_call_id}.json` | `VoteFile` (`RollCall` + every member's `MemberVote`). `RollCall.jurisdiction: "ms"`, `congress: null`, `session` = LegiScan session_id, `number` = roll_call_id, `party_totals` fully computed (every position is present). `member_votes` include `not_voting` rows (no separate absence stubs). |
+| `data/state/ms/bills/ms-{type}{number}-{session_id}.json` | `Bill`, `jurisdiction: "ms"`, `congress: null`. Only vote-referenced measures. `source_url` = the official billstatus link where present. |
+| `data/state/ms/crosswalk.json` | `ms-id → {legiscan_people_id, name, party, chamber, district}`. |
+| `data/state/ms/manifest.json` | MS partition manifest: `session_id`, `session_name`, `dataset_hash` (the nightly change gate), counts. Carries the one injected `generated_at`. |
+
+**Differences from the federal record (documented on `/methods#mississippi`):** positions
+are Yea/Nay/not-voting only (LegiScan gives no Present/Absent split — `not_voting` folds
+both); there is no personal-explanation pipeline (a missed vote shows no reason); LegiScan
+party `N` (nonpartisan) is shown as `I`; only vote-referenced bills are published; the
+Tier-2 metrics are not yet computed for MS members. **Source integrity:** LegiScan mirrors
+the official `billstatus.ls.state.ms.us` record; scrape fidelity is verified against the
+official per-vote PDFs (470 positions in the GO verdict; `checks/ms.py` re-confirms the
+sampled tallies every build). Not recomputable from a third-party origin — it is the
+official record as mirrored by LegiScan, verified, not two independent sources.

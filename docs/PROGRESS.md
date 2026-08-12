@@ -3,8 +3,9 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of **post-review hardening — round 2** session
-(R-1 + R-4 + R-6 + R-5, closing the review backlog). See "Post-review hardening" below.
+**Last updated:** 2026-08-12, end of **INC-12 (Mississippi state legislature layer)**
+session — all 6 phases built. See "INC-12" below. (Prior this day: post-review hardening
+round 2 — R-1/R-4/R-6/R-5, closing the review backlog.)
 **Git:** INC-1..INC-11 closed & pushed. A prior round-1 session pushed `3847950` (grading
 reframe), `fd9a108` (R-3), `f0c0f70` (R-2). **This session** pushed **four** commits:
 `17ea5be` (R-1 statement hardening), `4ef6e3b` (R-4 truth guards), `65f36b7` (R-6 small
@@ -626,7 +627,7 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-10 | Metrics + methodology | ✅ done | 8 Tier-2 metrics → data/metrics.json; methods page auto-built from docstrings (section-set == metric-key-set); bill subjects/cosponsors backfilled; data/legislation/ + aggregate party_totals; Tier-3 AST guard + symmetry statement rules active; verify-recompute 4th invariant + metrics recompute-match; 149 py tests, D36–D40 |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | ✅ build done; content = H8 | curation Flask app (loopback-only, no-capture-no-save server-side) + SPN2 verified capture; Statement stance + D9 single-source pairing (paired_bill_ids); named_measure_mismatch un-failed-closed (stance vs passage vote); member timeline interleave + /pairing page; weekly archive-links sweep (dead → build-excluded); 187 py tests at close (217 after R-1/R-4/R-6 hardening), D41–D44 + D47–D50. Phase-3 content acceptance (20+ statements, ≥5 pairs) is H8 |
-| INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |
+| INC-12 | Mississippi state layer | ✅ done (branch A) | LegiScan bulk ingest → data/state/ms/ (174 members, 1,725 rolls, 905 bills, 144,007 member votes, 0 quarantined); jurisdiction schema + partitioned storage (D51); MS classifier + TTL cache (D52); checks/ms consistency + 5/5 official-PDF spot-check (D53); /ms site pages, site 4,540→7,919 (D54); hash-gated nightly (D55); /methods#mississippi limitations page (D56). 247 py tests; checks + 24/24 e2e + astro-check green |
 | INC-13 | Candidate Tracker | not started | content = H10 |
 | INC-14 | Alignment Quiz engine | not started | content = H11 |
 | INC-15 | Alignment outputs | not started | — |
@@ -760,11 +761,16 @@ subcommand wired in `cli.py`. Test count 15 → 23.
 - **Post-review ADRs:** grading reframe = **D19/D20** (IMPLEMENTATION.md §2); R-3 = **D45**,
   R-2 = **D46**, R-1 = **D47**, R-4 = **D48**, R-6 = **D49**, R-5 = **D50** (all
   `docs/decisions.md`). **The whole review backlog R-1..R-6 is now CLOSED** (source: local
-  `TECHNICAL_REVIEW.md`). H8 statement curation is unblocked (R-1 landed). **Next actionable
-  = INC-12** (Mississippi state layer, GO verdict on file) — the review's recommended next
-  increment after the R-1..R-4 hardening. Two runtime-verification boxes remain open (not
-  blockers): the R-5 cache-hit on the 2nd nightly, and the INC-9 first-real-data nightly
-  commit + deploy.
+  `TECHNICAL_REVIEW.md`). H8 statement curation is unblocked (R-1 landed).
+- **INC-12 (MS state layer) ADRs: D51–D56** (`docs/decisions.md`); full plan in
+  `docs/inc-12-plan.md`; contract in `docs/data-contract.md` (state section). **INC-12 is
+  DONE** (all 6 phases). **Next actionable = INC-13** (Candidate Tracker, content = H10) or
+  member-page metric rendering (the review's post-INC-12 queue item) — owner's pick. Open
+  runtime-verification boxes (not blockers): R-5 cache-hit on the 2nd nightly; INC-9
+  first-real-data nightly commit + deploy; the first MS nightly hash-gate no-op.
+- **INC-12 deferred (later increments):** backfill prior MS sessions; MS Tier-2 metrics;
+  the flat-file→SQLite build-accelerator decision (review §6 — revisit before a 2nd state;
+  MS kept flat-file, ~7,900 pages, still fine).
 - Version pins recorded in `docs/decisions.md` (Python + Node) at INC-0.
 - Dev environment: Windows 11 + PowerShell. `uv` at
   `%APPDATA%\Python\Python314\Scripts` on user PATH. Local Python 3.14 → project

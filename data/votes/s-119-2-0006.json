@@ -1,0 +1,34 @@
+{
+  "member_votes": [
+    {
+      "member_id": "H001079",
+      "position": "yea",
+      "rollcall_id": "s-119-2-0006"
+    },
+    {
+      "member_id": "W000437",
+      "position": "not_voting",
+      "rollcall_id": "s-119-2-0006"
+    }
+  ],
+  "rollcall": {
+    "bill_id": null,
+    "chamber": "senate",
+    "congress": 119,
+    "date": "2026-01-08T13:32:00",
+    "id": "s-119-2-0006",
+    "number": 6,
+    "question": "On the Nomination PN615-2",
+    "result": "Nomination Confirmed",
+    "session": 2,
+    "source_url": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1192/vote_119_2_00006.xml",
+    "totals": {
+      "nay": 40,
+      "not_voting": 7,
+      "present": 0,
+      "yea": 53
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

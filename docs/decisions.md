@@ -244,3 +244,55 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   numbered 1..N sequentially per session; all four sessions verified contiguous
   `1..N` with `N == pagination.count`, which (with the 10/10 clerk cross-check) is
   the "official session total" evidence, since the clerk HTML index is 403-blocked.
+
+### INC-4 (2026-08-12) — Senate vote ingest (∥, mirrors INC-3)
+
+- **D23 — two files per roll; totals member-computed and cross-checked against the
+  menu tally (the Senate's independent cross-source, in lieu of a clerk).** The
+  session `vote_menu_{c}_{s}.xml` enumerates rolls and carries a per-vote
+  `vote_tally` (yeas/nays); the per-roll `vote_detail` XML carries every member's
+  `vote_cast`. `RollCall.totals` is computed from the detail member list (House
+  precedent, D22), then required to equal the menu tally — a genuine cross-SOURCE
+  check between two different files. A mismatch raises `TallyMismatch` → quarantine.
+  This replaces INC-3's separate clerk.house.gov source (the Senate has none);
+  `checks/integrity.py` additionally re-fetches sampled details and re-parses MS
+  positions to catch export/serialization corruption.
+- **VP tie-breaks need no special handling.** On a 50-50 roll the Vice President is
+  absent from `<members>`, the detail `<count>` block, AND the menu tally, so the
+  member-computed 50-50 agrees with the menu with no VP arithmetic. The tie-break is
+  carried by `result` (e.g. "Bill Passed") and `<tie_breaker>`; `totals` stays
+  member-computed (RollCall is `extra="forbid"`; no schema field added). Verified
+  against the real 119/1 H.R.1 reconciliation passage (roll 372).
+- **Crosswalk = `lis_member_id` → `Member.ids["lis"]` → bioguide (SHAPES §6/§7).**
+  Senate detail keys members by LIS id (e.g. `S318` Wicker), not bioguide. The join
+  runs through the INC-2 export (`chamber=="senate"`); only the covered delegation
+  is exported, which is all the ingest stores. An MS senator whose LIS is missing
+  from the crosswalk is a hard `KeyError` → quarantine, never a silent drop.
+- **`bill_id` handles three measure shapes.** Bill/passage rolls carry the measure
+  in `<document>` (`H.R.`→`hr1-119`); amendment rolls leave `<document>` half-empty
+  (type `S.Amdt.`, no number) and put the underlying bill in
+  `<amendment><amendment_to_document_number>` (`"H.R. 1"`) — so `_bill_id` falls
+  back there (else every vote-a-rama roll loses its bill link). Nominations (`PN`),
+  treaty docs, and quorum calls are not legislation → `bill_id` stays `None` (never
+  faked). A whitelist of real bill types gates it.
+- **`vote_date` "July 1, 2025,  11:56 AM" → naive ISO `2025-07-01T11:56:00`.** Parsed
+  with a hand-rolled month map (not `strptime %B`, which is locale-dependent) so CI
+  is locale-proof and deterministic (§6.3). No UTC offset is fabricated — the wall
+  time is Eastern as senate.gov publishes it (House `startDate` already carries its
+  own `-04:00`/`-05:00` offset; the two sources differ in granularity by design).
+- **Completeness proof = contiguous roll numbering.** Senate rolls are numbered
+  `1..N` per session with no separate count field; the ingest requires the menu key
+  set to equal `range(1, max+1)`, a hole or short list failing to
+  `data/quality/senate-gaps.md`. Stronger than House's pagination count.
+- **`VOTE_MAP` is conservative** (`Yea/Nay/Present/Not Voting`; unmapped →
+  quarantine). The Senate has no Aye/No (House Committee-of-the-Whole artifact) and
+  no candidate-surname rolls, so **no `non_position` branch** — a majority-unmappable
+  roll would be corruption, not scope. No `Guilty/Not Guilty` rolls exist in 118–119.
+- **`checks/symmetry.py` generalized to both chambers**; the report gains a
+  `"senate"` key. `checks/integrity.py` runs a House pass (clerk) and a Senate pass
+  (detail re-parse), each a no-op until its data exists.
+- **Probe-before-parse (INC-1 discipline).** Before writing the parser, fetched one
+  detail of each shape variant — cloture-on-bill (roll 1), amendment (371), VP
+  tie-break passage (372), nomination (659) — and committed them as offline test
+  samples. The probe settled the `<document>`/`<amendment>`/`<tie_breaker>` shapes a
+  single sample would have hidden.

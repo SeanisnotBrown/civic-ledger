@@ -1,0 +1,34 @@
+{
+  "member_votes": [
+    {
+      "member_id": "H001079",
+      "position": "nay",
+      "rollcall_id": "s-118-1-0187"
+    },
+    {
+      "member_id": "W000437",
+      "position": "nay",
+      "rollcall_id": "s-118-1-0187"
+    }
+  ],
+  "rollcall": {
+    "bill_id": null,
+    "chamber": "senate",
+    "congress": 118,
+    "date": "2023-07-18T17:30:00",
+    "id": "s-118-1-0187",
+    "number": 187,
+    "question": "On the Nomination PN94",
+    "result": "Nomination Confirmed",
+    "session": 1,
+    "source_url": "https://www.senate.gov/legislative/LIS/roll_call_votes/vote1181/vote_118_1_00187.xml",
+    "totals": {
+      "nay": 48,
+      "not_voting": 2,
+      "present": 0,
+      "yea": 50
+    },
+    "vote_class": "other",
+    "vote_class_rule": "unclassified"
+  }
+}

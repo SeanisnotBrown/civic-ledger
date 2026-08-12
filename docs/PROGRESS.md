@@ -3,29 +3,34 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-11, end of INC-3 session (House vote ingest).
-**Git:** INC-1/INC-2 + MS GO-gate closed & pushed (all CI green). INC-3 being
-committed now — confirm its CI is green next session.
+**Last updated:** 2026-08-12, end of INC-4 session (Senate vote ingest).
+**Git:** INC-1/INC-2/INC-3 + MS GO-gate closed & pushed (all CI green). INC-4
+being committed now — confirm its CI is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 ---
 
 ## Current increment
 
-**INC-3 — House vote ingest — ✅ COMPLETE.**
-Every House roll call for 118/1-2 + 119/1-2 ingested with MS positions:
-**1,886 roll calls** (724/517/362/283 — each matching the official session count,
-roll numbers contiguous 1..N), **156 absence stubs**, **0 quarantine**. One
-`/members` fetch per roll yields the whole `RollCall` + positions + clerk URL.
-Exports `data/votes/{h-c-s-NNNN}.json` (RollCall + embedded MS `member_votes`) and
-`data/absences/{member}--{rollcall}.json`. `checks/symmetry.py` (vote coverage) and
-`checks/integrity.py` (**10/10** clerk-XML cross-check) now active. Mid-build fixes:
-Aye/No→yea/nay mapping, Speaker-election `non_position` handling, and a real §6.1
-bug (retry timeouts, not just 5xx). Design + findings in **D22** (`decisions.md`).
-Acceptance gate green (4 checks, 47 tests, 1 page). See "INC-3 output" below.
+**INC-4 — Senate vote ingest (∥) — ✅ COMPLETE.**
+Every Senate roll call for 118/1-2 + 119/1-2 ingested with both MS senators'
+positions: **1,581 roll calls** (352/339/659/231 — each contiguous 1..N, so
+`max == count == official session total`; 119/1's 659 matches SHAPES), **87 absence
+stubs**, **0 quarantine, 0 gaps**. Two files per roll: the session `vote_menu`
+(enumeration + independent per-vote tally) and the per-roll `vote_detail` (member
+positions). `RollCall.totals` is member-computed and cross-checked against the menu
+tally — a genuine cross-SOURCE check (the Senate has no clerk); mismatch →
+`TallyMismatch` → quarantine. Crosswalk `lis_member_id`→`Member.ids["lis"]`→bioguide.
+`checks/symmetry.py` generalized to both chambers; `checks/integrity.py` gained a
+Senate detail re-parse pass (**10/10** House clerk + **10/10** Senate verified).
+VP tie-breaks need no special handling (VP absent from members, count, AND menu
+tally → 50-50 agrees). Design + findings in **D23** (`decisions.md`). Acceptance
+gate green (4 checks, **65 tests**, 1 page). See "INC-4 output" below.
 
-**Next: INC-4 — Senate vote ingest (∥) — NOT STARTED.** Mirrors INC-3 against
-senate.gov LIS XML (SHAPES §6). Unblocked (H4/H5 next gate at INC-9).
+**Next: INC-5 — vote_class classifier (§A1) — NOT STARTED.** Rewrites the
+provisional `other`/`unclassified` on House + Senate rolls into
+`passage`/`amendment`/`procedural`/`nomination`/`veto_override` (leaves House
+Speaker-election `non_position` rolls alone). Unblocked.
 
 > **RESOLVED (2026-08-11): MS state verdict flipped DEFER → GO.** Owner chose
 > option A — ran the 5-bill Journal cross-check now. **5/5 votes matched** (470
@@ -129,34 +134,49 @@ RESOLVED callout above). 11 samples committed.
 - **`cache.py`** now retries timeouts/network errors (§6.1 bug fix) — reuse holds
   for every future source.
 
-## INC-4 — where to pick up
+## INC-4 output (done — the Senate vote layer, mirrors INC-3)
 
-Spec: IMPLEMENTATION.md §7 "INC-4" (∥); shapes in `SHAPES.md §6`. Goal: every
-**Senate** roll call, 118th–119th, with both MS senators' positions — mirrors INC-3.
+- **`ingest/senate_votes.py`** — `parse_rollcall(detail_xml, congress, session,
+  lis_to_bioguide, menu_tally)` (pure) → `(RollCall, list[MemberVote],
+  list[Absence])`, and `run()` (the `ingest senate-votes` pipeline: parse menu →
+  fetch each detail → cross-check tally → quarantine → gaps → export).
+  Re-runnable/resumable (cache); idempotency re-verified (re-run byte-identical).
+  - **Cross-SOURCE tally check** replaces INC-3's clerk: member-computed yea/nay
+    must equal the menu's `vote_tally` (a different file) → else `TallyMismatch`.
+  - **`_bill_id` handles 3 measure shapes** — `<document>` bill (`hr1-119`),
+    amendment fallback to `<amendment><amendment_to_document_number>`, and
+    nomination/treaty/quorum → `None`. Whitelist of real bill types.
+  - **`_parse_date`** hand-rolls month parsing (locale-proof) → naive ISO ET.
+  - **No `non_position` branch** (Senate has no candidate-surname rolls); VP
+    tie-breaks handled by arithmetic that already agrees (D23).
+- **`ingest/sources/senate_xml.py`** — added `parse_menu` (→ `{roll: (yeas,nays)}`,
+  the enumeration + tally source), `detail_url`, and `parse_positions(detail_xml,
+  lis_to_bioguide, state)` (the D6-style independent re-parse for integrity).
+- **`data/votes/s-{c}-{s}-NNNN.json`** (1,581 files) + **`data/absences/`** (87
+  Senate stubs; 243 total with House). Same export contract as INC-3.
+- **`checks/symmetry.py`** generalized: `coverage_gaps(chamber, prefix)` runs House
+  + Senate; report gains a `"senate"` key. **`checks/integrity.py`** runs a House
+  clerk pass + a Senate detail-reparse pass (each no-op until its data exists).
+- **`cli.py`** `senate-votes` subcommand.
+- Tests: **`tests/test_senate_votes.py` (18)** — menu contiguity, all 4 real shape
+  variants, tally-mismatch, crosswalk join, bill-id normalization, determinism.
+  Committed 3 new detail samples (371/372/659). Test count 47 → 65.
 
-Concrete steps (in order):
-1. `ingest/sources/senate_xml.py`: fetch the session `vote_menu_{c}_{s}.xml`
-   (dir `roll_call_lists/`) to enumerate votes, then each detail
-   `roll_call_votes/vote{c}{s}/vote_{c}_{s}_{NNNNN}.xml` (**5-digit** roll; the two
-   live in **different dirs** — SHAPES §6 / D-note). Senate vote number is
-   newest-first in the menu; discover the filename, don't assume.
-2. Parse detail → `RollCall` (`chamber="senate"`, `rollcall_id` prefix `s-`,
-   reuse `house_votes.rollcall_id`) + `MemberVote` for the 2 MS senators.
-   **Crosswalk (SHAPES §6/§7):** senate XML gives `lis_member_id` (e.g. `S318`),
-   **not** bioguide → join via `Member.ids["lis"]` → `Member.id`. Map `vote_cast`
-   Yea/Nay/Present/Not Voting via a shared position mapper. Watch for Senate
-   non-position votes (nominations use Yea/Nay; but confirm no candidate-name form).
-3. Cross-check source = the same XML re-fetched + the printed vote-number totals
-   (INC-4 has no separate clerk; extend `checks/integrity.py` for senate or add a
-   senate check). Both MS senators complete = coverage.
-4. Export to `data/votes/s-*.json`; symmetry already covers senate once
-   `_covered("senate")` sees senate rolls (generalize `symmetry.py` beyond `h-*`).
+## INC-5 — where to pick up
 
-**INC-4 acceptance:** ingested Senate roll-call count per session matches the
-official total; both MS senators complete (symmetry); cross-check passes.
+Spec: IMPLEMENTATION.md §7 "INC-5" + the §A1 classifier rules. Goal: rewrite the
+provisional `vote_class="other"` / `vote_class_rule="unclassified"` on every
+`data/votes/*.json` (both chambers) into the real `VoteClass` enum
+(`passage`/`amendment`/`procedural`/`nomination`/`veto_override`/`other`) with an
+auditable `vote_class_rule` id per §A1. **Leave House Speaker-election
+`non_position` rolls untouched** (they are not yea/nay votes). The classifier reads
+`question`, `result`, `bill_id`, and `totals` — all already exported. Senate rolls
+are rich signal: `question` = "On the Cloture Motion"/"On Passage of the Bill"/"On
+the Amendment"/"On the Nomination", `bill_id=None` ⇒ nomination/quorum.
 
-**Note for INC-4:** `symmetry.py` currently globs `h-*.json` and `integrity.py` is
-House/clerk-specific — generalize both to the senate when INC-4 lands.
+**INC-5 acceptance:** every non-`non_position` roll gets a non-`other` class where
+§A1 has a rule; the `max-other-rate` threshold (config) is respected; classifier is
+pure + unit-tested; re-export stays deterministic.
 
 ---
 
@@ -168,8 +188,8 @@ House/clerk-specific — generalize both to the senate when INC-4 lands.
 | INC-1 | Source feasibility spike | ✅ done | samples + SHAPES.md committed; all 6 federal sources reached; MS verdict **GO** (cross-check run 2026-08-11) |
 | INC-2 | Canonical members & schema | ✅ done | models.py complete + 6 MS members exported + double-export determinism; 35 tests green |
 | INC-3 | House vote ingest | ✅ done | 1,886 rolls (counts match, contiguous), 10/10 clerk cross-check, symmetry OK; 47 tests |
-| INC-4 | Senate vote ingest ∥ | **not started (next)** | — |
-| INC-5 | vote_class classifier | not started | — |
+| INC-4 | Senate vote ingest ∥ | ✅ done | 1,581 rolls (contiguous 1..N per session, 119/1=659), 10/10 detail cross-check + menu-tally check, symmetry OK both chambers; 65 tests |
+| INC-5 | vote_class classifier | **not started (next)** | — |
 | INC-6 | Absences & explanations | not started | content = H9 |
 | INC-7 | JSON export contracts | not started | — |
 | INC-8 | Site MVP | not started | — |
@@ -203,7 +223,16 @@ House/clerk-specific — generalize both to the senate when INC-4 lands.
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0 + INC-1 + INC-2 + INC-3 output)
+## What exists in the repo now (INC-0 + INC-1 + INC-2 + INC-3 + INC-4 output)
+
+**INC-4 additions:** `ingest/senate_votes.py` (parser + `run()` pipeline,
+`senate-votes` subcommand), `parse_menu`/`detail_url`/`parse_positions`/`VOTE_MAP`
+in `ingest/sources/senate_xml.py`, both-chamber generalization of
+`checks/symmetry.py`, the Senate re-parse pass in `checks/integrity.py`, the
+`senate-votes` wiring in `cli.py`, `tests/test_senate_votes.py` (18) + 3 committed
+detail samples (371/372/659), and the committed dataset: **1,581 `data/votes/s-*.json`
++ 87 Senate `data/absences/*.json`** + the updated `data/quality/symmetry-report.json`.
+D23 in `decisions.md`. Test count 47 → 65.
 
 **INC-3 additions:** `ingest/house_votes.py` (parser + `run()` pipeline,
 `house-votes` subcommand), `parse_positions` in `ingest/sources/clerk_house.py`,

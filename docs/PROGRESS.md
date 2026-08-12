@@ -266,7 +266,6 @@ resolved definition above).
 | INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
 | INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
 | INC-7 | JSON export contracts | **not started (next)** | — |
-| INC-7 | JSON export contracts | not started | — |
 | INC-8 | Site MVP | not started | — |
 | INC-9 | Automation + deploy (PUBLIC MVP) | not started | blocked by H4, H5 |
 | INC-10 | Metrics + methodology | not started | — |

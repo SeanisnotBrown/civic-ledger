@@ -20,6 +20,7 @@ but the sample re-rolls as the dataset grows.
 
 from __future__ import annotations
 
+import ast
 import hashlib
 import json
 import random
@@ -29,6 +30,59 @@ import httpx
 from ingest.cache import repo_root
 
 SAMPLE_SIZE = 10
+
+
+# --- Tier-3 guard (§5 Tier discipline; INC-10) ----------------------------
+# The site publishes Tier-2 metrics (independent per-member factual formulas) and
+# is forbidden a Tier-3 output: any composite that folds several metrics into one
+# number per member is a political "spectrum" by the back door. The structural
+# guarantee is that no metric function consumes another metric's output — enforced
+# by a source-level (AST) check over ingest/metrics.py: a function registered in
+# the module's `METRICS` dict must not call another registered metric function.
+# Shared pure helpers (not in the registry) are fine. No-op until metrics.py exists.
+
+
+def _metric_names(tree: ast.Module, registry: str = "METRICS") -> set[str]:
+    """Function names bound as values in the module-level `{registry}` dict literal."""
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(
+            isinstance(t, ast.Name) and t.id == registry for t in node.targets
+        ):
+            if isinstance(node.value, ast.Dict):
+                return {v.id for v in node.value.values if isinstance(v, ast.Name)}
+    return set()
+
+
+def tier3_violations(source: str, registry: str = "METRICS") -> list[str]:
+    """Registered metric functions that directly call another registered metric
+    function (Tier-3 aggregation). Empty = clean. Pure over source text."""
+    tree = ast.parse(source)
+    metrics = _metric_names(tree, registry)
+    if not metrics:
+        return []
+    defs = {n.name: n for n in tree.body if isinstance(n, ast.FunctionDef)}
+    violations: list[str] = []
+    for name in sorted(metrics):
+        fn = defs.get(name)
+        if fn is None:
+            continue
+        for node in ast.walk(fn):
+            if isinstance(node, ast.Call):
+                f = node.func
+                callee = f.id if isinstance(f, ast.Name) else getattr(f, "attr", None)
+                if callee in metrics and callee != name:
+                    violations.append(
+                        f"{name}() calls metric {callee}() — Tier-3 aggregation forbidden (§5)"
+                    )
+    return violations
+
+
+def metrics_tier3_guard() -> list[str]:
+    """Run the Tier-3 guard over the real ingest/metrics.py (no-op if absent)."""
+    src = repo_root() / "ingest" / "metrics.py"
+    if not src.exists():
+        return []
+    return tier3_violations(src.read_text(encoding="utf-8"))
 
 
 def _sample_ids(ids: list[str]) -> list[str]:
@@ -102,6 +156,18 @@ def _ids_with_positions(prefix: str) -> list[str]:
 
 
 def main() -> int:
+    failed = False
+
+    # Tier-3 guard runs with or without vote data (it inspects source, not data).
+    tier3 = metrics_tier3_guard()
+    if tier3:
+        failed = True
+        print(f"integrity: TIER-3 GUARD FAILED — {len(tier3)} violation(s):")
+        for v in tier3:
+            print(f"    {v}")
+    else:
+        print("integrity: Tier-3 guard OK (no metric consumes another metric's output).")
+
     # (prefix, human label, cross-check fn). Sample only rolls that carry MS
     # positions (skip Speaker-election rolls, which have none to cross-check).
     passes = (
@@ -109,7 +175,6 @@ def main() -> int:
         ("s", "Senate rolls against detail XML", senate_cross_check),
     )
     ran = False
-    failed = False
     for prefix, label, checker in passes:
         ids = _ids_with_positions(prefix)
         if not ids:
@@ -131,7 +196,6 @@ def main() -> int:
             print(f"  OK ({checked}/{len(sample)} verified).")
     if not ran:
         print("integrity: no roll-call data yet — cross-check inactive (no-op).")
-        return 0
     return 1 if failed else 0
 
 

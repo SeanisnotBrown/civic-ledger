@@ -43,8 +43,14 @@ def parse_log(raw: str) -> list[dict[str, str]]:
         if not record:
             continue
         commit, date, subject = record.split(_FS)
+        # `git log --grep` matches the whole message, so a commit whose BODY (not
+        # subject) has a line starting `correction:` is returned with an unrelated
+        # subject. Keep only entries whose SUBJECT carries the tag (L-2; mirror the
+        # grep's `^correction:` exactly — case-sensitive).
+        if not subject.startswith("correction:"):
+            continue
         # The displayed text drops the `correction:` prefix (it's the tag, not content).
-        text = subject.split(":", 1)[1].strip() if ":" in subject else subject
+        text = subject.split(":", 1)[1].strip()
         entries.append({"commit": commit, "date": date, "subject": text})
     return entries
 

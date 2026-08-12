@@ -194,7 +194,7 @@ byte-identical.
 | `commit` | string | Short git sha = HEAD at generation time (the code that produced the export). It is **not** the commit that contains this manifest — that sha can't exist yet. |
 | `congresses` | array\<int\> | Covered Congresses (`[118, 119]`). |
 | `covered_state` | string | `MS`. |
-| `counts` | object | `members`, `rollcalls`, `rollcalls_by_chamber`, `rollcalls_by_vote_class`, `non_position_rollcalls`, `member_votes`, `absences`, `bills`, `statements`. |
+| `counts` | object | `members`, `rollcalls`, `rollcalls_by_chamber`, `rollcalls_by_vote_class`, `non_position_rollcalls`, `member_votes`, `absences`, `bills`, `statements`. In `rollcalls_by_vote_class`, `non_position` rolls are counted under their own `non_position` key (equal to `non_position_rollcalls`), **not** folded into `other` — so `other` reflects only the genuine one-off classifications (L-1). |
 
 ## `data/schema/*.schema.json` — JSON Schema for the above
 

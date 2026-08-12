@@ -769,3 +769,18 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   pointing at the queue file; the interactive loop catches the refusal instead of crashing.
   Empty/whitespace-only edits are rejected (else `""` — a substring of everything — would
   publish an empty citation).
+
+### R-6 (2026-08-12) — Small fixes batch (review L-1/L-2/L-3, §4 delete)
+
+- **D49 — a batch of low-severity correctness + cruft fixes; no behavior change to any
+  published figure.** (L-1) The manifest counted the 20 Speaker-election `non_position`
+  rolls inside `rollcalls_by_vote_class.other` (= 24), hiding the genuine one-off rate (4).
+  `_count_dataset` now counts them under a distinct `non_position` key (= the existing
+  `non_position_rollcalls`), so `other` reads honestly; `data-contract.md` updated.
+  (L-2) `corrections.parse_log` now keeps only entries whose SUBJECT starts with
+  `correction:` — `git log --grep` matches the whole message, so a commit with the tag in
+  its BODY was producing a bogus, un-prefixed ledger entry. (L-3) `bills.run` printed fetch
+  failures twice; collapsed to the single FAIL line that decides the exit code. (§4 delete)
+  Removed the unused `clerk_house.roll_xml(year, roll)` — `roll_xml_url()` is the path
+  integrity uses. Manifest regenerated (counts split only; the `other`/`non_position`
+  numbers move, nothing else).

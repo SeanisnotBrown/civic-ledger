@@ -37,6 +37,12 @@ def test_manifest_injects_wall_clock_only_here() -> None:
         m["counts"]["rollcalls_by_chamber"]["senate"]
     assert m["congresses"] == list(config.CONGRESSES)
     assert m["covered_state"] == config.COVERED_STATE
+    # non_position rolls are counted under their own key, not lumped into `other`
+    # (L-1): `other` reads as the genuine one-off rate, and the two keys agree with
+    # the standalone non_position count.
+    by_class = m["counts"]["rollcalls_by_vote_class"]
+    assert by_class["non_position"] == m["counts"]["non_position_rollcalls"]
+    assert by_class.get("other", 0) < by_class["non_position"]
 
 
 def test_committed_manifest_matches_regeneration() -> None:

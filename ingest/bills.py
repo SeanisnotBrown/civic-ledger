@@ -189,9 +189,6 @@ def run(argv: list[str] | None = None) -> int:
 
     print(f"civic-ledger bills: {exported} fetched, {skipped} skipped (already "
           f"final), of {total} referenced bills in data/bills/.")
-    if fetch_failures:
-        print(f"  {len(fetch_failures)} fetch failure(s) (re-run to retry): "
-              f"{fetch_failures[:10]}")
     if quarantined:
         frac = len(quarantined) / total if total else 0.0
         print(f"  {len(quarantined)} quarantined ({frac:.2%}): {quarantined[:10]}")
@@ -199,9 +196,10 @@ def run(argv: list[str] | None = None) -> int:
             print(f"FAIL: quarantine {frac:.2%} exceeds {config.QUARANTINE_MAX_FRACTION:.0%}")
             return 1
     # Persistent fetch failures fail the run (re-runnable); the quarantine gate
-    # above is the §6.1 ceiling for genuinely-bad bills.
+    # above is the §6.1 ceiling for genuinely-bad bills. One message (L-3).
     if fetch_failures:
-        print(f"FAIL: {len(fetch_failures)} bill(s) failed to fetch.")
+        print(f"FAIL: {len(fetch_failures)} bill(s) failed to fetch (re-run to retry): "
+              f"{fetch_failures[:10]}")
         return 1
     return 0
 

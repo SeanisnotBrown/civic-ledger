@@ -1,5 +1,5 @@
 {
-  "commit": "38674d6",
+  "commit": "4ef6e3b",
   "congresses": [
     118,
     119
@@ -18,7 +18,8 @@
     "rollcalls_by_vote_class": {
       "amendment": 811,
       "nomination": 447,
-      "other": 24,
+      "non_position": 20,
+      "other": 4,
       "passage": 886,
       "procedural": 1285,
       "veto_override": 14
@@ -26,5 +27,5 @@
     "statements": 0
   },
   "covered_state": "MS",
-  "generated_at": "2026-08-12T17:31:14Z"
+  "generated_at": "2026-08-12T21:32:26Z"
 }

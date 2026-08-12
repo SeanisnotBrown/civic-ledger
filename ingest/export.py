@@ -201,9 +201,14 @@ def _count_dataset() -> dict[str, object]:
         rec = json.loads(path.read_text(encoding="utf-8"))
         rc = rec["rollcall"]
         by_chamber[rc["chamber"]] = by_chamber.get(rc["chamber"], 0) + 1
-        by_class[rc["vote_class"]] = by_class.get(rc["vote_class"], 0) + 1
+        is_non_position = rc["vote_class_rule"] == "non_position"
+        # Speaker-election / candidate-surname rolls carry the provisional `other`
+        # vote_class but are counted under their own key, so `other` reads as the
+        # genuine one-off rate (4, 0.12%) not 24 — the honest breakdown (L-1).
+        cls = "non_position" if is_non_position else rc["vote_class"]
+        by_class[cls] = by_class.get(cls, 0) + 1
         member_vote_total += len(rec["member_votes"])
-        if rc["vote_class_rule"] == "non_position":
+        if is_non_position:
             non_position += 1
 
     return {

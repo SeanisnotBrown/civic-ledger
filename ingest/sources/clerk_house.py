@@ -29,11 +29,6 @@ _VOTE_MAP: dict[str, str] = {
 }
 
 
-def roll_xml(year: int, roll: int) -> CachedResponse:
-    url = f"https://clerk.house.gov/evs/{year}/roll{roll:03d}.xml"
-    return fetch(SOURCE, url, ext="xml")
-
-
 def roll_xml_url(url: str) -> CachedResponse:
     """Fetch a clerk roll XML by its exact URL (e.g. Congress.gov `sourceDataURL`)."""
     return fetch(SOURCE, url, ext="xml")

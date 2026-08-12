@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S001216"
+  ],
   "id": "hr1353-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2023-04-27",
@@ -15,7 +17,16 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1353",
   "sponsor_id": "J000292",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advanced technology and technological innovations",
+    "Congressional oversight",
+    "Emergency communications systems",
+    "Federal Communications Commission (FCC)",
+    "Government information and archives",
+    "Radio spectrum allocation",
+    "Telephone and wireless communication"
+  ],
   "title_official": "Advanced, Local Emergency Response Telecommunications Parity Act",
   "type": "hr"
 }

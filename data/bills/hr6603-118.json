@@ -7,7 +7,20 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001307",
+    "K000398",
+    "L000599",
+    "M001157",
+    "M001216",
+    "M001217",
+    "P000048",
+    "R000600",
+    "S001224",
+    "T000478",
+    "W000795",
+    "W000823"
+  ],
   "id": "hr6603-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2024-04-17",
@@ -15,7 +28,13 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6603",
   "sponsor_id": "M001224",
-  "subjects": null,
+  "subjects": [
+    "Computers and information technology",
+    "Foreign and international corporations",
+    "Manufacturing",
+    "Terrorism",
+    "Trade restrictions"
+  ],
   "title_official": "No Technology for Terror Act",
   "type": "hr"
 }

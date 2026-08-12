@@ -7,7 +7,15 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001112",
+    "E000246",
+    "M000871",
+    "M001212",
+    "M001239",
+    "S001185",
+    "S001220"
+  ],
   "id": "hr7084-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2026-04-02",
@@ -15,7 +23,13 @@
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7084",
   "sponsor_id": "P000048",
-  "subjects": null,
+  "subjects": [
+    "Free trade and trade barriers",
+    "Marine and inland water transportation",
+    "Navigation, waterways, harbors",
+    "Presidents and presidential powers, Vice Presidents",
+    "Property rights"
+  ],
   "title_official": "Defending American Property Abroad Act of 2026",
   "type": "hr"
 }

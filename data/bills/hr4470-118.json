@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001054",
+    "G000590",
+    "J000295"
+  ],
   "id": "hr4470-118",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2023-07-26",
@@ -15,7 +19,18 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4470",
   "sponsor_id": "L000597",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Civil actions and liability",
+    "Criminal justice information and records",
+    "Department of Homeland Security",
+    "Hazardous wastes and toxic substances",
+    "Homeland security",
+    "Industrial facilities",
+    "Performance measurement",
+    "Personnel records",
+    "Terrorism"
+  ],
   "title_official": "Protecting and Securing Chemical Facilities from Terrorist Attacks Act of 2023",
   "type": "hr"
 }

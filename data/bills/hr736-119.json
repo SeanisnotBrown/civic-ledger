@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001282",
+    "D000230",
+    "D000594",
+    "D000629",
+    "D000634",
+    "E000294",
+    "F000470",
+    "H001058",
+    "M001204",
+    "S000168",
+    "S001188",
+    "S001213"
+  ],
   "id": "hr736-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2025-02-11",
@@ -9,7 +22,12 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/736",
   "sponsor_id": "N000193",
-  "subjects": null,
+  "subjects": [
+    "Business records",
+    "Corporate finance and management",
+    "Licensing and registrations",
+    "Small business"
+  ],
   "title_official": "Protect Small Businesses from Excessive Paperwork Act of 2025",
   "type": "hr"
 }

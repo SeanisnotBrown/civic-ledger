@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres1269-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-06-04",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1269",
   "sponsor_id": "R000610",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Providing for consideration of the bill (H.R. 8580) making appropriations for military construction, the Department of Veterans Affairs, and related agencies for the fiscal year ending September 30, 2025, and for other purposes, and providing for consideration of the bill (H.R. 8282) to impose sanctions with respect to the International Criminal Court engaged in any effort to investigate, arrest, detain, or prosecute any protected person of the United States and its allies.",
   "type": "hres"
 }

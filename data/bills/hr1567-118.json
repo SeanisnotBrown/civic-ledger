@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "N000189"
+  ],
   "id": "hr1567-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2023-09-14",
@@ -15,7 +17,13 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1567",
   "sponsor_id": "T000165",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Fires",
+    "Forests, forestry, trees",
+    "Government studies and investigations",
+    "Hazardous wastes and toxic substances"
+  ],
   "title_official": "ACRES Act",
   "type": "hr"
 }

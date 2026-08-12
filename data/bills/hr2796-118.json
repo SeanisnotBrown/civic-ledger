@@ -7,7 +7,7 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr2796-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-05-31",
@@ -15,7 +15,14 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2796",
   "sponsor_id": "W000187",
-  "subjects": null,
+  "subjects": [
+    "Business investment and capital",
+    "Economic development",
+    "Economic performance and conditions",
+    "Natural disasters",
+    "Rural conditions and development",
+    "Small business"
+  ],
   "title_official": "Promoting Opportunities for Non-Traditional Capital Formation Act",
   "type": "hr"
 }

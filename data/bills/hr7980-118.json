@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000465",
+    "K000376",
+    "T000478",
+    "V000134"
+  ],
   "id": "hr7980-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2024-09-16",
@@ -15,7 +20,13 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7980",
   "sponsor_id": "M001205",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Hybrid, electric, and advanced technology vehicles",
+    "Income tax credits",
+    "Motor vehicles"
+  ],
   "title_official": "End Chinese Dominance of Electric Vehicles in America Act of 2024",
   "type": "hr"
 }

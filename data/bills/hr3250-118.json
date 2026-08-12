@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000600"
+  ],
   "id": "hr3250-118",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2024-04-11",
@@ -15,7 +17,10 @@
   "policy_area": "Arts, Culture, Religion",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3250",
   "sponsor_id": "M001206",
-  "subjects": null,
+  "subjects": [
+    "Museums, exhibitions, cultural centers",
+    "New York State"
+  ],
   "title_official": "National Museum of Play Recognition Act",
   "type": "hr"
 }

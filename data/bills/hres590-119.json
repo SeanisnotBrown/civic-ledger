@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres590-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2025-07-18",
@@ -9,7 +9,14 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/590",
   "sponsor_id": "F000450",
-  "subjects": null,
+  "subjects": [
+    "Budget process",
+    "Congressional operations and organization",
+    "Congressional oversight",
+    "House of Representatives",
+    "Legislative rules and procedure",
+    "Senate"
+  ],
   "title_official": "Relating to consideration of the Senate amendment to the bill (H.R. 4) to rescind certain budget authority proposed to be rescinded in special messages transmitted to the Congress by the President on June 3, 2025, in accordance with section 1012(a) of the Congressional Budget and Impoundment Control Act of 1974.",
   "type": "hres"
 }

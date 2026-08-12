@@ -7,7 +7,14 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001292",
+    "C001078",
+    "M001195",
+    "N000147",
+    "R000606",
+    "W000825"
+  ],
   "id": "hr1727-118",
   "latest_action": "Became Public Law No: 118-163.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +22,15 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1727",
   "sponsor_id": "T000483",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "Dams and canals",
+    "District of Columbia",
+    "Historic sites and heritage areas",
+    "Maryland",
+    "Virginia",
+    "West Virginia"
+  ],
   "title_official": "Chesapeake and Ohio Canal National Historical Park Commission Extension Act",
   "type": "hr"
 }

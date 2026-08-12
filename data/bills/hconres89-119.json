@@ -1,7 +1,24 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000148",
+    "C001121",
+    "C001123",
+    "C001131",
+    "G000604",
+    "H001085",
+    "J000309",
+    "L000582",
+    "M001184",
+    "M001196",
+    "P000613",
+    "R000579",
+    "S000185",
+    "T000460",
+    "T000491",
+    "V000138"
+  ],
   "id": "hconres89-119",
   "latest_action": "Received in the Senate and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2026-07-23",
@@ -9,7 +26,7 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/89",
   "sponsor_id": "J000298",
-  "subjects": null,
+  "subjects": [],
   "title_official": "Directing the President, pursuant to section 5(c) of the War Powers Resolution, to remove United States Armed Forces from hostilities with Iran.",
   "type": "hconres"
 }

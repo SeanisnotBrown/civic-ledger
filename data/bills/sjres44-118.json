@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000577",
+    "M001198"
+  ],
   "id": "sjres44-118",
   "latest_action": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 11 - 86. Record Vote Number: 270.",
   "latest_action_date": "2023-10-26",
@@ -9,7 +12,7 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/44",
   "sponsor_id": "P000603",
-  "subjects": null,
+  "subjects": [],
   "title_official": "A joint resolution directing the removal of United States Armed Forces from hostilities in the Republic of Niger that have not been authorized by Congress.",
   "type": "sjres"
 }

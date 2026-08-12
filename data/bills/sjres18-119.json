@@ -1,7 +1,24 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001236",
+    "B001319",
+    "C000880",
+    "C001096",
+    "D000618",
+    "H000601",
+    "L000571",
+    "L000577",
+    "M000934",
+    "M001242",
+    "R000584",
+    "R000605",
+    "R000618",
+    "T000250",
+    "T000476",
+    "W000437"
+  ],
   "id": "sjres18-119",
   "latest_action": "Became Public Law No: 119-10.",
   "latest_action_date": "2025-05-09",
@@ -9,7 +26,14 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/18",
   "sponsor_id": "S001184",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Bank accounts, deposits, capital",
+    "Banking and financial institutions regulation",
+    "Congressional oversight",
+    "Consumer Financial Protection Bureau",
+    "User charges and fees"
+  ],
   "title_official": "A joint resolution disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Overdraft Lending: Very Large Financial Institutions\".",
   "type": "sjres"
 }

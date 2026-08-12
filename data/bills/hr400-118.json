@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000597",
+    "J000307",
+    "T000488"
+  ],
   "id": "hr400-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-01-26",
@@ -9,7 +13,12 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/400",
   "sponsor_id": "C001080",
-  "subjects": null,
+  "subjects": [
+    "Bank accounts, deposits, capital",
+    "Banking and financial institutions regulation",
+    "Business investment and capital",
+    "Small business"
+  ],
   "title_official": "Investing in Main Street Act of 2023",
   "type": "hr"
 }

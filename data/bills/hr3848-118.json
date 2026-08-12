@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001257",
+    "B001282",
+    "B001295",
+    "C001039"
+  ],
   "id": "hr3848-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Veterans' Affairs.",
   "latest_action_date": "2023-12-06",
@@ -15,7 +20,14 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3848",
   "sponsor_id": "C001135",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Homelessness and emergency shelter",
+    "Veterans' education, employment, rehabilitation",
+    "Veterans' loans, housing, homeless programs"
+  ],
   "title_official": "Housing our Military Veterans Effectively Act of 2023",
   "type": "hr"
 }

@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000563"
+  ],
   "id": "sjres190-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 46 - 48. Record Vote Number: 173. (consideration: CR S2816)",
   "latest_action_date": "2026-06-16",
@@ -9,7 +11,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/190",
   "sponsor_id": "K000384",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Federal appellate courts",
+    "Immigration status and procedures"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Executive Office for Immigration Review relating to \"Appellate Procedures for the Board of Immigration Appeals\".",
   "type": "sjres"
 }

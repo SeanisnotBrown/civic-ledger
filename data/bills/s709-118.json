@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001310"
+  ],
   "id": "s709-118",
   "latest_action": "Became Public Law No: 118-190.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +17,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/709",
   "sponsor_id": "P000595",
-  "subjects": null,
+  "subjects": [
+    "Census and government statistics",
+    "Computers and information technology",
+    "Federal officials",
+    "Government information and archives",
+    "Performance measurement"
+  ],
   "title_official": "Federal Agency Performance Act of 2024",
   "type": "s"
 }

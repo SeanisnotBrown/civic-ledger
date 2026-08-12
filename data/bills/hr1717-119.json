@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "J000302"
+  ],
   "id": "hr1717-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2025-07-16",
@@ -15,7 +17,18 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1717",
   "sponsor_id": "M001226",
-  "subjects": null,
+  "subjects": [
+    "Broadcasting, cable, digital technologies",
+    "Computer security and identity theft",
+    "Congressional oversight",
+    "Executive agency funding and structure",
+    "Federal Communications Commission (FCC)",
+    "Government studies and investigations",
+    "Internet, web applications, social media",
+    "Public-private cooperation",
+    "State and local government operations",
+    "Telephone and wireless communication"
+  ],
   "title_official": "Communications Security Act",
   "type": "hr"
 }

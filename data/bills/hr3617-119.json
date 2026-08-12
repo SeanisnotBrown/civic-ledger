@@ -7,7 +7,12 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000628",
+    "H001093",
+    "M001215",
+    "O000019"
+  ],
   "id": "hr3617-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2026-02-12",
@@ -15,7 +20,16 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3617",
   "sponsor_id": "J000307",
-  "subjects": null,
+  "subjects": [
+    "Energy research",
+    "Energy storage, supplies, demand",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Mining",
+    "Research and development",
+    "Strategic materials and reserves",
+    "Supply chain"
+  ],
   "title_official": "Securing America’s Critical Minerals Supply Act",
   "type": "hr"
 }

@@ -7,7 +7,24 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001302",
+    "B001309",
+    "E000246",
+    "F000478",
+    "G000565",
+    "G000576",
+    "G000596",
+    "H001077",
+    "J000289",
+    "L000266",
+    "L000596",
+    "L000600",
+    "M000194",
+    "M001136",
+    "M001159",
+    "S000250"
+  ],
   "id": "hr140-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-03-14",
@@ -15,7 +32,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/140",
   "sponsor_id": "C001108",
-  "subjects": null,
+  "subjects": [
+    "Employment discrimination and employee rights",
+    "First Amendment rights",
+    "Government employee pay, benefits, personnel management",
+    "Internet, web applications, social media"
+  ],
   "title_official": "Protecting Speech from Government Interference Act",
   "type": "hr"
 }

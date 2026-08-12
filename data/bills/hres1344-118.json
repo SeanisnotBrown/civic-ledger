@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000379",
+    "B001309",
+    "C001120",
+    "F000478",
+    "M001218"
+  ],
   "id": "hres1344-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-07-11",
@@ -9,7 +15,11 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1344",
   "sponsor_id": "L000596",
-  "subjects": null,
+  "subjects": [
+    "Evidence and witnesses",
+    "Federal officials",
+    "House of Representatives"
+  ],
   "title_official": "Finding that Merrick Garland, Attorney General of the United States, is in contempt of the House of Representatives for disobeying a certain subpoena.",
   "type": "hres"
 }

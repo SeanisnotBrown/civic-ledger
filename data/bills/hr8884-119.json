@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "W000804"
+  ],
   "id": "hr8884-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2026-07-23",
@@ -15,7 +17,13 @@
   "policy_area": "Social Welfare",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8884",
   "sponsor_id": "S001189",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Disability assistance",
+    "Government studies and investigations",
+    "Social Security Administration",
+    "Wages and earnings"
+  ],
   "title_official": "Removing Barriers to Work for Disabled Americans Act",
   "type": "hr"
 }

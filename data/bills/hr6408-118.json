@@ -7,7 +7,15 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000600",
+    "F000465",
+    "G000583",
+    "K000376",
+    "S001190",
+    "T000478",
+    "T000486"
+  ],
   "id": "hr6408-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2024-04-16",
@@ -15,7 +23,13 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6408",
   "sponsor_id": "K000392",
-  "subjects": null,
+  "subjects": [
+    "Administrative remedies",
+    "Internal Revenue Service (IRS)",
+    "Judicial review and appeals",
+    "Tax-exempt organizations",
+    "Terrorism"
+  ],
   "title_official": "To amend the Internal Revenue Code of 1986 to terminate the tax-exempt status of terrorist supporting organizations.",
   "type": "hr"
 }

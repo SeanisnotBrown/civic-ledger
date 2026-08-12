@@ -7,7 +7,24 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001302",
+    "B001311",
+    "C001118",
+    "D000616",
+    "E000071",
+    "F000478",
+    "I000056",
+    "L000569",
+    "M001194",
+    "N000190",
+    "P000605",
+    "P000609",
+    "R000603",
+    "T000165",
+    "T000478",
+    "W000814"
+  ],
   "id": "hr788-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-01-16",
@@ -15,7 +32,16 @@
   "policy_area": "Law",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/788",
   "sponsor_id": "G000589",
-  "subjects": null,
+  "subjects": [
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Criminal investigation, prosecution, interrogation",
+    "Government ethics and transparency, public corruption",
+    "Government lending and loan guarantees",
+    "Government liability",
+    "Government studies and investigations",
+    "Social work, volunteer service, charitable organizations"
+  ],
   "title_official": "Stop Settlement Slush Funds Act of 2023",
   "type": "hr"
 }

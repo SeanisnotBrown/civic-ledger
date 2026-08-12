@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001080"
+  ],
   "id": "hr517-119",
   "latest_action": "Became Public Law No: 119-29.",
   "latest_action_date": "2025-07-24",
@@ -15,7 +17,14 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/517",
   "sponsor_id": "K000392",
-  "subjects": null,
+  "subjects": [
+    "District of Columbia",
+    "Internal Revenue Service (IRS)",
+    "Natural disasters",
+    "State and local government operations",
+    "Tax administration and collection, taxpayers",
+    "U.S. territories and protectorates"
+  ],
   "title_official": "Filing Relief for Natural Disasters Act",
   "type": "hr"
 }

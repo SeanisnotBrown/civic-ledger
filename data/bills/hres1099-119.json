@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "H001093",
+    "I000056"
+  ],
   "id": "hres1099-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2026-03-05",
@@ -9,7 +12,11 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1099",
   "sponsor_id": "M001199",
-  "subjects": null,
+  "subjects": [
+    "Iran",
+    "Middle East",
+    "Terrorism"
+  ],
   "title_official": "Reaffirming Iran remains the largest state sponsor of terrorism.",
   "type": "hres"
 }

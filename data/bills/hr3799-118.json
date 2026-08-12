@@ -17,7 +17,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M000317"
+  ],
   "id": "hr3799-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-06-21",
@@ -25,7 +27,11 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3799",
   "sponsor_id": "H001082",
-  "subjects": null,
+  "subjects": [
+    "Employee benefits and pensions",
+    "Health care costs and insurance",
+    "Health care coverage and access"
+  ],
   "title_official": "CHOICE Arrangement Act",
   "type": "hr"
 }

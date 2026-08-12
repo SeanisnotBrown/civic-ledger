@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000632",
+    "G000583",
+    "G000591",
+    "G000600",
+    "K000398",
+    "L000600",
+    "M000317",
+    "M001217",
+    "M001221",
+    "T000478",
+    "T000486",
+    "W000828"
+  ],
   "id": "hr9106-118",
   "latest_action": "Became Public Law No: 118-91.",
   "latest_action_date": "2024-10-01",
@@ -9,7 +22,11 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9106",
   "sponsor_id": "L000599",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Department of Homeland Security",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
   "title_official": "Enhanced Presidential Security Act of 2024",
   "type": "hr"
 }

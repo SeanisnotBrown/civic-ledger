@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001212",
+    "N000026"
+  ],
   "id": "hr4371-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2025-12-17",
@@ -15,7 +18,15 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4371",
   "sponsor_id": "F000478",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Child safety and welfare",
+    "Detention of persons",
+    "Human trafficking",
+    "Immigration status and procedures",
+    "Juvenile crime and gang violence",
+    "Smuggling and trafficking"
+  ],
   "title_official": "Kayla Hamilton Act",
   "type": "hr"
 }

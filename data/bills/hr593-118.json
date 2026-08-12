@@ -1,7 +1,21 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "B000490",
+    "C001116",
+    "C001129",
+    "F000465",
+    "G000596",
+    "J000288",
+    "L000583",
+    "M001208",
+    "M001218",
+    "S001157",
+    "S001189",
+    "W000788"
+  ],
   "id": "hr593-118",
   "latest_action": "Became Public Law No: 118-61.",
   "latest_action_date": "2024-05-13",
@@ -9,7 +23,11 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/593",
   "sponsor_id": "C001103",
-  "subjects": null,
+  "subjects": [
+    "Georgia",
+    "Veterans' medical care",
+    "Veterans' organizations and recognition"
+  ],
   "title_official": "To rename the Department of Veterans Affairs community-based outpatient clinic in Hinesville, Georgia, as the \"John Gibson, Dan James, William Sapp, and Frankie Smiley VA Clinic\".",
   "type": "hr"
 }

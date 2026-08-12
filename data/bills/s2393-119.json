@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001277"
+  ],
   "id": "s2393-119",
   "latest_action": "Became Public Law No: 119-97.",
   "latest_action_date": "2026-06-09",
@@ -15,7 +17,12 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2393",
   "sponsor_id": "M000934",
-  "subjects": null,
+  "subjects": [
+    "Building construction",
+    "Government buildings, facilities, and property",
+    "Missouri",
+    "Veterans' medical care"
+  ],
   "title_official": "Fiscal Year 2025 Veterans Affairs Major Medical Facility Authorization Act",
   "type": "s"
 }

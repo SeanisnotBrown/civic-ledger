@@ -7,7 +7,11 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001306",
+    "D000628",
+    "L000599"
+  ],
   "id": "hr3668-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2025-12-15",
@@ -15,7 +19,19 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3668",
   "sponsor_id": "H001067",
-  "subjects": null,
+  "subjects": [
+    "Computer security and identity theft",
+    "Environmental assessment, monitoring, research",
+    "Federal Energy Regulatory Commission (FERC)",
+    "Government information and archives",
+    "Intergovernmental relations",
+    "Licensing and registrations",
+    "Oil and gas",
+    "Pipelines",
+    "State and local government operations",
+    "Transportation employees",
+    "Transportation safety and security"
+  ],
   "title_official": "Improving Interagency Coordination for Pipeline Reviews Act",
   "type": "hr"
 }

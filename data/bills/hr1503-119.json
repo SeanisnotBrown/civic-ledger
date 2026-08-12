@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "K000375"
+  ],
   "id": "hr1503-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2025-05-08",
@@ -9,7 +11,14 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1503",
   "sponsor_id": "S000522",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Human trafficking",
+    "Organ and tissue donation and transplantation",
+    "Sanctions",
+    "Smuggling and trafficking",
+    "Visas and passports"
+  ],
   "title_official": "Stop Forced Organ Harvesting Act of 2025",
   "type": "hr"
 }

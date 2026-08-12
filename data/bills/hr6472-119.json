@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001112",
+    "H001103",
+    "K000404",
+    "P000610",
+    "R000600"
+  ],
   "id": "hr6472-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2026-03-09",
@@ -15,7 +21,16 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6472",
   "sponsor_id": "M001219",
-  "subjects": null,
+  "subjects": [
+    "American Samoa",
+    "Caribbean area",
+    "Guam",
+    "Higher education",
+    "Northern Mariana Islands",
+    "Student aid and college costs",
+    "U.S. territories and protectorates",
+    "Virgin Islands"
+  ],
   "title_official": "Territorial Student Access to Higher Education Act",
   "type": "hr"
 }

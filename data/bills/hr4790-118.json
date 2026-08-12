@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000491",
+    "M001195",
+    "M001204"
+  ],
   "id": "hr4790-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2024-09-23",
@@ -15,7 +19,21 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4790",
   "sponsor_id": "H001058",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Business records",
+    "Congressional oversight",
+    "Consumer affairs",
+    "Corporate finance and management",
+    "European Union",
+    "Financial services and investments",
+    "Foreign and international corporations",
+    "Government studies and investigations",
+    "Internet, web applications, social media",
+    "Securities",
+    "Securities and Exchange Commission (SEC)"
+  ],
   "title_official": "Prioritizing Economic Growth Over Woke Policies Act",
   "type": "hr"
 }

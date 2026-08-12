@@ -7,7 +7,22 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000375",
+    "B000825",
+    "D000032",
+    "E000071",
+    "G000591",
+    "G000601",
+    "H001098",
+    "L000578",
+    "M000194",
+    "M001230",
+    "S001228",
+    "T000478",
+    "T000480",
+    "V000133"
+  ],
   "id": "hr884-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-06-11",
@@ -15,7 +30,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/884",
   "sponsor_id": "P000048",
-  "subjects": null,
+  "subjects": [
+    "District of Columbia",
+    "Elections, voting, political campaign regulation",
+    "Immigration status and procedures",
+    "State and local government operations",
+    "Voting rights"
+  ],
   "title_official": "To prohibit individuals who are not citizens of the United States from voting in elections in the District of Columbia and to repeal the Local Resident Voting Rights Amendment Act of 2022.",
   "type": "hr"
 }

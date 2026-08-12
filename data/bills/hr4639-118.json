@@ -7,7 +7,15 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001297",
+    "B001302",
+    "J000298",
+    "J000305",
+    "L000397",
+    "M001184",
+    "N000002"
+  ],
   "id": "hr4639-118",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2024-04-18",
@@ -15,7 +23,19 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4639",
   "sponsor_id": "D000626",
-  "subjects": null,
+  "subjects": [
+    "Business records",
+    "Civil actions and liability",
+    "Computers and information technology",
+    "Constitution and constitutional amendments",
+    "Consumer affairs",
+    "Criminal investigation, prosecution, interrogation",
+    "Criminal procedure and sentencing",
+    "Intelligence activities, surveillance, classified information",
+    "Internet, web applications, social media",
+    "Right of privacy",
+    "Telephone and wireless communication"
+  ],
   "title_official": "Fourth Amendment Is Not For Sale Act",
   "type": "hr"
 }

@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001299",
+    "B001305",
+    "F000463",
+    "H000601",
+    "S001184"
+  ],
   "id": "sjres28-119",
   "latest_action": "Became Public Law No: 119-11.",
   "latest_action_date": "2025-05-09",
@@ -9,7 +15,13 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/28",
   "sponsor_id": "R000618",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Consumer Financial Protection Bureau",
+    "Consumer affairs",
+    "Internet, web applications, social media"
+  ],
   "title_official": "A joint resolution disapproving the rule submitted by the Bureau of Consumer Financial Protection relating to \"Defining Larger Participants of a Market for General-Use Digital Consumer Payment Applications\".",
   "type": "sjres"
 }

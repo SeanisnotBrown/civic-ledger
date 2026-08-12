@@ -7,7 +7,14 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000632",
+    "H001093",
+    "L000599",
+    "L000600",
+    "M000317",
+    "W000828"
+  ],
   "id": "hr3941-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2023-07-20",
@@ -15,7 +22,13 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3941",
   "sponsor_id": "M001221",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Detention of persons",
+    "Educational facilities and institutions",
+    "Homelessness and emergency shelter",
+    "Immigration status and procedures"
+  ],
   "title_official": "Schools Not Shelters Act",
   "type": "hr"
 }

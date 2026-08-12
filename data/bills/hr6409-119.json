@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001120",
+    "C001137"
+  ],
   "id": "hr6409-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2026-04-17",
@@ -9,7 +12,14 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6409",
   "sponsor_id": "P000048",
-  "subjects": null,
+  "subjects": [
+    "Air quality",
+    "Civil actions and liability",
+    "Climate change and greenhouse gases",
+    "Pollution liability",
+    "State and local government operations",
+    "User charges and fees"
+  ],
   "title_official": "FENCES Act",
   "type": "hr"
 }

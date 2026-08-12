@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "W000187"
+  ],
   "id": "hres1299-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2026-05-20",
@@ -9,7 +11,34 @@
   "policy_area": "Housing and Community Development",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1299",
   "sponsor_id": "H001072",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Bank accounts, deposits, capital",
+    "Banking and financial institutions regulation",
+    "Building construction",
+    "Congressional oversight",
+    "Cooperative and condominium housing",
+    "Data collection, sharing, protection",
+    "Department of Housing and Urban Development",
+    "Environmental assessment, monitoring, research",
+    "Government information and archives",
+    "Government lending and loan guarantees",
+    "Government studies and investigations",
+    "Homelessness and emergency shelter",
+    "Housing and community development funding",
+    "Housing finance and home ownership",
+    "Housing industry and standards",
+    "Housing supply and affordability",
+    "Landlord and tenant",
+    "Licensing and registrations",
+    "Low- and moderate-income housing",
+    "Public housing",
+    "Regional and metropolitan planning",
+    "Residential rehabilitation and home repair",
+    "Rural conditions and development",
+    "Veterans' loans, housing, homeless programs"
+  ],
   "title_official": "Providing for the concurrence by the House in the Senate amendment to H.R. 6644, with amendment.",
   "type": "hres"
 }

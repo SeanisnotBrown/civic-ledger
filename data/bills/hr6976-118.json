@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr6976-118",
   "latest_action": "Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-03-06",
@@ -9,7 +9,11 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6976",
   "sponsor_id": "M001212",
-  "subjects": null,
+  "subjects": [
+    "Alcoholic beverages",
+    "Drug, alcohol, tobacco use",
+    "Immigration status and procedures"
+  ],
   "title_official": "Protect Our Communities from DUIs Act",
   "type": "hr"
 }

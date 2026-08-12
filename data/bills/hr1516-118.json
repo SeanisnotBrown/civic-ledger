@@ -7,7 +7,26 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001311",
+    "B001317",
+    "C001132",
+    "D000632",
+    "E000235",
+    "G000590",
+    "G000591",
+    "G000593",
+    "G000594",
+    "G000596",
+    "G000597",
+    "H001077",
+    "L000597",
+    "L000598",
+    "L000603",
+    "M001157",
+    "S001220",
+    "W000815"
+  ],
   "id": "hr1516-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2024-09-12",
@@ -15,7 +34,14 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1516",
   "sponsor_id": "P000048",
-  "subjects": null,
+  "subjects": [
+    "Area studies and international education",
+    "Asia",
+    "China",
+    "Department of Homeland Security",
+    "Higher education",
+    "International exchange and broadcasting"
+  ],
   "title_official": "DHS Restrictions on Confucius Institutes and Chinese Entities of Concern Act",
   "type": "hr"
 }

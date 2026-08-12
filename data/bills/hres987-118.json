@@ -1,7 +1,30 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000377",
+    "B000740",
+    "B000825",
+    "B001298",
+    "C001126",
+    "D000032",
+    "F000246",
+    "F000469",
+    "G000593",
+    "H001077",
+    "I000056",
+    "M001177",
+    "M001194",
+    "M001204",
+    "M001205",
+    "M001219",
+    "N000026",
+    "O000019",
+    "S001196",
+    "W000809",
+    "W000816",
+    "Z000018"
+  ],
   "id": "hres987-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-03-21",
@@ -9,7 +32,11 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/987",
   "sponsor_id": "N000189",
-  "subjects": null,
+  "subjects": [
+    "Energy prices",
+    "Oil and gas",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
   "title_official": "Denouncing the harmful, anti-American energy policies of the Biden administration, and for other purposes.",
   "type": "hres"
 }

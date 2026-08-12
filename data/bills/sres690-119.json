@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "sres690-119",
   "latest_action": "Resolution agreed to in Senate without amendment by Yea-Nay Vote. 46 - 45. Record Vote Number: 114. (text: CR 4/27/2026 S2056-2057)",
   "latest_action_date": "2026-05-11",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/690",
   "sponsor_id": "T000250",
-  "subjects": null,
+  "subjects": [
+    "Legislative rules and procedure",
+    "Senate"
+  ],
   "title_official": "An executive resolution authorizing the en bloc consideration in Executive Session of certain nominations on the Executive Calendar.",
   "type": "sres"
 }

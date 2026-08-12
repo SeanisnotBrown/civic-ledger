@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001126",
+    "N000191"
+  ],
   "id": "hr1442-119",
   "latest_action": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 116.",
   "latest_action_date": "2025-07-16",
@@ -15,7 +18,13 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1442",
   "sponsor_id": "T000482",
-  "subjects": null,
+  "subjects": [
+    "Child safety and welfare",
+    "Consumer affairs",
+    "Hazardous wastes and toxic substances",
+    "Product safety and quality",
+    "Retail and wholesale trades"
+  ],
   "title_official": "To ban the sale of products with a high concentration of sodium nitrite to individuals, and for other purposes.",
   "type": "hr"
 }

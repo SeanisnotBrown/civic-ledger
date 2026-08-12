@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001125",
+    "G000590",
+    "L000598"
+  ],
   "id": "hr3224-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-12-12",
@@ -15,7 +19,23 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3224",
   "sponsor_id": "D000632",
-  "subjects": null,
+  "subjects": [
+    "Arms control and nonproliferation",
+    "Chemical and biological weapons",
+    "Congressional oversight",
+    "Department of Homeland Security",
+    "Emergency medical services and trauma care",
+    "Emergency planning and evacuation",
+    "Executive agency funding and structure",
+    "Federal officials",
+    "Federal-Indian relations",
+    "Health personnel",
+    "Intergovernmental relations",
+    "Nuclear weapons",
+    "State and local government operations",
+    "Terrorism",
+    "Urban and suburban affairs and development"
+  ],
   "title_official": "Countering Weapons of Mass Destruction Extension Act of 2023",
   "type": "hr"
 }

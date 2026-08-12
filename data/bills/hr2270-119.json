@@ -7,7 +7,16 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000484",
+    "H001090",
+    "H001091",
+    "H001102",
+    "M001194",
+    "O000177",
+    "S001196",
+    "T000467"
+  ],
   "id": "hr2270-119",
   "latest_action": "POSTPONED PROCEEDINGS - Pursuant to clause 1(c) of rule XIX, the Chair announced that further proceedings on H.R. 2270 is postponed.",
   "latest_action_date": "2026-01-13",
@@ -15,7 +24,12 @@
   "policy_area": "Labor and Employment",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2270",
   "sponsor_id": "M001233",
-  "subjects": null,
+  "subjects": [
+    "Child care and development",
+    "Family services",
+    "Labor standards",
+    "Wages and earnings"
+  ],
   "title_official": "Empowering Employer Child and Elder Care Solutions Act",
   "type": "hr"
 }

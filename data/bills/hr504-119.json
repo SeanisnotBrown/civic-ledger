@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000600",
+    "S000168",
+    "S001200"
+  ],
   "id": "hr504-119",
   "latest_action": "The Chair directed the Clerk to notify the Senate of the action of the House.",
   "latest_action_date": "2026-01-08",
@@ -9,7 +13,12 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/504",
   "sponsor_id": "G000593",
-  "subjects": null,
+  "subjects": [
+    "Floods and storm protection",
+    "Florida",
+    "Geography and mapping",
+    "Indian lands and resources rights"
+  ],
   "title_official": "Miccosukee Reserved Area Amendments Act",
   "type": "hr"
 }

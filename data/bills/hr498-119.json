@@ -1,7 +1,14 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000626",
+    "G000576",
+    "G000596",
+    "L000596",
+    "S001214",
+    "W000814"
+  ],
   "id": "hr498-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2025-12-18",
@@ -9,7 +16,14 @@
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/498",
   "sponsor_id": "C001120",
-  "subjects": null,
+  "subjects": [
+    "Child health",
+    "Health programs administration and funding",
+    "Medicaid",
+    "Prescription drugs",
+    "Sex, gender, sexual orientation discrimination",
+    "Surgery and anesthesia"
+  ],
   "title_official": "Do No Harm in Medicaid Act",
   "type": "hr"
 }

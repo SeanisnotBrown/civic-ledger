@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001153"
+  ],
   "id": "s254-119",
   "latest_action": "Became Public Law No: 119-99.",
   "latest_action_date": "2026-06-12",
@@ -15,7 +17,13 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/254",
   "sponsor_id": "S001198",
-  "subjects": null,
+  "subjects": [
+    "Alaska",
+    "Alaska Natives and Hawaiians",
+    "Historical and cultural resources",
+    "Mammals",
+    "Wildlife conservation and habitat protection"
+  ],
   "title_official": "ARTIST Act",
   "type": "s"
 }

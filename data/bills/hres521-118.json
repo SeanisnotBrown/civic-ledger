@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "B001316",
+    "D000626",
+    "G000061",
+    "G000578",
+    "H001082",
+    "H001096",
+    "L000600",
+    "L000603",
+    "M001212",
+    "M001221",
+    "N000190"
+  ],
   "id": "hres521-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-06-21",
@@ -9,7 +22,11 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/521",
   "sponsor_id": "L000596",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure",
+    "Members of Congress"
+  ],
   "title_official": "Censuring Adam Schiff, Representative of the 30th Congressional District of California.",
   "type": "hres"
 }

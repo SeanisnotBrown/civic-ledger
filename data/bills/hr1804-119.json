@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001229"
+  ],
   "id": "hr1804-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Small Business and Entrepreneurship.",
   "latest_action_date": "2025-06-04",
@@ -15,7 +17,13 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1804",
   "sponsor_id": "M001204",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Fraud offenses and financial crimes",
+    "Government information and archives",
+    "Government lending and loan guarantees",
+    "Government studies and investigations"
+  ],
   "title_official": "7(a) Loan Agent Oversight Act",
   "type": "hr"
 }

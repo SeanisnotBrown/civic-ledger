@@ -7,7 +7,15 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001055",
+    "H001068",
+    "L000578",
+    "N000191",
+    "R000600",
+    "S001177",
+    "T000472"
+  ],
   "id": "hr8219-118",
   "latest_action": "Became Public Law No: 118-184.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +23,12 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8219",
   "sponsor_id": "T000487",
-  "subjects": null,
+  "subjects": [
+    "Government studies and investigations",
+    "Hawaii",
+    "Historic sites and heritage areas",
+    "Intergovernmental relations"
+  ],
   "title_official": "Lahaina National Heritage Area Study Act",
   "type": "hr"
 }

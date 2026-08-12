@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000583"
+  ],
   "id": "hr1548-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-07-12",
@@ -15,7 +17,11 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1548",
   "sponsor_id": "K000397",
-  "subjects": null,
+  "subjects": [
+    "Business records",
+    "Government information and archives",
+    "Small business"
+  ],
   "title_official": "Improving Access to Small Business Information Act",
   "type": "hr"
 }

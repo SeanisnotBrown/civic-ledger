@@ -7,7 +7,15 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000582",
+    "G000591",
+    "M000871",
+    "M001221",
+    "P000619",
+    "V000133",
+    "W000806"
+  ],
   "id": "hr1752-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2024-03-12",
@@ -15,7 +23,11 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1752",
   "sponsor_id": "G000546",
-  "subjects": null,
+  "subjects": [
+    "Infrastructure development",
+    "Internet, web applications, social media",
+    "Public-private cooperation"
+  ],
   "title_official": "E-BRIDGE Act",
   "type": "hr"
 }

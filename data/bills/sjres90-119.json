@@ -1,7 +1,26 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001277",
+    "B001303",
+    "C001088",
+    "D000563",
+    "D000622",
+    "H000273",
+    "H001042",
+    "K000394",
+    "M000133",
+    "M001176",
+    "P000145",
+    "P000603",
+    "S000033",
+    "S001150",
+    "S001194",
+    "V000128",
+    "W000779",
+    "W000800"
+  ],
   "id": "sjres90-119",
   "latest_action": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 49 - 51. Record Vote Number: 608. (consideration: CR S7958)",
   "latest_action_date": "2025-11-06",
@@ -9,7 +28,14 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/90",
   "sponsor_id": "K000384",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Latin America",
+    "Military operations and strategy",
+    "Venezuela",
+    "War and emergency powers"
+  ],
   "title_official": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against Venezuela that have not been authorized by Congress.",
   "type": "sjres"
 }

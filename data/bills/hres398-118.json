@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres398-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-05-16",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/398",
   "sponsor_id": "F000470",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Providing for consideration of the bill (H.R. 2494) to make the assault of a law enforcement officer a deportable offense, and for other purposes; providing for consideration of the bill (H.R. 3091) to allow Federal law enforcement officers to purchase retired service weapons, and for other purposes; and providing for consideration of the concurrent resolution (H. Con. Res. 40) expressing support for local law enforcement officers and condemning efforts to defund or dismantle local law enforcement agencies.",
   "type": "hres"
 }

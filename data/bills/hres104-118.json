@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000478",
+    "Z000018"
+  ],
   "id": "hres104-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-02-09",
@@ -9,7 +12,18 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/104",
   "sponsor_id": "M001157",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "Aviation and airports",
+    "China",
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Intelligence activities, surveillance, classified information",
+    "International law and treaties",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sovereignty, recognition, national governance and status"
+  ],
   "title_official": "Condemning the Chinese Communist Party's use of a high-altitude surveillance balloon over United States territory as a brazen violation of United States sovereignty.",
   "type": "hres"
 }

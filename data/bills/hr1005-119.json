@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001282",
+    "C001126",
+    "H001093",
+    "R000619",
+    "T000490"
+  ],
   "id": "hr1005-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2025-12-04",
@@ -15,7 +21,12 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1005",
   "sponsor_id": "J000295",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Education programs funding",
+    "Elementary and secondary education"
+  ],
   "title_official": "Combating the Lies of Authoritarians in School Systems Act",
   "type": "hr"
 }

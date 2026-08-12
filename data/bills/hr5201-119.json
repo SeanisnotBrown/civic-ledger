@@ -12,7 +12,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001257",
+    "B001300"
+  ],
   "id": "hr5201-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2026-04-22",
@@ -20,7 +23,14 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5201",
   "sponsor_id": "M001163",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Emergency communications systems",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Service industries",
+    "Telephone and wireless communication"
+  ],
   "title_official": "Kari's Law Reporting Act",
   "type": "hr"
 }

@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001198"
+  ],
   "id": "s3249-118",
   "latest_action": "Became Public Law No: 118-75.",
   "latest_action_date": "2024-07-30",
@@ -9,7 +11,11 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3249",
   "sponsor_id": "M000934",
-  "subjects": null,
+  "subjects": [
+    "Government buildings, facilities, and property",
+    "Kansas",
+    "Veterans' medical care"
+  ],
   "title_official": "A bill to designate the outpatient clinic of the Department of Veterans Affairs in Wyandotte County, Kansas City, Kansas, as the \"Captain Elwin Shopteese VA Clinic\".",
   "type": "s"
 }

@@ -12,7 +12,18 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001292",
+    "C001078",
+    "C001118",
+    "G000568",
+    "G000595",
+    "K000399",
+    "M001227",
+    "S000185",
+    "S001209",
+    "W000804"
+  ],
   "id": "hr3354-118",
   "latest_action": "Became Public Law No: 118-213.",
   "latest_action_date": "2025-01-02",
@@ -20,7 +31,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3354",
   "sponsor_id": "W000825",
-  "subjects": null,
+  "subjects": [
+    "Congressional tributes",
+    "Government buildings, facilities, and property",
+    "Postal service",
+    "Virginia"
+  ],
   "title_official": "To designate the facility of the United States Postal Service located at 220 North Hatcher Avenue in Purcellville, Virginia, as the \"Secretary of State Madeleine Albright Post Office Building\".",
   "type": "hr"
 }

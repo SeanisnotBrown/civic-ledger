@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001322",
+    "L000599",
+    "M001218",
+    "M001219",
+    "Z000018"
+  ],
   "id": "hr4216-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2025-09-03",
@@ -9,7 +15,12 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4216",
   "sponsor_id": "B001325",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Foreign aid and international relief",
+    "Military assistance, sales, and agreements",
+    "Trade restrictions"
+  ],
   "title_official": "Made-in-America Defense Act",
   "type": "hr"
 }

@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000478",
+    "N000026"
+  ],
   "id": "hr8365-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2026-05-18",
@@ -9,7 +12,13 @@
   "policy_area": "Law",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8365",
   "sponsor_id": "B001302",
-  "subjects": null,
+  "subjects": [
+    "Federal district courts",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Judicial procedure and administration",
+    "Legal fees and court costs"
+  ],
   "title_official": "Monitor Accountability Act",
   "type": "hr"
 }

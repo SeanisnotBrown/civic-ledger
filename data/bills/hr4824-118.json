@@ -12,7 +12,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000397"
+  ],
   "id": "hr4824-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2024-05-01",
@@ -20,7 +22,16 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4824",
   "sponsor_id": "B001307",
-  "subjects": null,
+  "subjects": [
+    "Air quality",
+    "Climate change and greenhouse gases",
+    "Congressional oversight",
+    "Earth sciences",
+    "Environmental assessment, monitoring, research",
+    "Farmland",
+    "Forests, forestry, trees",
+    "Research and development"
+  ],
   "title_official": "Carbon Sequestration Collaboration Act",
   "type": "hr"
 }

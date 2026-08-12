@@ -7,7 +7,27 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001298",
+    "B001302",
+    "B001309",
+    "C001078",
+    "C001108",
+    "C001133",
+    "D000032",
+    "F000466",
+    "L000266",
+    "L000562",
+    "M000194",
+    "M000687",
+    "M001136",
+    "N000002",
+    "N000147",
+    "P000619",
+    "R000606",
+    "S001150",
+    "W000788"
+  ],
   "id": "hr5658-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2024-11-19",
@@ -15,7 +35,10 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5658",
   "sponsor_id": "P000618",
-  "subjects": null,
+  "subjects": [
+    "Elections, voting, political campaign regulation",
+    "Postal service"
+  ],
   "title_official": "Vote by Mail Tracking Act",
   "type": "hr"
 }

@@ -7,7 +7,27 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000379",
+    "B001302",
+    "B001317",
+    "C001115",
+    "C001120",
+    "C001132",
+    "D000032",
+    "F000478",
+    "G000589",
+    "G000590",
+    "G000591",
+    "G000592",
+    "H001096",
+    "L000589",
+    "M000194",
+    "M001211",
+    "N000190",
+    "O000175",
+    "P000605"
+  ],
   "id": "hr357-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-12-13",
@@ -15,7 +35,10 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/357",
   "sponsor_id": "C001118",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Federal officials"
+  ],
   "title_official": "Ensuring Accountability in Agency Rulemaking Act",
   "type": "hr"
 }

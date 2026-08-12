@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000599",
+    "M001137",
+    "N000194",
+    "T000486"
+  ],
   "id": "hr2793-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-06-06",
@@ -15,7 +20,11 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2793",
   "sponsor_id": "W000812",
-  "subjects": null,
+  "subjects": [
+    "Financial services and investments",
+    "Government information and archives",
+    "Securities"
+  ],
   "title_official": "Encouraging Public Offerings Act of 2023",
   "type": "hr"
 }

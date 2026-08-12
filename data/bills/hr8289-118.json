@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000560"
+  ],
   "id": "hr8289-118",
   "latest_action": "Became Public Law No: 118-60.",
   "latest_action_date": "2024-05-10",
@@ -9,7 +11,17 @@
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8289",
   "sponsor_id": "G000546",
-  "subjects": null,
+  "subjects": [
+    "Atmospheric science and weather",
+    "Aviation and airports",
+    "Employment and training programs",
+    "Government trust funds",
+    "Infrastructure development",
+    "Transportation programs funding",
+    "Transportation safety and security",
+    "Travel and tourism",
+    "User charges and fees"
+  ],
   "title_official": "Airport and Airway Extension Act of 2024, Part II",
   "type": "hr"
 }

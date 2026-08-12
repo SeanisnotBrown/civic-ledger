@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres1209-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-05-08",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1209",
   "sponsor_id": "G000596",
-  "subjects": null,
+  "subjects": [
+    "Congressional leadership",
+    "House of Representatives"
+  ],
   "title_official": "Declaring the office of Speaker of the House of Representatives to be vacant.",
   "type": "hres"
 }

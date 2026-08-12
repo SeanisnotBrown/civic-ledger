@@ -7,7 +7,12 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001137",
+    "S000250",
+    "S001157",
+    "T000486"
+  ],
   "id": "hr3383-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2025-12-15",
@@ -15,7 +20,11 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3383",
   "sponsor_id": "W000812",
-  "subjects": null,
+  "subjects": [
+    "Banking and financial institutions regulation",
+    "Financial services and investments",
+    "Securities"
+  ],
   "title_official": "Incentivizing New Ventures and Economic Strength Through Capital Formation Act of 2025",
   "type": "hr"
 }

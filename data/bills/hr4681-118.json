@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001121",
+    "L000599",
+    "M001216",
+    "M001217",
+    "W000795"
+  ],
   "id": "hr4681-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2024-04-17",
@@ -15,7 +21,20 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4681",
   "sponsor_id": "H001072",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Drug trafficking and controlled substances",
+    "Foreign property",
+    "Immigration status and procedures",
+    "Lebanon",
+    "Middle East",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sanctions",
+    "Syria",
+    "Visas and passports"
+  ],
   "title_official": "Illicit Captagon Trafficking Suppression Act of 2023",
   "type": "hr"
 }

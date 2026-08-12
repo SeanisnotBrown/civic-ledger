@@ -1,7 +1,22 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001103",
+    "C001129",
+    "E000300",
+    "F000484",
+    "H001095",
+    "K000399",
+    "L000596",
+    "M001157",
+    "N000193",
+    "R000619",
+    "S000250",
+    "S001172",
+    "T000478",
+    "V000139"
+  ],
   "id": "hres1128-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2026-03-26",
@@ -9,7 +24,11 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1128",
   "sponsor_id": "M001230",
-  "subjects": null,
+  "subjects": [
+    "Congressional tributes",
+    "Department of Homeland Security",
+    "House of Representatives"
+  ],
   "title_official": "Expressing the support of the House of Representatives for the Department of Homeland Security.",
   "type": "hres"
 }

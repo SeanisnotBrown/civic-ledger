@@ -1,7 +1,12 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001302",
+    "G000565",
+    "G000596",
+    "R000103"
+  ],
   "id": "hconres21-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-03-08",
@@ -9,7 +14,12 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-concurrent-resolution/21",
   "sponsor_id": "G000578",
-  "subjects": null,
+  "subjects": [
+    "Middle East",
+    "Presidents and presidential powers, Vice Presidents",
+    "Syria",
+    "War and emergency powers"
+  ],
   "title_official": "Directing the President, pursuant to section 5(c) of the War Powers Resolution, to remove the United States Armed Forces from Syria.",
   "type": "hconres"
 }

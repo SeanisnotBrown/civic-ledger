@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001320"
+  ],
   "id": "s3857-118",
   "latest_action": "Became Public Law No: 118-199.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +17,11 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3857",
   "sponsor_id": "P000145",
-  "subjects": null,
+  "subjects": [
+    "California",
+    "Indian lands and resources rights",
+    "Land transfers"
+  ],
   "title_official": "Jamul Indian Village Land Transfer Act",
   "type": "s"
 }

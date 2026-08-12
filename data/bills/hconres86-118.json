@@ -1,7 +1,29 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000740",
+    "B001295",
+    "C001116",
+    "C001120",
+    "C001126",
+    "C001132",
+    "D000032",
+    "F000475",
+    "H001093",
+    "J000304",
+    "L000564",
+    "L000600",
+    "M001205",
+    "M001211",
+    "O000175",
+    "P000048",
+    "P000605",
+    "P000609",
+    "P000615",
+    "S001176",
+    "T000478"
+  ],
   "id": "hconres86-118",
   "latest_action": "Received in the Senate and referred to the Committee on Finance.",
   "latest_action_date": "2024-03-22",
@@ -9,7 +31,14 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-concurrent-resolution/86",
   "sponsor_id": "Z000018",
-  "subjects": null,
+  "subjects": [
+    "Air quality",
+    "Climate change and greenhouse gases",
+    "Energy prices",
+    "Oil and gas",
+    "Sales and excise taxes",
+    "User charges and fees"
+  ],
   "title_official": "Expressing the sense of Congress that a carbon tax would be detrimental to the United States economy.",
   "type": "hconres"
 }

@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001305",
+    "B001310",
+    "C000880",
+    "C001075",
+    "C001098",
+    "H000601",
+    "H001079",
+    "H001089",
+    "L000571",
+    "L000577",
+    "R000584",
+    "S001217"
+  ],
   "id": "sjres18-118",
   "latest_action": "Held at the desk.",
   "latest_action_date": "2023-05-22",
@@ -9,7 +22,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/18",
   "sponsor_id": "M001198",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Department of Homeland Security",
+    "Immigrant health and welfare",
+    "Immigration status and procedures"
+  ],
   "title_official": "A joint resolution disapproving of the rule submitted by the Department of Homeland Security relating to \"Public Charge Ground of Inadmissibility\".",
   "type": "sjres"
 }

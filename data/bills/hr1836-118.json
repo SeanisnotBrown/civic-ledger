@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001059",
+    "G000559",
+    "S001135"
+  ],
   "id": "hr1836-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-03-22",
@@ -15,7 +19,21 @@
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1836",
   "sponsor_id": "J000301",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Asia",
+    "China",
+    "Competition and antitrust",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Federal Maritime Commission",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Marine and inland water transportation",
+    "Navigation, waterways, harbors"
+  ],
   "title_official": "Ocean Shipping Reform Implementation Act of 2023",
   "type": "hr"
 }

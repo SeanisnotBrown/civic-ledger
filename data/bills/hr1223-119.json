@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001323",
+    "M001238",
+    "O000019",
+    "R000622",
+    "S001215"
+  ],
   "id": "hr1223-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2025-05-21",
@@ -9,7 +15,13 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1223",
   "sponsor_id": "F000480",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "National Science Foundation",
+    "Research and development"
+  ],
   "title_official": "ANCHOR Act",
   "type": "hr"
 }

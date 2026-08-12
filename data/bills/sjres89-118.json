@@ -1,7 +1,12 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001243",
+    "B001310",
+    "C001056",
+    "S001217"
+  ],
   "id": "sjres89-118",
   "latest_action": "Point of order that the measure is not entitled to expedited procedures under 50 U.S.C. 1546(a) against the measure agreed to in Senate by Yea-Nay Vote. 48 - 46. Record Vote Number: 212. (consideration: CR S4533-4536)",
   "latest_action_date": "2024-07-11",
@@ -9,7 +14,16 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/89",
   "sponsor_id": "C001098",
-  "subjects": null,
+  "subjects": [
+    "Arab-Israeli relations",
+    "Conflicts and wars",
+    "Foreign aid and international relief",
+    "Gaza Strip",
+    "Israel",
+    "Middle East",
+    "Military assistance, sales, and agreements",
+    "Palestinians"
+  ],
   "title_official": "A joint resolution to direct the termination of the use of United States Armed Forces for the construction, maintenance, and operation of the Joint Logistics Over-the-Shore pier on the coast of the Gaza Strip that has not been authorized by Congress.",
   "type": "sjres"
 }

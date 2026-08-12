@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001243",
+    "B001305",
+    "B001310",
+    "C001095",
+    "E000295",
+    "H000601",
+    "J000293",
+    "L000571",
+    "L000577",
+    "M001198",
+    "R000618",
+    "S001217"
+  ],
   "id": "sjres57-118",
   "latest_action": "Failed of passage in Senate by Yea-Nay Vote. 46 - 49. Record Vote Number: 168.",
   "latest_action_date": "2024-05-15",
@@ -9,7 +22,16 @@
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/57",
   "sponsor_id": "S001227",
-  "subjects": null,
+  "subjects": [
+    "Accounting and auditing",
+    "Administrative law and regulatory procedures",
+    "Congressional-executive branch relations",
+    "Department of the Treasury",
+    "Government information and archives",
+    "Intergovernmental relations",
+    "State and local finance",
+    "State and local government operations"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of the Treasury relating to \"Coronavirus State and Local Fiscal Recovery Funds\".",
   "type": "sjres"
 }

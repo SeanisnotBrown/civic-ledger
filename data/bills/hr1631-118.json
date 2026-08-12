@@ -7,7 +7,27 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000668",
+    "B001311",
+    "C001118",
+    "C001134",
+    "F000471",
+    "G000589",
+    "J000032",
+    "K000401",
+    "L000582",
+    "L000598",
+    "M001212",
+    "M001224",
+    "N000026",
+    "N000188",
+    "N000191",
+    "R000305",
+    "R000606",
+    "T000468",
+    "Y000067"
+  ],
   "id": "hr1631-118",
   "latest_action": "On motion to suspend the rules and pass the bill, as amended Failed by the Yeas and Nays: (2/3 required): 248 - 127 (Roll no. 357).",
   "latest_action_date": "2024-07-22",
@@ -15,7 +35,12 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1631",
   "sponsor_id": "I000056",
-  "subjects": null,
+  "subjects": [
+    "Digital media",
+    "Intellectual property",
+    "User charges and fees",
+    "Wages and earnings"
+  ],
   "title_official": "Pro Codes Act",
   "type": "hr"
 }

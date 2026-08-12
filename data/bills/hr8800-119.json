@@ -12,7 +12,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S000510"
+  ],
   "id": "hr8800-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2026-07-22",
@@ -20,7 +22,7 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
   "sponsor_id": "R000575",
-  "subjects": null,
+  "subjects": [],
   "title_official": "National Defense Authorization Act for Fiscal Year 2027",
   "type": "hr"
 }

@@ -1,7 +1,27 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001243",
+    "B001305",
+    "B001310",
+    "B001319",
+    "C000880",
+    "C001095",
+    "C001098",
+    "D000618",
+    "E000295",
+    "H001089",
+    "L000575",
+    "L000577",
+    "M001190",
+    "R000584",
+    "R000595",
+    "S001217",
+    "T000476",
+    "V000137",
+    "W000437"
+  ],
   "id": "sjres42-118",
   "latest_action": "Failed of passage in Senate by Yea-Nay Vote. 47 - 50. Record Vote Number: 272.",
   "latest_action_date": "2023-10-26",
@@ -9,7 +29,14 @@
   "policy_area": "Agriculture and Food",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/42",
   "sponsor_id": "M001198",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Department of Agriculture",
+    "Food assistance and relief",
+    "Poverty and welfare assistance",
+    "Sex, gender, sexual orientation discrimination"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Food and Nutrition Service relating to \"Application of Bostock v. Clayton County to Program Discrimination Complaint Processing-Policy Update\".",
   "type": "sjres"
 }

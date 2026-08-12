@@ -7,7 +7,31 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001223",
+    "B001285",
+    "B001295",
+    "B001315",
+    "C001131",
+    "D000530",
+    "E000297",
+    "F000476",
+    "G000551",
+    "G000586",
+    "K000391",
+    "L000593",
+    "M001188",
+    "M001220",
+    "P000618",
+    "S001145",
+    "S001177",
+    "S001218",
+    "T000472",
+    "T000483",
+    "T000487",
+    "V000130",
+    "W000822"
+  ],
   "id": "hr1767-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Veterans' Affairs.",
   "latest_action_date": "2024-05-01",
@@ -15,7 +39,12 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1767",
   "sponsor_id": "R000617",
-  "subjects": null,
+  "subjects": [
+    "Educational facilities and institutions",
+    "Fraud offenses and financial crimes",
+    "Veterans' education, employment, rehabilitation",
+    "Veterans' pensions and compensation"
+  ],
   "title_official": "Student Veteran Benefit Restoration Act",
   "type": "hr"
 }

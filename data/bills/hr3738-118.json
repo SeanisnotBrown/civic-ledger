@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001121",
+    "L000593",
+    "M001210"
+  ],
   "id": "hr3738-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Veterans' Affairs.",
   "latest_action_date": "2024-05-01",
@@ -15,7 +19,19 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3738",
   "sponsor_id": "W000815",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Department of Veterans Affairs",
+    "Employment and training programs",
+    "Executive agency funding and structure",
+    "Federal officials",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Labor-management relations",
+    "Small business",
+    "Veterans' education, employment, rehabilitation",
+    "Veterans' loans, housing, homeless programs"
+  ],
   "title_official": "Veterans Economic Opportunity and Transition Administration Act",
   "type": "hr"
 }

@@ -7,7 +7,12 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000059",
+    "C001129",
+    "G000591",
+    "H001077"
+  ],
   "id": "hr5103-119",
   "latest_action": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 437.",
   "latest_action_date": "2026-06-16",
@@ -15,7 +20,21 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5103",
   "sponsor_id": "M001239",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "Border security and unlawful immigration",
+    "Congressional oversight",
+    "Crime prevention",
+    "Criminal procedure and sentencing",
+    "Department of the Interior",
+    "District of Columbia",
+    "Firearms and explosives",
+    "Law enforcement officers",
+    "Maryland",
+    "Monuments and memorials",
+    "Public transit",
+    "Virginia"
+  ],
   "title_official": "Make the District of Columbia Safe and Beautiful Act of 2025",
   "type": "hr"
 }

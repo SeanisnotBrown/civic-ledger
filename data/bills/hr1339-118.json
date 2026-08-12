@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "B001306",
+    "K000385",
+    "L000590"
+  ],
   "id": "hr1339-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2023-05-01",
@@ -15,7 +20,13 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1339",
   "sponsor_id": "L000566",
-  "subjects": null,
+  "subjects": [
+    "Agricultural practices and innovations",
+    "Agricultural research",
+    "Congressional oversight",
+    "Internet, web applications, social media",
+    "Spacecraft and satellites"
+  ],
   "title_official": "Precision Agriculture Satellite Connectivity Act",
   "type": "hr"
 }

@@ -1,7 +1,14 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001298",
+    "D000632",
+    "G000594",
+    "K000399",
+    "L000599",
+    "M001215"
+  ],
   "id": "hr3602-118",
   "latest_action": "On motion to suspend the rules and pass the bill, as amended Failed by the Yeas and Nays: (2/3 required): 215 - 199 (Roll no. 143).",
   "latest_action_date": "2024-04-20",
@@ -9,7 +16,17 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3602",
   "sponsor_id": "C001133",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Criminal procedure and sentencing",
+    "Customs enforcement",
+    "Drug trafficking and controlled substances",
+    "Firearms and explosives",
+    "Human trafficking",
+    "Law enforcement administration and funding",
+    "Law enforcement officers",
+    "Smuggling and trafficking"
+  ],
   "title_official": "Transnational Criminal Organization Illicit Spotter Prevention and Elimination Act",
   "type": "hr"
 }

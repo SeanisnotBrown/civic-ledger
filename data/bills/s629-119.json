@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000570",
+    "S001150"
+  ],
   "id": "s629-119",
   "latest_action": "Became Public Law No: 119-102.",
   "latest_action_date": "2026-07-12",
@@ -9,7 +12,14 @@
   "policy_area": "Agriculture and Food",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/629",
   "sponsor_id": "F000463",
-  "subjects": null,
+  "subjects": [
+    "Agricultural prices, subsidies, credit",
+    "Emergency planning and evacuation",
+    "Farmland",
+    "Fires",
+    "Forests, forestry, trees",
+    "Natural disasters"
+  ],
   "title_official": "Emergency Conservation Program Improvement Act of 2025",
   "type": "s"
 }

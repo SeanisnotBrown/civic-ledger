@@ -12,7 +12,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000450",
+    "P000034",
+    "S001195"
+  ],
   "id": "hr5378-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-12-11",
@@ -20,7 +24,29 @@
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5378",
   "sponsor_id": "M001159",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Civil actions and liability",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Consumer affairs",
+    "Department of Health and Human Services",
+    "Digestive and metabolic diseases",
+    "Government information and archives",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Health facilities and institutions",
+    "Health personnel",
+    "Home and outpatient care",
+    "Hospital care",
+    "Medicaid",
+    "Medicare",
+    "Photography and imaging",
+    "Prescription drugs",
+    "State and local government operations",
+    "Surgery and anesthesia"
+  ],
   "title_official": "Lower Costs, More Transparency Act",
   "type": "hr"
 }

@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001310",
+    "L000577",
+    "M001198",
+    "S001217"
+  ],
   "id": "s619-118",
   "latest_action": "Became Public Law No: 118-2.",
   "latest_action_date": "2023-03-20",
@@ -15,7 +20,16 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/619",
   "sponsor_id": "H001089",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "Cardiovascular and respiratory health",
+    "China",
+    "Congressional oversight",
+    "Director of National Intelligence",
+    "Government studies and investigations",
+    "Infectious and parasitic diseases",
+    "Intelligence activities, surveillance, classified information"
+  ],
   "title_official": "COVID-19 Origin Act of 2023",
   "type": "s"
 }

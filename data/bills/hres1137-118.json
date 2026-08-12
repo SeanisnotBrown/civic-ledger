@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres1137-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-04-12",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1137",
   "sponsor_id": "M001184",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Providing for consideration of the bill (H.R. 7888) to reform the Foreign Intelligence Surveillance Act of 1978; providing for consideration of the bill (H.R. 529) to extend the customs waters of the United States from 12 nautical miles to 24 nautical miles from the baselines of the United States, consistent with Presidential Proclamation 7219; providing for consideration of the resolution (H. Res. 1112) denouncing the Biden administration's immigration policies; and providing for consideration of the resolution (H. Res. 1117) opposing efforts to place one-sided pressure on Israel with respect to Gaza.",
   "type": "hres"
 }

@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hjres74-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-07-18",
@@ -9,7 +9,12 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/74",
   "sponsor_id": "G000565",
-  "subjects": null,
+  "subjects": [
+    "Middle East",
+    "Presidents and presidential powers, Vice Presidents",
+    "War and emergency powers",
+    "Yemen"
+  ],
   "title_official": "Relating to a national emergency declared by the President on May 16, 2012.",
   "type": "hjres"
 }

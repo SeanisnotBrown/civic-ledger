@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "N000002"
+  ],
   "id": "hr3089-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2023-05-16",
@@ -9,7 +11,17 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3089",
   "sponsor_id": "F000471",
-  "subjects": null,
+  "subjects": [
+    "Business records",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Consumer affairs",
+    "Criminal investigation, prosecution, interrogation",
+    "Internet, web applications, social media",
+    "Judicial procedure and administration",
+    "Right of privacy",
+    "Telephone and wireless communication"
+  ],
   "title_official": "NDO Fairness Act",
   "type": "hr"
 }

@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001072",
+    "W000788"
+  ],
   "id": "hres939-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2025-12-11",
@@ -9,7 +12,19 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/939",
   "sponsor_id": "G000553",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Criminal investigation, prosecution, interrogation",
+    "Federal officials",
+    "Government ethics and transparency, public corruption",
+    "Government studies and investigations",
+    "Judges",
+    "Members of Congress",
+    "Presidents and presidential powers, Vice Presidents",
+    "Subversive activities",
+    "Terrorism"
+  ],
   "title_official": "Impeaching Donald John Trump, President of the United States for high crimes and misdemeanors.",
   "type": "hres"
 }

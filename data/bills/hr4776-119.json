@@ -1,7 +1,22 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001322",
+    "B001323",
+    "C001059",
+    "C001063",
+    "D000230",
+    "E000300",
+    "G000581",
+    "G000592",
+    "G000600",
+    "G000605",
+    "H001096",
+    "K000399",
+    "M001215",
+    "S001212"
+  ],
   "id": "hr4776-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2025-12-18",
@@ -9,7 +24,11 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4776",
   "sponsor_id": "W000821",
-  "subjects": null,
+  "subjects": [
+    "Environmental assessment, monitoring, research",
+    "Government information and archives",
+    "Judicial review and appeals"
+  ],
   "title_official": "SPEED Act",
   "type": "hr"
 }

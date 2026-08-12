@@ -1,7 +1,24 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001243",
+    "B001299",
+    "B001305",
+    "C001047",
+    "C001114",
+    "E000295",
+    "F000463",
+    "J000312",
+    "L000571",
+    "L000575",
+    "M000934",
+    "S001227",
+    "S001232",
+    "T000250",
+    "W000437",
+    "Y000064"
+  ],
   "id": "sjres7-119",
   "latest_action": "Held at the desk.",
   "latest_action_date": "2025-05-09",
@@ -9,7 +26,14 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/7",
   "sponsor_id": "C001098",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Broadcasting, cable, digital technologies",
+    "Congressional oversight",
+    "Educational technology and distance education",
+    "Federal Communications Commission (FCC)",
+    "School administration"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Federal Communications Commission relating to \"Addressing the Homework Gap Through the E-Rate Program\".",
   "type": "sjres"
 }

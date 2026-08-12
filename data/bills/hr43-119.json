@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr43-119",
   "latest_action": "Became Public Law No: 119-23.",
   "latest_action_date": "2025-07-07",
@@ -9,7 +9,12 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/43",
   "sponsor_id": "B001323",
-  "subjects": null,
+  "subjects": [
+    "Alaska",
+    "Alaska Natives and Hawaiians",
+    "Indian lands and resources rights",
+    "Land transfers"
+  ],
   "title_official": "Alaska Native Village Municipal Lands Restoration Act of 2025",
   "type": "hr"
 }

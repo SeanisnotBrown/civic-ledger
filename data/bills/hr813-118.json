@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "B001303",
+    "C001120",
+    "E000215",
+    "S001159"
+  ],
   "id": "hr813-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2023-07-18",
@@ -15,7 +21,15 @@
   "policy_area": "Foreign Trade and International Finance",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/813",
   "sponsor_id": "P000615",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Competitiveness, trade promotion, trade deficits",
+    "Congressional oversight",
+    "Government information and archives",
+    "Government studies and investigations",
+    "U.S. and foreign investments"
+  ],
   "title_official": "Global Investment in American Jobs Act of 2023",
   "type": "hr"
 }

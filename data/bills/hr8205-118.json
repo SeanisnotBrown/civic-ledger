@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000059",
+    "H001077",
+    "N000026",
+    "S001213",
+    "T000165"
+  ],
   "id": "hr8205-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-11-12",
@@ -9,7 +15,10 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8205",
   "sponsor_id": "F000471",
-  "subjects": null,
+  "subjects": [
+    "Criminal procedure and sentencing",
+    "Fraud offenses and financial crimes"
+  ],
   "title_official": "Keeping Violent Offenders Off Our Streets Act",
   "type": "hr"
 }

@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000599"
+  ],
   "id": "hr2812-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-06-06",
@@ -15,7 +17,14 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2812",
   "sponsor_id": "H001047",
-  "subjects": null,
+  "subjects": [
+    "Accounting and auditing",
+    "Congressional oversight",
+    "Financial services and investments",
+    "Government studies and investigations",
+    "Securities",
+    "Small business"
+  ],
   "title_official": "Middle Market IPO Cost Act",
   "type": "hr"
 }

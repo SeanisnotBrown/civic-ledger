@@ -7,7 +7,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr165-119",
   "latest_action": "Became Public Law No: 119-61.",
   "latest_action_date": "2025-12-19",
@@ -15,7 +15,13 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/165",
   "sponsor_id": "J000301",
-  "subjects": null,
+  "subjects": [
+    "Federal-Indian relations",
+    "Indian lands and resources rights",
+    "Land transfers",
+    "South Dakota",
+    "State and local taxation"
+  ],
   "title_official": "Wounded Knee Massacre Memorial and Sacred Site Act",
   "type": "hr"
 }

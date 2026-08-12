@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000600"
+  ],
   "id": "hr3628-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-12-15",
@@ -15,7 +17,12 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3628",
   "sponsor_id": "E000300",
-  "subjects": null,
+  "subjects": [
+    "Electric power generation and transmission",
+    "Energy efficiency and conservation",
+    "Energy storage, supplies, demand",
+    "State and local government operations"
+  ],
   "title_official": "State Planning for Reliability and Affordability Act",
   "type": "hr"
 }

@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001323",
+    "F000475"
+  ],
   "id": "hr4090-119",
   "latest_action": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
   "latest_action_date": "2026-07-15",
@@ -9,7 +12,15 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4090",
   "sponsor_id": "S001212",
-  "subjects": null,
+  "subjects": [
+    "Competitiveness, trade promotion, trade deficits",
+    "Economic performance and conditions",
+    "Geography and mapping",
+    "Government studies and investigations",
+    "Metals",
+    "Mining",
+    "Supply chain"
+  ],
   "title_official": "Critical Mineral Dominance Act",
   "type": "hr"
 }

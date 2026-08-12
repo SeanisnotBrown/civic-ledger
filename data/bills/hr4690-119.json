@@ -1,7 +1,15 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001306",
+    "F000482",
+    "G000601",
+    "H001067",
+    "H001086",
+    "H001101",
+    "R000619"
+  ],
   "id": "hr4690-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2026-04-27",
@@ -9,7 +17,12 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4690",
   "sponsor_id": "L000600",
-  "subjects": null,
+  "subjects": [
+    "Building construction",
+    "Energy efficiency and conservation",
+    "Government buildings, facilities, and property",
+    "Performance measurement"
+  ],
   "title_official": "Reliable Federal Infrastructure Act",
   "type": "hr"
 }

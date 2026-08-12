@@ -7,7 +7,12 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001059",
+    "K000397",
+    "L000599",
+    "S000344"
+  ],
   "id": "hr1998-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2025-06-24",
@@ -15,7 +20,14 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1998",
   "sponsor_id": "J000309",
-  "subjects": null,
+  "subjects": [
+    "Foreign property",
+    "International law and treaties",
+    "Marine and inland water transportation",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sanctions",
+    "Visas and passports"
+  ],
   "title_official": "Sanction Sea Pirates Act of 2025",
   "type": "hr"
 }

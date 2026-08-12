@@ -7,7 +7,11 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001066",
+    "H001093",
+    "T000482"
+  ],
   "id": "hr1770-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2025-07-15",
@@ -15,7 +19,14 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1770",
   "sponsor_id": "S001200",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Advisory bodies",
+    "Computers and information technology",
+    "Consumer affairs",
+    "Currency",
+    "Fraud offenses and financial crimes"
+  ],
   "title_official": "Consumer Safety Technology Act",
   "type": "hr"
 }

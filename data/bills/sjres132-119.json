@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "sjres132-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 48 - 52. Record Vote Number: 121. (consideration: CR S2264-2265)",
   "latest_action_date": "2026-05-13",
@@ -9,7 +9,12 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/132",
   "sponsor_id": "R000122",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Consumer Financial Protection Bureau",
+    "Military personnel and dependents"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Consumer Financial Protection relating to the withdrawal of the rule relating to \"Examinations for Risks to Active-Duty Servicemembers and Their Covered Dependents\".",
   "type": "sjres"
 }

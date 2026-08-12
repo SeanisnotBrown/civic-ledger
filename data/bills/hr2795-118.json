@@ -12,7 +12,7 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr2795-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-05-31",
@@ -20,7 +20,12 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2795",
   "sponsor_id": "M001137",
-  "subjects": null,
+  "subjects": [
+    "Consumer affairs",
+    "Corporate finance and management",
+    "Financial services and investments",
+    "Securities"
+  ],
   "title_official": "Enhancing Multi-Class Share Disclosures Act",
   "type": "hr"
 }

@@ -12,7 +12,26 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "B001302",
+    "C001039",
+    "D000632",
+    "E000246",
+    "G000558",
+    "L000589",
+    "L000595",
+    "L000600",
+    "M000194",
+    "N000026",
+    "R000609",
+    "R000610",
+    "S000250",
+    "S001214",
+    "V000134",
+    "W000812",
+    "W000814"
+  ],
   "id": "hr3091-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2023-05-18",
@@ -20,7 +39,11 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3091",
   "sponsor_id": "F000478",
-  "subjects": null,
+  "subjects": [
+    "Firearms and explosives",
+    "Government buildings, facilities, and property",
+    "Law enforcement officers"
+  ],
   "title_official": "Federal Law Enforcement Officer Service Weapon Purchase Act",
   "type": "hr"
 }

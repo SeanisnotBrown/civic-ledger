@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000481",
+    "R000619",
+    "S001216",
+    "T000487",
+    "V000138"
+  ],
   "id": "hr2493-119",
   "latest_action": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 377.",
   "latest_action_date": "2026-04-22",
@@ -15,7 +21,11 @@
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2493",
   "sponsor_id": "C001103",
-  "subjects": null,
+  "subjects": [
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Rural conditions and development"
+  ],
   "title_official": "Improving Care in Rural America Reauthorization Act of 2025",
   "type": "hr"
 }

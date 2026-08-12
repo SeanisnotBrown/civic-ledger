@@ -7,7 +7,10 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000059",
+    "D000600"
+  ],
   "id": "hr8036-118",
   "latest_action": "Pursuant to the provisions of H. Res. 1160, H.R. 8036 is laid on the table.",
   "latest_action_date": "2024-04-23",
@@ -15,7 +18,29 @@
   "policy_area": "Economics and Public Finance",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8036",
   "sponsor_id": "C001053",
-  "subjects": null,
+  "subjects": [
+    "Alliances",
+    "Appropriations",
+    "Asia",
+    "Collective security",
+    "Conflicts and wars",
+    "Congressional oversight",
+    "Defense spending",
+    "Department of Defense",
+    "Department of State",
+    "Executive agency funding and structure",
+    "Foreign aid and international relief",
+    "Government lending and loan guarantees",
+    "International organizations and cooperation",
+    "Military assistance, sales, and agreements",
+    "Military education and training",
+    "Military procurement, research, weapons development",
+    "Multilateral development programs",
+    "Presidents and presidential powers, Vice Presidents",
+    "Research and development",
+    "Taiwan",
+    "War and emergency powers"
+  ],
   "title_official": "Indo-Pacific Security Supplemental Appropriations Act, 2024",
   "type": "hr"
 }

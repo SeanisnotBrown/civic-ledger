@@ -1,7 +1,12 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001314",
+    "D000634",
+    "G000604",
+    "P000614"
+  ],
   "id": "hr804-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Small Business and Entrepreneurship.",
   "latest_action_date": "2025-02-26",
@@ -9,7 +14,11 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/804",
   "sponsor_id": "M001234",
-  "subjects": null,
+  "subjects": [
+    "Disaster relief and insurance",
+    "Rural conditions and development",
+    "Small business"
+  ],
   "title_official": "Rural Small Business Resilience Act",
   "type": "hr"
 }

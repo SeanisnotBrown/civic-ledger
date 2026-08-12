@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "E000300",
+    "G000597",
+    "J000302",
+    "L000603",
+    "S001220"
+  ],
   "id": "hr881-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-05-08",
@@ -15,7 +21,14 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/881",
   "sponsor_id": "P000048",
-  "subjects": null,
+  "subjects": [
+    "Area studies and international education",
+    "Asia",
+    "China",
+    "Department of Homeland Security",
+    "Higher education",
+    "International exchange and broadcasting"
+  ],
   "title_official": "DHS Restrictions on Confucius Institutes and Chinese Entities of Concern Act",
   "type": "hr"
 }

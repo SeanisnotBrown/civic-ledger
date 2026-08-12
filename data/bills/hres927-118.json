@@ -1,7 +1,23 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "B001303",
+    "G000583",
+    "K000401",
+    "M001136",
+    "M001188",
+    "M001217",
+    "M001224",
+    "O000086",
+    "S001135",
+    "S001176",
+    "T000480",
+    "W000795",
+    "W000798",
+    "W000828"
+  ],
   "id": "hres927-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-12-13",
@@ -9,7 +25,11 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/927",
   "sponsor_id": "S001196",
-  "subjects": null,
+  "subjects": [
+    "Higher education",
+    "Religion",
+    "School administration"
+  ],
   "title_official": "Condemning antisemitism on University campuses and the testimony of University Presidents in the House Committee on Education and the Workforce.",
   "type": "hres"
 }

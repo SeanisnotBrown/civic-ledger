@@ -7,7 +7,31 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001302",
+    "B001317",
+    "B001325",
+    "C001118",
+    "E000246",
+    "F000471",
+    "F000478",
+    "G000591",
+    "G000603",
+    "H001095",
+    "H001098",
+    "H001101",
+    "L000596",
+    "M001210",
+    "M001211",
+    "M001218",
+    "M001236",
+    "M001240",
+    "N000026",
+    "N000190",
+    "R000614",
+    "S001224",
+    "T000490"
+  ],
   "id": "hr5625-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2026-05-18",
@@ -15,7 +39,11 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5625",
   "sponsor_id": "H001102",
-  "subjects": null,
+  "subjects": [
+    "Criminal procedure and sentencing",
+    "Government information and archives",
+    "State and local government operations"
+  ],
   "title_official": "Cashless Bail Reporting Act",
   "type": "hr"
 }

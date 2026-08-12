@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001244",
+    "S001198"
+  ],
   "id": "s5271-119",
   "latest_action": "Cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 52 - 46. Record Vote Number: 231.",
   "latest_action_date": "2026-08-08",
@@ -9,7 +12,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5271",
   "sponsor_id": "H001104",
-  "subjects": null,
+  "subjects": [
+    "Elections, voting, political campaign regulation",
+    "Licensing and registrations",
+    "State and local government operations",
+    "Visas and passports",
+    "Voting rights"
+  ],
   "title_official": "A bill to amend the Help America Vote Act of 2002 to require voters to provide photo identification.",
   "type": "s"
 }

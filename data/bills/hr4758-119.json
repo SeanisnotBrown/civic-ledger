@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001120",
+    "E000071"
+  ],
   "id": "hr4758-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2026-02-25",
@@ -15,7 +18,15 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4758",
   "sponsor_id": "G000601",
-  "subjects": null,
+  "subjects": [
+    "Appropriations",
+    "Building construction",
+    "Energy efficiency and conservation",
+    "Income tax credits",
+    "Lighting, heating, cooling",
+    "Residential rehabilitation and home repair",
+    "State and local finance"
+  ],
   "title_official": "Homeowner Energy Freedom Act",
   "type": "hr"
 }

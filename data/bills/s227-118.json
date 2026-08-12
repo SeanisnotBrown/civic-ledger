@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000127",
+    "C001098",
+    "M001111"
+  ],
   "id": "s227-118",
   "latest_action": "Became Public Law No: 118-73.",
   "latest_action_date": "2024-07-30",
@@ -9,7 +13,11 @@
   "policy_area": "Law",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/227",
   "sponsor_id": "C001056",
-  "subjects": null,
+  "subjects": [
+    "Federal district courts",
+    "Texas",
+    "Washington State"
+  ],
   "title_official": "Improving Access to Our Courts Act",
   "type": "s"
 }

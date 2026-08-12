@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000604",
+    "M001234",
+    "T000488"
+  ],
   "id": "hr788-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-02-26",
@@ -9,7 +13,15 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/788",
   "sponsor_id": "L000598",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Department of Energy",
+    "Product development and innovation",
+    "Public-private cooperation",
+    "Research administration and funding",
+    "Research and development",
+    "Small Business Administration"
+  ],
   "title_official": "DOE and SBA Research Act",
   "type": "hr"
 }

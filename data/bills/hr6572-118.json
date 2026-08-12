@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001303",
+    "C001039",
+    "S001200"
+  ],
   "id": "hr6572-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-05-16",
@@ -15,7 +19,15 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6572",
   "sponsor_id": "B001275",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Advisory bodies",
+    "Broadcasting, cable, digital technologies",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Digital media"
+  ],
   "title_official": "Deploying American Blockchains Act of 2023",
   "type": "hr"
 }

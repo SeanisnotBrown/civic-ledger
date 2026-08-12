@@ -1,7 +1,19 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001288",
+    "H001042",
+    "H001046",
+    "M000133",
+    "M001176",
+    "R000122",
+    "S000033",
+    "S001181",
+    "S001194",
+    "V000128",
+    "W000779"
+  ],
   "id": "sjres10-119",
   "latest_action": "Failed of passage in Senate by Yea-Nay Vote. 47 - 52. Record Vote Number: 95. (consideration: CR S1364, S1367-1390)",
   "latest_action_date": "2025-02-26",
@@ -9,7 +21,16 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/10",
   "sponsor_id": "K000384",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Alternative and renewable resources",
+    "Building construction",
+    "Coal",
+    "Energy storage, supplies, demand",
+    "Licensing and registrations",
+    "Mining",
+    "Oil and gas"
+  ],
   "title_official": "A joint resolution terminating the national emergency declared with respect to energy.",
   "type": "sjres"
 }

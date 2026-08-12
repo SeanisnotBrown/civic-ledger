@@ -1,7 +1,23 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001317",
+    "B001323",
+    "B001325",
+    "C001115",
+    "C001116",
+    "C001132",
+    "H001086",
+    "H001102",
+    "M001211",
+    "M001212",
+    "N000190",
+    "P000605",
+    "R000614",
+    "S001224",
+    "T000165"
+  ],
   "id": "hres539-119",
   "latest_action": "On motion to table Agreed to by the Yeas and Nays: 215 - 207, 2 Present (Roll no. 223).",
   "latest_action_date": "2025-09-03",
@@ -9,7 +25,14 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/539",
   "sponsor_id": "H001077",
-  "subjects": null,
+  "subjects": [
+    "Congressional committees",
+    "House Committee on Homeland Security",
+    "House of Representatives",
+    "Legislative rules and procedure",
+    "Members of Congress",
+    "New Jersey"
+  ],
   "title_official": "Censuring Representative LaMonica McIver and removing her from the Committee on Homeland Security.",
   "type": "hres"
 }

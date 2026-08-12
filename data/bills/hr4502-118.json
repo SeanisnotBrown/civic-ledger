@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "P000618"
+  ],
   "id": "hr4502-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-10-03",
@@ -15,7 +17,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4502",
   "sponsor_id": "M000194",
-  "subjects": null,
+  "subjects": [
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Employee hiring",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives"
+  ],
   "title_official": "Modernizing the Acquisition of Cybersecurity Experts Act of 2023",
   "type": "hr"
 }

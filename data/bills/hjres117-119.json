@@ -1,7 +1,15 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000380",
+    "C001091",
+    "C001131",
+    "K000400",
+    "P000613",
+    "S001211",
+    "T000468"
+  ],
   "id": "hjres117-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2025-09-15",
@@ -9,7 +17,10 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/117",
   "sponsor_id": "M001137",
-  "subjects": null,
+  "subjects": [
+    "Presidents and presidential powers, Vice Presidents",
+    "War and emergency powers"
+  ],
   "title_official": "Relating to a national emergency by the President on July 30, 2025.",
   "type": "hjres"
 }

@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000944",
+    "B001305",
+    "H000601",
+    "S001191",
+    "Y000064"
+  ],
   "id": "s2228-118",
   "latest_action": "Became Public Law No: 118-105.",
   "latest_action_date": "2024-10-02",
@@ -9,7 +15,13 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2228",
   "sponsor_id": "K000377",
-  "subjects": null,
+  "subjects": [
+    "Computers and information technology",
+    "Environmental assessment, monitoring, research",
+    "Government lending and loan guarantees",
+    "Industrial facilities",
+    "Industrial policy and productivity"
+  ],
   "title_official": "Building Chips in America Act of 2023",
   "type": "s"
 }

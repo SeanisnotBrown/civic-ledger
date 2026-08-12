@@ -92,7 +92,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hconres14-119",
   "latest_action": "Star Print ordered on the reported concurrent resolution.",
   "latest_action_date": "2025-05-20",
@@ -100,7 +100,12 @@
   "policy_area": "Economics and Public Finance",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/14",
   "sponsor_id": "A000375",
-  "subjects": null,
+  "subjects": [
+    "Budget deficits and national debt",
+    "Budget process",
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Establishing the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
   "type": "hconres"
 }

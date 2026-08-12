@@ -1,7 +1,19 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001267",
+    "C001088",
+    "C001113",
+    "D000563",
+    "K000383",
+    "P000145",
+    "S001150",
+    "S001181",
+    "V000128",
+    "W000800",
+    "W000817"
+  ],
   "id": "sjres99-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 47 - 50. Record Vote Number: 111. (CR S2106)",
   "latest_action_date": "2026-04-29",
@@ -9,7 +21,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/99",
   "sponsor_id": "R000608",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Department of Homeland Security",
+    "Government employee pay, benefits, personnel management"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by U.S. Citizenship and Immigration Services relating to \"Removal of the Automatic Extension of Employment Authorization Documents\".",
   "type": "sjres"
 }

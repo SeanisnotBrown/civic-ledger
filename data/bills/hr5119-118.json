@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001281",
+    "M001204",
+    "S000344"
+  ],
   "id": "hr5119-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-12-13",
@@ -15,7 +19,11 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5119",
   "sponsor_id": "N000193",
-  "subjects": null,
+  "subjects": [
+    "Business records",
+    "Fraud offenses and financial crimes",
+    "Small business"
+  ],
   "title_official": "Protect Small Business and Prevent Illicit Financial Activity Act",
   "type": "hr"
 }

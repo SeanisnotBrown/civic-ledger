@@ -12,7 +12,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001117",
+    "H001047",
+    "L000599",
+    "S001157",
+    "T000486"
+  ],
   "id": "hr2792-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-05-31",
@@ -20,7 +26,13 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2792",
   "sponsor_id": "W000812",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Government studies and investigations",
+    "Securities and Exchange Commission (SEC)",
+    "Small business"
+  ],
   "title_official": "Small Entity Update Act",
   "type": "hr"
 }

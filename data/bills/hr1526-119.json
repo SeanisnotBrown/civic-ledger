@@ -7,7 +7,22 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001291",
+    "G000589",
+    "H001077",
+    "H001102",
+    "L000596",
+    "L000598",
+    "L000600",
+    "M001204",
+    "M001239",
+    "S001224",
+    "S001228",
+    "T000478",
+    "V000135",
+    "W000814"
+  ],
   "id": "hr1526-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2025-04-10",
@@ -15,7 +30,10 @@
   "policy_area": "Law",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1526",
   "sponsor_id": "I000056",
-  "subjects": null,
+  "subjects": [
+    "Federal district courts",
+    "Judicial procedure and administration"
+  ],
   "title_official": "NORRA of 2025",
   "type": "hr"
 }

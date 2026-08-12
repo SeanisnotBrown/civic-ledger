@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000578"
+  ],
   "id": "hr3324-118",
   "latest_action": "Became Public Law No: 118-166.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +17,12 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3324",
   "sponsor_id": "H001068",
-  "subjects": null,
+  "subjects": [
+    "California",
+    "Lakes and rivers",
+    "Sports and recreation facilities",
+    "User charges and fees"
+  ],
   "title_official": "To extend the authority to collect Shasta-Trinity Marina fees through fiscal year 2029.",
   "type": "hr"
 }

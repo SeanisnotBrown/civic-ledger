@@ -7,7 +7,31 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "B001302",
+    "C001115",
+    "C001116",
+    "D000032",
+    "D000626",
+    "E000246",
+    "F000246",
+    "F000450",
+    "G000576",
+    "G000591",
+    "G000596",
+    "H001077",
+    "L000266",
+    "M000194",
+    "M001218",
+    "M001222",
+    "N000190",
+    "P000048",
+    "P000599",
+    "R000614",
+    "S000250",
+    "T000478"
+  ],
   "id": "hjres24-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-02-13",
@@ -15,7 +39,14 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/24",
   "sponsor_id": "C001108",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "District of Columbia",
+    "Elections, voting, political campaign regulation",
+    "Immigration status and procedures",
+    "State and local government operations",
+    "Voting rights"
+  ],
   "title_official": "Disapproving the action of the District of Columbia Council in approving the Local Resident Voting Rights Amendment Act of 2022.",
   "type": "hjres"
 }

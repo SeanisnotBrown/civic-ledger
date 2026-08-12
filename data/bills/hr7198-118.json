@@ -12,7 +12,25 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001298",
+    "B001314",
+    "C001126",
+    "C001134",
+    "D000632",
+    "F000470",
+    "F000474",
+    "G000579",
+    "H001096",
+    "L000564",
+    "M001195",
+    "M001205",
+    "M001224",
+    "S000168",
+    "S001212",
+    "S001213",
+    "V000129"
+  ],
   "id": "hr7198-118",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2024-12-09",
@@ -20,7 +38,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7198",
   "sponsor_id": "F000475",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Administrative remedies",
+    "Government information and archives",
+    "Small Business Administration",
+    "Small business"
+  ],
   "title_official": "Prove It Act of 2024",
   "type": "hr"
 }

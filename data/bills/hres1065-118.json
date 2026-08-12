@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres1065-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-03-12",
@@ -9,7 +9,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1065",
   "sponsor_id": "D000594",
-  "subjects": null,
+  "subjects": [
+    "Detention of persons",
+    "Immigration status and procedures",
+    "Presidents and presidential powers, Vice Presidents",
+    "Refugees, asylum, displaced persons"
+  ],
   "title_official": "Denouncing the Biden administration's immigration policies.",
   "type": "hres"
 }

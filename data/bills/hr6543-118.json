@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001066",
+    "G000583",
+    "L000589"
+  ],
   "id": "hr6543-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-06-12",
@@ -15,7 +19,13 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6543",
   "sponsor_id": "K000397",
-  "subjects": null,
+  "subjects": [
+    "Consumer affairs",
+    "Fraud offenses and financial crimes",
+    "State and local government operations",
+    "Travel and tourism",
+    "User charges and fees"
+  ],
   "title_official": "No Hidden FEES Act of 2023",
   "type": "hr"
 }

@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000379",
+    "B001301",
+    "I000056",
+    "J000301",
+    "L000600",
+    "M001215",
+    "M001222",
+    "N000026",
+    "V000133",
+    "V000134",
+    "V000135",
+    "W000795"
+  ],
   "id": "hres845-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-11-07",
@@ -9,7 +22,11 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/845",
   "sponsor_id": "M001218",
-  "subjects": null,
+  "subjects": [
+    "Members of Congress",
+    "Religion",
+    "Terrorism"
+  ],
   "title_official": "Censuring Representative Rashida Tlaib for promoting false narratives regarding the October 7, 2023, Hamas attack on Israel and for calling for the destruction of the state of Israel.",
   "type": "hres"
 }

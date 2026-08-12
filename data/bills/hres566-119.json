@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres566-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2025-07-03",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/566",
   "sponsor_id": "F000450",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Providing for consideration of the Senate amendment to the bill (H.R. 1) to provide for reconciliation pursuant to title II of H. Con. Res. 14.",
   "type": "hres"
 }

@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001295",
+    "C001054",
+    "K000389",
+    "M001210",
+    "V000135"
+  ],
   "id": "hr1669-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Veterans' Affairs.",
   "latest_action_date": "2023-05-30",
@@ -15,7 +21,22 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1669",
   "sponsor_id": "C001133",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "Aviation and airports",
+    "Cemeteries and funerals",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Employment and training programs",
+    "Higher education",
+    "Internet, web applications, social media",
+    "Philippines",
+    "Public contracts and procurement",
+    "Student aid and college costs",
+    "Veterans' education, employment, rehabilitation",
+    "Veterans' loans, housing, homeless programs",
+    "Vocational and technical education"
+  ],
   "title_official": "VET–TEC Authorization Act of 2023",
   "type": "hr"
 }

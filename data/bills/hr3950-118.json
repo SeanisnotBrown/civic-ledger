@@ -7,7 +7,25 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000377",
+    "B000740",
+    "C001069",
+    "C001080",
+    "E000215",
+    "F000454",
+    "G000600",
+    "H001094",
+    "K000380",
+    "L000397",
+    "L000551",
+    "N000147",
+    "P000620",
+    "S001145",
+    "S001221",
+    "U000040",
+    "W000826"
+  ],
   "id": "hr3950-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-05-16",
@@ -15,7 +33,14 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3950",
   "sponsor_id": "B001257",
-  "subjects": null,
+  "subjects": [
+    "Competition and antitrust",
+    "Consumer affairs",
+    "Inflation and prices",
+    "Marketing and advertising",
+    "Service industries",
+    "User charges and fees"
+  ],
   "title_official": "TICKET Act",
   "type": "hr"
 }

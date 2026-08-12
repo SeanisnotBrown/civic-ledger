@@ -7,7 +7,10 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001132",
+    "N000191"
+  ],
   "id": "hr7102-118",
   "latest_action": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 337.",
   "latest_action_date": "2024-03-05",
@@ -15,7 +18,15 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7102",
   "sponsor_id": "D000629",
-  "subjects": null,
+  "subjects": [
+    "Alaska Natives and Hawaiians",
+    "Community life and organization",
+    "Congressional oversight",
+    "Indian social and development programs",
+    "Minority and disadvantaged businesses",
+    "Small Business Administration",
+    "Small business"
+  ],
   "title_official": "Native American Entrepreneurial Opportunity Act",
   "type": "hr"
 }

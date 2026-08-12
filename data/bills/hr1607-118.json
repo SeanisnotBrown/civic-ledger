@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001133",
+    "G000574",
+    "L000589",
+    "S001211"
+  ],
   "id": "hr1607-118",
   "latest_action": "Became Public Law No: 118-162.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +20,12 @@
   "policy_area": "Water Resources Development",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1607",
   "sponsor_id": "S001183",
-  "subjects": null,
+  "subjects": [
+    "Arizona",
+    "Electric power generation and transmission",
+    "Government buildings, facilities, and property",
+    "Land transfers"
+  ],
   "title_official": "To clarify jurisdiction with respect to certain Bureau of Reclamation pumped storage development, and for other purposes.",
   "type": "hr"
 }

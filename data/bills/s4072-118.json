@@ -1,7 +1,26 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001261",
+    "B001305",
+    "B001310",
+    "C001096",
+    "D000618",
+    "E000295",
+    "F000463",
+    "H001061",
+    "K000393",
+    "L000577",
+    "M001183",
+    "R000584",
+    "R000605",
+    "R000618",
+    "S001184",
+    "S001198",
+    "S001217",
+    "V000137"
+  ],
   "id": "s4072-118",
   "latest_action": "Under the order of 3/22/2024, not having achieved 60 votes in the affirmative, failed of passage in Senate by Yea-Nay Vote. 52 - 46. Record Vote Number: 142.",
   "latest_action_date": "2024-04-18",
@@ -9,7 +28,11 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/4072",
   "sponsor_id": "C000880",
-  "subjects": null,
+  "subjects": [
+    "Climate change and greenhouse gases",
+    "Legislative rules and procedure",
+    "Motor vehicles"
+  ],
   "title_official": "A bill to prohibit the use of funds to implement, administer, or enforce certain rules of the Environmental Protection Agency.",
   "type": "s"
 }

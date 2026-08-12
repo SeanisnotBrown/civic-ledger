@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001314",
+    "F000475",
+    "K000404",
+    "M001204",
+    "S001228"
+  ],
   "id": "hr2965-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Small Business and Entrepreneurship.",
   "latest_action_date": "2025-12-04",
@@ -15,7 +21,11 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2965",
   "sponsor_id": "V000134",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Small Business Administration",
+    "Small business"
+  ],
   "title_official": "Small Business Regulatory Reduction Act of 2025",
   "type": "hr"
 }

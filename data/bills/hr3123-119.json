@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "K000389",
+    "L000590"
+  ],
   "id": "hr3123-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Veterans' Affairs.",
   "latest_action_date": "2026-02-03",
@@ -15,7 +18,10 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3123",
   "sponsor_id": "S001196",
-  "subjects": null,
+  "subjects": [
+    "Family relationships",
+    "Veterans' pensions and compensation"
+  ],
   "title_official": "Ernest Peltz Accrued Veterans Benefits Act",
   "type": "hr"
 }

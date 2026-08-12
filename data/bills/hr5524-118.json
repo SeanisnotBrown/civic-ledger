@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S000344"
+  ],
   "id": "hr5524-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-12-13",
@@ -15,7 +17,12 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5524",
   "sponsor_id": "G000587",
-  "subjects": null,
+  "subjects": [
+    "Business records",
+    "Foreign and international corporations",
+    "Fraud offenses and financial crimes",
+    "Public-private cooperation"
+  ],
   "title_official": "Foreign Affiliates Sharing Pilot Program Extension Act",
   "type": "hr"
 }

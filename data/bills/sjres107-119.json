@@ -1,7 +1,12 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "K000394",
+    "S000148",
+    "W000779",
+    "W000802"
+  ],
   "id": "sjres107-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 47 - 53. Record Vote Number: 70.",
   "latest_action_date": "2026-03-25",
@@ -9,7 +14,14 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/107",
   "sponsor_id": "C001113",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Alternative and renewable resources",
+    "Climate change and greenhouse gases",
+    "Congressional oversight",
+    "Electric power generation and transmission",
+    "Internal Revenue Service (IRS)"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Beginning of Construction Requirements for Purposes of the Termination of Clean Electricity Production Credits and Clean Electricity Investment Credits for Applicable Wind and Solar Facilities\".",
   "type": "sjres"
 }

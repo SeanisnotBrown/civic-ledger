@@ -17,7 +17,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "s2-119",
   "latest_action": "Became Public Law No: 119-98.",
   "latest_action_date": "2026-06-10",
@@ -25,7 +25,17 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2",
   "sponsor_id": "G000359",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Border security and unlawful immigration",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Drug trafficking and controlled substances",
+    "Human trafficking",
+    "Immigration status and procedures",
+    "Law enforcement administration and funding",
+    "Smuggling and trafficking"
+  ],
   "title_official": "Secure America Act",
   "type": "s"
 }

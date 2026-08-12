@@ -1,7 +1,19 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001295",
+    "C001072",
+    "D000624",
+    "F000466",
+    "F000474",
+    "H000874",
+    "L000562",
+    "L000601",
+    "N000147",
+    "N000193",
+    "S000522"
+  ],
   "id": "hr3821-118",
   "latest_action": "Became Public Law No: 118-147.",
   "latest_action_date": "2024-12-12",
@@ -9,7 +21,11 @@
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3821",
   "sponsor_id": "P000096",
-  "subjects": null,
+  "subjects": [
+    "Cancer",
+    "First responders and emergency personnel",
+    "Health information and medical records"
+  ],
   "title_official": "Firefighter Cancer Registry Reauthorization Act of 2023",
   "type": "hr"
 }

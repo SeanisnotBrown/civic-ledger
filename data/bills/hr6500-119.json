@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S001172"
+  ],
   "id": "hr6500-119",
   "latest_action": "Message on Senate action sent to the House.",
   "latest_action_date": "2026-08-10",
@@ -15,7 +17,13 @@
   "policy_area": "Economics and Public Finance",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6500",
   "sponsor_id": "S001195",
-  "subjects": null,
+  "subjects": [
+    "Africa",
+    "Competitiveness, trade promotion, trade deficits",
+    "Customs enforcement",
+    "Normal trade relations, most-favored-nation treatment",
+    "User charges and fees"
+  ],
   "title_official": "Continuing Appropriations and Extensions Act, 2027",
   "type": "hr"
 }

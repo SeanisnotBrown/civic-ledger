@@ -7,7 +7,14 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000032",
+    "D000594",
+    "L000583",
+    "L000590",
+    "L000599",
+    "N000194"
+  ],
   "id": "hr839-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2024-01-16",
@@ -15,7 +22,11 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/839",
   "sponsor_id": "M001204",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "International monetary system and foreign exchange"
+  ],
   "title_official": "China Exchange Rate Transparency Act of 2023",
   "type": "hr"
 }

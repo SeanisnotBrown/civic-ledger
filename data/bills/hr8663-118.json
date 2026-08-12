@@ -7,7 +7,10 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001110",
+    "D000230"
+  ],
   "id": "hr8663-118",
   "latest_action": "Became Public Law No: 118-186.",
   "latest_action_date": "2024-12-23",
@@ -15,7 +18,13 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8663",
   "sponsor_id": "L000598",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Computers and information technology",
+    "Drug trafficking and controlled substances",
+    "Libraries and archives",
+    "Research and development"
+  ],
   "title_official": "DETECT Fentanyl and Xylazine Act of 2024",
   "type": "hr"
 }

@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001137",
+    "G000565",
+    "G000605"
+  ],
   "id": "hr6387-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2026-04-27",
@@ -9,7 +13,17 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6387",
   "sponsor_id": "E000300",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Air quality",
+    "Atmospheric science and weather",
+    "Environmental assessment, monitoring, research",
+    "Environmental regulatory procedures",
+    "Fires",
+    "Forests, forestry, trees",
+    "Government information and archives",
+    "State and local government operations"
+  ],
   "title_official": "FIRE Act",
   "type": "hr"
 }

@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S001230"
+  ],
   "id": "hr8466-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2026-06-09",
@@ -9,7 +11,12 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8466",
   "sponsor_id": "B001302",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Disaster relief and insurance",
+    "Government information and archives",
+    "Health programs administration and funding"
+  ],
   "title_official": "TRUE Accountability Act",
   "type": "hr"
 }

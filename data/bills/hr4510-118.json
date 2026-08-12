@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001163"
+  ],
   "id": "hr4510-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-05-16",
@@ -15,7 +17,23 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4510",
   "sponsor_id": "L000566",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Competition and antitrust",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Consumer affairs",
+    "Department of Commerce",
+    "Digital media",
+    "Executive agency funding and structure",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Internet, web applications, social media",
+    "Judicial review and appeals",
+    "Technology transfer and commercialization",
+    "Telephone and wireless communication"
+  ],
   "title_official": "NTIA Reauthorization Act of 2024",
   "type": "hr"
 }

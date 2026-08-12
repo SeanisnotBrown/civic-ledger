@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "O000173"
+  ],
   "id": "hr8823-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2026-07-21",
@@ -9,7 +11,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8823",
   "sponsor_id": "M001230",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Department of Labor",
+    "Fraud offenses and financial crimes",
+    "Government employee pay, benefits, personnel management",
+    "Health care costs and insurance"
+  ],
   "title_official": "Putting Patients First by Strengthening Provider Accountability in FECA Act",
   "type": "hr"
 }

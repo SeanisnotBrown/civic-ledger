@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000632",
+    "E000246",
+    "I000056",
+    "L000566"
+  ],
   "id": "hr7700-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2024-07-10",
@@ -15,7 +20,12 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7700",
   "sponsor_id": "L000600",
-  "subjects": null,
+  "subjects": [
+    "Department of Energy",
+    "Energy efficiency and conservation",
+    "Inflation and prices",
+    "Manufacturing"
+  ],
   "title_official": "Stop Unaffordable Dishwasher Standards Act",
   "type": "hr"
 }

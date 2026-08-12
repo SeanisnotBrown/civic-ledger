@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000477"
+  ],
   "id": "hr1534-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-03-26",
@@ -9,7 +11,14 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1534",
   "sponsor_id": "M001222",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Air quality",
+    "Climate change and greenhouse gases",
+    "Infrastructure development",
+    "Research and development",
+    "Rural conditions and development"
+  ],
   "title_official": "IMPACT Act",
   "type": "hr"
 }

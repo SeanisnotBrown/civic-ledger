@@ -1,7 +1,18 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001113",
+    "K000383",
+    "P000603",
+    "R000122",
+    "S000033",
+    "S000148",
+    "S001181",
+    "W000779",
+    "W000800",
+    "W000805"
+  ],
   "id": "sjres81-119",
   "latest_action": "Held at the desk.",
   "latest_action_date": "2025-10-31",
@@ -9,7 +20,13 @@
   "policy_area": "Foreign Trade and International Finance",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/81",
   "sponsor_id": "K000384",
-  "subjects": null,
+  "subjects": [
+    "Brazil",
+    "Latin America",
+    "Presidents and presidential powers, Vice Presidents",
+    "Tariffs",
+    "War and emergency powers"
+  ],
   "title_official": "A joint resolution terminating the national emergency declared to impose duties on articles imported from Brazil.",
   "type": "sjres"
 }

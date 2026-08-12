@@ -1,7 +1,25 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001277",
+    "B001288",
+    "G000555",
+    "G000574",
+    "H001042",
+    "K000383",
+    "K000394",
+    "L000570",
+    "M000133",
+    "M001176",
+    "P000145",
+    "S000033",
+    "S000148",
+    "S001181",
+    "V000128",
+    "W000779",
+    "W000817"
+  ],
   "id": "sjres199-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 47 - 52. Record Vote Number: 215.",
   "latest_action_date": "2026-07-30",
@@ -9,7 +27,12 @@
   "policy_area": "Families",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/199",
   "sponsor_id": "M001111",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Child care and development",
+    "Congressional oversight",
+    "Department of Health and Human Services"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Health and Human Services relating to \"Restoring Flexibility in the Child Care and Development Fund (CCDF)\".",
   "type": "sjres"
 }

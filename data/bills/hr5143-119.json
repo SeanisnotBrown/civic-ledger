@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000032",
+    "W000795"
+  ],
   "id": "hr5143-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2025-09-18",
@@ -15,7 +18,14 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5143",
   "sponsor_id": "H001077",
-  "subjects": null,
+  "subjects": [
+    "Computers and information technology",
+    "Congressional oversight",
+    "District of Columbia",
+    "Law enforcement administration and funding",
+    "Law enforcement officers",
+    "Motor vehicles"
+  ],
   "title_official": "District of Columbia Policing Protection Act of 2025",
   "type": "hr"
 }

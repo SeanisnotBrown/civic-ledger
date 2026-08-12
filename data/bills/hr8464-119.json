@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000375",
+    "C000059"
+  ],
   "id": "hr8464-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2026-06-11",
@@ -15,7 +18,10 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8464",
   "sponsor_id": "C001108",
-  "subjects": null,
+  "subjects": [
+    "Fraud offenses and financial crimes",
+    "Government information and archives"
+  ],
   "title_official": "Stopping Fraudulent Payments Act",
   "type": "hr"
 }

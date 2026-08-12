@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S001217"
+  ],
   "id": "s3613-118",
   "latest_action": "Became Public Law No: 118-157.",
   "latest_action_date": "2024-12-17",
@@ -15,7 +17,14 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3613",
   "sponsor_id": "P000595",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "Congressional oversight",
+    "Government buildings, facilities, and property",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Intelligence activities, surveillance, classified information"
+  ],
   "title_official": "Improving Federal Building Security Act of 2024",
   "type": "s"
 }

@@ -7,7 +7,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr2721-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Veterans' Affairs.",
   "latest_action_date": "2025-09-17",
@@ -15,7 +15,12 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2721",
   "sponsor_id": "K000402",
-  "subjects": null,
+  "subjects": [
+    "Cemeteries and funerals",
+    "Government information and archives",
+    "Internet, web applications, social media",
+    "Veterans' organizations and recognition"
+  ],
   "title_official": "Honoring Our Heroes Act of 2025",
   "type": "hr"
 }

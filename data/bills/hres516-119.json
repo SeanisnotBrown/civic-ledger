@@ -1,7 +1,16 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000059",
+    "F000480",
+    "I000056",
+    "K000401",
+    "L000578",
+    "M001177",
+    "O000019",
+    "V000129"
+  ],
   "id": "hres516-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2025-06-27",
@@ -9,7 +18,13 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/516",
   "sponsor_id": "K000397",
-  "subjects": null,
+  "subjects": [
+    "California",
+    "Intergovernmental relations",
+    "Law enforcement officers",
+    "Protest and dissent",
+    "Violent crime"
+  ],
   "title_official": "Condemning the violent June 2025 riots in Los Angeles, California.",
   "type": "hres"
 }

@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres529-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-06-22",
@@ -9,7 +9,13 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/529",
   "sponsor_id": "R000614",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Government ethics and transparency, public corruption",
+    "Presidents and presidential powers, Vice Presidents",
+    "Rule of law and government transparency"
+  ],
   "title_official": "Relating to the resolution (H. Res. 503) impeaching Joseph R. Biden, Jr., President of the United States, for high crimes and misdemeanors.",
   "type": "hres"
 }

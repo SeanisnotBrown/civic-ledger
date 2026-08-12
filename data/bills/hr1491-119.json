@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001236",
+    "P000613"
+  ],
   "id": "hr1491-119",
   "latest_action": "Became Public Law No: 119-64.",
   "latest_action_date": "2025-12-26",
@@ -15,7 +18,13 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1491",
   "sponsor_id": "M001210",
-  "subjects": null,
+  "subjects": [
+    "Fires",
+    "Forests, forestry, trees",
+    "Natural disasters",
+    "Tax administration and collection, taxpayers",
+    "Terrorism"
+  ],
   "title_official": "Disaster Related Extension of Deadlines Act",
   "type": "hr"
 }

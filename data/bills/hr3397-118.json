@@ -7,7 +7,28 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000369",
+    "A000377",
+    "B000668",
+    "B000825",
+    "D000633",
+    "F000469",
+    "G000565",
+    "H001096",
+    "J000301",
+    "L000564",
+    "M001213",
+    "M001228",
+    "N000189",
+    "O000086",
+    "O000175",
+    "R000103",
+    "S001148",
+    "S001192",
+    "S001212",
+    "Z000018"
+  ],
   "id": "hr3397-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2024-05-01",
@@ -15,7 +36,12 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3397",
   "sponsor_id": "C001114",
-  "subjects": null,
+  "subjects": [
+    "Department of the Interior",
+    "Environmental regulatory procedures",
+    "Land use and conservation",
+    "Wildlife conservation and habitat protection"
+  ],
   "title_official": "WEST Act of 2024",
   "type": "hr"
 }

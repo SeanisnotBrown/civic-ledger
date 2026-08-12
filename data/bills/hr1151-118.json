@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000376",
+    "C001084",
+    "M001157"
+  ],
   "id": "hr1151-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2023-04-18",
@@ -15,7 +19,19 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1151",
   "sponsor_id": "M001137",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "Aviation and airports",
+    "China",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Foreign property",
+    "Intelligence activities, surveillance, classified information",
+    "International organizations and cooperation",
+    "Sanctions",
+    "Sovereignty, recognition, national governance and status",
+    "Trade restrictions",
+    "Visas and passports"
+  ],
   "title_official": "USA Act",
   "type": "hr"
 }

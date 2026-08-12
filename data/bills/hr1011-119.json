@@ -1,7 +1,12 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001298",
+    "F000474",
+    "G000600",
+    "S001172"
+  ],
   "id": "hr1011-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2026-04-15",
@@ -9,7 +14,14 @@
   "policy_area": "Agriculture and Food",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1011",
   "sponsor_id": "L000595",
-  "subjects": null,
+  "subjects": [
+    "Agricultural prices, subsidies, credit",
+    "Emergency planning and evacuation",
+    "Farmland",
+    "Fires",
+    "Forests, forestry, trees",
+    "Natural disasters"
+  ],
   "title_official": "Emergency Conservation Program Improvement Act of 2025",
   "type": "hr"
 }

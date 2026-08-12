@@ -7,7 +7,27 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001260",
+    "B001298",
+    "C001132",
+    "F000466",
+    "G000603",
+    "H001101",
+    "I000056",
+    "L000598",
+    "M000194",
+    "M001177",
+    "N000189",
+    "O000086",
+    "R000619",
+    "S001212",
+    "S001214",
+    "T000165",
+    "T000478",
+    "W000806",
+    "W000816"
+  ],
   "id": "hr4638-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2026-03-19",
@@ -15,7 +35,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4638",
   "sponsor_id": "C000059",
-  "subjects": null,
+  "subjects": [
+    "Animal protection and human-animal relationships",
+    "Border security and unlawful immigration",
+    "Crimes against animals and natural resources",
+    "Immigration status and procedures"
+  ],
   "title_official": "Federal Working Animal Protection Act",
   "type": "hr"
 }

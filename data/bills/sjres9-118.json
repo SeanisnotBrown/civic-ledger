@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001319",
+    "C001047",
+    "L000575",
+    "M000934",
+    "M001190"
+  ],
   "id": "sjres9-118",
   "latest_action": "Failed of passage in Senate over veto by Yea-Nay Vote. 47 - 46. Record Vote Number: 242.",
   "latest_action_date": "2023-09-28",
@@ -9,7 +15,13 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/9",
   "sponsor_id": "M001198",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Birds",
+    "Congressional oversight",
+    "Department of the Interior",
+    "Endangered and threatened species"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the United States Fish and Wildlife Service relating to \"Endangered and Threatened Wildlife and Plants; Lesser Prairie-Chicken; Threatened Status with Section 4(d) Rule for the Northern Distinct Population Segment and Endangered Status for the Southern Distinct Population Segment\".",
   "type": "sjres"
 }

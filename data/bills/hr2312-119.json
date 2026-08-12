@@ -1,7 +1,14 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001322",
+    "G000576",
+    "L000595",
+    "M001233",
+    "S000250",
+    "W000821"
+  ],
   "id": "hr2312-119",
   "latest_action": "POSTPONED PROCEEDINGS - Pursuant to clause 1(c) of rule XIX, the Chair announced that further proceedings on H.R. 2312 is postponed.",
   "latest_action_date": "2026-01-13",
@@ -9,7 +16,10 @@
   "policy_area": "Labor and Employment",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2312",
   "sponsor_id": "W000809",
-  "subjects": null,
+  "subjects": [
+    "Labor standards",
+    "Wages and earnings"
+  ],
   "title_official": "Tipped Employee Protection Act",
   "type": "hr"
 }

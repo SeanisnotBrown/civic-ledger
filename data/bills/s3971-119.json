@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M000133"
+  ],
   "id": "s3971-119",
   "latest_action": "Became Public Law No: 119-83.",
   "latest_action_date": "2026-04-13",
@@ -9,7 +11,26 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3971",
   "sponsor_id": "E000295",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Asia",
+    "China",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Data collection, sharing, protection",
+    "Government lending and loan guarantees",
+    "Intellectual property",
+    "Military assistance, sales, and agreements",
+    "Performance measurement",
+    "Public contracts and procurement",
+    "Research administration and funding",
+    "Research and development",
+    "Small Business Administration",
+    "Small business",
+    "Subversive activities",
+    "Technology assessment",
+    "Technology transfer and commercialization"
+  ],
   "title_official": "Small Business Innovation and Economic Security Act",
   "type": "s"
 }

@@ -1,7 +1,17 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001230",
+    "B001288",
+    "D000622",
+    "K000394",
+    "M001169",
+    "M001176",
+    "S000148",
+    "S001150",
+    "V000128"
+  ],
   "id": "sjres185-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 47 - 50. Record Vote Number: 192. (CR S3194)",
   "latest_action_date": "2026-06-24",
@@ -9,7 +19,13 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/185",
   "sponsor_id": "K000384",
-  "subjects": null,
+  "subjects": [
+    "Conflicts and wars",
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Iran",
+    "Middle East"
+  ],
   "title_official": "A joint resolution to direct the removal of United States Armed Forces from hostilities within or against the Islamic Republic of Iran that have not been authorized by Congress.",
   "type": "sjres"
 }

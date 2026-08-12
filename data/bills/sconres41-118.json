@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "sconres41-118",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 39 - 56. Record Vote Number: 252.",
   "latest_action_date": "2024-09-25",
@@ -9,7 +9,18 @@
   "policy_area": "Economics and Public Finance",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-concurrent-resolution/41",
   "sponsor_id": "P000603",
-  "subjects": null,
+  "subjects": [
+    "Budget deficits and national debt",
+    "Budget process",
+    "Disability assistance",
+    "Government information and archives",
+    "Government trust funds",
+    "Legislative rules and procedure",
+    "Postal service",
+    "Senate",
+    "Social security and elderly assistance",
+    "U.S. Postal Service"
+  ],
   "title_official": "A concurrent resolution setting forth the congressional budget for the United States Government for fiscal year 2025 and setting forth the appropriate budgetary levels for fiscal years 2026 through 2034.",
   "type": "sconres"
 }

@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "K000391"
+  ],
   "id": "hr7887-118",
   "latest_action": "On motion to suspend the rules and pass the bill, as amended Failed by the Yeas and Nays: (2/3 required): 178 - 234 (Roll no. 380).",
   "latest_action_date": "2024-07-23",
@@ -9,7 +11,13 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7887",
   "sponsor_id": "M000194",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Employee hiring",
+    "Government information and archives",
+    "Public contracts and procurement"
+  ],
   "title_official": "ACCESS Act",
   "type": "hr"
 }

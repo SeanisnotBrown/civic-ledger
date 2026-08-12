@@ -7,7 +7,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr4544-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2026-05-21",
@@ -15,7 +15,13 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4544",
   "sponsor_id": "W000187",
-  "subjects": null,
+  "subjects": [
+    "Banking and financial institutions regulation",
+    "Financial services and investments",
+    "Intergovernmental relations",
+    "Licensing and registrations",
+    "State and local government operations"
+  ],
   "title_official": "American Access to Banking Act",
   "type": "hr"
 }

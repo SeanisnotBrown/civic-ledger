@@ -1,7 +1,19 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001309",
+    "I000056",
+    "J000304",
+    "K000399",
+    "M001199",
+    "R000600",
+    "S000522",
+    "S001224",
+    "W000795",
+    "W000812",
+    "W000814"
+  ],
   "id": "hres1469-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-09-25",
@@ -9,7 +21,14 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1469",
   "sponsor_id": "M001157",
-  "subjects": null,
+  "subjects": [
+    "Afghanistan",
+    "Asia",
+    "Conflicts and wars",
+    "Military operations and strategy",
+    "Military personnel and dependents",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
   "title_official": "Ensuring accountability for key officials in the Biden-Harris administration responsible for decisionmaking and execution failures throughout the withdrawal from Afghanistan.",
   "type": "hres"
 }

@@ -1,7 +1,12 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000583",
+    "J000304",
+    "M001217",
+    "M001222"
+  ],
   "id": "hres894-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-12-05",
@@ -9,7 +14,12 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/894",
   "sponsor_id": "K000392",
-  "subjects": null,
+  "subjects": [
+    "Human rights",
+    "Racial and ethnic relations",
+    "Religion",
+    "Terrorism"
+  ],
   "title_official": "Strongly condemning and denouncing the drastic rise of antisemitism in the United States and around the world.",
   "type": "hres"
 }

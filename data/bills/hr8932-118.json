@@ -7,7 +7,18 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000740",
+    "B001301",
+    "F000450",
+    "F000475",
+    "K000401",
+    "O000086",
+    "S001199",
+    "T000480",
+    "W000798",
+    "W000828"
+  ],
   "id": "hr8932-118",
   "latest_action": "Became Public Law No: 118-145.",
   "latest_action_date": "2024-12-11",
@@ -15,7 +26,11 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8932",
   "sponsor_id": "H001093",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Higher education",
+    "Student aid and college costs"
+  ],
   "title_official": "FAFSA Deadline Act",
   "type": "hr"
 }

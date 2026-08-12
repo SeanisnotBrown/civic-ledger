@@ -7,7 +7,24 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "D000032",
+    "D000632",
+    "F000472",
+    "G000594",
+    "H001096",
+    "K000376",
+    "M001157",
+    "M001216",
+    "N000189",
+    "R000610",
+    "S000522",
+    "S001196",
+    "S001212",
+    "W000814",
+    "W000828"
+  ],
   "id": "hr5283-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2023-12-04",
@@ -15,7 +32,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5283",
   "sponsor_id": "M000317",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "General public lands matters",
+    "Land use and conservation",
+    "Public housing"
+  ],
   "title_official": "Protecting our Communities from Failure to Secure the Border Act of 2023",
   "type": "hr"
 }

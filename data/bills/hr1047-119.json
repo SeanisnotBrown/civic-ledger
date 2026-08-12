@@ -7,7 +7,25 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001257",
+    "B001327",
+    "D000628",
+    "F000482",
+    "G000568",
+    "H001067",
+    "H001086",
+    "J000302",
+    "L000599",
+    "L000600",
+    "M000871",
+    "M001205",
+    "O000177",
+    "R000619",
+    "W000804",
+    "W000814",
+    "Y000067"
+  ],
   "id": "hr1047-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-09-19",
@@ -15,7 +33,11 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1047",
   "sponsor_id": "B001306",
-  "subjects": null,
+  "subjects": [
+    "Electric power generation and transmission",
+    "Energy efficiency and conservation",
+    "Energy storage, supplies, demand"
+  ],
   "title_official": "GRID Power Act",
   "type": "hr"
 }

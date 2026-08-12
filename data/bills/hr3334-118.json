@@ -7,7 +7,17 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000740",
+    "B001260",
+    "E000235",
+    "G000589",
+    "G000591",
+    "H001082",
+    "L000599",
+    "P000613",
+    "P000614"
+  ],
   "id": "hr3334-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2024-11-12",
@@ -15,7 +25,28 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3334",
   "sponsor_id": "M001136",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Asia",
+    "China",
+    "Computer security and identity theft",
+    "Foreign property",
+    "Government information and archives",
+    "Hong Kong",
+    "Human rights",
+    "Immigration status and procedures",
+    "Intellectual property",
+    "Intelligence activities, surveillance, classified information",
+    "Law enforcement officers",
+    "Political parties and affiliation",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sanctions",
+    "Sovereignty, recognition, national governance and status",
+    "Taiwan",
+    "Trade restrictions",
+    "Visas and passports",
+    "War crimes, genocide, crimes against humanity"
+  ],
   "title_official": "STOP CCP Act",
   "type": "hr"
 }

@@ -7,7 +7,29 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001278",
+    "B001303",
+    "C001066",
+    "C001072",
+    "G000582",
+    "G000592",
+    "H001068",
+    "K000375",
+    "K000381",
+    "L000582",
+    "L000602",
+    "M001143",
+    "M001227",
+    "P000599",
+    "P000613",
+    "P000619",
+    "S001150",
+    "S001205",
+    "T000460",
+    "T000487",
+    "W000823"
+  ],
   "id": "hr676-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2023-05-10",
@@ -15,7 +37,13 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/676",
   "sponsor_id": "P000597",
-  "subjects": null,
+  "subjects": [
+    "Earth sciences",
+    "Environmental assessment, monitoring, research",
+    "Intergovernmental relations",
+    "Marine pollution",
+    "Water quality"
+  ],
   "title_official": "Coastal Communities Ocean Acidification Act of 2023",
   "type": "hr"
 }

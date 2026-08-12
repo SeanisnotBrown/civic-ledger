@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "B001257",
+    "M001159",
+    "S001145",
+    "T000482"
+  ],
   "id": "hr7520-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-03-21",
@@ -15,7 +21,20 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7520",
   "sponsor_id": "P000034",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Consumer affairs",
+    "Corporate finance and management",
+    "Foreign and international corporations",
+    "Fraud offenses and financial crimes",
+    "Iran",
+    "Middle East",
+    "North Korea",
+    "Russia"
+  ],
   "title_official": "Protecting Americans’ Data from Foreign Adversaries Act of 2024",
   "type": "hr"
 }

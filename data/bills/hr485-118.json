@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001248",
+    "C001103",
+    "H001082",
+    "S001195",
+    "W000815"
+  ],
   "id": "hr485-118",
   "latest_action": "Referred to the Subcommittee on Health.",
   "latest_action_date": "2024-12-17",
@@ -15,7 +21,15 @@
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/485",
   "sponsor_id": "M001159",
-  "subjects": null,
+  "subjects": [
+    "Child health",
+    "Government employee pay, benefits, personnel management",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Medicaid",
+    "Poverty and welfare assistance",
+    "Veterans' medical care"
+  ],
   "title_official": "Protecting Health Care for All Patients Act of 2023",
   "type": "hr"
 }

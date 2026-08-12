@@ -7,7 +7,12 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "K000401",
+    "M001211",
+    "O000086",
+    "O000177"
+  ],
   "id": "hr2616-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2026-05-21",
@@ -15,7 +20,10 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2616",
   "sponsor_id": "W000798",
-  "subjects": null,
+  "subjects": [
+    "Elementary and secondary education",
+    "Sex, gender, sexual orientation discrimination"
+  ],
   "title_official": "Stopping Indoctrination and Protecting Kids Act",
   "type": "hr"
 }

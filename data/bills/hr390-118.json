@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "T000469"
+  ],
   "id": "hr390-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2024-12-05",
@@ -9,7 +11,11 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/390",
   "sponsor_id": "S001196",
-  "subjects": null,
+  "subjects": [
+    "Geography and mapping",
+    "Historic sites and heritage areas",
+    "New York State"
+  ],
   "title_official": "Maurice D. Hinchey Hudson River Valley National Heritage Area Enhancement Act",
   "type": "hr"
 }

@@ -7,7 +7,18 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "E000071",
+    "H001093",
+    "I000056",
+    "L000599",
+    "N000026",
+    "N000190",
+    "O000175",
+    "S000929",
+    "S001212",
+    "T000478"
+  ],
   "id": "hr7343-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-05-16",
@@ -15,7 +26,13 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7343",
   "sponsor_id": "V000133",
-  "subjects": null,
+  "subjects": [
+    "Criminal procedure and sentencing",
+    "Detention of persons",
+    "First responders and emergency personnel",
+    "Immigration status and procedures",
+    "Violent crime"
+  ],
   "title_official": "Detain and Deport Illegal Aliens Who Assault Cops Act",
   "type": "hr"
 }

@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres712-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-09-22",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/712",
   "sponsor_id": "C001053",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Providing for consideration of the bill (H.R. 4365) making appropriations for the Department of Defense for the fiscal year ending September 30, 2024, and for other purposes; providing for consideration of the bill (H.R. 1130) to repeal restrictions on the export and import of natural gas; and providing for consideration of the resolution (H. Res. 684) condemning the actions of Governor of New Mexico, Michelle Lujan Grisham, for subverting the Second Amendment to the Constitution and depriving the citizens of New Mexico of their right to bear arms.",
   "type": "hres"
 }

@@ -1,7 +1,21 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000032",
+    "G000553",
+    "G000583",
+    "G000597",
+    "G000600",
+    "H001058",
+    "H001093",
+    "J000307",
+    "K000397",
+    "L000599",
+    "R000612",
+    "S001213",
+    "W000788"
+  ],
   "id": "hr500-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-01-31",
@@ -9,7 +23,16 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/500",
   "sponsor_id": "W000812",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Crime victims",
+    "Fraud offenses and financial crimes",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Securities",
+    "Securities and Exchange Commission (SEC)"
+  ],
   "title_official": "Financial Exploitation Prevention Act of 2023",
   "type": "hr"
 }

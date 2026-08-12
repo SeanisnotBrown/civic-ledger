@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001311",
+    "D000230",
+    "F000477",
+    "H001067",
+    "J000308",
+    "M000194",
+    "M001135",
+    "M001205",
+    "M001210",
+    "N000026",
+    "P000613",
+    "R000305"
+  ],
   "id": "hr1101-118",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2024-12-18",
@@ -9,7 +22,11 @@
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1101",
   "sponsor_id": "R000603",
-  "subjects": null,
+  "subjects": [
+    "Federal-Indian relations",
+    "Indian lands and resources rights",
+    "North Carolina"
+  ],
   "title_official": "Lumbee Fairness Act",
   "type": "hr"
 }

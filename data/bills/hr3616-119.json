@@ -7,7 +7,28 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "B001257",
+    "B001327",
+    "C001103",
+    "D000634",
+    "F000482",
+    "G000568",
+    "H001067",
+    "H001086",
+    "J000302",
+    "L000600",
+    "M000871",
+    "M001204",
+    "M001205",
+    "M001215",
+    "M001236",
+    "M001240",
+    "O000177",
+    "R000619",
+    "W000814"
+  ],
   "id": "hr3616-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-12-18",
@@ -15,7 +36,14 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3616",
   "sponsor_id": "B001306",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Electric power generation and transmission",
+    "Energy efficiency and conservation",
+    "Energy storage, supplies, demand",
+    "Government information and archives",
+    "Government studies and investigations"
+  ],
   "title_official": "Reliable Power Act",
   "type": "hr"
 }

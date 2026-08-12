@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M000934",
+    "M001244"
+  ],
   "id": "s1383-119",
   "latest_action": "Considered by Senate (Message from the House considered). (consideration: CR S1647)",
   "latest_action_date": "2026-03-26",
@@ -15,7 +18,25 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1383",
   "sponsor_id": "S001217",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Citizenship and naturalization",
+    "Civil actions and liability",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Department of Veterans Affairs",
+    "Disability assistance",
+    "Election Assistance Commission",
+    "Elections, voting, political campaign regulation",
+    "Executive agency funding and structure",
+    "Government information and archives",
+    "Health care coverage and access",
+    "Licensing and registrations",
+    "State and local government operations",
+    "Veterans' medical care",
+    "Voting rights"
+  ],
   "title_official": "Veterans Accessibility Advisory Committee Act of 2025",
   "type": "s"
 }

@@ -1,7 +1,33 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001291",
+    "B001295",
+    "B001306",
+    "B001307",
+    "E000235",
+    "E000246",
+    "F000446",
+    "H001072",
+    "H001091",
+    "H001095",
+    "H001099",
+    "K000399",
+    "M001199",
+    "M001204",
+    "M001215",
+    "M001228",
+    "M001236",
+    "M001240",
+    "N000189",
+    "R000619",
+    "S000522",
+    "T000478",
+    "T000490",
+    "W000806",
+    "W000829"
+  ],
   "id": "hconres96-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2026-05-14",
@@ -9,7 +35,10 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/96",
   "sponsor_id": "N000193",
-  "subjects": null,
+  "subjects": [
+    "Congressional tributes",
+    "Law enforcement officers"
+  ],
   "title_official": "Expressing support for law enforcement officers.",
   "type": "hconres"
 }

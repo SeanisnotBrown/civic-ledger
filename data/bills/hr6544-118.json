@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000197"
+  ],
   "id": "hr6544-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2024-02-29",
@@ -9,7 +11,30 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6544",
   "sponsor_id": "D000615",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Building construction",
+    "Competitiveness, trade promotion, trade deficits",
+    "Congressional oversight",
+    "Electric power generation and transmission",
+    "Employee benefits and pensions",
+    "Employee hiring",
+    "Energy prices",
+    "Environmental assessment, monitoring, research",
+    "Government employee pay, benefits, personnel management",
+    "Government studies and investigations",
+    "Industrial facilities",
+    "International organizations and cooperation",
+    "Licensing and registrations",
+    "Nuclear power",
+    "Performance measurement",
+    "Pollution liability",
+    "Public contracts and procurement",
+    "Radioactive wastes and releases",
+    "Technology transfer and commercialization",
+    "Trade agreements and negotiations",
+    "User charges and fees"
+  ],
   "title_official": "Atomic Energy Advancement Act",
   "type": "hr"
 }

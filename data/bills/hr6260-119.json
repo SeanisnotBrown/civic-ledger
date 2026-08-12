@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001236",
+    "R000614",
+    "S001213",
+    "T000165",
+    "W000829"
+  ],
   "id": "hr6260-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2026-05-18",
@@ -9,7 +15,10 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6260",
   "sponsor_id": "F000471",
-  "subjects": null,
+  "subjects": [
+    "Criminal procedure and sentencing",
+    "Fraud offenses and financial crimes"
+  ],
   "title_official": "Keeping Violent Offenders Off Our Streets Act of 2025",
   "type": "hr"
 }

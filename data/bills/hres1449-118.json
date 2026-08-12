@@ -1,7 +1,28 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000376",
+    "B001282",
+    "B001307",
+    "C001059",
+    "K000375",
+    "K000394",
+    "K000398",
+    "K000400",
+    "L000599",
+    "M001188",
+    "M001199",
+    "M001206",
+    "M001217",
+    "P000616",
+    "S000344",
+    "S000522",
+    "S001190",
+    "T000468",
+    "W000795",
+    "W000826"
+  ],
   "id": "hres1449-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-11-20",
@@ -9,7 +30,11 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1449",
   "sponsor_id": "M001135",
-  "subjects": null,
+  "subjects": [
+    "Hate crimes",
+    "International organizations and cooperation",
+    "Religion"
+  ],
   "title_official": "Condemning the global rise of antisemitism and calling upon countries and international bodies to counter antisemitism.",
   "type": "hres"
 }

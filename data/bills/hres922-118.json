@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres922-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-12-12",
@@ -9,7 +9,10 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/922",
   "sponsor_id": "F000470",
-  "subjects": null,
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
   "title_official": "Providing for consideration of the bill (H.R. 1147) to amend the Richard B. Russell National School Lunch Act to allow schools that participate in the school lunch program under such Act to serve whole milk; providing for consideration of the bill (H.R. 357) to require the head of an agency to issue and sign any rule issued by that agency, and for other purposes; and for other purposes.",
   "type": "hres"
 }

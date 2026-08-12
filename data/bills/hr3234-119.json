@@ -1,7 +1,19 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001281",
+    "B001282",
+    "B001301",
+    "E000235",
+    "F000474",
+    "G000592",
+    "M001160",
+    "M001204",
+    "R000575",
+    "S000250",
+    "W000816"
+  ],
   "id": "hr3234-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2026-05-21",
@@ -9,7 +21,10 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3234",
   "sponsor_id": "E000294",
-  "subjects": null,
+  "subjects": [
+    "Bank accounts, deposits, capital",
+    "Banking and financial institutions regulation"
+  ],
   "title_official": "Keeping Deposits Local Act",
   "type": "hr"
 }

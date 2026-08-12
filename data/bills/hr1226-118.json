@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000599",
+    "S000929"
+  ],
   "id": "hr1226-118",
   "latest_action": "Became Public Law No: 118-21.",
   "latest_action_date": "2023-11-13",
@@ -9,7 +12,18 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1226",
   "sponsor_id": "A000371",
-  "subjects": null,
+  "subjects": [
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Crime prevention",
+    "Disability assistance",
+    "Freedom of information",
+    "Government information and archives",
+    "Health information and medical records",
+    "Internet, web applications, social media",
+    "Personnel records",
+    "Veterans' pensions and compensation"
+  ],
   "title_official": "Wounded Warrior Access Act",
   "type": "hr"
 }

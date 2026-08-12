@@ -1,7 +1,28 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001236",
+    "B001261",
+    "B001305",
+    "B001319",
+    "C000880",
+    "C001047",
+    "C001075",
+    "C001096",
+    "C001098",
+    "D000618",
+    "E000295",
+    "F000463",
+    "H001061",
+    "L000575",
+    "M001190",
+    "M001198",
+    "R000584",
+    "R000618",
+    "S001198",
+    "W000437"
+  ],
   "id": "sjres23-118",
   "latest_action": "Held at the desk.",
   "latest_action_date": "2023-05-15",
@@ -9,7 +30,12 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/23",
   "sponsor_id": "L000571",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Department of Commerce",
+    "Wildlife conservation and habitat protection"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the National Marine Fisheries Service relating to \"Endangered and Threatened Wildlife and Plants; Regulations for Listing Endangered and Threatened Species and Designating Critical Habitat\".",
   "type": "sjres"
 }

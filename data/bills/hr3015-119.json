@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001306",
+    "G000568",
+    "H001093",
+    "M001235",
+    "W000812"
+  ],
   "id": "hr3015-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-09-19",
@@ -15,7 +21,12 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3015",
   "sponsor_id": "R000619",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Coal",
+    "Department of Energy"
+  ],
   "title_official": "National Coal Council Reestablishment Act",
   "type": "hr"
 }

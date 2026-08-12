@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000740",
+    "B001285",
+    "M001220",
+    "P000614",
+    "S001224"
+  ],
   "id": "hr1530-118",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2023-09-21",
@@ -15,7 +21,12 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1530",
   "sponsor_id": "L000603",
-  "subjects": null,
+  "subjects": [
+    "Intergovernmental relations",
+    "Public contracts and procurement",
+    "Veterans' medical care",
+    "Veterans' pensions and compensation"
+  ],
   "title_official": "Veterans Benefits Improvement Act of 2023",
   "type": "hr"
 }

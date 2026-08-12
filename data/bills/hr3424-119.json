@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000599",
+    "P000614"
+  ],
   "id": "hr3424-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2025-09-09",
@@ -9,7 +12,10 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3424",
   "sponsor_id": "O000177",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Government buildings, facilities, and property"
+  ],
   "title_official": "SPACE Act of 2025",
   "type": "hr"
 }

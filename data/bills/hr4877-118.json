@@ -1,7 +1,14 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000740",
+    "F000476",
+    "F000477",
+    "L000273",
+    "R000305",
+    "S001215"
+  ],
   "id": "hr4877-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2024-05-01",
@@ -9,7 +16,16 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4877",
   "sponsor_id": "L000602",
-  "subjects": null,
+  "subjects": [
+    "Air quality",
+    "Alternative and renewable resources",
+    "Climate change and greenhouse gases",
+    "Electric power generation and transmission",
+    "Environmental assessment, monitoring, research",
+    "Research and development",
+    "Water storage",
+    "Water use and supply"
+  ],
   "title_official": "Abandoned Well Remediation Research and Development Act",
   "type": "hr"
 }

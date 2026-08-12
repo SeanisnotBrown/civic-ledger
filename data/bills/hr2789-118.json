@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "K000398"
+  ],
   "id": "hr2789-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2024-07-08",
@@ -15,7 +17,20 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2789",
   "sponsor_id": "S001211",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Caribbean area",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Drug trafficking and controlled substances",
+    "International exchange and broadcasting",
+    "Internet, web applications, social media",
+    "Latin America",
+    "Law enforcement administration and funding",
+    "Mexico",
+    "Sanctions",
+    "Spacecraft and satellites",
+    "Telephone and wireless communication"
+  ],
   "title_official": "American Cooperation with Our Neighbors Act",
   "type": "hr"
 }

@@ -7,7 +7,16 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001067",
+    "C001126",
+    "C001134",
+    "M001228",
+    "N000191",
+    "P000618",
+    "S001192",
+    "S001200"
+  ],
   "id": "hr4310-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-05-16",
@@ -15,7 +24,13 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4310",
   "sponsor_id": "T000482",
-  "subjects": null,
+  "subjects": [
+    "Child safety and welfare",
+    "Consumer affairs",
+    "Hazardous wastes and toxic substances",
+    "Product safety and quality",
+    "Retail and wholesale trades"
+  ],
   "title_official": "Youth Poisoning Protection Act",
   "type": "hr"
 }

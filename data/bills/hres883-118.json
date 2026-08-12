@@ -1,7 +1,28 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000377",
+    "D000633",
+    "E000246",
+    "F000459",
+    "F000466",
+    "G000583",
+    "G000597",
+    "K000392",
+    "L000598",
+    "L000599",
+    "M001195",
+    "M001211",
+    "M001217",
+    "M001222",
+    "N000189",
+    "R000575",
+    "T000478",
+    "V000133",
+    "W000814",
+    "Y000067"
+  ],
   "id": "hres883-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-04-16",
@@ -9,7 +30,11 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/883",
   "sponsor_id": "D000632",
-  "subjects": null,
+  "subjects": [
+    "First Amendment rights",
+    "Protest and dissent",
+    "Religion"
+  ],
   "title_official": "Expressing the sense of the House of Representatives that the slogan, \"from the river to the sea, Palestine will be free\" is antisemitic and its use must be condemned.",
   "type": "hres"
 }

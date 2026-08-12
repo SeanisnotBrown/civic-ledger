@@ -7,7 +7,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001310",
+    "J000293",
+    "P000595",
+    "R000584",
+    "S001191"
+  ],
   "id": "s111-118",
   "latest_action": "Became Public Law No: 118-9.",
   "latest_action_date": "2023-07-25",
@@ -15,7 +21,10 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/111",
   "sponsor_id": "L000575",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Government information and archives"
+  ],
   "title_official": "Providing Accountability Through Transparency Act of 2023",
   "type": "s"
 }

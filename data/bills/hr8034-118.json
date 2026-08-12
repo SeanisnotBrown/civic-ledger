@@ -7,7 +7,10 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000059",
+    "D000600"
+  ],
   "id": "hr8034-118",
   "latest_action": "Pursuant to the provisions of H. Res. 1160, H.R. 8034 is laid on the table.",
   "latest_action_date": "2024-04-23",
@@ -15,7 +18,35 @@
   "policy_area": "Economics and Public Finance",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8034",
   "sponsor_id": "C001053",
-  "subjects": null,
+  "subjects": [
+    "Appropriations",
+    "Arab-Israeli relations",
+    "Congressional oversight",
+    "Defense spending",
+    "Department of Defense",
+    "Department of Homeland Security",
+    "Department of State",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Drug trafficking and controlled substances",
+    "Executive agency funding and structure",
+    "Federal Emergency Management Agency (FEMA)",
+    "Foreign aid and international relief",
+    "Gaza Strip",
+    "Government buildings, facilities, and property",
+    "Government information and archives",
+    "Israel",
+    "Law enforcement administration and funding",
+    "Middle East",
+    "Military assistance, sales, and agreements",
+    "Military education and training",
+    "Military procurement, research, weapons development",
+    "Presidents and presidential powers, Vice Presidents",
+    "Public contracts and procurement",
+    "Refugees, asylum, displaced persons",
+    "Terrorism",
+    "U.S. Agency for International Development (USAID)",
+    "West Bank"
+  ],
   "title_official": "Israel Security Supplemental Appropriations Act, 2024",
   "type": "hr"
 }

@@ -7,7 +7,27 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "C001103",
+    "C001108",
+    "D000615",
+    "D000632",
+    "E000246",
+    "G000576",
+    "G000597",
+    "H001077",
+    "H001082",
+    "I000056",
+    "J000304",
+    "L000266",
+    "L000578",
+    "L000596",
+    "S001212",
+    "W000795",
+    "W000806",
+    "Y000067"
+  ],
   "id": "hjres42-118",
   "latest_action": "The Chair directed the Clerk to notify the Senate of the action of the House.",
   "latest_action_date": "2023-06-13",
@@ -15,7 +35,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/42",
   "sponsor_id": "C001116",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "District of Columbia",
+    "Law enforcement administration and funding",
+    "State and local government operations"
+  ],
   "title_official": "Disapproving the action of the District of Columbia Council in approving the Comprehensive Policing and Justice Reform Amendment Act of 2022.",
   "type": "hjres"
 }

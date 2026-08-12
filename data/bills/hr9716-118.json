@@ -7,7 +7,27 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000375",
+    "B001301",
+    "B001317",
+    "C001103",
+    "C001118",
+    "E000246",
+    "E000298",
+    "F000465",
+    "F000470",
+    "G000576",
+    "G000595",
+    "L000604",
+    "M001136",
+    "M001177",
+    "N000190",
+    "R000614",
+    "S001201",
+    "V000129",
+    "Y000067"
+  ],
   "id": "hr9716-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Budget.",
   "latest_action_date": "2024-12-12",
@@ -15,7 +35,11 @@
   "policy_area": "Economics and Public Finance",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9716",
   "sponsor_id": "M001213",
-  "subjects": null,
+  "subjects": [
+    "Budget deficits and national debt",
+    "Congressional oversight",
+    "Congressional-executive branch relations"
+  ],
   "title_official": "Increasing Baseline Updates Act",
   "type": "hr"
 }

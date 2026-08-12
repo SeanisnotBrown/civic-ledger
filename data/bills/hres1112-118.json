@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres1112-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-05-01",
@@ -9,7 +9,12 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1112",
   "sponsor_id": "G000594",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Congressional-executive branch relations",
+    "Immigration status and procedures",
+    "Law enforcement officers"
+  ],
   "title_official": "Denouncing the Biden administration's immigration policies.",
   "type": "hres"
 }

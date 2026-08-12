@@ -7,7 +7,14 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000032",
+    "D000594",
+    "H001093",
+    "S001177",
+    "S001208",
+    "W000812"
+  ],
   "id": "hr443-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2024-02-06",
@@ -15,7 +22,16 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/443",
   "sponsor_id": "W000798",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Crime prevention",
+    "Employment and training programs",
+    "Government information and archives",
+    "Human trafficking",
+    "Law enforcement administration and funding",
+    "Performance measurement",
+    "Smuggling and trafficking"
+  ],
   "title_official": "Enhancing Detection of Human Trafficking Act",
   "type": "hr"
 }

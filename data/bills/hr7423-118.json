@@ -12,7 +12,13 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001125",
+    "G000577",
+    "H001077",
+    "J000299",
+    "L000595"
+  ],
   "id": "hr7423-118",
   "latest_action": "Became Public Law No: 118-129.",
   "latest_action_date": "2024-11-25",
@@ -20,7 +26,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7423",
   "sponsor_id": "S001176",
-  "subjects": null,
+  "subjects": [
+    "Congressional tributes",
+    "Government buildings, facilities, and property",
+    "Louisiana",
+    "Postal service"
+  ],
   "title_official": "To designate the facility of the United States Postal Service located at 103 Benedette Street in Rayville, Louisiana, as the \"Luke Letlow Post Office Building\".",
   "type": "hr"
 }

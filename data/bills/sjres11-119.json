@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000880",
+    "H001079"
+  ],
   "id": "sjres11-119",
   "latest_action": "Became Public Law No: 119-3.",
   "latest_action_date": "2025-03-14",
@@ -9,7 +12,13 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/11",
   "sponsor_id": "K000393",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Archaeology and anthropology",
+    "Historical and cultural resources",
+    "Marine and coastal resources, fisheries",
+    "Oil and gas"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Bureau of Ocean Energy Management relating to \"Protection of Marine Archaeological Resources\".",
   "type": "sjres"
 }

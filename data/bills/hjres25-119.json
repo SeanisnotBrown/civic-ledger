@@ -7,7 +7,17 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001137",
+    "D000626",
+    "D000634",
+    "E000294",
+    "K000392",
+    "N000193",
+    "T000478",
+    "T000480",
+    "T000488"
+  ],
   "id": "hjres25-119",
   "latest_action": "Became Public Law No: 119-5.",
   "latest_action_date": "2025-04-10",
@@ -15,7 +25,15 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/25",
   "sponsor_id": "C001126",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Currency",
+    "Digital media",
+    "Financial services and investments",
+    "Internal Revenue Service (IRS)",
+    "Tax administration and collection, taxpayers"
+  ],
   "title_official": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Internal Revenue Service relating to \"Gross Proceeds Reporting by Brokers That Regularly Provide Services Effectuating Digital Asset Sales\".",
   "type": "hjres"
 }

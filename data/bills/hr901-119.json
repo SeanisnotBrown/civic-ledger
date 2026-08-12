@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "E000300",
+    "G000590"
+  ],
   "id": "hr901-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-03-11",
@@ -9,7 +12,12 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/901",
   "sponsor_id": "S001220",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Government information and archives",
+    "Research and development",
+    "U.S. and foreign investments"
+  ],
   "title_official": "Research Security and Accountability in DHS Act",
   "type": "hr"
 }

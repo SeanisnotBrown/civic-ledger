@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "M001196"
+  ],
   "id": "hr538-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2023-02-28",
@@ -9,7 +11,15 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/538",
   "sponsor_id": "C001114",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Computers and information technology",
+    "Federal Trade Commission (FTC)",
+    "Internet, web applications, social media",
+    "Photography and imaging",
+    "Right of privacy",
+    "Sound recording"
+  ],
   "title_official": "Informing Consumers about Smart Devices Act",
   "type": "hr"
 }

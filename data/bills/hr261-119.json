@@ -7,7 +7,15 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000668",
+    "B001323",
+    "C001039",
+    "D000628",
+    "F000478",
+    "K000399",
+    "P000048"
+  ],
   "id": "hr261-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2026-02-12",
@@ -15,7 +23,10 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/261",
   "sponsor_id": "C001103",
-  "subjects": null,
+  "subjects": [
+    "Broadcasting, cable, digital technologies",
+    "Marine and coastal resources, fisheries"
+  ],
   "title_official": "Undersea Cable Protection Act of 2025",
   "type": "hr"
 }

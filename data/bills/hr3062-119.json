@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000628",
+    "J000302"
+  ],
   "id": "hr3062-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-09-19",
@@ -15,7 +18,20 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3062",
   "sponsor_id": "F000482",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Canada",
+    "Department of Energy",
+    "Electric power generation and transmission",
+    "Environmental assessment, monitoring, research",
+    "Federal Energy Regulatory Commission (FERC)",
+    "Latin America",
+    "Licensing and registrations",
+    "Mexico",
+    "Oil and gas",
+    "Pipelines",
+    "Trade restrictions"
+  ],
   "title_official": "Promoting Cross-border Energy Infrastructure Act",
   "type": "hr"
 }

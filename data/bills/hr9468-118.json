@@ -1,7 +1,18 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000740",
+    "B001295",
+    "C000059",
+    "C001051",
+    "C001053",
+    "G000594",
+    "K000399",
+    "P000614",
+    "V000129",
+    "W000809"
+  ],
   "id": "hr9468-118",
   "latest_action": "Became Public Law No: 118-82.",
   "latest_action_date": "2024-09-20",
@@ -9,7 +20,13 @@
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9468",
   "sponsor_id": "G000061",
-  "subjects": null,
+  "subjects": [
+    "Appropriations",
+    "Budget process",
+    "Congressional oversight",
+    "Government information and archives",
+    "Veterans' pensions and compensation"
+  ],
   "title_official": "Veterans Benefits Continuity and Accountability Supplemental Appropriations Act, 2024",
   "type": "hr"
 }

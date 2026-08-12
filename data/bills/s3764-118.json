@@ -1,7 +1,15 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001305",
+    "C000141",
+    "C001075",
+    "C001088",
+    "C001098",
+    "D000563",
+    "L000575"
+  ],
   "id": "s3764-118",
   "latest_action": "Became Public Law No: 118-90.",
   "latest_action_date": "2024-09-30",
@@ -9,7 +17,12 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3764",
   "sponsor_id": "R000595",
-  "subjects": null,
+  "subjects": [
+    "Human rights",
+    "International organizations and cooperation",
+    "Religion",
+    "U.S. Commission on International Religious Freedom"
+  ],
   "title_official": "United States Commission on International Religious Freedom Reauthorization Act of 2024",
   "type": "s"
 }

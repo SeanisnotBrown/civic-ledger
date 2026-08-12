@@ -1,7 +1,18 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001103",
+    "C001116",
+    "H001093",
+    "J000301",
+    "L000583",
+    "M001233",
+    "P000605",
+    "P000609",
+    "R000619",
+    "T000478"
+  ],
   "id": "hjres24-119",
   "latest_action": "Became Public Law No: 119-7.",
   "latest_action_date": "2025-05-09",
@@ -9,7 +20,13 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/24",
   "sponsor_id": "B000740",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Department of Energy",
+    "Energy efficiency and conservation",
+    "Food industry and services",
+    "Lighting, heating, cooling"
+  ],
   "title_official": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Walk-In Coolers and Walk-In Freezers\".",
   "type": "hjres"
 }

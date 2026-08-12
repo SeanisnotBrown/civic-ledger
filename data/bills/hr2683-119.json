@@ -7,7 +7,25 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000380",
+    "B001322",
+    "C001130",
+    "F000466",
+    "H001058",
+    "J000309",
+    "K000391",
+    "K000397",
+    "K000400",
+    "L000590",
+    "M001194",
+    "M001218",
+    "M001238",
+    "S000344",
+    "S001224",
+    "T000478",
+    "V000138"
+  ],
   "id": "hr2683-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2026-01-13",
@@ -15,7 +33,11 @@
   "policy_area": "Foreign Trade and International Finance",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2683",
   "sponsor_id": "L000599",
-  "subjects": null,
+  "subjects": [
+    "Computers and information technology",
+    "Presidents and presidential powers, Vice Presidents",
+    "Trade restrictions"
+  ],
   "title_official": "Remote Access Security Act",
   "type": "hr"
 }

@@ -1,7 +1,16 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001302",
+    "C001110",
+    "G000565",
+    "G000591",
+    "G000602",
+    "H001077",
+    "L000603",
+    "O000175"
+  ],
   "id": "hr495-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-03-11",
@@ -9,7 +18,10 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/495",
   "sponsor_id": "C001132",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Government information and archives"
+  ],
   "title_official": "Subterranean Border Defense Act",
   "type": "hr"
 }

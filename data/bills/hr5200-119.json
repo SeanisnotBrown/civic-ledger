@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001257",
+    "B001300"
+  ],
   "id": "hr5200-119",
   "latest_action": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 375.",
   "latest_action_date": "2026-04-21",
@@ -15,7 +18,17 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5200",
   "sponsor_id": "M001163",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Electric power generation and transmission",
+    "Emergency communications systems",
+    "Emergency medical services and trauma care",
+    "Emergency planning and evacuation",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Natural disasters",
+    "Telephone and wireless communication"
+  ],
   "title_official": "Emergency Reporting Act",
   "type": "hr"
 }

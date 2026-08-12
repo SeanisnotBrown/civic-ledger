@@ -12,7 +12,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S001177"
+  ],
   "id": "hr359-118",
   "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 646.",
   "latest_action_date": "2024-11-21",
@@ -20,7 +22,14 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/359",
   "sponsor_id": "G000582",
-  "subjects": null,
+  "subjects": [
+    "Caribbean area",
+    "Historic sites and heritage areas",
+    "Military history",
+    "Parks, recreation areas, trails",
+    "Puerto Rico",
+    "U.S. territories and protectorates"
+  ],
   "title_official": "Fort San Gerónimo Preservation Act",
   "type": "hr"
 }

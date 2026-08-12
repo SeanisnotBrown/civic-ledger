@@ -1,7 +1,16 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000382",
+    "C000127",
+    "G000555",
+    "K000384",
+    "L000570",
+    "M001111",
+    "S000033",
+    "S000148"
+  ],
   "id": "sjres196-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 45 - 52. Record Vote Number: 190. (CR S3193)",
   "latest_action_date": "2026-06-24",
@@ -9,7 +18,15 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/196",
   "sponsor_id": "M001176",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Department of Education",
+    "Government lending and loan guarantees",
+    "Higher education",
+    "Legislative rules and procedure",
+    "Senate",
+    "Student aid and college costs"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Education relating to \"Reimagining and Improving Student Education-Federal Student Loan Program Final Regulations\".",
   "type": "sjres"
 }

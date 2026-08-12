@@ -7,7 +7,9 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "W000822"
+  ],
   "id": "hr1547-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-12-06",
@@ -15,7 +17,13 @@
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1547",
   "sponsor_id": "K000398",
-  "subjects": null,
+  "subjects": [
+    "Commuting",
+    "Congressional oversight",
+    "Government studies and investigations",
+    "New Jersey",
+    "Railroads"
+  ],
   "title_official": "One Seat Ride Act",
   "type": "hr"
 }

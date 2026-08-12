@@ -7,7 +7,31 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001326",
+    "B001327",
+    "C001119",
+    "C001125",
+    "D000096",
+    "F000466",
+    "F000483",
+    "G000583",
+    "G000604",
+    "K000398",
+    "L000599",
+    "M001225",
+    "N000191",
+    "O000176",
+    "P000597",
+    "P000614",
+    "S001201",
+    "S001225",
+    "S001230",
+    "T000481",
+    "T000487",
+    "T000488",
+    "V000129"
+  ],
   "id": "hr5334-119",
   "latest_action": "Message on Senate action sent to the House.",
   "latest_action_date": "2026-08-10",
@@ -15,7 +39,11 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5334",
   "sponsor_id": "P000613",
-  "subjects": null,
+  "subjects": [
+    "Income tax deductions",
+    "Preschool education",
+    "Teaching, teachers, curricula"
+  ],
   "title_official": "Lindsey O. Graham Sanctioning Russia and Iran Act of 2026",
   "type": "hr"
 }

@@ -7,7 +7,14 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001309",
+    "D000634",
+    "H001077",
+    "L000596",
+    "S001196",
+    "W000795"
+  ],
   "id": "hr5140-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2025-09-17",
@@ -15,7 +22,12 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5140",
   "sponsor_id": "G000603",
-  "subjects": null,
+  "subjects": [
+    "Criminal investigation, prosecution, interrogation",
+    "District of Columbia",
+    "Juvenile crime and gang violence",
+    "Violent crime"
+  ],
   "title_official": "To lower the age at which a minor may be tried as an adult for certain criminal offenses in the District of Columbia to 14 years of age.",
   "type": "hr"
 }

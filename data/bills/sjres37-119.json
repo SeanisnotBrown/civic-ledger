@@ -1,7 +1,17 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001088",
+    "K000367",
+    "K000383",
+    "K000394",
+    "P000603",
+    "V000128",
+    "W000800",
+    "W000802",
+    "W000805"
+  ],
   "id": "sjres37-119",
   "latest_action": "Held at the desk.",
   "latest_action_date": "2025-04-03",
@@ -9,7 +19,14 @@
   "policy_area": "Foreign Trade and International Finance",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/37",
   "sponsor_id": "K000384",
-  "subjects": null,
+  "subjects": [
+    "Canada",
+    "Energy storage, supplies, demand",
+    "North America",
+    "Presidents and presidential powers, Vice Presidents",
+    "Tariffs",
+    "War and emergency powers"
+  ],
   "title_official": "A joint resolution terminating the national emergency declared to impose duties on articles imported from Canada.",
   "type": "sjres"
 }

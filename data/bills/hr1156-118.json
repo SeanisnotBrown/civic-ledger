@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000590",
+    "L000599",
+    "R000579",
+    "W000816"
+  ],
   "id": "hr1156-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
   "latest_action_date": "2023-05-30",
@@ -15,7 +20,14 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1156",
   "sponsor_id": "S001209",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Congressional oversight",
+    "Financial crises and stabilization",
+    "Government information and archives",
+    "Government studies and investigations"
+  ],
   "title_official": "China Financial Threat Mitigation Act of 2023",
   "type": "hr"
 }

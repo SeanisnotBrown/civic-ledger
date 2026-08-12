@@ -1,7 +1,16 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001087",
+    "G000546",
+    "H001100",
+    "L000578",
+    "O000086",
+    "R000603",
+    "S001212",
+    "T000490"
+  ],
   "id": "hr3898-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2025-12-15",
@@ -9,7 +18,14 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3898",
   "sponsor_id": "C001129",
-  "subjects": null,
+  "subjects": [
+    "Farmland",
+    "Marine pollution",
+    "Navigation, waterways, harbors",
+    "Seashores and lakeshores",
+    "Solid waste and recycling",
+    "Water quality"
+  ],
   "title_official": "PERMIT Act",
   "type": "hr"
 }

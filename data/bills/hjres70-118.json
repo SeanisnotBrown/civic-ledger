@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "G000578",
+    "G000596"
+  ],
   "id": "hjres70-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-07-18",
@@ -9,7 +13,12 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/70",
   "sponsor_id": "G000565",
-  "subjects": null,
+  "subjects": [
+    "Libya",
+    "Middle East",
+    "Presidents and presidential powers, Vice Presidents",
+    "War and emergency powers"
+  ],
   "title_official": "Relating to a national emergency declared by the President on February 25, 2011.",
   "type": "hjres"
 }

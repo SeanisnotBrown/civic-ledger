@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "sjres86-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 43 - 50. Record Vote Number: 4.",
   "latest_action_date": "2026-01-07",
@@ -9,7 +9,14 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/86",
   "sponsor_id": "W000802",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Air quality",
+    "Environmental Protection Agency (EPA)",
+    "Parks, recreation areas, trails",
+    "South Dakota",
+    "Wilderness and natural areas, wildlife refuges, wild rivers, habitats"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Air Plan Approval; South Dakota; Regional Haze Plan for the Second Implementation Period\".",
   "type": "sjres"
 }

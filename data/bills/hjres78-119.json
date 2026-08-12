@@ -1,7 +1,16 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C000059",
+    "F000480",
+    "I000056",
+    "K000397",
+    "K000401",
+    "M001177",
+    "O000019",
+    "V000129"
+  ],
   "id": "hjres78-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2025-05-05",
@@ -9,7 +18,14 @@
   "policy_area": "Animals",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/78",
   "sponsor_id": "L000578",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "California",
+    "Congressional oversight",
+    "Department of the Interior",
+    "Endangered and threatened species",
+    "Fishes"
+  ],
   "title_official": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the United States Fish and Wildlife Service relating to \"Endangered and Threatened Wildlife and Plants; Endangered Species Status for the San Francisco Bay-Delta Distinct Population Segment of the Longfin Smelt\".",
   "type": "hjres"
 }

@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000559",
+    "P000613",
+    "V000129"
+  ],
   "id": "hr776-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
   "latest_action_date": "2025-02-05",
@@ -9,7 +13,14 @@
   "policy_area": "Animals",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/776",
   "sponsor_id": "H001090",
-  "subjects": null,
+  "subjects": [
+    "Farmland",
+    "Land use and conservation",
+    "Mammals",
+    "Pest management",
+    "State and local government operations",
+    "Wetlands"
+  ],
   "title_official": "Nutria Eradication and Control Reauthorization Act of 2025",
   "type": "hr"
 }

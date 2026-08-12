@@ -7,7 +7,29 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001257",
+    "C001059",
+    "C001126",
+    "C001133",
+    "D000096",
+    "D000617",
+    "E000298",
+    "F000466",
+    "K000376",
+    "L000585",
+    "L000595",
+    "M001210",
+    "M001224",
+    "P000613",
+    "S001172",
+    "S001199",
+    "S001201",
+    "T000460",
+    "T000478",
+    "V000134",
+    "Y000067"
+  ],
   "id": "hr227-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2026-04-28",
@@ -15,7 +37,13 @@
   "policy_area": "Social Welfare",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
   "sponsor_id": "F000480",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Income tax exclusion",
+    "Religion",
+    "Social security and elderly assistance",
+    "Tax administration and collection, taxpayers"
+  ],
   "title_official": "Clergy Act",
   "type": "hr"
 }

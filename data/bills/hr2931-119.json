@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000598"
+  ],
   "id": "hr2931-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Small Business and Entrepreneurship.",
   "latest_action_date": "2025-06-09",
@@ -9,7 +11,14 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2931",
   "sponsor_id": "F000475",
-  "subjects": null,
+  "subjects": [
+    "Administrative remedies",
+    "Border security and unlawful immigration",
+    "Immigration status and procedures",
+    "Intergovernmental relations",
+    "Small Business Administration",
+    "State and local government operations"
+  ],
   "title_official": "Save SBA from Sanctuary Cities Act of 2025",
   "type": "hr"
 }

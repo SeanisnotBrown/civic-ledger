@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hres1399-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2026-06-30",
@@ -9,7 +9,14 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1399",
   "sponsor_id": "M001184",
-  "subjects": null,
+  "subjects": [
+    "Assault and harassment offenses",
+    "Congressional committees",
+    "Government ethics and transparency, public corruption",
+    "House Committee on Ethics",
+    "Members of Congress",
+    "Sex offenses"
+  ],
   "title_official": "Directing the Committee on Ethics to preserve and publicly release records relating to .monetary settlements involving acts of sexual harassment.",
   "type": "hres"
 }

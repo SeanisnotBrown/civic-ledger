@@ -7,7 +7,12 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001287",
+    "C001059",
+    "C001091",
+    "P000616"
+  ],
   "id": "hr5375-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2024-02-26",
@@ -15,7 +20,23 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5375",
   "sponsor_id": "M001137",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "Asia",
+    "Australia",
+    "Climate change and greenhouse gases",
+    "Congressional oversight",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Energy research",
+    "India",
+    "Infrastructure development",
+    "Intelligence activities, surveillance, classified information",
+    "International organizations and cooperation",
+    "Japan",
+    "Oceania",
+    "Strategic materials and reserves",
+    "World health"
+  ],
   "title_official": "Strengthening the Quad Act",
   "type": "hr"
 }

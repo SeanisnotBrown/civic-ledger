@@ -7,7 +7,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "s3385-119",
   "latest_action": "Cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 51 - 48. Record Vote Number: 644. (CR S8654-8655)",
   "latest_action_date": "2025-12-11",
@@ -15,7 +15,13 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3385",
   "sponsor_id": "S000148",
-  "subjects": null,
+  "subjects": [
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Income tax credits",
+    "Inflation and prices",
+    "Tax administration and collection, taxpayers"
+  ],
   "title_official": "Lower Health Care Costs Act",
   "type": "s"
 }

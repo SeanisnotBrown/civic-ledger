@@ -1,7 +1,7 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr2987-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Small Business and Entrepreneurship.",
   "latest_action_date": "2025-06-09",
@@ -9,7 +9,11 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2987",
   "sponsor_id": "B001327",
-  "subjects": null,
+  "subjects": [
+    "Government lending and loan guarantees",
+    "Licensing and registrations",
+    "Small business"
+  ],
   "title_official": "CEASE Act of 2025",
   "type": "hr"
 }

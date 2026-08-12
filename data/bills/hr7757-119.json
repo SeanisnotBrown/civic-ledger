@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "P000034"
+  ],
   "id": "hr7757-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2026-07-13",
@@ -9,7 +11,36 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7757",
   "sponsor_id": "G000558",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advanced technology and technological innovations",
+    "Advisory bodies",
+    "Assault and harassment offenses",
+    "Child safety and welfare",
+    "Civil actions and liability",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Consumer affairs",
+    "Data collection, sharing, protection",
+    "Digital media",
+    "Drug trafficking and controlled substances",
+    "Drug, alcohol, tobacco use",
+    "Educational guidance",
+    "Federal Trade Commission (FTC)",
+    "Federal preemption",
+    "Fraud offenses and financial crimes",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Intergovernmental relations",
+    "Internet, web applications, social media",
+    "Marketing and advertising",
+    "Mental health",
+    "Product safety and quality",
+    "Public-private cooperation",
+    "Right of privacy",
+    "State and local government operations"
+  ],
   "title_official": "KIDS Act",
   "type": "hr"
 }

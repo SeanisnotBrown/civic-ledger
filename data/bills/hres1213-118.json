@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "H001093",
+    "T000478"
+  ],
   "id": "hres1213-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2024-05-17",
@@ -9,7 +12,11 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1213",
   "sponsor_id": "S001212",
-  "subjects": null,
+  "subjects": [
+    "Law enforcement officers",
+    "Mental health",
+    "Violent crime"
+  ],
   "title_official": "A resolution regarding violence against law enforcement officers.",
   "type": "hres"
 }

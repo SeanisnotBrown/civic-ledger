@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "F000477",
+    "V000138"
+  ],
   "id": "hr8897-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2026-07-14",
@@ -9,7 +12,11 @@
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8897",
   "sponsor_id": "M001230",
-  "subjects": null,
+  "subjects": [
+    "Aviation and airports",
+    "Child safety and welfare",
+    "Transportation safety and security"
+  ],
   "title_official": "Improving Travel for American Families Act",
   "type": "hr"
 }

@@ -7,7 +7,13 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000571",
+    "M001242",
+    "R000618",
+    "S001184",
+    "S001198"
+  ],
   "id": "s1582-119",
   "latest_action": "Became Public Law No: 119-27.",
   "latest_action_date": "2025-07-18",
@@ -15,7 +21,30 @@
   "policy_area": "Finance and Financial Sector",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1582",
   "sponsor_id": "H000601",
-  "subjects": null,
+  "subjects": [
+    "Accounting and auditing",
+    "Administrative law and regulatory procedures",
+    "Bank accounts, deposits, capital",
+    "Banking and financial institutions regulation",
+    "Bankruptcy",
+    "Business records",
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Currency",
+    "Department of the Treasury",
+    "Digital media",
+    "Financial crises and stabilization",
+    "Financial services and investments",
+    "Fraud offenses and financial crimes",
+    "Government studies and investigations",
+    "Interest, dividends, interest rates",
+    "International monetary system and foreign exchange",
+    "Judicial procedure and administration",
+    "Judicial review and appeals",
+    "Licensing and registrations",
+    "Securities",
+    "State and local government operations"
+  ],
   "title_official": "GENIUS Act",
   "type": "s"
 }

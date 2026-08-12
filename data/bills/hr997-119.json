@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000096"
+  ],
   "id": "hr997-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2025-04-01",
@@ -15,7 +17,11 @@
   "policy_area": "Taxation",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/997",
   "sponsor_id": "F000446",
-  "subjects": null,
+  "subjects": [
+    "Federal officials",
+    "Lawyers and legal services",
+    "Tax administration and collection, taxpayers"
+  ],
   "title_official": "National Taxpayer Advocate Enhancement Act of 2025",
   "type": "hr"
 }

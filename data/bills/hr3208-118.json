@@ -7,7 +7,14 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001303",
+    "C001067",
+    "C001068",
+    "C001101",
+    "P000604",
+    "T000193"
+  ],
   "id": "hr3208-118",
   "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 710.",
   "latest_action_date": "2024-12-17",
@@ -15,7 +22,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3208",
   "sponsor_id": "J000032",
-  "subjects": null,
+  "subjects": [
+    "Computer security and identity theft",
+    "Congressional oversight",
+    "Employment and training programs",
+    "Government employee pay, benefits, personnel management"
+  ],
   "title_official": "DHS Cybersecurity On-the-Job Training Program Act",
   "type": "hr"
 }

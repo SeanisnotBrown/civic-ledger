@@ -7,7 +7,16 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001118",
+    "D000032",
+    "F000246",
+    "L000564",
+    "N000026",
+    "P000599",
+    "W000814",
+    "W000828"
+  ],
   "id": "hr1398-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-09-16",
@@ -15,7 +24,21 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1398",
   "sponsor_id": "G000589",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "Asia",
+    "China",
+    "Computer security and identity theft",
+    "Congressional oversight",
+    "Criminal investigation, prosecution, interrogation",
+    "Department of Justice",
+    "Executive agency funding and structure",
+    "Higher education",
+    "Intellectual property",
+    "Intelligence activities, surveillance, classified information",
+    "Trade secrets and economic espionage",
+    "U.S. and foreign investments"
+  ],
   "title_official": "Protect America’s Innovation and Economic Security from CCP Act of 2024",
   "type": "hr"
 }

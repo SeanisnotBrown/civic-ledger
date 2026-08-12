@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001078",
+    "C001108",
+    "K000389",
+    "M000194",
+    "M000687"
+  ],
   "id": "hr159-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-01-25",
@@ -9,7 +15,19 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/159",
   "sponsor_id": "F000450",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Census and government statistics",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Employee hiring",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Internet, web applications, social media",
+    "Office of Personnel Management (OPM)",
+    "Performance measurement"
+  ],
   "title_official": "Chance to Compete Act of 2023",
   "type": "hr"
 }

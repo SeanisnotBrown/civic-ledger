@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000397",
+    "T000478"
+  ],
   "id": "hr1326-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2025-03-25",
@@ -9,7 +12,23 @@
   "policy_area": "Agriculture and Food",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1326",
   "sponsor_id": "L000491",
-  "subjects": null,
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Agricultural practices and innovations",
+    "Agricultural research",
+    "Alternative and renewable resources",
+    "Climate change and greenhouse gases",
+    "Department of Agriculture",
+    "Department of Energy",
+    "Energy research",
+    "Energy storage, supplies, demand",
+    "Fires",
+    "Forests, forestry, trees",
+    "Pest management",
+    "Research administration and funding",
+    "Research and development",
+    "Water use and supply"
+  ],
   "title_official": "DOE and USDA Interagency Research Act",
   "type": "hr"
 }

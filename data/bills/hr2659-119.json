@@ -7,7 +7,12 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000590",
+    "G000597",
+    "L000597",
+    "M001194"
+  ],
   "id": "hr2659-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-11-18",
@@ -15,7 +20,14 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2659",
   "sponsor_id": "O000175",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Computer security and identity theft",
+    "Congressional oversight",
+    "Federal officials",
+    "Government information and archives"
+  ],
   "title_official": "Strengthening Cyber Resilience Against State-Sponsored Threats Act",
   "type": "hr"
 }

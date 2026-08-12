@@ -7,7 +7,9 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "T000480"
+  ],
   "id": "hr8312-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2026-06-11",
@@ -15,7 +17,19 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8312",
   "sponsor_id": "S000250",
-  "subjects": null,
+  "subjects": [
+    "Accounting and auditing",
+    "Advisory bodies",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Data collection, sharing, protection",
+    "Department of the Treasury",
+    "Executive agency funding and structure",
+    "Federal officials",
+    "Fraud offenses and financial crimes",
+    "Intergovernmental relations",
+    "Internet, web applications, social media"
+  ],
   "title_official": "Fraud Prevention and Accountability Act",
   "type": "hr"
 }

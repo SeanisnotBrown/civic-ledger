@@ -1,7 +1,20 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001317",
+    "G000576",
+    "G000601",
+    "G000603",
+    "H001096",
+    "H001099",
+    "H001100",
+    "L000578",
+    "M001218",
+    "M001219",
+    "O000175",
+    "S001228"
+  ],
   "id": "hr77-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-02-13",
@@ -9,7 +22,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/77",
   "sponsor_id": "B001302",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Legislative rules and procedure",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
   "title_official": "Midnight Rules Relief Act",
   "type": "hr"
 }

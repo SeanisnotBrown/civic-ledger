@@ -7,7 +7,20 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001257",
+    "C001072",
+    "F000466",
+    "G000590",
+    "H001072",
+    "K000375",
+    "M001135",
+    "M001157",
+    "M001210",
+    "R000600",
+    "R000610",
+    "Z000018"
+  ],
   "id": "hr1154-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
   "latest_action_date": "2023-03-28",
@@ -15,7 +28,14 @@
   "policy_area": "International Affairs",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1154",
   "sponsor_id": "S000522",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Human trafficking",
+    "Organ and tissue donation and transplantation",
+    "Sanctions",
+    "Smuggling and trafficking",
+    "Visas and passports"
+  ],
   "title_official": "Stop Forced Organ Harvesting Act of 2023",
   "type": "hr"
 }

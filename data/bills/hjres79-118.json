@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000565"
+  ],
   "id": "hjres79-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-07-18",
@@ -9,7 +11,12 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/79",
   "sponsor_id": "G000578",
-  "subjects": null,
+  "subjects": [
+    "Middle East",
+    "Presidents and presidential powers, Vice Presidents",
+    "Syria",
+    "War and emergency powers"
+  ],
   "title_official": "Relating to a national emergency declared by the President on May 11, 2004.",
   "type": "hjres"
 }

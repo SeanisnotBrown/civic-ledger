@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001323",
+    "G000605"
+  ],
   "id": "hr5587-119",
   "latest_action": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
   "latest_action_date": "2026-07-15",
@@ -9,7 +12,13 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5587",
   "sponsor_id": "K000397",
-  "subjects": null,
+  "subjects": [
+    "Alternative and renewable resources",
+    "Energy revenues and royalties",
+    "Indian lands and resources rights",
+    "Licensing and registrations",
+    "Mining"
+  ],
   "title_official": "HEATS Act",
   "type": "hr"
 }

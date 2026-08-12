@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001126"
+  ],
   "id": "hr302-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
   "latest_action_date": "2023-02-07",
@@ -9,7 +11,17 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/302",
   "sponsor_id": "R000305",
-  "subjects": null,
+  "subjects": [
+    "Computer security and identity theft",
+    "Congressional oversight",
+    "Education programs funding",
+    "Employment and training programs",
+    "Energy research",
+    "Higher education",
+    "Minority education",
+    "Science and engineering education",
+    "Student aid and college costs"
+  ],
   "title_official": "Energy Cybersecurity University Leadership Act of 2023",
   "type": "hr"
 }

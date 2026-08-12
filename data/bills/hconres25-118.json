@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "L000601",
+    "M001222",
+    "S001190"
+  ],
   "id": "hconres25-118",
   "latest_action": "Message on Senate action sent to the House.",
   "latest_action_date": "2023-03-30",
@@ -9,7 +13,15 @@
   "policy_area": "Congress",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-concurrent-resolution/25",
   "sponsor_id": "K000392",
-  "subjects": null,
+  "subjects": [
+    "Commemorative events and holidays",
+    "Crime victims",
+    "Europe",
+    "Germany",
+    "Religion",
+    "U.S. Capitol",
+    "War crimes, genocide, crimes against humanity"
+  ],
   "title_official": "Authorizing the use of Emancipation Hall in the Capitol Visitor Center for a ceremony as part of the commemoration of the days of remembrance of victims of the Holocaust.",
   "type": "hconres"
 }

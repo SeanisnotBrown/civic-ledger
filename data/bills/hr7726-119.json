@@ -7,7 +7,7 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [],
   "id": "hr7726-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2026-06-04",
@@ -15,7 +15,11 @@
   "policy_area": "Families",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7726",
   "sponsor_id": "M001211",
-  "subjects": null,
+  "subjects": [
+    "Child care and development",
+    "Fraud offenses and financial crimes",
+    "State and local government operations"
+  ],
   "title_official": "Stop Child Care Scams Act of 2026",
   "type": "hr"
 }

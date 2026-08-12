@@ -1,7 +1,15 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001075",
+    "F000479",
+    "K000393",
+    "M001153",
+    "M001243",
+    "S001198",
+    "S001232"
+  ],
   "id": "s1020-119",
   "latest_action": "Became Public Law No: 119-90.",
   "latest_action_date": "2026-05-11",
@@ -9,7 +17,13 @@
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1020",
   "sponsor_id": "D000618",
-  "subjects": null,
+  "subjects": [
+    "Alternative and renewable resources",
+    "Dams and canals",
+    "Electric power generation and transmission",
+    "Infrastructure development",
+    "Licensing and registrations"
+  ],
   "title_official": "A bill to require the Federal Energy Regulatory Commission to extend the time period during which licensees are required to commence construction of certain hydropower projects.",
   "type": "s"
 }

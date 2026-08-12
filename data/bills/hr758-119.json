@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001108",
+    "N000147",
+    "T000481"
+  ],
   "id": "hr758-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2025-03-04",
@@ -9,7 +13,17 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/758",
   "sponsor_id": "C001078",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Motor carriers",
+    "Motor vehicles",
+    "Postal service",
+    "Public contracts and procurement",
+    "Transportation safety and security",
+    "U.S. Postal Service"
+  ],
   "title_official": "Mail Traffic Deaths Reporting Act of 2025",
   "type": "hr"
 }

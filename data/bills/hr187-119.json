@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000624",
+    "F000469",
+    "P000613"
+  ],
   "id": "hr187-119",
   "latest_action": "Became Public Law No: 119-62.",
   "latest_action_date": "2025-12-26",
@@ -9,7 +13,19 @@
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/187",
   "sponsor_id": "M001213",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Data collection, sharing, protection",
+    "Geography and mapping",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Hunting and fishing",
+    "Land use and conservation",
+    "Marine and coastal resources, fisheries",
+    "Marine and inland water transportation",
+    "Navigation, waterways, harbors",
+    "Outdoor recreation"
+  ],
   "title_official": "MAPWaters Act of 2025",
   "type": "hr"
 }

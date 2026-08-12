@@ -1,7 +1,18 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001091",
+    "D000617",
+    "K000009",
+    "K000400",
+    "L000560",
+    "N000015",
+    "P000613",
+    "S000344",
+    "S001211",
+    "U000040"
+  ],
   "id": "hjres72-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Finance.",
   "latest_action_date": "2026-02-12",
@@ -9,7 +20,11 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/72",
   "sponsor_id": "M001137",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Presidents and presidential powers, Vice Presidents",
+    "War and emergency powers"
+  ],
   "title_official": "Relating to a national emergency by the President on February 1, 2025.",
   "type": "hjres"
 }

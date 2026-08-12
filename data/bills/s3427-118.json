@@ -1,7 +1,11 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001088",
+    "G000386",
+    "K000367"
+  ],
   "id": "s3427-118",
   "latest_action": "Became Public Law No: 118-38.",
   "latest_action_date": "2024-02-06",
@@ -9,7 +13,12 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3427",
   "sponsor_id": "G000359",
-  "subjects": null,
+  "subjects": [
+    "Congressional oversight",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Protection of officials"
+  ],
   "title_official": "Overtime Pay for Protective Services Act of 2023",
   "type": "s"
 }

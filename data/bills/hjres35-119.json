@@ -7,7 +7,27 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "A000372",
+    "A000375",
+    "B001306",
+    "C001103",
+    "C001120",
+    "C001126",
+    "E000300",
+    "F000482",
+    "G000568",
+    "G000576",
+    "G000601",
+    "J000302",
+    "L000566",
+    "L000600",
+    "M001215",
+    "P000609",
+    "R000619",
+    "S001228",
+    "W000814"
+  ],
   "id": "hjres35-119",
   "latest_action": "Became Public Law No: 119-2.",
   "latest_action_date": "2025-03-14",
@@ -15,7 +35,14 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/35",
   "sponsor_id": "P000048",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Air quality",
+    "Climate change and greenhouse gases",
+    "Congressional oversight",
+    "Environmental Protection Agency (EPA)",
+    "Oil and gas"
+  ],
   "title_official": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Waste Emissions Charge for Petroleum and Natural Gas Systems: Procedures for Facilitating Compliance, Including Netting and Exemptions\".",
   "type": "hjres"
 }

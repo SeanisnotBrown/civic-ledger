@@ -1,7 +1,10 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "H000273",
+    "W000802"
+  ],
   "id": "sjres139-119",
   "latest_action": "Motion to proceed to consideration of measure rejected in Senate by Yea-Nay Vote. 46 - 52. Record Vote Number: 110. (CR S2106)",
   "latest_action_date": "2026-04-29",
@@ -9,7 +12,13 @@
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/139",
   "sponsor_id": "B001267",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Air quality",
+    "Climate change and greenhouse gases",
+    "Congressional oversight",
+    "Environmental Protection Agency (EPA)"
+  ],
   "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Air Plan Disapproval; Colorado; Regional Haze Plan for the Second Implementation Period\".",
   "type": "sjres"
 }

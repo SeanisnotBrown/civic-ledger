@@ -12,7 +12,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "C001119",
+    "V000138"
+  ],
   "id": "hr1681-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2026-04-21",
@@ -20,7 +23,15 @@
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1681",
   "sponsor_id": "E000300",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "Congressional oversight",
+    "Government buildings, facilities, and property",
+    "Infrastructure development",
+    "Intergovernmental relations",
+    "Internet, web applications, social media",
+    "Land use and conservation"
+  ],
   "title_official": "Expediting Federal Broadband Deployment Reviews Act",
   "type": "hr"
 }

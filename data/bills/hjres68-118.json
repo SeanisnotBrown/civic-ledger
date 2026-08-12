@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "G000565"
+  ],
   "id": "hjres68-118",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2023-07-18",
@@ -9,7 +11,12 @@
   "policy_area": "Emergency Management",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/68",
   "sponsor_id": "B000825",
-  "subjects": null,
+  "subjects": [
+    "Africa",
+    "Democratic Republic of the Congo",
+    "Presidents and presidential powers, Vice Presidents",
+    "War and emergency powers"
+  ],
   "title_official": "Relating to a national emergency declared by the President on October 27, 2006.",
   "type": "hjres"
 }

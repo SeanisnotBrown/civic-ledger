@@ -1,7 +1,9 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "S001214"
+  ],
   "id": "hjres142-119",
   "latest_action": "Became Public Law No: 119-78.",
   "latest_action_date": "2026-02-18",
@@ -9,7 +11,14 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/142",
   "sponsor_id": "G000603",
-  "subjects": null,
+  "subjects": [
+    "District of Columbia",
+    "Income tax deductions",
+    "State and local finance",
+    "State and local government operations",
+    "Tax administration and collection, taxpayers",
+    "Wages and earnings"
+  ],
   "title_official": "Disapproving the action of the District of Columbia Council in approving the D.C. Income and Franchise Tax Conformity and Revision Temporary Amendment Act of 2025.",
   "type": "hjres"
 }

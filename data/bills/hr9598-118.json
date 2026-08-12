@@ -1,7 +1,13 @@
 {
   "cbo_estimates": [],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "D000633",
+    "G000582",
+    "N000002",
+    "P000610",
+    "R000606"
+  ],
   "id": "hr9598-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-12-09",
@@ -9,7 +15,23 @@
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9598",
   "sponsor_id": "C001108",
-  "subjects": null,
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Caribbean area",
+    "Congressional oversight",
+    "Customs enforcement",
+    "Drug trafficking and controlled substances",
+    "Drug, alcohol, tobacco use",
+    "Executive Office of the President",
+    "Executive agency funding and structure",
+    "Law enforcement administration and funding",
+    "Lawyers and legal services",
+    "Mental health",
+    "Organized crime",
+    "Puerto Rico",
+    "Smuggling and trafficking",
+    "Virgin Islands"
+  ],
   "title_official": "Office of National Drug Control Policy Reauthorization Act of 2024",
   "type": "hr"
 }

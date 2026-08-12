@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001282",
+    "K000401"
+  ],
   "id": "hr1069-119",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
   "latest_action_date": "2025-12-04",
@@ -15,7 +18,14 @@
   "policy_area": "Education",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1069",
   "sponsor_id": "H001082",
-  "subjects": null,
+  "subjects": [
+    "Asia",
+    "China",
+    "Cultural exchanges and relations",
+    "Education programs funding",
+    "Elementary and secondary education",
+    "Foreign language and bilingual programs"
+  ],
   "title_official": "PROTECT Our Kids Act",
   "type": "hr"
 }

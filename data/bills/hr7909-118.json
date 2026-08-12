@@ -7,7 +7,14 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B000825",
+    "B001302",
+    "H001052",
+    "L000597",
+    "N000026",
+    "P000605"
+  ],
   "id": "hr7909-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
   "latest_action_date": "2024-09-19",
@@ -15,7 +22,14 @@
   "policy_area": "Immigration",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7909",
   "sponsor_id": "M000194",
-  "subjects": null,
+  "subjects": [
+    "Assault and harassment offenses",
+    "Child safety and welfare",
+    "Crimes against children",
+    "Domestic violence and child abuse",
+    "Immigration status and procedures",
+    "Sex offenses"
+  ],
   "title_official": "Violence Against Women by Illegal Aliens Act",
   "type": "hr"
 }

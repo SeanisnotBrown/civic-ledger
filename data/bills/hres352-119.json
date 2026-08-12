@@ -1,7 +1,19 @@
 {
   "cbo_estimates": [],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001298",
+    "C001125",
+    "F000450",
+    "F000462",
+    "F000466",
+    "G000583",
+    "L000599",
+    "M001188",
+    "M001215",
+    "S001190",
+    "T000478"
+  ],
   "id": "hres352-119",
   "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
   "latest_action_date": "2025-05-14",
@@ -9,7 +21,10 @@
   "policy_area": "Civil Rights and Liberties, Minority Issues",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/352",
   "sponsor_id": "W000797",
-  "subjects": null,
+  "subjects": [
+    "Community life and organization",
+    "Religion"
+  ],
   "title_official": "Calling on elected officials and civil society leaders to counter antisemitism and educate the public on the contributions of the Jewish American community.",
   "type": "hres"
 }

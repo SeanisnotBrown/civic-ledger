@@ -7,7 +7,11 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001285",
+    "G000600",
+    "P000619"
+  ],
   "id": "hr2964-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
   "latest_action_date": "2024-06-12",
@@ -15,7 +19,24 @@
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2964",
   "sponsor_id": "M001136",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Civil actions and liability",
+    "Consumer affairs",
+    "Cosmetics and personal care",
+    "Environmental Protection Agency (EPA)",
+    "Environmental education",
+    "Environmental regulatory procedures",
+    "Federal Trade Commission (FTC)",
+    "Government information and archives",
+    "Hazardous wastes and toxic substances",
+    "Manufacturing",
+    "Marketing and advertising",
+    "Pest management",
+    "Retail and wholesale trades",
+    "Solid waste and recycling",
+    "Water quality"
+  ],
   "title_official": "WIPPES Act",
   "type": "hr"
 }

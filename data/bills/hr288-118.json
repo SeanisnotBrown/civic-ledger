@@ -7,7 +7,21 @@
     }
   ],
   "congress": 118,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "B001248",
+    "B001297",
+    "B001311",
+    "B001317",
+    "C001118",
+    "D000615",
+    "F000478",
+    "H001096",
+    "J000299",
+    "J000304",
+    "M001177",
+    "M001211",
+    "T000165"
+  ],
   "id": "hr288-118",
   "latest_action": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
   "latest_action_date": "2023-06-20",
@@ -15,7 +29,11 @@
   "policy_area": "Government Operations and Politics",
   "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/288",
   "sponsor_id": "F000471",
-  "subjects": null,
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Constitution and constitutional amendments",
+    "Judicial review and appeals"
+  ],
   "title_official": "Separation of Powers Restoration Act of 2023",
   "type": "hr"
 }

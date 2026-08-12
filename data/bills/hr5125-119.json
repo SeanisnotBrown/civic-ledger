@@ -7,7 +7,10 @@
     }
   ],
   "congress": 119,
-  "cosponsor_ids": null,
+  "cosponsor_ids": [
+    "H001077",
+    "W000795"
+  ],
   "id": "hr5125-119",
   "latest_action": "Received in the Senate.",
   "latest_action_date": "2025-09-18",
@@ -15,7 +18,13 @@
   "policy_area": "Law",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5125",
   "sponsor_id": "S000250",
-  "subjects": null,
+  "subjects": [
+    "Advisory bodies",
+    "District of Columbia",
+    "Judges",
+    "Presidents and presidential powers, Vice Presidents",
+    "State and local courts"
+  ],
   "title_official": "District of Columbia Judicial Nominations Reform Act of 2025",
   "type": "hr"
 }

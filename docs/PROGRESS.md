@@ -3,19 +3,30 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-11 session (Statement ledger + curation + pairing).
-**Git:** INC-1..INC-10 closed & pushed; **INC-11 committed this session** (not yet
-pushed — confirm CI green after push). **H4 + H5 DONE:** the site is
-**live at `civicledger.net`** via **Cloudflare Workers** (Static Assets, deployed by
-**Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub CI; Cloudflare's GitHub
-App builds on the `push` webhook). Planned `.org` was taken → `.net`. Only remaining
-INC-9 acceptance box: observe one untouched nightly commit + deploy on the next real
-data-change night (bot pushes DO trigger Workers Builds — the App webhook isn't subject
-to Actions' `GITHUB_TOKEN` self-trigger suppression; confirm the first `data: nightly …`
-build's author reads `github-actions[bot]`).
+**Last updated:** 2026-08-12, end of **post-review hardening** session (grading reframe
++ R-3 + R-2 remediations). See "Post-review hardening" below.
+**Git:** INC-1..INC-11 closed & pushed. This session pushed **three** commits to `master`,
+all CI-green: `3847950` (grading reframe), `fd9a108` (R-3 retention scaffolding), `f0c0f70`
+(R-2 membership-churn). **`origin/master` == local, HEAD `f0c0f70`.** **CI green on `f0c0f70`**
+(run 31636705680): **200 py tests**, ruff, verify-recompute, Astro build (4,540 pages),
+Playwright e2e, Lighthouse — every step pass.
+**H4 + H5 DONE:** the site is **live at `civicledger.net`** via **Cloudflare Workers**
+(Static Assets, deployed by **Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub
+CI). Planned `.org` was taken → `.net`. Only remaining INC-9 acceptance box: observe one
+untouched nightly commit + deploy on the next real data-change night (a real nightly was
+**not** triggered this session — this local env has no secrets, so only GitHub Actions /
+the owner's machine can run the live pipeline; confirm the first `data: nightly …` build's
+author reads `github-actions[bot]`).
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
+**Untracked, local-only (NOT committed):** `TECHNICAL_REVIEW.md`,
+`TECHNICAL_REVIEW_SUMMARY.md`, `civic-ledger-review-directive.md` — the code review +
+directive that drove this session. The remediation backlog (R-1..R-6) is summarized below
+so it survives even if these stay local. **Publishing them to the public repo is the
+owner's call — do not commit without asking.**
 
-> **PIPELINE ORDER (load-bearing, D24 + INC-7/8/10):** `ingest {house,senate}-votes`
+> **PIPELINE ORDER (load-bearing, D24 + INC-7/8/10 + R-2/D46):** `ingest members`
+> (roster refresh FIRST — R-2, so vote coverage + unknown-member alarms read a fresh
+> covered set) → `ingest {house,senate}-votes`
 > → `ingest bills` → `ingest legislation` → `ingest classify` → `corrections` →
 > `ingest metrics` → `uv run export` → `uv run checks`. An ingest re-export resets
 > every roll to the provisional `unclassified`, so **classify must run after any vote
@@ -24,6 +35,66 @@ build's author reads `github-actions[bot]`).
 > derived — a legislation-only change must still reach the gate, D40); **export must
 > run after any ingest** or manifest/schema drift fails. (`bills`/`legislation` are
 > independent of classify; export/checks come last.)
+
+---
+
+## Post-review hardening (this session, 2026-08-12)
+
+A code review (`TECHNICAL_REVIEW.md`, local/untracked) graded the INC-0..INC-11 build
+(no Blockers; dataset verifies green) and proposed remediations **R-1..R-6** plus two
+owner decisions. **Done this session:**
+
+- **Grading reframe** (owner decision — commit `3847950`, ADRs **D19/D20** in
+  IMPLEMENTATION.md): grading is transparent + **reader-adjustable** — weights live in
+  the reader's browser; the site **never publishes a score it chose**. "objective"
+  language removed where it implied the site grades. PAC "cost per vote" replaced with a
+  donation↔vote **adjacency timeline** (adjacency, not conclusion). Guard clarifications:
+  the §5 Tier-3 / INC-15 "no composite" ban is on the *build/publish* path only — the
+  reader's browser may compute a grade client-side (D19). Also edited
+  `civic-ledger-scope.md`. No code/data change.
+- **R-3 — historical-retention scaffolding** (commit `fd9a108`, ADR **D45**):
+  `data/metrics.json` now carries `schema_version` (manual formula-generation stamp) +
+  per-metric `digest` (newline-normalized `sha256(source)[:16]` — formula identity, so a
+  number states which formula produced it; CRLF/LF-normalized to hold D40 determinism
+  cross-platform). Git is the supported metric time-series: `ingest metrics history
+  <bioguide> [--metric <key>]` extracts the `(commit, generated_at, schema_version,
+  metrics)` series; recompute-at-a-past-commit documented in `data-contract.md`.
+  Materialized `data/metrics/history/` deferred until a trend UI needs it. Member metric
+  values byte-unchanged.
+- **R-2 — membership-churn resilience** (commit `f0c0f70`, ADR **D46**): nightly runs
+  `ingest members` **first**; House `parse_rollcall(covered=…)` raises `UnknownMember` on
+  an unrostered MS voter → quarantine → fail (parity with the Senate path); `metrics._load`
+  raises on an orphan position (backstop); `symmetry.coverage_gaps` +
+  `verify_recompute.check_dataset` now flag `got−expected` too; `legislation` sanity check
+  relaxed to congresses the member actually **served** (pure `_sponsored_gaps`). Also
+  fixed a latent `E501` in the R-3 `metrics history` help line. No data change.
+
+### Remaining review backlog — NOT done, pick up next session
+
+Sequencing per the review: **R-1 first (gates H8 content)**, then R-4/R-5/R-6
+opportunistically. None block INC-12.
+
+- **R-1 (M-1/M-2/M-3) — curation hardening, GATES H8:** (a) `/absences/approve` +
+  `/statements/capture` are CSRF-able (loopback-only Flask, but a forged cross-origin POST
+  can publish a queued reason / burn SPN captures) — add a token / strict-Origin guard;
+  (b) statement id `{member}-{date}-{sha8(source_url)}` collides — two different quotes
+  from one source+date silently overwrite (fix **before** any H8 content entry, else it's
+  a published-id migration); (c) statement loading is implemented 4× with drifting
+  semantics — the metric layer publishes from statements the site withholds; unify.
+- **R-4 (M-4/M-5) — truth guards:** `attendance.pct → None` when `eligible == 0`
+  (`AttendanceValue.pct: float | None`); constrain the absence edit path so an edited
+  reason must be a whitespace-normalized **substring** of the queue candidate's verbatim
+  text. Both regenerate metrics.json/schema byte-stably.
+- **R-5 (M-7) — nightly efficiency:** persist `data/raw/` across nightly runs with
+  `actions/cache`. Needs runtime verification on the next scheduled run.
+- **R-6 (L-1/L-2/L-3/L-7) — small fixes batch:** manifest `non_position` counting;
+  `corrections.build()` subject-prefix post-filter; delete dead `capture_and_save` +
+  `clerk_house.roll_xml`; **PROGRESS.md refresh** (this update covers part of it).
+
+**Owner escalations parked (do NOT build without explicit reprioritization):** the
+**grading engine itself** (§7 — the reader-weight UI that computes a grade over the D19
+line) and **PAC funding metrics** (INC-10b, needs H7). R-3/R-2 built the *scaffolding*
+for the former; the engine is a separate owner decision.
 
 ---
 
@@ -232,11 +303,12 @@ CREC "personal explanation" search (govinfo, resolved INC-1) + covered-member na
    to the **user** PATH (takes effect in new shells). If `uv` is not found:
    - PowerShell: it should be on PATH now; if not, prepend that Scripts dir.
    - Bash tool: `export PATH="$PATH:/c/Users/SB/AppData/Roaming/Python/Python314/Scripts"`.
-2. **Re-verify acceptance is still green before building INC-2:**
+2. **Re-verify the tree is still green before starting new work:**
    `uv run checks && uv run pytest && (cd site && npm run build)` (Bash tool —
-   PowerShell 5.1 rejects `&&`). Expect: **4 checks** pass (banned_words, no_llm,
-   symmetry, integrity), **47 tests** pass, 1 page built. Also run
-   `uv run ruff check .` (CI runs ruff separately from `checks`).
+   PowerShell 5.1 rejects `&&`). Expect (as of `f0c0f70`): **5 checks** pass
+   (banned_words, no_llm, symmetry, classification, integrity), **200 tests** pass,
+   ~4,540 pages built, `verify-recompute` green. Also run `uv run ruff check ingest tests`
+   (CI runs ruff separately from `checks`; keep lines ≤ 100 — an `E501` reddened CI once).
    (`uv run ingest house-votes` re-syncs `data/votes/` + `data/absences/` — cached,
    re-runnable, resumes on interruption; `ingest members` / `spike` likewise cached.)
    Note: the `integrity` check makes ~10 live clerk.house.gov fetches; a clerk
@@ -672,6 +744,9 @@ subcommand wired in `cli.py`. Test count 15 → 23.
 
 ## Notes / open items / ADR pointers
 
+- **Post-review ADRs:** grading reframe = **D19/D20** (IMPLEMENTATION.md §2); R-3 = **D45**,
+  R-2 = **D46** (both `docs/decisions.md`). Remaining backlog R-1/R-4/R-5/R-6 is tracked in
+  "Post-review hardening" above (source: local `TECHNICAL_REVIEW.md`). **R-1 gates H8.**
 - Version pins recorded in `docs/decisions.md` (Python + Node) at INC-0.
 - Dev environment: Windows 11 + PowerShell. `uv` at
   `%APPDATA%\Python\Python314\Scripts` on user PATH. Local Python 3.14 → project

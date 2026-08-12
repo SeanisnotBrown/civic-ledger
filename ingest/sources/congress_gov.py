@@ -84,6 +84,14 @@ def bill_detail(congress: int, bill_type: str, number: int) -> CachedResponse:
     return _get(f"bill/{congress}/{bill_type.lower()}/{number}")
 
 
+def bill_committees(congress: int, bill_type: str, number: int) -> CachedResponse:
+    """A bill/resolution's committees + per-committee activities. INC-5 R-RULE
+    reads this to tell a Rules-Committee-reported special rule (→ procedural) from
+    a substantive resolution (→ passage): the House Rules Committee is systemCode
+    `hsru00` with a "Reported ..." activity."""
+    return _get(f"bill/{congress}/{bill_type.lower()}/{number}/committees")
+
+
 # --- Congressional Record (index; full-text search is an INC-6 concern) ---
 def congressional_record(limit: int = 20, **params) -> CachedResponse:
     extra = {k: str(v) for k, v in params.items()}

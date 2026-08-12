@@ -1,0 +1,76 @@
+# INC-5 golden fixtures (§A1) — real 118th/119th question strings (verbatim, as
+# exported, Senate ones keep their trailing measure text) → expected (class, rule).
+# `rules_resolution: true` marks a House special rule (Rules-Committee-reported),
+# which flips the generic resolution rule to R-RULE/procedural; absent ⇒ false.
+# Tests ingest/classify.classify() purely and offline. Extend when §A1 grows.
+
+# --- passage --------------------------------------------------------------
+- {q: "On Passage", cls: passage, rule: R-PASS-1}
+- {q: "On Passage of the Bill H.R. 1", cls: passage, rule: R-PASS-1}
+- {q: "On Motion to Suspend the Rules and Pass", cls: passage, rule: R-PASS-2}
+- {q: "On Motion to Suspend the Rules and Pass, as Amended", cls: passage, rule: R-PASS-2}
+- {q: "On Motion to Suspend the Rules and Agree", cls: passage, rule: R-PASS-SUSP-AGREE}
+- {q: "On Motion to Suspend the Rules and Agree, as Amended", cls: passage, rule: R-PASS-SUSP-AGREE}
+- {q: "On Motion to Suspend the Rules and Concur in the Senate Amendment", cls: passage, rule: R-PASS-SUSP-CONCUR}
+- {q: "On Motion to Concur in the Senate Amendment", cls: passage, rule: R-PASS-3}
+- {q: "On Motion to Concur in the Senate Amendments", cls: passage, rule: R-PASS-3}
+- {q: "On Motion to Concur in the Senate Amendment with an Amendment", cls: passage, rule: R-PASS-3}
+- {q: "On the Joint Resolution H.J.Res. 30", cls: passage, rule: R-PASS-JRES}
+- {q: "On the Concurrent Resolution S.Con.Res. 7", cls: passage, rule: R-PASS-CONRES}
+- {q: "On the Resolution S.Res. 21", cls: passage, rule: R-RES-SENATE}
+
+# --- amendment ------------------------------------------------------------
+- {q: "On Agreeing to the Amendment", cls: amendment, rule: R-AMDT-1}
+- {q: "On Agreeing to the Amendment, as Modified", cls: amendment, rule: R-AMDT-1}
+- {q: "On the Amendment S.Amdt. 2360 to H.R. 1", cls: amendment, rule: R-AMDT-1}
+- {q: "On the Amendment", cls: amendment, rule: R-AMDT-1}
+
+# --- procedural -----------------------------------------------------------
+- {q: "On the Cloture Motion PN373", cls: procedural, rule: R-PROC-1}
+- {q: "On the Cloture Motion S. 5", cls: procedural, rule: R-PROC-1}
+- {q: "On Cloture on the Motion to Proceed H.R. 23", cls: procedural, rule: R-PROC-1}
+- {q: "On the Motion to Proceed S. 5", cls: procedural, rule: R-PROC-2}
+- {q: "On the Motion (Motion to Proceed to H.J. Res. 45)", cls: procedural, rule: R-PROC-2}
+- {q: "On Ordering the Previous Question", cls: procedural, rule: R-PROC-3}
+- {q: "On Motion to Recommit", cls: procedural, rule: R-PROC-4}
+- {q: "On Motion to Commit", cls: procedural, rule: R-PROC-4}
+- {q: "On the Motion (Wyden Motion to Commit)", cls: procedural, rule: R-PROC-4}
+- {q: "On Motion to Table", cls: procedural, rule: R-PROC-5}
+- {q: "On the Motion to Table", cls: procedural, rule: R-PROC-5}
+- {q: "On Motion to Table the Motion to Discharge Committee", cls: procedural, rule: R-PROC-5}
+- {q: "On the Journal", cls: procedural, rule: R-PROC-6}
+- {q: "Call of the House", cls: procedural, rule: R-PROC-6}
+- {q: "Call by States", cls: procedural, rule: R-PROC-6}
+- {q: "On Motion to Adjourn", cls: procedural, rule: R-PROC-7}
+- {q: "On Motion to Discharge", cls: procedural, rule: R-PROC-7}
+- {q: "On the Motion to Discharge", cls: procedural, rule: R-PROC-7}
+- {q: "On Motion to Refer", cls: procedural, rule: R-PROC-7}
+- {q: "On Motion to Reconsider", cls: procedural, rule: R-PROC-7}
+- {q: "On Motion to Instruct Conferees", cls: procedural, rule: R-PROC-7}
+- {q: "On the Point of Order", cls: procedural, rule: R-PROC-7}
+- {q: "On the Decision of the Chair", cls: procedural, rule: R-PROC-7}
+- {q: "On the Motion (Motion to Close the Doors)", cls: procedural, rule: R-PROC-7}
+- {q: "On the Motion (Motion to Recess for Ten Minutes)", cls: procedural, rule: R-PROC-7}
+- {q: "On the Motion (Motion to Waive All Applicable Budgetary Discipline Re: Reed Amdt. No. 172)", cls: procedural, rule: R-PROC-WAIVE}
+- {q: "On the Motion (Motion to Waive Section 302(F) of the CBA Re: Amdt. No. 2414)", cls: procedural, rule: R-PROC-WAIVE}
+- {q: "On Consideration of the Resolution", cls: procedural, rule: R-PROC-CONSIDER}
+
+# --- nomination -----------------------------------------------------------
+- {q: "On the Nomination PN1", cls: nomination, rule: R-NOM}
+- {q: "On the Nomination PN373", cls: nomination, rule: R-NOM}
+
+# --- veto override --------------------------------------------------------
+- {q: "Passage, Objections of the President To The Contrary Notwithstanding", cls: veto_override, rule: R-VETO}
+- {q: "On Overriding the Veto S.J.Res. 11", cls: veto_override, rule: R-VETO}
+
+# --- resolution: R-RULE (special rule) vs R-RES (substantive) --------------
+- {q: "On Agreeing to the Resolution", cls: procedural, rule: R-RULE, rules_resolution: true}
+- {q: "On Agreeing to the Resolution, as Amended", cls: procedural, rule: R-RULE, rules_resolution: true}
+- {q: "On Agreeing to the Resolution", cls: passage, rule: R-RES}
+- {q: "On Agreeing to the Resolution, as Amended", cls: passage, rule: R-RES}
+
+# --- treaty ratification (explicit other, logged) -------------------------
+- {q: "On the Resolution of Ratification Treaty Doc. 112-8", cls: other, rule: R-TREATY}
+
+# --- default (honest other) -----------------------------------------------
+- {q: "On Something Entirely Unforeseen", cls: other, rule: R-DEFAULT}

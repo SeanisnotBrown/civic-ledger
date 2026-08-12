@@ -296,3 +296,46 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   tie-break passage (372), nomination (659) — and committed them as offline test
   samples. The probe settled the `<document>`/`<amendment>`/`<tie_breaker>` shapes a
   single sample would have hidden.
+
+### INC-5 (2026-08-12) — vote_class classifier (§A1)
+
+- **D24 — `classify()` is a pure, offline, ordered rules table (D7); the one
+  data-dependent rule (R-RULE) is kept pure by parameter.** Every roll gets a
+  `vote_class` + the `vote_class_rule` id that fired (auditable; renders on the INC-10
+  methodology page). The table is module-level data (`RULES` = tuples of
+  `(rule_id, class, patterns, mode)`), not an if-chain, so it is exportable. FIRST
+  match wins; order encodes precedence (cloture before the generic motion-to-proceed
+  rule so "On Cloture on the Motion to Proceed" audits as cloture; treaty ratification
+  before the "On the Resolution" passage rule so it isn't swallowed).
+- **§A1 extended via the unmapped-questions loop over real 118–119 strings.** The
+  spec's initial table left ~1/3 of rolls as `other` (suspend-and-agree/concur,
+  joint/concurrent resolutions, discharge/refer/reconsider/instruct/point-of-order/
+  decision-of-chair/adjourn, Senate motion forms embedded in "On the Motion (…)").
+  Added deterministic rows for each observed family; **final `other` rate is well
+  under the 5% ceiling** and the only intentional `other` is treaty ratification
+  (R-TREATY, 1 roll — no treaty class exists in §5). Singletons are left honest
+  `other` rather than given speculative rules.
+- **R-RULE signal = the House Rules Committee (`hsru00`) with a "Reported" activity**
+  on the resolution's Congress.gov committees sub-resource — a government-assigned
+  fact, not a title heuristic. The pipeline fetches `bill/{c}/hres/{n}/committees`
+  once per unique `hres` "On Agreeing to the Resolution" roll (~150; the 24 non-`hres`
+  cases are `hconres`/`sconres`/privileged resolutions — never rule adoptions, so
+  they default to R-RES/passage). Rules-reported ⇒ procedural (R-RULE); else ⇒
+  passage (R-RES). This split matters: INC-10 party-unity excludes `procedural`.
+- **Classification is a SEPARATE pipeline step that rewrites votes in place**
+  (`ingest classify`), not part of ingest. **Required order: ingest → classify →
+  checks.** An ingest re-export resets every roll to the provisional `unclassified`
+  (house_votes/senate_votes always write the provisional class), so re-running an
+  ingest after classify clobbers classifications; the new `checks/classification.py`
+  gate (CI, blocking) catches this by failing on any `unclassified` roll or an
+  `other` rate over the ceiling. Documented here + in the INC-9 automation pickup so
+  the nightly job sequences the steps. `non_position` (Speaker-election) rolls are
+  left untouched — not §A1-classifiable.
+- **`unmapped_questions.json` is regenerated deterministically (sorted + counts),
+  not appended.** The spec says "append", but an append is order/history-dependent
+  and would break §6.3 export determinism (nightly diffs). A sorted full regen is
+  the determinism-preserving equivalent; the file is a quality artifact, not an
+  audit log (git history is the audit log).
+- **Golden test:** `tests/fixtures/questions.yaml` — 50 verbatim real strings (Senate
+  ones keep trailing measure text, so the fixture tests what production sees),
+  covering every rule id incl. both R-RULE branches and the treaty. 100% pass.

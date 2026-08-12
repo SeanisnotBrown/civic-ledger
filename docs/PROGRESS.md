@@ -3,34 +3,37 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-4 session (Senate vote ingest).
-**Git:** INC-1/INC-2/INC-3 + MS GO-gate closed & pushed (all CI green). INC-4
-being committed now — confirm its CI is green next session.
+**Last updated:** 2026-08-12, end of INC-5 session (vote_class classifier).
+**Git:** INC-1..INC-4 + MS GO-gate closed & pushed (all CI green). INC-5 being
+committed now — confirm its CI is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
+
+> **PIPELINE ORDER (load-bearing, D24):** `ingest {house,senate}-votes` → `ingest
+> classify` → `uv run checks`. An ingest re-export resets every roll to the
+> provisional `unclassified`, so **classify must run after any ingest** or the
+> `classification` check fails. INC-9's nightly job must sequence these.
 
 ---
 
 ## Current increment
 
-**INC-4 — Senate vote ingest (∥) — ✅ COMPLETE.**
-Every Senate roll call for 118/1-2 + 119/1-2 ingested with both MS senators'
-positions: **1,581 roll calls** (352/339/659/231 — each contiguous 1..N, so
-`max == count == official session total`; 119/1's 659 matches SHAPES), **87 absence
-stubs**, **0 quarantine, 0 gaps**. Two files per roll: the session `vote_menu`
-(enumeration + independent per-vote tally) and the per-roll `vote_detail` (member
-positions). `RollCall.totals` is member-computed and cross-checked against the menu
-tally — a genuine cross-SOURCE check (the Senate has no clerk); mismatch →
-`TallyMismatch` → quarantine. Crosswalk `lis_member_id`→`Member.ids["lis"]`→bioguide.
-`checks/symmetry.py` generalized to both chambers; `checks/integrity.py` gained a
-Senate detail re-parse pass (**10/10** House clerk + **10/10** Senate verified).
-VP tie-breaks need no special handling (VP absent from members, count, AND menu
-tally → 50-50 agrees). Design + findings in **D23** (`decisions.md`). Acceptance
-gate green (4 checks, **65 tests**, 1 page). See "INC-4 output" below.
+**INC-5 — vote_class classifier (§A1) — ✅ COMPLETE.**
+Total classification of all **3,447** non-`non_position` rolls (both chambers) via
+an ordered pure rules table (`ingest/classify.py`): procedural 1285, passage 886,
+amendment 811, nomination 447, veto_override 14, **other 4 (0.12%)**. Ships the §A1
+table + sanctioned extensions from the unmapped-questions loop over real 118–119
+strings; the 4 `other` are honest one-offs (treaty ratification, a conference-insist
+motion, 2 division-retention votes). R-RULE splits House "On Agreeing to the
+Resolution" into `procedural` (Rules-Committee-`hsru00`-reported special rules, via
+a committees fetch) vs `passage` (substantive) — the split INC-10 party-unity
+depends on. `classify()` is pure/offline; golden test `tests/fixtures/questions.yaml`
+(52 real strings) 100% pass. New CI gate `checks/classification.py` fails on any
+`unclassified` roll or other-rate > 5%. Design in **D24**. See "INC-5 output" below.
 
-**Next: INC-5 — vote_class classifier (§A1) — NOT STARTED.** Rewrites the
-provisional `other`/`unclassified` on House + Senate rolls into
-`passage`/`amendment`/`procedural`/`nomination`/`veto_override` (leaves House
-Speaker-election `non_position` rolls alone). Unblocked.
+**Next: INC-6 — Absences & personal explanations (content = H9) — NOT STARTED.**
+CREC "personal explanation" search (govinfo, resolved INC-1) + covered-member names
+→ review queue `data/quality/absence-queue/` → minimal CLI approver
+(`uv run curate absences`) writes verbatim `Absence.stated_reason` + CREC page URL.
 
 > **RESOLVED (2026-08-11): MS state verdict flipped DEFER → GO.** Owner chose
 > option A — ran the 5-bill Journal cross-check now. **5/5 votes matched** (470
@@ -162,21 +165,50 @@ RESOLVED callout above). 11 samples committed.
   variants, tally-mismatch, crosswalk join, bill-id normalization, determinism.
   Committed 3 new detail samples (371/372/659). Test count 47 → 65.
 
-## INC-5 — where to pick up
+## INC-5 output (done — the classified vote layer INC-8/10 render + score on)
 
-Spec: IMPLEMENTATION.md §7 "INC-5" + the §A1 classifier rules. Goal: rewrite the
-provisional `vote_class="other"` / `vote_class_rule="unclassified"` on every
-`data/votes/*.json` (both chambers) into the real `VoteClass` enum
-(`passage`/`amendment`/`procedural`/`nomination`/`veto_override`/`other`) with an
-auditable `vote_class_rule` id per §A1. **Leave House Speaker-election
-`non_position` rolls untouched** (they are not yea/nay votes). The classifier reads
-`question`, `result`, `bill_id`, and `totals` — all already exported. Senate rolls
-are rich signal: `question` = "On the Cloture Motion"/"On Passage of the Bill"/"On
-the Amendment"/"On the Nomination", `bill_id=None` ⇒ nomination/quorum.
+- **`ingest/classify.py`** — `classify(question, *, is_rules_resolution=False) ->
+  (VoteClass, rule_id)` is a PURE, offline, ordered rules table (`RULES` =
+  module-level tuples, renderable on the INC-10 methodology page). FIRST match wins;
+  order encodes precedence. `run()` = the `ingest classify` pipeline: rewrites
+  `vote_class`/`vote_class_rule` in place on every non-`non_position`
+  `data/votes/*.json`, regenerates `data/quality/unmapped_questions.json`
+  (deterministic sorted regen, D24), fails if other-rate > `MAX_OTHER_RATE`.
+  Idempotent (re-run byte-identical).
+- **R-RULE** kept pure via the `is_rules_resolution` arg; `run()` computes it by
+  fetching `bill/{c}/hres/{n}/committees` (`congress_gov.bill_committees`, new) and
+  checking for House Rules `hsru00` + a "Reported" activity.
+- **`checks/classification.py`** (new, registered in `run.py`) — CI gate: fails on
+  any `unclassified` roll or other-rate > ceiling. **`cli.py`** `classify` subcommand.
+- Tests: **`tests/test_classify.py` (9)** + golden **`tests/fixtures/questions.yaml`**
+  (52 verbatim real strings, every rule id, both R-RULE branches, treaty). 65 → 74.
+- **⚠ ORDER: ingest → classify → checks** (D24). Re-running an ingest resets rolls to
+  `unclassified`; the classification gate then fails until `classify` re-runs.
 
-**INC-5 acceptance:** every non-`non_position` roll gets a non-`other` class where
-§A1 has a rule; the `max-other-rate` threshold (config) is respected; classifier is
-pure + unit-tested; re-export stays deterministic.
+## INC-6 — where to pick up
+
+Spec: IMPLEMENTATION.md §7 "INC-6" (content = H9). Goal: a queue → approve → publish
+pipeline for stated absence reasons, filling the `Absence.stated_reason` /
+`stated_reason_source` / `declared_position` fields (already in the §5 schema, seed
+stubs already exported at `data/absences/`).
+
+Concrete steps:
+1. **CREC search** — `ingest/sources/govinfo.py` already reaches govinfo full-text
+   search (INC-1 resolved this; sample `govinfo_crec_search_personal_explanation.json`,
+   15,998 hits for "personal explanation"). Search `"personal explanation"` +
+   covered-member names, extract candidate excerpt + CREC page URL into a **review
+   queue** `data/quality/absence-queue/` (one file per candidate).
+2. **Minimal CLI approver** — `uv run curate absences` (grow `curation/cli.py`): show
+   excerpt, y/n/edit-verbatim; on approve, write `Absence.stated_reason` (VERBATIM
+   only — never inferred/paraphrased, principle 5) + `stated_reason_source` (CREC URL)
+   onto the existing `data/absences/{member}--{rollcall}.json`. The `Absence` model
+   already enforces `stated_reason ⇒ stated_reason_source`.
+3. **No-LLM discipline**: this is owner-curated content; the tool presents the
+   verbatim CREC excerpt, the owner approves. Never generate or summarize the reason.
+
+**INC-6 acceptance:** queue populated from CREC for covered members; approver writes
+verbatim reason + source onto absences; a published absence with a reason carries its
+CREC page URL; determinism preserved. (Recurring content H9 continues past the code.)
 
 ---
 
@@ -189,8 +221,8 @@ pure + unit-tested; re-export stays deterministic.
 | INC-2 | Canonical members & schema | ✅ done | models.py complete + 6 MS members exported + double-export determinism; 35 tests green |
 | INC-3 | House vote ingest | ✅ done | 1,886 rolls (counts match, contiguous), 10/10 clerk cross-check, symmetry OK; 47 tests |
 | INC-4 | Senate vote ingest ∥ | ✅ done | 1,581 rolls (contiguous 1..N per session, 119/1=659), 10/10 detail cross-check + menu-tally check, symmetry OK both chambers; 65 tests |
-| INC-5 | vote_class classifier | **not started (next)** | — |
-| INC-6 | Absences & explanations | not started | content = H9 |
+| INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
+| INC-6 | Absences & explanations | **not started (next)** | content = H9 |
 | INC-7 | JSON export contracts | not started | — |
 | INC-8 | Site MVP | not started | — |
 | INC-9 | Automation + deploy (PUBLIC MVP) | not started | blocked by H4, H5 |
@@ -223,7 +255,15 @@ pure + unit-tested; re-export stays deterministic.
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0 + INC-1 + INC-2 + INC-3 + INC-4 output)
+## What exists in the repo now (INC-0..INC-5 output)
+
+**INC-5 additions:** `ingest/classify.py` (pure §A1 rules table + `classify`
+pipeline, `classify` subcommand), `congress_gov.bill_committees`,
+`ingest/checks/classification.py` (registered in `run.py`), `tests/test_classify.py`
+(9) + `tests/fixtures/questions.yaml` (52 real strings), the `classify` wiring in
+`cli.py`, `data/quality/unmapped_questions.json`, and the in-place re-classification
+of all **3,447** `data/votes/*.json` (vote_class/vote_class_rule rewritten). D24 in
+`decisions.md`. Test count 65 → 74.
 
 **INC-4 additions:** `ingest/senate_votes.py` (parser + `run()` pipeline,
 `senate-votes` subcommand), `parse_menu`/`detail_url`/`parse_positions`/`VOTE_MAP`

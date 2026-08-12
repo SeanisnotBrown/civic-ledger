@@ -67,6 +67,8 @@ Ambiguities in the brief/roadmap, resolved. Do not re-open. One-line rationales 
 | D16 | FEC funding metrics moved out of MVP into optional INC-10b | Not in the brief's §6 surfaces or definition-of-done; highest attack-surface Tier 2 metric; nothing downstream depends on it. |
 | D17 | Analytics: none at MVP; if ever added, Cloudflare Web Analytics (cookieless) only, behind a config flag default-off | "Cookieless and non-fingerprinting" is most safely satisfied by absence. |
 | D18 | MS state (INC-12) runs the LegiScan verdict in INC-1; both branches fully written; a **defer** verdict does not touch any other increment | Brief §10 requires the build to continue on federal without stopping. |
+| D19 | **Grades are computed in the reader's browser from visible, reader-adjustable weights; the build/publish path never computes or publishes a composite score** (§5 Tier discipline, INC-15) | "No thumb on the scale" stays literally true only if the site ships facts, not a chosen score; transparent adjustable weights deliver the grading/ranking experience while the weighting opinion stays the reader's. "Objective grading" is unachievable — the weights are opinions. |
+| D20 | **Donations and votes render as an adjacency timeline, never a computed "cost per vote" / purchased-vote figure** (INC-10b) | A per-vote price asserts unprovable purchased intent (defamation shape); a side-by-side donation/vote sequence shows the pattern under the site's existing "adjacency, not conclusion" framing and asserts no motive. |
 
 ---
 
@@ -241,7 +243,7 @@ class QuizQuestion(BaseModel):
     # "I don't know" is injected as a first-class option at render on every position/reason item
 ```
 
-**Tier discipline, structurally:** Tier 1 = the records above. Tier 2 = outputs of `ingest/metrics.py` only; every function's docstring is extracted verbatim into the methodology page at build time, so a formula cannot publish without its documentation. **Tier 3 has no schema; nothing in the codebase may compute a cross-metric composite about an official** — `checks/no_llm.py`'s sibling assertion in `checks/integrity.py` greps `metrics.py` for any function consuming another metric's output about the same member and fails CI if found.
+**Tier discipline, structurally:** Tier 1 = the records above. Tier 2 = outputs of `ingest/metrics.py` only; every function's docstring is extracted verbatim into the methodology page at build time, so a formula cannot publish without its documentation. **Tier 3 has no schema; nothing in the codebase may compute a cross-metric composite about an official** — `checks/no_llm.py`'s sibling assertion in `checks/integrity.py` greps `metrics.py` for any function consuming another metric's output about the same member and fails CI if found. (D19: the *reader's browser* may combine Tier-2 metrics into a grade from visible, reader-adjustable weights — a client-side, zero-network computation like `scoring.ts`; the guard forbids only the *build/publish* path computing or shipping a composite the site chose.)
 
 ---
 
@@ -365,7 +367,7 @@ Same structure against senate.gov LIS XML (`vote_menu_{congress}_{session}.xml` 
 **Acceptance:** third-party recompute script covers every metric and matches; methodology page contains one section per exported metric (test: set equality between exported metric keys and page sections); Tier-3 grep guard active.
 
 ### INC-10b — FEC funding metrics *(optional, needs H7; Decision D16)*
-In-state vs out-of-state %, PAC vs individual % from api.open.fec.gov, formulas on the methodology page like any Tier 2 metric. Build only after INC-13 unless the owner reprioritizes via HUMAN-TASKS.md.
+In-state vs out-of-state %, PAC vs individual % from api.open.fec.gov, formulas on the methodology page like any Tier 2 metric. Build only after INC-13 unless the owner reprioritizes via HUMAN-TASKS.md. Any donation↔vote presentation is an **adjacency timeline** (donations and related votes side by side over time, the same "adjacency, not conclusion" framing INC-18 uses for statements/votes) — never a computed cost-per-vote or purchased-vote figure (D20).
 
 ### INC-11 — Statement ledger, curation tool, pairing  *(content = H8; needs H6 for authenticated SPN)*
 - Flask curation app (localhost only; assert-refuse to bind non-loopback): paste text+URL → SPN2 capture → poll capture status → verified archive_url → YAML written → `git add` staged. **No verified capture, no save** — the button is disabled, not warned.
@@ -398,7 +400,7 @@ In-state vs out-of-state %, PAC vs individual % from api.open.fec.gov, formulas 
 
 ### INC-15 — Alignment outputs
 - `data/quiz/dimension_map.yaml`: quiz dimension ↔ official policy areas / subject terms (mechanical mapping table, owner-reviewable, no invented taxonomy — D5/brief §10)
-- Per-issue alignment vs named officials: for each dimension, member positions derived **only** from substantive recorded votes on bills mapped to that dimension; alignment = agreement rate, shown per-issue per-member with the underlying vote list one tap away. **No aggregation across issues into any single number per member** (that's a spectrum by the back door — Tier-3 guard extended to cover it)
+- Per-issue alignment vs named officials: for each dimension, member positions derived **only** from substantive recorded votes on bills mapped to that dimension; alignment = agreement rate, shown per-issue per-member with the underlying vote list one tap away. **No aggregation across issues into any single number per member in the build/publish path** (that's a spectrum by the back door — Tier-3 guard extended to cover it); any single grade is computed client-side from the reader's own visible, adjustable weights per D19 — never shipped as a site-chosen score
 - Bill alignment view: "matches your stated positions on 7 of 9 dimensions" with the 9 dimensions listed
 **Acceptance:** every alignment figure click-through reproduces from listed votes; cross-issue aggregate guard test; works entirely from a portable code with no network (Playwright network-log again).
 

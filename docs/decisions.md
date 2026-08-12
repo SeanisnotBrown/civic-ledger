@@ -530,3 +530,73 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   representative pages, run against `astro preview`. Browsers install in CI after the
   build. Representative page ids are computed from data (never hardcoded), so the
   suite can't target a page that doesn't exist.
+
+### INC-10 (2026-08-12) — Metrics layer + methodology page
+
+- **D36 — aggregate `party_totals` on `RollCall` makes party-unity honest and
+  recomputable, without storing any non-Mississippi individual.** A true party-unity
+  metric needs each party's majority position per roll; we store only the MS
+  delegation's positions. The raw House (`voteParty`) and Senate (`<party>`)
+  responses carry every member's party, so the parser now derives a per-party
+  breakdown of the same chamber tally and stores that AGGREGATE (`{D:{yea,nay,…},
+  R:{…},I:{…}}`) — no individual non-MS position is added (value #3; these are
+  public officials' public votes in aggregate). `None` on `non_position` rolls (D27
+  not-applicable sentinel). `verify-recompute` gains a 4th invariant: the party
+  splits sum to the chamber totals per category, and are present exactly on position
+  rolls — the third-party proof that the aggregates are internally honest even
+  though the per-member source isn't committed. Backfilled all 3,467 rolls by
+  re-parsing the cached raw responses (`CIVIC_CACHE_TTL_HOURS` override + `ingest
+  {house,senate}-votes --all`) — fully offline, no re-fetch, polite (§0.7);
+  `classify` round-trips the new field (full-record passthrough).
+- **D37 — `data/legislation/{member}.json` is the committed metrics input, shaped to
+  survive the quiet-night diff-gate.** Metrics must recompute from the repo (the
+  verify-recompute contract), so member sponsored/cosponsored bills are a committed
+  artifact, not a live count. Three shape decisions: (a) `LegItem` carries NO live
+  latest-action field — a bill's latest action moves through committee, so storing
+  it would diff `data/legislation/` almost every night and defeat D33; only a FROZEN
+  `enacted_action` is kept, and only when `became_law` (an enacted bill's action
+  never changes). (b) Floor AMENDMENTS are excluded — the endpoints interleave them
+  (`type:null`, an `amendmentNumber`) but an amendment is not a bill and can't become
+  law under its own number; "sponsored/cosponsored" means bills and resolutions.
+  (c) The covered-window paginator stops only on a fully-out-of-window page, never on
+  the first old item, so boundary jitter can't drop covered tail items (an undercount,
+  value #1). `enacted_rate` counts only bills enacted UNDER THEIR OWN NUMBER
+  ("Became Public Law") — a documented understatement, since much text is enacted by
+  folding into another vehicle, which we will not fabricate attribution for.
+- **D38 — `cosponsor_vote_gap` is a factual list with a base-rate caveat baked into
+  the published methodology, and tightened from the literal spec.** The spec said
+  "cosponsored + no floor action ≥ 1 session"; we implemented "cosponsored in a
+  Congress that HAS ENDED" (a bill cosponsored in session 1 routinely gets its vote
+  in session 2, so listing it mid-Congress is a false "went nowhere" — value #1). The
+  data proved the `no_floor_action` variant is base rate, not member signal (191–436
+  per member, symmetric across parties: most introduced bills never get a floor vote,
+  and scheduling is leadership's, not the cosponsor's). Rather than delete a
+  spec-listed metric (D26 precedent — adapt via ADR), that caveat is written into the
+  metric's docstring, which IS the published methodology sitting next to the list;
+  the ADR further BINDS future rendering: never a bare count, always against its
+  denominator, never a headline. The `cosponsored_and_voted_nay` variant computed
+  zero for every member — an honest published null; its items carry the roll id for
+  traceability (§6.7).
+- **D39 — `named_measure_mismatch` fails closed until INC-11 supplies statement
+  stance.** The mismatch is "specific statement naming a measure vs the OPPOSITE
+  recorded vote", but a `Statement` is verbatim text with no stance/paraphrase field
+  (by design), so the opposite-position test cannot be computed today. The function
+  returns `[]` (empty by construction — zero statements exist) and RAISES if a
+  qualifying statement (member-matched, specificity 2–3, non-empty `named_measures`)
+  is ever curated before the stance comparison is built — the nightly then fails
+  loudly and the last good deploy stays live, forcing INC-11 to implement it rather
+  than letting a false "mismatch" publish (value #1).
+- **D40 — metrics are Tier-2, pure/offline, docstring-as-methodology, guarded against
+  Tier-3.** Every metric reads only the committed dataset (a `Ctx` loaded once), so a
+  third party recomputes from the public repo; the `test_recompute_matches_committed`
+  test is exactly `build().model_dump() == data/metrics.json` — the recompute-and-match
+  for all 8 metrics at once. Each metric function's docstring is extracted verbatim
+  (`inspect.cleandoc`) into `data/metrics.json` and rendered as that metric's
+  methods-page section (one section per key, asserted by `check-metrics-sections.mjs`).
+  The `METRICS` registry drives an AST Tier-3 guard (`checks/integrity.py`) that fails
+  if any metric function calls another — structurally preventing a per-member composite
+  "spectrum" (§5). `_load` raises on a missing legislation record (no silent false
+  zeros). `metrics.json` is DERIVED data recomputed in the nightly after classify +
+  corrections but before the diff-gate, so a legislation-only change (a new
+  cosponsorship — a real event, legitimate periodic commit, not churn) still reaches
+  the gate; a truly-quiet night regenerates it byte-identically (D33).

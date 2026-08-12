@@ -52,10 +52,13 @@ jobs:
         run: |
           set -euo pipefail
 
-          # 1) Incremental ingest (finalized rolls skipped). Bills derive from votes.
+          # 1) Incremental ingest (finalized rolls skipped). Bills + legislation
+          #    derive from votes/members; both fetch their sub-resources every run
+          #    so a re-export never reverts enriched data to a None sentinel.
           uv run ingest house-votes
           uv run ingest senate-votes
           uv run ingest bills
+          uv run ingest legislation
 
           # 2) Re-fetching a recent roll re-exports it as provisional `unclassified`
           #    (D24). If any vote data moved, re-classify to restore/assign vote_class.
@@ -65,6 +68,12 @@ jobs:
 
           # 3) Corrections ledger from git history (full checkout above).
           uv run corrections
+
+          # 3b) Metrics are DERIVED data: recompute after classify + corrections but
+          #     BEFORE the diff-gate, unconditionally — a legislation-only change
+          #     (a new cosponsorship, a real event) must still reach the gate. A
+          #     truly-quiet night regenerates metrics.json byte-identically (D33).
+          uv run ingest metrics
 
           # 4) Real change? (manifest isn't regenerated yet, so it can't false-trigger.)
           if [ -z "$(git status --porcelain data/)" ]; then

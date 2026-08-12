@@ -61,6 +61,9 @@ jobs:
       - name: Source-link trace (every vote/bill page cites its source_url)
         working-directory: site
         run: npm run test:links
+      - name: Metrics-sections (methods page == metric-key set)
+        working-directory: site
+        run: npm run test:metrics-sections
       - name: Install Playwright browser
         working-directory: site
         run: npx playwright install --with-deps chromium

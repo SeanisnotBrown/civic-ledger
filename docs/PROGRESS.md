@@ -3,8 +3,9 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, start of INC-10 session (Metrics + methodology).
-**Git:** INC-1..INC-9 closed & pushed (all CI green). **H4 + H5 DONE:** the site is
+**Last updated:** 2026-08-12, end of INC-10 session (Metrics + methodology).
+**Git:** INC-1..INC-9 closed & pushed; INC-10 committed this session (confirm CI green
+after push — new gate: `test:metrics-sections`). **H4 + H5 DONE:** the site is
 **live at `civicledger.net`** via **Cloudflare Workers** (Static Assets, deployed by
 **Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub CI; Cloudflare's GitHub
 App builds on the `push` webhook). Planned `.org` was taken → `.net`. Only remaining
@@ -14,23 +15,38 @@ to Actions' `GITHUB_TOKEN` self-trigger suppression; confirm the first `data: ni
 build's author reads `github-actions[bot]`).
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
-> **PIPELINE ORDER (load-bearing, D24 + INC-7/8):** `ingest {house,senate}-votes`
-> → `ingest bills` → `ingest classify` → `uv run export` → `uv run checks`. An
-> ingest re-export resets every roll to the provisional `unclassified`, so
-> **classify must run after any vote ingest** or the `classification` check fails;
-> **export must run after any ingest** or `test_committed_manifest_matches_regeneration`
-> (counts drift) and stale schemas fail. INC-9's nightly job must sequence all of
-> these. (`ingest bills` is independent of classify; order among the two ingests
-> is free, but export/checks come last.)
+> **PIPELINE ORDER (load-bearing, D24 + INC-7/8/10):** `ingest {house,senate}-votes`
+> → `ingest bills` → `ingest legislation` → `ingest classify` → `corrections` →
+> `ingest metrics` → `uv run export` → `uv run checks`. An ingest re-export resets
+> every roll to the provisional `unclassified`, so **classify must run after any vote
+> ingest**; **metrics must run after classify** (party-unity reads final `vote_class`)
+> **+ after legislation**, and **before the nightly diff-gate** (metrics.json is
+> derived — a legislation-only change must still reach the gate, D40); **export must
+> run after any ingest** or manifest/schema drift fails. (`bills`/`legislation` are
+> independent of classify; export/checks come last.)
 
 ---
 
 ## Current increment
 
-**INC-10 — Metrics layer + methodology page — IN PROGRESS (this session).** See the
-INC-10 plan/output section below. INC-9 is closed (build + rehearsal green; H4/H5 done,
-site live at `civicledger.net`); its last acceptance box — one observed untouched nightly
-commit + deploy — waits on the next real data-change night (owner-observable, non-blocking).
+**INC-10 — Metrics layer + methodology page — ✅ COMPLETE (this session).**
+Eight Tier-2 metrics (`ingest/metrics.py`, pure/offline) → **`data/metrics.json`**:
+attendance, party_unity (substantive classes; majority from new aggregate
+`RollCall.party_totals`; ties/procedural/absent excluded), sponsored/cosponsored,
+enacted_rate (own-number "Became Public Law"), cosponsor_vote_gap (factual list, never
+a score), named_measure_mismatch (fail-closed until INC-11), absence_context (same-day
+participation, vote-record-only). Each metric **docstring IS the methodology** —
+extracted to `metrics.json` and rendered as one section per metric on `/methods`
+(`check-metrics-sections.mjs` asserts section-set == metric-key set). Backfilled bill
+`subjects`/`cosponsor_ids` for all 1,011 bills; new **`data/legislation/{member}.json`**
+(sponsored/cosponsored, quiet-night-safe shape); new aggregate **`party_totals`** on all
+3,467 rolls (re-parsed from cache, offline). **Tier-3 AST guard** active (no metric
+consumes another); **symmetry statement-balance rules activated** (vacuously green at
+zero statements). verify-recompute gains a 4th invariant (party splits sum to totals) +
+a full metrics recompute-and-match test. Design in **D36–D40**. **149 py tests** green;
+full checks + cross-check 10/10; 4,539 pages build; metrics-sections + source-links green.
+See "INC-10 output". **Acceptance met** (recompute covers every metric + matches; methods
+section-set == metric-key-set; Tier-3 guard active).
 
 **(historical — INC-9)**
 **INC-9 — Automation + deploy — ✅ COMPLETE (site live; one nightly-observation box open).**
@@ -422,27 +438,36 @@ first `data: nightly …` build shows author `github-actions[bot]` in Cloudflare
 approved `stated_reason` into a false "No explanation on record." (value #1). Landed +
 CI-green before the rehearsal.
 
-## INC-10 — where to pick up
+## INC-10 output (done)
 
-Spec: IMPLEMENTATION.md §7 "INC-10" + §5 Tier discipline. Goal: the metrics layer +
-auto-built methodology page. Steps:
-1. **`ingest/metrics.py`** — Tier-2 functions, **each docstring IS the methodology
-   text** (extracted verbatim to the methods page at build): attendance % / missed
-   votes; party-unity % (substantive only — `passage|amendment|veto_override|nomination`,
-   exclusions stated); sponsored/cosponsored/enacted-rate; **cosponsor-to-vote gap**;
-   **named-measure mismatch list** (statement w/ named_measures + specificity 2–3 vs
-   opposite recorded position — list only, adjacency language only); absence-vs-calendar.
-2. **Backfill bill `subjects` + `cosponsor_ids`** (the D27 `None` fields) — this is the
-   increment that consumes them. Fetch the paginated `/bill/.../subjects` + `/cosponsors`
-   sub-resources; set the lists (`[]` now legitimately means "none"). Extends `bills.py`.
-3. Methodology page: one section per exported metric (test: set-equality of exported
-   metric keys ↔ page sections). Extend `methods.astro`.
-4. **Symmetry full activation** (§6.5) + **Tier-3 grep guard** in `checks/integrity.py`
-   (fail if any `metrics.py` fn consumes another metric's output about the same member).
-5. Third-party recompute: extend `verify-recompute` to cover every metric.
-**Acceptance:** recompute covers every metric + matches; methods page section-set ==
-metric-key-set; Tier-3 guard active. NB: statements don't exist yet (INC-11), so the
-named-measure-mismatch list is empty until then — build the function + guard now.
+- **`ingest/metrics.py`** — 8 pure/offline Tier-2 metrics (docstring == methodology):
+  attendance, party_unity, sponsored, cosponsored, enacted_rate, cosponsor_vote_gap,
+  named_measure_mismatch, absence_context → **`data/metrics.json`** (`ingest metrics`).
+  `METRICS` registry drives the Tier-3 AST guard.
+- **`data/legislation/{member}.json`** (`ingest legislation`) — sponsored/cosponsored
+  bills, 118–119; quiet-night-safe (`LegItem` has no live latest-action; only frozen
+  `enacted_action`); amendments excluded; covered-window paginator.
+- **Bill backfill** — all 1,011 bills now carry `subjects` + `cosponsor_ids`
+  (`ingest bills --all`); fetched for every exported bill so a re-export never reverts.
+- **`RollCall.party_totals`** — aggregate per-party split on all 3,467 rolls
+  (re-parsed from cache, offline, `--all`); `None` on non_position; verify-recompute
+  invariant 4. **classify** round-trips it.
+- **`/methods`** auto-built: one `data-metric` section per methodology key;
+  `check-metrics-sections.mjs` (CI) asserts section-set == metric-key-set.
+- **Symmetry** statement-balance rules activated (inactive/green at 0 statements);
+  **Tier-3 guard** in `checks/integrity.py`; ci.yml + nightly.yml wired
+  (`legislation` after bills, `metrics` after corrections before the diff-gate).
+- Design in **D36–D40**; data-contract.md updated. **149 py tests**; full checks +
+  cross-check 10/10; 4,539 pages; metrics-sections + source-links green.
+
+**Next — INC-11 (Statement ledger + curation + pairing; content = H8, H6 for SPN).**
+Load-bearing carry-overs from INC-10: (1) `named_measure_mismatch` FAILS CLOSED — it
+raises the moment a specificity-2/3 statement naming a voted measure is curated, so
+INC-11 MUST build the statement-STANCE comparison (a Statement has no stance field
+today) before curating qualifying statements (D39). (2) Member-page rendering of the
+metrics (esp. `cosponsor_vote_gap`) must follow D38: never a bare count, always against
+its denominator, never a headline. (3) Statement symmetry rules are live and will gate
+the curated corpus once the median reaches 5 (config.SYMMETRY_MEDIAN_ACTIVATION).
 
 **INC-8 acceptance (met):** `astro build` from data alone ✅; axe-core a11y ✅ (14/14
 Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `source_url`
@@ -464,7 +489,7 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-7 | JSON export contracts | ✅ done | double-export byte-identical (manifest + 4 schemas); `verify-recompute` matches 100% of 3,467 rolls (coverage+subset+reciprocity, D26); manifest + data-contract.md committed; 95 tests |
 | INC-8 | Site MVP | ✅ done | 4,539 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 14/14 Playwright; §6.7 via shared components; 117 py tests + e2e |
 | INC-9 | Automation + deploy (PUBLIC MVP) | ✅ done — **site LIVE at `civicledger.net`** (Workers Builds) | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); nightly rehearsed green; 117 py tests. H4/H5 done. Open box: observe one real-data nightly commit + deploy |
-| INC-10 | Metrics + methodology | **in progress (this session)** | backfills bill subjects/cosponsors (D27) |
+| INC-10 | Metrics + methodology | ✅ done | 8 Tier-2 metrics → data/metrics.json; methods page auto-built from docstrings (section-set == metric-key-set); bill subjects/cosponsors backfilled; data/legislation/ + aggregate party_totals; Tier-3 AST guard + symmetry statement rules active; verify-recompute 4th invariant + metrics recompute-match; 149 py tests, D36–D40 |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
 | INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |

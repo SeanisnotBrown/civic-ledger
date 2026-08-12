@@ -57,6 +57,7 @@ The file is a wrapper:
 | `bill_id` | string \| null | Linked bill (`hr2-119`) or null (nominations, quorum, etc.). |
 | `result` | string | Official result text (e.g. `Passed`). |
 | `totals` | object(string→int) | **Chamber-wide** tally: `yea`/`nay`/`present`/`not_voting`. See the recompute note. |
+| `party_totals` | object(string→object) \| null | **Aggregate** per-party split of `totals`, keyed by party letter (`D`/`R`/`I`), each `{yea,nay,present,not_voting}`. Derived from the raw response's per-member party — no individual non-MS position is stored (D36). `null` on `non_position` rolls. Sums to `totals` per category (verify-recompute invariant 4). Feeds party-unity. |
 | `source_url` | string | Official record URL. |
 
 `member_votes` (array of `MemberVote`), **covered Mississippi delegation only**,
@@ -100,12 +101,49 @@ This is deliberately NOT full-congress bill coverage (D27).
 | `type` | string | e.g. `hr`, `s`, `hres`. |
 | `title_official` | string | Official short title; drafter-written, never a description of effect. HTML entities from the API (`&#039;`, `&amp;`) are decoded to their characters at ingest — a third party diffing against raw API responses should expect the decoded form. |
 | `policy_area` | string \| null | Government-assigned only. |
-| `subjects` | array\<string\> \| null | Government-assigned legislative subject terms. **`null` = not yet collected** (a paginated sub-resource fetched by the INC-10 metrics layer); `[]` would mean collected-and-none. Never read `null` as "zero subjects" (D27). |
+| `subjects` | array\<string\> \| null | Government-assigned legislative subject terms (sorted). Populated at INC-10 for every bill; `[]` legitimately means collected-and-none. `null` (not-yet-collected, D27) no longer occurs in the published set. |
 | `sponsor_id` | string \| null | Bioguide id of the primary sponsor. |
-| `cosponsor_ids` | array\<string\> \| null | Bioguide ids. **`null` = not yet collected** (INC-10 backfills); distinct from `[]` (D27). |
+| `cosponsor_ids` | array\<string\> \| null | Bioguide ids of CURRENT cosponsors (withdrawn excluded), sorted. Populated at INC-10; `[]` = collected-and-none. |
 | `latest_action` / `latest_action_date` | string | |
 | `cbo_estimates` | array\<CboRef\> | `{ url, title, date }` — link-through only. Titles are entity-decoded like `title_official`. |
 | `source_url` | string | The bill's public congress.gov page (`legislationUrl`). |
+
+## `data/legislation/{member_id}.json` — one per covered member (INC-10)
+
+Schema: `data/schema/legislation.schema.json` (model `MemberLegislation`). The
+committed input to the sponsored/cosponsored/enacted/gap metrics — metrics read
+this, never the live API (D37), so every legislation figure recomputes from the
+repo. Scope: bills and resolutions in the covered Congresses (118–119); floor
+amendments are excluded (not bills).
+
+| Field | Type | Notes |
+|---|---|---|
+| `member_id` | string | Bioguide id. |
+| `sponsored` / `cosponsored` | array\<LegItem\> | Sorted by `bill_id`. |
+| `source_url` | string | The member's sponsored-legislation endpoint (human-checkable). |
+
+`LegItem`: `{ bill_id, congress, title (entity-decoded), introduced_date|null,
+became_law (bool — "Became Public Law" under its own number), enacted_action
+(the frozen enacting text; null unless enacted), source_url }`. It deliberately
+carries **no live latest-action field** so the file diffs only on real events
+(new sponsorship/cosponsorship/enactment), preserving the quiet-night diff-gate (D37).
+
+## `data/metrics.json` — computed Tier-2 metrics (INC-10)
+
+Schema: `data/schema/metrics.schema.json` (model `MetricsFile`). Deterministic, no
+wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
+
+- `methodology`: `{ <metric_key>: { label, text } }` — `text` is the metric
+  function's docstring verbatim (formula, inclusions/exclusions, source). The
+  methods page renders one section per key (asserted equal by
+  `check-metrics-sections.mjs`).
+- `members`: `{ <bioguide>: MemberMetrics }` with the 8 keys `attendance`,
+  `party_unity`, `sponsored`, `cosponsored`, `enacted_rate`, `cosponsor_vote_gap`,
+  `named_measure_mismatch`, `absence_context`. `pct` fields are `null` on a zero
+  denominator (never a fabricated 0). No metric is a composite of others — the
+  Tier-3 guard enforces it (§5). `named_measure_mismatch` is `[]` until INC-11 and
+  fails closed thereafter (D39); `cosponsor_vote_gap` is a factual list to be
+  rendered only against its denominator, never as a headline (D38).
 
 ## `data/manifest.json` — dataset summary (the one wall-clock file)
 
@@ -136,6 +174,11 @@ changes — i.e. when the contract itself changes.
    `member_votes` never exceeds `rollcall.totals[category]`.
 3. **Absence reciprocity** — every `not_voting` `member_vote` has a matching
    absence file, and every absence file has a matching `not_voting` vote.
+4. **Party-total consistency** — `party_totals` sums (over parties) to `totals` in
+   every category, and is present exactly on position rolls (`null` on `non_position`).
+
+The metrics are also fully recomputable: `ingest/metrics.py` reads only this dataset,
+and a test asserts `build() == data/metrics.json` (all 8 metrics at once, D40).
 
 **What is deliberately NOT recomputable:** `rollcall.totals` is the *chamber-wide*
 tally (for the House, counted at ingest from the full results list of all ~435

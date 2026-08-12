@@ -45,6 +45,12 @@ export interface Manifest {
   generated_at: string; commit: string; congresses: number[]; covered_state: string;
   counts: Record<string, unknown>;
 }
+export interface MetricMethodology { label: string; text: string; }
+export interface Metrics {
+  // methodology keys == per-member metric keys == methods-page section ids.
+  methodology: Record<string, MetricMethodology>;
+  members: Record<string, Record<string, unknown>>;
+}
 
 // --- Low-level readers (memoized at module scope) -------------------------
 
@@ -115,6 +121,13 @@ export function getManifest(): Manifest {
   if (_manifest) return _manifest;
   _manifest = readJson<Manifest>("manifest.json");
   return _manifest;
+}
+
+let _metrics: Metrics | null = null;
+export function getMetrics(): Metrics {
+  if (_metrics) return _metrics;
+  _metrics = readJson<Metrics>("metrics.json");
+  return _metrics;
 }
 
 export interface Correction { commit: string; date: string; subject: string; }

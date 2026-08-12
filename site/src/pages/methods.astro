@@ -1,12 +1,22 @@
 ---
 import Layout from "../components/Layout.astro";
-import { getManifest } from "../lib/data";
+import { getManifest, getMetrics } from "../lib/data";
 import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
 import type { VoteClass } from "../lib/data";
 
 const manifest = getManifest();
 const classes = Object.keys(VOTE_CLASS_LABEL) as VoteClass[];
 const rollcallCount = (manifest.counts as Record<string, unknown>).rollcalls;
+
+// One section per published metric, built from the metric functions' docstrings
+// (data/metrics.json). The section set is asserted equal to the metric-key set by
+// scripts/check-metrics-sections.mjs, so this page can never drift from the code.
+const metrics = getMetrics();
+const metricKeys = Object.keys(metrics.methodology).sort();
+// Docstrings are paragraph-separated prose; render each paragraph, collapsing the
+// internal line wrapping the source uses.
+const paragraphs = (text: string): string[] =>
+  text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, " ").trim()).filter(Boolean);
 ---
 <Layout title="Methodology — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Methodology</h1>
@@ -14,9 +24,23 @@ const rollcallCount = (manifest.counts as Record<string, unknown>).rollcalls;
     This site publishes the recorded legislative record. Every figure traces to an
     official source, and nothing is summarized, characterized, or scored by an
     automated process. The full data pipeline and this site's source code are
-    public. This page is a stub; the complete methodology — one section per
-    published metric — lands with the metrics layer.
+    public. Each metric below states its exact formula, what it includes and
+    excludes, and its source — the same text that documents the code that computes it.
   </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Metrics</h2>
+  <div class="mt-2 space-y-6">
+    {metricKeys.map((key) => (
+      <section data-metric={key} aria-labelledby={`metric-${key}`}>
+        <h3 id={`metric-${key}`} class="text-base font-semibold text-neutral-800">
+          {metrics.methodology[key].label}
+        </h3>
+        {paragraphs(metrics.methodology[key].text).map((p) => (
+          <p class="mt-1 max-w-prose text-sm text-neutral-700">{p}</p>
+        ))}
+      </section>
+    ))}
+  </div>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Sources</h2>
   <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">

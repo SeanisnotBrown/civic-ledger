@@ -1,0 +1,309 @@
+{
+  "$defs": {
+    "AbsenceContextItem": {
+      "additionalProperties": false,
+      "properties": {
+        "date": {
+          "title": "Date",
+          "type": "string"
+        },
+        "rollcall_id": {
+          "title": "Rollcall Id",
+          "type": "string"
+        },
+        "same_day_cast": {
+          "title": "Same Day Cast",
+          "type": "integer"
+        },
+        "same_day_total": {
+          "title": "Same Day Total",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "rollcall_id",
+        "date",
+        "same_day_total",
+        "same_day_cast"
+      ],
+      "title": "AbsenceContextItem",
+      "type": "object"
+    },
+    "AttendanceValue": {
+      "additionalProperties": false,
+      "properties": {
+        "cast": {
+          "title": "Cast",
+          "type": "integer"
+        },
+        "eligible": {
+          "title": "Eligible",
+          "type": "integer"
+        },
+        "missed": {
+          "title": "Missed",
+          "type": "integer"
+        },
+        "pct": {
+          "title": "Pct",
+          "type": "number"
+        }
+      },
+      "required": [
+        "eligible",
+        "cast",
+        "missed",
+        "pct"
+      ],
+      "title": "AttendanceValue",
+      "type": "object"
+    },
+    "CountValue": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "title": "Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count"
+      ],
+      "title": "CountValue",
+      "type": "object"
+    },
+    "EnactedRateValue": {
+      "additionalProperties": false,
+      "properties": {
+        "enacted": {
+          "title": "Enacted",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        },
+        "sponsored": {
+          "title": "Sponsored",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sponsored",
+        "enacted",
+        "pct"
+      ],
+      "title": "EnactedRateValue",
+      "type": "object"
+    },
+    "GapItem": {
+      "additionalProperties": false,
+      "properties": {
+        "bill_id": {
+          "title": "Bill Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "cosponsored_and_voted_nay",
+            "cosponsored_no_floor_action"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "rollcall_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rollcall Id"
+        }
+      },
+      "required": [
+        "bill_id",
+        "kind"
+      ],
+      "title": "GapItem",
+      "type": "object"
+    },
+    "MemberMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "absence_context": {
+          "items": {
+            "$ref": "#/$defs/AbsenceContextItem"
+          },
+          "title": "Absence Context",
+          "type": "array"
+        },
+        "attendance": {
+          "$ref": "#/$defs/AttendanceValue"
+        },
+        "cosponsor_vote_gap": {
+          "items": {
+            "$ref": "#/$defs/GapItem"
+          },
+          "title": "Cosponsor Vote Gap",
+          "type": "array"
+        },
+        "cosponsored": {
+          "$ref": "#/$defs/CountValue"
+        },
+        "enacted_rate": {
+          "$ref": "#/$defs/EnactedRateValue"
+        },
+        "named_measure_mismatch": {
+          "items": {
+            "$ref": "#/$defs/MismatchItem"
+          },
+          "title": "Named Measure Mismatch",
+          "type": "array"
+        },
+        "party_unity": {
+          "$ref": "#/$defs/PartyUnityValue"
+        },
+        "sponsored": {
+          "$ref": "#/$defs/CountValue"
+        }
+      },
+      "required": [
+        "attendance",
+        "party_unity",
+        "sponsored",
+        "cosponsored",
+        "enacted_rate",
+        "cosponsor_vote_gap",
+        "named_measure_mismatch",
+        "absence_context"
+      ],
+      "title": "MemberMetrics",
+      "type": "object"
+    },
+    "MetricMethodology": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "text"
+      ],
+      "title": "MetricMethodology",
+      "type": "object"
+    },
+    "MismatchItem": {
+      "additionalProperties": false,
+      "properties": {
+        "bill_id": {
+          "title": "Bill Id",
+          "type": "string"
+        },
+        "recorded_position": {
+          "enum": [
+            "yea",
+            "nay",
+            "present",
+            "not_voting"
+          ],
+          "title": "Recorded Position",
+          "type": "string"
+        },
+        "statement_id": {
+          "title": "Statement Id",
+          "type": "string"
+        },
+        "statement_source_url": {
+          "title": "Statement Source Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "statement_id",
+        "bill_id",
+        "statement_source_url",
+        "recorded_position"
+      ],
+      "title": "MismatchItem",
+      "type": "object"
+    },
+    "PartyUnityValue": {
+      "additionalProperties": false,
+      "properties": {
+        "agreed": {
+          "title": "Agreed",
+          "type": "integer"
+        },
+        "excluded_ties": {
+          "title": "Excluded Ties",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        },
+        "substantive": {
+          "title": "Substantive",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "substantive",
+        "agreed",
+        "pct",
+        "excluded_ties"
+      ],
+      "title": "PartyUnityValue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "data/metrics.json. `methodology` keys == `members[*]` metric keys == the\nmethodology-page section ids (asserted by test). No wall-clock (determinism).",
+  "properties": {
+    "members": {
+      "additionalProperties": {
+        "$ref": "#/$defs/MemberMetrics"
+      },
+      "title": "Members",
+      "type": "object"
+    },
+    "methodology": {
+      "additionalProperties": {
+        "$ref": "#/$defs/MetricMethodology"
+      },
+      "title": "Methodology",
+      "type": "object"
+    }
+  },
+  "required": [
+    "methodology",
+    "members"
+  ],
+  "title": "MetricsFile",
+  "type": "object"
+}

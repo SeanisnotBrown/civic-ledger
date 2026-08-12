@@ -26,15 +26,25 @@ from pathlib import Path
 from pydantic import BaseModel
 
 from ingest.cache import repo_root
-from ingest.models import Absence, Bill, Member, MemberVote, RollCall
+from ingest.models import (
+    Absence,
+    Bill,
+    Member,
+    MemberLegislation,
+    MemberVote,
+    MetricsFile,
+    RollCall,
+)
 
 DATA_DIR = repo_root() / "data"
 MEMBERS_DIR = DATA_DIR / "members"
 VOTES_DIR = DATA_DIR / "votes"
 ABSENCES_DIR = DATA_DIR / "absences"
 BILLS_DIR = DATA_DIR / "bills"
+LEGISLATION_DIR = DATA_DIR / "legislation"
 SCHEMA_DIR = DATA_DIR / "schema"
 MANIFEST_PATH = DATA_DIR / "manifest.json"
+METRICS_PATH = DATA_DIR / "metrics.json"
 
 
 def _dumps(obj: object) -> str:
@@ -110,6 +120,23 @@ def export_absence(
     return path
 
 
+def export_member_legislation(
+    rec: MemberLegislation, out_dir: Path = LEGISLATION_DIR
+) -> Path:
+    """Write data/legislation/{member_id}.json — a member's sponsored + cosponsored
+    bills over the covered Congresses (INC-10 metrics input)."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{rec.member_id}.json"
+    path.write_text(_dumps(rec.model_dump()), encoding="utf-8", newline="\n")
+    return path
+
+
+def export_metrics(metrics: MetricsFile, path: Path = METRICS_PATH) -> Path:
+    """Write data/metrics.json (deterministic; no wall-clock)."""
+    path.write_text(_dumps(metrics.model_dump()), encoding="utf-8", newline="\n")
+    return path
+
+
 # --- JSON Schema (data/schema/) -------------------------------------------
 # One schema per published file type. The vote file is composite, so it maps to
 # `VoteFile`, not `RollCall`; the others map to their Tier-1 model directly.
@@ -118,6 +145,8 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("vote", VoteFile),
     ("bill", Bill),
     ("absence", Absence),
+    ("legislation", MemberLegislation),
+    ("metrics", MetricsFile),
 )
 
 

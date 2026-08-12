@@ -124,6 +124,124 @@ class Absence(_Strict):
         return self
 
 
+# --- Member legislation (INC-10 metrics input) ----------------------------
+
+
+class LegItem(_Strict):
+    """One bill a member sponsored or cosponsored, scoped to the covered
+    Congresses. `became_law` is a deterministic match on the official latest-action
+    text ("Became Public Law") — it counts only bills enacted UNDER THEIR OWN
+    NUMBER; a provision enacted by folding into another vehicle is not counted
+    (stated on the methodology page).
+
+    Deliberately carries NO live latest-action field: a bill's latest action moves
+    as it works through committee, so storing it would make data/legislation/ diff
+    almost every night and defeat the quiet-night diff-gate (D33). The only action
+    text kept is `enacted_action`, present ONLY when `became_law` — an enacted
+    bill's latest action is frozen, so it never churns. Legislation files then diff
+    only on real events: new sponsorship, new cosponsorship, or an enactment. (Title
+    text can still change on amendment — a low-frequency, acceptable churn source.)
+    `source_url` traces each item to its Congress.gov bill page."""
+
+    bill_id: str  # normalized "s3266-119"
+    congress: int
+    title: str
+    introduced_date: str | None
+    became_law: bool
+    # the frozen "Became Public Law No…" text; None unless enacted (see class docstring)
+    enacted_action: str | None = None
+    source_url: str
+
+
+class MemberLegislation(_Strict):
+    """A member's sponsored + cosponsored bills over the covered Congresses
+    (data/legislation/{member}.json). The metrics layer reads ONLY this committed
+    artifact — never the live API — so a third party can recompute every legislation
+    metric from the public repo (verify-recompute contract)."""
+
+    member_id: str
+    sponsored: list[LegItem]
+    cosponsored: list[LegItem]
+    source_url: str  # the sponsored-legislation endpoint (human-checkable)
+
+
+# --- Metrics (INC-10; data/metrics.json) ----------------------------------
+# Each per-member value has its own strict model so `test_committed_schemas_up_to_date`
+# catches a metric-shape change before it ships. Every metric is Tier-2 (an
+# independent factual formula); NONE is combined into a per-member composite — the
+# Tier-3 guard (checks/integrity.py) enforces that structurally over metrics.py.
+
+
+class AttendanceValue(_Strict):
+    eligible: int  # position rolls the member was covered for (non_position excluded)
+    cast: int      # yea + nay + present
+    missed: int    # not_voting
+    pct: float     # 100 * cast / eligible
+
+
+class PartyUnityValue(_Strict):
+    # substantive rolls where the member cast yea/nay and their party had a majority
+    substantive: int
+    agreed: int          # of those, votes matching the member's party majority
+    pct: float | None    # 100 * agreed / substantive; None if substantive == 0
+    excluded_ties: int   # substantive rolls dropped: the member's party split evenly
+
+
+class CountValue(_Strict):
+    count: int
+
+
+class EnactedRateValue(_Strict):
+    sponsored: int
+    enacted: int         # sponsored bills matched "Became Public Law"
+    pct: float | None    # 100 * enacted / sponsored; None if sponsored == 0
+
+
+class GapItem(_Strict):
+    bill_id: str
+    kind: Literal["cosponsored_and_voted_nay", "cosponsored_no_floor_action"]
+    rollcall_id: str | None = None  # the nay roll, for the voted-nay kind (traceability)
+
+
+class MismatchItem(_Strict):
+    # Provisional shape (INC-11 curates statements; empty until then).
+    statement_id: str
+    bill_id: str
+    statement_source_url: str
+    recorded_position: Position
+
+
+class AbsenceContextItem(_Strict):
+    rollcall_id: str
+    date: str
+    same_day_total: int  # position rolls in the member's chamber that calendar day
+    same_day_cast: int   # of those, ones the member cast (yea/nay/present)
+
+
+class MemberMetrics(_Strict):
+    attendance: AttendanceValue
+    party_unity: PartyUnityValue
+    sponsored: CountValue
+    cosponsored: CountValue
+    enacted_rate: EnactedRateValue
+    cosponsor_vote_gap: list[GapItem]
+    named_measure_mismatch: list[MismatchItem]
+    absence_context: list[AbsenceContextItem]
+
+
+class MetricMethodology(_Strict):
+    label: str
+    text: str  # the metric function's docstring, verbatim — the methodology-page copy
+
+
+class MetricsFile(_Strict):
+    """data/metrics.json. `methodology` keys == `members[*]` metric keys == the
+    methodology-page section ids (asserted by test). No wall-clock (determinism)."""
+
+    methodology: dict[str, MetricMethodology]
+    members: dict[str, MemberMetrics]
+
+
 # --- Statements & candidates ----------------------------------------------
 
 

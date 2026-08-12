@@ -1,0 +1,97 @@
+{
+  "$defs": {
+    "LegItem": {
+      "additionalProperties": false,
+      "description": "One bill a member sponsored or cosponsored, scoped to the covered\nCongresses. `became_law` is a deterministic match on the official latest-action\ntext (\"Became Public Law\") — it counts only bills enacted UNDER THEIR OWN\nNUMBER; a provision enacted by folding into another vehicle is not counted\n(stated on the methodology page).\n\nDeliberately carries NO live latest-action field: a bill's latest action moves\nas it works through committee, so storing it would make data/legislation/ diff\nalmost every night and defeat the quiet-night diff-gate (D33). The only action\ntext kept is `enacted_action`, present ONLY when `became_law` — an enacted\nbill's latest action is frozen, so it never churns. Legislation files then diff\nonly on real events: new sponsorship, new cosponsorship, or an enactment. (Title\ntext can still change on amendment — a low-frequency, acceptable churn source.)\n`source_url` traces each item to its Congress.gov bill page.",
+      "properties": {
+        "became_law": {
+          "title": "Became Law",
+          "type": "boolean"
+        },
+        "bill_id": {
+          "title": "Bill Id",
+          "type": "string"
+        },
+        "congress": {
+          "title": "Congress",
+          "type": "integer"
+        },
+        "enacted_action": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Enacted Action"
+        },
+        "introduced_date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Introduced Date"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bill_id",
+        "congress",
+        "title",
+        "introduced_date",
+        "became_law",
+        "source_url"
+      ],
+      "title": "LegItem",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A member's sponsored + cosponsored bills over the covered Congresses\n(data/legislation/{member}.json). The metrics layer reads ONLY this committed\nartifact — never the live API — so a third party can recompute every legislation\nmetric from the public repo (verify-recompute contract).",
+  "properties": {
+    "cosponsored": {
+      "items": {
+        "$ref": "#/$defs/LegItem"
+      },
+      "title": "Cosponsored",
+      "type": "array"
+    },
+    "member_id": {
+      "title": "Member Id",
+      "type": "string"
+    },
+    "source_url": {
+      "title": "Source Url",
+      "type": "string"
+    },
+    "sponsored": {
+      "items": {
+        "$ref": "#/$defs/LegItem"
+      },
+      "title": "Sponsored",
+      "type": "array"
+    }
+  },
+  "required": [
+    "member_id",
+    "sponsored",
+    "cosponsored",
+    "source_url"
+  ],
+  "title": "MemberLegislation",
+  "type": "object"
+}

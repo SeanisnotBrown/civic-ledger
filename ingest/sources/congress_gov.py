@@ -145,6 +145,45 @@ def bill_cosponsor_ids(
     return sorted(ids)
 
 
+# --- Member legislation (INC-10) ------------------------------------------
+def member_legislation(
+    bioguide: str, kind: str, congresses: list[int], *, force: bool = False
+) -> list[dict]:
+    """Raw sponsored/cosponsored legislation items for a member, filtered to the
+    covered `congresses`. `kind` ∈ {"sponsored-legislation", "cosponsored-legislation"}.
+
+    The endpoints return items newest-first with a lifetime `pagination.count`
+    (Wicker: 4,522 cosponsored), and offer no congress filter — so we page until a
+    page yields ZERO in-window items, then stop. We deliberately do NOT stop on the
+    first out-of-window item: the ordering is by action/introduced date, not
+    strictly by congress, so a boundary page can interleave a covered and an
+    uncovered item; stopping on the first uncovered one would silently drop covered
+    tail items (an undercount — value #1). One page of slack removes that risk."""
+    key = "sponsoredLegislation" if kind.startswith("sponsored") else "cosponsoredLegislation"
+    covered = set(congresses)
+    items: list[dict] = []
+    offset = 0
+    while True:
+        page = _get(
+            f"member/{bioguide}/{kind}",
+            {"limit": "250", "offset": str(offset)},
+            force=force,
+        ).json()
+        batch = page.get(key) or []
+        if not batch:
+            break
+        in_window = [it for it in batch if it.get("congress") in covered]
+        items.extend(in_window)
+        # Stop only once a whole page is out of window (newest-first ⇒ nothing
+        # covered remains beyond it). Never stop mid-page on a single old item.
+        if not in_window:
+            break
+        offset += 250
+        if offset >= int(page.get("pagination", {}).get("count", 0)):
+            break
+    return items
+
+
 # --- Congressional Record (index; full-text search is an INC-6 concern) ---
 def congressional_record(limit: int = 20, **params) -> CachedResponse:
     extra = {k: str(v) for k, v in params.items()}

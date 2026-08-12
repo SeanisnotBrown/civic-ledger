@@ -52,13 +52,18 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import classify
 
         return classify.run(args[1:])
+    if args and args[0] == "legislation":
+        from ingest import legislation
+
+        return legislation.run(args[1:])
     print("civic-ledger ingest — available subcommands:")
     print("  spike         INC-1 source feasibility spike (needs CONGRESS_API_KEY)")
     print("  members       INC-2 canonical members -> data/members/*.json")
     print("  house-votes   INC-3 House roll calls -> data/votes/ + data/absences/")
     print("  senate-votes  INC-4 Senate roll calls -> data/votes/ + data/absences/")
-    print("  bills         INC-8 vote-referenced bills -> data/bills/ (--all forces the INC-10 subjects/cosponsors backfill)")
+    print("  bills         INC-8 bills -> data/bills/ (--all: subjects/cosponsors backfill)")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
+    print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
     if args:
         print(f"unknown args: {args}")
         return 2

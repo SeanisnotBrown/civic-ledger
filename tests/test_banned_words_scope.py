@@ -42,3 +42,17 @@ def test_raw_cache_excluded(tmp_path):
     assert "data/raw/legiscan/blob.json" not in hit_paths  # raw cache → excluded
     assert "data/members/y.json" in hit_paths  # published field → still caught
     assert "data/raw/" in banned_words.EXCLUDE_PREFIXES
+
+
+def test_absence_queue_excluded_but_published_absences_scanned(tmp_path):
+    # INC-6 (D25): unapproved verbatim CREC candidates in the review queue are a
+    # pre-publication artifact — a member's own words there must not fail CI before
+    # the owner has approved them. Once approved they land in data/absences/ and ARE
+    # scanned.
+    _seed(tmp_path, "data/quality/absence-queue/CREC-x.json", '{"verbatim_text": "contradicts"}')
+    _seed(tmp_path, "data/absences/m--h-118-1-0001.json", '{"stated_reason": "contradicts"}')
+
+    hit_paths = {h[0] for h in banned_words.find_hits(tmp_path)}
+    assert "data/quality/absence-queue/CREC-x.json" not in hit_paths  # queue → excluded
+    assert "data/absences/m--h-118-1-0001.json" in hit_paths  # published → caught
+    assert "data/quality/absence-queue/" in banned_words.EXCLUDE_PREFIXES

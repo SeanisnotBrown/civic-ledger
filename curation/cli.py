@@ -12,10 +12,23 @@ import sys
 
 def main(argv: list[str] | None = None) -> int:
     args = sys.argv[1:] if argv is None else argv
-    print("civic-ledger curate: curation tools are not implemented yet (INC-0).")
-    print("Absence CLI approver lands in INC-6; full Flask app in INC-11.")
+    if args and args[0] == "absences":
+        from curation import absences
+
+        sub = args[1] if len(args) > 1 else "search"
+        if sub == "search":
+            return absences.search(args[2:])
+        if sub == "approve":
+            return absences.approve(args[2:])
+        print(f"curate absences: unknown subcommand {sub!r} (use search | approve)")
+        return 2
+    print("civic-ledger curate — available subcommands:")
+    print("  absences search    INC-6 CREC personal-explanation search -> review queue")
+    print("  absences approve    INC-6 owner approval -> verbatim Absence.stated_reason")
+    print("  (full Flask curation app lands in INC-11)")
     if args:
-        print(f"requested subcommand: {' '.join(args)} (not available yet)")
+        print(f"unknown args: {args}")
+        return 2
     return 0
 
 

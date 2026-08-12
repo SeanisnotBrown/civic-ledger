@@ -3,8 +3,8 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-5 session (vote_class classifier).
-**Git:** INC-1..INC-4 + MS GO-gate closed & pushed (all CI green). INC-5 being
+**Last updated:** 2026-08-12, end of INC-6 session (absences & personal explanations).
+**Git:** INC-1..INC-5 + MS GO-gate closed & pushed (all CI green). INC-6 being
 committed now — confirm its CI is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
@@ -17,6 +17,28 @@ committed now — confirm its CI is green next session.
 
 ## Current increment
 
+**INC-6 — Absences & personal explanations — ✅ COMPLETE (build); content = H9.**
+Queue → approve → publish pipeline for stated absence reasons. `uv run curate
+absences search` searches CREC (govinfo) for the covered delegation's "Personal
+Explanation" insertions, **hard-verifies each byline** (`HON. {NAME}` + `of {state}`
+— rejects wrong-state surname collisions like Glenn Thompson of PA), extracts the
+VERBATIM statement, auto-matches the roll by **absence-stub existence** (not date
+arithmetic), and parks candidates in `data/quality/absence-queue/`. `uv run curate
+absences approve [--granule <id>]` (interactive y/n/edit or owner-scriptable) writes
+the verbatim `stated_reason` + CREC `stated_reason_source` + `declared_position`
+onto the matching Absence. **Real MS candidate set = exactly 1** (Guest, `h-118-1-0031`,
+YEA), queued and committed **pending owner approval (H9)** — per principle 5 the
+builder ships the tool, the owner supplies content (D25); the machinery is proven
+end-to-end by a test approving the real Guest granule onto a tmp stub. `data/absences/`
+stays `stated_reason: null` until the owner acts. Banned-words excludes the queue
+(D25). Design in **D25**. See "INC-6 output" below.
+
+**Next: INC-7 — JSON export contracts — NOT STARTED.** `export.py` complete for
+members/votes/bills/absences; `data/manifest.json` (counts, coverage, generated_at,
+commit); `docs/data-contract.md`; `verify-recompute` fresh-clone script
+(recompute vote totals from MemberVotes, match RollCall.totals 100%). Unblocked.
+
+**(historical — INC-5)**
 **INC-5 — vote_class classifier (§A1) — ✅ COMPLETE.**
 Total classification of all **3,447** non-`non_position` rolls (both chambers) via
 an ordered pure rules table (`ingest/classify.py`): procedural 1285, passage 886,
@@ -185,30 +207,50 @@ RESOLVED callout above). 11 samples committed.
 - **⚠ ORDER: ingest → classify → checks** (D24). Re-running an ingest resets rolls to
   `unclassified`; the classification gate then fails until `classify` re-runs.
 
-## INC-6 — where to pick up
+## INC-6 output (done — the absence-explanation curation pipeline)
 
-Spec: IMPLEMENTATION.md §7 "INC-6" (content = H9). Goal: a queue → approve → publish
-pipeline for stated absence reasons, filling the `Absence.stated_reason` /
-`stated_reason_source` / `declared_position` fields (already in the §5 schema, seed
-stubs already exported at `data/absences/`).
+- **`curation/absences.py`** — pure `parse_granule` (byline, verbatim statement,
+  roll refs, declared position), `verify_member` (the wrong-state gate), stub-
+  existence `match_rollcall`, `search()` (CREC → verified queue) and `approve()` /
+  `approve_one()` (owner approval → verbatim Absence). `_publish` refuses an
+  unmatched roll (an Absence is keyed member+roll).
+- **`ingest/sources/govinfo.py`** — `crec_personal_explanations(state, start, end)`
+  (title+byline-scoped search), `granule_text(pkg, gid)` (header-auth), `granule_url`
+  (the public `govinfo.gov/app/details/...` citation, verified 200).
+- **`curation/cli.py`** — `curate absences {search|approve}` (`approve --granule <id>`
+  is the owner's non-interactive path). **`banned_words.py`** excludes
+  `data/quality/absence-queue/` (D25).
+- Tests: **`tests/test_absences.py` (12)** + the queue-exclusion case in
+  `test_banned_words_scope.py`; committed real fixture
+  `data/quality/samples/crec_personal_explanation_guest.htm`. 74 → 86.
+- **Queued, pending H9:** `data/quality/absence-queue/CREC-2023-01-13-pt1-PgE29-4.json`
+  (Guest). Owner approval is H9; `data/absences/` reasons stay null until then.
 
-Concrete steps:
-1. **CREC search** — `ingest/sources/govinfo.py` already reaches govinfo full-text
-   search (INC-1 resolved this; sample `govinfo_crec_search_personal_explanation.json`,
-   15,998 hits for "personal explanation"). Search `"personal explanation"` +
-   covered-member names, extract candidate excerpt + CREC page URL into a **review
-   queue** `data/quality/absence-queue/` (one file per candidate).
-2. **Minimal CLI approver** — `uv run curate absences` (grow `curation/cli.py`): show
-   excerpt, y/n/edit-verbatim; on approve, write `Absence.stated_reason` (VERBATIM
-   only — never inferred/paraphrased, principle 5) + `stated_reason_source` (CREC URL)
-   onto the existing `data/absences/{member}--{rollcall}.json`. The `Absence` model
-   already enforces `stated_reason ⇒ stated_reason_source`.
-3. **No-LLM discipline**: this is owner-curated content; the tool presents the
-   verbatim CREC excerpt, the owner approves. Never generate or summarize the reason.
+## INC-7 — where to pick up
 
-**INC-6 acceptance:** queue populated from CREC for covered members; approver writes
-verbatim reason + source onto absences; a published absence with a reason carries its
-CREC page URL; determinism preserved. (Recurring content H9 continues past the code.)
+Spec: IMPLEMENTATION.md §7 "INC-7". Goal: a stable, documented, deterministic public
+dataset. Steps:
+1. `export.py` complete for members/votes/bills/absences (members/votes/absences
+   already export via their ingests; add any missing record types + a single
+   `export` entry that regenerates all). Keep `_dumps` determinism.
+2. **`data/manifest.json`** — counts, congress coverage, `generated_at`, and the
+   commit sha. **This is the ONE place a wall-clock/commit value lives** (§6.3): every
+   record stays wall-clock-free so nightly diffs show only real changes; the manifest
+   carries the timestamp. So `generated_at`/commit must be injected (env/arg), not
+   read at import, or the double-export test breaks.
+3. **`docs/data-contract.md`** — every file + field, for third-party recompute.
+4. **`verify-recompute`** — a fresh-clone script (new console entry) that recomputes
+   each RollCall's totals from its `member_votes`… **BUT NOTE:** votes export only the
+   **covered MS** `member_votes`, while `RollCall.totals` is the **chamber-wide** tally
+   (D22). So "recompute totals from MemberVotes" can't mean the embedded MS rows.
+   Resolve in INC-7: either (a) recompute a *coverage* invariant (every covered member
+   has exactly one position per eligible roll — overlaps symmetry), or (b) persist the
+   raw chamber tally to recompute against. Pick and document; the brief's intent is
+   "third party can recompute and match", so (b) or a documented (a) both satisfy it.
+
+**INC-7 acceptance:** double-export byte-identical; JSON Schema files generated from
+pydantic and committed; `verify-recompute` matches 100% of roll calls (per the
+resolved definition above).
 
 ---
 
@@ -222,7 +264,8 @@ CREC page URL; determinism preserved. (Recurring content H9 continues past the c
 | INC-3 | House vote ingest | ✅ done | 1,886 rolls (counts match, contiguous), 10/10 clerk cross-check, symmetry OK; 47 tests |
 | INC-4 | Senate vote ingest ∥ | ✅ done | 1,581 rolls (contiguous 1..N per session, 119/1=659), 10/10 detail cross-check + menu-tally check, symmetry OK both chambers; 65 tests |
 | INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
-| INC-6 | Absences & explanations | **not started (next)** | content = H9 |
+| INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
+| INC-7 | JSON export contracts | **not started (next)** | — |
 | INC-7 | JSON export contracts | not started | — |
 | INC-8 | Site MVP | not started | — |
 | INC-9 | Automation + deploy (PUBLIC MVP) | not started | blocked by H4, H5 |
@@ -255,7 +298,15 @@ CREC page URL; determinism preserved. (Recurring content H9 continues past the c
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0..INC-5 output)
+## What exists in the repo now (INC-0..INC-6 output)
+
+**INC-6 additions:** `curation/absences.py` (search→verify→queue→approve pipeline),
+`crec_personal_explanations`/`granule_text`/`granule_url` in `ingest/sources/govinfo.py`,
+the `absences` subcommands in `curation/cli.py`, the `absence-queue/` exclusion in
+`ingest/checks/banned_words.py`, `tests/test_absences.py` (12) + a queue-exclusion
+test, the committed `data/quality/samples/crec_personal_explanation_guest.htm` fixture,
+and one pending queue file `data/quality/absence-queue/*.json`. Also swept printed
+U+2192 arrows → ASCII (Windows cp1252 crash). D25 in `decisions.md`. Test count 74 → 86.
 
 **INC-5 additions:** `ingest/classify.py` (pure §A1 rules table + `classify`
 pipeline, `classify` subcommand), `congress_gov.bill_committees`,

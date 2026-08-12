@@ -73,7 +73,13 @@ ALLOWLIST: frozenset[str] = frozenset(
 #     all. A large base64 dataset blob (e.g. LegiScan getDataset) will coincidentally
 #     contain banned substrings like "liar" in its base64 alphabet — scanning it is a
 #     scope error, since §6.4 targets *published* fields only.
-EXCLUDE_PREFIXES: tuple[str, ...] = ("data/quality/samples/", "data/raw/")
+#   * data/quality/absence-queue/ — UNAPPROVED verbatim CREC candidates (INC-6, D25).
+#     This is a pre-publication review artifact, not published data; a member's own
+#     verbatim words there must not fail CI before the owner has even seen them.
+#     Once approved, the text lands in data/absences/ and IS scanned.
+EXCLUDE_PREFIXES: tuple[str, ...] = (
+    "data/quality/samples/", "data/quality/absence-queue/", "data/raw/",
+)
 
 
 def repo_root() -> Path:

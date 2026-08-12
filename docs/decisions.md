@@ -339,3 +339,44 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
 - **Golden test:** `tests/fixtures/questions.yaml` — 50 verbatim real strings (Senate
   ones keep trailing measure text, so the fixture tests what production sees),
   covering every rule id incl. both R-RULE branches and the treaty. 100% pass.
+
+### INC-6 (2026-08-12) — Absences & personal explanations
+
+- **D25 — the builder ships the curation tool; the owner supplies the content
+  (principle 5, H9).** A personal-explanation `stated_reason` renders on the site as
+  fact, so approving one into `data/absences/` is "filling the tool with political
+  content" even though the text is verbatim — the `Absence` docstring requires it be
+  *owner-approved* AND verbatim (conjunctive), and the increment header marks the
+  content H9. So INC-6 lands the pipeline GREEN (search → verify → queue → approver +
+  the exclusion test) but the "≥1 real approved example" acceptance is recorded
+  **pending H9**, mirroring INC-1's DEFER precedent. The machinery is proven
+  end-to-end by a test that approves the real committed Guest granule onto a *tmp*
+  stub; real `data/absences/*.json` keep `stated_reason: null` until the owner acts.
+- **Member identity is hard-verified against the granule byline, not the search.**
+  A CREC surname search returns wrong-state members (the real case: "HON. GLENN
+  THOMPSON of pennsylvania" surfaces under a "Thompson" search though the covered
+  member is Bennie Thompson of Mississippi). `verify_member` requires the byline
+  state to equal the member's state AND the surname to appear in "HON. {NAME}".
+  Search is additionally scoped `title:"Personal Explanation" "of Mississippi"`,
+  which alone cut the covered set to exactly ONE real candidate (Guest, 2023-01-13,
+  Roll 31, YEA) out of 1,152 personal explanations in 118–119.
+- **Roll auto-match = stub existence, not date arithmetic.** Explanations are filed
+  after the vote and roll numbers reset per session, so a granule date can't be
+  mapped to a roll id directly. For member M + "Roll Call No. N", generate candidate
+  ids across covered sessions that STARTED on/before the granule year and keep the
+  one where `data/absences/M--{id}.json` already exists (the member was recorded
+  not_voting). Exactly one hit → auto-match; zero or many → left unmatched for the
+  owner (never guess). Multi-roll insertions → no match and `declared_position=None`
+  (positions can't be mechanically paired to rolls; the model only allows yea/nay).
+- **`data/quality/absence-queue/` is excluded from the §6.4 banned-words scan.** It
+  holds UNAPPROVED verbatim member text; a candidate containing a banned phrase must
+  not fail CI before the owner has seen it. Once approved, the text lands in
+  `data/absences/` and IS scanned. (Mirrors the INC-1 samples-exclusion ADR; test in
+  `test_banned_words_scope.py`.)
+- **Senate has zero personal explanations by construction** — "Personal Explanation"
+  lives in the House's Extensions of Remarks section. The pipeline derives chamber
+  from the member record (never hardcoded); Senate members simply return no hits.
+- **Windows/cp1252 portability:** replaced the U+2192 arrow in CLI help + FAIL prints
+  with ASCII "->". Windows' console codec can't encode it and crashed `ingest`/
+  `curate` help (a latent bug from INC-4/5; CI on UTF-8 never hit it). Em-dash/§ are
+  cp1252-safe and kept. Rule of thumb going forward: stdout stays ASCII.

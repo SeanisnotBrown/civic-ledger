@@ -22,10 +22,11 @@ from datetime import UTC, datetime
 import httpx
 
 from ingest import env
-from ingest.cache import _USER_AGENT, RAW_DIR
+from ingest.cache import _USER_AGENT, RAW_DIR, fetch
 
 SOURCE = "govinfo"
 SEARCH_URL = "https://api.govinfo.gov/search"
+GRANULE_HTM = "https://api.govinfo.gov/packages/{pkg}/granules/{granule}/htm"
 
 
 def _headers() -> dict[str, str]:
@@ -68,3 +69,36 @@ def crec_search(phrase: str, page_size: int = 20) -> dict:
         "sorts": [{"field": "publishdate", "sortOrder": "DESC"}],
     }
     return _cached_post(SEARCH_URL, body)
+
+
+def crec_personal_explanations(state_name: str, start: str, end: str, page_size: int = 50) -> dict:
+    """CREC "Personal Explanation" insertions for one state's delegation over a
+    date window. Scoping to the granule TITLE ("Personal Explanation") + the byline
+    phrase ("of {state}") is what separates a real personal-explanation insertion
+    (a member stating how they would have voted on a missed roll) from the phrase
+    merely appearing in floor debate — and it cuts wrong-state surname collisions
+    (e.g. Thompson of Mississippi vs. Thompson of Pennsylvania) at the search layer.
+    The caller still hard-verifies the byline per granule (INC-6)."""
+    body = {
+        "query": (
+            f'title:"Personal Explanation" "of {state_name}" '
+            f"collection:CREC publishdate:range({start},{end})"
+        ),
+        "pageSize": page_size,
+        "offsetMark": "*",
+        "sorts": [{"field": "publishdate", "sortOrder": "DESC"}],
+    }
+    return _cached_post(SEARCH_URL, body)
+
+
+def granule_text(package_id: str, granule_id: str) -> str:
+    """The granule's text (htm) — header-auth, so the key never enters the URL or
+    the disk cache key (cache.py contract)."""
+    url = GRANULE_HTM.format(pkg=package_id, granule=granule_id)
+    return fetch(SOURCE, url, ext="htm", headers=_headers()).text
+
+
+def granule_url(package_id: str, granule_id: str) -> str:
+    """The stable PUBLIC citation for a granule (verified 200): the govinfo details
+    page. This is what a published `stated_reason_source` points a reader to."""
+    return f"https://www.govinfo.gov/app/details/{package_id}/{granule_id}"

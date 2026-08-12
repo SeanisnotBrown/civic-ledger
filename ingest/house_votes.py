@@ -241,5 +241,5 @@ def run(argv: list[str] | None = None) -> int:
         print(f"FAIL: {len(ms_failures)} MS-delegation validation failures "
               f"(quarantined): {ms_failures[:10]}")
     if gaps:
-        print(f"FAIL: {len(gaps)} covered-member gap(s) → data/quality/house-gaps.md")
+        print(f"FAIL: {len(gaps)} covered-member gap(s) -> data/quality/house-gaps.md")
     return 1 if (fetch_failures or ms_failures or gaps) else 0

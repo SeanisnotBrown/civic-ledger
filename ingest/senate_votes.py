@@ -318,5 +318,5 @@ def run(argv: list[str] | None = None) -> int:
         print(f"FAIL: {len(ms_failures)} MS/tally validation failures (quarantined): "
               f"{ms_failures[:10]}")
     if gaps:
-        print(f"FAIL: {len(gaps)} covered-member/enumeration gap(s) → data/quality/senate-gaps.md")
+        print(f"FAIL: {len(gaps)} covered-member/enumeration gap(s) -> data/quality/senate-gaps.md")
     return 1 if (fetch_failures or ms_failures or gaps) else 0

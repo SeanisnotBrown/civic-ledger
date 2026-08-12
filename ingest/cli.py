@@ -50,9 +50,9 @@ def main(argv: list[str] | None = None) -> int:
         return classify.run(args[1:])
     print("civic-ledger ingest — available subcommands:")
     print("  spike         INC-1 source feasibility spike (needs CONGRESS_API_KEY)")
-    print("  members       INC-2 canonical members → data/members/*.json")
-    print("  house-votes   INC-3 House roll calls → data/votes/ + data/absences/")
-    print("  senate-votes  INC-4 Senate roll calls → data/votes/ + data/absences/")
+    print("  members       INC-2 canonical members -> data/members/*.json")
+    print("  house-votes   INC-3 House roll calls -> data/votes/ + data/absences/")
+    print("  senate-votes  INC-4 Senate roll calls -> data/votes/ + data/absences/")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     if args:
         print(f"unknown args: {args}")

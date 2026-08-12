@@ -89,12 +89,23 @@ def export_bill(bill: Bill, out_dir: Path = BILLS_DIR) -> Path:
     return path
 
 
-def export_absence(absence: Absence, out_dir: Path = ABSENCES_DIR) -> Path:
+def export_absence(
+    absence: Absence, out_dir: Path = ABSENCES_DIR, *, overwrite: bool = True
+) -> Path:
     """One file per absence: data/absences/{member_id}--{rollcall_id}.json. Kept
     separate from vote files so INC-6 curation can add a stated_reason without
-    rewriting the (much larger) vote record."""
+    rewriting the (much larger) vote record.
+
+    `overwrite=False` (used by the ingest) preserves an existing file untouched:
+    an ingest stub carries nothing a re-fetch can update, but the reason fields are
+    OWNER-OWNED (H9 approvals). Nightly re-fetches recent rolls (D31), so an
+    unconditional write would silently reset an approved `stated_reason` to null —
+    a false "No explanation on record." (value #1). The curation tool writes the
+    approved Absence directly (not via this helper), so it is unaffected (D35)."""
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{absence.member_id}--{absence.rollcall_id}.json"
+    if not overwrite and path.exists():
+        return path
     path.write_text(_dumps(absence.model_dump()), encoding="utf-8", newline="\n")
     return path
 

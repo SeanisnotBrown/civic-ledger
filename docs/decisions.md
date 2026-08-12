@@ -474,6 +474,17 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   mobile perf + a11y ≥ 90 (`lighthouserc.cjs`, URLs derived from data, median of 3 runs
   against `astro preview`) is wired into CI — the INC-9 acceptance gate; the MVP pages
   carry no client JS so they score ~100.
+- **D35 — the ingest re-exports absence stubs with `overwrite=False` so it never
+  clobbers an owner-approved reason.** `export_absence()` wrote unconditionally; the
+  ingest emits a bare stub (`stated_reason=None`) for every `not_voting` on every
+  FETCHED roll. Nightly re-fetches recent (<7d) rolls (D31), and a personal explanation
+  can be filed within days of the vote (INC-6's real Guest case: filed 1 day after) —
+  so an unconditional re-write would silently reset an H9 approval to "No explanation on
+  record.", a false statement (value #1). Fix: the ingest passes `overwrite=False`
+  (preserve any existing file — the stub carries nothing a re-fetch updates; the reason
+  fields are owner-owned); the curation tool writes the approved Absence directly, not
+  through this helper, so it still overwrites correctly. A position correction that
+  orphans a stub is caught by verify-recompute's reciprocity invariant, not silently.
 
 ### INC-8 (2026-08-12) — Site MVP
 

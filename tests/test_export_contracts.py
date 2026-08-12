@@ -11,7 +11,7 @@ from pathlib import Path
 
 from ingest import config, export, verify_recompute
 from ingest.cache import repo_root
-from ingest.models import Bill, CboRef
+from ingest.models import Absence, Bill, CboRef
 
 FIXED_TS = "2020-01-01T00:00:00Z"
 FIXED_COMMIT = "0000000"
@@ -114,3 +114,33 @@ def test_verify_recompute_matches_committed_dataset() -> None:
 
 def test_verify_recompute_entrypoint_green() -> None:
     assert verify_recompute.main([]) == 0
+
+
+# --- absence overwrite guard (D35) ----------------------------------------
+
+
+def test_export_absence_overwrite_false_preserves_owner_reason(tmp_path: Path) -> None:
+    # Simulate an owner-approved absence on disk (H9), then a nightly ingest stub.
+    approved = Absence(
+        member_id="G000591",
+        rollcall_id="h-118-1-0031",
+        stated_reason="I was unavoidably absent.",
+        stated_reason_source="https://www.congress.gov/crec/...",
+        declared_position="yea",
+    )
+    export.export_absence(approved, tmp_path)
+    # The ingest re-emits a bare stub for the same roll (reason=None).
+    stub = Absence(member_id="G000591", rollcall_id="h-118-1-0031")
+    export.export_absence(stub, tmp_path, overwrite=False)
+    reloaded = Absence.model_validate_json(
+        (tmp_path / "G000591--h-118-1-0031.json").read_text(encoding="utf-8")
+    )
+    assert reloaded == approved  # the approval survived the re-ingest
+
+
+def test_export_absence_default_overwrites(tmp_path: Path) -> None:
+    export.export_absence(Absence(member_id="X", rollcall_id="r"), tmp_path)
+    export.export_absence(Absence(member_id="X", rollcall_id="r"), tmp_path)  # no error
+    # overwrite=False creates when absent (a brand-new not_voting stub).
+    p = export.export_absence(Absence(member_id="Y", rollcall_id="r"), tmp_path, overwrite=False)
+    assert p.exists()

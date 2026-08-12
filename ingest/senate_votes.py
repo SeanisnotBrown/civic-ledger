@@ -296,7 +296,8 @@ def run(argv: list[str] | None = None) -> int:
                     gaps.append(f"{rc_id}: missing MS members {sorted(missing)}")
                 export_rollcall(rc, mvs)
                 for ab in absences:
-                    export_absence(ab)
+                    # overwrite=False: never clobber an owner-approved reason (D35).
+                    export_absence(ab, overwrite=False)
                     n_abs += 1
                 n_votes += 1
 

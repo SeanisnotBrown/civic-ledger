@@ -60,6 +60,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import metrics
 
         return metrics.run(args[1:])
+    if args and args[0] == "ms":
+        from ingest import ms_legislature
+
+        return ms_legislature.run(args[1:])
     print("civic-ledger ingest — available subcommands:")
     print("  spike         INC-1 source feasibility spike (needs CONGRESS_API_KEY)")
     print("  members       INC-2 canonical members -> data/members/*.json")
@@ -70,6 +74,7 @@ def main(argv: list[str] | None = None) -> int:
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
     print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")
     print("                  metrics history <bioguide> [--metric <key>] — git series (R-3)")
+    print("  ms            INC-12 Mississippi state legislature (LegiScan) -> data/state/ms/")
     if args:
         print(f"unknown args: {args}")
         return 2

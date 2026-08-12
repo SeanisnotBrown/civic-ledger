@@ -53,6 +53,19 @@ def test_curated_statement_text_is_scanned(tmp_path):
     assert not any(p.startswith("data/statements/") for p in banned_words.EXCLUDE_PREFIXES)
 
 
+def test_banned_terms_match_whole_words_not_substrings(tmp_path):
+    # Regression (INC-12): "liar" must not match inside "Auxiliary" / "familiar" /
+    # "peculiar" — real MS bill titles carry these. The banned framing words are
+    # matched as whole words, but a real standalone "liar" is still caught.
+    _seed(tmp_path, "data/state/ms/bills/b.json",
+          '{"title": "Junior Auxiliary; a familiar peculiar contradictory matter."}')
+    _seed(tmp_path, "data/members/z.json", '{"note": "you are a liar"}')
+
+    hit_paths = {h[0] for h in banned_words.find_hits(tmp_path)}
+    assert "data/state/ms/bills/b.json" not in hit_paths  # no substring false positive
+    assert "data/members/z.json" in hit_paths  # a real standalone banned word is caught
+
+
 def test_absence_queue_excluded_but_published_absences_scanned(tmp_path):
     # INC-6 (D25): unapproved verbatim CREC candidates in the review queue are a
     # pre-publication artifact — a member's own words there must not fail CI before

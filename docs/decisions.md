@@ -826,3 +826,33 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   builds. No federal value changed (metrics.json/manifest byte-unchanged). MS party code `N`
   (nonpartisan, 1 member) maps to `I` in the D/R/I model — documented on the limitations
   page (phase 6).
+
+### D52 (2026-08-12) — LegiScan bulk ingest, MS classifier, TTL cache, banned-words fix
+
+- **`ingest ms` turns the LegiScan bulk dataset for the current MS session into the
+  canonical schema under data/state/ms/.** Flow: `getDatasetList(MS)` → the current REGULAR
+  session (max `year_start`, non-special = 2026 Regular, session 2249) with its `access_key`
+  + `dataset_hash` → `getDataset` returns a base64 ZIP (people/bills/votes JSON) → decode →
+  pure `build_records` → export. Result committed: **174 members, 1,725 roll calls, 905
+  vote-referenced bills, 144,007 member votes, 0 quarantined.** Discipline mirrors the
+  federal ingests: pure parsers + a pure `build_records` the tests drive offline; a per-roll
+  **tally cross-check** (per-person counts must equal the LegiScan header yea/nay/nv, else
+  `TallyMismatch` → quarantine); an **unknown-people_id guard** (`UnknownPerson`, parity with
+  R-2); `party_totals` **fully computed** (LegiScan gives every position, so this is the
+  whole 174-member chamber, not a covered delegation — feeds a future MS party-unity).
+  Bills published = vote-referenced only (parity with federal D27). Records carry no
+  wall-clock; only the MS manifest carries an injected `generated_at`/`commit`/`dataset_hash`.
+- **MS vote classifier** (`classify_ms`): the §A1 congressional classifier does not apply to
+  MS `desc` strings, so a small MS-scoped keyword table maps the 16 observed descriptions →
+  {passage, veto_override, procedural}. All 1,725 rolls classified (1,721 passage / 3
+  veto_override / 1 procedural), zero `other`.
+- **TTL cache for LegiScan** (the carried-forward gap): `legiscan._get` gained a
+  `fetched_at`-freshness check (default `DEFAULT_TTL_HOURS`=20, `CIVIC_CACHE_TTL_HOURS`
+  overridable) so a re-run reads the cached response instead of re-fetching (and re-counting
+  quota); the key still never touches the cache key or `.meta`.
+- **banned-words word-boundary fix** (surfaced by real MS data): the §6.4 check matched
+  substrings, so the real bill title "Junior **Auxiliar**y of …" tripped `liar`
+  (aux-i-LIAR-y); "familiar"/"peculiar" would too. Now each term matches as a whole word
+  (`\bterm\b`) — the intent all along (§6.4 targets partisan framing words we authored). A
+  standalone banned word is still caught; regression test added. No prior hit changes.
+  MS party `N` (nonpartisan, 1 member) → `I` in the D/R/I model (limitations page, phase 6).

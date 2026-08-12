@@ -17,6 +17,7 @@ terms; it is manually reviewed (§6.4). A hit anywhere else fails the build.
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 # Brief 5.4 verbatim plus the obvious adjacents (§6.4).
@@ -82,6 +83,15 @@ EXCLUDE_PREFIXES: tuple[str, ...] = (
 )
 
 
+# Match each banned term as a WHOLE WORD/PHRASE, not a substring — otherwise a real
+# published title like "Junior Auxiliary of ..." trips "liar" (aux-i-LIAR-y), and
+# "familiar"/"peculiar"/"conciliar" would too. §6.4 targets partisan FRAMING words we
+# authored, which are always whole words; word boundaries keep that intent exact.
+_PATTERNS: tuple[tuple[re.Pattern[str], str], ...] = tuple(
+    (re.compile(rf"\b{re.escape(term)}\b", re.IGNORECASE), term) for term in BANNED
+)
+
+
 def repo_root() -> Path:
     # ingest/checks/banned_words.py -> repo root is two parents up from ingest/.
     return Path(__file__).resolve().parents[2]
@@ -115,9 +125,8 @@ def find_hits(root: Path | None = None) -> list[tuple[str, int, str]]:
         except OSError:
             continue
         for lineno, line in enumerate(text.splitlines(), start=1):
-            low = line.lower()
-            for term in BANNED:
-                if term in low:
+            for pattern, term in _PATTERNS:
+                if pattern.search(line):
                     hits.append((relposix, lineno, term))
     return hits
 

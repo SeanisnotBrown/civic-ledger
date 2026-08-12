@@ -20,7 +20,7 @@ from datetime import UTC, datetime
 import httpx
 
 from ingest import env
-from ingest.cache import _USER_AGENT, RAW_DIR
+from ingest.cache import _USER_AGENT, DEFAULT_TTL_HOURS, RAW_DIR
 
 BASE = "https://api.legiscan.com/"
 SOURCE = "legiscan"
@@ -31,10 +31,26 @@ def available() -> bool:
     return bool(env.get("LEGISCAN_API_KEY"))
 
 
-def _get(op: str, **params) -> dict:
-    """Call a LegiScan operation. The key is added ONLY to the live request, never
-    to the cache key or the `.meta` (LegiScan requires key as a query param)."""
-    key = env.require("LEGISCAN_API_KEY")
+def _is_fresh(meta_path, ttl_hours: float) -> bool:
+    """True if a cached `.meta` sidecar's `fetched_at` is within `ttl_hours`."""
+    if not meta_path.exists():
+        return False
+    try:
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
+        fetched = datetime.fromisoformat(meta["fetched_at"])
+    except (json.JSONDecodeError, KeyError, ValueError):
+        return False
+    age_h = (datetime.now(UTC) - fetched).total_seconds() / 3600.0
+    return age_h < ttl_hours
+
+
+def _get(op: str, ttl_hours: float | None = None, **params) -> dict:
+    """Call a LegiScan operation through a TTL'd disk cache (D52; the spike's uncached
+    `_get` re-fetched — and re-counted quota — on every call). A cached response within
+    `ttl_hours` (default `DEFAULT_TTL_HOURS`, `CIVIC_CACHE_TTL_HOURS`-overridable) is
+    read from disk. The key is added ONLY to the live request, never to the cache key
+    or the `.meta` (LegiScan requires the key as a query param)."""
+    ttl = DEFAULT_TTL_HOURS if ttl_hours is None else ttl_hours
     query = {"op": op, **{k: str(v) for k, v in params.items()}}
     # Cache key derives from op+params WITHOUT the secret.
     canonical = op + "?" + "&".join(f"{k}={v}" for k, v in sorted(query.items()))
@@ -42,11 +58,15 @@ def _get(op: str, **params) -> dict:
     data_path = RAW_DIR / SOURCE / f"{digest}.json"
     meta_path = RAW_DIR / SOURCE / f"{digest}.meta"
 
+    if _is_fresh(meta_path, ttl) and data_path.exists():
+        return json.loads(data_path.read_text(encoding="utf-8"))
+
+    key = env.require("LEGISCAN_API_KEY")
     resp = httpx.get(
         BASE,
         params={**query, "key": key},
         headers={"User-Agent": _USER_AGENT},
-        timeout=30,
+        timeout=60,
         follow_redirects=True,
     )
     resp.raise_for_status()

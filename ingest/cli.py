@@ -56,6 +56,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import legislation
 
         return legislation.run(args[1:])
+    if args and args[0] == "metrics":
+        from ingest import metrics
+
+        return metrics.run(args[1:])
     print("civic-ledger ingest — available subcommands:")
     print("  spike         INC-1 source feasibility spike (needs CONGRESS_API_KEY)")
     print("  members       INC-2 canonical members -> data/members/*.json")
@@ -64,6 +68,7 @@ def main(argv: list[str] | None = None) -> int:
     print("  bills         INC-8 bills -> data/bills/ (--all: subjects/cosponsors backfill)")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
+    print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")
     if args:
         print(f"unknown args: {args}")
         return 2

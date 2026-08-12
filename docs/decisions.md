@@ -784,3 +784,18 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   Removed the unused `clerk_house.roll_xml(year, roll)` — `roll_xml_url()` is the path
   integrity uses. Manifest regenerated (counts split only; the `other`/`non_position`
   numbers move, nothing else).
+
+### R-5 (2026-08-12) — Nightly raw-cache persistence (review M-7)
+
+- **D50 — `data/raw/` is persisted across nightly runs with `actions/cache`, so a quiet
+  night makes a dozen live requests instead of hundreds.** The ephemeral runner re-fetched
+  every enumeration/menu page, every recent roll, and each member's full sponsored/
+  cosponsored pagination at the enforced 1 req/s — within the politeness rules but against
+  their spirit (§0.7), and each request was a transient-failure chance to abort the night.
+  Cache key is unique per run (`nightly-raw-${{ github.run_id }}`) so every night SAVES a
+  fresh snapshot, while `restore-keys: nightly-raw-` restores the most recent prior cache.
+  Staleness needs no special handling: the cache layer's own 20h TTL (`ingest/cache.py`,
+  `CIVIC_CACHE_TTL_HOURS`) re-fetches anything older, and the incremental ingest already
+  skips finalized rolls. **Open — needs runtime verification:** the first run after this
+  lands only SAVES (no prior cache exists); the cache-hit skip count shows on the SECOND
+  scheduled run. Nothing else in the pipeline changes.

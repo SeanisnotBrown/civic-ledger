@@ -3,13 +3,16 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of **post-review hardening** session (grading reframe
-+ R-3 + R-2 remediations). See "Post-review hardening" below.
-**Git:** INC-1..INC-11 closed & pushed. This session pushed **three** commits to `master`,
-all CI-green: `3847950` (grading reframe), `fd9a108` (R-3 retention scaffolding), `f0c0f70`
-(R-2 membership-churn). **`origin/master` == local, HEAD `f0c0f70`.** **CI green on `f0c0f70`**
-(run 31636705680): **200 py tests**, ruff, verify-recompute, Astro build (4,540 pages),
-Playwright e2e, Lighthouse — every step pass.
+**Last updated:** 2026-08-12, end of **post-review hardening — round 2** session
+(R-1 + R-4 + R-6 + R-5, closing the review backlog). See "Post-review hardening" below.
+**Git:** INC-1..INC-11 closed & pushed. A prior round-1 session pushed `3847950` (grading
+reframe), `fd9a108` (R-3), `f0c0f70` (R-2). **This session** pushed **four** commits:
+`17ea5be` (R-1 statement hardening), `4ef6e3b` (R-4 truth guards), `65f36b7` (R-6 small
+fixes), and the R-5 + this-PROGRESS commit. **Local == origin/master after push.**
+Local gate green on the R-6 tip: **217 py tests** (up from 200 — R-1 +11, R-4 +3, R-6 +3),
+`uv run checks` (5 checks), ruff, verify-recompute, Astro build (4,540 pages). Playwright
+e2e set is **16** (8 URLs × 2 suites — L-7 correction to the old "14/14"). **Confirm CI
+green on the pushed HEAD** (the local env can't run CI — verify the GitHub Actions run).
 **H4 + H5 DONE:** the site is **live at `civicledger.net`** via **Cloudflare Workers**
 (Static Assets, deployed by **Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub
 CI). Planned `.org` was taken → `.net`. Only remaining INC-9 acceptance box: observe one
@@ -69,27 +72,37 @@ owner decisions. **Done this session:**
   relaxed to congresses the member actually **served** (pure `_sponsored_gaps`). Also
   fixed a latent `E501` in the R-3 `metrics history` help line. No data change.
 
-### Remaining review backlog — NOT done, pick up next session
+### Round-2 remediations — DONE this session (R-1, R-4, R-6, R-5)
 
-Sequencing per the review: **R-1 first (gates H8 content)**, then R-4/R-5/R-6
-opportunistically. None block INC-12.
+Whole review backlog (R-1..R-6) is now closed. Sequencing per the review was R-1 first
+(gates H8), then R-4/R-6/R-5. None blocked INC-12.
 
-- **R-1 (M-1/M-2/M-3) — curation hardening, GATES H8:** (a) `/absences/approve` +
-  `/statements/capture` are CSRF-able (loopback-only Flask, but a forged cross-origin POST
-  can publish a queued reason / burn SPN captures) — add a token / strict-Origin guard;
-  (b) statement id `{member}-{date}-{sha8(source_url)}` collides — two different quotes
-  from one source+date silently overwrite (fix **before** any H8 content entry, else it's
-  a published-id migration); (c) statement loading is implemented 4× with drifting
-  semantics — the metric layer publishes from statements the site withholds; unify.
-- **R-4 (M-4/M-5) — truth guards:** `attendance.pct → None` when `eligible == 0`
-  (`AttendanceValue.pct: float | None`); constrain the absence edit path so an edited
-  reason must be a whitespace-normalized **substring** of the queue candidate's verbatim
-  text. Both regenerate metrics.json/schema byte-stably.
-- **R-5 (M-7) — nightly efficiency:** persist `data/raw/` across nightly runs with
-  `actions/cache`. Needs runtime verification on the next scheduled run.
-- **R-6 (L-1/L-2/L-3/L-7) — small fixes batch:** manifest `non_position` counting;
-  `corrections.build()` subject-prefix post-filter; delete dead `capture_and_save` +
-  `clerk_house.roll_xml`; **PROGRESS.md refresh** (this update covers part of it).
+- **R-1 (M-1/M-2/M-3/M-6) — curation hardening, GATES H8 — DONE (`17ea5be`, ADR D47):**
+  (a) statement id now `{member}-{date}-{sha8(source)}-{sha6(text)}` so two different
+  quotes from one source+date no longer overwrite (done now — corpus empty — so never a
+  published-id migration); (b) `Statement.date` gets an ISO validator, the Flask app
+  validates date+specificity at CAPTURE time (never burns an SPN save) and pops the draft
+  only on a successful save; (c) single statement loader `ingest/statements_io.py` — metrics
+  EXCLUDE dead-archive statements (no `named_measure_mismatch` leak through the metric side
+  door), symmetry/archive_links include them, export counts records; `data.ts` is the
+  documented TS mirror. `FORMULA_SCHEMA_VERSION` **1 → 2**. (d) CSRF/loopback-Origin guard
+  on every curation POST. Removed zero-caller `capture_and_save`.
+- **R-4 (M-4/M-5) — truth guards — DONE (`4ef6e3b`, ADR D48):** `attendance.pct → None`
+  when `eligible == 0` (`AttendanceValue.pct: float | None`; metrics.schema.json → number/
+  null); absence edit path is trim-only (edited reason must be a non-empty, whitespace-
+  normalized substring of the verbatim CREC text). metrics.json regenerated; no current
+  member value changes.
+- **R-6 (L-1/L-2/L-3, §4 delete) — DONE (`65f36b7`, ADR D49):** manifest counts
+  `non_position` under its own key (`other` now reads 4, not 24); `corrections.parse_log`
+  keeps only `correction:`-SUBJECT commits; `bills.run` prints the fetch-failure list once;
+  deleted unused `clerk_house.roll_xml`. Manifest + data-contract updated.
+- **R-5 (M-7) — nightly efficiency — DONE (ADR D50):** `nightly.yml` persists `data/raw/`
+  with `actions/cache` (unique-key save + `restore-keys` prefix restore; the 20h cache TTL
+  handles staleness). **OPEN — runtime verification:** the first run only SAVES; the
+  cache-hit skip count shows on the SECOND scheduled run.
+
+**Round-1 remediations (prior session):** grading reframe (D19/D20), **R-3** retention
+scaffolding (`fd9a108`, D45), **R-2** membership-churn resilience (`f0c0f70`, D46).
 
 **Owner escalations parked (do NOT build without explicit reprioritization):** the
 **grading engine itself** (§7 — the reader-weight UI that computes a grade over the D19
@@ -612,7 +625,7 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-9 | Automation + deploy (PUBLIC MVP) | ✅ done — **site LIVE at `civicledger.net`** (Workers Builds) | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); nightly rehearsed green; 117 py tests. H4/H5 done. Open box: observe one real-data nightly commit + deploy |
 | INC-10 | Metrics + methodology | ✅ done | 8 Tier-2 metrics → data/metrics.json; methods page auto-built from docstrings (section-set == metric-key-set); bill subjects/cosponsors backfilled; data/legislation/ + aggregate party_totals; Tier-3 AST guard + symmetry statement rules active; verify-recompute 4th invariant + metrics recompute-match; 149 py tests, D36–D40 |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
-| INC-11 | Statement ledger + curation | ✅ build done; content = H8 | curation Flask app (loopback-only, no-capture-no-save server-side) + SPN2 verified capture; Statement stance + D9 single-source pairing (paired_bill_ids); named_measure_mismatch un-failed-closed (stance vs passage vote); member timeline interleave + /pairing page; weekly archive-links sweep (dead → build-excluded); 187 py tests, D41–D44. Phase-3 content acceptance (20+ statements, ≥5 pairs) is H8 |
+| INC-11 | Statement ledger + curation | ✅ build done; content = H8 | curation Flask app (loopback-only, no-capture-no-save server-side) + SPN2 verified capture; Statement stance + D9 single-source pairing (paired_bill_ids); named_measure_mismatch un-failed-closed (stance vs passage vote); member timeline interleave + /pairing page; weekly archive-links sweep (dead → build-excluded); 187 py tests at close (217 after R-1/R-4/R-6 hardening), D41–D44 + D47–D50. Phase-3 content acceptance (20+ statements, ≥5 pairs) is H8 |
 | INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |
 | INC-13 | Candidate Tracker | not started | content = H10 |
 | INC-14 | Alignment Quiz engine | not started | content = H11 |
@@ -745,8 +758,13 @@ subcommand wired in `cli.py`. Test count 15 → 23.
 ## Notes / open items / ADR pointers
 
 - **Post-review ADRs:** grading reframe = **D19/D20** (IMPLEMENTATION.md §2); R-3 = **D45**,
-  R-2 = **D46** (both `docs/decisions.md`). Remaining backlog R-1/R-4/R-5/R-6 is tracked in
-  "Post-review hardening" above (source: local `TECHNICAL_REVIEW.md`). **R-1 gates H8.**
+  R-2 = **D46**, R-1 = **D47**, R-4 = **D48**, R-6 = **D49**, R-5 = **D50** (all
+  `docs/decisions.md`). **The whole review backlog R-1..R-6 is now CLOSED** (source: local
+  `TECHNICAL_REVIEW.md`). H8 statement curation is unblocked (R-1 landed). **Next actionable
+  = INC-12** (Mississippi state layer, GO verdict on file) — the review's recommended next
+  increment after the R-1..R-4 hardening. Two runtime-verification boxes remain open (not
+  blockers): the R-5 cache-hit on the 2nd nightly, and the INC-9 first-real-data nightly
+  commit + deploy.
 - Version pins recorded in `docs/decisions.md` (Python + Node) at INC-0.
 - Dev environment: Windows 11 + PowerShell. `uv` at
   `%APPDATA%\Python\Python314\Scripts` on user PATH. Local Python 3.14 → project

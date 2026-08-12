@@ -145,6 +145,41 @@ wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
   fails closed thereafter (D39); `cosponsor_vote_gap` is a factual list to be
   rendered only against its denominator, never as a headline (D38).
 
+## `data/statements/{id}.json` — one per curated statement (INC-11)
+
+Schema: `data/schema/statement.schema.json` (model `Statement`). OWNER-curated
+(content = H8) via the local Flask curation tool: the owner pastes a verbatim quote
+and its source, the tool captures a permanent Wayback copy and refuses to save
+without a verified one (D43), resolves the pairing (D41), and writes this record.
+Nothing here is builder-authored. Empty at launch (the machinery ships; the corpus
+is owner-supplied, like INC-6 absences).
+
+| Field | Type | Notes |
+|---|---|---|
+| `id` | string | `{member}-{date}-{sha8(source_url)}` — stable, so re-curating the same source is idempotent. |
+| `member_id` | string | Bioguide id (covered member). |
+| `text` | string | The statement, VERBATIM. There is deliberately no paraphrase field. |
+| `date` / `venue` | string | When and where it was said. |
+| `source_url` | string | The primary source. |
+| `archive_url` | string | Permanent Wayback snapshot; **required** — no verified capture, no save (D43). HEAD-verified at capture time and swept weekly (see archive-status). |
+| `archive_captured_at` | string | ISO-8601 UTC of the snapshot. |
+| `named_measures` | array\<string\> | Measures the statement names, verbatim (bill ids or short titles). |
+| `paired_bill_ids` | array\<string\> | The D9 pairing RESULT: `named_measures` resolved to canonical bill ids (bill-id form passes through; an allowlisted title maps; anything else is unpaired and omitted). Resolved once in Python (`ingest/pairing.py`); the metric layer and site both read this and never re-resolve (D41). Sorted, de-duplicated. |
+| `specificity_level` | `0\|1\|2\|3` \| null | Owner-assigned; `null` = unscored. |
+| `stated_position` | `"support" \| "oppose"` \| null | Owner-assigned stance (D42) — the sibling of specificity, NOT a paraphrase. `support` ⇒ expected Yea on passage, `oppose` ⇒ Nay. The only basis for `named_measure_mismatch`; `null` → excluded from it. |
+| `curator_note` | string \| null | Internal, **never rendered**. |
+
+`data/statements/_title_allowlist.yaml` (owner-edited config, not a record) is the
+D9 short-title → bill-id map: the one sanctioned exception to "pair by bill id
+only". Keys match statement titles case-insensitively; values must be valid bill
+ids. After editing it, run `curate statements repair` to re-resolve existing records.
+
+`data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
+committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
+counts. The site build reads `dead_statement_ids` and excludes those statements until
+they are recaptured (D44). Deterministic, no wall-clock, so a quiet week is
+byte-identical.
+
 ## `data/manifest.json` — dataset summary (the one wall-clock file)
 
 | Field | Type | Notes |
@@ -153,7 +188,7 @@ wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
 | `commit` | string | Short git sha = HEAD at generation time (the code that produced the export). It is **not** the commit that contains this manifest — that sha can't exist yet. |
 | `congresses` | array\<int\> | Covered Congresses (`[118, 119]`). |
 | `covered_state` | string | `MS`. |
-| `counts` | object | `members`, `rollcalls`, `rollcalls_by_chamber`, `rollcalls_by_vote_class`, `non_position_rollcalls`, `member_votes`, `absences`, `bills`. |
+| `counts` | object | `members`, `rollcalls`, `rollcalls_by_chamber`, `rollcalls_by_vote_class`, `non_position_rollcalls`, `member_votes`, `absences`, `bills`, `statements`. |
 
 ## `data/schema/*.schema.json` — JSON Schema for the above
 

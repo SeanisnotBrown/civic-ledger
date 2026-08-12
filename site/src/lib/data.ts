@@ -130,6 +130,48 @@ export function getMetrics(): Metrics {
   return _metrics;
 }
 
+export interface Statement {
+  id: string; member_id: string; text: string; date: string; venue: string;
+  source_url: string; archive_url: string; archive_captured_at: string;
+  named_measures: string[]; paired_bill_ids: string[];
+  specificity_level: 0 | 1 | 2 | 3 | null;
+  stated_position: "support" | "oppose" | null; curator_note: string | null;
+}
+
+/**
+ * Statement ids the weekly archive-link sweep flagged as having a dead archive_url
+ * (checks/archive_links.py). A statement whose permanent capture no longer resolves
+ * is UNPUBLISHABLE until recaptured — the build excludes it. Report absent (never
+ * run, or a bare checkout) → nothing excluded.
+ */
+let _deadStatementIds: Set<string> | null = null;
+function deadStatementIds(): Set<string> {
+  if (_deadStatementIds) return _deadStatementIds;
+  try {
+    const report = readJson<{ dead_statement_ids?: string[] }>("quality/archive-status.json");
+    _deadStatementIds = new Set(report.dead_statement_ids ?? []);
+  } catch {
+    _deadStatementIds = new Set();
+  }
+  return _deadStatementIds;
+}
+
+let _statements: Statement[] | null = null;
+/** Every PUBLISHABLE curated statement (dead-archive ones excluded), newest first. */
+export function getStatements(): Statement[] {
+  if (_statements) return _statements;
+  const dead = deadStatementIds();
+  _statements = readDir("statements")
+    .filter((f) => !f.startsWith("_")) // _title_allowlist etc. are config, not records
+    .map((f) => readJson<Statement>(`statements/${f}`))
+    .filter((s) => !dead.has(s.id));
+  _statements.sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : a.id < b.id ? 1 : -1));
+  return _statements;
+}
+export function getMemberStatements(memberId: string): Statement[] {
+  return getStatements().filter((s) => s.member_id === memberId);
+}
+
 export interface Correction { commit: string; date: string; subject: string; }
 export function getCorrections(): Correction[] {
   // Generated from git history by `uv run corrections` (INC-9). Absent on a bare
@@ -175,4 +217,45 @@ export function paginate<T>(items: T[], size: number): T[][] {
   const pages: T[][] = [];
   for (let i = 0; i < items.length; i += size) pages.push(items.slice(i, i + size));
   return pages.length ? pages : [[]];
+}
+
+// --- Member timeline: statements + votes interleaved (INC-11) --------------
+
+export interface PairedVote { rollcall: RollCall; position: Position; }
+export type TimelineItem =
+  | { kind: "vote"; day: string; rollcall: RollCall; position: Position }
+  | { kind: "statement"; day: string; statement: Statement; pairedVotes: PairedVote[] };
+
+/**
+ * A member's statements and recorded votes on one newest-first timeline. Pairing is
+ * READ from the statement's `paired_bill_ids` (resolved once in Python, D9/D41) — this
+ * never re-resolves; it only joins those bill ids to the member's own votes so a paired
+ * statement and vote render adjacent. With no curated statements the timeline is exactly
+ * the vote list, so the zero-statement render is the vote page unchanged.
+ */
+export function getMemberTimeline(memberId: string): TimelineItem[] {
+  const byMemberVote = getMemberVotes(memberId);
+  const items: TimelineItem[] = byMemberVote.map((r) => ({
+    kind: "vote" as const, day: r.rollcall.date.slice(0, 10),
+    rollcall: r.rollcall, position: r.position,
+  }));
+  for (const s of getMemberStatements(memberId)) {
+    const paired = new Set(s.paired_bill_ids);
+    const pairedVotes = paired.size
+      ? byMemberVote.filter((r) => r.rollcall.bill_id && paired.has(r.rollcall.bill_id))
+      : [];
+    items.push({ kind: "statement", day: s.date.slice(0, 10), statement: s, pairedVotes });
+  }
+  // Newest first by calendar day. Within a day: statements first, then votes by
+  // recency; fully deterministic tie-break so the build is byte-stable.
+  const rank = (it: TimelineItem) => (it.kind === "statement" ? 0 : 1);
+  items.sort((a, b) => {
+    if (a.day !== b.day) return a.day < b.day ? 1 : -1;
+    if (rank(a) !== rank(b)) return rank(a) - rank(b);
+    if (a.kind === "vote" && b.kind === "vote") return byRecency(a.rollcall, b.rollcall);
+    if (a.kind === "statement" && b.kind === "statement")
+      return a.statement.id < b.statement.id ? -1 : 1;
+    return 0;
+  });
+  return items;
 }

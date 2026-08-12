@@ -44,6 +44,15 @@ def test_raw_cache_excluded(tmp_path):
     assert "data/raw/" in banned_words.EXCLUDE_PREFIXES
 
 
+def test_curated_statement_text_is_scanned(tmp_path):
+    # INC-11 acceptance: banned-words must be green on all curated statement text —
+    # i.e. statements are PUBLISHED records and ARE scanned (unlike the absence queue).
+    _seed(tmp_path, "data/statements/s1.json", '{"text": "the gentleman contradicts himself"}')
+    hit_paths = {h[0] for h in banned_words.find_hits(tmp_path)}
+    assert "data/statements/s1.json" in hit_paths  # curated text → scanned
+    assert not any(p.startswith("data/statements/") for p in banned_words.EXCLUDE_PREFIXES)
+
+
 def test_absence_queue_excluded_but_published_absences_scanned(tmp_path):
     # INC-6 (D25): unapproved verbatim CREC candidates in the review queue are a
     # pre-publication artifact — a member's own words there must not fail CI before

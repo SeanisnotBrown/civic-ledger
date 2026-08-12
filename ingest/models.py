@@ -210,11 +210,18 @@ class GapItem(_Strict):
 
 
 class MismatchItem(_Strict):
-    # Provisional shape (INC-11 curates statements; empty until then).
+    # An adjacency (never a score): a member's specificity-2/3 statement with an
+    # owner-assigned stance on a named measure, and their recorded passage vote taking
+    # the opposite side. Carries both records + dates so a reader checks the source; no
+    # sequence is claimed (D42). Empty until qualifying statements are curated (H8).
     statement_id: str
     bill_id: str
+    rollcall_id: str
     statement_source_url: str
-    recorded_position: Position
+    statement_date: str
+    vote_date: str
+    stated_position: Literal["support", "oppose"]  # owner-assigned stance
+    recorded_position: Position  # the member's actual Yea/Nay on that passage roll
 
 
 class AbsenceContextItem(_Strict):
@@ -260,8 +267,19 @@ class Statement(_Strict):
     source_url: str
     archive_url: str  # REQUIRED — curation refuses to save without a verified capture
     archive_captured_at: str
-    named_measures: list[str]  # bill ids; ONLY basis for pairing (D9)
+    named_measures: list[str]  # measures the statement names (bill ids or allowlisted titles)
+    # The D9 pairing result: named_measures RESOLVED to canonical bill ids (bill-id
+    # form passes through; an allowlisted short title maps to its bill id; anything
+    # else is unpaired and omitted). Resolved ONCE, in Python (ingest/pairing.py), and
+    # published here so both the metric layer and the site read it — neither re-resolves
+    # (D41). Sorted, de-duplicated.
+    paired_bill_ids: list[str]
     specificity_level: Literal[0, 1, 2, 3] | None = None  # owner-assigned; None = unscored
+    # Owner-assigned stance on the named measure: "support" ⇒ expected Yea on passage,
+    # "oppose" ⇒ expected Nay. NOT a paraphrase of `text` (that field stays verbatim) —
+    # it is an owner classification, the sibling of specificity_level, and the ONLY basis
+    # for named_measure_mismatch (D42). None = unassigned → excluded from that comparison.
+    stated_position: Literal["support", "oppose"] | None = None
     curator_note: str | None = None  # internal, never rendered
 
 

@@ -1,0 +1,19 @@
+# Short-title → bill-id allowlist (D9). OWNER-EDITED.
+#
+# Statement↔vote pairing keys off the bill id (hr2-119 form) only. This file is the
+# ONE sanctioned exception: a formal short title a statement uses ("the PACT Act")
+# may be paired ONLY if you map it here to an exact bill id. That keeps "no fuzzy
+# matching" mechanically true — pairing is a parse plus an exact lookup in this file.
+#
+# Rules:
+#   * key   = the short title EXACTLY as statements will name it (matched case-
+#             insensitively, surrounding whitespace trimmed);
+#   * value = a canonical bill id in {type}{number}-{congress} form, lowercase.
+#   * every value must be a real bill id or `checks`/curation will fail loudly.
+#
+# After editing this file, run `uv run curate statements repair` to re-resolve every
+# existing statement's pairings against the new mapping.
+#
+# Example (commented out — no titles are allowlisted at launch):
+#   "Honoring our PACT Act": s3373-117
+{}

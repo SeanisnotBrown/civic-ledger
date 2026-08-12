@@ -227,6 +227,22 @@
           "title": "Recorded Position",
           "type": "string"
         },
+        "rollcall_id": {
+          "title": "Rollcall Id",
+          "type": "string"
+        },
+        "stated_position": {
+          "enum": [
+            "support",
+            "oppose"
+          ],
+          "title": "Stated Position",
+          "type": "string"
+        },
+        "statement_date": {
+          "title": "Statement Date",
+          "type": "string"
+        },
         "statement_id": {
           "title": "Statement Id",
           "type": "string"
@@ -234,12 +250,20 @@
         "statement_source_url": {
           "title": "Statement Source Url",
           "type": "string"
+        },
+        "vote_date": {
+          "title": "Vote Date",
+          "type": "string"
         }
       },
       "required": [
         "statement_id",
         "bill_id",
+        "rollcall_id",
         "statement_source_url",
+        "statement_date",
+        "vote_date",
+        "stated_position",
         "recorded_position"
       ],
       "title": "MismatchItem",

@@ -1,0 +1,220 @@
+"""INC-11 — local curation Flask app (statements + absence approvals).
+
+LOCALHOST ONLY. `assert_loopback` refuses to bind any non-loopback address, so the
+tool can never be exposed on a network (brief §5.10; the app touches owner-only
+workflows and stages git commits). It supersedes the INC-6 absence-approval CLI.
+
+Two tabs:
+  * Statements — paste a verbatim quote + source URL, Capture (SPN2, verified), then
+    Save. The Save control does not exist until a verified capture is in hand, and the
+    save endpoint itself refuses without the stored `Capture` (curation.statements),
+    so "no verified capture, no save" holds in the UI AND server-side.
+  * Absences — the INC-6 review queue: verbatim excerpt + matched roll, Approve →
+    writes the owner-approved `Absence.stated_reason` via the existing approver.
+
+Nothing here authors content; the owner supplies and approves every field (H8/H9).
+"""
+
+from __future__ import annotations
+
+import ipaddress
+import json
+import secrets
+import sys
+from dataclasses import dataclass
+
+from flask import Flask, redirect, render_template_string, request, url_for
+
+from curation import absences, statements
+from ingest.export import MEMBERS_DIR
+from ingest.sources.archive_org import Capture, SpnClient, SpnError
+
+
+class NonLoopbackBindError(RuntimeError):
+    """Raised when the app is asked to bind a host that is not loopback."""
+
+
+def assert_loopback(host: str) -> None:
+    """Refuse any bind host that is not a loopback address. `localhost` and the
+    loopback IP ranges (127.0.0.0/8, ::1) pass; everything else raises."""
+    if host == "localhost":
+        return
+    try:
+        ip = ipaddress.ip_address(host)
+    except ValueError as exc:
+        raise NonLoopbackBindError(
+            f"refusing to bind non-loopback host {host!r} (use 127.0.0.1 or localhost)"
+        ) from exc
+    if not ip.is_loopback:
+        raise NonLoopbackBindError(f"refusing to bind non-loopback host {host!r}")
+
+
+# --- pending capture drafts (in-memory; single-user localhost tool) --------
+
+
+@dataclass
+class _Draft:
+    fields: dict
+    capture: Capture
+
+
+def _covered_members() -> list[dict]:
+    if not MEMBERS_DIR.exists():
+        return []
+    out = [json.loads(p.read_text(encoding="utf-8")) for p in sorted(MEMBERS_DIR.glob("*.json"))]
+    return sorted(out, key=lambda m: m["name"])
+
+
+_PAGE = """<!doctype html><html><head><meta charset="utf-8"><title>Civic Ledger — curate</title>
+<style>body{font-family:system-ui,sans-serif;max-width:52rem;margin:2rem auto;padding:0 1rem}
+nav a{margin-right:1rem}label{display:block;margin:.6rem 0 .2rem;font-weight:600}
+input,select,textarea{width:100%;padding:.4rem;font:inherit}textarea{min-height:6rem}
+.msg{padding:.6rem;border-radius:.3rem;margin:.6rem 0}
+.ok{background:#e6ffed}.err{background:#ffecec}
+.card{border:1px solid #ccc;border-radius:.4rem;padding:1rem;margin:.8rem 0}
+button{padding:.5rem 1rem;font:inherit;margin-top:.8rem}</style></head><body>
+<nav><a href="{{ url_for('statements_tab') }}">Statements</a>
+<a href="{{ url_for('absences_tab') }}">Absence approvals</a></nav><hr>{{ body|safe }}
+</body></html>"""
+
+
+def _render(body: str, **ctx):
+    return render_template_string(_PAGE, body=render_template_string(body, **ctx))
+
+
+def create_app() -> Flask:
+    app = Flask(__name__)
+    drafts: dict[str, _Draft] = {}
+
+    @app.route("/")
+    def index():
+        return redirect(url_for("statements_tab"))
+
+    @app.route("/statements")
+    def statements_tab():
+        body = """<h1>Statements</h1>
+        {% if msg %}<div class="msg {{ cls }}">{{ msg }}</div>{% endif %}
+        <form method="post" action="{{ url_for('statements_capture') }}">
+          <label>Member</label><select name="member_id">
+          {% for m in members %}
+          <option value="{{ m.id }}">{{ m.name }} ({{ m.party }})</option>
+          {% endfor %}
+          </select>
+          <label>Verbatim quote</label><textarea name="text" required></textarea>
+          <label>Date (YYYY-MM-DD)</label><input name="date" required>
+          <label>Venue</label><input name="venue" required>
+          <label>Source URL</label><input name="source_url" type="url" required>
+          <label>Named measures (bill ids / allowlisted titles, comma-separated)</label>
+          <input name="named_measures">
+          <label>Specificity level (0-3, blank = unscored)</label><input name="specificity_level">
+          <label>Stance</label><select name="stated_position">
+            <option value="">— unassigned —</option><option value="support">support</option>
+            <option value="oppose">oppose</option></select>
+          <button type="submit">Capture source (Save unlocks only after a verified capture)</button>
+        </form>"""
+        return _render(
+            body, members=_covered_members(),
+            msg=request.args.get("msg"), cls=request.args.get("cls", "ok"),
+        )
+
+    @app.post("/statements/capture")
+    def statements_capture():
+        fields = {
+            "member_id": request.form["member_id"],
+            "text": request.form["text"].strip(),
+            "date": request.form["date"].strip(),
+            "venue": request.form["venue"].strip(),
+            "source_url": request.form["source_url"].strip(),
+            "named_measures": [
+                s.strip() for s in request.form.get("named_measures", "").split(",") if s.strip()
+            ],
+            "specificity_level": (
+                int(request.form["specificity_level"])
+                if request.form.get("specificity_level", "").strip() else None
+            ),
+            "stated_position": request.form.get("stated_position") or None,
+        }
+        try:
+            capture = SpnClient().capture(fields["source_url"])
+        except SpnError as exc:
+            return redirect(url_for("statements_tab", msg=f"Capture failed — not saved: {exc}",
+                                    cls="err"))
+        token = secrets.token_urlsafe(8)
+        drafts[token] = _Draft(fields=fields, capture=capture)
+        body = """<h1>Verified capture — review &amp; save</h1>
+        <div class="msg ok">Archived:
+        <a href="{{ d.capture.archive_url }}">{{ d.capture.archive_url }}</a>
+        (captured {{ d.capture.captured_at }})</div>
+        <div class="card"><strong>{{ d.fields.member_id }}</strong>
+        — {{ d.fields.date }}, {{ d.fields.venue }}
+        <blockquote>{{ d.fields.text }}</blockquote>
+        Named measures: {{ d.fields.named_measures }}<br>
+        Stance: {{ d.fields.stated_position }} · Specificity: {{ d.fields.specificity_level }}</div>
+        <form method="post" action="{{ url_for('statements_save') }}">
+          <input type="hidden" name="token" value="{{ token }}">
+          <button type="submit">Save statement</button></form>"""
+        return _render(body, d=drafts[token], token=token)
+
+    @app.post("/statements/save")
+    def statements_save():
+        token = request.form["token"]
+        draft = drafts.pop(token, None)
+        if draft is None:
+            return redirect(url_for("statements_tab",
+                                    msg="No verified capture on file — nothing saved.", cls="err"))
+        stmt = statements.build_statement(capture=draft.capture, **draft.fields)
+        path = statements.save_statement(stmt)
+        return redirect(url_for("statements_tab",
+                                msg=f"Saved {path.name} (staged for commit).", cls="ok"))
+
+    @app.route("/absences")
+    def absences_tab():
+        pending = [
+            {"path": p.name, **json.loads(p.read_text(encoding="utf-8"))}
+            for p in absences._pending()
+        ]
+        body = """<h1>Absence approvals</h1>
+        {% if msg %}<div class="msg {{ cls }}">{{ msg }}</div>{% endif %}
+        {% if not pending %}<p>No pending candidates.</p>{% endif %}
+        {% for c in pending %}<div class="card">
+          <strong>{{ c.member_id }} ({{ c.hon_name }})</strong> — {{ c.date_issued }}<br>
+          Matched roll: {{ c.matched_rollcall_id or 'UNMATCHED — attach by hand' }}<br>
+          Source: <a href="{{ c.source_url }}">{{ c.source_url }}</a>
+          <blockquote>{{ c.verbatim_text }}</blockquote>
+          {% if c.matched_rollcall_id %}
+          <form method="post" action="{{ url_for('absences_approve') }}">
+            <input type="hidden" name="granule" value="{{ c.granule_id }}">
+            <button type="submit">Approve (publish verbatim)</button></form>{% endif %}
+        </div>{% endfor %}"""
+        return _render(body, pending=pending,
+                       msg=request.args.get("msg"), cls=request.args.get("cls", "ok"))
+
+    @app.post("/absences/approve")
+    def absences_approve():
+        granule = request.form["granule"]
+        path = absences.QUEUE_DIR / f"{granule}.json"
+        if not path.exists():
+            return redirect(url_for("absences_tab", msg=f"No queue file {granule!r}.", cls="err"))
+        written = absences.approve_one(path)
+        return redirect(url_for("absences_tab", msg=f"Approved → {written.name}.", cls="ok"))
+
+    return app
+
+
+def run(argv: list[str] | None = None) -> int:
+    """`curate app [--host 127.0.0.1] [--port 5000]`. Binds loopback only."""
+    args = sys.argv[1:] if argv is None else argv
+    host = "127.0.0.1"
+    port = 5000
+    if "--host" in args:
+        host = args[args.index("--host") + 1]
+    if "--port" in args:
+        port = int(args[args.index("--port") + 1])
+    try:
+        assert_loopback(host)
+    except NonLoopbackBindError as exc:
+        print(f"curate app: {exc}")
+        return 2
+    print(f"curate app: serving on http://{host}:{port} (loopback only; Ctrl-C to stop)")
+    create_app().run(host=host, port=port, debug=False)
+    return 0

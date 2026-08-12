@@ -239,31 +239,53 @@ def cosponsor_vote_gap(mid: str, ctx: Ctx) -> list[dict]:
 
 
 def named_measure_mismatch(mid: str, ctx: Ctx) -> list[dict]:
-    """A list — never a score, adjacency language only — intended to surface cases
-    where a member made a SPECIFIC public statement naming a measure (a curated
-    Statement with named_measures and a specificity level of 2–3) and their recorded
-    passage vote on that measure took the OPPOSITE position.
+    """A factual list — never a score, adjacency language only — of cases where a
+    member made a SPECIFIC public statement about a named measure and their own
+    recorded passage vote on that measure took the opposite side.
 
-    That opposite-position test needs the statement's STANCE, which is deliberately
-    not stored today (a Statement is verbatim text with no paraphrase or position
-    field). Curation attaches the stance in INC-11; until then no qualifying
-    statement exists and this is empty BY CONSTRUCTION. It fails closed: if a
-    qualifying statement is ever curated before the stance comparison is built, this
-    raises rather than publish an unverified mismatch (value #1). Source:
-    data/statements + data/votes."""
-    qualifying = [
-        s for s in ctx.statements
-        if s.get("member_id") == mid
-        and s.get("specificity_level") in (2, 3)
-        and s.get("named_measures")
-    ]
-    if qualifying:
-        raise NotImplementedError(
-            f"{mid}: named_measure_mismatch requires a curated statement stance "
-            "(INC-11) — implement the opposite-position comparison before curating "
-            "qualifying statements; refusing to publish an unverified mismatch."
-        )
-    return []
+    A statement qualifies only when the owner has curated it to specificity level 2
+    or 3, assigned a stance (support or oppose), AND named a measure that resolves to
+    a bill id (the D9 pairing rule; see paired_bill_ids). support means the member's
+    expected passage vote is Yea, oppose means Nay. For every passage-class roll the
+    member cast Yea or Nay on that bill, an entry is emitted when the recorded
+    position is the OPPOSITE of the stated one.
+
+    Deliberately excluded (never guessed at): statements with no owner-assigned stance
+    (stated_position is null), measures that do not resolve to a bill id, and every
+    non-passage vote class (a Nay on a procedural motion is not a vote against the
+    bill). Each entry carries the statement, the roll call, and both dates so a reader
+    can check the record directly; NO sequence or motive is claimed — the statement
+    and the vote are simply placed adjacent. The site draws no conclusion. This is
+    empty until qualifying statements are curated (content = H8). Source:
+    data/statements (stance + pairing) + data/votes (passage positions)."""
+    member_votes = ctx.positions[mid]
+    out: list[dict] = []
+    for s in ctx.statements:
+        if s.get("member_id") != mid:
+            continue
+        if s.get("specificity_level") not in (2, 3):
+            continue
+        stance = s.get("stated_position")
+        if stance not in ("support", "oppose"):
+            continue  # no owner-assigned stance → not comparable (excluded, not guessed)
+        expected = "yea" if stance == "support" else "nay"
+        paired = set(s.get("paired_bill_ids") or ())
+        for rc, pos in member_votes:
+            if rc["vote_class"] != "passage" or rc["bill_id"] not in paired:
+                continue
+            if pos in ("yea", "nay") and pos != expected:
+                out.append({
+                    "statement_id": s["id"],
+                    "bill_id": rc["bill_id"],
+                    "rollcall_id": rc["id"],
+                    "statement_source_url": s["source_url"],
+                    "statement_date": s["date"][:10],
+                    "vote_date": rc["date"][:10],
+                    "stated_position": stance,
+                    "recorded_position": pos,
+                })
+    out.sort(key=lambda m: (m["statement_id"], m["rollcall_id"]))
+    return out
 
 
 def absence_context(mid: str, ctx: Ctx) -> list[dict]:

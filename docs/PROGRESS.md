@@ -3,9 +3,9 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-10 session (Metrics + methodology).
-**Git:** INC-1..INC-9 closed & pushed; INC-10 committed this session (confirm CI green
-after push — new gate: `test:metrics-sections`). **H4 + H5 DONE:** the site is
+**Last updated:** 2026-08-12, end of INC-11 session (Statement ledger + curation + pairing).
+**Git:** INC-1..INC-10 closed & pushed; **INC-11 committed this session** (not yet
+pushed — confirm CI green after push). **H4 + H5 DONE:** the site is
 **live at `civicledger.net`** via **Cloudflare Workers** (Static Assets, deployed by
 **Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub CI; Cloudflare's GitHub
 App builds on the `push` webhook). Planned `.org` was taken → `.net`. Only remaining
@@ -29,7 +29,56 @@ build's author reads `github-actions[bot]`).
 
 ## Current increment
 
-**INC-10 — Metrics layer + methodology page — ✅ COMPLETE (this session).**
+**INC-11 — Statement ledger + curation tool + pairing — ✅ BUILD COMPLETE (this
+session); content = H8 (owner), H6 optional.**
+Machinery shipped and proven end-to-end; the published corpus is **empty by design**
+(a statement is an owner-selected verbatim quote with a verified archive — principle 5;
+the builder never authors one, exactly as INC-6 shipped the absence pipeline with zero
+published reasons). **Acceptance is split:** the BUILD acceptance (below) is met by the
+builder; the CONTENT acceptance (Phase-3: 20+ statements, ≥5 pairs rendering,
+per-member/party symmetry green, every archive link live, banned-words green on curated
+text) is owner-gated on **H8** and is a recurring content task, not a build gap.
+
+What shipped:
+- **`Statement` model** gains owner-assigned `stated_position` (support/oppose, D42) +
+  published `paired_bill_ids` (D41); `data/statements/{id}.json` + `statement.schema.json`
+  + `export_statement`; manifest `counts.statements`.
+- **`ingest/pairing.py`** — the SINGLE D9 resolver (bill-id form / exact
+  `_title_allowlist.yaml` title / else unpaired). Curation resolves once and stores it;
+  the metric layer and site READ `paired_bill_ids` and never re-resolve (D41).
+- **`named_measure_mismatch` un-fails-closed** (D42): stance vs the member's own
+  **passage** vote on a resolved measure; no-stance / unresolved / non-passage excluded,
+  never guessed. Docstring (= methodology) rewritten → `data/metrics.json` regenerated;
+  recompute-and-match still green.
+- **SPN2 capture** (`ingest/sources/archive_org.py`): POST /save → poll → **HEAD-verify**
+  the archive_url before it counts (value #1); mutating POST so it bypasses `cache.py`;
+  IA S3 keys (H6) with unauth ≤ 1/15 s fallback. **`curation/statements.py`** save path:
+  "no verified capture, no save" enforced server-side (requires a real `Capture`); pairing
+  resolved at save; `git add` staging; `curate statements repair` re-resolves after an
+  allowlist edit (D43).
+- **`curation/app.py`** — loopback-only Flask app (`assert_loopback` refuses non-loopback;
+  the Save control appears only after a verified capture) with a Statements tab and an
+  Absence-approval tab that supersedes the INC-6 CLI. `curate app` / `curate statements`.
+- **Site:** `getMemberTimeline` interleaves statements + votes newest-first (zero
+  statements ⇒ the vote page unchanged); `StatementCard` renders a paired vote adjacent
+  with ZERO relational language; new **`/pairing`** page (bright line + draws-no-conclusion)
+  linked from every timeline. Dead-archive statements excluded at build via the committed
+  report (D44).
+- **`checks/archive_links.py`** + **`archive-links.yml`** (weekly): HEAD every archive_url;
+  4xx → committed `data/quality/archive-status.json` + nonzero exit (unpublishable); 5xx /
+  network → warn only. Kept OUT of the offline `uv run checks` suite.
+- Design in **D41–D44**; data-contract + HUMAN-TASKS (H6 optional, H8 tool-shipped)
+  updated. **187 py tests** green; ruff clean; full checks + cross-check 10/10;
+  verify-recompute green; 4,540 pages build; a fixture pair renders end-to-end (statement
+  + paired roll + `/pairing` link) then removed. See "INC-11 output".
+
+**BUILD acceptance met:** curation captures→verifies→saves with no-capture-no-save enforced
+server-side; loopback-only bind; pairing resolves once (D9) and both metric + site consume
+it; mismatch computes stance vs passage vote; archive-links sweep flags dead links → build
+excludes; symmetry statement rules live (inactive at 0); banned-words scans curated text.
+
+**(historical — INC-10)**
+**INC-10 — Metrics layer + methodology page — ✅ COMPLETE.**
 Eight Tier-2 metrics (`ingest/metrics.py`, pure/offline) → **`data/metrics.json`**:
 attendance, party_unity (substantive classes; majority from new aggregate
 `RollCall.party_totals`; ties/procedural/absent excluded), sponsored/cosponsored,
@@ -491,7 +540,7 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-9 | Automation + deploy (PUBLIC MVP) | ✅ done — **site LIVE at `civicledger.net`** (Workers Builds) | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); nightly rehearsed green; 117 py tests. H4/H5 done. Open box: observe one real-data nightly commit + deploy |
 | INC-10 | Metrics + methodology | ✅ done | 8 Tier-2 metrics → data/metrics.json; methods page auto-built from docstrings (section-set == metric-key-set); bill subjects/cosponsors backfilled; data/legislation/ + aggregate party_totals; Tier-3 AST guard + symmetry statement rules active; verify-recompute 4th invariant + metrics recompute-match; 149 py tests, D36–D40 |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
-| INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
+| INC-11 | Statement ledger + curation | ✅ build done; content = H8 | curation Flask app (loopback-only, no-capture-no-save server-side) + SPN2 verified capture; Statement stance + D9 single-source pairing (paired_bill_ids); named_measure_mismatch un-failed-closed (stance vs passage vote); member timeline interleave + /pairing page; weekly archive-links sweep (dead → build-excluded); 187 py tests, D41–D44. Phase-3 content acceptance (20+ statements, ≥5 pairs) is H8 |
 | INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |
 | INC-13 | Candidate Tracker | not started | content = H10 |
 | INC-14 | Alignment Quiz engine | not started | content = H11 |

@@ -1,0 +1,58 @@
+---
+// "How We Pair Statements" (INC-11, brief §10 / D9). States the bright line for
+// pairing a statement to a vote, and that the site draws no conclusion from a pair.
+// Linked from every member timeline. UI-chrome copy — strictly neutral, no
+// relational language about any member.
+import Layout from "../components/Layout.astro";
+---
+<Layout title="How statements and votes are paired — Civic Ledger">
+  <h1 class="text-2xl font-semibold tracking-tight">How statements and votes are paired</h1>
+
+  <p class="mt-2 max-w-prose text-neutral-700">
+    Some pages place a public statement next to a recorded vote. This page explains
+    the exact, mechanical rule for when that happens — and, just as importantly, what
+    the pairing does and does not claim.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">The rule</h2>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    A statement is paired to a measure only by the measure's <strong>bill
+    identifier</strong> (for example <code>hr2-119</code>). A statement is shown next
+    to a vote when, and only when, a bill it explicitly names is the bill that vote was
+    on. There is no fuzzy text matching and no interpretation of what a statement was
+    "really about."
+  </p>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    The single exception is a formal short title. Because a statement often names a
+    measure by its title rather than its number, a title may be paired — but only when
+    the site's maintainer has explicitly recorded, in a public allowlist, that this
+    exact title corresponds to that exact bill. Nothing is matched by resemblance.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    What a pairing means
+  </h2>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    A pairing places two facts side by side: a statement the member made, quoted
+    verbatim with a link to its source and a permanent archived copy; and a vote the
+    member cast, with the official question and record. That is all it is —
+    <strong>adjacency, not a conclusion</strong>. The site does not assert that the two
+    agree or disagree, that one caused the other, or that they occurred in any
+    particular order. Readers see the record and draw their own conclusions.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    Which statements appear
+  </h2>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    Every statement is selected and entered by a person, quoted verbatim, and stored
+    only after a permanent public archive of its source has been captured and
+    verified. If that archived copy ever stops resolving, the statement is withheld
+    until it can be re-captured. Statements are never generated, paraphrased, or
+    summarized by an automated process.
+  </p>
+
+  <p class="mt-8 text-xs text-neutral-500">
+    See also the <a href="/methods" class="underline hover:text-neutral-700">methodology</a>.
+  </p>
+</Layout>

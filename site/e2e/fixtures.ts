@@ -41,4 +41,5 @@ export const PAGES: string[] = [
   "/methods",
   "/corrections",
   "/privacy",
+  "/pairing",
 ];

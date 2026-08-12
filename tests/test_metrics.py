@@ -8,8 +8,6 @@ from __future__ import annotations
 
 import json
 
-import pytest
-
 from ingest import metrics
 from ingest.cache import repo_root
 from ingest.metrics import METRICS, Ctx
@@ -111,18 +109,61 @@ def test_gap_voted_nay_and_no_floor_action() -> None:
     assert nay["rollcall_id"] == "s-118-1-0005"  # traceable to the roll
 
 
-# --- named_measure_mismatch (fail-closed) ---------------------------------
+# --- named_measure_mismatch (stance comparison, INC-11) -------------------
+
+
+def _stmt(paired, stance, *, spec=3, sid="st1", bill=None):
+    return {"id": sid, "member_id": "M1", "source_url": "u", "date": "2024-02-01",
+            "specificity_level": spec, "stated_position": stance,
+            "named_measures": paired, "paired_bill_ids": paired}
 
 
 def test_mismatch_empty_without_statements() -> None:
     assert metrics.named_measure_mismatch("M1", _ctx([])) == []
 
 
-def test_mismatch_fails_closed_on_qualifying_statement() -> None:
-    stmts = [{"member_id": "M1", "specificity_level": 2, "named_measures": ["s1-119"],
-              "id": "st1", "source_url": "u"}]
-    with pytest.raises(NotImplementedError):
-        metrics.named_measure_mismatch("M1", _ctx([], statements=stmts))
+def test_mismatch_support_but_voted_nay() -> None:
+    pos = [(_rc("s-119-1-0001", "passage", "s1-119", "2024-03-01", _R(1, 0)), "nay")]
+    stmts = [_stmt(["s1-119"], "support")]
+    out = metrics.named_measure_mismatch("M1", _ctx(pos, statements=stmts))
+    assert len(out) == 1
+    assert out[0]["stated_position"] == "support" and out[0]["recorded_position"] == "nay"
+    assert out[0]["rollcall_id"] == "s-119-1-0001" and out[0]["bill_id"] == "s1-119"
+    assert out[0]["vote_date"] == "2024-03-01" and out[0]["statement_date"] == "2024-02-01"
+
+
+def test_mismatch_oppose_but_voted_yea() -> None:
+    pos = [(_rc("r1", "passage", "s1-119", "2024-03-01", _R(1, 0)), "yea")]
+    out = metrics.named_measure_mismatch("M1", _ctx(pos, statements=[_stmt(["s1-119"], "oppose")]))
+    assert len(out) == 1 and out[0]["recorded_position"] == "yea"
+
+
+def test_mismatch_agreement_is_not_flagged() -> None:
+    pos = [(_rc("r1", "passage", "s1-119", "2024-03-01", _R(1, 0)), "yea")]
+    ctx = _ctx(pos, statements=[_stmt(["s1-119"], "support")])
+    assert metrics.named_measure_mismatch("M1", ctx) == []
+
+
+def test_mismatch_excludes_no_stance_low_specificity_and_nonpassage() -> None:
+    pos = [(_rc("r1", "passage", "s1-119", "2024-03-01", _R(1, 0)), "nay"),
+           (_rc("r2", "procedural", "s2-119", "2024-03-02", _R(1, 0)), "nay")]
+    # no owner stance → excluded (never guessed)
+    none_stance = _ctx(pos, statements=[_stmt(["s1-119"], None)])
+    assert metrics.named_measure_mismatch("M1", none_stance) == []
+    # specificity 1 → excluded
+    assert metrics.named_measure_mismatch(
+        "M1", _ctx(pos, statements=[_stmt(["s1-119"], "support", spec=1)])) == []
+    # a Nay on a procedural motion is not a vote against the bill → excluded
+    assert metrics.named_measure_mismatch(
+        "M1", _ctx(pos, statements=[_stmt(["s2-119"], "support")])) == []
+
+
+def test_mismatch_excludes_unresolved_measure() -> None:
+    pos = [(_rc("r1", "passage", "s1-119", "2024-03-01", _R(1, 0)), "nay")]
+    # names a measure that did NOT resolve to a bill id → no paired_bill_ids → excluded
+    s = _stmt([], "support")
+    s["named_measures"] = ["some vague title"]
+    assert metrics.named_measure_mismatch("M1", _ctx(pos, statements=[s])) == []
 
 
 # --- absence_context ------------------------------------------------------

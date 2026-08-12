@@ -34,6 +34,7 @@ from ingest.models import (
     MemberVote,
     MetricsFile,
     RollCall,
+    Statement,
 )
 
 DATA_DIR = repo_root() / "data"
@@ -42,6 +43,7 @@ VOTES_DIR = DATA_DIR / "votes"
 ABSENCES_DIR = DATA_DIR / "absences"
 BILLS_DIR = DATA_DIR / "bills"
 LEGISLATION_DIR = DATA_DIR / "legislation"
+STATEMENTS_DIR = DATA_DIR / "statements"
 SCHEMA_DIR = DATA_DIR / "schema"
 MANIFEST_PATH = DATA_DIR / "manifest.json"
 METRICS_PATH = DATA_DIR / "metrics.json"
@@ -137,6 +139,17 @@ def export_metrics(metrics: MetricsFile, path: Path = METRICS_PATH) -> Path:
     return path
 
 
+def export_statement(statement: Statement, out_dir: Path = STATEMENTS_DIR) -> Path:
+    """Write one deterministic JSON file per curated statement:
+    data/statements/{id}.json. Statements are OWNER-curated (H8) via the Flask
+    curation tool, which resolves `paired_bill_ids` and refuses to save without a
+    verified archive capture; nothing is builder-authored (principle 5)."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{statement.id}.json"
+    path.write_text(_dumps(statement.model_dump()), encoding="utf-8", newline="\n")
+    return path
+
+
 # --- JSON Schema (data/schema/) -------------------------------------------
 # One schema per published file type. The vote file is composite, so it maps to
 # `VoteFile`, not `RollCall`; the others map to their Tier-1 model directly.
@@ -147,6 +160,7 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("absence", Absence),
     ("legislation", MemberLegislation),
     ("metrics", MetricsFile),
+    ("statement", Statement),
 )
 
 
@@ -174,6 +188,9 @@ def _count_dataset() -> dict[str, object]:
     votes = sorted(VOTES_DIR.glob("*.json")) if VOTES_DIR.exists() else []
     absences = sorted(ABSENCES_DIR.glob("*.json")) if ABSENCES_DIR.exists() else []
     bills = sorted(BILLS_DIR.glob("*.json")) if BILLS_DIR.exists() else []
+    # Curated statement records (data/statements/*.json). The `_`-prefixed config
+    # files (e.g. _title_allowlist.yaml) are not records and never match *.json.
+    statements = sorted(STATEMENTS_DIR.glob("*.json")) if STATEMENTS_DIR.exists() else []
 
     by_chamber: dict[str, int] = {}
     by_class: dict[str, int] = {}
@@ -200,6 +217,7 @@ def _count_dataset() -> dict[str, object]:
             "member_votes": member_vote_total,
             "absences": len(absences),
             "bills": len(bills),
+            "statements": len(statements),
         },
     }
 

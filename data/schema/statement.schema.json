@@ -1,0 +1,111 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "archive_captured_at": {
+      "title": "Archive Captured At",
+      "type": "string"
+    },
+    "archive_url": {
+      "title": "Archive Url",
+      "type": "string"
+    },
+    "curator_note": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Curator Note"
+    },
+    "date": {
+      "title": "Date",
+      "type": "string"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "member_id": {
+      "title": "Member Id",
+      "type": "string"
+    },
+    "named_measures": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Named Measures",
+      "type": "array"
+    },
+    "paired_bill_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Paired Bill Ids",
+      "type": "array"
+    },
+    "source_url": {
+      "title": "Source Url",
+      "type": "string"
+    },
+    "specificity_level": {
+      "anyOf": [
+        {
+          "enum": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Specificity Level"
+    },
+    "stated_position": {
+      "anyOf": [
+        {
+          "enum": [
+            "support",
+            "oppose"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stated Position"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "venue": {
+      "title": "Venue",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "member_id",
+    "text",
+    "date",
+    "venue",
+    "source_url",
+    "archive_url",
+    "archive_captured_at",
+    "named_measures",
+    "paired_bill_ids"
+  ],
+  "title": "Statement",
+  "type": "object"
+}

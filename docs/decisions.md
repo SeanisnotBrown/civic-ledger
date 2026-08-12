@@ -600,3 +600,48 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   corrections but before the diff-gate, so a legislation-only change (a new
   cosponsorship — a real event, legitimate periodic commit, not churn) still reaches
   the gate; a truly-quiet night regenerates it byte-identically (D33).
+- **D41 — statement↔vote pairing resolves in ONE place (Python), and the result is
+  published on the record.** D9's bright line (pair by bill id; a short title only via
+  the owner's explicit `_title_allowlist.yaml`) must mean the same thing in the metric
+  layer (Python) and the timeline (TypeScript at build). Implementing it twice would let
+  the two drift. So `ingest/pairing.py::resolve` is the sole resolver; curation runs it
+  at save time and stores the outcome in `Statement.paired_bill_ids`; `metrics.py` and
+  `data.ts` both READ that field and never re-resolve. Editing the allowlist afterwards
+  requires `curate statements repair` to re-resolve existing records (resolution is
+  otherwise frozen at save). Statements are published as deterministic **JSON**, not the
+  spec's "YAML written" — `symmetry._load_statements` and `metrics._load` already glob
+  `data/statements/*.json`, and the data-contract's global rule is JSON via `_dumps`;
+  only `_title_allowlist.yaml` (owner-edited config, not a record) stays YAML.
+- **D42 — `named_measure_mismatch` un-fails-closed via an owner-assigned stance field.**
+  D39 deferred the opposite-position test for want of a stance. INC-11 adds
+  `Statement.stated_position` (`support`/`oppose`/`null`) — an owner classification, the
+  sibling of `specificity_level`, NOT a paraphrase (`text` stays verbatim). The metric now
+  emits an entry when a specificity-2/3 statement with a stance names a measure that
+  resolves to a bill (D41) AND the member's own **passage** vote on that bill is the
+  opposite side (support⇒Yea expected, oppose⇒Nay). Deliberately EXCLUDED, never guessed:
+  no stance, an unresolved measure, and every non-passage class (a Nay on a procedural
+  motion is not a vote against the bill). Entries carry both records + both dates and claim
+  no sequence — adjacency only (§6.7). Empty until qualifying statements are curated (H8).
+  Because the docstring IS the published methodology, this rewrite re-generates
+  `data/metrics.json`; the recompute-and-match test (D40) enforces that.
+- **D43 — "no verified capture, no save" is enforced server-side, and capture never goes
+  through the cache.** A statement's permanent Wayback copy is captured via the SPN2 API
+  (`ingest/sources/archive_org.py`): POST /save → poll status → and then HEAD-verify the
+  `archive_url` actually resolves before the capture counts as verified (value #1). This is
+  a mutating POST, so it must NEVER be cached/replayed — it bypasses `cache.py` entirely.
+  `curation.statements.build_statement` requires a real `Capture` object (the sole producer
+  of a verified `archive_url`), so a raw URL string cannot be saved; the Flask app's Save
+  control likewise appears only after a verified capture. Auth uses IA S3 keys (H6,
+  `Authorization: LOW …`, header-only) with an unauthenticated fallback that honors the §6.1
+  ≤ 1 capture / 15 s ceiling. The curation Flask app binds loopback only (`assert_loopback`
+  refuses any non-loopback host) and supersedes the INC-6 absence CLI.
+- **D44 — dead archive links are excluded at BUILD time via a committed report.** "Flagged
+  unpublishable" has to survive into the static build, which reads only the repo — so the
+  weekly `checks/archive_links.py` sweep HEADs every `archive_url` and writes the confirmed
+  dead ids to the committed `data/quality/archive-status.json`; `data.ts::getStatements`
+  drops any statement listed there until it is recaptured. A 4xx is dead (fail + exclude); a
+  network error or 5xx is a transient outage (warn only, never excludes) — the integrity
+  clerk-outage pattern. The sweep is weekly + network, so it is deliberately kept OUT of the
+  offline-deterministic `uv run checks` suite; the `archive-links.yml` workflow commits the
+  regenerated report first (so the next build excludes a newly-dead link) and then propagates
+  the nonzero exit as the GitHub failure notification (the alert channel, like nightly).

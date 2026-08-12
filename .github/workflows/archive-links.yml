@@ -1,0 +1,56 @@
+name: archive-links
+
+# INC-11 §6.11 — weekly archive-link liveness sweep. HEADs every curated statement's
+# permanent Wayback `archive_url`. A confirmed-dead link (4xx) flags that statement
+# UNPUBLISHABLE: its id is written to the committed data/quality/archive-status.json,
+# which the site build reads to exclude it until it is recaptured. A transient
+# archive.org outage (network/5xx) only warns.
+#
+# The report is regenerated and committed FIRST (so the next site build excludes any
+# newly-dead statement), THEN the sweep's own nonzero exit surfaces as the GitHub
+# Actions failure notification — the alert channel (like nightly). No commit happens
+# on a quiet week (report byte-identical → nothing to commit).
+
+on:
+  schedule:
+    - cron: "30 08 * * 1" # Mondays 08:30 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: archive-links
+  cancel-in-progress: false
+
+permissions:
+  contents: write # commits the regenerated status report
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Sync Python
+        run: uv sync --frozen
+
+      - name: Sweep archive links — commit the report, then propagate the verdict
+        run: |
+          set -uo pipefail
+          # Run the sweep; capture its exit code (nonzero = at least one dead link).
+          uv run archive-links
+          verdict=$?
+
+          # Commit the regenerated report if it changed, so the site build excludes
+          # any newly-dead statement even though the job will then fail.
+          if [ -n "$(git status --porcelain data/quality/archive-status.json)" ]; then
+            git config user.name  "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/quality/archive-status.json
+            git commit -m "data: archive-link status $(date -u +%Y-%m-%d)"
+            git push
+            echo "archive-links: committed updated status report."
+          fi
+
+          exit $verdict

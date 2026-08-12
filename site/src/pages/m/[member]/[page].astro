@@ -1,14 +1,17 @@
 ---
 import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
-import { getMembers, getMemberVotes, getAbsence, paginate } from "../../../lib/data";
-import type { MemberVoteRow } from "../../../lib/data";
+import StatementCard from "../../../components/StatementCard.astro";
+import { getMembers, getMemberTimeline, getAbsence, paginate } from "../../../lib/data";
+import type { TimelineItem } from "../../../lib/data";
 
 export function getStaticPaths() {
   const PAGE_SIZE = 200; // Astro isolates getStaticPaths scope — keep locals inside.
   const paths = [];
   for (const member of getMembers()) {
-    const pages = paginate(getMemberVotes(member.id), PAGE_SIZE);
+    // Statements + votes interleaved (INC-11). With no curated statements this is
+    // exactly the vote list, so the zero-statement page is the vote page unchanged.
+    const pages = paginate(getMemberTimeline(member.id), PAGE_SIZE);
     for (let i = 0; i < pages.length; i++) {
       paths.push({
         params: { member: member.id, page: String(i + 1) },
@@ -19,9 +22,10 @@ export function getStaticPaths() {
   return paths;
 }
 
-interface Props { memberId: string; rows: MemberVoteRow[]; pageNum: number; totalPages: number }
+interface Props { memberId: string; rows: TimelineItem[]; pageNum: number; totalPages: number }
 const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
 const member = getMembers().find((m) => m.id === memberId)!;
+const hasStatements = rows.some((r) => r.kind === "statement");
 
 const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 const chamberLabel = member.chamber === "house" ? "U.S. House" : "U.S. Senate";
@@ -35,11 +39,12 @@ const districtSuffix = member.district != null ? `, District ${member.district}`
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-    Recorded votes
+    Record
   </h2>
   <p class="mt-1 text-xs text-neutral-500">
-    Newest first. Page {pageNum} of {totalPages}. Each vote shows the official
-    question verbatim and links to the official record.
+    Newest first. Page {pageNum} of {totalPages}. Recorded votes show the official
+    question verbatim and link to the official record.{hasStatements ? " Curated statements are shown with a permanent archived copy; a paired vote is placed adjacent under the mechanical pairing rule — the site draws no conclusion." : ""}
+    {" "}<a href="/pairing" class="underline hover:text-neutral-700">How statements and votes are paired</a>.
   </p>
 
   {rows.length === 0 ? (
@@ -47,11 +52,15 @@ const districtSuffix = member.district != null ? `, District ${member.district}`
   ) : (
     <ul class="mt-2">
       {rows.map((row) => (
-        <VoteRow
-          rollcall={row.rollcall}
-          position={row.position}
-          absence={row.position === "not_voting" ? getAbsence(member.id, row.rollcall.id) : undefined}
-        />
+        row.kind === "statement" ? (
+          <StatementCard statement={row.statement} pairedVotes={row.pairedVotes} />
+        ) : (
+          <VoteRow
+            rollcall={row.rollcall}
+            position={row.position}
+            absence={row.position === "not_voting" ? getAbsence(member.id, row.rollcall.id) : undefined}
+          />
+        )
       ))}
     </ul>
   )}

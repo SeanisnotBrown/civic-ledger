@@ -36,8 +36,15 @@
       "type": "array"
     },
     "congress": {
-      "title": "Congress",
-      "type": "integer"
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Congress"
     },
     "cosponsor_ids": {
       "anyOf": [
@@ -56,6 +63,11 @@
     },
     "id": {
       "title": "Id",
+      "type": "string"
+    },
+    "jurisdiction": {
+      "default": "us",
+      "title": "Jurisdiction",
       "type": "string"
     },
     "latest_action": {

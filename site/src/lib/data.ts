@@ -17,13 +17,16 @@ export type Position = "yea" | "nay" | "present" | "not_voting";
 export type VoteClass =
   | "passage" | "amendment" | "procedural" | "nomination" | "veto_override" | "other";
 
+export type Jurisdiction = "us" | "ms";
 export interface Term { start: string; end: string; party: Party; chamber: Chamber; }
 export interface Member {
   id: string; ids: Record<string, string>; name: string; party: Party;
-  state: string; district: number | null; chamber: Chamber; serving: boolean; terms: Term[];
+  state: string; district: number | null; chamber: Chamber; jurisdiction: Jurisdiction;
+  serving: boolean; terms: Term[];
 }
 export interface RollCall {
-  id: string; chamber: Chamber; congress: number; session: number; number: number;
+  id: string; chamber: Chamber; jurisdiction: Jurisdiction; congress: number | null;
+  session: number; number: number;
   date: string; question: string; vote_class: VoteClass; vote_class_rule: string;
   bill_id: string | null; result: string; totals: Record<string, number>; source_url: string;
 }
@@ -36,7 +39,8 @@ export interface Absence {
 }
 export interface CboRef { url: string; title: string; date: string; }
 export interface Bill {
-  id: string; congress: number; type: string; number: number; title_official: string;
+  id: string; jurisdiction: Jurisdiction; congress: number | null; type: string;
+  number: number; title_official: string;
   policy_area: string | null; subjects: string[] | null; sponsor_id: string | null;
   cosponsor_ids: string[] | null; latest_action: string; latest_action_date: string;
   cbo_estimates: CboRef[]; source_url: string;

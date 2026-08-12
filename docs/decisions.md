@@ -799,3 +799,30 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   skips finalized rolls. **Open — needs runtime verification:** the first run after this
   lands only SAVES (no prior cache exists); the cache-hit skip count shows on the SECOND
   scheduled run. Nothing else in the pipeline changes.
+
+## INC-12 — Mississippi state legislature layer (branch A / GO)
+
+### D51 (2026-08-12) — jurisdiction schema extension + partitioned storage
+
+- **State data extends the canonical schema and lives in its own directory partition, so
+  the federal fail-closed guards never see it.** The guards built through INC-11 (incl. the
+  R-2 churn guards) assume every record under `data/{members,votes,bills}/` is federal;
+  dropped in as-is, MS records would fail CI instantly (metrics' missing-legislation raise,
+  symmetry expecting MS members on every federal roll, the classification gate on
+  non-congressional question strings). **Two coupled decisions:** (a) **partition** — MS
+  records live under `data/state/ms/{members,votes,bills}/`; every federal consumer globs
+  `data/{...}/*.json` NON-recursively (verified by a consumer sweep of `MEMBERS_DIR`/
+  `VOTES_DIR`/`BILLS_DIR`/`repo_root()/"data"`), so the partition is invisible to them and a
+  state consumer opts in explicitly — no federal guard needs a retrofit. (b) **extend, don't
+  fork** (spec INC-12, review section 6) — `Member`/`RollCall`/`Bill` gain `jurisdiction:
+  str = "us"`, and `RollCall.congress`/`Bill.congress` widen to `int | None` (a state roll
+  has no US Congress; MS `RollCall.session` carries the LegiScan session_id instead). The
+  default keeps pre-INC-12 reads unchanged. **Field-leak trap settled by one-time
+  migration:** with a defaulted field, `classify.run`/`export` would re-emit federal files
+  WITH the key piecemeal on the next vote-change night; instead a single offline migration
+  round-tripped all 4,484 federal records (6 members, 1,011 bills, 3,467 votes) through the
+  models so they already carry `"jurisdiction": "us"` — re-emit is now byte-stable and the
+  leak cannot happen. Schemas regenerated; 217 tests + checks + verify-recompute green; site
+  builds. No federal value changed (metrics.json/manifest byte-unchanged). MS party code `N`
+  (nonpartisan, 1 member) maps to `I` in the D/R/I model — documented on the limitations
+  page (phase 6).

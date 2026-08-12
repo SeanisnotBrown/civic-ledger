@@ -48,6 +48,17 @@ SCHEMA_DIR = DATA_DIR / "schema"
 MANIFEST_PATH = DATA_DIR / "manifest.json"
 METRICS_PATH = DATA_DIR / "metrics.json"
 
+# State-jurisdiction partition (INC-12/D51). MS data lives under data/state/ms/ so the
+# federal checks — which glob data/{members,votes,bills}/*.json NON-recursively — never
+# see it, and a state consumer opts in explicitly. The per-record export helpers already
+# take an `out_dir`, so the state ingest just passes these.
+STATE_DIR = DATA_DIR / "state"
+MS_DIR = STATE_DIR / "ms"
+MS_MEMBERS_DIR = MS_DIR / "members"
+MS_VOTES_DIR = MS_DIR / "votes"
+MS_BILLS_DIR = MS_DIR / "bills"
+MS_MANIFEST_PATH = MS_DIR / "manifest.json"
+
 
 def _dumps(obj: object) -> str:
     """Canonical JSON: sorted keys, 2-space indent, LF, trailing newline."""

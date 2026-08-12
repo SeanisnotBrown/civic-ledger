@@ -72,6 +72,11 @@
       "title": "Ids",
       "type": "object"
     },
+    "jurisdiction": {
+      "default": "us",
+      "title": "Jurisdiction",
+      "type": "string"
+    },
     "name": {
       "title": "Name",
       "type": "string"

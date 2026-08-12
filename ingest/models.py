@@ -45,13 +45,18 @@ class Term(_Strict):
 
 
 class Member(_Strict):
-    id: str  # bioguide id — the canonical key everywhere
-    ids: dict[str, str]  # crosswalk (govtrack, lis, fec, opensecrets, …) — D20
+    id: str  # bioguide id (federal) or `ms-<people_id>` (MS state) — canonical key
+    ids: dict[str, str]  # crosswalk (govtrack, lis, fec, opensecrets, legiscan, …) — D20
     name: str
     party: Party  # current affiliation = party of the most recent term
     state: str
-    district: int | None  # None = Senate
+    district: int | None  # None = US Senate; the HD/SD ordinal for MS state members
     chamber: Chamber
+    # Jurisdiction the record belongs to: "us" (federal) or "ms" (Mississippi state,
+    # INC-12/D51). Defaults to "us" so every pre-INC-12 federal record reads unchanged;
+    # state records are written explicitly. State data lives under data/state/ms/ — the
+    # field makes jurisdiction explicit once records are mixed in memory (site timelines).
+    jurisdiction: str = "us"
     serving: bool
     terms: list[Term]  # sorted by start; party switches preserved
 
@@ -68,8 +73,9 @@ class CboRef(_Strict):
 
 
 class Bill(_Strict):
-    id: str  # "hr2-119" — type+number+congress, lowercase
-    congress: int
+    id: str  # "hr2-119" (federal) or "ms-hb1-2249" (MS: type+number+session), lowercase
+    jurisdiction: str = "us"  # "us" | "ms" (INC-12/D51)
+    congress: int | None  # US Congress number; None for a state bill (no congress)
     type: str
     number: int
     title_official: str
@@ -88,10 +94,11 @@ class Bill(_Strict):
 
 
 class RollCall(_Strict):
-    id: str  # "h-119-1-0234" — chamber-congress-session-roll
+    id: str  # "h-119-1-0234" (federal) or "ms-h-2249-1612732" (MS: chamber-session-rollid)
     chamber: Chamber
-    congress: int
-    session: int
+    jurisdiction: str = "us"  # "us" | "ms" (INC-12/D51)
+    congress: int | None  # US Congress number; None for a state roll (no congress)
+    session: int  # federal: 1|2 of the congress; MS state: the LegiScan session_id
     number: int
     date: str
     question: str  # official question text, verbatim

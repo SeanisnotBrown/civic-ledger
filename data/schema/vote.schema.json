@@ -53,8 +53,15 @@
           "type": "string"
         },
         "congress": {
-          "title": "Congress",
-          "type": "integer"
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Congress"
         },
         "date": {
           "title": "Date",
@@ -62,6 +69,11 @@
         },
         "id": {
           "title": "Id",
+          "type": "string"
+        },
+        "jurisdiction": {
+          "default": "us",
+          "title": "Jurisdiction",
           "type": "string"
         },
         "number": {

@@ -57,7 +57,7 @@ def main(argv: list[str] | None = None) -> int:
     print("  members       INC-2 canonical members -> data/members/*.json")
     print("  house-votes   INC-3 House roll calls -> data/votes/ + data/absences/")
     print("  senate-votes  INC-4 Senate roll calls -> data/votes/ + data/absences/")
-    print("  bills         INC-8 vote-referenced bills -> data/bills/")
+    print("  bills         INC-8 vote-referenced bills -> data/bills/ (--all forces the INC-10 subjects/cosponsors backfill)")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     if args:
         print(f"unknown args: {args}")

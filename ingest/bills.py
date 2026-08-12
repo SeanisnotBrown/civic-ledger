@@ -4,12 +4,17 @@ Every `RollCall.bill_id` that isn't null must resolve to a real bill page on the
 site, so the covered bill set = the distinct `bill_id`s across `data/votes/*.json`
 (1,011 at INC-8). One Congress.gov `/bill/{congress}/{type}/{number}` fetch per
 bill yields every field the schema needs INLINE (title, policyArea, sponsors,
-cboCostEstimates, latestAction) — see SHAPES §4. `subjects` and `cosponsor_ids`
-are paginated sub-resources consumed by INC-10, not INC-8, so they are left as
-None (NOT [] — D27); INC-10 backfills them.
+cboCostEstimates, latestAction) — see SHAPES §4.
 
-`parse_bill` is pure (JSON dict -> Bill). `run()` enumerates, fetches (cached,
-resumable), quarantines malformed/missing bills (§6.1), and exports.
+`subjects` and `cosponsor_ids` are paginated sub-resources (INC-10 consumes them
+for metrics). They are fetched for EVERY bill this pipeline exports — not as a
+one-time backfill — so a nightly re-export of a recent bill can never silently
+revert an enriched list to the `None` "not collected" sentinel (the D35 clobber
+shape). The one-time backfill of the existing 1,011 bills is just `ingest bills
+--all` (force past the skip-if-final gate); every night after stays correct.
+
+`parse_bill` is pure (JSON dict + the fetched lists -> Bill). `run()` enumerates,
+fetches (cached, resumable), quarantines malformed/missing bills (§6.1), exports.
 """
 
 from __future__ import annotations
@@ -38,9 +43,19 @@ def parse_bill_id(bill_id: str) -> tuple[str, int, int]:
     return btype, number, congress
 
 
-def parse_bill(detail_json: dict, bill_id: str) -> Bill:
+def parse_bill(
+    detail_json: dict,
+    bill_id: str,
+    *,
+    subjects: list[str] | None,
+    cosponsor_ids: list[str] | None,
+) -> Bill:
     """Parse a `/bill/{c}/{type}/{number}` response into a `Bill`. Raises on
-    malformed data so the caller quarantines the whole bill (§6.1)."""
+    malformed data so the caller quarantines the whole bill (§6.1).
+
+    `subjects` / `cosponsor_ids` come from the paginated sub-resources (fetched by
+    the caller); passing `None` records "not collected" (D27), a real list (incl.
+    `[]`) records the collected value. Pure: no fetching happens here."""
     btype, number, congress = parse_bill_id(bill_id)
     bill = detail_json["bill"]
 
@@ -72,9 +87,9 @@ def parse_bill(detail_json: dict, bill_id: str) -> Bill:
         number=number,
         title_official=html.unescape(bill["title"]),
         policy_area=policy_area,
-        subjects=None,  # deferred to INC-10 (D27)
+        subjects=subjects,  # fetched sub-resource (INC-10); None only if uncollected
         sponsor_id=sponsor_id,
-        cosponsor_ids=None,  # deferred to INC-10 (D27)
+        cosponsor_ids=cosponsor_ids,  # fetched sub-resource (INC-10)
         latest_action=latest["text"],
         latest_action_date=latest["actionDate"],
         cbo_estimates=cbo,
@@ -111,10 +126,15 @@ def _quarantine(bill_id: str, error: str) -> None:
 
 
 def run(argv: list[str] | None = None) -> int:
-    """Ingest every vote-referenced bill -> data/bills/*.json. Idempotent: cached
-    fetches are reused, so a crashed run resumes cleanly. A malformed or missing
-    bill is quarantined and the run continues; CI fails only if quarantined bills
-    exceed the §6.1 fraction of the set."""
+    """Ingest every vote-referenced bill -> data/bills/*.json, INCLUDING the
+    `/subjects` + `/cosponsors` sub-resources for every bill exported. Idempotent:
+    cached fetches are reused, so a crashed run resumes cleanly. A malformed or
+    missing bill is quarantined and the run continues; CI fails only if quarantined
+    bills exceed the §6.1 fraction of the set.
+
+    `ingest bills --all` forces past the skip-if-final gate — the one-time backfill
+    that enriches the already-exported bills; without it the nightly touches only
+    new/recent bills (whose enrichment refreshes on every re-export, never reverts)."""
     import httpx
 
     from ingest import config, incremental
@@ -123,11 +143,13 @@ def run(argv: list[str] | None = None) -> int:
     from ingest.sources import congress_gov
 
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
+    force_all = bool(argv) and "--all" in argv
 
     bill_ids = referenced_bill_ids()
     total = len(bill_ids)
     # Incremental (§6.1): skip bills already exported, EXCEPT those referenced by a
-    # roll from the last 7 days (their latest_action may still be moving).
+    # roll from the last 7 days (their latest_action may still be moving). `--all`
+    # overrides the skip so the sub-resource backfill reaches every bill once.
     cutoff = incremental.final_cutoff()
     recent = incremental.recent_bill_ids(cutoff)
     exported = 0
@@ -136,7 +158,7 @@ def run(argv: list[str] | None = None) -> int:
     fetch_failures: list[str] = []
 
     for bill_id in bill_ids:
-        if incremental.bill_is_skippable(bill_id, recent):
+        if not force_all and incremental.bill_is_skippable(bill_id, recent):
             skipped += 1
             continue
         try:
@@ -147,13 +169,17 @@ def run(argv: list[str] | None = None) -> int:
             continue
         try:
             data = congress_gov.bill_detail(congress, btype, number).json()
+            # Sub-resources fetched for EVERY exported bill (anti-clobber, see
+            # module docstring) — never left as the None "uncollected" sentinel.
+            subjects = congress_gov.bill_subjects(congress, btype, number)
+            cosponsor_ids = congress_gov.bill_cosponsor_ids(congress, btype, number)
         except fetch_errors as exc:
             # A 404 surfaces as RetryableHTTPError only on 5xx/429; a real 404 is
             # an HTTPStatusError -> httpx.HTTPError. Either way, record + continue.
             fetch_failures.append(f"{bill_id}: {type(exc).__name__}")
             continue
         try:
-            bill = parse_bill(data, bill_id)
+            bill = parse_bill(data, bill_id, subjects=subjects, cosponsor_ids=cosponsor_ids)
         except (ValidationError, KeyError, BadBillId) as exc:
             _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
             quarantined.append(bill_id)

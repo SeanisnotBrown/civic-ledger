@@ -92,6 +92,59 @@ def bill_committees(congress: int, bill_type: str, number: int) -> CachedRespons
     return _get(f"bill/{congress}/{bill_type.lower()}/{number}/committees")
 
 
+def bill_subjects(congress: int, bill_type: str, number: int, *, force: bool = False) -> list[str]:
+    """Government-assigned legislative subject terms via the paginated
+    `/bill/{c}/{type}/{number}/subjects` sub-resource (INC-10). Returns the sorted
+    unique term names; `[]` means the government assigned none (distinct from the
+    `Bill.subjects is None` "not yet collected" sentinel — D27). policyArea is a
+    separate node already captured on the bill detail, so it is not folded in here.
+    Mirrors `house_vote_roll_numbers`' count-bounded pagination."""
+    names: set[str] = set()
+    offset = 0
+    while True:
+        page = _get(
+            f"bill/{congress}/{bill_type.lower()}/{number}/subjects",
+            {"limit": "250", "offset": str(offset)},
+            force=force,
+        ).json()
+        subs = (page.get("subjects") or {}).get("legislativeSubjects") or []
+        if not subs:
+            break
+        names.update(s["name"] for s in subs)
+        offset += 250
+        if offset >= int(page.get("pagination", {}).get("count", 0)):
+            break
+    return sorted(names)
+
+
+def bill_cosponsor_ids(
+    congress: int, bill_type: str, number: int, *, force: bool = False
+) -> list[str]:
+    """Current cosponsors' bioguide ids via the paginated `/cosponsors`
+    sub-resource (INC-10). Returns the sorted unique ids; `[]` means none. A
+    cosponsor who WITHDREW (`sponsorshipWithdrawnDate` present) is no longer a
+    cosponsor and is excluded — the API's `count` (vs `countIncludingWithdrawn`)
+    reflects the same distinction; including them would be a false claim."""
+    ids: set[str] = set()
+    offset = 0
+    while True:
+        page = _get(
+            f"bill/{congress}/{bill_type.lower()}/{number}/cosponsors",
+            {"limit": "250", "offset": str(offset)},
+            force=force,
+        ).json()
+        cos = page.get("cosponsors") or []
+        if not cos:
+            break
+        ids.update(
+            c["bioguideId"] for c in cos if not c.get("sponsorshipWithdrawnDate")
+        )
+        offset += 250
+        if offset >= int(page.get("pagination", {}).get("count", 0)):
+            break
+    return sorted(ids)
+
+
 # --- Congressional Record (index; full-text search is an INC-6 concern) ---
 def congressional_record(limit: int = 20, **params) -> CachedResponse:
     extra = {k: str(v) for k, v in params.items()}

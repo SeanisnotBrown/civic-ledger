@@ -16,22 +16,26 @@ for (const url of PAGES) {
     expect(overflow.scrollWidth, `horizontal overflow on ${url}`).toBeLessThanOrEqual(
       overflow.clientWidth + 1,
     );
-    // Best-effort screenshot artifact. fullPage capture can exceed chromium's
-    // max surface on very tall pages (e.g. a rule resolution referenced by
-    // hundreds of votes); fall back to a viewport shot. The assertion above —
-    // not the artifact — is what gates the test.
+    // Best-effort screenshot artifact — it NEVER gates the test (the overflow
+    // assertion above is the gate). fullPage capture can exceed chromium's max
+    // surface on very tall pages (a rule resolution referenced by hundreds of votes),
+    // and on CI the capture itself occasionally errors mid-run ("Unable to capture
+    // screenshot / waiting for fonts to load" — a font-load race). Fall back to a
+    // viewport shot, and if even that fails, skip the artifact silently: a debug
+    // screenshot failing must not fail a passing layout check.
     try {
-      const shot = await page.screenshot({ fullPage: true });
+      let shot: Buffer;
+      try {
+        shot = await page.screenshot({ fullPage: true });
+      } catch {
+        shot = await page.screenshot({ fullPage: false });
+      }
       await testInfo.attach(`screenshot-${url.replace(/\W+/g, "_")}`, {
         body: shot,
         contentType: "image/png",
       });
     } catch {
-      const shot = await page.screenshot({ fullPage: false });
-      await testInfo.attach(`screenshot-${url.replace(/\W+/g, "_")}-viewport`, {
-        body: shot,
-        contentType: "image/png",
-      });
+      // Screenshot unavailable this run — artifact skipped, the layout test still passes.
     }
   });
 }

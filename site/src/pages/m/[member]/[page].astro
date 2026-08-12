@@ -2,7 +2,8 @@
 import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
 import StatementCard from "../../../components/StatementCard.astro";
-import { getMembers, getMemberTimeline, getAbsence, paginate } from "../../../lib/data";
+import MemberStats from "../../../components/MemberStats.astro";
+import { getMembers, getMemberTimeline, getAbsence, paginate, getMetrics, getManifest } from "../../../lib/data";
 import type { TimelineItem } from "../../../lib/data";
 
 export function getStaticPaths() {
@@ -26,6 +27,8 @@ interface Props { memberId: string; rows: TimelineItem[]; pageNum: number; total
 const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
 const member = getMembers().find((m) => m.id === memberId)!;
 const hasStatements = rows.some((r) => r.kind === "statement");
+const memberMetrics = getMetrics().members[memberId]; // undefined-safe: only render if present
+const congresses = getManifest().congresses;
 
 const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 const chamberLabel = member.chamber === "house" ? "U.S. House" : "U.S. Senate";
@@ -37,6 +40,8 @@ const districtSuffix = member.district != null ? `, District ${member.district}`
   <p class="mt-1 text-neutral-600">
     {PARTY_LABEL[member.party]} · {chamberLabel}, {member.state}{districtSuffix}
   </p>
+
+  {memberMetrics && <MemberStats metrics={memberMetrics} congresses={congresses} />}
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
     Record

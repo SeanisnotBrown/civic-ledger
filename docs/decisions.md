@@ -926,3 +926,19 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   section — it carries no `data-metric`, so the metrics-sections set-equality check is
   unaffected. `data-contract.md` gains the matching `data/state/ms/` file-format section.
   **INC-12 complete** (all 6 phases; ADRs D51–D56).
+
+### D57 (2026-08-12) — member-page metric rendering (the review's post-INC-12 item)
+
+- **The 8 Tier-2 metrics were computed + published in `data/metrics.json` since INC-10 but
+  rendered NOWHERE except the `/methods` definitions — so a visitor saw the raw vote list
+  but no organized statistics.** `MemberStats.astro` now surfaces them as a KPI row of stat
+  tiles at the top of each federal member page (`/m/[member]/[page]`), under the D38
+  discipline: every figure carries its denominator/context (attendance = cast of eligible;
+  party unity = agreed of substantive; enacted = enacted of sponsored), each tile links to
+  its exact `/methods#metric-*` section, the `cosponsor_vote_gap` adjacencies sit in a
+  collapsed `<details>` with their base-rate caveat, and — load-bearing — **nothing is
+  combined into a per-member score** (the Tier-3 no-composite rule / "no thumb on the
+  scale"; a reader may weigh these client-side later, D19). Plain ink on the neutral surface
+  (no color-as-meaning; the form is stat tiles, not a chart); null pct (R-4) renders "—".
+  MS members are unaffected (no `data/metrics.json` entry → the guard skips the section);
+  computing MS metrics is a follow-on. axe + 380px green; banned-words green; astro check 0.

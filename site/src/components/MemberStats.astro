@@ -1,0 +1,92 @@
+---
+// INC-13 (member-page metric rendering, D38). A KPI row of stat tiles surfacing the
+// already-computed Tier-2 metrics (data/metrics.json) on a member's page. Discipline:
+//   * every figure is shown WITH its denominator/context — never a bare count (D38);
+//   * NOTHING is combined into a single per-member score (the Tier-3 no-composite rule /
+//     "no thumb on the scale" — the site never grades; a reader may weigh these later);
+//   * no characterization, no ranking, no color-as-meaning — plain ink on the neutral
+//     surface, each label linking to its exact methodology.
+// Values mirror the pydantic metric models; pct is null on a zero denominator (R-4).
+
+interface Attendance { eligible: number; cast: number; missed: number; pct: number | null }
+interface PartyUnity { substantive: number; agreed: number; pct: number | null; excluded_ties: number }
+interface Count { count: number }
+interface Enacted { sponsored: number; enacted: number; pct: number | null }
+interface Gap { bill_id: string; kind: string; rollcall_id: string | null }
+
+interface Props { metrics: Record<string, unknown>; congresses: number[] }
+const { metrics, congresses } = Astro.props as Props;
+
+const att = metrics.attendance as Attendance;
+const pu = metrics.party_unity as PartyUnity;
+const spon = metrics.sponsored as Count;
+const cospon = metrics.cosponsored as Count;
+const enact = metrics.enacted_rate as Enacted;
+const gaps = (metrics.cosponsor_vote_gap as Gap[]) ?? [];
+
+const n = (x: number) => x.toLocaleString("en-US");
+const pct = (x: number | null) => (x == null ? "—" : `${x}%`);
+const congressLabel = congresses.map((c) => `${c}th`).join("–");
+
+const votedNay = gaps.filter((g) => g.kind === "cosponsored_and_voted_nay").length;
+const noFloor = gaps.filter((g) => g.kind === "cosponsored_no_floor_action").length;
+
+// label · value · context(denominator) · methodology anchor on /methods
+const tiles = [
+  { key: "attendance", label: "Attendance", value: pct(att.pct),
+    context: att.pct == null ? "no eligible roll calls yet"
+      : `voted on ${n(att.cast)} of ${n(att.eligible)} eligible roll calls` },
+  { key: "party_unity", label: "Party unity", value: pct(pu.pct),
+    context: pu.pct == null ? "no substantive votes yet"
+      : `with their party's majority on ${n(pu.agreed)} of ${n(pu.substantive)} substantive votes` },
+  { key: "sponsored", label: "Bills sponsored", value: n(spon.count),
+    context: `${congressLabel} Congresses` },
+  { key: "cosponsored", label: "Bills cosponsored", value: n(cospon.count),
+    context: `${congressLabel} Congresses` },
+  { key: "enacted_rate", label: "Became law", value: `${n(enact.enacted)} of ${n(enact.sponsored)}`,
+    context: "sponsored bills enacted under their own bill number" },
+];
+---
+<section class="mt-6" aria-labelledby="stats-h">
+  <h2 id="stats-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    Record summary
+  </h2>
+  <p class="mt-1 max-w-prose text-xs text-neutral-500">
+    Each figure is a plain count or rate shown with its denominator. The site combines
+    nothing into an overall score and draws no conclusion — see
+    <a href="/methods" class="underline hover:text-neutral-700">how each is computed</a>.
+  </p>
+
+  <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
+    {tiles.map((t) => (
+      <div class="rounded-lg border border-neutral-200 bg-neutral-50 p-3">
+        <dt class="text-xs font-medium text-neutral-500">
+          <a href={`/methods#metric-${t.key}`} class="hover:text-neutral-700 hover:underline">{t.label}</a>
+        </dt>
+        <dd class="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">{t.value}</dd>
+        <dd class="mt-0.5 text-xs leading-snug text-neutral-500">{t.context}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <p class="mt-2 max-w-prose text-xs text-neutral-500">
+    "Became law" counts only bills enacted under the member's own bill number; much
+    enacted text moves by being folded into another bill, which this figure cannot and
+    does not attribute.
+  </p>
+
+  {gaps.length > 0 && (
+    <details class="mt-2 max-w-prose text-xs text-neutral-600">
+      <summary class="cursor-pointer text-neutral-500 hover:text-neutral-700">
+        Cosponsorship-and-vote adjacencies ({n(gaps.length)}) — not a score
+      </summary>
+      <p class="mt-1">
+        Of {n(cospon.count)} cosponsored bills: {n(votedNay)} where the member later
+        voted Nay on passage, and {n(noFloor)} in a concluded Congress that received no
+        recorded floor vote. Most introduced bills never receive a floor vote, and floor
+        scheduling is set by chamber leadership, not a bill's cosponsors — this list is
+        for inspection, not a judgment about the member.
+      </p>
+    </details>
+  )}
+</section>

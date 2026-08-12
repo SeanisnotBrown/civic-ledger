@@ -44,6 +44,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import senate_votes
 
         return senate_votes.run(args[1:])
+    if args and args[0] == "bills":
+        from ingest import bills
+
+        return bills.run(args[1:])
     if args and args[0] == "classify":
         from ingest import classify
 
@@ -53,6 +57,7 @@ def main(argv: list[str] | None = None) -> int:
     print("  members       INC-2 canonical members -> data/members/*.json")
     print("  house-votes   INC-3 House roll calls -> data/votes/ + data/absences/")
     print("  senate-votes  INC-4 Senate roll calls -> data/votes/ + data/absences/")
+    print("  bills         INC-8 vote-referenced bills -> data/bills/")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     if args:
         print(f"unknown args: {args}")

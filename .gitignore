@@ -19,3 +19,8 @@ node_modules/
 dist/
 site/dist/
 .astro/
+
+# Playwright (e2e artifacts + downloaded browsers)
+site/test-results/
+site/playwright-report/
+site/.playwright/

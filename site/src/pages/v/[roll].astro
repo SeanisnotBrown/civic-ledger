@@ -1,0 +1,88 @@
+---
+import Layout from "../../components/Layout.astro";
+import Badge from "../../components/Badge.astro";
+import { getAllVotes, getMember, getAbsence } from "../../lib/data";
+import type { VoteFile } from "../../lib/data";
+import { POSITION_LABEL, formatDate, billLabel, ordinal } from "../../lib/display";
+
+export function getStaticPaths() {
+  return getAllVotes().map((v) => ({ params: { roll: v.rollcall.id }, props: { vote: v } }));
+}
+
+interface Props { vote: VoteFile }
+const { vote } = Astro.props as Props;
+const rc = vote.rollcall;
+const chamber = rc.chamber === "house" ? "House" : "Senate";
+
+// Delegation positions, sorted by member name for a stable display.
+const rows = vote.member_votes
+  .map((mv) => ({ mv, member: getMember(mv.member_id) }))
+  .sort((a, b) => (a.member?.name ?? a.mv.member_id).localeCompare(b.member?.name ?? b.mv.member_id));
+
+const TOTAL_ORDER = ["yea", "nay", "present", "not_voting"] as const;
+---
+<Layout title={`${chamber} Roll ${rc.number} (${rc.congress}th) — Civic Ledger`}>
+  <nav class="text-xs text-neutral-500"><a href="/" class="underline">Members</a> / Roll call</nav>
+  <div class="mt-1 flex flex-wrap items-center gap-2">
+    <h1 class="text-xl font-semibold tracking-tight">
+      {chamber} Roll #{rc.number}
+    </h1>
+    <Badge voteClass={rc.vote_class} />
+  </div>
+  <p class="mt-1 text-sm text-neutral-500">
+    {ordinal(rc.congress)} Congress, session {rc.session} · {formatDate(rc.date)}
+  </p>
+
+  <h2 class="mt-6 text-sm font-semibold uppercase tracking-wide text-neutral-500">Question</h2>
+  <p class="mt-1 text-neutral-900">{rc.question}</p>
+  <p class="mt-2 text-sm text-neutral-600">Result: {rc.result}</p>
+
+  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+    {rc.bill_id && (
+      <a href={`/b/${rc.bill_id}`} class="underline hover:text-neutral-800">{billLabel(rc.bill_id)}</a>
+    )}
+    <a href={rc.source_url} rel="nofollow" class="underline hover:text-neutral-800">Official record</a>
+  </div>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    Chamber totals
+  </h2>
+  <ul class="mt-1 flex flex-wrap gap-x-6 text-sm text-neutral-700">
+    {TOTAL_ORDER.map((k) => (
+      <li>{POSITION_LABEL[k]}: <span class="font-medium">{rc.totals[k] ?? 0}</span></li>
+    ))}
+  </ul>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    Mississippi delegation
+  </h2>
+  {rows.length === 0 ? (
+    <p class="mt-1 text-sm text-neutral-600">
+      This roll records votes for candidates by name (an officer election), not
+      yea/nay positions, so no delegation positions are shown.
+    </p>
+  ) : (
+    <ul class="mt-2 divide-y divide-neutral-100">
+      {rows.map(({ mv, member }) => {
+        const absence = mv.position === "not_voting" ? getAbsence(mv.member_id, rc.id) : undefined;
+        return (
+          <li class="py-2">
+            <div class="flex flex-wrap items-baseline gap-x-2">
+              <a href={`/m/${mv.member_id}/1`} class="font-medium underline hover:text-neutral-800">
+                {member?.name ?? mv.member_id}
+              </a>
+              <span class="text-sm">{POSITION_LABEL[mv.position]}</span>
+            </div>
+            {mv.position === "not_voting" && (
+              <p class="mt-0.5 text-xs text-neutral-600">
+                {absence?.stated_reason
+                  ? (<><span class="italic">“{absence.stated_reason}”</span>{absence.stated_reason_source && (<>{" "}<a href={absence.stated_reason_source} class="underline">Congressional Record</a></>)}</>)
+                  : <span>No explanation on record.</span>}
+              </p>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  )}
+</Layout>

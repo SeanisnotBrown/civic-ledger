@@ -28,6 +28,8 @@ jobs:
         run: uv run ruff check .
       - name: Pytest
         run: uv run pytest -q
+      - name: Verify-recompute (recompute-and-match over the dataset)
+        run: uv run verify-recompute
 
   site-and-checks:
     runs-on: ubuntu-latest
@@ -51,6 +53,17 @@ jobs:
       # Build BEFORE checks so §6.4 banned-words scans the real site/dist/**.
       - name: Astro build
         working-directory: site
+        env:
+          PUBLIC_BUILD_COMMIT: ${{ github.sha }}
         run: npm run build
       - name: Checks (banned-words, no-llm, ...)
         run: uv run checks
+      - name: Source-link trace (every vote/bill page cites its source_url)
+        working-directory: site
+        run: npm run test:links
+      - name: Install Playwright browser
+        working-directory: site
+        run: npx playwright install --with-deps chromium
+      - name: E2E (axe a11y + 380px layout)
+        working-directory: site
+        run: npm run test:e2e

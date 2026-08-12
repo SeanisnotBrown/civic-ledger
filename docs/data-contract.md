@@ -88,23 +88,24 @@ that position). Owner-approved CREC explanations (INC-6, H9) are added in place.
 
 ## `data/bills/{id}.json` — one per bill
 
-Schema: `data/schema/bill.schema.json` (model `Bill`). Id form `hr2-119`. No bill
-ingest runs yet; the schema + export helper exist so the contract is complete for
-every Tier-1 file type (bill data lands with the INC-8 bill pages).
+Schema: `data/schema/bill.schema.json` (model `Bill`). Id form `hr2-119`. The
+published set is the **vote-referenced bills only** — every distinct non-null
+`RollCall.bill_id` (1,011 at INC-8), so every vote's bill link resolves to a page.
+This is deliberately NOT full-congress bill coverage (D27).
 
 | Field | Type | Notes |
 |---|---|---|
 | `id` | string | `type+number+congress`, lowercase. |
 | `congress` / `number` | integer | |
 | `type` | string | e.g. `hr`, `s`, `hres`. |
-| `title_official` | string | Official short title; drafter-written, never a description of effect. |
+| `title_official` | string | Official short title; drafter-written, never a description of effect. HTML entities from the API (`&#039;`, `&amp;`) are decoded to their characters at ingest — a third party diffing against raw API responses should expect the decoded form. |
 | `policy_area` | string \| null | Government-assigned only. |
-| `subjects` | array\<string\> | Government-assigned legislative subject terms. |
-| `sponsor_id` | string \| null | Bioguide id. |
-| `cosponsor_ids` | array\<string\> | Bioguide ids. |
+| `subjects` | array\<string\> \| null | Government-assigned legislative subject terms. **`null` = not yet collected** (a paginated sub-resource fetched by the INC-10 metrics layer); `[]` would mean collected-and-none. Never read `null` as "zero subjects" (D27). |
+| `sponsor_id` | string \| null | Bioguide id of the primary sponsor. |
+| `cosponsor_ids` | array\<string\> \| null | Bioguide ids. **`null` = not yet collected** (INC-10 backfills); distinct from `[]` (D27). |
 | `latest_action` / `latest_action_date` | string | |
-| `cbo_estimates` | array\<CboRef\> | `{ url, title, date }` — link-through only. |
-| `source_url` | string | |
+| `cbo_estimates` | array\<CboRef\> | `{ url, title, date }` — link-through only. Titles are entity-decoded like `title_official`. |
+| `source_url` | string | The bill's public congress.gov page (`legislationUrl`). |
 
 ## `data/manifest.json` — dataset summary (the one wall-clock file)
 

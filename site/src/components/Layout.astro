@@ -1,0 +1,61 @@
+---
+// Shared page shell + the §6.7 footer (mandatory on every page): data-last-updated,
+// methodology + corrections links, and the build commit that produced the page.
+import "../styles/global.css";
+import { getManifest } from "../lib/data";
+import { formatDate } from "../lib/display";
+
+interface Props { title: string; description?: string }
+const { title, description } = Astro.props;
+
+const manifest = getManifest();
+const updated = formatDate(manifest.generated_at);
+// The commit that built THIS page (§6.7), injected in CI; falls back to the
+// data-export commit from the manifest, then "dev" for a bare local build.
+const buildCommit =
+  (import.meta.env.PUBLIC_BUILD_COMMIT as string | undefined)?.slice(0, 7) ??
+  manifest.commit ??
+  "dev";
+const repo = "https://github.com/SeanisnotBrown/civic-ledger";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description ?? "A non-partisan public ledger of the legislative record."} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-white text-neutral-900 antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-2">Skip to content</a>
+    <header class="border-b border-neutral-200">
+      <nav class="mx-auto flex max-w-3xl items-center justify-between px-4 py-3 text-sm" aria-label="Primary">
+        <a href="/" class="font-semibold tracking-tight">Civic Ledger</a>
+        <ul class="flex gap-4 text-neutral-600">
+          <li><a href="/" class="hover:text-neutral-900">Members</a></li>
+          <li><a href="/methods" class="hover:text-neutral-900">Methodology</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" class="mx-auto max-w-3xl px-4 py-8">
+      <slot />
+    </main>
+
+    <footer class="mx-auto max-w-3xl px-4 py-8 text-xs text-neutral-500">
+      <p>
+        Data last updated {updated}. Every published fact links to an official source.
+      </p>
+      <p class="mt-1">
+        <a href="/methods" class="underline hover:text-neutral-700">Methodology</a>
+        {" · "}
+        <a href="/corrections" class="underline hover:text-neutral-700">Corrections</a>
+        {" · "}
+        <a href={repo} class="underline hover:text-neutral-700">Source</a>
+        {" · "}
+        <span>Build <code>{buildCommit}</code></span>
+      </p>
+    </footer>
+  </body>
+</html>

@@ -427,3 +427,48 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   fresh generation (re-run `uv run export`). `export_bill()` + the Bill schema ship now
   though no bill data exists yet, so the contract is complete for every Tier-1 type
   (bill ingest lands with INC-8).
+
+### INC-8 (2026-08-12) — Site MVP
+
+- **D27 — detail-only bill ingest; `subjects` and `cosponsor_ids` deferred to INC-10
+  as `None` (not `[]`).** The covered bill set = the 1,011 distinct non-null
+  `RollCall.bill_id`s, so every vote's bill link resolves to a real page. One
+  `/bill/{c}/{type}/{number}` fetch yields every field the INC-8 bill page renders
+  INLINE (title, policyArea, first sponsor, cboCostEstimates, latestAction —
+  SHAPES §4). `subjects` and `cosponsors` are paginated sub-resources consumed by
+  INC-10 metrics, not INC-8, so fetching them now would be ~3× the requests for data
+  nothing renders yet. They are left `None` — and the `Bill` schema was widened to
+  `list[str] | None` — because an empty `[]` is a POSITIVE false claim ("zero
+  cosponsors"), which value #1 forbids; `None` = not-yet-collected, mirroring
+  `Statement.specificity_level`. INC-10 backfills. `source_url` = the bill's public
+  `legislationUrl` (congress.gov), not the API URL. Titles are `html.unescape`d (the
+  API entity-encodes `&#039;`/`&amp;`; the decoded char is the faithful verbatim
+  string and avoids a double-escape on render — a lossless normalization, not a
+  paraphrase). Quarantine + §6.1 ceiling apply; this is NOT full bill coverage
+  (INC-10's per-member sponsored-legislation enumeration is a different set).
+- **D28 — the site reads committed `data/**` at build time via `node:fs`, never a
+  bundler glob.** `site/src/lib/data.ts` memoizes per-directory reads; pages call it
+  from Astro frontmatter (Node during `astro build`). Zero runtime data fetching
+  (§10.1) — the output is static HTML. **Member vote lists are paginated at 200
+  rows/page** (`m/[member]/[page]`): a member has ~1,700+ eligible rolls, and one
+  page of that fails 380px usability and the INC-9 Lighthouse budget. ~3,467 vote
+  pages + ~1,011 bill pages + member pages build from data alone.
+- **D29 — §6.7 copy rules are implemented as shared components so they can't drift
+  per-page.** `VoteRow.astro` encodes the full vote-row contract (position, date,
+  roll #, always-visible `Badge`, verbatim question, bill link, official record);
+  `Badge.astro` renders the vote_class with a neutral, non-lean tooltip; absences
+  render the verbatim reason + CREC link or the EXACT string "No explanation on
+  record."; bill titles carry the ⓘ "titles are written by the drafters" affordance;
+  `Layout.astro`'s footer carries data-last-updated (manifest), methodology +
+  corrections links, and the build commit (`PUBLIC_BUILD_COMMIT`, set to the CI sha).
+  vote_class tooltip copy lives in `display.ts` as UI chrome (§0.5) — kept strictly
+  procedural since only the INC-20 glossary page is banned-words-allowlisted.
+- **D30 — INC-8 acceptance is enforced by three CI gates.** (a) `astro build` from
+  committed data with no network; (b) `scripts/check-source-links.mjs` — a plain
+  node pass over `dist/` asserting every vote and bill page's HTML cites its record's
+  `source_url` (the "every rendered claim traces to a source_url" criterion, ~4,500
+  pages, cheap string check); (c) Playwright (`@axe-core/playwright`) — WCAG2 A/AA
+  axe scan + a 380px no-horizontal-overflow assertion + screenshot artifacts on six
+  representative pages, run against `astro preview`. Browsers install in CI after the
+  build. Representative page ids are computed from data (never hardcoded), so the
+  suite can't target a page that doesn't exist.

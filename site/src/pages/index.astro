@@ -1,35 +1,49 @@
 ---
-import "../styles/global.css";
+import Layout from "../components/Layout.astro";
+import { getMembers } from "../lib/data";
+import { ordinal } from "../lib/display";
 
-// INC-0 placeholder homepage. The real member index lands in INC-8.
-// Kept deliberately free of political content (§0.5): this is UI chrome only.
-const buildCommit = (import.meta.env.PUBLIC_BUILD_COMMIT ?? "dev").slice(0, 7);
+const members = getMembers();
+const house = members.filter((m) => m.chamber === "house");
+const senate = members.filter((m) => m.chamber === "senate");
+
+const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 ---
+<Layout title="Civic Ledger — Mississippi delegation">
+  <h1 class="text-2xl font-semibold tracking-tight">Mississippi delegation</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    The recorded legislative record for Mississippi's members of Congress,
+    presented without a thumb on the scale. Every vote links to its official
+    source; nothing here is summarized or characterized.
+  </p>
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A non-partisan public ledger of the legislative record." />
-    <title>Civic Ledger</title>
-  </head>
-  <body class="min-h-screen bg-white text-neutral-900 antialiased">
-    <main class="mx-auto max-w-2xl px-4 py-16">
-      <h1 class="text-2xl font-semibold tracking-tight">Civic Ledger</h1>
-      <p class="mt-4 text-neutral-700">
-        The public record, presented without a thumb on the scale. This is the
-        INC-0 scaffold — the member index, votes, bills, and quiz arrive in
-        later increments.
-      </p>
-      <ul class="mt-8 space-y-2 text-sm text-neutral-600">
-        <li>Static build; no third-party runtime requests.</li>
-        <li>Quiz scoring is 100% client-side.</li>
-        <li>Every published fact traces to an official source URL.</li>
-      </ul>
-    </main>
-    <footer class="mx-auto max-w-2xl px-4 pb-16 text-xs text-neutral-500">
-      <p>Build {buildCommit} · Open source · Corrections are public commits.</p>
-    </footer>
-  </body>
-</html>
+  <section class="mt-8" aria-labelledby="senate-h">
+    <h2 id="senate-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">Senate</h2>
+    <ul class="mt-2 divide-y divide-neutral-100">
+      {senate.map((m) => (
+        <li class="py-3">
+          <a href={`/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
+          <span class="ml-2 text-sm text-neutral-500">{PARTY_LABEL[m.party]} · {m.state}</span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-8" aria-labelledby="house-h">
+    <h2 id="house-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">House</h2>
+    <ul class="mt-2 divide-y divide-neutral-100">
+      {house.map((m) => (
+        <li class="py-3">
+          <a href={`/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
+          <span class="ml-2 text-sm text-neutral-500">
+            {PARTY_LABEL[m.party]} · {m.state}{m.district != null ? `-${m.district}` : ""}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <p class="mt-8 text-xs text-neutral-500">
+    Coverage: the {ordinal(118)} and {ordinal(119)} Congresses.
+  </p>
+</Layout>

@@ -1,0 +1,20 @@
+---
+import Layout from "../components/Layout.astro";
+
+const repo = "https://github.com/SeanisnotBrown/civic-ledger";
+---
+<Layout title="Corrections — Civic Ledger">
+  <h1 class="text-2xl font-semibold tracking-tight">Corrections</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    Corrections are made as ordinary public commits — never silent edits, never
+    force-pushes. The full history of every change is in the public repository.
+    To report an error, open an issue against the source, citing the official
+    record. This page is a stub; the automated corrections log lands with the
+    deploy pipeline.
+  </p>
+  <p class="mt-4 text-sm">
+    <a href={`${repo}/issues`} rel="nofollow" class="underline hover:text-neutral-800">Report a correction</a>
+    {" · "}
+    <a href={`${repo}/commits`} rel="nofollow" class="underline hover:text-neutral-800">Change history</a>
+  </p>
+</Layout>

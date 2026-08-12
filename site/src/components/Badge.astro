@@ -1,0 +1,15 @@
+---
+// The vote_class badge (§6.7: always visible, tooltip from the glossary/labels).
+import type { VoteClass } from "../lib/data";
+import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
+
+interface Props { voteClass: VoteClass }
+const { voteClass } = Astro.props;
+
+// Neutral, colour-blind-safe styling — the badge NEVER encodes approval/lean,
+// only the procedural category. Same visual weight for every class.
+---
+<span
+  class="inline-block rounded border border-neutral-300 bg-neutral-100 px-1.5 py-0.5 text-xs font-medium text-neutral-700"
+  title={VOTE_CLASS_TOOLTIP[voteClass]}
+>{VOTE_CLASS_LABEL[voteClass]}</span>

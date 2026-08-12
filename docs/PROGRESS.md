@@ -3,20 +3,50 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-7 session (JSON export contracts).
-**Git:** INC-1..INC-6 closed & pushed (all CI green — INC-6's run confirmed green
-this session). INC-7 being committed now — confirm its CI is green next session.
+**Last updated:** 2026-08-12, end of INC-8 session (Site MVP + bill ingest).
+**Git:** INC-1..INC-7 closed & pushed (all CI green — INC-7's run confirmed green
+this session). INC-8 being committed now — confirm its CI is green next session
+(CI now also builds the site, runs the source-link trace, and runs Playwright e2e).
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
-> **PIPELINE ORDER (load-bearing, D24):** `ingest {house,senate}-votes` → `ingest
-> classify` → `uv run checks`. An ingest re-export resets every roll to the
-> provisional `unclassified`, so **classify must run after any ingest** or the
-> `classification` check fails. INC-9's nightly job must sequence these.
+> **PIPELINE ORDER (load-bearing, D24 + INC-7/8):** `ingest {house,senate}-votes`
+> → `ingest bills` → `ingest classify` → `uv run export` → `uv run checks`. An
+> ingest re-export resets every roll to the provisional `unclassified`, so
+> **classify must run after any vote ingest** or the `classification` check fails;
+> **export must run after any ingest** or `test_committed_manifest_matches_regeneration`
+> (counts drift) and stale schemas fail. INC-9's nightly job must sequence all of
+> these. (`ingest bills` is independent of classify; order among the two ingests
+> is free, but export/checks come last.)
 
 ---
 
 ## Current increment
 
+**INC-8 — Site MVP — ✅ COMPLETE.**
+The static site renders the record: **member index** (`/`), **member detail** with a
+paginated vote list (`/m/[member]/[page]`, 200 rows/page), **single-vote page**
+(`/v/[roll]`), **single-bill page** (`/b/[bill]`), plus `/methods` + `/corrections`
+stubs. **4,537 pages build from committed `data/**` with no network.** §6.7 copy rules
+are enforced via shared components (`VoteRow`, `Badge`, `Layout`): every vote row shows
+position, date, roll #, always-visible vote_class badge (neutral tooltip), verbatim
+question, bill link, official-record link; absences render the verbatim reason + CREC
+link or the EXACT "No explanation on record."; bill titles carry the ⓘ drafter-title
+affordance; the footer carries data-last-updated (manifest) + methodology/corrections
+links + build commit (`PUBLIC_BUILD_COMMIT`=CI sha). Data layer = `site/src/lib/data.ts`
+(`node:fs` over `data/**`, memoized). **Bill ingest** (`ingest bills`, D27) landed first
+as its own concern: 1,011 vote-referenced bills, detail-only, `subjects`/`cosponsor_ids`
+deferred to INC-10 as `None` (schema widened to `list[str] | None`); 0 quarantined.
+Acceptance enforced by 3 CI gates (D30): `astro build` offline; `check-source-links.mjs`
+(4,478 vote/bill pages each cite their `source_url`); Playwright `@axe-core` WCAG2 A/AA +
+380px no-overflow on 6 representative pages. Design in **D27–D30**. See "INC-8 output".
+
+**Next: INC-9 — Automation + deploy → PUBLIC MVP — NOT STARTED. Blocked by H4, H5.**
+`nightly.yml` (cron): ingest (current congress) → bills → classify → export → checks →
+commit data diff → Pages deploy. Needs Cloudflare Pages + token (H4) and the domain (H5),
+both still pending. Build the workflow + deploy config regardless; the deploy step no-ops
+without the secrets. See the PIPELINE ORDER callout above — nightly must sequence it.
+
+**(historical — INC-7)**
 **INC-7 — JSON export contracts — ✅ COMPLETE.**
 The published dataset is now a stable, documented, deterministic contract.
 `ingest/export.py` gains `export_bill()`, JSON-Schema generation from the pydantic
@@ -274,28 +304,61 @@ RESOLVED callout above). 11 samples committed.
   schema + committed-schemas-current, bill export round-trip, verify-recompute green
   on the committed dataset (× entrypoint). 86 → 95. Design in **D26**.
 
-## INC-8 — where to pick up
+## INC-8 output (done — the public site MVP + bill ingest)
 
-Spec: IMPLEMENTATION.md §7 "INC-8" + §6.7 (UI copy rules, mandatory). Goal: the site
-MVP — member index, member detail (vote list with **vote_class badges**, tooltips from
-the glossary), single-vote page (`v/[roll]`), single-bill page (`b/[bill]`). Astro 5 +
-Tailwind + Preact islands already scaffolded (INC-0). Build from `data/**` at build
-time ONLY (no network at build). §6.7 is load-bearing: every vote row shows position,
-date, roll #, vote_class badge, verbatim question, bill link, official record link;
-bill titles carry the "official short title — written by drafters" ⓘ affordance;
-absences show verbatim reason + CREC link OR the exact string "No explanation on
-record."; every footer carries data-last-updated (from `manifest.json`), methodology +
-corrections links, and the build commit. Mobile-first at 380px.
+- **`ingest/bills.py`** (new `ingest bills` subcommand) — pure `parse_bill` +
+  `parse_bill_id` + `run()`. Covered set = `referenced_bill_ids()` (distinct non-null
+  `RollCall.bill_id`, 1,011). Detail-only fetch; `subjects`/`cosponsor_ids` = None
+  (D27); titles `html.unescape`d; `source_url` = `legislationUrl`. Quarantine + §6.1
+  ceiling. **0 quarantined.** `models.Bill.subjects`/`cosponsor_ids` widened to
+  `list[str] | None`; `data/bills/*.json` (1,011) committed; manifest bills 0 → 1,011.
+- **`site/src/lib/data.ts`** — build-time `node:fs` readers over `data/**` (memoized),
+  typed to mirror §5; derived views `getMemberVotes` (newest-first), `getVotesForBill`,
+  `paginate`. **`site/src/lib/display.ts`** — vote_class labels + neutral tooltips
+  (UI chrome), `formatDate`, `billLabel`, `ordinal`.
+- **Components** (`site/src/components/`): `Layout.astro` (shell + §6.7 footer),
+  `Badge.astro` (vote_class + tooltip), `VoteRow.astro` (the full §6.7 vote row incl.
+  absence rendering). **Pages**: `index.astro` (member index), `m/[member]/[page].astro`
+  (paginated, 200/page — ⚠ `getStaticPaths` is scope-isolated, keep locals inside it),
+  `v/[roll].astro`, `b/[bill].astro` (ⓘ affordance + CBO link-throughs + rolls-on-bill),
+  `methods.astro` + `corrections.astro` stubs. **4,537 pages, built offline in ~25s.**
+- **Acceptance harness**: `site/scripts/check-source-links.mjs` (`npm run test:links` —
+  4,478 pages cite their source_url), Playwright `site/e2e/` (`@axe-core` WCAG2 A/AA +
+  380px overflow, 6 data-derived representative pages; fullPage screenshot is
+  best-effort — chromium can't capture a rule-resolution page listing hundreds of votes).
+  `playwright.config.ts` webServer = `astro preview`. **12/12 e2e pass.**
+- **CI** (`.github/workflows/ci.yml`): python job adds `verify-recompute`; site job adds
+  `PUBLIC_BUILD_COMMIT=github.sha` on build, `test:links`, `playwright install chromium`,
+  `test:e2e`. **`@types/node` + astro.config tailwind-plugin cast** make `astro check`
+  clean (0 errors). Tests: **`tests/test_bills.py` (13)** — id parsing, core-field parse,
+  D27 None assertion, entity-decode, missing-field raise. 95 → 108 (python). Design in
+  **D27–D30**.
 
-**Note for INC-8:** bills are NOT yet ingested (no `data/bills/*.json`). The bill page
-needs a minimal bill ingest (Congress.gov bill detail → `Bill` records via `export_bill`,
-including `cboCostEstimates` per D15) OR render bill *links* from `rollcall.bill_id`
-only and defer full bill pages. Decide at INC-8 start; the `Bill` schema + exporter are
-ready. The `_dumps` serializer + `data/schema/` contract are the source of truth for shapes.
+## INC-9 — where to pick up
 
-**INC-8 acceptance:** `astro build` succeeds from data alone; axe-core CI a11y check
-passes; 380px layout screenshot test; every rendered claim traces to a `source_url`
-present in data.
+Spec: IMPLEMENTATION.md §7 "INC-9" (**the PUBLIC MVP / brief definition-of-done**).
+**Blocked by H4 (Cloudflare Pages + token) and H5 (domain) — both still ⬜ pending.**
+Build the automation regardless; the deploy step no-ops without the secrets. Steps:
+1. **`nightly.yml`** cron `15 09 * * *` UTC → incremental ingest (current congress only:
+   `house-votes` + `senate-votes`) → `ingest bills` → `ingest classify` → `uv run export`
+   → `uv run checks` → commit the data diff (`data: nightly {date}`) → Pages deploy
+   (auto on push; Worker via wrangler only when `worker/` changes). **Sequence per the
+   PIPELINE ORDER callout** — export/checks come last; classify after the vote ingests.
+2. "Data last updated" per page already wired (manifest → `Layout` footer). Corrections
+   page exists as a stub — INC-9 makes `docs/correction-process.md` + auto-lists
+   `correction:`-tagged commits (brief 5.12: corrections = new commits, never force-push).
+3. Basic `/privacy` page (full threat model is INC-16).
+4. Branch protection note: CI required, no force-push on master.
+
+**INC-9 acceptance (= brief MVP done):** six members complete + auto-updating; procedural
+classification displayed (done in the site); missed votes show reason or explicit absence
+(done); methodology stub live (done); real domain + mobile-usable (Lighthouse mobile ≥ 90
+— NEW gate this increment); updates unattended (verify one untouched nightly commit +
+deploy). NB: Lighthouse ≥ 90 is first enforced here; the 380px/axe gates already pass.
+
+**INC-8 acceptance (met):** `astro build` from data alone ✅; axe-core a11y ✅ (12/12
+Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `source_url`
+✅ (source-link trace, 4,478 pages).
 
 ---
 
@@ -311,8 +374,8 @@ present in data.
 | INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
 | INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
 | INC-7 | JSON export contracts | ✅ done | double-export byte-identical (manifest + 4 schemas); `verify-recompute` matches 100% of 3,467 rolls (coverage+subset+reciprocity, D26); manifest + data-contract.md committed; 95 tests |
-| INC-8 | Site MVP | **not started (next)** | — |
-| INC-9 | Automation + deploy (PUBLIC MVP) | not started | blocked by H4, H5 |
+| INC-8 | Site MVP | ✅ done | 4,537 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 12/12 Playwright; §6.7 via shared components; 108 py tests + e2e |
+| INC-9 | Automation + deploy (PUBLIC MVP) | **not started (next)** | blocked by H4, H5 |
 | INC-10 | Metrics + methodology | not started | — |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
@@ -342,7 +405,18 @@ present in data.
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0..INC-7 output)
+## What exists in the repo now (INC-0..INC-8 output)
+
+**INC-8 additions:** `ingest/bills.py` (+ `bills` subcommand); `Bill.subjects`/
+`cosponsor_ids` widened to `list[str] | None` in `models.py`; `data/bills/*.json`
+(1,011); the full Astro site — `site/src/lib/{data,display}.ts`,
+`site/src/components/{Layout,Badge,VoteRow}.astro`, pages `index`/`m/[member]/[page]`/
+`v/[roll]`/`b/[bill]`/`methods`/`corrections`; `site/scripts/check-source-links.mjs`;
+`site/e2e/{fixtures,a11y,mobile}` + `playwright.config.ts`; `@types/node` +
+`@playwright/test` + `@axe-core/playwright` devDeps; the astro.config tailwind cast;
+CI additions (verify-recompute, source-link, playwright, `PUBLIC_BUILD_COMMIT`);
+`tests/test_bills.py` (13). D27–D30 in `decisions.md`. Test count 95 → 108 (python)
++ 12 Playwright e2e.
 
 **INC-7 additions:** `ingest/verify_recompute.py` (the `verify-recompute` console
 entry + `check_dataset`), the `VoteFile` wrapper + `export_bill`/`export_schemas`/

@@ -1,0 +1,43 @@
+---
+// One row in a member's vote list. §6.7 vote-row contract, in full:
+// position, date, roll #, vote_class badge, verbatim question, bill link,
+// official record link. Absence rows additionally show the verbatim stated
+// reason + CREC link, or the exact string "No explanation on record."
+import type { Position, RollCall, Absence } from "../lib/data";
+import Badge from "./Badge.astro";
+import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
+
+interface Props { rollcall: RollCall; position: Position; absence?: Absence }
+const { rollcall: rc, position, absence } = Astro.props;
+const notVoting = position === "not_voting";
+---
+<li class="border-b border-neutral-100 py-3">
+  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+    <span class="font-semibold">{POSITION_LABEL[position]}</span>
+    <Badge voteClass={rc.vote_class} />
+    <span class="text-xs text-neutral-500">
+      {formatDate(rc.date)} · Roll <a href={`/v/${rc.id}`} class="underline hover:text-neutral-800">#{rc.number}</a>
+    </span>
+  </div>
+  <p class="mt-1 text-sm text-neutral-800">{rc.question}</p>
+  <div class="mt-1 flex flex-wrap gap-x-3 text-xs text-neutral-500">
+    {rc.bill_id && (
+      <a href={`/b/${rc.bill_id}`} class="underline hover:text-neutral-800">{billLabel(rc.bill_id)}</a>
+    )}
+    <a href={rc.source_url} rel="nofollow" class="underline hover:text-neutral-800">Official record</a>
+  </div>
+  {notVoting && (
+    <p class="mt-1 text-xs text-neutral-600">
+      {absence?.stated_reason
+        ? (
+          <>
+            <span class="italic">“{absence.stated_reason}”</span>
+            {absence.stated_reason_source && (
+              <>{" "}<a href={absence.stated_reason_source} class="underline hover:text-neutral-800">Congressional Record</a></>
+            )}
+          </>
+        )
+        : <span>No explanation on record.</span>}
+    </p>
+  )}
+</li>

@@ -73,9 +73,13 @@ class Bill(_Strict):
     number: int
     title_official: str
     policy_area: str | None  # government-assigned ONLY; never invented (D5)
-    subjects: list[str]  # government-assigned legislative subject terms
+    # subjects & cosponsor_ids are paginated Congress.gov sub-resources, fetched
+    # by the increment that consumes them (INC-10 metrics). None = NOT YET
+    # COLLECTED — deliberately distinct from [] (= collected, none exist), so an
+    # empty list is never a false "zero" claim (D27; mirrors specificity_level).
+    subjects: list[str] | None = None  # government-assigned legislative subject terms
     sponsor_id: str | None
-    cosponsor_ids: list[str]
+    cosponsor_ids: list[str] | None = None
     latest_action: str
     latest_action_date: str
     cbo_estimates: list[CboRef]

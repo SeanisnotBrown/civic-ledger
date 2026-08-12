@@ -1,0 +1,85 @@
+---
+import Layout from "../../components/Layout.astro";
+import Badge from "../../components/Badge.astro";
+import { getBills, getMember, getVotesForBill } from "../../lib/data";
+import type { Bill } from "../../lib/data";
+import { formatDate, billLabel, ordinal } from "../../lib/display";
+
+export function getStaticPaths() {
+  return getBills().map((b) => ({ params: { bill: b.id }, props: { bill: b } }));
+}
+
+interface Props { bill: Bill }
+const { bill } = Astro.props as Props;
+const sponsor = bill.sponsor_id ? getMember(bill.sponsor_id) : undefined;
+const rolls = getVotesForBill(bill.id);
+---
+<Layout title={`${billLabel(bill.id)} — Civic Ledger`}>
+  <nav class="text-xs text-neutral-500"><a href="/" class="underline">Members</a> / Bill</nav>
+  <p class="mt-1 text-sm font-medium text-neutral-500">{billLabel(bill.id)}</p>
+  <h1 class="mt-1 text-xl font-semibold tracking-tight">
+    {bill.title_official}<sup
+      class="ml-0.5 cursor-help text-neutral-400"
+      title="Official short title — titles are written by the bill's drafters, and may be promotional. It is not a description of the bill's effect."
+    >ⓘ</sup>
+  </h1>
+
+  <dl class="mt-4 space-y-1 text-sm text-neutral-700">
+    {bill.policy_area && (
+      <div class="flex gap-2"><dt class="text-neutral-500">Policy area:</dt><dd>{bill.policy_area}</dd></div>
+    )}
+    {sponsor && (
+      <div class="flex gap-2">
+        <dt class="text-neutral-500">Sponsor:</dt>
+        <dd><a href={`/m/${sponsor.id}/1`} class="underline hover:text-neutral-900">{sponsor.name}</a></dd>
+      </div>
+    )}
+    <div class="flex gap-2">
+      <dt class="text-neutral-500">Latest action:</dt>
+      <dd>{bill.latest_action} <span class="text-neutral-400">({formatDate(bill.latest_action_date)})</span></dd>
+    </div>
+  </dl>
+
+  <div class="mt-3 text-sm">
+    <a href={bill.source_url} rel="nofollow" class="underline hover:text-neutral-800">Official record (congress.gov)</a>
+  </div>
+
+  {bill.cbo_estimates.length > 0 && (
+    <section class="mt-6">
+      <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+        Congressional Budget Office estimates
+      </h2>
+      <ul class="mt-1 space-y-1 text-sm">
+        {bill.cbo_estimates.map((c) => (
+          <li>
+            <a href={c.url} rel="nofollow" class="underline hover:text-neutral-800">{c.title}</a>
+            <span class="text-neutral-400"> — {formatDate(c.date)}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="mt-8">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      Recorded votes on this measure
+    </h2>
+    {rolls.length === 0 ? (
+      <p class="mt-1 text-sm text-neutral-600">No recorded roll-call votes in the covered Congresses.</p>
+    ) : (
+      <ul class="mt-2 divide-y divide-neutral-100">
+        {rolls.map((rc) => (
+          <li class="flex flex-wrap items-baseline gap-x-2 py-2 text-sm">
+            <a href={`/v/${rc.id}`} class="underline hover:text-neutral-800">
+              {rc.chamber === "house" ? "House" : "Senate"} Roll #{rc.number}
+            </a>
+            <Badge voteClass={rc.vote_class} />
+            <span class="text-xs text-neutral-500">{formatDate(rc.date)} · {rc.result}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <p class="mt-8 text-xs text-neutral-400">Coverage: the {ordinal(118)}–{119}th Congresses.</p>
+</Layout>

@@ -1,0 +1,49 @@
+---
+import Layout from "../components/Layout.astro";
+import { getManifest } from "../lib/data";
+import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
+import type { VoteClass } from "../lib/data";
+
+const manifest = getManifest();
+const classes = Object.keys(VOTE_CLASS_LABEL) as VoteClass[];
+const rollcallCount = (manifest.counts as Record<string, unknown>).rollcalls;
+---
+<Layout title="Methodology — Civic Ledger">
+  <h1 class="text-2xl font-semibold tracking-tight">Methodology</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    This site publishes the recorded legislative record. Every figure traces to an
+    official source, and nothing is summarized, characterized, or scored by an
+    automated process. The full data pipeline and this site's source code are
+    public. This page is a stub; the complete methodology — one section per
+    published metric — lands with the metrics layer.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Sources</h2>
+  <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
+    <li>House roll calls: api.congress.gov, cross-checked against clerk.house.gov XML.</li>
+    <li>Senate roll calls: senate.gov LIS XML, cross-checked against the published tallies.</li>
+    <li>Bills: api.congress.gov bill detail (title, sponsor, policy area, CBO links).</li>
+    <li>Absence explanations: the Congressional Record, owner-reviewed and verbatim.</li>
+  </ul>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+    Vote categories
+  </h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-600">
+    Every roll call is placed in one procedural category by a published rules
+    table. The category describes the parliamentary action, never its merits.
+  </p>
+  <dl class="mt-2 max-w-prose space-y-2 text-sm">
+    {classes.map((c) => (
+      <div>
+        <dt class="font-medium text-neutral-800">{VOTE_CLASS_LABEL[c]}</dt>
+        <dd class="text-neutral-600">{VOTE_CLASS_TOOLTIP[c]}</dd>
+      </div>
+    ))}
+  </dl>
+
+  <p class="mt-8 text-xs text-neutral-500">
+    Coverage: {manifest.congresses.join("–")}th Congresses ·
+    {String(rollcallCount)} roll calls.
+  </p>
+</Layout>

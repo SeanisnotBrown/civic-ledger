@@ -40,11 +40,19 @@
       "type": "integer"
     },
     "cosponsor_ids": {
-      "items": {
-        "type": "string"
-      },
-      "title": "Cosponsor Ids",
-      "type": "array"
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Cosponsor Ids"
     },
     "id": {
       "title": "Id",
@@ -89,11 +97,19 @@
       "title": "Sponsor Id"
     },
     "subjects": {
-      "items": {
-        "type": "string"
-      },
-      "title": "Subjects",
-      "type": "array"
+      "anyOf": [
+        {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Subjects"
     },
     "title_official": {
       "title": "Title Official",
@@ -111,9 +127,7 @@
     "number",
     "title_official",
     "policy_area",
-    "subjects",
     "sponsor_id",
-    "cosponsor_ids",
     "latest_action",
     "latest_action_date",
     "cbo_estimates",

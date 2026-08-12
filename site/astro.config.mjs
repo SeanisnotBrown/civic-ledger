@@ -11,6 +11,8 @@ export default defineConfig({
   output: "static",
   integrations: [preact()],
   vite: {
-    plugins: [tailwindcss()],
+    // Cast: @tailwindcss/vite's plugin type lags Vite's PluginOption union
+    // (a version-skew typing quirk); the plugin runs correctly at build.
+    plugins: [/** @type {any} */ (tailwindcss())],
   },
 });

@@ -3,11 +3,15 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-9 session (Automation + deploy).
-**Git:** INC-1..INC-8 closed & pushed (all CI green — INC-8's run confirmed green
-this session). INC-9 being committed now — confirm its CI is green next session
-(CI now also runs Lighthouse). **Deploy switched Pages → Cloudflare Workers (Static
-Assets) mid-INC-9 per owner; H4/H5 in progress by owner.**
+**Last updated:** 2026-08-12, start of INC-10 session (Metrics + methodology).
+**Git:** INC-1..INC-9 closed & pushed (all CI green). **H4 + H5 DONE:** the site is
+**live at `civicledger.net`** via **Cloudflare Workers** (Static Assets, deployed by
+**Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub CI; Cloudflare's GitHub
+App builds on the `push` webhook). Planned `.org` was taken → `.net`. Only remaining
+INC-9 acceptance box: observe one untouched nightly commit + deploy on the next real
+data-change night (bot pushes DO trigger Workers Builds — the App webhook isn't subject
+to Actions' `GITHUB_TOKEN` self-trigger suppression; confirm the first `data: nightly …`
+build's author reads `github-actions[bot]`).
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 > **PIPELINE ORDER (load-bearing, D24 + INC-7/8):** `ingest {house,senate}-votes`
@@ -23,7 +27,13 @@ Assets) mid-INC-9 per owner; H4/H5 in progress by owner.**
 
 ## Current increment
 
-**INC-9 — Automation + deploy — ✅ BUILD COMPLETE; live-deploy verification pending H4/H5.**
+**INC-10 — Metrics layer + methodology page — IN PROGRESS (this session).** See the
+INC-10 plan/output section below. INC-9 is closed (build + rehearsal green; H4/H5 done,
+site live at `civicledger.net`); its last acceptance box — one observed untouched nightly
+commit + deploy — waits on the next real data-change night (owner-observable, non-blocking).
+
+**(historical — INC-9)**
+**INC-9 — Automation + deploy — ✅ COMPLETE (site live; one nightly-observation box open).**
 The unattended pipeline is built and CI-green. **`nightly.yml`** (cron `15 09 * * *`
 UTC + `workflow_dispatch`): incremental ingest → conditional classify → corrections →
 **diff-gate** → (on real change) export → site build → checks → verify-recompute →
@@ -40,11 +50,13 @@ gate: Lighthouse mobile perf + a11y ≥ 90** (`lighthouserc.cjs`, CI). Deploy ta
 moved to **Workers** (`site/wrangler.jsonc`, `assets.directory: ./dist`). Design in
 **D31–D34**. See "INC-9 output".
 
-**Pending (owner):** H4 (Cloudflare Workers project + Workers-Builds repo connection +
-token) and H5 (domain) — both 🟨 in progress. Once connected, a push auto-deploys; the
-remaining acceptance is to **observe one untouched nightly run commit + live deploy**
-(rehearse now via `gh workflow run nightly.yml`). Lighthouse ≥ 90 already passes locally
-+ CI. When branch protection is enabled, the `github-actions[bot]` push needs a bypass (H4 note).
+**Owner (INC-9) — DONE:** H4 (Cloudflare **Workers** project, connected via **Workers
+Builds**: root `site/`, build `npm run build`, deploy `npx wrangler deploy` default) and
+H5 (domain `civicledger.net`, custom domain on the Worker) are complete — the site is
+live and auto-deploys on push, no `CLOUDFLARE_*` secret in GitHub CI. Only remaining
+acceptance is to **observe one untouched nightly run commit + live deploy** on the next
+real data-change night. If branch protection is enabled on `master`, the
+`github-actions[bot]` push needs a ruleset bypass (H4 note). Lighthouse ≥ 90 passes CI.
 
 **Next: INC-10 — Metrics layer + methodology page — NOT STARTED.** `metrics.py`
 (attendance, party-unity on substantive votes, sponsored/cosponsored/enacted-rate,
@@ -365,7 +377,7 @@ RESOLVED callout above). 11 samples committed.
   D27 None assertion, entity-decode, missing-field raise. 95 → 108 (python). Design in
   **D27–D30**.
 
-## INC-9 output (done — the unattended pipeline; deploy pending H4/H5)
+## INC-9 output (done — the unattended pipeline; site LIVE at civicledger.net)
 
 - **`ingest/incremental.py`** (D31) — `final_cutoff(now)`, `is_final(date, cutoff)`,
   `roll_is_final`, `recent_bill_ids`, `bill_is_skippable`. Wired into `house_votes.run`,
@@ -397,10 +409,13 @@ six members complete ✅. **Nightly pipeline REHEARSED green** (`gh workflow run
 nightly.yml`, run 31606758399, 2026-08-12): house 0 refreshed / 1,886 skipped, senate
 11 refreshed / 1,570 skipped, bills 4 fetched / 1,007 skipped — classify restored the 11
 re-fetched senate rolls byte-identical, so the diff-gate saw no change → **quiet night,
-no commit** (validates D33); checks + verify-recompute green. **Pending H4/H5 only:** the
-live Workers deploy + observing a nightly that actually commits new data. Also **verify
-on H4 connect (D33):** that a `GITHUB_TOKEN` push triggers Workers Builds (assumed from
-Pages behavior, unverified).
+no commit** (validates D33); checks + verify-recompute green. **H4/H5 now DONE:** site
+live at `civicledger.net` via Workers Builds. Only open box: observe a nightly that
+actually commits new data + its deploy (next real data-change night). **D33 assumption
+resolved by mechanism:** a `GITHUB_TOKEN`/bot push DOES trigger Workers Builds — the
+Cloudflare GitHub App listens on the `push` webhook, which (unlike GitHub Actions
+workflow triggers) is not suppressed for the default token; confirm empirically when the
+first `data: nightly …` build shows author `github-actions[bot]` in Cloudflare Deployments.
 
 **D35 (bugfix this session):** the ingest now re-exports absence stubs with
 `overwrite=False`, so a nightly re-fetch of a recent roll never clobbers an owner-
@@ -448,15 +463,15 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
 | INC-7 | JSON export contracts | ✅ done | double-export byte-identical (manifest + 4 schemas); `verify-recompute` matches 100% of 3,467 rolls (coverage+subset+reciprocity, D26); manifest + data-contract.md committed; 95 tests |
 | INC-8 | Site MVP | ✅ done | 4,539 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 14/14 Playwright; §6.7 via shared components; 117 py tests + e2e |
-| INC-9 | Automation + deploy (PUBLIC MVP) | ✅ build done; deploy pending H4/H5 | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); nightly rehearsed green; 117 py tests. Live nightly+deploy verification blocked on H4/H5 (🟨 owner) |
-| INC-10 | Metrics + methodology | **not started (next)** | backfills bill subjects/cosponsors (D27) |
+| INC-9 | Automation + deploy (PUBLIC MVP) | ✅ done — **site LIVE at `civicledger.net`** (Workers Builds) | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); nightly rehearsed green; 117 py tests. H4/H5 done. Open box: observe one real-data nightly commit + deploy |
+| INC-10 | Metrics + methodology | **in progress (this session)** | backfills bill subjects/cosponsors (D27) |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
 | INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |
 | INC-13 | Candidate Tracker | not started | content = H10 |
 | INC-14 | Alignment Quiz engine | not started | content = H11 |
 | INC-15 | Alignment outputs | not started | — |
-| INC-16 | Aggregates Worker + privacy | not started | blocked by H4, canary = H12 |
+| INC-16 | Aggregates Worker + privacy | not started | H4 done (Workers live); canary = H12 |
 | INC-17 | Challenge & Calibration | not started | — |
 | INC-18 | Longitudinal drift | not started | — |
 | INC-19 | Bill diff viewer | not started | — |
@@ -471,8 +486,8 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | H1 | INC-1 | ✅ done — CONGRESS_API_KEY in .env + GitHub secret |
 | H2 | INC-1 state branch | ✅ done — LegiScan key present; **Journal cross-check run 2026-08-11 → verdict GO (5/5)**; INC-12 branch A unlocked |
 | H3 | INC-0 push / all CI | ✅ done — repo live, pushed, CI green |
-| H4 | INC-9, INC-16 | 🟨 in progress (owner) — Cloudflare **Workers** project + Workers-Builds repo connection + token; enable `github-actions[bot]` push bypass if branch protection is on |
-| H5 | INC-9 | 🟨 in progress (owner) — domain → point at the Workers project |
+| H4 | INC-9, INC-16 | ✅ done — Cloudflare **Workers** via Workers Builds (root `site/`, build `npm run build`, deploy `npx wrangler deploy`); no `CLOUDFLARE_*` GitHub secret; site live. Enable `github-actions[bot]` push bypass if branch protection is added |
+| H5 | INC-9 | ✅ done — **`civicledger.net`** (`.org` was taken) custom domain on the Worker; live |
 | H6 | INC-11 auth SPN | ⬜ pending — archive.org S3 keys (falls back to unauth SPN) |
 | H7 | INC-10b | ⬜ pending — FEC key (optional increment) |
 | H8–H12 | recurring content | ⬜ pending |

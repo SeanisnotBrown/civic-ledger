@@ -54,6 +54,11 @@ def test_parse_cloture_on_bill():
     assert rc.date == "2025-01-09T14:54:00"  # "January 9, 2025,  02:54 PM" → naive ISO
     assert rc.bill_id == "s5-119"  # <document> S. 5
     assert rc.totals["yea"] == 84 and rc.totals["nay"] == 9
+    # party_totals (INC-10): aggregate per-party split summing back to totals, with
+    # independents bucketed under their own key (not folded into a caucus).
+    assert rc.party_totals is not None and "I" in rc.party_totals
+    for cat in ("yea", "nay", "present", "not_voting"):
+        assert sum(p[cat] for p in rc.party_totals.values()) == rc.totals[cat]
     assert rc.source_url.endswith("/vote1191/vote_119_1_00001.xml")
     assert {mv.member_id for mv in mvs} == {"H001079", "W000437"}
     assert all(mv.position == "yea" for mv in mvs)

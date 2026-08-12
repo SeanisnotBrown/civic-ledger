@@ -68,6 +68,24 @@
           "title": "Number",
           "type": "integer"
         },
+        "party_totals": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Party Totals"
+        },
         "question": {
           "title": "Question",
           "type": "string"

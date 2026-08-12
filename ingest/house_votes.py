@@ -87,13 +87,24 @@ def parse_rollcall(
     unmappable = sum(1 for r in results if r["voteCast"] not in VOTE_MAP)
     non_position = unmappable * 2 > len(results)
 
+    party_totals: dict[str, dict[str, int]] | None = None
     if non_position:
         totals: dict[str, int] = dict(Counter(r["voteCast"] for r in results))
         rule = NON_POSITION_RULE
     else:
         totals = {"yea": 0, "nay": 0, "present": 0, "not_voting": 0}
+        # party_totals: the same tally split by the source's party letter (D/R/I).
+        # Aggregate only — the per-member party is read from the raw response but
+        # never stored per person (value #3); it feeds the party-unity metric.
+        party_totals = {}
         for r in results:
-            totals[_position(r["voteCast"])] += 1
+            pos = _position(r["voteCast"])
+            totals[pos] += 1
+            party = (r.get("voteParty") or "").strip() or "?"
+            bucket = party_totals.setdefault(
+                party, {"yea": 0, "nay": 0, "present": 0, "not_voting": 0}
+            )
+            bucket[pos] += 1
         rule = PROVISIONAL_RULE
 
     rollcall = RollCall(
@@ -109,6 +120,7 @@ def parse_rollcall(
         bill_id=_bill_id(mv),
         result=mv["result"],
         totals=totals,
+        party_totals=party_totals,
         source_url=mv["sourceDataURL"],
     )
 
@@ -178,6 +190,7 @@ def run(argv: list[str] | None = None) -> int:
     # RetryableHTTPError, timeouts/network → httpx.HTTPError, disk → OSError).
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
 
+    force_all = bool(argv) and "--all" in argv  # re-parse finalized rolls (schema backfill)
     cutoff = incremental.final_cutoff()  # rolls older than this are skipped if final
     covered = _covered_house(config.CONGRESSES)
     gaps: list[str] = []          # rolls missing a covered MS member (correctness)
@@ -196,8 +209,9 @@ def run(argv: list[str] | None = None) -> int:
             for roll in rolls:
                 rc_id = rollcall_id("house", congress, session, roll)
                 # Incremental (§6.1): a finalized, already-exported roll is never
-                # re-fetched — the nightly job only touches new/recent rolls.
-                if incremental.roll_is_final(rc_id, cutoff):
+                # re-fetched — the nightly job only touches new/recent rolls. `--all`
+                # forces every roll (used once to backfill party_totals from cache).
+                if not force_all and incremental.roll_is_final(rc_id, cutoff):
                     n_skipped += 1
                     continue
                 try:

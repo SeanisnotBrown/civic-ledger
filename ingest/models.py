@@ -98,7 +98,13 @@ class RollCall(_Strict):
     vote_class_rule: str  # id of the rule that fired (auditability)
     bill_id: str | None
     result: str
-    totals: dict[str, int]  # yea/nay/present/not_voting
+    totals: dict[str, int]  # yea/nay/present/not_voting (chamber-wide)
+    # Per-party breakdown of the same tally, keyed by the source's party letter
+    # (D/R/I). AGGREGATE only — no individual non-MS position is stored (value #3);
+    # it is what makes an honest party-unity metric recomputable from the published
+    # data (INC-10, §A). None on non_position rolls (candidate-surname elections have
+    # no yea/nay to split by party) — the D27 not-applicable sentinel.
+    party_totals: dict[str, dict[str, int]] | None = None
     source_url: str
 
 

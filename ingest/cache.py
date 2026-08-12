@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import time
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -54,7 +55,10 @@ _DEFAULT_MIN_INTERVAL = 1.0
 # Wall-clock of the last live fetch per host, within this process run.
 _last_fetch_at: dict[str, float] = {}
 
-DEFAULT_TTL_HOURS = 20
+# Default cache freshness. `CIVIC_CACHE_TTL_HOURS` overrides it process-wide — used
+# by one-time re-parses (e.g. the INC-10 party_totals backfill) to reuse the already
+# cached raw responses instead of re-fetching, keeping the run offline and polite.
+DEFAULT_TTL_HOURS = float(os.environ.get("CIVIC_CACHE_TTL_HOURS", "20"))
 _HTTP_TIMEOUT = httpx.Timeout(30.0, connect=15.0)
 _USER_AGENT = "civic-ledger/0.0 (+https://github.com/SeanisnotBrown/civic-ledger)"
 

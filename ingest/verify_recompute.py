@@ -17,6 +17,11 @@ calls, and what this script checks:
 3. **Absence reciprocity** — every `position == "not_voting"` MemberVote has a
    matching data/absences/{member}--{roll}.json, and every absence file's
    (member, roll) has a matching not_voting MemberVote.
+4. **Party-total consistency** — for every position roll, the per-party breakdown
+   `party_totals` sums (over parties) to the chamber `totals` in each category, and
+   `party_totals` is present exactly on position rolls (None on `non_position`). The
+   raw per-member party isn't committed, so this is what proves the aggregates that
+   feed party-unity are internally honest (INC-10, §A).
 
 Exit 0 = every invariant holds for every roll; nonzero lists the failures. It is
 also exercised as a pytest test so §8's "recompute-and-match script as a test" holds.
@@ -87,6 +92,24 @@ def check_dataset() -> list[str]:
                         f"{rc_id}: subset — MS {pos}={tallied[pos]} exceeds "
                         f"chamber total {rc['totals'].get(pos, 0)}"
                     )
+
+            # (4) Party-total consistency — present on position rolls, and the
+            # per-party breakdown sums to the chamber totals per category.
+            pt = rc.get("party_totals")
+            if pt is None:
+                failures.append(f"{rc_id}: party_totals — missing on a position roll")
+            else:
+                for pos in _POSITIONS:
+                    summed = sum(party.get(pos, 0) for party in pt.values())
+                    if summed != rc["totals"].get(pos, 0):
+                        failures.append(
+                            f"{rc_id}: party_totals — {pos} sums to {summed} != "
+                            f"chamber total {rc['totals'].get(pos, 0)}"
+                        )
+        else:
+            # non_position rolls carry no yea/nay to split → party_totals is None.
+            if rec["rollcall"].get("party_totals") is not None:
+                failures.append(f"{rc_id}: party_totals — set on a non_position roll")
 
         # (3) Absence reciprocity (both directions), all rolls.
         for mv in mvs:

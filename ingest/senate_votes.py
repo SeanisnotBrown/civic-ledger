@@ -133,8 +133,18 @@ def parse_rollcall(
     members = list(root.iter("member"))
 
     totals = {"yea": 0, "nay": 0, "present": 0, "not_voting": 0}
+    # party_totals: the same tally split by the source's party letter (D/R/I).
+    # Aggregate only — per-member party is read but never stored per person (value
+    # #3); it feeds the party-unity metric. Senate rolls are always position rolls.
+    party_totals: dict[str, dict[str, int]] = {}
     for m in members:
-        totals[_position((m.findtext("vote_cast") or "").strip())] += 1
+        pos = _position((m.findtext("vote_cast") or "").strip())
+        totals[pos] += 1
+        party = (m.findtext("party") or "").strip() or "?"
+        bucket = party_totals.setdefault(
+            party, {"yea": 0, "nay": 0, "present": 0, "not_voting": 0}
+        )
+        bucket[pos] += 1
 
     if menu_tally is not None:
         m_yea, m_nay = menu_tally
@@ -158,6 +168,7 @@ def parse_rollcall(
         bill_id=_bill_id(root, congress),
         result=(root.findtext("vote_result") or "").strip(),
         totals=totals,
+        party_totals=party_totals,
         source_url=senate_xml.detail_url(congress, session, roll),
     )
 
@@ -248,6 +259,7 @@ def run(argv: list[str] | None = None) -> int:
 
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
 
+    force_all = bool(argv) and "--all" in argv  # re-parse finalized rolls (schema backfill)
     cutoff = incremental.final_cutoff()  # finalized rolls are skipped (§6.1)
     lis_to_bioguide = _lis_to_bioguide()
     covered = _covered_senate(config.CONGRESSES)
@@ -274,7 +286,7 @@ def run(argv: list[str] | None = None) -> int:
                 gaps.append(f"{congress}/{session}: rolls not contiguous 1..{count}")
             for roll in rolls:
                 rc_id = f"s-{congress}-{session}-{roll:04d}"
-                if incremental.roll_is_final(rc_id, cutoff):
+                if not force_all and incremental.roll_is_final(rc_id, cutoff):
                     n_skipped += 1
                     continue
                 try:

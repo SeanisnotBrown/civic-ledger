@@ -18,6 +18,26 @@
     "date": "2023-01-23T17:26:00",
     "id": "s-118-1-0001",
     "number": 1,
+    "party_totals": {
+      "D": {
+        "nay": 2,
+        "not_voting": 1,
+        "present": 0,
+        "yea": 45
+      },
+      "I": {
+        "nay": 0,
+        "not_voting": 1,
+        "present": 0,
+        "yea": 2
+      },
+      "R": {
+        "nay": 33,
+        "not_voting": 3,
+        "present": 0,
+        "yea": 13
+      }
+    },
     "question": "On the Nomination PN1",
     "result": "Nomination Confirmed",
     "session": 1,

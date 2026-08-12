@@ -36,6 +36,10 @@ def test_parse_rollcall_totals_and_ms_votes():
     assert rc.chamber == "house"
     assert rc.totals == {"yea": 397, "nay": 1, "present": 0, "not_voting": 32}
     assert sum(rc.totals.values()) == 430  # every result bucketed
+    # party_totals (INC-10): aggregate per-party split that sums back to totals.
+    assert rc.party_totals is not None
+    for cat in ("yea", "nay", "present", "not_voting"):
+        assert sum(p[cat] for p in rc.party_totals.values()) == rc.totals[cat]
     assert rc.bill_id == "hr3424-119"
     assert rc.vote_class == "other" and rc.vote_class_rule == "unclassified"
     assert rc.source_url == "https://clerk.house.gov/evs/2025/roll240.xml"
@@ -92,6 +96,7 @@ def test_speaker_election_is_non_position():
     rc, mvs, absences = house_votes.parse_rollcall(data, 119, 1)
     assert rc.vote_class_rule == "non_position"
     assert rc.bill_id is None
+    assert rc.party_totals is None  # candidate-surname tally has no yea/nay to split
     assert mvs == [] and absences == []
     # totals is the accurate raw candidate tally
     assert set(rc.totals) == {"McCarthy", "Jeffries"}

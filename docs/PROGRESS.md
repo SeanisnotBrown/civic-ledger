@@ -6,14 +6,17 @@ Single source of truth for: current increment, acceptance status, blocked H-task
 **Last updated:** 2026-08-12, end of **INC-12 (Mississippi state legislature layer)**
 session — all 6 phases built. See "INC-12" below. (Prior this day: post-review hardening
 round 2 — R-1/R-4/R-6/R-5, closing the review backlog.)
-**Git:** INC-1..INC-11 closed & pushed. A prior round-1 session pushed `3847950` (grading
-reframe), `fd9a108` (R-3), `f0c0f70` (R-2). **This session** pushed **four** commits:
-`17ea5be` (R-1 statement hardening), `4ef6e3b` (R-4 truth guards), `65f36b7` (R-6 small
-fixes), and the R-5 + this-PROGRESS commit. **Local == origin/master after push.**
-Local gate green on the R-6 tip: **217 py tests** (up from 200 — R-1 +11, R-4 +3, R-6 +3),
-`uv run checks` (5 checks), ruff, verify-recompute, Astro build (4,540 pages). Playwright
-e2e set is **16** (8 URLs × 2 suites — L-7 correction to the old "14/14"). **Confirm CI
-green on the pushed HEAD** (the local env can't run CI — verify the GitHub Actions run).
+**Git:** INC-1..INC-12 closed & pushed. Earlier today: R-1..R-6 remediation (`17ea5be`
+R-1, `4ef6e3b` R-4, `65f36b7` R-6, `92702ac` R-5). Then **INC-12** in six commits:
+`803e3044` (P1 schema/partition), `5826ac62` (P2 LegiScan ingest), `14b15cab` (P3 checks),
+`feebe206` (P4 site), `0ec9051b` (P5 nightly), `8ac74cb1` (P6 limitations/docs). **Local ==
+origin/master; CI GREEN on HEAD `8ac74cb1`** (run 31648033970, both jobs) — **and the live
+site is deployed**: `https://civicledger.net/ms` renders (174 legislators, 1,725 rolls),
+so the Cloudflare Workers build fired on the push. Now **6 checks** (added `ms`), **247 py
+tests** (200 → +11 R-1, +3 R-4, +3 R-6, +30 INC-12), ruff, verify-recompute, Astro build
+(**7,919 pages**, was 4,540), **24/24 Playwright e2e** (12 URLs × 2, added 4 MS pages),
+Lighthouse (added heaviest MS page), `astro check` 0 errors. Classify verified byte-stable
+on the jurisdiction-migrated federal files (no phantom nightly diff).
 **H4 + H5 DONE:** the site is **live at `civicledger.net`** via **Cloudflare Workers**
 (Static Assets, deployed by **Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub
 CI). Planned `.org` was taken → `.net`. Only remaining INC-9 acceptance box: observe one

@@ -69,7 +69,7 @@ def main(argv: list[str] | None = None) -> int:
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
     print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")
-    print("                  metrics history <bioguide> [--metric <key>] — dated series from git (R-3)")
+    print("                  metrics history <bioguide> [--metric <key>] — git series (R-3)")
     if args:
         print(f"unknown args: {args}")
         return 2

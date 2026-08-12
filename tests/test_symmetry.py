@@ -5,14 +5,43 @@
 
 from __future__ import annotations
 
+import json
+
 from ingest import config
-from ingest.checks.symmetry import statement_balance
+from ingest.checks import symmetry
+from ingest.checks.symmetry import coverage_gaps, statement_balance
 
 _MEMBERS = [
     {"id": "R1", "party": "R"},
     {"id": "R2", "party": "R"},
     {"id": "D1", "party": "D"},
 ]
+
+
+def test_coverage_gaps_flags_unknown_member(tmp_path, monkeypatch) -> None:
+    # R-2/H-1: an EXTRA member on a roll (voted, not in the covered set) is churn
+    # drift — a page-less/metric-less official. expected−got alone never caught it;
+    # coverage_gaps now flags got−expected too. Minimal tmp dataset isolates the rule.
+    data = tmp_path / "data"
+    (data / "members").mkdir(parents=True)
+    (data / "votes").mkdir(parents=True)
+    (data / "members" / "M000001.json").write_text(
+        json.dumps({
+            "id": "M000001", "chamber": "house",
+            "terms": [{"chamber": "house", "start": "2025-01-03", "end": "2027-01-03"}],
+        }),
+        encoding="utf-8",
+    )
+    (data / "votes" / "h-119-1-0001.json").write_text(
+        json.dumps({
+            "rollcall": {"id": "h-119-1-0001", "congress": 119, "vote_class_rule": "unclassified"},
+            "member_votes": [{"member_id": "M000001"}, {"member_id": "EXTRA999"}],
+        }),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(symmetry, "repo_root", lambda: tmp_path)
+    gaps = coverage_gaps("house", "h")
+    assert len(gaps) == 1 and "EXTRA999" in gaps[0] and "unknown" in gaps[0]
 
 
 def _stmts(by_member: dict[str, int], *, scored: dict[str, int] | None = None) -> list[dict]:

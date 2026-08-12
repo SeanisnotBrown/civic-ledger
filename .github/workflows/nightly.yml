@@ -52,9 +52,16 @@ jobs:
         run: |
           set -euo pipefail
 
-          # 1) Incremental ingest (finalized rolls skipped). Bills + legislation
-          #    derive from votes/members; both fetch their sub-resources every run
-          #    so a re-export never reverts enriched data to a None sentinel.
+          # 1) Roster refresh FIRST (R-2/D46): the covered-member set drives vote
+          #    coverage and the unknown-member alarms, so a mid-Congress delegation
+          #    change (special election, death, resignation) must land before the
+          #    vote ingests read it. Idempotent + keyless (congress-legislators on
+          #    GitHub); a quiet night rewrites data/members/*.json byte-identically.
+          uv run ingest members
+
+          #    Then the incremental ingest (finalized rolls skipped). Bills +
+          #    legislation derive from votes/members; both fetch their sub-resources
+          #    every run so a re-export never reverts enriched data to a None sentinel.
           uv run ingest house-votes
           uv run ingest senate-votes
           uv run ingest bills

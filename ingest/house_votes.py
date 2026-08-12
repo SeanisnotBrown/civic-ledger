@@ -48,6 +48,12 @@ class UnknownVoteCast(ValueError):
     """A `voteCast` string outside VOTE_MAP — forces quarantine (§6.1)."""
 
 
+class UnknownMember(ValueError):
+    """An MS voter with no Member record — the delegation changed and the roster
+    hasn't caught up (R-2). Forces quarantine + run failure, like the Senate path's
+    KeyError, so an orphan (votes on file, no page/metrics — value #2) never exports."""
+
+
 def rollcall_id(chamber: Chamber, congress: int, session: int, roll: int) -> str:
     prefix = "h" if chamber == "house" else "s"
     return f"{prefix}-{congress}-{session}-{roll:04d}"
@@ -70,11 +76,16 @@ def _position(vote_cast: str) -> Position:
 
 
 def parse_rollcall(
-    members_json: dict, congress: int, session: int
+    members_json: dict, congress: int, session: int, covered: set[str] | None = None
 ) -> tuple[RollCall, list[MemberVote], list[Absence]]:
     """Parse one `/members` response into a chamber `RollCall`, the MS delegation's
     `MemberVote`s, and an `Absence` stub per MS `not_voting`. Raises on malformed
-    data so the caller can quarantine the whole roll (§6.1)."""
+    data so the caller can quarantine the whole roll (§6.1).
+
+    `covered` (the bioguides rostered for this congress, from the INC-2 export) is the
+    churn guard (R-2): when supplied, an MS voter outside it raises `UnknownMember`, so
+    a delegation change the roster hasn't caught up to fails loudly instead of exporting
+    an orphan. `None` (unit tests, backfill) skips the check."""
     mv = members_json["houseRollCallVoteMemberVotes"]
     roll = int(mv["rollCallNumber"])
     rc_id = rollcall_id("house", congress, session, roll)
@@ -137,6 +148,14 @@ def parse_rollcall(
             if pos == "not_voting":
                 # Seed an Absence stub; INC-6 may attach a verbatim CREC explanation.
                 absences.append(Absence(member_id=r["bioguideID"], rollcall_id=rc_id))
+
+    if covered is not None and not non_position:
+        extra = {mv.member_id for mv in member_votes} - covered
+        if extra:
+            raise UnknownMember(
+                f"{rc_id}: MS voter(s) {sorted(extra)} not in roster — run "
+                f"`ingest members` to refresh the covered set, then re-ingest"
+            )
 
     member_votes.sort(key=lambda m: m.member_id)
     absences.sort(key=lambda a: a.member_id)
@@ -223,8 +242,8 @@ def run(argv: list[str] | None = None) -> int:
                     fetch_failures.append(f"{rc_id}: {type(exc).__name__}")
                     continue
                 try:
-                    rc, mvs, absences = parse_rollcall(data, congress, session)
-                except (ValidationError, KeyError, UnknownVoteCast) as exc:
+                    rc, mvs, absences = parse_rollcall(data, congress, session, expected_ms)
+                except (ValidationError, KeyError, UnknownVoteCast, UnknownMember) as exc:
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
                     ms_failures.append(rc_id)  # can't confirm MS rows → treat as MS failure
                     continue

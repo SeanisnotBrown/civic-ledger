@@ -15,6 +15,23 @@ from __future__ import annotations
 import html
 
 from ingest.models import LegItem, MemberLegislation
+from ingest.sources.legislators import _term_overlaps
+
+
+def _sponsored_gaps(
+    mid: str, terms: list[dict], sponsored: list[LegItem], congresses: list[int]
+) -> list[str]:
+    """Sanity gaps (value #1): a member must have >= 1 sponsored bill in each covered
+    congress THEY SERVED (from `terms`). A served-congress zero is a truncated fetch;
+    a congress they didn't serve is legitimately empty and never checked (R-2 — a
+    member who joined after the 118th has no 118th bills, and must not false-fail).
+    Pure, so the churn relaxation is unit-testable without the fetch/export path."""
+    served = [c for c in congresses if any(_term_overlaps(t, c) for t in terms)]
+    return [
+        f"{mid}: no sponsored bill in congress {c} (truncated fetch?)"
+        for c in served
+        if not any(li.congress == c for li in sponsored)
+    ]
 
 # Bill-type code -> congress.gov URL segment, for a human-checkable source_url.
 _URL_TYPE: dict[str, str] = {
@@ -72,9 +89,11 @@ def parse_items(raw: list[dict]) -> list[LegItem]:
 
 def run(argv: list[str] | None = None) -> int:
     """Fetch + export data/legislation/{member}.json for every covered member.
-    Idempotent (cached fetches). Fails if any member has no sponsored bill in a
-    covered congress — all six served both, so an empty list signals a broken
-    fetch, not reality (value #1: never publish a false zero)."""
+    Idempotent (cached fetches). Fails if a member has no sponsored bill in a
+    covered congress THEY SERVED — an empty list for a served congress signals a
+    broken fetch, not reality (value #1: never publish a false zero). A congress a
+    member did not serve is legitimately empty and never checked (R-2: a member who
+    joined after the 118th has no 118th bills — don't false-fail on churn)."""
     import httpx
 
     from ingest import config
@@ -86,10 +105,11 @@ def run(argv: list[str] | None = None) -> int:
     members_dir = repo_root() / "data" / "members"
     import json
 
-    member_ids = sorted(
-        json.loads(p.read_text(encoding="utf-8"))["id"]
+    members = {
+        (m := json.loads(p.read_text(encoding="utf-8")))["id"]: m
         for p in members_dir.glob("*.json")
-    )
+    }
+    member_ids = sorted(members)
 
     failures: list[str] = []
     exported = 0
@@ -104,11 +124,8 @@ def run(argv: list[str] | None = None) -> int:
         sponsored = parse_items(sponsored_raw)
         cosponsored = parse_items(cosponsored_raw)
 
-        # Sanity (value #1): every covered member sponsored >= 1 bill in EACH
-        # covered congress. A gap means a truncated fetch, not a real zero.
-        for c in config.CONGRESSES:
-            if not any(li.congress == c for li in sponsored):
-                failures.append(f"{mid}: no sponsored bill in congress {c} (truncated fetch?)")
+        # Sanity (value #1), churn-aware: served congresses only (see _sponsored_gaps).
+        failures.extend(_sponsored_gaps(mid, members[mid]["terms"], sponsored, config.CONGRESSES))
 
         rec = MemberLegislation(
             member_id=mid,

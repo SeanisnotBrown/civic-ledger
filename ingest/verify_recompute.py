@@ -78,6 +78,11 @@ def check_dataset() -> list[str]:
             missing = expected - voted_set
             if missing:
                 failures.append(f"{rc_id}: coverage — no position for {sorted(missing)}")
+            # A position for a member NOT in the covered set = roster churn drift
+            # (votes on record, no page/metrics). expected−got alone misses it (R-2).
+            extra = voted_set - expected
+            if extra:
+                failures.append(f"{rc_id}: coverage — unknown member {sorted(extra)}")
             if len(voted) != len(voted_set):
                 dups = sorted({m for m in voted if voted.count(m) > 1})
                 failures.append(f"{rc_id}: coverage — duplicate positions for {dups}")

@@ -6,7 +6,37 @@ from __future__ import annotations
 
 import pytest
 
-from ingest.legislation import parse_items
+from ingest.legislation import _sponsored_gaps, parse_items
+from ingest.models import LegItem
+
+CONGS = [118, 119]
+# 118th window is 2023-01-03..2025-01-03; 119th is 2025-01-03..2027-01-03.
+TERMS_BOTH = [{"start": "2023-01-03", "end": "2027-01-03", "chamber": "house"}]
+TERMS_119_ONLY = [{"start": "2025-01-03", "end": "2027-01-03", "chamber": "house"}]
+
+
+def _leg(congress: int, bill_id: str = "hr1-119") -> LegItem:
+    return LegItem(
+        bill_id=bill_id, congress=congress, title="A Bill",
+        introduced_date="2025-01-01", became_law=False,
+        source_url="https://api.congress.gov/v3/bill/x",
+    )
+
+
+def test_sponsored_gaps_new_member_zero_prior_congress_is_ok():
+    # R-2: terms begin in the 119th → the 118th is not served, so zero 118th bills is
+    # legitimate (not a truncated fetch) and must not fail.
+    assert _sponsored_gaps("N000001", TERMS_119_ONLY, [_leg(119)], CONGS) == []
+
+
+def test_sponsored_gaps_served_congress_zero_still_fails():
+    # Served both, but no 118th bill → truncated fetch, still flagged (guard intact).
+    gaps = _sponsored_gaps("E000235", TERMS_BOTH, [_leg(119)], CONGS)
+    assert len(gaps) == 1 and "congress 118" in gaps[0]
+
+
+def test_sponsored_gaps_both_served_both_present_ok():
+    assert _sponsored_gaps("E000235", TERMS_BOTH, [_leg(118), _leg(119)], CONGS) == []
 
 
 def _item(bill_type, number, congress, action=None, title="A Bill", introduced="2025-01-01"):

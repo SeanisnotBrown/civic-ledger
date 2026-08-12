@@ -261,3 +261,32 @@ def test_metrics_history_metric_filter_narrows() -> None:
     if not series:
         pytest.skip("no committed data/metrics.json history in this checkout")
     assert set(series[-1]["metrics"]) == {"attendance"}
+
+
+# --- R-2: churn backstop --------------------------------------------------
+
+
+def test_load_raises_on_position_for_unknown_member(tmp_path, monkeypatch) -> None:
+    # A recorded position whose member_id has no Member record = roster churn. _load
+    # must fail (never silently drop a covered official's votes), mirroring the
+    # missing-legislation guard. Build a minimal dataset in a tmp repo.
+    data = tmp_path / "data"
+    (data / "members").mkdir(parents=True)
+    (data / "votes").mkdir(parents=True)
+    (data / "members" / "M000001.json").write_text(
+        json.dumps({"id": "M000001"}), encoding="utf-8"
+    )
+    (data / "votes" / "h-119-1-0001.json").write_text(
+        json.dumps({
+            "rollcall": {"id": "h-119-1-0001", "bill_id": None},
+            "member_votes": [
+                {"member_id": "M000001", "position": "yea"},
+                {"member_id": "GHOST999", "position": "yea"},
+            ],
+        }),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(metrics, "repo_root", lambda: tmp_path)
+    with pytest.raises(FileNotFoundError) as exc:
+        metrics._load()
+    assert "GHOST999" in str(exc.value)

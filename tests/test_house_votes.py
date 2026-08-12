@@ -84,6 +84,40 @@ def test_lone_bad_cast_raises_not_non_position():
         house_votes.parse_rollcall(data, 119, 1)
 
 
+MS_ON_SAMPLE = {"E000235", "G000591", "K000388", "T000193"}
+
+
+def test_unknown_ms_member_raises_when_roster_stale():
+    # R-2: a new MS member appears in the roll but not the covered set (roster hasn't
+    # caught up) → raise, so the ingest quarantines + fails loudly instead of exporting
+    # an orphan (votes on file, no page/metrics — value #2).
+    data = _sample()
+    data["houseRollCallVoteMemberVotes"]["results"].append(
+        {"bioguideID": "X000999", "voteState": "MS", "voteCast": "Yea", "voteParty": "R",
+         "congress": 119}
+    )
+    with pytest.raises(house_votes.UnknownMember) as exc:
+        house_votes.parse_rollcall(data, 119, 1, covered=MS_ON_SAMPLE)
+    assert "X000999" in str(exc.value)
+
+
+def test_covered_set_matching_roster_does_not_raise():
+    # The steady state: every MS voter is rostered → no churn alarm.
+    rc, mvs, _ = house_votes.parse_rollcall(_sample(), 119, 1, covered=MS_ON_SAMPLE)
+    assert {mv.member_id for mv in mvs} == MS_ON_SAMPLE
+
+
+def test_covered_none_skips_churn_check():
+    # Backfill / unit-test path passes no covered set → the check is inert.
+    data = _sample()
+    data["houseRollCallVoteMemberVotes"]["results"].append(
+        {"bioguideID": "X000999", "voteState": "MS", "voteCast": "Yea", "voteParty": "R",
+         "congress": 119}
+    )
+    rc, mvs, _ = house_votes.parse_rollcall(data, 119, 1)  # covered defaults to None
+    assert "X000999" in {mv.member_id for mv in mvs}
+
+
 def test_speaker_election_is_non_position():
     # Majority vote for a candidate by surname → RollCall (counts) but no positions.
     data = _sample()

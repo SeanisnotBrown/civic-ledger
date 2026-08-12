@@ -62,6 +62,12 @@ def coverage_gaps(chamber: str, prefix: str) -> list[str]:
         missing = expected - got
         if missing:
             gaps.append(f"{rc['id']}: missing {sorted(missing)}")
+        # An EXTRA member (voted, but not in the covered set) is churn drift: an
+        # official on the vote record with no page/metrics. Flag it too — expected−got
+        # alone never catches it (R-2/H-1).
+        extra = got - expected
+        if extra:
+            gaps.append(f"{rc['id']}: unknown member {sorted(extra)}")
     return gaps
 
 

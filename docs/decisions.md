@@ -677,3 +677,36 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   trend UI needs random-access to old snapshots; git already holds the series, so it waits.
   The **grading engine itself remains an owner escalation (§7)** and is deliberately NOT
   built here — this is scaffolding only.
+
+### R-2 (2026-08-12) — Membership-churn resilience (review H-1)
+
+- **D46 — the covered-member set refreshes nightly, and an official in the vote record
+  but not the roster halts the run instead of drifting in silently.** The MS delegation
+  changes mid-Congress (special election, death, resignation); the set was frozen
+  (`nightly.yml` never ran `ingest members`) and the two chambers failed in opposite bad
+  ways — House silently exported an orphan (votes on file, no page, no metrics, no alarm,
+  the exact asymmetric-coverage shape value #2 forbids), Senate raised `KeyError` on every
+  new roll and failed permanently. Five decisions: (a) **Roster refresh FIRST** — `ingest
+  members` runs before the vote ingests in `nightly.yml` (idempotent, keyless
+  congress-legislators fetch; a quiet night rewrites `data/members/*.json` byte-identically,
+  D33), so a delegation change lands before `_covered_house`/`_lis_to_bioguide` read it and
+  the common case self-heals. (b) **House loud-fail parity** — `house_votes.run` now computes
+  `extra = voted_ms − expected_ms` post-parse and, on a hit, quarantines the roll, records an
+  `unknown` failure, and **skips export** (no orphan written to disk at all — stronger than
+  "export then fail") before returning nonzero with a `run \`ingest members\`` message. The
+  Senate raise is left as-is: it was already the correct alarm; only its permanence (no
+  refresh) was the defect, now cured. Chosen post-parse in `run()` over passing the covered
+  set into `parse_rollcall` so the parser stays pure (no test churn). (c) **Metrics backstop**
+  — `metrics._load` raises on a position whose `member_id` has no Member record (mirrors the
+  missing-legislation guard), defending direct `ingest metrics` runs. (d) **Legislation
+  relaxation** — the "≥1 sponsored bill in EACH covered congress" sanity check now applies
+  only to congresses the member actually SERVED (from `terms` via `_term_overlaps`), so a
+  member who joined after the 118th no longer false-fails on zero 118th bills. Residual: a
+  member who served only the current congress and genuinely sponsored zero bills in it still
+  trips the check (a served-congress zero reads as a truncated fetch); acceptable per the
+  review's own acceptance framing. (e) **Check-layer detection** — `checks/symmetry.py` and
+  `verify_recompute.py` flagged `expected − got` only, so an extra committed member never
+  alarmed; both now also flag `got − expected`, closing the gap on the already-committed
+  dataset as defense-in-depth. No published schema or data changes — every fix is pass/fail
+  logic or ordering; on the current six-member delegation (all rostered, all served both
+  congresses) behavior and committed data are byte-identical.

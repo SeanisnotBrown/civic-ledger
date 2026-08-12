@@ -71,6 +71,7 @@ def _load() -> Ctx:
     }
     positions: dict[str, list[tuple[dict, str]]] = {mid: [] for mid in members}
     voted_bill_ids: set[str] = set()
+    orphan_votes: dict[str, str] = {}  # member_id -> first rollcall it appears in (R-2)
     for p in sorted((data / "votes").glob("*.json")):
         rec = json.loads(p.read_text(encoding="utf-8"))
         rc = rec["rollcall"]
@@ -79,6 +80,18 @@ def _load() -> Ctx:
         for mv in rec["member_votes"]:
             if mv["member_id"] in positions:
                 positions[mv["member_id"]].append((rc, mv["position"]))
+            else:
+                orphan_votes.setdefault(mv["member_id"], rc["id"])
+    # A recorded position with no Member record = a covered official whose votes are
+    # on file but who was never rostered (delegation churn). Silently dropping it
+    # would publish a member with votes but no metrics — the asymmetric-coverage shape
+    # value #2 forbids. Fail instead, mirroring the missing-legislation guard below.
+    if orphan_votes:
+        detail = ", ".join(f"{m} (e.g. {r})" for m, r in sorted(orphan_votes.items()))
+        raise FileNotFoundError(
+            f"vote positions for non-member(s) {detail} — run `ingest members` to "
+            f"refresh the roster, then re-ingest votes"
+        )
 
     legislation = {
         (r := json.loads(p.read_text(encoding="utf-8")))["member_id"]: r

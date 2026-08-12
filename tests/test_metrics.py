@@ -130,6 +130,10 @@ def test_mismatch_support_but_voted_nay() -> None:
     assert out[0]["stated_position"] == "support" and out[0]["recorded_position"] == "nay"
     assert out[0]["rollcall_id"] == "s-119-1-0001" and out[0]["bill_id"] == "s1-119"
     assert out[0]["vote_date"] == "2024-03-01" and out[0]["statement_date"] == "2024-02-01"
+    # Pin the emitted dict to the published model (extra="forbid") so a future field
+    # drift fails here, not as a nightly crash the first time the owner curates one.
+    from ingest.models import MismatchItem
+    MismatchItem.model_validate(out[0])
 
 
 def test_mismatch_oppose_but_voted_yea() -> None:

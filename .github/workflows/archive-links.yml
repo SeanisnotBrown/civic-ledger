@@ -38,9 +38,11 @@ jobs:
       - name: Sweep archive links — commit the report, then propagate the verdict
         run: |
           set -uo pipefail
-          # Run the sweep; capture its exit code (nonzero = at least one dead link).
-          uv run archive-links
-          verdict=$?
+          # NOTE: GitHub runs this step as `bash -e {0}`, so errexit is ON even though
+          # we don't set -e. Capture the sweep's exit code WITHOUT letting a nonzero
+          # (a dead link) kill the step here — we must still commit the report first.
+          verdict=0
+          uv run archive-links || verdict=$?
 
           # Commit the regenerated report if it changed, so the site build excludes
           # any newly-dead statement even though the job will then fail.

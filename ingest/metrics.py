@@ -143,14 +143,16 @@ def attendance(mid: str, ctx: Ctx) -> dict:
     Speaker-election / candidate-surname rolls, which carry no yea/nay position.
     `cast` = votes of Yea, Nay, or Present. `missed` = Not Voting. A member has
     exactly one recorded position per eligible roll (coverage is verified), so the
-    denominator is unambiguous. Source: the roll-call record (data/votes)."""
+    denominator is unambiguous. pct is null when the member has no eligible rolls (a
+    member newly seated before their first vote) — never a fabricated 0%. Source: the
+    roll-call record (data/votes)."""
     rows = ctx.positions[mid]
     eligible = len(rows)
     missed = sum(1 for _, pos in rows if pos == "not_voting")
     cast = eligible - missed
     return {
         "eligible": eligible, "cast": cast, "missed": missed,
-        "pct": round(100 * cast / eligible, 2) if eligible else 0.0,
+        "pct": round(100 * cast / eligible, 2) if eligible else None,
     }
 
 

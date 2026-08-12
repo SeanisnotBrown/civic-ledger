@@ -183,7 +183,7 @@ class AttendanceValue(_Strict):
     eligible: int  # position rolls the member was covered for (non_position excluded)
     cast: int      # yea + nay + present
     missed: int    # not_voting
-    pct: float     # 100 * cast / eligible
+    pct: float | None  # 100 * cast / eligible; None when eligible == 0 (no false zero, D27)
 
 
 class PartyUnityValue(_Strict):

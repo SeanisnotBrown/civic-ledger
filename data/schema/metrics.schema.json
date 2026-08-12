@@ -45,8 +45,15 @@
           "type": "integer"
         },
         "pct": {
-          "title": "Pct",
-          "type": "number"
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
         }
       },
       "required": [

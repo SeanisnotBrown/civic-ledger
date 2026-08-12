@@ -11131,9 +11131,9 @@
       "text": "For each roll the member missed (Not Voting), the member's own participation\non the same calendar day: how many recorded position rolls occurred in their\nchamber that day (`same_day_total`) and how many of those the member cast\n(`same_day_cast`). This reports the VOTE RECORD ONLY — it does not infer whether\nthe member was physically present or absent; a member may miss a roll while in\nthe building, and the site never claims otherwise. Source: data/votes."
     },
     "attendance": {
-      "digest": "5cf1181fd95bf4d5",
+      "digest": "023f56aa40942d74",
       "label": "Attendance",
-      "text": "Share of eligible roll calls on which the member recorded any position.\n\nFormula: cast / eligible, as a percentage. `eligible` = every roll call the\nmember was present-and-covered for (their chamber and Congress), excluding\nSpeaker-election / candidate-surname rolls, which carry no yea/nay position.\n`cast` = votes of Yea, Nay, or Present. `missed` = Not Voting. A member has\nexactly one recorded position per eligible roll (coverage is verified), so the\ndenominator is unambiguous. Source: the roll-call record (data/votes)."
+      "text": "Share of eligible roll calls on which the member recorded any position.\n\nFormula: cast / eligible, as a percentage. `eligible` = every roll call the\nmember was present-and-covered for (their chamber and Congress), excluding\nSpeaker-election / candidate-surname rolls, which carry no yea/nay position.\n`cast` = votes of Yea, Nay, or Present. `missed` = Not Voting. A member has\nexactly one recorded position per eligible roll (coverage is verified), so the\ndenominator is unambiguous. pct is null when the member has no eligible rolls (a\nmember newly seated before their first vote) — never a fabricated 0%. Source: the\nroll-call record (data/votes)."
     },
     "cosponsor_vote_gap": {
       "digest": "f01791c5590f9f86",

@@ -155,6 +155,41 @@ def test_approve_publishes_verbatim_reason(monkeypatch, tmp_path):
     assert json.loads(qpath.read_text(encoding="utf-8"))["status"] == "approved"
 
 
+def _seed_guest(tmp_path):
+    """A pending Guest queue file + its matching not_voting stub, in tmp dirs."""
+    absdir = tmp_path / "absences"
+    qdir = tmp_path / "queue"
+    absdir.mkdir()
+    qdir.mkdir()
+    qpath = qdir / "CREC-2023-01-13-pt1-PgE29-4.json"
+    qpath.write_text(json.dumps(_guest_candidate()), encoding="utf-8")
+    (absdir / "G000591--h-118-1-0031.json").write_text(json.dumps(
+        {"member_id": "G000591", "rollcall_id": "h-118-1-0031", "stated_reason": None,
+         "stated_reason_source": None, "declared_position": None}), encoding="utf-8")
+    return absdir, qpath
+
+
+def test_edit_accepts_exact_and_trim(monkeypatch, tmp_path):
+    absdir, qpath = _seed_guest(tmp_path)
+    monkeypatch.setattr(absences, "ABSENCES_DIR", absdir)
+    verbatim = _guest_candidate()["verbatim_text"]
+    # A trim (drop the salutation) is a whitespace-normalized substring → allowed.
+    trimmed = "had I been present, I would have voted YEA on Roll Call No. 31 (H.R. 22)."
+    written = absences.approve_one(qpath, reason=trimmed)
+    assert json.loads(written.read_text(encoding="utf-8"))["stated_reason"] == trimmed
+    # Re-approving with the exact verbatim also passes (idempotent, substring of itself).
+    assert absences.approve_one(qpath, reason=verbatim).exists()
+
+
+def test_edit_refuses_paraphrase_and_empty(monkeypatch, tmp_path):
+    absdir, qpath = _seed_guest(tmp_path)
+    monkeypatch.setattr(absences, "ABSENCES_DIR", absdir)
+    with pytest.raises(ValueError, match="not a substring"):
+        absences.approve_one(qpath, reason="I was sick that day.")  # rewrite, not a trim
+    with pytest.raises(ValueError, match="empty"):
+        absences.approve_one(qpath, reason="   ")  # whitespace-only publishes nothing
+
+
 def test_publish_refuses_unmatched(monkeypatch, tmp_path):
     monkeypatch.setattr(absences, "ABSENCES_DIR", tmp_path)
     cand = _guest_candidate()

@@ -243,11 +243,32 @@ def _publish(candidate: dict, reason: str) -> Path:
     return path
 
 
+def _assert_edit_is_a_trim(edited: str, verbatim: str, source: str) -> None:
+    """A `stated_reason` published with a CREC citation MUST actually appear in that
+    granule (R-4b/M-5). The edit path exists for TRIMMING (dropping a salutation, a
+    trailing roll ref) — not rewriting. Enforce it: the edited text, whitespace-
+    normalized, must be a non-empty substring of the candidate's verbatim CREC text.
+    Otherwise we would attach a primary-source citation to words that source never
+    carried."""
+    norm_edit = " ".join(edited.split())
+    norm_verbatim = " ".join(verbatim.split())
+    if not norm_edit:
+        raise ValueError(f"edited reason is empty — nothing to publish ({source})")
+    if norm_edit not in norm_verbatim:
+        raise ValueError(
+            f"edited reason is not a substring of the verbatim CREC text in {source}: "
+            "trimming is allowed, rewriting is not — leave it unedited to publish verbatim"
+        )
+
+
 def approve_one(candidate_path: Path, reason: str | None = None) -> Path:
     """Non-interactive approve of one queue file (the owner's scriptable path, also
-    the test hook): publish its verbatim text (or an owner-supplied verbatim
-    override) and mark the queue file approved. Returns the written Absence path."""
+    the test hook): publish its verbatim text (or an owner-supplied TRIM of it) and
+    mark the queue file approved. An override must be a whitespace-normalized substring
+    of the verbatim CREC text (R-4b/M-5). Returns the written Absence path."""
     candidate = json.loads(candidate_path.read_text(encoding="utf-8"))
+    if reason is not None:
+        _assert_edit_is_a_trim(reason, candidate["verbatim_text"], candidate_path.name)
     written = _publish(candidate, reason if reason is not None else candidate["verbatim_text"])
     candidate["status"] = "approved"
     candidate_path.write_text(_dumps(candidate), encoding="utf-8", newline="\n")
@@ -294,9 +315,12 @@ def approve(argv: list[str] | None = None) -> int:
             approve_one(path)
             print("  published.")
         elif choice == "e":
-            edited = input("paste verbatim reason: ").strip()
-            approve_one(path, reason=edited)
-            print("  published (edited).")
+            edited = input("paste verbatim reason (a trim of the text above): ").strip()
+            try:
+                approve_one(path, reason=edited)
+                print("  published (edited).")
+            except ValueError as exc:
+                print(f"  NOT published — {exc}")
         else:
             print("  skipped.")
     return 0

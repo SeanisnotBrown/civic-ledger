@@ -749,3 +749,23 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   to `/statements/capture`, `/statements/save`, `/absences/approve`. **Also removed** the
   zero-caller `capture_and_save` (§4 delete) — an untested parallel write path into the
   published dataset.
+
+### R-4 (2026-08-12) — Truth-guard patches (review M-4/M-5)
+
+- **D48 — two paths that could publish a false factual claim are closed at the source.**
+  **(a) Attendance null on a zero denominator (M-4).** `attendance.pct` returned a
+  fabricated `0.0` when `eligible == 0`, contradicting `data-contract.md` ("pct is null on
+  a zero denominator, never a fabricated 0") and the D27 false-zero rule; unreachable for
+  the current six, but a mid-term arrival with zero eligible rolls (compounding H-1/R-2)
+  would have published "attendance 0.0%". Now `pct` is `None` when `eligible == 0`;
+  `AttendanceValue.pct` widens to `float | None` (regenerating `metrics.schema.json`'s
+  `pct` to `anyOf number/null` and the attendance methodology digest/text). No current
+  member value changes. The `FORMULA_SCHEMA_VERSION` bump for this shipped with R-1 (-> 2).
+  **(b) Absence edit path is trim-only (M-5).** The `e`/edit branch attached the CREC page
+  citation to whatever the owner typed, so a paraphrase or typo could publish as a
+  "verbatim" quote the source never carried. `approve_one(reason=...)` now requires the
+  edited text, whitespace-normalized, to be a NON-EMPTY substring of the candidate's
+  `verbatim_text` — trimming a salutation is allowed, rewriting is refused with a message
+  pointing at the queue file; the interactive loop catches the refusal instead of crashing.
+  Empty/whitespace-only edits are rejected (else `""` — a substring of everything — would
+  publish an empty citation).

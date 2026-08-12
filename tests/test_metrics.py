@@ -54,6 +54,15 @@ def test_attendance_counts_present_as_cast_missed_as_not_voting() -> None:
     assert v == {"eligible": 3, "cast": 2, "missed": 1, "pct": 66.67}
 
 
+def test_attendance_pct_is_null_on_zero_eligible() -> None:
+    # A member newly seated before their first vote has 0 eligible rolls: pct must be
+    # None, never a fabricated 0.0% (R-4a/M-4; D27 false-zero rule).
+    v = metrics.attendance("M1", _ctx([]))
+    assert v == {"eligible": 0, "cast": 0, "missed": 0, "pct": None}
+    from ingest.models import AttendanceValue
+    AttendanceValue.model_validate(v)  # the published model now allows null pct
+
+
 # --- party_unity ----------------------------------------------------------
 
 

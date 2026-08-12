@@ -15,7 +15,7 @@ from __future__ import annotations
 
 from collections.abc import Callable
 
-from ingest.checks import banned_words, classification, integrity, no_llm, symmetry
+from ingest.checks import banned_words, classification, integrity, ms, no_llm, symmetry
 
 # (name, callable-returning-exit-code). Ordered; all run even if one fails so
 # the operator sees every problem in a single pass. symmetry + integrity are
@@ -27,6 +27,7 @@ CHECKS: list[tuple[str, Callable[[], int]]] = [
     ("symmetry", symmetry.main),
     ("classification", classification.main),
     ("integrity", integrity.main),
+    ("ms", ms.main),
 ]
 
 

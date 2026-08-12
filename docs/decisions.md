@@ -856,3 +856,25 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   (`\bterm\b`) — the intent all along (§6.4 targets partisan framing words we authored). A
   standalone banned word is still caught; regression test added. No prior hit changes.
   MS party `N` (nonpartisan, 1 member) → `I` in the D/R/I model (limitations page, phase 6).
+
+### D53 (2026-08-12) — MS checks + integrity spot-check (offline)
+
+- **`checks/ms.py` (registered in the offline suite) guards the MS partition with two
+  passes.** CONSISTENCY (the verify-recompute + classification + party-split analog):
+  every MS roll's member_votes recompute the stored `totals`, `party_totals` sum to
+  `totals` per category, every voter is in the roster, and no roll is `other`/`MS-OTHER`.
+  INTEGRITY (scrape fidelity): the GO verdict (D21) matched LegiScan to the official
+  billstatus per-vote PDFs 5/5 (470 per-person positions) — this re-runs that at the
+  **tally level in CI, offline**, against the committed sample PDFs (`data/quality/
+  samples/ms_vote_xcheck/*.txt`): each sample's official Yeas/Nays/Absent `Total--N`
+  (House uses "Absent or…", Senate "Absent and…", House may add "Present--") must equal
+  our ingested roll's totals. All 1,725 rolls recompute; 5/5 official tallies match.
+- **Deliberately offline, not a live billstatus fetch:** the official per-vote PDF URL
+  (e.g. `.../votes/house/0100010.pdf`) is NOT derivable from the LegiScan record, so an
+  arbitrary-roll live fetch isn't possible without manual URL discovery — and a live
+  billstatus fetch would need the bundled intermediate CA (CI/Linux does no AIA chasing,
+  D21). The committed-sample tally check gives real, deterministic scrape-fidelity
+  regression coverage without that fragility. **Deviation from spec's "10-vote":** the
+  automated CI guard covers the 5 GO-verdict samples; the per-person 470-position match
+  is recorded in the verdict. Expanding to more samples is additive (drop a PDF text +
+  its roll_call_id into `_SAMPLES`).

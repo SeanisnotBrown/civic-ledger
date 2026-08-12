@@ -393,10 +393,19 @@ RESOLVED callout above). 11 samples committed.
 
 **INC-9 acceptance status:** procedural classification displayed ✅; missed votes show
 reason/absence ✅; methodology stub live ✅; mobile Lighthouse ≥ 90 ✅ (local + CI);
-six members complete ✅. **Pending H4/H5:** real domain + observe one unattended nightly
-run committing + deploying live. Rehearse the pipeline now: `gh workflow run nightly.yml`
-(runs the full ingest→checks→conditional-commit path; deploy activates once H4 connects
-Workers Builds).
+six members complete ✅. **Nightly pipeline REHEARSED green** (`gh workflow run
+nightly.yml`, run 31606758399, 2026-08-12): house 0 refreshed / 1,886 skipped, senate
+11 refreshed / 1,570 skipped, bills 4 fetched / 1,007 skipped — classify restored the 11
+re-fetched senate rolls byte-identical, so the diff-gate saw no change → **quiet night,
+no commit** (validates D33); checks + verify-recompute green. **Pending H4/H5 only:** the
+live Workers deploy + observing a nightly that actually commits new data. Also **verify
+on H4 connect (D33):** that a `GITHUB_TOKEN` push triggers Workers Builds (assumed from
+Pages behavior, unverified).
+
+**D35 (bugfix this session):** the ingest now re-exports absence stubs with
+`overwrite=False`, so a nightly re-fetch of a recent roll never clobbers an owner-
+approved `stated_reason` into a false "No explanation on record." (value #1). Landed +
+CI-green before the rehearsal.
 
 ## INC-10 — where to pick up
 
@@ -438,8 +447,8 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
 | INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
 | INC-7 | JSON export contracts | ✅ done | double-export byte-identical (manifest + 4 schemas); `verify-recompute` matches 100% of 3,467 rolls (coverage+subset+reciprocity, D26); manifest + data-contract.md committed; 95 tests |
-| INC-8 | Site MVP | ✅ done | 4,539 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 14/14 Playwright; §6.7 via shared components; 115 py tests + e2e |
-| INC-9 | Automation + deploy (PUBLIC MVP) | ✅ build done; deploy pending H4/H5 | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); 115 py tests. Live nightly+deploy verification blocked on H4/H5 (🟨 owner) |
+| INC-8 | Site MVP | ✅ done | 4,539 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 14/14 Playwright; §6.7 via shared components; 117 py tests + e2e |
+| INC-9 | Automation + deploy (PUBLIC MVP) | ✅ build done; deploy pending H4/H5 | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); nightly rehearsed green; 117 py tests. Live nightly+deploy verification blocked on H4/H5 (🟨 owner) |
 | INC-10 | Metrics + methodology | **not started (next)** | backfills bill subjects/cosponsors (D27) |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
@@ -478,7 +487,7 @@ bills run(); `ingest/corrections.py` (+ `corrections` console entry) → `data/c
 `corrections.astro`); `site/lighthouserc.cjs` + `test:lighthouse` script + CI step;
 `wrangler` devDep; `docs/correction-process.md`; H4/H5→Workers in HUMAN-TASKS + `.env.example`;
 Layout `WORKERS_CI_COMMIT_SHA`; `tests/test_incremental.py` (7). D31–D34 in `decisions.md`.
-Test count 108 → 115 (python) + 14 Playwright e2e.
+Test count 108 → 117 (python) + 14 Playwright e2e.
 
 **INC-8 additions:** `ingest/bills.py` (+ `bills` subcommand); `Bill.subjects`/
 `cosponsor_ids` widened to `list[str] | None` in `models.py`; `data/bills/*.json`

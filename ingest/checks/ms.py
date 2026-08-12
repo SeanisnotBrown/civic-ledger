@@ -109,6 +109,20 @@ def integrity_failures(votes_by_id: dict[str, dict]) -> list[str]:
     return fails
 
 
+def metrics_failures() -> list[str]:
+    """MS metrics recompute-and-match: build() from the committed partition must equal
+    the committed data/state/ms/metrics.json (the MS analog of the federal test)."""
+    from ingest.export import MS_METRICS_PATH
+    if not MS_METRICS_PATH.exists():
+        return []
+    from ingest import ms_metrics
+    committed = json.loads(MS_METRICS_PATH.read_text(encoding="utf-8"))
+    fresh = ms_metrics.build().model_dump()
+    if fresh != committed:
+        return ["data/state/ms/metrics.json is stale — re-run `ingest ms --force`"]
+    return []
+
+
 def main() -> int:
     votes = _load_votes()
     if not votes:
@@ -119,16 +133,18 @@ def main() -> int:
 
     cfails = consistency_failures(votes, roster)
     ifails = integrity_failures(votes_by_id)
+    mfails = metrics_failures()
 
-    for label, fails in (("consistency", cfails), ("integrity spot-check", ifails)):
+    for label, fails in (("consistency", cfails), ("integrity spot-check", ifails),
+                         ("metrics recompute", mfails)):
         if fails:
             print(f"MS CHECK FAILED — {len(fails)} {label} failure(s):")
             for f in fails[:20]:
                 print(f"  {f}")
-    if cfails or ifails:
+    if cfails or ifails or mfails:
         return 1
     print(f"ms: OK ({len(votes)} rolls recompute; party splits sum; all classified; "
-          f"{len(_SAMPLES)} official-PDF tallies match).")
+          f"{len(_SAMPLES)} official-PDF tallies match; metrics recompute).")
     return 0
 
 

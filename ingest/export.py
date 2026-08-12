@@ -33,6 +33,7 @@ from ingest.models import (
     MemberLegislation,
     MemberVote,
     MetricsFile,
+    MsMetricsFile,
     RollCall,
     Statement,
 )
@@ -57,6 +58,8 @@ MS_DIR = STATE_DIR / "ms"
 MS_MEMBERS_DIR = MS_DIR / "members"
 MS_VOTES_DIR = MS_DIR / "votes"
 MS_BILLS_DIR = MS_DIR / "bills"
+MS_LEGISLATION_DIR = MS_DIR / "legislation"
+MS_METRICS_PATH = MS_DIR / "metrics.json"
 MS_MANIFEST_PATH = MS_DIR / "manifest.json"
 
 
@@ -171,6 +174,7 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("absence", Absence),
     ("legislation", MemberLegislation),
     ("metrics", MetricsFile),
+    ("ms-metrics", MsMetricsFile),
     ("statement", Statement),
 )
 

@@ -157,8 +157,8 @@ class LegItem(_Strict):
     text can still change on amendment — a low-frequency, acceptable churn source.)
     `source_url` traces each item to its Congress.gov bill page."""
 
-    bill_id: str  # normalized "s3266-119"
-    congress: int
+    bill_id: str  # normalized "s3266-119" (federal) or "ms-hb1-2249" (MS state)
+    congress: int | None  # US Congress; None for a state bill (INC-13 MS metrics)
     title: str
     introduced_date: str | None
     became_law: bool
@@ -250,6 +250,20 @@ class MemberMetrics(_Strict):
     absence_context: list[AbsenceContextItem]
 
 
+class MsMemberMetrics(_Strict):
+    """The MS state-legislator Tier-2 metrics (INC-13). A deliberate subset of the
+    federal `MemberMetrics`: the scalar factual rates that compute cleanly from the
+    committed MS record (data/state/ms/). Reuses the federal value models. The
+    list-type federal metrics (cosponsor_vote_gap, named_measure_mismatch,
+    absence_context) are not computed for MS in this pass."""
+
+    attendance: AttendanceValue
+    party_unity: PartyUnityValue
+    sponsored: CountValue
+    cosponsored: CountValue
+    enacted_rate: EnactedRateValue
+
+
 class MetricMethodology(_Strict):
     label: str
     text: str  # the metric function's docstring, verbatim — the methodology-page copy
@@ -267,6 +281,15 @@ class MetricsFile(_Strict):
     # semantic formula change; the coarse guard paired with per-metric `digest`.
     methodology: dict[str, MetricMethodology]
     members: dict[str, MemberMetrics]
+
+
+class MsMetricsFile(_Strict):
+    """data/state/ms/metrics.json (INC-13). Same shape as MetricsFile but the MS
+    subset of metrics per member. Recomputable from the committed MS partition."""
+
+    schema_version: int
+    methodology: dict[str, MetricMethodology]
+    members: dict[str, MsMemberMetrics]
 
 
 # --- Statements & candidates ----------------------------------------------

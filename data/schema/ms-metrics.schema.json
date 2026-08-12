@@ -1,0 +1,204 @@
+{
+  "$defs": {
+    "AttendanceValue": {
+      "additionalProperties": false,
+      "properties": {
+        "cast": {
+          "title": "Cast",
+          "type": "integer"
+        },
+        "eligible": {
+          "title": "Eligible",
+          "type": "integer"
+        },
+        "missed": {
+          "title": "Missed",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        }
+      },
+      "required": [
+        "eligible",
+        "cast",
+        "missed",
+        "pct"
+      ],
+      "title": "AttendanceValue",
+      "type": "object"
+    },
+    "CountValue": {
+      "additionalProperties": false,
+      "properties": {
+        "count": {
+          "title": "Count",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "count"
+      ],
+      "title": "CountValue",
+      "type": "object"
+    },
+    "EnactedRateValue": {
+      "additionalProperties": false,
+      "properties": {
+        "enacted": {
+          "title": "Enacted",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        },
+        "sponsored": {
+          "title": "Sponsored",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sponsored",
+        "enacted",
+        "pct"
+      ],
+      "title": "EnactedRateValue",
+      "type": "object"
+    },
+    "MetricMethodology": {
+      "additionalProperties": false,
+      "properties": {
+        "digest": {
+          "title": "Digest",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "label",
+        "text",
+        "digest"
+      ],
+      "title": "MetricMethodology",
+      "type": "object"
+    },
+    "MsMemberMetrics": {
+      "additionalProperties": false,
+      "description": "The MS state-legislator Tier-2 metrics (INC-13). A deliberate subset of the\nfederal `MemberMetrics`: the scalar factual rates that compute cleanly from the\ncommitted MS record (data/state/ms/). Reuses the federal value models. The\nlist-type federal metrics (cosponsor_vote_gap, named_measure_mismatch,\nabsence_context) are not computed for MS in this pass.",
+      "properties": {
+        "attendance": {
+          "$ref": "#/$defs/AttendanceValue"
+        },
+        "cosponsored": {
+          "$ref": "#/$defs/CountValue"
+        },
+        "enacted_rate": {
+          "$ref": "#/$defs/EnactedRateValue"
+        },
+        "party_unity": {
+          "$ref": "#/$defs/PartyUnityValue"
+        },
+        "sponsored": {
+          "$ref": "#/$defs/CountValue"
+        }
+      },
+      "required": [
+        "attendance",
+        "party_unity",
+        "sponsored",
+        "cosponsored",
+        "enacted_rate"
+      ],
+      "title": "MsMemberMetrics",
+      "type": "object"
+    },
+    "PartyUnityValue": {
+      "additionalProperties": false,
+      "properties": {
+        "agreed": {
+          "title": "Agreed",
+          "type": "integer"
+        },
+        "excluded_ties": {
+          "title": "Excluded Ties",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        },
+        "substantive": {
+          "title": "Substantive",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "substantive",
+        "agreed",
+        "pct",
+        "excluded_ties"
+      ],
+      "title": "PartyUnityValue",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "data/state/ms/metrics.json (INC-13). Same shape as MetricsFile but the MS\nsubset of metrics per member. Recomputable from the committed MS partition.",
+  "properties": {
+    "members": {
+      "additionalProperties": {
+        "$ref": "#/$defs/MsMemberMetrics"
+      },
+      "title": "Members",
+      "type": "object"
+    },
+    "methodology": {
+      "additionalProperties": {
+        "$ref": "#/$defs/MetricMethodology"
+      },
+      "title": "Methodology",
+      "type": "object"
+    },
+    "schema_version": {
+      "title": "Schema Version",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "schema_version",
+    "methodology",
+    "members"
+  ],
+  "title": "MsMetricsFile",
+  "type": "object"
+}

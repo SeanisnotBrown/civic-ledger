@@ -41,7 +41,7 @@ from ingest.export import (
     export_members,
     export_rollcall,
 )
-from ingest.models import Bill, Member, MemberVote, RollCall, Term
+from ingest.models import Bill, LegItem, Member, MemberLegislation, MemberVote, RollCall, Term
 from ingest.sources import legiscan
 
 
@@ -173,6 +173,66 @@ def parse_bill(bill: dict, session_id: int) -> Bill:
     )
 
 
+def _leg_item(bill: dict, session_id: int) -> LegItem:
+    """One `LegItem` for a member's authored bill. `became_law` is a deterministic match
+    on the official history action "Approved by Governor" (the MS enactment signal);
+    `enacted_action` is that verbatim action text when enacted, else None."""
+    b = _unwrap(bill, "bill")
+    history = b.get("history", [])
+    enacted_action = next(
+        (h["action"] for h in history if "approved by governor" in h.get("action", "").lower()),
+        None,
+    )
+    return LegItem(
+        bill_id=canonical_bill_id(b["bill_number"], session_id),
+        congress=None,
+        title=b["title"],
+        introduced_date=history[0]["date"] if history else None,
+        became_law=enacted_action is not None,
+        enacted_action=enacted_action,
+        source_url=b.get("state_link") or b["url"],
+    )
+
+
+def build_legislation(members: list[Member], bills: list[dict], session_id: int
+                      ) -> list[MemberLegislation]:
+    """Per-member sponsored + cosponsored bills over ALL session bills (not just the
+    vote-referenced ones), so the sponsorship counts are complete + recomputable.
+
+    LegiScan lists every MS bill author as sponsor_type_id 1 (it does not distinguish
+    primary from co-authors for Mississippi), so the FIRST-listed author is taken as the
+    principal ("sponsored") and the rest as additional authors ("cosponsored") — the
+    standard reading of the MS author order. Documented on the limitations page."""
+    member_ids = {m.id for m in members}
+    buckets: dict[str, dict[str, list[LegItem]]] = {
+        m.id: {"sponsored": [], "cosponsored": []} for m in members
+    }
+    for bill in bills:
+        sponsors = _unwrap(bill, "bill").get("sponsors", [])
+        if not sponsors:
+            continue
+        try:
+            item = _leg_item(bill, session_id)
+        except (KeyError, ValueError):
+            continue  # a malformed bill is quarantined for publishing; skip it here too
+        seen: set[str] = set()
+        for i, s in enumerate(sponsors):
+            mid = f"ms-{s['people_id']}"
+            if mid not in member_ids or mid in seen:
+                continue
+            seen.add(mid)
+            buckets[mid]["sponsored" if i == 0 else "cosponsored"].append(item)
+    return [
+        MemberLegislation(
+            member_id=mid,
+            sponsored=sorted(b["sponsored"], key=lambda x: x.bill_id),
+            cosponsored=sorted(b["cosponsored"], key=lambda x: x.bill_id),
+            source_url="https://legiscan.com/MS",
+        )
+        for mid, b in sorted(buckets.items())
+    ]
+
+
 def parse_rollcall(
     vote: dict, session_id: int, people_by_id: dict[int, Member],
     bill_number_by_legiscan: dict[str, str],
@@ -245,6 +305,7 @@ class BuildResult:
     bills: list[Bill]
     rollcalls: list[tuple[RollCall, list[MemberVote]]]
     crosswalk: dict[str, dict]
+    legislation: list[MemberLegislation] = field(default_factory=list)
     quarantined: list[str] = field(default_factory=list)
 
 
@@ -289,13 +350,21 @@ def build_records(
         except (UnknownPerson, TallyMismatch, ValueError, KeyError) as exc:
             quarantined.append(f"roll:{rid} ({type(exc).__name__}: {exc})")
 
+    legislation = build_legislation(members, bills, session_id)
+
     crosswalk = {
         m.id: {"legiscan_people_id": int(m.ids["legiscan"]), "name": m.name,
                "party": m.party, "chamber": m.chamber, "district": m.district}
         for m in sorted(members, key=lambda x: x.id)
     }
-    return BuildResult(members, sorted(canonical_bills, key=lambda b: b.id),
-                       rollcalls, crosswalk, quarantined)
+    return BuildResult(
+        members=members,
+        bills=sorted(canonical_bills, key=lambda b: b.id),
+        rollcalls=rollcalls,
+        crosswalk=crosswalk,
+        legislation=legislation,
+        quarantined=quarantined,
+    )
 
 
 # --- network: fetch + decode the LegiScan bulk dataset --------------------
@@ -376,13 +445,20 @@ def build_ms_manifest(session: dict, result: BuildResult, generated_at: str, com
 
 
 def _export(result: BuildResult, manifest: dict) -> None:
-    from ingest.export import MS_DIR, MS_MANIFEST_PATH
+    from ingest.export import (
+        MS_DIR,
+        MS_LEGISLATION_DIR,
+        MS_MANIFEST_PATH,
+        export_member_legislation,
+    )
 
     export_members(result.members, MS_MEMBERS_DIR)
     for bill in result.bills:
         export_bill(bill, MS_BILLS_DIR)
     for rollcall, member_votes in result.rollcalls:
         export_rollcall(rollcall, member_votes, MS_VOTES_DIR)
+    for leg in result.legislation:
+        export_member_legislation(leg, MS_LEGISLATION_DIR)
     MS_DIR.mkdir(parents=True, exist_ok=True)
     (MS_DIR / "crosswalk.json").write_text(_dumps(result.crosswalk), encoding="utf-8",
                                            newline="\n")
@@ -447,9 +523,14 @@ def run(argv: list[str] | None = None) -> int:
     manifest = build_ms_manifest(session, result, generated_at, commit)
     _export(result, manifest)
 
+    # Tier-2 metrics recompute from the just-exported committed partition (INC-13).
+    from ingest import ms_metrics
+    ms_metrics.export()
+
     print(f"ingest ms: {session['session_name']} (session {session['session_id']}) - "
           f"{len(result.members)} members, {len(result.rollcalls)} roll calls, "
-          f"{len(result.bills)} bills -> data/state/ms/.")
+          f"{len(result.bills)} bills, {len(result.legislation)} legislation records, "
+          f"metrics -> data/state/ms/.")
     return 0
 
 

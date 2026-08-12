@@ -1,7 +1,8 @@
 ---
 import Layout from "../../../../components/Layout.astro";
 import MsVoteRow from "../../../../components/MsVoteRow.astro";
-import { getMsMembers, getMsMemberVotes, paginate } from "../../../../lib/data";
+import MemberStats from "../../../../components/MemberStats.astro";
+import { getMsMembers, getMsMemberVotes, getMsMetrics, getMsManifest, paginate } from "../../../../lib/data";
 import type { MemberVoteRow } from "../../../../lib/data";
 
 export function getStaticPaths() {
@@ -22,6 +23,8 @@ export function getStaticPaths() {
 interface Props { memberId: string; rows: MemberVoteRow[]; pageNum: number; totalPages: number }
 const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
 const member = getMsMembers().find((m) => m.id === memberId)!;
+const memberMetrics = getMsMetrics().members[memberId]; // undefined-safe
+const sessionLabel = getMsManifest().session_name;
 
 const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 const chamberLabel = member.chamber === "house" ? "Mississippi House" : "Mississippi Senate";
@@ -36,6 +39,8 @@ const districtSuffix = member.district != null ? `, ${districtPrefix}-${member.d
   <p class="mt-1 text-neutral-600">
     {PARTY_LABEL[member.party] ?? member.party} · {chamberLabel}{districtSuffix}
   </p>
+
+  {memberMetrics && <MemberStats metrics={memberMetrics} periodLabel={sessionLabel} jurisdiction="ms" />}
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Record</h2>
   <p class="mt-1 text-xs text-neutral-500">

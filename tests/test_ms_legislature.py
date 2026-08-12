@@ -171,6 +171,36 @@ def test_run_is_a_noop_when_dataset_hash_unchanged(monkeypatch, tmp_path):
     assert ms.run([]) == 0
 
 
+def _bill_hist(bill_id, number, sponsors, actions):
+    b = _bill(bill_id, number, "A bill.", sponsors)
+    b["bill"]["history"] = [{"date": "2026-01-05", "action": a} for a in actions]
+    return b
+
+
+def test_leg_item_detects_gubernatorial_approval():
+    signed = _bill_hist("100", "HB1", [(1, 1)], ["Referred", "Approved by Governor"])
+    li = ms._leg_item(signed, 2249)
+    assert li.became_law is True and li.enacted_action == "Approved by Governor"
+    assert li.bill_id == "ms-hb1-2249" and li.congress is None
+    died = _bill_hist("101", "HB2", [(1, 1)], ["Referred", "Died In Committee"])
+    assert ms._leg_item(died, 2249).became_law is False
+
+
+def test_build_legislation_principal_vs_coauthors():
+    members = [ms.parse_person(_person(1, "R", "Rep", "HD-001"), 2026, 2026),
+               ms.parse_person(_person(2, "D", "Rep", "HD-002"), 2026, 2026)]
+    # Bill A: member 1 principal (first), member 2 co-author. Bill B: member 2 principal.
+    bills = [_bill_hist("100", "HB1", [(1, 1), (2, 1)], ["Approved by Governor"]),
+             _bill_hist("200", "HB2", [(2, 1)], ["Died"])]
+    leg = {m.member_id: m for m in ms.build_legislation(members, bills, 2249)}
+    assert [li.bill_id for li in leg["ms-1"].sponsored] == ["ms-hb1-2249"]
+    assert [li.bill_id for li in leg["ms-1"].cosponsored] == []
+    assert [li.bill_id for li in leg["ms-2"].sponsored] == ["ms-hb2-2249"]
+    assert [li.bill_id for li in leg["ms-2"].cosponsored] == ["ms-hb1-2249"]
+    # The principal's authored bill is enacted; enacted_rate can see it.
+    assert leg["ms-1"].sponsored[0].became_law is True
+
+
 def test_build_records_is_deterministic():
     people = [_person(2, "D", "Rep", "HD-002"), _person(1, "R", "Rep", "HD-001")]
     bills = [_bill("100", "HB1", "Bill.", [(1, 1), (2, 2)])]

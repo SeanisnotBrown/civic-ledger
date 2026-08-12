@@ -942,3 +942,25 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   (no color-as-meaning; the form is stat tiles, not a chart); null pct (R-4) renders "—".
   MS members are unaffected (no `data/metrics.json` entry → the guard skips the section);
   computing MS metrics is a follow-on. axe + 380px green; banned-words green; astro check 0.
+
+### D58 (2026-08-12) — Mississippi Tier-2 metrics (follow-on to D57)
+
+- **The 5 scalar stats now compute + render for the 174 MS legislators, reusing the
+  federal FORMULAS verbatim.** `ms_metrics.build()` loads the committed MS partition into
+  the federal `metrics.Ctx` and calls `metrics.{attendance,party_unity,sponsored,
+  cosponsored,enacted_rate}` unchanged — identical semantics + audited digest, only the
+  source data and methodology TEXT are MS-specific (the federal docstrings say "covered
+  Congresses"). Recomputable: a new committed **`data/state/ms/legislation/{member}.json`**
+  (built from ALL 4,006 session bills, not just the 905 vote-referenced ones, so
+  sponsorship counts are complete) + **`data/state/ms/metrics.json`** — `checks/ms.py` adds
+  a recompute-and-match. **Two MS-specific data decisions:** (a) LegiScan marks every MS
+  bill author `sponsor_type_id 1` (no primary/co distinction), so the FIRST-listed author
+  is the principal ("authored") and the rest are "co-authored" — documented on the
+  limitations page. (b) "became law" = the official history action **"Approved by
+  Governor"** (368 bills carry it); reliably detectable, so MS gets a real enacted rate
+  (e.g. an appropriations chair at 56/74, rank-and-file near 0 — honest variance).
+  `MemberStats.astro` made jurisdiction-aware (a `periodLabel` + `jurisdiction` prop; MS
+  labels "authored/co-authored", methodology links to `/methods#mississippi`); MS member
+  pages render the tiles; the limitations page updated (stats now computed). `LegItem.congress`
+  widened to `int|None`; `MsMemberMetrics`/`MsMetricsFile` models + `ms-metrics.schema.json`
+  added. Still NO composite/score (Tier-3 rule holds). 254 tests; checks + 24/24 e2e green.

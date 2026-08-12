@@ -270,6 +270,24 @@ export function getMsManifest(): MsManifest {
   return _msManifest;
 }
 
+// MS Tier-2 metrics (data/state/ms/metrics.json, INC-13) — the same shape as the
+// federal metrics minus the list-type ones. Absent on a bare checkout → {}.
+export interface MsMetrics {
+  schema_version: number;
+  methodology: Record<string, MetricMethodology>;
+  members: Record<string, Record<string, unknown>>;
+}
+let _msMetrics: MsMetrics | null = null;
+export function getMsMetrics(): MsMetrics {
+  if (_msMetrics) return _msMetrics;
+  try {
+    _msMetrics = readMsJson<MsMetrics>("metrics.json");
+  } catch {
+    _msMetrics = { schema_version: 0, methodology: {}, members: {} };
+  }
+  return _msMetrics;
+}
+
 export interface Correction { commit: string; date: string; subject: string; }
 export function getCorrections(): Correction[] {
   // Generated from git history by `uv run corrections` (INC-9). Absent on a bare

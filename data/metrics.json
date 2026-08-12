@@ -11126,36 +11126,45 @@
   },
   "methodology": {
     "absence_context": {
+      "digest": "cc3b478cc20596e3",
       "label": "Missed-vote context",
       "text": "For each roll the member missed (Not Voting), the member's own participation\non the same calendar day: how many recorded position rolls occurred in their\nchamber that day (`same_day_total`) and how many of those the member cast\n(`same_day_cast`). This reports the VOTE RECORD ONLY — it does not infer whether\nthe member was physically present or absent; a member may miss a roll while in\nthe building, and the site never claims otherwise. Source: data/votes."
     },
     "attendance": {
+      "digest": "5cf1181fd95bf4d5",
       "label": "Attendance",
       "text": "Share of eligible roll calls on which the member recorded any position.\n\nFormula: cast / eligible, as a percentage. `eligible` = every roll call the\nmember was present-and-covered for (their chamber and Congress), excluding\nSpeaker-election / candidate-surname rolls, which carry no yea/nay position.\n`cast` = votes of Yea, Nay, or Present. `missed` = Not Voting. A member has\nexactly one recorded position per eligible roll (coverage is verified), so the\ndenominator is unambiguous. Source: the roll-call record (data/votes)."
     },
     "cosponsor_vote_gap": {
+      "digest": "f01791c5590f9f86",
       "label": "Cosponsor-to-vote gap",
       "text": "A factual list — never a score — of two adjacencies between a member's\ncosponsorships and their floor record, each linking to the underlying record:\n\n  * cosponsored_and_voted_nay — the member was a cosponsor of a bill and voted\n    Nay on its passage. (The data establishes cosponsorship and a Nay passage\n    vote; it does not establish which came first, so no sequence is claimed.)\n  * cosponsored_no_floor_action — the member cosponsored a bill in a Congress\n    that HAS ENDED, and that bill never received any recorded floor vote. Bills\n    from the ongoing Congress are never listed (a bill cosponsored in the first\n    session routinely gets its vote in the second, so listing mid-Congress would\n    be a false \"went nowhere\").\n\nRead this list with its base rate: MOST introduced bills never receive a floor\nvote in any Congress, and floor scheduling is controlled by chamber leadership,\nnot by a bill's cosponsors. This list is therefore expected to contain most of\nany member's cosponsorships; it is provided for inspection, not as an indicator\nabout the member, and must always be shown against its denominator (of N bills\ncosponsored), never as a bare count or a headline. The site draws no conclusion.\nSource: data/legislation (cosponsorships) + data/votes (rolls)."
     },
     "cosponsored": {
+      "digest": "a9647db58962e92f",
       "label": "Bills cosponsored",
       "text": "Count of bills and resolutions the member cosponsored (added their name to,\nand had not withdrawn) in the covered Congresses. Floor amendments are not\ncounted. Source: the member's cosponsored-legislation record (data/legislation)."
     },
     "enacted_rate": {
+      "digest": "3013543d6dc1e05e",
       "label": "Enacted rate",
       "text": "Of the bills the member sponsored in the covered Congresses, the share that\nbecame law UNDER THEIR OWN BILL NUMBER (official latest action \"Became Public\nLaw\"). This understates a member's legislative influence: much enacted text\nmoves by being folded into another vehicle (an omnibus, an appropriations act,\nthe NDAA), which this figure cannot and does not attribute. pct is null when\nthe member sponsored nothing. Source: data/legislation."
     },
     "named_measure_mismatch": {
+      "digest": "31ad4ffbfb9e35a3",
       "label": "Named-measure mismatch",
       "text": "A factual list — never a score, adjacency language only — of cases where a\nmember made a SPECIFIC public statement about a named measure and their own\nrecorded passage vote on that measure took the opposite side.\n\nA statement qualifies only when the owner has curated it to specificity level 2\nor 3, assigned a stance (support or oppose), AND named a measure that resolves to\na bill id (the D9 pairing rule; see paired_bill_ids). support means the member's\nexpected passage vote is Yea, oppose means Nay. For every passage-class roll the\nmember cast Yea or Nay on that bill, an entry is emitted when the recorded\nposition is the OPPOSITE of the stated one.\n\nDeliberately excluded (never guessed at): statements with no owner-assigned stance\n(stated_position is null), measures that do not resolve to a bill id, and every\nnon-passage vote class (a Nay on a procedural motion is not a vote against the\nbill). Each entry carries the statement, the roll call, and both dates so a reader\ncan check the record directly; NO sequence or motive is claimed — the statement\nand the vote are simply placed adjacent. The site draws no conclusion. This is\nempty until qualifying statements are curated (content = H8). Source:\ndata/statements (stance + pairing) + data/votes (passage positions)."
     },
     "party_unity": {
+      "digest": "3063ae884f47c537",
       "label": "Party unity",
       "text": "Share of substantive votes on which the member voted with the majority of\ntheir own party.\n\nSubstantive votes are the classes passage, amendment, veto_override, and\nnomination — procedural votes are excluded (a party's floor-management votes\nare not policy agreement). For each such roll the member cast Yea or Nay on\n(Present and Not Voting are excluded — attendance owns those), the member's\nparty's majority is the larger of that party's Yea vs Nay among the members who\ncast a position (from the aggregate party_totals). A member is counted as\nagreeing when their Yea/Nay matches that majority side. Rolls where the\nmember's party split evenly are excluded (no majority) and reported as\n`excluded_ties`. The member's party is the one they held on the roll's date.\npct is null when the member has no substantive votes. Source: data/votes\n(positions + aggregate party_totals). We do not collect individual non-Mississippi\nmembers' positions; only the per-party aggregate makes this recomputable."
     },
     "sponsored": {
+      "digest": "9d01fc1daa0fd37c",
       "label": "Bills sponsored",
       "text": "Count of bills and resolutions the member sponsored (was the primary\nsponsor of) in the covered Congresses. Floor amendments are not counted (they\nare not bills). Source: the member's sponsored-legislation record\n(data/legislation)."
     }
-  }
+  },
+  "schema_version": 1
 }

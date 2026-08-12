@@ -133,10 +133,16 @@ carries **no live latest-action field** so the file diffs only on real events
 Schema: `data/schema/metrics.schema.json` (model `MetricsFile`). Deterministic, no
 wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
 
-- `methodology`: `{ <metric_key>: { label, text } }` — `text` is the metric
-  function's docstring verbatim (formula, inclusions/exclusions, source). The
-  methods page renders one section per key (asserted equal by
-  `check-metrics-sections.mjs`).
+- `schema_version`: integer formula-generation stamp (R-3/D45), bumped by hand on any
+  *semantic* change to how metrics are computed — including changes to the shared
+  helpers the per-metric `digest` does not cover. Numbers carrying different
+  `schema_version`s are not guaranteed formula-comparable.
+- `methodology`: `{ <metric_key>: { label, text, digest } }` — `text` is the metric
+  function's docstring verbatim (formula, inclusions/exclusions, source); `digest` is
+  the formula identity, `sha256(newline-normalized function source)[:16]`, so any
+  published value states exactly which formula produced it (it bumps on any change to
+  that function's body). The methods page renders one section per key (asserted equal
+  by `check-metrics-sections.mjs`).
 - `members`: `{ <bioguide>: MemberMetrics }` with the 8 keys `attendance`,
   `party_unity`, `sponsored`, `cosponsored`, `enacted_rate`, `cosponsor_vote_gap`,
   `named_measure_mismatch`, `absence_context`. `pct` fields are `null` on a zero
@@ -223,3 +229,44 @@ persist the other ~429 members' positions — so the chamber totals cannot be
 re-derived from this dataset. The totals are carried as the chamber figure, and
 the subset check (invariant 2) is the honest recompute-and-match tying our
 per-member data to it. This is a scope choice (the covered set), not a data gap.
+
+---
+
+## Historical retention — the metric time-series (R-3/D45)
+
+Metrics need to be trend-able and re-weightable retroactively without skewing
+long-term series. Two guarantees make that possible now, before any grading exists;
+building them later would require reconstruction.
+
+**Git is the series store.** Every nightly commit of `data/metrics.json` is a dated
+snapshot, anchored by that commit's `data/manifest.json.generated_at`. No separate
+`data/metrics/history/` directory is materialized — that is deferred until a trend UI
+needs it (D45).
+
+**Recompute-at-a-past-commit is a supported contract.** Because `metrics.py` is pure
+and reads only the committed dataset, a past state is reproducible:
+
+```
+git checkout <sha> -- data/           # restore that snapshot's inputs
+uv run ingest metrics                 # recompute
+# → data/metrics.json byte-identical to the file committed at <sha>
+```
+
+This is the D40 `build() == committed` equivalence extended along the time axis. The
+per-metric `digest` and `schema_version` in each snapshot tell a later re-weighting
+whether two historical numbers were produced by the same formula (comparable) or not.
+
+**Extracting the series:** `uv run ingest metrics history <bioguide> [--metric <key>]`
+walks the git history of `metrics.json` and prints, oldest→newest, one JSON row per
+snapshot:
+
+```json
+{ "commit": "<sha>", "generated_at": "<iso8601|null>",
+  "schema_version": 1, "metrics": { …the member's MemberMetrics… } }
+```
+
+It is a **reporting** tool (reads git only; not part of the build/export path, so it
+is exempt from the no-network/no-wall-clock rules that bind `build()`), and it emits
+the recorded values verbatim — no aggregation, ranking, or score. Snapshots where the
+member is absent are skipped; snapshots predating R-3 carry `schema_version: null` and
+no digests, and parse leniently.

@@ -245,12 +245,18 @@ class MemberMetrics(_Strict):
 class MetricMethodology(_Strict):
     label: str
     text: str  # the metric function's docstring, verbatim — the methodology-page copy
+    digest: str  # formula identity: newline-normalized sha256(source)[:16] of the
+    # metric function (R-3/D45). Bumps on ANY change to that function's body, so a
+    # published number always states which formula produced it. It does NOT cover
+    # shared `_`-helpers — the manual `schema_version` bump is the contract for those.
 
 
 class MetricsFile(_Strict):
     """data/metrics.json. `methodology` keys == `members[*]` metric keys == the
     methodology-page section ids (asserted by test). No wall-clock (determinism)."""
 
+    schema_version: int  # formula-generation stamp (R-3/D45), manually bumped on any
+    # semantic formula change; the coarse guard paired with per-metric `digest`.
     methodology: dict[str, MetricMethodology]
     members: dict[str, MemberMetrics]
 

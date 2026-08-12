@@ -6,7 +6,10 @@ metric-key set == the published-model fields.
 
 from __future__ import annotations
 
+import inspect
 import json
+
+import pytest
 
 from ingest import metrics
 from ingest.cache import repo_root
@@ -206,3 +209,55 @@ def test_committed_metrics_schema_valid() -> None:
     MetricsFile.model_validate(
         json.loads((repo_root() / "data" / "metrics.json").read_text(encoding="utf-8"))
     )
+
+
+# --- R-3/D45: formula identity + time-series ------------------------------
+
+_HISTORY_MEMBER = "E000235"  # a covered member present in data/metrics.json
+
+
+def test_metrics_carry_formula_identity() -> None:
+    built = metrics.build().model_dump()
+    assert isinstance(built["schema_version"], int)
+    for key, meth in built["methodology"].items():
+        digest = meth["digest"]
+        assert len(digest) == 16 and all(c in "0123456789abcdef" for c in digest), key
+    # The committed file must carry the same identity (recompute-and-match, but for
+    # the new fields specifically).
+    committed = json.loads((repo_root() / "data" / "metrics.json").read_text(encoding="utf-8"))
+    assert committed["schema_version"] == built["schema_version"]
+    assert {k: v["digest"] for k, v in committed["methodology"].items()} == {
+        k: v["digest"] for k, v in built["methodology"].items()
+    }
+
+
+def test_formula_digest_is_newline_normalized(monkeypatch) -> None:
+    # A Windows-dev checkout (autocrlf → CRLF on disk) and CI (LF) must produce the
+    # SAME digest, or metrics.json — and the D40 build()==committed determinism —
+    # would differ per platform. The digest normalizes newlines before hashing.
+    lf_src = inspect.getsource(metrics.attendance).replace("\r\n", "\n").replace("\r", "\n")
+    crlf_src = lf_src.replace("\n", "\r\n")
+
+    monkeypatch.setattr(metrics.inspect, "getsource", lambda _fn: lf_src)
+    lf_digest = metrics._formula_digest(metrics.attendance)
+    monkeypatch.setattr(metrics.inspect, "getsource", lambda _fn: crlf_src)
+    crlf_digest = metrics._formula_digest(metrics.attendance)
+    assert lf_digest == crlf_digest
+
+
+def test_metrics_history_reproduces_head() -> None:
+    series = metrics.history(_HISTORY_MEMBER)
+    if not series:
+        pytest.skip("no committed data/metrics.json history in this checkout")
+    newest = series[-1]
+    assert set(newest) == {"commit", "generated_at", "schema_version", "metrics"}
+    # The newest snapshot is HEAD's committed metrics.json; its member values are the
+    # ones build() recomputes (R-3 left the members section byte-unchanged).
+    assert newest["metrics"] == metrics.build().model_dump()["members"][_HISTORY_MEMBER]
+
+
+def test_metrics_history_metric_filter_narrows() -> None:
+    series = metrics.history(_HISTORY_MEMBER, metric="attendance")
+    if not series:
+        pytest.skip("no committed data/metrics.json history in this checkout")
+    assert set(series[-1]["metrics"]) == {"attendance"}

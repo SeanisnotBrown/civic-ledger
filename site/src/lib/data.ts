@@ -45,8 +45,12 @@ export interface Manifest {
   generated_at: string; commit: string; congresses: number[]; covered_state: string;
   counts: Record<string, unknown>;
 }
-export interface MetricMethodology { label: string; text: string; }
+// `digest` is the metric function's formula identity (R-3/D45); `schema_version`
+// on Metrics is the formula-generation stamp. Both are provenance for cross-time
+// comparison — nothing on the site renders a score from them.
+export interface MetricMethodology { label: string; text: string; digest: string; }
 export interface Metrics {
+  schema_version: number;
   // methodology keys == per-member metric keys == methods-page section ids.
   methodology: Record<string, MetricMethodology>;
   members: Record<string, Record<string, unknown>>;

@@ -645,3 +645,35 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   offline-deterministic `uv run checks` suite; the `archive-links.yml` workflow commits the
   regenerated report first (so the next build excludes a newly-dead link) and then propagates
   the nonzero exit as the GitHub failure notification (the alert channel, like nightly).
+
+### R-3 (2026-08-12) — Historical-retention scaffolding (review H-2)
+
+- **D45 — metrics carry formula identity, and git is the supported metric time-series;
+  a materialized history directory is deferred.** The scope doc's "adjust grading
+  historically so long-term metrics are not skewed" needs two things decided *before* any
+  grading engine exists, or they cost a reconstruction later. (a) **Formula identity on
+  `data/metrics.json`:** a top-level `schema_version` integer (manually bumped on any
+  semantic formula change — the coarse guard that also covers shared `_`-helpers) and a
+  per-metric `digest` = `sha256(newline-normalized function source)[:16]` in each
+  `methodology` entry (auto-bumps on any change to that metric function's body). Together
+  they let a future re-weighting know whether two historical numbers are formula-comparable.
+  The digest is newline-normalized *before* hashing so a Windows-dev CRLF checkout and CI's
+  LF produce the same digest — otherwise `metrics.json`, and the D40 `build() == committed`
+  determinism, would differ per platform. Both fields are pure/offline, so D40 still holds
+  (committed `metrics.json` + schema regenerated; existing values byte-unchanged). Known,
+  documented limitation: the digest covers the metric function's own source only, which is
+  why the manual `schema_version` bump is contractually required for helper changes.
+  (b) **Time-series contract:** git is the store — every nightly commit of `metrics.json`
+  is a dated snapshot anchored by that commit's `manifest.generated_at`. Made a *supported*
+  contract, not an accident: `git checkout <sha> -- data/ && uv run ingest metrics`
+  reproduces that commit's file byte-for-byte (D40 extended along the time axis, documented
+  in `docs/data-contract.md`), and a new reporting command `ingest metrics history
+  <bioguide> [--metric <key>]` extracts the `(commit, generated_at, schema_version, metrics)`
+  series from git history. That command reads git only and is NOT on the build/export path,
+  so it is exempt from the no-network/no-wall-clock rules that bind `build()`; it emits the
+  recorded values verbatim and computes no composite, ranking, or score — preserving Tier-2
+  discipline and the D19 line (grades are the reader's to compute, never the site's).
+  (c) **Deferred:** a materialized `data/metrics/history/` directory buys nothing until a
+  trend UI needs random-access to old snapshots; git already holds the series, so it waits.
+  The **grading engine itself remains an owner escalation (§7)** and is deliberately NOT
+  built here — this is scaffolding only.

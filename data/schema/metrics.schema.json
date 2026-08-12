@@ -194,6 +194,10 @@
     "MetricMethodology": {
       "additionalProperties": false,
       "properties": {
+        "digest": {
+          "title": "Digest",
+          "type": "string"
+        },
         "label": {
           "title": "Label",
           "type": "string"
@@ -205,7 +209,8 @@
       },
       "required": [
         "label",
-        "text"
+        "text",
+        "digest"
       ],
       "title": "MetricMethodology",
       "type": "object"
@@ -322,9 +327,14 @@
       },
       "title": "Methodology",
       "type": "object"
+    },
+    "schema_version": {
+      "title": "Schema Version",
+      "type": "integer"
     }
   },
   "required": [
+    "schema_version",
     "methodology",
     "members"
   ],

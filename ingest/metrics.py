@@ -18,12 +18,20 @@ conclusions; it publishes the recorded facts and how each was computed.
 
 from __future__ import annotations
 
+import hashlib
 import inspect
 import json
+import subprocess
 from dataclasses import dataclass, field
 
 from ingest.cache import repo_root
 from ingest.models import MetricMethodology, MetricsFile
+
+# Formula-generation stamp (R-3/D45). Bump this integer by hand on any SEMANTIC
+# change to how a metric is computed — including changes to the shared `_`-helpers
+# the per-metric `digest` does not cover. It is the coarse, human-meaningful guard
+# that says "numbers before and after this bump are not formula-comparable."
+FORMULA_SCHEMA_VERSION: int = 1
 
 # Substantive vote classes for party unity (§A1; excludes `procedural` — the
 # R-RULE/R-RES split in INC-5 exists precisely so special rules don't count here).
@@ -325,6 +333,18 @@ METRICS = {
 }
 
 
+def _formula_digest(fn) -> str:
+    """Formula identity for one metric: sha256 of the function's source, truncated.
+
+    Newlines are normalized to LF FIRST so the digest is identical on a Windows dev
+    checkout (autocrlf → CRLF on disk) and on CI (Ubuntu, LF) — otherwise the digest,
+    and therefore metrics.json, would differ per platform and break the D40
+    `build() == committed` determinism contract. Covers this function's body only,
+    not shared `_`-helpers (see FORMULA_SCHEMA_VERSION)."""
+    src = inspect.getsource(fn).replace("\r\n", "\n").replace("\r", "\n")
+    return hashlib.sha256(src.encode("utf-8")).hexdigest()[:16]
+
+
 def build() -> MetricsFile:
     """Compute every metric for every covered member from the committed dataset."""
     ctx = _load()
@@ -333,13 +353,106 @@ def build() -> MetricsFile:
         for mid in sorted(ctx.members)
     }
     methodology = {
-        key: MetricMethodology(label=METRIC_LABELS[key], text=inspect.cleandoc(fn.__doc__ or ""))
+        key: MetricMethodology(
+            label=METRIC_LABELS[key],
+            text=inspect.cleandoc(fn.__doc__ or ""),
+            digest=_formula_digest(fn),
+        )
         for key, fn in METRICS.items()
     }
-    return MetricsFile(methodology=methodology, members=members)
+    return MetricsFile(
+        schema_version=FORMULA_SCHEMA_VERSION, methodology=methodology, members=members
+    )
+
+
+# --- Time-series extraction (R-3/D45) -------------------------------------
+# git IS the series store: every nightly commit of data/metrics.json is a dated
+# snapshot. This reads that series out for one member — a REPORTING tool, NOT part
+# of the build/export path, so it is exempt from the no-network/no-wall-clock rules
+# that bind build(); it only reads git and never writes the published dataset. It
+# emits the RECORDED values verbatim (with each snapshot's schema_version + digests)
+# and computes no composite, ranking, or score — the consumer decides what to trend.
+
+
+def _git_commits_for(relpath: str) -> list[str]:
+    """Commit shas that touched `relpath`, oldest→newest (empty if never tracked)."""
+    out = subprocess.run(
+        ["git", "log", "--follow", "--format=%H", "--", relpath],
+        cwd=repo_root(), capture_output=True, text=True, check=True,
+    )
+    return list(reversed(out.stdout.split()))
+
+
+def _git_show(sha: str, relpath: str) -> str | None:
+    """Blob of `relpath` at `sha`, or None if it did not exist there."""
+    out = subprocess.run(
+        ["git", "show", f"{sha}:{relpath}"],
+        cwd=repo_root(), capture_output=True, text=True, check=False,
+    )
+    return out.stdout if out.returncode == 0 else None
+
+
+def history(member_id: str, metric: str | None = None) -> list[dict]:
+    """Extract the `(commit, generated_at, schema_version, metrics)` series for one
+    member across every committed snapshot of data/metrics.json, oldest→newest. A
+    commit where the member is absent (or the file predates them) is skipped. Old
+    snapshots predating R-3 simply carry `schema_version: null` and no per-metric
+    digests — parsing stays lenient so the tool works across the schema change.
+    `metric` narrows the emitted values to a single metric key."""
+    series: list[dict] = []
+    for sha in _git_commits_for("data/metrics.json"):
+        blob = _git_show(sha, "data/metrics.json")
+        if blob is None:
+            continue
+        try:
+            snapshot = json.loads(blob)
+        except json.JSONDecodeError:
+            continue
+        member = snapshot.get("members", {}).get(member_id)
+        if member is None:
+            continue  # member not covered in this snapshot
+        if metric is not None:
+            if metric not in member:
+                continue
+            values = {metric: member[metric]}
+        else:
+            values = member
+        manifest = _git_show(sha, "data/manifest.json")
+        generated_at = None
+        if manifest is not None:
+            try:
+                generated_at = json.loads(manifest).get("generated_at")
+            except json.JSONDecodeError:
+                pass
+        series.append({
+            "commit": sha,
+            "generated_at": generated_at,
+            "schema_version": snapshot.get("schema_version"),
+            "metrics": values,
+        })
+    return series
 
 
 def run(argv: list[str] | None = None) -> int:
+    args = argv or []
+    if args and args[0] == "history":
+        rest = args[1:]
+        metric: str | None = None
+        if "--metric" in rest:
+            i = rest.index("--metric")
+            metric = rest[i + 1] if i + 1 < len(rest) else None
+            rest = rest[:i] + rest[i + 2:]
+        if not rest:
+            print("usage: ingest metrics history <bioguide> [--metric <key>]")
+            return 2
+        member_id = rest[0]
+        if metric is not None and metric not in METRICS:
+            print(f"unknown metric '{metric}'; keys: {', '.join(sorted(METRICS))}")
+            return 2
+        series = history(member_id, metric)
+        print(json.dumps(series, indent=2, ensure_ascii=False))
+        return 0
+
     from ingest.export import export_metrics
 
     path = export_metrics(build())

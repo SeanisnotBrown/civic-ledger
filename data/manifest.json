@@ -1,0 +1,29 @@
+{
+  "commit": "e15b2fa",
+  "congresses": [
+    118,
+    119
+  ],
+  "counts": {
+    "absences": 243,
+    "bills": 0,
+    "member_votes": 10626,
+    "members": 6,
+    "non_position_rollcalls": 20,
+    "rollcalls": 3467,
+    "rollcalls_by_chamber": {
+      "house": 1886,
+      "senate": 1581
+    },
+    "rollcalls_by_vote_class": {
+      "amendment": 811,
+      "nomination": 447,
+      "other": 24,
+      "passage": 886,
+      "procedural": 1285,
+      "veto_override": 14
+    }
+  },
+  "covered_state": "MS",
+  "generated_at": "2026-08-12T13:04:34Z"
+}

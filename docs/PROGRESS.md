@@ -3,9 +3,9 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-6 session (absences & personal explanations).
-**Git:** INC-1..INC-5 + MS GO-gate closed & pushed (all CI green). INC-6 being
-committed now — confirm its CI is green next session.
+**Last updated:** 2026-08-12, end of INC-7 session (JSON export contracts).
+**Git:** INC-1..INC-6 closed & pushed (all CI green — INC-6's run confirmed green
+this session). INC-7 being committed now — confirm its CI is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 > **PIPELINE ORDER (load-bearing, D24):** `ingest {house,senate}-votes` → `ingest
@@ -17,6 +17,30 @@ committed now — confirm its CI is green next session.
 
 ## Current increment
 
+**INC-7 — JSON export contracts — ✅ COMPLETE.**
+The published dataset is now a stable, documented, deterministic contract.
+`ingest/export.py` gains `export_bill()`, JSON-Schema generation from the pydantic
+models (`data/schema/{member,vote,bill,absence}.schema.json` — the vote file maps
+to a composite `VoteFile` wrapper, not a bare `RollCall`), and a manifest builder.
+`uv run export` is **offline** and regenerates only the DERIVED artifacts (schemas +
+`data/manifest.json`) from the committed dataset — it never re-ingests (that would
+reset `vote_class`, D24). The manifest is the single wall-clock/commit carrier (§6.3);
+both are injected (`build_manifest(generated_at, commit)`), `main()` resolves real
+UTC + `git rev-parse --short HEAD` (env overrides `CIVIC_GENERATED_AT`/`CIVIC_COMMIT`).
+New `uv run verify-recompute` (`ingest/verify_recompute.py`, also a pytest test)
+checks **coverage + subset + absence-reciprocity** over 100% of 3,467 rolls — the
+honest recompute-and-match given MS-only `member_votes` vs chamber-wide `totals`
+(**D26** resolves the D22 tension; full rationale in `docs/data-contract.md`).
+`docs/data-contract.md` documents every file + field, the `non_position` special
+case, the absence filename convention, and what is/isn't recomputable. Design in
+**D26**. See "INC-7 output" below.
+
+**Next: INC-8 — Site MVP — NOT STARTED.** Member index, member detail (vote list
+w/ class badges), single-vote page, single-bill page; §6.7 copy rules in full.
+`astro build` from data alone (no network at build); axe-core a11y; 380px layout;
+every rendered claim traces to a `source_url` in data. Unblocked.
+
+**(historical — INC-6)**
 **INC-6 — Absences & personal explanations — ✅ COMPLETE (build); content = H9.**
 Queue → approve → publish pipeline for stated absence reasons. `uv run curate
 absences search` searches CREC (govinfo) for the covered delegation's "Personal
@@ -32,11 +56,6 @@ builder ships the tool, the owner supplies content (D25); the machinery is prove
 end-to-end by a test approving the real Guest granule onto a tmp stub. `data/absences/`
 stays `stated_reason: null` until the owner acts. Banned-words excludes the queue
 (D25). Design in **D25**. See "INC-6 output" below.
-
-**Next: INC-7 — JSON export contracts — NOT STARTED.** `export.py` complete for
-members/votes/bills/absences; `data/manifest.json` (counts, coverage, generated_at,
-commit); `docs/data-contract.md`; `verify-recompute` fresh-clone script
-(recompute vote totals from MemberVotes, match RollCall.totals 100%). Unblocked.
 
 **(historical — INC-5)**
 **INC-5 — vote_class classifier (§A1) — ✅ COMPLETE.**
@@ -226,31 +245,57 @@ RESOLVED callout above). 11 samples committed.
 - **Queued, pending H9:** `data/quality/absence-queue/CREC-2023-01-13-pt1-PgE29-4.json`
   (Guest). Owner approval is H9; `data/absences/` reasons stay null until then.
 
-## INC-7 — where to pick up
+## INC-7 output (done — the public export contract)
 
-Spec: IMPLEMENTATION.md §7 "INC-7". Goal: a stable, documented, deterministic public
-dataset. Steps:
-1. `export.py` complete for members/votes/bills/absences (members/votes/absences
-   already export via their ingests; add any missing record types + a single
-   `export` entry that regenerates all). Keep `_dumps` determinism.
-2. **`data/manifest.json`** — counts, congress coverage, `generated_at`, and the
-   commit sha. **This is the ONE place a wall-clock/commit value lives** (§6.3): every
-   record stays wall-clock-free so nightly diffs show only real changes; the manifest
-   carries the timestamp. So `generated_at`/commit must be injected (env/arg), not
-   read at import, or the double-export test breaks.
-3. **`docs/data-contract.md`** — every file + field, for third-party recompute.
-4. **`verify-recompute`** — a fresh-clone script (new console entry) that recomputes
-   each RollCall's totals from its `member_votes`… **BUT NOTE:** votes export only the
-   **covered MS** `member_votes`, while `RollCall.totals` is the **chamber-wide** tally
-   (D22). So "recompute totals from MemberVotes" can't mean the embedded MS rows.
-   Resolve in INC-7: either (a) recompute a *coverage* invariant (every covered member
-   has exactly one position per eligible roll — overlaps symmetry), or (b) persist the
-   raw chamber tally to recompute against. Pick and document; the brief's intent is
-   "third party can recompute and match", so (b) or a documented (a) both satisfy it.
+- **`ingest/export.py`** — `export_bill()` (+ the `Bill` schema; no bill data yet,
+  ships so the contract is complete for every Tier-1 type — bill ingest = INC-8);
+  `export_schemas()` writes `data/schema/{member,vote,bill,absence}.schema.json` from
+  the pydantic models (the vote file maps to a composite **`VoteFile`** wrapper, not a
+  bare `RollCall`); `build_manifest(generated_at, commit)` / `export_manifest()` with
+  both wall-clock values **injected**; offline `main()` regenerates schemas + manifest
+  from committed data (resolves real UTC + `git rev-parse --short HEAD`; env overrides
+  `CIVIC_GENERATED_AT` / `CIVIC_COMMIT`). `main()` never re-ingests (D24 reset trap).
+- **`ingest/verify_recompute.py`** (new `verify-recompute` console entry) —
+  `check_dataset()` runs 3 invariants over 100% of rolls: (1) coverage (member_votes
+  accounts every covered member per eligible roll), (2) subset (MS position count <=
+  chamber `totals[cat]`), (3) absence reciprocity (not_voting vote <-> absence stub,
+  both ways). **D26** = the resolution of the D22 recompute tension (chamber totals
+  are not re-derivable from MS-only member_votes; the subset check is the honest tie).
+  Reuses `checks/symmetry._covered` so covered-set logic never drifts.
+- **`data/manifest.json`** — generated_at, commit, congresses, covered_state, and a
+  `counts` block (members 6, rollcalls 3,467 [house 1,886 / senate 1,581], member_votes
+  10,626, absences 243, bills 0, non_position 20, by-vote-class). The ONE wall-clock file.
+- **`data/schema/*.schema.json`** — 4 committed JSON Schemas; a test fails if they
+  drift from a fresh `export` (re-run `uv run export` to refresh).
+- **`docs/data-contract.md`** — every file + field, the `non_position` sentinel, the
+  `{member}--{roll}` absence filename, and the recompute-and-match definition + limit.
+- Tests: **`tests/test_export_contracts.py` (9)** — manifest determinism + injected
+  fields + committed-manifest-matches-recount, schema determinism + composite vote
+  schema + committed-schemas-current, bill export round-trip, verify-recompute green
+  on the committed dataset (× entrypoint). 86 → 95. Design in **D26**.
 
-**INC-7 acceptance:** double-export byte-identical; JSON Schema files generated from
-pydantic and committed; `verify-recompute` matches 100% of roll calls (per the
-resolved definition above).
+## INC-8 — where to pick up
+
+Spec: IMPLEMENTATION.md §7 "INC-8" + §6.7 (UI copy rules, mandatory). Goal: the site
+MVP — member index, member detail (vote list with **vote_class badges**, tooltips from
+the glossary), single-vote page (`v/[roll]`), single-bill page (`b/[bill]`). Astro 5 +
+Tailwind + Preact islands already scaffolded (INC-0). Build from `data/**` at build
+time ONLY (no network at build). §6.7 is load-bearing: every vote row shows position,
+date, roll #, vote_class badge, verbatim question, bill link, official record link;
+bill titles carry the "official short title — written by drafters" ⓘ affordance;
+absences show verbatim reason + CREC link OR the exact string "No explanation on
+record."; every footer carries data-last-updated (from `manifest.json`), methodology +
+corrections links, and the build commit. Mobile-first at 380px.
+
+**Note for INC-8:** bills are NOT yet ingested (no `data/bills/*.json`). The bill page
+needs a minimal bill ingest (Congress.gov bill detail → `Bill` records via `export_bill`,
+including `cboCostEstimates` per D15) OR render bill *links* from `rollcall.bill_id`
+only and defer full bill pages. Decide at INC-8 start; the `Bill` schema + exporter are
+ready. The `_dumps` serializer + `data/schema/` contract are the source of truth for shapes.
+
+**INC-8 acceptance:** `astro build` succeeds from data alone; axe-core CI a11y check
+passes; 380px layout screenshot test; every rendered claim traces to a `source_url`
+present in data.
 
 ---
 
@@ -265,8 +310,8 @@ resolved definition above).
 | INC-4 | Senate vote ingest ∥ | ✅ done | 1,581 rolls (contiguous 1..N per session, 119/1=659), 10/10 detail cross-check + menu-tally check, symmetry OK both chambers; 65 tests |
 | INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
 | INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
-| INC-7 | JSON export contracts | **not started (next)** | — |
-| INC-8 | Site MVP | not started | — |
+| INC-7 | JSON export contracts | ✅ done | double-export byte-identical (manifest + 4 schemas); `verify-recompute` matches 100% of 3,467 rolls (coverage+subset+reciprocity, D26); manifest + data-contract.md committed; 95 tests |
+| INC-8 | Site MVP | **not started (next)** | — |
 | INC-9 | Automation + deploy (PUBLIC MVP) | not started | blocked by H4, H5 |
 | INC-10 | Metrics + methodology | not started | — |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
@@ -297,7 +342,15 @@ resolved definition above).
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0..INC-6 output)
+## What exists in the repo now (INC-0..INC-7 output)
+
+**INC-7 additions:** `ingest/verify_recompute.py` (the `verify-recompute` console
+entry + `check_dataset`), the `VoteFile` wrapper + `export_bill`/`export_schemas`/
+`build_manifest`/`export_manifest`/offline `main()` in `ingest/export.py`, the
+`verify-recompute` script in `pyproject.toml`, `docs/data-contract.md`,
+`tests/test_export_contracts.py` (9), and the committed derived artifacts
+`data/manifest.json` + `data/schema/{member,vote,bill,absence}.schema.json`. D26 in
+`decisions.md`. Test count 86 → 95.
 
 **INC-6 additions:** `curation/absences.py` (search→verify→queue→approve pipeline),
 `crec_personal_explanations`/`granule_text`/`granule_url` in `ingest/sources/govinfo.py`,

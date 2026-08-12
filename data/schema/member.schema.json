@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "Term": {
+      "additionalProperties": false,
+      "description": "One stint in office. Full history is kept and party switches preserved,\nso `party` is per-term (§5), not just the member's current affiliation.",
+      "properties": {
+        "chamber": {
+          "enum": [
+            "house",
+            "senate"
+          ],
+          "title": "Chamber",
+          "type": "string"
+        },
+        "end": {
+          "title": "End",
+          "type": "string"
+        },
+        "party": {
+          "enum": [
+            "D",
+            "R",
+            "I"
+          ],
+          "title": "Party",
+          "type": "string"
+        },
+        "start": {
+          "title": "Start",
+          "type": "string"
+        }
+      },
+      "required": [
+        "start",
+        "end",
+        "party",
+        "chamber"
+      ],
+      "title": "Term",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "chamber": {
+      "enum": [
+        "house",
+        "senate"
+      ],
+      "title": "Chamber",
+      "type": "string"
+    },
+    "district": {
+      "anyOf": [
+        {
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "District"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "ids": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Ids",
+      "type": "object"
+    },
+    "name": {
+      "title": "Name",
+      "type": "string"
+    },
+    "party": {
+      "enum": [
+        "D",
+        "R",
+        "I"
+      ],
+      "title": "Party",
+      "type": "string"
+    },
+    "serving": {
+      "title": "Serving",
+      "type": "boolean"
+    },
+    "state": {
+      "title": "State",
+      "type": "string"
+    },
+    "terms": {
+      "items": {
+        "$ref": "#/$defs/Term"
+      },
+      "title": "Terms",
+      "type": "array"
+    }
+  },
+  "required": [
+    "id",
+    "ids",
+    "name",
+    "party",
+    "state",
+    "district",
+    "chamber",
+    "serving",
+    "terms"
+  ],
+  "title": "Member",
+  "type": "object"
+}

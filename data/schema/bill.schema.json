@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "CboRef": {
+      "additionalProperties": false,
+      "description": "Link-through only (§5): a CBO cost estimate lives at cbo.gov.",
+      "properties": {
+        "date": {
+          "title": "Date",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "title",
+        "date"
+      ],
+      "title": "CboRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "cbo_estimates": {
+      "items": {
+        "$ref": "#/$defs/CboRef"
+      },
+      "title": "Cbo Estimates",
+      "type": "array"
+    },
+    "congress": {
+      "title": "Congress",
+      "type": "integer"
+    },
+    "cosponsor_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Cosponsor Ids",
+      "type": "array"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "latest_action": {
+      "title": "Latest Action",
+      "type": "string"
+    },
+    "latest_action_date": {
+      "title": "Latest Action Date",
+      "type": "string"
+    },
+    "number": {
+      "title": "Number",
+      "type": "integer"
+    },
+    "policy_area": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Policy Area"
+    },
+    "source_url": {
+      "title": "Source Url",
+      "type": "string"
+    },
+    "sponsor_id": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Sponsor Id"
+    },
+    "subjects": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Subjects",
+      "type": "array"
+    },
+    "title_official": {
+      "title": "Title Official",
+      "type": "string"
+    },
+    "type": {
+      "title": "Type",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "congress",
+    "type",
+    "number",
+    "title_official",
+    "policy_area",
+    "subjects",
+    "sponsor_id",
+    "cosponsor_ids",
+    "latest_action",
+    "latest_action_date",
+    "cbo_estimates",
+    "source_url"
+  ],
+  "title": "Bill",
+  "type": "object"
+}

@@ -380,3 +380,50 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   with ASCII "->". Windows' console codec can't encode it and crashed `ingest`/
   `curate` help (a latent bug from INC-4/5; CI on UTF-8 never hit it). Em-dash/§ are
   cp1252-safe and kept. Rule of thumb going forward: stdout stays ASCII.
+
+### INC-7 (2026-08-12) — JSON export contracts
+
+- **D26 — `verify-recompute` checks a coverage/subset/reciprocity match, NOT a
+  chamber-total recompute (resolves the D22 tension).** The brief's "third party can
+  recompute and match" (§5.2) meets a hard scope limit: `RollCall.totals` is the
+  chamber-wide tally (House: counted from the full results list at ingest; Senate:
+  cross-checked vs the menu tally — D22/D23), but we persist `member_votes` for the
+  covered MS delegation only. So totals are structurally not re-derivable from the
+  published dataset — the only "option (b)" (persist all ~435 positions) contradicts
+  the covered-set design and republishes data that isn't ours to curate. `uv run
+  verify-recompute` (also a pytest test, satisfying §8's "recompute-and-match script
+  as a test") instead verifies three invariants over 100% of rolls: (1) coverage —
+  every covered member has exactly one `member_votes` position per eligible
+  (`non_position`-excluded) roll; (2) subset — per category, MS position count <=
+  `totals[category]`; (3) absence reciprocity — every `not_voting` vote <-> its
+  absence stub, both directions. Invariant (2) is the honest tie between our
+  per-member data and the chamber figure. Documented in `docs/data-contract.md`.
+- **A not_voting member appears in BOTH `member_votes` (position `not_voting`) AND an
+  absence stub — that is the reciprocal design, not a conflict.** INC-3/4 record every
+  covered member in `member_votes` for every eligible roll (so symmetry's
+  `got == expected` holds), and additionally emit an `Absence` stub per not_voting so
+  INC-6 curation can attach a stated_reason without touching the vote file. The first
+  cut of the coverage invariant flagged all 224 not_voting instances as "both voted
+  and absent"; corrected so coverage is accounted by `member_votes` alone and the
+  vote<->stub correspondence is invariant (3).
+- **The manifest is the single wall-clock/commit carrier (§6.3); both are injected,
+  never read inside the builder.** `build_manifest(generated_at, commit)` takes both
+  as args so the double-export determinism test passes fixed values; `export.main()`
+  resolves the real UTC time + `git rev-parse --short HEAD` (env overrides
+  `CIVIC_GENERATED_AT`/`CIVIC_COMMIT` for reproducible/CI runs). `commit` = HEAD at
+  generation time (the code that produced the export), explicitly NOT the commit that
+  will contain the manifest (that sha can't exist yet). The nightly job's per-run
+  manifest timestamp change is expected diff noise; every other record stays
+  wall-clock-free.
+- **`uv run export` is offline and regenerates only DERIVED artifacts (schemas +
+  manifest).** It must never re-run an ingest: that needs the gitignored raw cache +
+  network, and (D24) resets every `vote_class` to `unclassified` until a reclassify.
+  Per-record files are written by their ingests; `export` covers what depends on the
+  whole committed dataset. Keeps the export step network-free in CI.
+- **JSON Schemas describe FILE shapes, not just models.** The vote file is a composite
+  `{rollcall, member_votes}`, so it maps to a `VoteFile` wrapper model, not a bare
+  `RollCall`. Schemas for member/vote/bill/absence are generated from pydantic and
+  committed under `data/schema/`; a test fails if the committed copies drift from a
+  fresh generation (re-run `uv run export`). `export_bill()` + the Bill schema ship now
+  though no bill data exists yet, so the contract is complete for every Tier-1 type
+  (bill ingest lands with INC-8).

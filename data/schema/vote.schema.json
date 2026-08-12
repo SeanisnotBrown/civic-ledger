@@ -1,0 +1,149 @@
+{
+  "$defs": {
+    "MemberVote": {
+      "additionalProperties": false,
+      "properties": {
+        "member_id": {
+          "title": "Member Id",
+          "type": "string"
+        },
+        "position": {
+          "enum": [
+            "yea",
+            "nay",
+            "present",
+            "not_voting"
+          ],
+          "title": "Position",
+          "type": "string"
+        },
+        "rollcall_id": {
+          "title": "Rollcall Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "member_id",
+        "rollcall_id",
+        "position"
+      ],
+      "title": "MemberVote",
+      "type": "object"
+    },
+    "RollCall": {
+      "additionalProperties": false,
+      "properties": {
+        "bill_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Bill Id"
+        },
+        "chamber": {
+          "enum": [
+            "house",
+            "senate"
+          ],
+          "title": "Chamber",
+          "type": "string"
+        },
+        "congress": {
+          "title": "Congress",
+          "type": "integer"
+        },
+        "date": {
+          "title": "Date",
+          "type": "string"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "number": {
+          "title": "Number",
+          "type": "integer"
+        },
+        "question": {
+          "title": "Question",
+          "type": "string"
+        },
+        "result": {
+          "title": "Result",
+          "type": "string"
+        },
+        "session": {
+          "title": "Session",
+          "type": "integer"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "totals": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Totals",
+          "type": "object"
+        },
+        "vote_class": {
+          "enum": [
+            "passage",
+            "amendment",
+            "procedural",
+            "nomination",
+            "veto_override",
+            "other"
+          ],
+          "title": "Vote Class",
+          "type": "string"
+        },
+        "vote_class_rule": {
+          "title": "Vote Class Rule",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "chamber",
+        "congress",
+        "session",
+        "number",
+        "date",
+        "question",
+        "vote_class",
+        "vote_class_rule",
+        "bill_id",
+        "result",
+        "totals",
+        "source_url"
+      ],
+      "title": "RollCall",
+      "type": "object"
+    }
+  },
+  "description": "The composite shape of one data/votes/*.json file: a chamber `RollCall`\nwith the covered delegation's positions embedded. Exists so the file's JSON\nSchema documents the wrapper, not just the inner `RollCall`.",
+  "properties": {
+    "member_votes": {
+      "items": {
+        "$ref": "#/$defs/MemberVote"
+      },
+      "title": "Member Votes",
+      "type": "array"
+    },
+    "rollcall": {
+      "$ref": "#/$defs/RollCall"
+    }
+  },
+  "required": [
+    "rollcall",
+    "member_votes"
+  ],
+  "title": "VoteFile",
+  "type": "object"
+}

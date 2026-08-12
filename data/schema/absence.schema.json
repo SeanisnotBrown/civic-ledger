@@ -1,0 +1,59 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "declared_position": {
+      "anyOf": [
+        {
+          "enum": [
+            "yea",
+            "nay"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Declared Position"
+    },
+    "member_id": {
+      "title": "Member Id",
+      "type": "string"
+    },
+    "rollcall_id": {
+      "title": "Rollcall Id",
+      "type": "string"
+    },
+    "stated_reason": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stated Reason"
+    },
+    "stated_reason_source": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stated Reason Source"
+    }
+  },
+  "required": [
+    "member_id",
+    "rollcall_id"
+  ],
+  "title": "Absence",
+  "type": "object"
+}

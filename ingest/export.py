@@ -182,15 +182,16 @@ def export_schemas(out_dir: Path = SCHEMA_DIR) -> list[Path]:
 
 def _count_dataset() -> dict[str, object]:
     """Deterministic counts over the committed dataset (no wall-clock)."""
-    from ingest import config
+    from ingest import config, statements_io
 
     members = sorted(MEMBERS_DIR.glob("*.json")) if MEMBERS_DIR.exists() else []
     votes = sorted(VOTES_DIR.glob("*.json")) if VOTES_DIR.exists() else []
     absences = sorted(ABSENCES_DIR.glob("*.json")) if ABSENCES_DIR.exists() else []
     bills = sorted(BILLS_DIR.glob("*.json")) if BILLS_DIR.exists() else []
-    # Curated statement records (data/statements/*.json). The `_`-prefixed config
-    # files (e.g. _title_allowlist.yaml) are not records and never match *.json.
-    statements = sorted(STATEMENTS_DIR.glob("*.json")) if STATEMENTS_DIR.exists() else []
+    # Curated statement records via the single loader (R-1b/M-3): config files (e.g.
+    # `_title_allowlist.yaml`, any future `_*.json`) are excluded, so the manifest count
+    # is records-on-disk. Dead-archive ones are still real records → counted here.
+    statements = statements_io.statement_files(DATA_DIR)
 
     by_chamber: dict[str, int] = {}
     by_class: dict[str, int] = {}

@@ -266,6 +266,53 @@ def test_metrics_history_metric_filter_narrows() -> None:
 # --- R-2: churn backstop --------------------------------------------------
 
 
+def _seed_repo_with_statement(tmp_path, *, dead: bool):
+    """Minimal tmp repo: one member, one passage roll they voted Nay on, and a
+    specificity-3 'support' statement paired to that bill (→ a mismatch), optionally
+    flagged dead-archive. Returns the data dir."""
+    data = tmp_path / "data"
+    for sub in ("members", "votes", "legislation", "statements", "quality"):
+        (data / sub).mkdir(parents=True)
+    (data / "members" / "M000001.json").write_text(
+        json.dumps({"id": "M000001", "party": "R", "chamber": "house",
+                    "terms": [{"start": "2023-01-03", "end": "2027-01-03",
+                               "party": "R", "chamber": "house"}]}),
+        encoding="utf-8")
+    (data / "votes" / "h-119-1-0001.json").write_text(
+        json.dumps({"rollcall": {"id": "h-119-1-0001", "vote_class": "passage",
+                                 "bill_id": "hr1-119", "date": "2025-03-01",
+                                 "party_totals": None},
+                    "member_votes": [{"member_id": "M000001", "position": "nay"}]}),
+        encoding="utf-8")
+    (data / "legislation" / "M000001.json").write_text(
+        json.dumps({"member_id": "M000001", "sponsored": [], "cosponsored": []}),
+        encoding="utf-8")
+    (data / "statements" / "st1.json").write_text(
+        json.dumps({"id": "st1", "member_id": "M000001", "source_url": "https://ex.com",
+                    "date": "2025-02-01", "specificity_level": 3, "stated_position": "support",
+                    "named_measures": ["hr1-119"], "paired_bill_ids": ["hr1-119"]}),
+        encoding="utf-8")
+    if dead:
+        (data / "quality" / "archive-status.json").write_text(
+            json.dumps({"dead_statement_ids": ["st1"]}), encoding="utf-8")
+    return data
+
+
+def test_dead_archive_statement_excluded_from_mismatch(tmp_path, monkeypatch) -> None:
+    # R-1b/M-3: the metric layer must not publish a mismatch from a statement the site
+    # withholds for a dead archive. Same fixture, flagged vs not, asserts both sides.
+    monkeypatch.setattr(metrics, "repo_root", lambda: tmp_path)
+
+    _seed_repo_with_statement(tmp_path, dead=False)
+    live = metrics.named_measure_mismatch("M000001", metrics._load())
+    assert [m["statement_id"] for m in live] == ["st1"]  # present when the archive is alive
+
+    (tmp_path / "data" / "quality" / "archive-status.json").write_text(
+        json.dumps({"dead_statement_ids": ["st1"]}), encoding="utf-8")
+    dead = metrics.named_measure_mismatch("M000001", metrics._load())
+    assert dead == []  # withheld once the archive is flagged dead
+
+
 def test_load_raises_on_position_for_unknown_member(tmp_path, monkeypatch) -> None:
     # A recorded position whose member_id has no Member record = roster churn. _load
     # must fail (never silently drop a covered official's votes), mirroring the

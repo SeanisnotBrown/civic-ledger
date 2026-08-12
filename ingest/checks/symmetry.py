@@ -76,11 +76,13 @@ _CHAMBERS: tuple[tuple[str, str], ...] = (("house", "h"), ("senate", "s"))
 
 
 def _load_statements() -> list[dict]:
-    """Every curated Statement record (data/statements/*.json). Empty until INC-11."""
-    sdir = repo_root() / "data" / "statements"
-    if not sdir.exists():
-        return []
-    return [json.loads(p.read_text(encoding="utf-8")) for p in sorted(sdir.glob("*.json"))]
+    """Every curated Statement record for balance counting (R-1b/M-3: the shared
+    loader). `exclude_dead=False` deliberately: balance is about CURATION EFFORT, so a
+    curated-but-dead-archive statement still counts toward even-handedness even though
+    the site withholds it. Empty until statements are curated (INC-11)."""
+    from ingest import statements_io
+
+    return statements_io.load_statements(exclude_dead=False)
 
 
 def statement_balance(members: list[dict], statements: list[dict]) -> dict:

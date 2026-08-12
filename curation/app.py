@@ -22,8 +22,10 @@ import json
 import secrets
 import sys
 from dataclasses import dataclass
+from datetime import date as _date
+from urllib.parse import urlsplit
 
-from flask import Flask, redirect, render_template_string, request, url_for
+from flask import Flask, abort, redirect, render_template_string, request, url_for
 
 from curation import absences, statements
 from ingest.export import MEMBERS_DIR
@@ -47,6 +49,32 @@ def assert_loopback(host: str) -> None:
         ) from exc
     if not ip.is_loopback:
         raise NonLoopbackBindError(f"refusing to bind non-loopback host {host!r}")
+
+
+def _origin_is_loopback(origin: str) -> bool:
+    """True iff a request `Origin`/`Referer` header names a loopback host. A missing
+    hostname (e.g. the literal `Origin: null` some browsers send) is NOT loopback."""
+    host = urlsplit(origin).hostname
+    if not host:
+        return False
+    try:
+        assert_loopback(host)
+    except NonLoopbackBindError:
+        return False
+    return True
+
+
+def _validate_capture_fields(fields: dict) -> None:
+    """Reject a malformed statement draft BEFORE the (rate-limited) SPN capture runs,
+    so a mistyped date or specificity never burns an archive capture (R-1a/M-6). The
+    Statement model re-validates on save; this is the early, capture-sparing gate."""
+    try:
+        _date.fromisoformat(fields["date"])
+    except ValueError as exc:
+        raise ValueError(f"date must be ISO YYYY-MM-DD, got {fields['date']!r}") from exc
+    spec = fields["specificity_level"]
+    if spec is not None and spec not in (0, 1, 2, 3):
+        raise ValueError(f"specificity level must be 0-3 (or blank), got {spec!r}")
 
 
 # --- pending capture drafts (in-memory; single-user localhost tool) --------
@@ -85,6 +113,27 @@ def _render(body: str, **ctx):
 def create_app() -> Flask:
     app = Flask(__name__)
     drafts: dict[str, _Draft] = {}
+    # Per-process CSRF secret. Embedded as a hidden field in every form and required
+    # on every POST (below), so a malicious page the owner happens to have open cannot
+    # forge a cross-origin approval/capture at http://127.0.0.1:5000 while `curate app`
+    # runs (R-1c/M-1). Regenerated each app start; never leaves the machine.
+    csrf_token = secrets.token_urlsafe(32)
+
+    @app.before_request
+    def _csrf_guard():
+        if request.method != "POST":
+            return None
+        # Belt: a cross-origin form POST carries the attacker's Origin/Referer. When
+        # the header is present it MUST be loopback (an absent header — some same-origin
+        # navigations omit it — falls through to the token check).
+        origin = request.headers.get("Origin") or request.headers.get("Referer")
+        if origin and not _origin_is_loopback(origin):
+            abort(403)
+        # Braces: the unguessable per-process token must be echoed by the form. A forged
+        # cross-origin POST cannot read it (same-origin policy), so it cannot supply it.
+        if not secrets.compare_digest(request.form.get("csrf", ""), csrf_token):
+            abort(403)
+        return None
 
     @app.route("/")
     def index():
@@ -95,6 +144,7 @@ def create_app() -> Flask:
         body = """<h1>Statements</h1>
         {% if msg %}<div class="msg {{ cls }}">{{ msg }}</div>{% endif %}
         <form method="post" action="{{ url_for('statements_capture') }}">
+          <input type="hidden" name="csrf" value="{{ csrf }}">
           <label>Member</label><select name="member_id">
           {% for m in members %}
           <option value="{{ m.id }}">{{ m.name }} ({{ m.party }})</option>
@@ -113,12 +163,17 @@ def create_app() -> Flask:
           <button type="submit">Capture source (Save unlocks only after a verified capture)</button>
         </form>"""
         return _render(
-            body, members=_covered_members(),
+            body, members=_covered_members(), csrf=csrf_token,
             msg=request.args.get("msg"), cls=request.args.get("cls", "ok"),
         )
 
     @app.post("/statements/capture")
     def statements_capture():
+        spec_raw = request.form.get("specificity_level", "").strip()
+        try:
+            spec = int(spec_raw) if spec_raw else None
+        except ValueError:
+            spec = spec_raw  # keep the bad value so validation reports it, not a 500
         fields = {
             "member_id": request.form["member_id"],
             "text": request.form["text"].strip(),
@@ -128,12 +183,15 @@ def create_app() -> Flask:
             "named_measures": [
                 s.strip() for s in request.form.get("named_measures", "").split(",") if s.strip()
             ],
-            "specificity_level": (
-                int(request.form["specificity_level"])
-                if request.form.get("specificity_level", "").strip() else None
-            ),
+            "specificity_level": spec,
             "stated_position": request.form.get("stated_position") or None,
         }
+        # Validate BEFORE the capture — a bad date/specificity must not burn an SPN
+        # capture (rate-limited) only to be rejected at save (R-1a/M-6).
+        try:
+            _validate_capture_fields(fields)
+        except ValueError as exc:
+            return redirect(url_for("statements_tab", msg=f"Not captured: {exc}", cls="err"))
         try:
             capture = SpnClient().capture(fields["source_url"])
         except SpnError as exc:
@@ -151,19 +209,26 @@ def create_app() -> Flask:
         Named measures: {{ d.fields.named_measures }}<br>
         Stance: {{ d.fields.stated_position }} · Specificity: {{ d.fields.specificity_level }}</div>
         <form method="post" action="{{ url_for('statements_save') }}">
+          <input type="hidden" name="csrf" value="{{ csrf }}">
           <input type="hidden" name="token" value="{{ token }}">
           <button type="submit">Save statement</button></form>"""
-        return _render(body, d=drafts[token], token=token)
+        return _render(body, d=drafts[token], token=token, csrf=csrf_token)
 
     @app.post("/statements/save")
     def statements_save():
         token = request.form["token"]
-        draft = drafts.pop(token, None)
+        draft = drafts.get(token)  # peek — do NOT pop until the save actually succeeds
         if draft is None:
             return redirect(url_for("statements_tab",
                                     msg="No verified capture on file — nothing saved.", cls="err"))
-        stmt = statements.build_statement(capture=draft.capture, **draft.fields)
-        path = statements.save_statement(stmt)
+        try:
+            stmt = statements.build_statement(capture=draft.capture, **draft.fields)
+            path = statements.save_statement(stmt)
+        except Exception as exc:  # noqa: BLE001 — any failure must keep the verified capture
+            # A rejected save must NOT discard the verified capture (R-1a/M-6): the draft
+            # stays on file so the owner can retry without re-capturing (rate-limited SPN).
+            return redirect(url_for("statements_tab", msg=f"Not saved: {exc}", cls="err"))
+        drafts.pop(token, None)
         return redirect(url_for("statements_tab",
                                 msg=f"Saved {path.name} (staged for commit).", cls="ok"))
 
@@ -183,10 +248,11 @@ def create_app() -> Flask:
           <blockquote>{{ c.verbatim_text }}</blockquote>
           {% if c.matched_rollcall_id %}
           <form method="post" action="{{ url_for('absences_approve') }}">
+            <input type="hidden" name="csrf" value="{{ csrf }}">
             <input type="hidden" name="granule" value="{{ c.granule_id }}">
             <button type="submit">Approve (publish verbatim)</button></form>{% endif %}
         </div>{% endfor %}"""
-        return _render(body, pending=pending,
+        return _render(body, pending=pending, csrf=csrf_token,
                        msg=request.args.get("msg"), cls=request.args.get("cls", "ok"))
 
     @app.post("/absences/approve")

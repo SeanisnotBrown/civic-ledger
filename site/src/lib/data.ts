@@ -161,7 +161,13 @@ function deadStatementIds(): Set<string> {
 }
 
 let _statements: Statement[] | null = null;
-/** Every PUBLISHABLE curated statement (dead-archive ones excluded), newest first. */
+/**
+ * Every PUBLISHABLE curated statement (dead-archive ones excluded), newest first.
+ * This is the TypeScript MIRROR of the Python loader ingest/statements_io.py
+ * (load_statements(exclude_dead=True)) — the same publishability rule (skip `_`-config,
+ * drop dead-archive ids). That module is the semantic source of truth (R-1b/M-3); keep
+ * the two in step.
+ */
 export function getStatements(): Statement[] {
   if (_statements) return _statements;
   const dead = deadStatementIds();

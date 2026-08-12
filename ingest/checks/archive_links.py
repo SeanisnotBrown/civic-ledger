@@ -31,14 +31,12 @@ _USER_AGENT = "civic-ledger/0.0 (+https://github.com/SeanisnotBrown/civic-ledger
 
 
 def _load_statements() -> list[dict]:
-    sdir = repo_root() / "data" / "statements"
-    if not sdir.exists():
-        return []
-    return [
-        json.loads(p.read_text(encoding="utf-8"))
-        for p in sorted(sdir.glob("*.json"))
-        if not p.name.startswith("_")
-    ]
+    """Every curated Statement record to sweep (R-1b/M-3: the shared loader).
+    `exclude_dead=False`: this check IS what decides dead vs alive, so it must re-HEAD
+    every statement — a previously-dead one that was recaptured can come back alive."""
+    from ingest import statements_io
+
+    return statements_io.load_statements(exclude_dead=False)
 
 
 def classify_head(client: httpx.Client, archive_url: str) -> str:

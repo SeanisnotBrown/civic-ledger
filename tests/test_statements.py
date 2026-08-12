@@ -57,7 +57,21 @@ def test_build_resolves_pairing_and_stores_it(monkeypatch) -> None:
 def test_statement_id_is_deterministic(monkeypatch) -> None:
     a = _build(monkeypatch)
     b = _build(monkeypatch)
-    assert a.id == b.id  # same member+date+source → stable id (idempotent re-curation)
+    assert a.id == b.id  # same member+date+source+text → stable id (idempotent re-curation)
+
+
+def test_distinct_text_same_source_and_date_gets_distinct_id(monkeypatch) -> None:
+    # Two different quotes from ONE source on ONE date must not collide (R-1a/M-2):
+    # the second must not silently overwrite the first.
+    a = _build(monkeypatch, text="We must pass this.")
+    b = _build(monkeypatch, text="On second thought, we must not.")
+    assert a.id != b.id
+
+
+def test_bad_date_is_rejected_at_the_model(monkeypatch) -> None:
+    from pydantic import ValidationError
+    with pytest.raises(ValidationError, match="ISO YYYY-MM-DD"):
+        _build(monkeypatch, date="8/12/2026")
 
 
 def test_save_writes_deterministic_json(monkeypatch, tmp_path) -> None:

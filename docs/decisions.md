@@ -710,3 +710,42 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   dataset as defense-in-depth. No published schema or data changes — every fix is pass/fail
   logic or ordering; on the current six-member delegation (all rostered, all served both
   congresses) behavior and committed data are byte-identical.
+
+### R-1 (2026-08-12) — Statement-ledger hardening (review M-1/M-2/M-3/M-6), gates H8
+
+- **D47 — the statement tool is hardened BEFORE the owner curates the first real quote,
+  because every soft spot becomes a published-data migration once content exists.** Four
+  changes: **(a) id includes the text (M-2).** The id was `{member}-{date}-{sha8(source)}`,
+  so two different quotes from one source on one date silently overwrote each other; it is
+  now `{member}-{date}-{sha8(source)}-{sha6(text)}` — identical re-curation stays idempotent,
+  distinct quotes get distinct files. Done now (corpus empty) so it is never a rename of
+  published ids. **(b) input validation (M-6).** `Statement.date` gains a pydantic
+  `field_validator` requiring ISO `YYYY-MM-DD` (a mistyped date otherwise rode into the id
+  and broke newest-first timeline ordering); specificity is already a `Literal[0,1,2,3]`.
+  The Flask app validates date + specificity at CAPTURE time — before the rate-limited SPN
+  save — so a typo never burns an archive capture (stronger than the review's save-time
+  minimum), and the save handler now peeks the draft and pops it only on success, so a
+  rejected save never discards a verified capture. The validator is invisible to
+  `model_json_schema()`, so `statement.schema.json` does not churn. **(c) one statement
+  loader (M-3).** Loading was implemented four times with drifting semantics — the metric
+  layer published `named_measure_mismatch` entries (the single most sensitive artifact,
+  carrying a `source_url`) from statements the site withheld for a dead archive. New
+  `ingest/statements_io.py` is the single reader; `_`-prefixed config files are always
+  skipped, and one flag decides dead-archive exclusion: **metrics excludes dead**
+  (unpublishable must not leak through the metric side door — its docstring, = the published
+  methodology, now says so), **archive_links and symmetry include dead** (the sweep must
+  re-check everything; balance is about curation effort, not publication), **export counts
+  records on disk**. `symmetry._load_statements`/`archive_links._load_statements` stay as
+  thin wrappers (preserving the monkeypatch surface); `site/src/lib/data.ts` is the
+  TypeScript mirror, cross-referenced to the Python source of truth. This changes the metric
+  input universe (a shared-`_`-helper change the per-metric digest cannot see), so
+  `FORMULA_SCHEMA_VERSION` bumps **1 → 2** (also covering R-4a); member values are unchanged
+  (corpus empty), only `metrics.json`'s `schema_version` + the mismatch methodology
+  digest/text move. **(d) CSRF guard (M-1).** The loopback Flask app accepted plain form
+  POSTs, so a malicious page the owner had open could forge a cross-origin approval/capture.
+  A per-process token (unguessable, regenerated each start) is embedded in every form and
+  required on every POST via `secrets.compare_digest`, plus a belt check rejecting any POST
+  whose `Origin`/`Referer`, when present, is not loopback (`Origin: null` included). Applies
+  to `/statements/capture`, `/statements/save`, `/absences/approve`. **Also removed** the
+  zero-caller `capture_and_save` (§4 delete) — an untested parallel write path into the
+  published dataset.

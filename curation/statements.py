@@ -24,7 +24,7 @@ from ingest import pairing
 from ingest.cache import repo_root
 from ingest.export import MEMBERS_DIR, STATEMENTS_DIR, export_statement
 from ingest.models import Statement
-from ingest.sources.archive_org import Capture, SpnClient
+from ingest.sources.archive_org import Capture
 
 
 def _covered_member_ids() -> set[str]:
@@ -33,11 +33,16 @@ def _covered_member_ids() -> set[str]:
     return {p.stem for p in MEMBERS_DIR.glob("*.json")}
 
 
-def _statement_id(member_id: str, date: str, source_url: str) -> str:
-    """Stable, filesystem-safe id: member + date + a short hash of the source URL.
-    Deterministic (no wall-clock) so re-curating the same source is idempotent."""
-    digest = hashlib.sha256(source_url.encode("utf-8")).hexdigest()[:8]
-    return f"{member_id}-{date[:10]}-{digest}"
+def _statement_id(member_id: str, date: str, source_url: str, text: str) -> str:
+    """Stable, filesystem-safe id: member + date + a short hash of the source URL
+    AND the verbatim text. Deterministic (no wall-clock) so re-curating the identical
+    quote is idempotent — but two DIFFERENT quotes from one source on one date (e.g.
+    two lines of the same interview) get distinct ids instead of the second silently
+    overwriting the first (R-1a/M-2). The source digest stays visible so statements
+    sharing a source still cluster in a directory listing."""
+    src = hashlib.sha256(source_url.encode("utf-8")).hexdigest()[:8]
+    txt = hashlib.sha256(text.encode("utf-8")).hexdigest()[:6]
+    return f"{member_id}-{date[:10]}-{src}-{txt}"
 
 
 def resolve_pairs(named_measures: list[str]) -> list[str]:
@@ -76,7 +81,7 @@ def build_statement(
     if covered and member_id not in covered:
         raise ValueError(f"{member_id!r} is not a covered member")
     return Statement(
-        id=_statement_id(member_id, date, source_url),
+        id=_statement_id(member_id, date, source_url, text),
         member_id=member_id,
         text=text,
         date=date,
@@ -108,42 +113,6 @@ def save_statement(statement: Statement) -> Path:
     path = export_statement(statement)
     _git_add(path)
     return path
-
-
-def capture_and_save(
-    *,
-    member_id: str,
-    text: str,
-    date: str,
-    venue: str,
-    source_url: str,
-    named_measures: list[str],
-    specificity_level: Literal[0, 1, 2, 3] | None = None,
-    stated_position: Literal["support", "oppose"] | None = None,
-    curator_note: str | None = None,
-    client: SpnClient | None = None,
-) -> Path:
-    """The full owner action: capture the source, build the record, save + stage.
-    Any capture failure raises `SpnError` and NOTHING is written."""
-    spn = client or SpnClient()
-    try:
-        capture = spn.capture(source_url)
-    finally:
-        if client is None:
-            spn.close()
-    statement = build_statement(
-        member_id=member_id,
-        text=text,
-        date=date,
-        venue=venue,
-        source_url=source_url,
-        named_measures=named_measures,
-        capture=capture,
-        specificity_level=specificity_level,
-        stated_position=stated_position,
-        curator_note=curator_note,
-    )
-    return save_statement(statement)
 
 
 def repair(argv: list[str] | None = None) -> int:

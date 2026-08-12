@@ -12,9 +12,10 @@ Only Member is exported in INC-2; the rest of the layer is defined now so
 
 from __future__ import annotations
 
+from datetime import date as _date
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, model_validator
+from pydantic import BaseModel, ConfigDict, field_validator, model_validator
 
 Party = Literal["D", "R", "I"]
 Chamber = Literal["house", "senate"]
@@ -287,6 +288,19 @@ class Statement(_Strict):
     # for named_measure_mismatch (D42). None = unassigned → excluded from that comparison.
     stated_position: Literal["support", "oppose"] | None = None
     curator_note: str | None = None  # internal, never rendered
+
+    @field_validator("date")
+    @classmethod
+    def _date_is_iso(cls, v: str) -> str:
+        # An ISO YYYY-MM-DD calendar date — never a free string (R-1a/M-6). A mistyped
+        # date (`8/12/2026`) would otherwise ride into the id and break newest-first
+        # timeline ordering (string comparison) silently. Validated here, at the model
+        # level, so every write path (Flask app, repair, tests) is guarded at once.
+        try:
+            _date.fromisoformat(v)
+        except ValueError as exc:
+            raise ValueError(f"date must be ISO YYYY-MM-DD, got {v!r}") from exc
+        return v
 
 
 class PageCapture(_Strict):

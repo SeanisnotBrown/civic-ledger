@@ -24,6 +24,7 @@ import json
 import subprocess
 from dataclasses import dataclass, field
 
+from ingest import statements_io
 from ingest.cache import repo_root
 from ingest.models import MetricMethodology, MetricsFile
 
@@ -31,7 +32,10 @@ from ingest.models import MetricMethodology, MetricsFile
 # change to how a metric is computed — including changes to the shared `_`-helpers
 # the per-metric `digest` does not cover. It is the coarse, human-meaningful guard
 # that says "numbers before and after this bump are not formula-comparable."
-FORMULA_SCHEMA_VERSION: int = 1
+# v2 (R-1b/R-4a, D47): dead-archive statements are now excluded from the metric input
+# universe (a shared-helper change the per-metric digest cannot see), and attendance
+# reports a null pct on a zero denominator instead of a fabricated 0.
+FORMULA_SCHEMA_VERSION: int = 2
 
 # Substantive vote classes for party unity (§A1; excludes `procedural` — the
 # R-RULE/R-RES split in INC-5 exists precisely so special rules don't count here).
@@ -105,11 +109,10 @@ def _load() -> Ctx:
         raise FileNotFoundError(
             f"no data/legislation record for {sorted(missing)} — run `ingest legislation`"
         )
-    sdir = data / "statements"
-    statements = (
-        [json.loads(p.read_text(encoding="utf-8")) for p in sorted(sdir.glob("*.json"))]
-        if sdir.exists() else []
-    )
+    # The single statement loader (R-1b/M-3). exclude_dead=True: a statement whose
+    # archive died is unpublishable — the site hides it, so the metric layer must not
+    # publish a mismatch from it either. `data` honors the monkeypatched repo_root.
+    statements = statements_io.load_statements(data_dir=data, exclude_dead=True)
     from ingest import config
     # The ongoing Congress is the newest covered one; every older covered Congress
     # has ended. Static + deterministic (no wall-clock), auto-correct when the next
@@ -276,9 +279,11 @@ def named_measure_mismatch(mid: str, ctx: Ctx) -> list[dict]:
     non-passage vote class (a Nay on a procedural motion is not a vote against the
     bill). Each entry carries the statement, the roll call, and both dates so a reader
     can check the record directly; NO sequence or motive is claimed — the statement
-    and the vote are simply placed adjacent. The site draws no conclusion. This is
-    empty until qualifying statements are curated (content = H8). Source:
-    data/statements (stance + pairing) + data/votes (passage positions)."""
+    and the vote are simply placed adjacent. The site draws no conclusion. A statement
+    whose archived source no longer resolves is unpublishable and is excluded here too,
+    so this list never cites a statement the site itself withholds. This is empty until
+    qualifying statements are curated (content = H8). Source: data/statements (stance +
+    pairing) + data/votes (passage positions)."""
     member_votes = ctx.positions[mid]
     out: list[dict] = []
     for s in ctx.statements:

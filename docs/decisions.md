@@ -134,3 +134,38 @@ Resolved and locked in `uv.lock` (Python) and `site/package-lock.json` (Node).
   congress-legislators says `"Democrat"`, Congress.gov says `"Democratic"`; both map
   to `"D"`. The mapper raises on any unmapped word (the §6.1 quarantine path) and is
   exported so INC-3's `voteParty` reuses one source of truth.
+
+### INC-1 GO-gate resolution — MS state verdict DEFER → GO (2026-08-11)
+
+Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO**,
+5/5 votes, 470 per-person positions, zero mismatches. Full write-up:
+`data/quality/ms-state-verdict.md` + `data/quality/samples/ms_vote_xcheck/`.
+
+- **D21 — ground truth = the official MS per-vote roll-call PDF, not the bound
+  Journal.** The gate's wording said "chamber Journal PDF pages." We compared
+  against `billstatus.ls.state.ms.us/2026/pdf/votes/{chamber}/{n}.pdf` — the
+  primary per-vote record the bound Journal reprints, and the exact URL LegiScan's
+  own `roll_call.state_link` points to. It is born-digital, text-extractable
+  (pypdf), page-addressable per vote, and unambiguously the official record.
+  **Honest scope:** LegiScan *scrapes* billstatus, so GO proves **scrape fidelity
+  against the official record** (the risk INC-12 carries), not agreement between
+  two independent origins — sufficient for the §0.4 correctness gate. The SoS also
+  publishes the bound House/Senate Journal (e.g. `MS HOUSE JOURNAL V1 2025`) which
+  reprints these same roll calls; we did not fetch the several-hundred-page volume.
+- **2026-08-11 — `billstatus.ls.state.ms.us` serves an incomplete TLS chain.**
+  It omits the intermediate CA; default verification fails
+  (`CERTIFICATE_VERIFY_FAILED`). The spike verified via the OS trust store
+  (`truststore`, which does AIA chasing on Windows) — real verification, **not**
+  `verify=False`. **Load-bearing for INC-12:** CI/Linux does not chase AIA, so the
+  branch-A fetcher must bundle the intermediate CA (or ship it in the cert bundle);
+  do not disable verification.
+- **2026-08-11 — `legiscan._get` has no TTL/cache-freshness check** (unlike
+  `cache.fetch`): every call is a live request that also re-counts LegiScan quota.
+  Acceptable for one-shot spikes; **INC-12 must route LegiScan through a TTL'd
+  cache path.** Not fixed now (no INC in flight owns LegiScan ingest yet).
+- **2026-08-11 — spike/analysis scripts not committed.** The comparison depends on
+  the gitignored `getDataset` payload (needs the key); a committed script that
+  can't run out-of-the-box (and would be linted by CI) is worse than prose. The
+  reconciliation rules are captured in `ms_vote_xcheck/README.md` for INC-12 reuse;
+  the committed PDFs + `.txt` are the reviewable evidence. (Mirrors INC-1: markdown
+  verdict + committed samples, no one-off script beyond the reusable `spike.py`.)

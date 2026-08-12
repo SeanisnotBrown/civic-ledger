@@ -65,11 +65,15 @@ ALLOWLIST: frozenset[str] = frozenset(
 )
 
 # Excluded subtrees (ADR 2026-08-11): raw upstream source captures are verbatim
-# government responses committed for audit/reproducibility (§6.2), NOT published
-# fields authored or framed by the platform. §6.4 guards partisan-lean framing in
-# our rendered content; floor speech in a CREC capture may contain "contradicts"
-# etc. and must not fail the build. Nothing here is ever rendered on the site.
-EXCLUDE_PREFIXES: tuple[str, ...] = ("data/quality/samples/",)
+# government responses NOT authored or framed by the platform. §6.4 guards
+# partisan-lean framing in our rendered content; nothing under these prefixes is
+# ever rendered on the site.
+#   * data/quality/samples/ — committed spike captures (audit/reproducibility, §6.2).
+#   * data/raw/ — the gitignored raw fetch cache (§6.2); not a published field at
+#     all. A large base64 dataset blob (e.g. LegiScan getDataset) will coincidentally
+#     contain banned substrings like "liar" in its base64 alphabet — scanning it is a
+#     scope error, since §6.4 targets *published* fields only.
+EXCLUDE_PREFIXES: tuple[str, ...] = ("data/quality/samples/", "data/raw/")
 
 
 def repo_root() -> Path:

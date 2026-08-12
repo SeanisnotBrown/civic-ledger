@@ -29,3 +29,16 @@ def test_samples_excluded_but_published_data_scanned(tmp_path):
 
 def test_exclusion_prefix_is_the_samples_dir():
     assert "data/quality/samples/" in banned_words.EXCLUDE_PREFIXES
+
+
+def test_raw_cache_excluded(tmp_path):
+    # data/raw/ is the gitignored fetch cache (§6.2), not a published field. A
+    # large base64 blob coincidentally contains banned substrings; scanning it
+    # would be a scope error. (Regression: LegiScan getDataset blob had "liar".)
+    _seed(tmp_path, "data/raw/legiscan/blob.json", '{"zip": "xxliarxx"}')
+    _seed(tmp_path, "data/members/y.json", '{"note": "liar"}')
+
+    hit_paths = {h[0] for h in banned_words.find_hits(tmp_path)}
+    assert "data/raw/legiscan/blob.json" not in hit_paths  # raw cache → excluded
+    assert "data/members/y.json" in hit_paths  # published field → still caught
+    assert "data/raw/" in banned_words.EXCLUDE_PREFIXES

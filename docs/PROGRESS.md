@@ -3,9 +3,10 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-11, end of INC-2 session.
-**Git:** INC-1 fully closed (follow-up CI run `31528769266` = success, confirmed
-this session). INC-2 commit being pushed now — confirm its CI is green next session.
+**Last updated:** 2026-08-11, end of INC-2 session (+ MS GO-gate resolution).
+**Git:** INC-1 fully closed; INC-2 pushed (CI run `31547777613` = success). The MS
+state-verdict flip (DEFER → GO) + evidence is being committed now — confirm its CI
+is green next session.
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 ---
@@ -24,11 +25,16 @@ recorded as **D20** in `decisions.md`. Acceptance gate green (2 checks, 35 tests
 1 page). See "INC-2 output" below.
 
 **Next: INC-3 — House vote ingest — NOT STARTED.** Unblocked (no human task gates
-INC-3→INC-8; H4/H5 next gate at INC-9). Working tree clean after the INC-2 commit.
+INC-3→INC-8; H4/H5 next gate at INC-9). Build order is unchanged by the GO flip.
 
-> **Still-open owner decision (carried from INC-1, unanswered):** run the MS
-> Journal-PDF GO cross-check now (flip DEFER→GO, unlock INC-12) or fold it into
-> INC-12? Default applied = fold into INC-12 (D18-aligned). Not blocking federal work.
+> **RESOLVED (2026-08-11): MS state verdict flipped DEFER → GO.** Owner chose
+> option A — ran the 5-bill Journal cross-check now. **5/5 votes matched** (470
+> per-person positions, zero mismatches; both chambers, contested votes). Evidence:
+> `data/quality/ms-state-verdict.md` + `data/quality/samples/ms_vote_xcheck/`;
+> rationale D21 in `decisions.md`. **INC-12 branch A is unlocked but the build
+> order does NOT change — the next increment is still INC-3.** INC-12 activates
+> when reached, carrying two notes: bundle the billstatus intermediate CA (CI/Linux
+> has no AIA chasing), and route LegiScan through a TTL'd cache path.
 
 ---
 
@@ -74,8 +80,9 @@ disk cache; **credential never in URL/key/meta**), `ingest/spike.py` (`ingest
 spike`, with secret-guard), sources `congress_gov.py` / `senate_xml.py` /
 `legislators.py` / `clerk_house.py` (stub) / `legiscan.py` (state, DEFER path) /
 `govinfo.py` (CREC search, INC-6). Tests: `tests/test_cache.py` (6) +
-`tests/test_banned_words_scope.py` (2), all offline. MS verdict: **DEFER**
-(feasibility GO-positive; Journal cross-check → INC-12). 11 samples committed.
+`tests/test_banned_words_scope.py` (2), all offline. MS verdict: initially DEFER
+at INC-1; **flipped to GO on 2026-08-11** (5/5 Journal cross-check — see the
+RESOLVED callout above). 11 samples committed.
 
 ## INC-2 output (done — the schema layer INC-3+ import from)
 
@@ -132,7 +139,7 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | INC | Title | Status | Acceptance |
 |-----|-------|--------|------------|
 | INC-0 | Repo bootstrap | ✅ done (CI green) | `uv run checks && uv run pytest && (cd site && npm run build)` — local + CI green 2026-08-11 |
-| INC-1 | Source feasibility spike | ✅ done | samples + SHAPES.md committed; verdict = DEFER (H2 pending). All 6 federal sources reached |
+| INC-1 | Source feasibility spike | ✅ done | samples + SHAPES.md committed; all 6 federal sources reached; MS verdict **GO** (cross-check run 2026-08-11) |
 | INC-2 | Canonical members & schema | ✅ done | models.py complete + 6 MS members exported + double-export determinism; 35 tests green |
 | INC-3 | House vote ingest | **not started (next)** | — |
 | INC-4 | Senate vote ingest ∥ | not started | — |
@@ -144,7 +151,7 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | INC-10 | Metrics + methodology | not started | — |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
-| INC-12 | Mississippi state layer | not started | branch by INC-1 verdict |
+| INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |
 | INC-13 | Candidate Tracker | not started | content = H10 |
 | INC-14 | Alignment Quiz engine | not started | content = H11 |
 | INC-15 | Alignment outputs | not started | — |
@@ -161,7 +168,7 @@ logic (symmetry/archive/integrity still no-ops until they have data).
 | H | Blocks | Status |
 |---|--------|--------|
 | H1 | INC-1 | ✅ done — CONGRESS_API_KEY in .env + GitHub secret |
-| H2 | INC-1 state branch | ✅ done (mid-session) — LegiScan key present; feasibility GO-positive; Journal cross-check → INC-12 |
+| H2 | INC-1 state branch | ✅ done — LegiScan key present; **Journal cross-check run 2026-08-11 → verdict GO (5/5)**; INC-12 branch A unlocked |
 | H3 | INC-0 push / all CI | ✅ done — repo live, pushed, CI green |
 | H4 | INC-9, INC-16 | ⬜ pending — Cloudflare Pages + token |
 | H5 | INC-9 | ⬜ pending — domain |

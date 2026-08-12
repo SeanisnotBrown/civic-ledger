@@ -331,10 +331,12 @@ def current_session(state: str = config.COVERED_STATE) -> dict:
     return max(rows, key=lambda r: int(r["year_start"]))
 
 
-def fetch_dataset(state: str = config.COVERED_STATE) -> tuple[dict, list, list, list]:
-    """Network: pick the current session, pull its dataset, decode the ZIP.
-    → (session_row, people, bills, votes)."""
-    session = current_session(state)
+def fetch_dataset(state: str = config.COVERED_STATE,
+                  session: dict | None = None) -> tuple[dict, list, list, list]:
+    """Network: pull the session's dataset and decode the ZIP → (session_row, people,
+    bills, votes). `session` may be a pre-selected `current_session()` row (avoids a
+    second getDatasetList call)."""
+    session = session or current_session(state)
     resp = legiscan.get_dataset(int(session["session_id"]), session["access_key"])
     people, bills, votes = _decode_dataset_zip(resp)
     return session, people, bills, votes
@@ -387,20 +389,46 @@ def _export(result: BuildResult, manifest: dict) -> None:
     MS_MANIFEST_PATH.write_text(_dumps(manifest), encoding="utf-8", newline="\n")
 
 
+def _committed_dataset_hash() -> str | None:
+    """The dataset_hash of the currently committed MS manifest, or None if none."""
+    from ingest.export import MS_MANIFEST_PATH
+    if not MS_MANIFEST_PATH.exists():
+        return None
+    try:
+        return json.loads(MS_MANIFEST_PATH.read_text(encoding="utf-8")).get("dataset_hash")
+    except json.JSONDecodeError:
+        return None
+
+
 def run(argv: list[str] | None = None) -> int:
     """`ingest ms` — fetch the current MS session's LegiScan dataset, build the canonical
     records, and export them under data/state/ms/. Idempotent (a byte-identical session
-    re-exports byte-identical); the nightly gates this on the dataset_hash (D52)."""
+    re-exports byte-identical).
+
+    NIGHTLY GATE (D55): getDatasetList (one cheap call) carries the session's
+    `dataset_hash`. If it equals the committed manifest's hash and the data is already
+    present, nothing is re-fetched or rewritten — so a quiet night makes ONE request and
+    produces ZERO diff (the manifest's wall-clock `generated_at` is not touched, so it
+    never false-triggers the nightly diff-gate). `--force` bypasses the gate."""
     import os
     from datetime import UTC, datetime
 
     from ingest.export import _git_head
 
+    args = argv or []
     if not legiscan.available():
         print("ingest ms: LEGISCAN_API_KEY absent — cannot ingest MS state data (H2).")
         return 2
 
-    session, people, bills, votes = fetch_dataset()
+    session_row = current_session()
+    committed = _committed_dataset_hash()
+    if ("--force" not in args and committed is not None
+            and committed == session_row["dataset_hash"] and MS_VOTES_DIR.exists()):
+        print(f"ingest ms: session {session_row['session_id']} unchanged "
+              f"(dataset_hash {committed[:8]}) — nothing to do.")
+        return 0
+
+    session, people, bills, votes = fetch_dataset(session=session_row)
     result = build_records(int(session["session_id"]), int(session["year_start"]),
                            int(session["year_end"]), people, bills, votes)
 

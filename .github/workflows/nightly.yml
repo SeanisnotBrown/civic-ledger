@@ -64,6 +64,7 @@ jobs:
       - name: Ingest, classify, export, build, checks — commit only on real change
         env:
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+          LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }}
         run: |
           set -euo pipefail
 
@@ -81,6 +82,13 @@ jobs:
           uv run ingest senate-votes
           uv run ingest bills
           uv run ingest legislation
+
+          #    Mississippi state layer (INC-12/D55): hash-gated — one getDatasetList
+          #    call; if the session's dataset_hash matches the committed manifest,
+          #    nothing is fetched or rewritten (a sine_die session is a near-always
+          #    no-op, and the manifest wall-clock is untouched so it can't false-trip
+          #    the diff-gate). A new/changed session re-ingests data/state/ms/.
+          uv run ingest ms
 
           # 2) Re-fetching a recent roll re-exports it as provisional `unclassified`
           #    (D24). If any vote data moved, re-classify to restore/assign vote_class.

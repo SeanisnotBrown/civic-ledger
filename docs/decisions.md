@@ -897,3 +897,17 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   Source-URL honesty: MS roll calls cite the LegiScan vote page (our data source; bots get
   403 but humans see it — the string-presence check is unaffected), bills cite the official
   billstatus link where present; the scrape-fidelity framing is on the limitations page.
+
+### D55 (2026-08-12) — nightly MS refresh, hash-gated
+
+- **`nightly.yml` runs `uv run ingest ms` (with `LEGISCAN_API_KEY`, already a GH secret)
+  after the federal ingests; a `dataset_hash` gate makes a quiet night a one-request
+  no-op.** `run()` first calls `getDatasetList` (one cheap call) for the current session's
+  `dataset_hash`; if it equals the committed MS manifest's hash and the data is present,
+  it fetches nothing and rewrites nothing — crucially NOT the manifest's wall-clock
+  `generated_at`, so it can never false-trip the nightly `git status --porcelain data/`
+  diff-gate (the 2026 session is `sine_die`, so this is the normal case). A new/changed
+  session (hash differs) re-ingests data/state/ms/ and the existing diff-gate commits it.
+  `--force` bypasses the gate for a manual full re-ingest. CI needs no LegiScan key — it
+  builds + checks from the committed MS data offline (checks/ms + the MS pages + the
+  source-link/e2e gates all run on committed data).

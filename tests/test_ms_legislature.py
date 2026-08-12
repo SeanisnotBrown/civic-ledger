@@ -159,6 +159,18 @@ def test_build_records_quarantines_bad_roll_not_the_session():
     assert any("roll:12" in q for q in r.quarantined)
 
 
+def test_run_is_a_noop_when_dataset_hash_unchanged(monkeypatch, tmp_path):
+    # The nightly gate (D55): matching committed hash -> no fetch, no rewrite, exit 0.
+    monkeypatch.setattr(ms.legiscan, "available", lambda: True)
+    monkeypatch.setattr(ms, "current_session",
+                        lambda *a, **k: {"session_id": 2249, "dataset_hash": "SAME"})
+    monkeypatch.setattr(ms, "_committed_dataset_hash", lambda: "SAME")
+    monkeypatch.setattr(ms, "MS_VOTES_DIR", tmp_path)  # exists() is True
+    monkeypatch.setattr(ms, "fetch_dataset",
+                        lambda *a, **k: pytest.fail("must not fetch when hash unchanged"))
+    assert ms.run([]) == 0
+
+
 def test_build_records_is_deterministic():
     people = [_person(2, "D", "Rep", "HD-002"), _person(1, "R", "Rep", "HD-001")]
     bills = [_bill("100", "HB1", "Bill.", [(1, 1), (2, 2)])]

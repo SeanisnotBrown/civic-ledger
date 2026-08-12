@@ -24,3 +24,6 @@ site/dist/
 site/test-results/
 site/playwright-report/
 site/.playwright/
+
+# Lighthouse CI output
+site/.lighthouseci/

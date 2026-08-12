@@ -67,3 +67,6 @@ jobs:
       - name: E2E (axe a11y + 380px layout)
         working-directory: site
         run: npm run test:e2e
+      - name: Lighthouse (mobile perf + a11y >= 90)
+        working-directory: site
+        run: npm run test:lighthouse

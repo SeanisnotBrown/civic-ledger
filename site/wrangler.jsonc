@@ -1,0 +1,18 @@
+{
+  // Cloudflare Workers (Static Assets) deploy for the site (H4). The Astro build
+  // output (site/dist) is served directly as static assets — no Worker script
+  // (`main`) is needed for the MVP; the aggregates Worker is a separate project
+  // (INC-16). Deploy is Cloudflare Workers Builds (Git integration): a push to
+  // the repo triggers `npm run build` then serves ./dist. `wrangler deploy` uses
+  // this same config for a manual/direct upload.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "civic-ledger",
+  "compatibility_date": "2025-08-01",
+  "assets": {
+    // Relative to this file (site/), i.e. site/dist — the Astro static output.
+    "directory": "./dist",
+    // Multi-page static site (not an SPA): serve the built 404 page for unmatched
+    // paths with a real 404 status.
+    "not_found_handling": "404-page"
+  }
+}

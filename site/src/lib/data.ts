@@ -117,6 +117,17 @@ export function getManifest(): Manifest {
   return _manifest;
 }
 
+export interface Correction { commit: string; date: string; subject: string; }
+export function getCorrections(): Correction[] {
+  // Generated from git history by `uv run corrections` (INC-9). Absent on a bare
+  // checkout that never ran it → treat as no corrections yet.
+  try {
+    return readJson<Correction[]>("corrections.json");
+  } catch {
+    return [];
+  }
+}
+
 // --- Derived views --------------------------------------------------------
 
 /** Newest-first sort key for roll calls: date desc, then roll number desc. */

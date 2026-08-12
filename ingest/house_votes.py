@@ -169,7 +169,7 @@ def run(argv: list[str] | None = None) -> int:
     or MS-delegation validation failure (§6.1)."""
     import httpx
 
-    from ingest import config
+    from ingest import config, incremental
     from ingest.cache import RetryableHTTPError, repo_root
     from ingest.export import export_absence, export_rollcall
     from ingest.sources import congress_gov
@@ -178,11 +178,12 @@ def run(argv: list[str] | None = None) -> int:
     # RetryableHTTPError, timeouts/network → httpx.HTTPError, disk → OSError).
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
 
+    cutoff = incremental.final_cutoff()  # rolls older than this are skipped if final
     covered = _covered_house(config.CONGRESSES)
     gaps: list[str] = []          # rolls missing a covered MS member (correctness)
     ms_failures: list[str] = []   # MS-row validation failures (hard fail, §6.1)
     fetch_failures: list[str] = []  # rolls whose fetch failed after retries
-    n_votes = n_abs = 0
+    n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
 
     for congress in config.CONGRESSES:
@@ -194,6 +195,11 @@ def run(argv: list[str] | None = None) -> int:
                 gaps.append(f"{congress}/{session}: enumerated {len(rolls)} != count {count}")
             for roll in rolls:
                 rc_id = rollcall_id("house", congress, session, roll)
+                # Incremental (§6.1): a finalized, already-exported roll is never
+                # re-fetched — the nightly job only touches new/recent rolls.
+                if incremental.roll_is_final(rc_id, cutoff):
+                    n_skipped += 1
+                    continue
                 try:
                     data = congress_gov.house_vote_members(congress, session, roll).json()
                 except fetch_errors as exc:
@@ -233,7 +239,8 @@ def run(argv: list[str] | None = None) -> int:
 
     for label, (got, count) in session_counts.items():
         print(f"  {label}: ingested {got} rolls (official count {count})")
-    print(f"civic-ledger house-votes: {n_votes} roll calls, {n_abs} absence stubs.")
+    print(f"civic-ledger house-votes: {n_votes} new/refreshed roll calls, "
+          f"{n_abs} absence stubs, {n_skipped} finalized rolls skipped.")
     if fetch_failures:
         print(f"FAIL: {len(fetch_failures)} roll(s) failed to fetch (re-run to retry): "
               f"{fetch_failures[:10]}")

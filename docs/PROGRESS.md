@@ -3,10 +3,11 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of INC-8 session (Site MVP + bill ingest).
-**Git:** INC-1..INC-7 closed & pushed (all CI green — INC-7's run confirmed green
-this session). INC-8 being committed now — confirm its CI is green next session
-(CI now also builds the site, runs the source-link trace, and runs Playwright e2e).
+**Last updated:** 2026-08-12, end of INC-9 session (Automation + deploy).
+**Git:** INC-1..INC-8 closed & pushed (all CI green — INC-8's run confirmed green
+this session). INC-9 being committed now — confirm its CI is green next session
+(CI now also runs Lighthouse). **Deploy switched Pages → Cloudflare Workers (Static
+Assets) mid-INC-9 per owner; H4/H5 in progress by owner.**
 **Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
 
 > **PIPELINE ORDER (load-bearing, D24 + INC-7/8):** `ingest {house,senate}-votes`
@@ -22,6 +23,36 @@ this session). INC-8 being committed now — confirm its CI is green next sessio
 
 ## Current increment
 
+**INC-9 — Automation + deploy — ✅ BUILD COMPLETE; live-deploy verification pending H4/H5.**
+The unattended pipeline is built and CI-green. **`nightly.yml`** (cron `15 09 * * *`
+UTC + `workflow_dispatch`): incremental ingest → conditional classify → corrections →
+**diff-gate** → (on real change) export → site build → checks → verify-recompute →
+commit `data: nightly {date}` → push. A push triggers **Cloudflare Workers Builds**
+(D32, the deploy); the workflow holds no Cloudflare secret and never commits on a
+failed check (last good deploy stays live). **Incremental ingest** (`incremental.py`,
+D31): finalized rolls (>7d, already exported) are skipped — measured 3,454 skip / 13
+refetch today — so nightly is API-polite (§0.7); recent + new rolls refresh, and a
+re-fetched recent roll is restored to byte-identical by classify so it triggers no
+commit (D33). **Corrections** are data (`data/corrections.json` from `git log --grep
+correction:`, rendered by `/corrections`; D34) + `docs/correction-process.md`.
+`/privacy` + `404.astro` stubs added; footer already carries data-last-updated. **New
+gate: Lighthouse mobile perf + a11y ≥ 90** (`lighthouserc.cjs`, CI). Deploy target
+moved to **Workers** (`site/wrangler.jsonc`, `assets.directory: ./dist`). Design in
+**D31–D34**. See "INC-9 output".
+
+**Pending (owner):** H4 (Cloudflare Workers project + Workers-Builds repo connection +
+token) and H5 (domain) — both 🟨 in progress. Once connected, a push auto-deploys; the
+remaining acceptance is to **observe one untouched nightly run commit + live deploy**
+(rehearse now via `gh workflow run nightly.yml`). Lighthouse ≥ 90 already passes locally
++ CI. When branch protection is enabled, the `github-actions[bot]` push needs a bypass (H4 note).
+
+**Next: INC-10 — Metrics layer + methodology page — NOT STARTED.** `metrics.py`
+(attendance, party-unity on substantive votes, sponsored/cosponsored/enacted-rate,
+cosponsor-to-vote gap, named-measure mismatch list); methodology page auto-built from
+docstrings; symmetry full activation; Tier-3 grep guard. **NB INC-10 backfills bill
+`subjects`/`cosponsor_ids`** (the D27 `None` fields) — it needs the cosponsor sub-resource.
+
+**(historical — INC-8)**
 **INC-8 — Site MVP — ✅ COMPLETE.**
 The static site renders the record: **member index** (`/`), **member detail** with a
 paginated vote list (`/m/[member]/[page]`, 200 rows/page), **single-vote page**
@@ -334,29 +365,62 @@ RESOLVED callout above). 11 samples committed.
   D27 None assertion, entity-decode, missing-field raise. 95 → 108 (python). Design in
   **D27–D30**.
 
-## INC-9 — where to pick up
+## INC-9 output (done — the unattended pipeline; deploy pending H4/H5)
 
-Spec: IMPLEMENTATION.md §7 "INC-9" (**the PUBLIC MVP / brief definition-of-done**).
-**Blocked by H4 (Cloudflare Pages + token) and H5 (domain) — both still ⬜ pending.**
-Build the automation regardless; the deploy step no-ops without the secrets. Steps:
-1. **`nightly.yml`** cron `15 09 * * *` UTC → incremental ingest (current congress only:
-   `house-votes` + `senate-votes`) → `ingest bills` → `ingest classify` → `uv run export`
-   → `uv run checks` → commit the data diff (`data: nightly {date}`) → Pages deploy
-   (auto on push; Worker via wrangler only when `worker/` changes). **Sequence per the
-   PIPELINE ORDER callout** — export/checks come last; classify after the vote ingests.
-2. "Data last updated" per page already wired (manifest → `Layout` footer). Corrections
-   page exists as a stub — INC-9 makes `docs/correction-process.md` + auto-lists
-   `correction:`-tagged commits (brief 5.12: corrections = new commits, never force-push).
-3. Basic `/privacy` page (full threat model is INC-16).
-4. Branch protection note: CI required, no force-push on master.
+- **`ingest/incremental.py`** (D31) — `final_cutoff(now)`, `is_final(date, cutoff)`,
+  `roll_is_final`, `recent_bill_ids`, `bill_is_skippable`. Wired into `house_votes.run`,
+  `senate_votes.run` (skip finalized rolls before fetch), `bills.run` (skip exported
+  bills except those on recent rolls). All take an injected cutoff → 7 deterministic
+  tests (`tests/test_incremental.py`). Ingest prints "N new/refreshed, M skipped".
+- **`.github/workflows/nightly.yml`** (D32/D33) — cron + `workflow_dispatch`;
+  `permissions: contents: write`; `fetch-depth: 0`; `CONGRESS_API_KEY` from secret.
+  Ordering: ingest votes+bills → (if votes moved) classify → corrections → diff-gate on
+  `data/` → real change: export → `npm run build` → checks → verify-recompute →
+  commit+push; quiet night: build+checks for drift, exit 0 (no commit). Holds NO
+  Cloudflare secret — push triggers Workers Builds.
+- **`site/wrangler.jsonc`** — assets-only Worker, `assets.directory: ./dist`,
+  `not_found_handling: 404-page`; **`site/src/pages/404.astro`**. `wrangler ^4` pinned
+  in site devDeps. Layout footer build-commit now reads `WORKERS_CI_COMMIT_SHA`.
+- **`ingest/corrections.py`** (`corrections` console entry, D34) — `git log --grep
+  '^correction:'` → `data/corrections.json` (committed `[]`); `corrections.astro`
+  renders it (`getCorrections` in `data.ts`); **`docs/correction-process.md`** (§A4).
+- **`site/src/pages/privacy.astro`** — privacy summary stub (full threat model = INC-16).
+- **Lighthouse** (`site/lighthouserc.cjs`, `npm run test:lighthouse`, CI step) — mobile
+  perf + a11y ≥ 90, URLs derived from data, median of 3 vs `astro preview`. **Passes**
+  (MVP pages carry no client JS). `/privacy` added to the e2e page set (**14/14 e2e**).
+- **Docs**: H4/H5 → Workers, marked 🟨; `.env.example` H4 note; PIPELINE ORDER callout
+  extended (ingest → bills → classify → export → checks). Tests 108 → **115** (python).
 
-**INC-9 acceptance (= brief MVP done):** six members complete + auto-updating; procedural
-classification displayed (done in the site); missed votes show reason or explicit absence
-(done); methodology stub live (done); real domain + mobile-usable (Lighthouse mobile ≥ 90
-— NEW gate this increment); updates unattended (verify one untouched nightly commit +
-deploy). NB: Lighthouse ≥ 90 is first enforced here; the 380px/axe gates already pass.
+**INC-9 acceptance status:** procedural classification displayed ✅; missed votes show
+reason/absence ✅; methodology stub live ✅; mobile Lighthouse ≥ 90 ✅ (local + CI);
+six members complete ✅. **Pending H4/H5:** real domain + observe one unattended nightly
+run committing + deploying live. Rehearse the pipeline now: `gh workflow run nightly.yml`
+(runs the full ingest→checks→conditional-commit path; deploy activates once H4 connects
+Workers Builds).
 
-**INC-8 acceptance (met):** `astro build` from data alone ✅; axe-core a11y ✅ (12/12
+## INC-10 — where to pick up
+
+Spec: IMPLEMENTATION.md §7 "INC-10" + §5 Tier discipline. Goal: the metrics layer +
+auto-built methodology page. Steps:
+1. **`ingest/metrics.py`** — Tier-2 functions, **each docstring IS the methodology
+   text** (extracted verbatim to the methods page at build): attendance % / missed
+   votes; party-unity % (substantive only — `passage|amendment|veto_override|nomination`,
+   exclusions stated); sponsored/cosponsored/enacted-rate; **cosponsor-to-vote gap**;
+   **named-measure mismatch list** (statement w/ named_measures + specificity 2–3 vs
+   opposite recorded position — list only, adjacency language only); absence-vs-calendar.
+2. **Backfill bill `subjects` + `cosponsor_ids`** (the D27 `None` fields) — this is the
+   increment that consumes them. Fetch the paginated `/bill/.../subjects` + `/cosponsors`
+   sub-resources; set the lists (`[]` now legitimately means "none"). Extends `bills.py`.
+3. Methodology page: one section per exported metric (test: set-equality of exported
+   metric keys ↔ page sections). Extend `methods.astro`.
+4. **Symmetry full activation** (§6.5) + **Tier-3 grep guard** in `checks/integrity.py`
+   (fail if any `metrics.py` fn consumes another metric's output about the same member).
+5. Third-party recompute: extend `verify-recompute` to cover every metric.
+**Acceptance:** recompute covers every metric + matches; methods page section-set ==
+metric-key-set; Tier-3 guard active. NB: statements don't exist yet (INC-11), so the
+named-measure-mismatch list is empty until then — build the function + guard now.
+
+**INC-8 acceptance (met):** `astro build` from data alone ✅; axe-core a11y ✅ (14/14
 Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `source_url`
 ✅ (source-link trace, 4,478 pages).
 
@@ -374,9 +438,9 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-5 | vote_class classifier | ✅ done | 3,447 rolls classified, other 0.12% (≤5%); golden 52-string fixture 100%; R-RULE via Rules-Cmte fetch; classification CI gate; 74 tests |
 | INC-6 | Absences & explanations | ✅ done (build); content = H9 | pipeline green (search→verify→queue→approve), byline gate, stub-existence match, queue banned-words-excluded; 1 candidate queued pending owner approval; 86 tests |
 | INC-7 | JSON export contracts | ✅ done | double-export byte-identical (manifest + 4 schemas); `verify-recompute` matches 100% of 3,467 rolls (coverage+subset+reciprocity, D26); manifest + data-contract.md committed; 95 tests |
-| INC-8 | Site MVP | ✅ done | 4,537 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 12/12 Playwright; §6.7 via shared components; 108 py tests + e2e |
-| INC-9 | Automation + deploy (PUBLIC MVP) | **not started (next)** | blocked by H4, H5 |
-| INC-10 | Metrics + methodology | not started | — |
+| INC-8 | Site MVP | ✅ done | 4,539 pages build offline; 1,011 bills ingested (0 quarantine); source-link trace 4,478 pages; axe WCAG2 A/AA + 380px 14/14 Playwright; §6.7 via shared components; 115 py tests + e2e |
+| INC-9 | Automation + deploy (PUBLIC MVP) | ✅ build done; deploy pending H4/H5 | nightly.yml (incremental skip-if-final, diff-gated commit, Workers Builds deploy); corrections-as-data; Lighthouse mobile ≥ 90 (local+CI); 115 py tests. Live nightly+deploy verification blocked on H4/H5 (🟨 owner) |
+| INC-10 | Metrics + methodology | **not started (next)** | backfills bill subjects/cosponsors (D27) |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | not started | content = H8, H6 for SPN |
 | INC-12 | Mississippi state layer | not started | **branch A** (INC-1 verdict = GO, 5/5); unlocked, builds when reached |
@@ -398,14 +462,23 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | H1 | INC-1 | ✅ done — CONGRESS_API_KEY in .env + GitHub secret |
 | H2 | INC-1 state branch | ✅ done — LegiScan key present; **Journal cross-check run 2026-08-11 → verdict GO (5/5)**; INC-12 branch A unlocked |
 | H3 | INC-0 push / all CI | ✅ done — repo live, pushed, CI green |
-| H4 | INC-9, INC-16 | ⬜ pending — Cloudflare Pages + token |
-| H5 | INC-9 | ⬜ pending — domain |
+| H4 | INC-9, INC-16 | 🟨 in progress (owner) — Cloudflare **Workers** project + Workers-Builds repo connection + token; enable `github-actions[bot]` push bypass if branch protection is on |
+| H5 | INC-9 | 🟨 in progress (owner) — domain → point at the Workers project |
 | H6 | INC-11 auth SPN | ⬜ pending — archive.org S3 keys (falls back to unauth SPN) |
 | H7 | INC-10b | ⬜ pending — FEC key (optional increment) |
 | H8–H12 | recurring content | ⬜ pending |
 | H13 | pre-launch byline | ⬜ pending (non-blocking) |
 
-## What exists in the repo now (INC-0..INC-8 output)
+## What exists in the repo now (INC-0..INC-9 output)
+
+**INC-9 additions:** `ingest/incremental.py` (skip-if-final) wired into house/senate/
+bills run(); `ingest/corrections.py` (+ `corrections` console entry) → `data/corrections.json`;
+`.github/workflows/nightly.yml`; `site/wrangler.jsonc` + `site/src/pages/404.astro` +
+`privacy.astro`; corrections rewired to data (`getCorrections` in `data.ts`,
+`corrections.astro`); `site/lighthouserc.cjs` + `test:lighthouse` script + CI step;
+`wrangler` devDep; `docs/correction-process.md`; H4/H5→Workers in HUMAN-TASKS + `.env.example`;
+Layout `WORKERS_CI_COMMIT_SHA`; `tests/test_incremental.py` (7). D31–D34 in `decisions.md`.
+Test count 108 → 115 (python) + 14 Playwright e2e.
 
 **INC-8 additions:** `ingest/bills.py` (+ `bills` subcommand); `Bill.subjects`/
 `cosponsor_ids` widened to `list[str] | None` in `models.py`; `data/bills/*.json`

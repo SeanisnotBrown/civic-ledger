@@ -40,4 +40,5 @@ export const PAGES: string[] = [
   `/b/${rv.bill}`,
   "/methods",
   "/corrections",
+  "/privacy",
 ];

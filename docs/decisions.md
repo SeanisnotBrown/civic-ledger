@@ -428,6 +428,53 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   though no bill data exists yet, so the contract is complete for every Tier-1 type
   (bill ingest lands with INC-8).
 
+### INC-9 (2026-08-12) — Automation + deploy
+
+- **D31 — incremental ingest = skip-if-FINAL, not a blanket long TTL (§6.1).** The
+  cache TTL is 20h but nightly runs every 24h, so without a skip every cached vote
+  detail would re-fetch nightly (~3,467 calls, an API hammer, §0.7). `incremental.py`
+  peeks the ALREADY-EXPORTED file: if `data/votes/{id}.json` exists and its
+  `rollcall.date` is older than 7 days, the roll is skipped entirely (no fetch/parse/
+  export). This resolves the chicken-and-egg (the date is in the response, not knowable
+  before fetching) by reading the export, and — critically — a blanket long TTL was
+  REJECTED because it would never refresh a vote corrected by the clerk 2 days later
+  (value #1). Recent (<7d) and new rolls fall through to a normal fetch; the 20h TTL
+  gives them correct refresh without `force`. Bills mirror this: skip if exported,
+  EXCEPT bills referenced by a roll <7d old (their `latest_action` moves). Measured:
+  today 3,454 rolls skip, 13 refetch. Unparseable/naive dates are treated as NOT final
+  (never skip on ambiguity). All helpers take an injected `cutoff` → deterministic tests.
+- **D32 — deploy is Cloudflare Workers (Static Assets) via Workers Builds; the
+  workflows hold NO Cloudflare secret.** (Updated mid-INC-9 from Pages → Workers per
+  the owner's H4 setup.) `site/wrangler.jsonc` declares an assets-only Worker serving
+  `./dist` with `not_found_handling: "404-page"` (a `404.astro` now builds). Workers
+  Builds watches the repo: a push runs `npm run build` and deploys — so `nightly.yml`
+  just commits+pushes when green, and a failed check exits nonzero WITHOUT committing,
+  leaving the last good deploy live (§6.1). `CLOUDFLARE_API_TOKEN`/`ACCOUNT_ID` are for
+  the INC-16 aggregates Worker + D1 and manual `wrangler deploy`, not the site auto-
+  deploy. The footer build-commit reads `WORKERS_CI_COMMIT_SHA` (Workers Builds' var,
+  via `process.env` — not PUBLIC_-prefixed) after our own `PUBLIC_BUILD_COMMIT`.
+- **D33 — nightly ordering + "commit only on real change".** ingest votes+bills →
+  (if vote data moved) classify → corrections → **diff-gate on `data/`** → if changed:
+  export → site build → checks → verify-recompute → commit+push; else: export/build/
+  checks for drift detection, exit 0 without committing. Classify runs conditionally
+  because re-fetching a recent roll re-exports it as provisional `unclassified` (D24) —
+  classify RESTORES it to byte-identical, so an unchanged recent roll leaves no diff and
+  triggers no commit. This makes `generated_at` mean "last real data change" (the
+  manifest isn't regenerated until after the diff-gate, so its per-run timestamp can't
+  false-trigger the gate). Note: a push made with `GITHUB_TOKEN` does NOT retrigger
+  `ci.yml` (checks already ran inline in nightly); Workers Builds still deploys (its
+  webhook is a GitHub App, not Actions). Branch protection, when enabled, must bypass
+  the `github-actions[bot]` push (documented in H4); the push is always fast-forward,
+  never `--force`.
+- **D34 — corrections are data, not a git-shell in the page; Lighthouse is the new
+  gate.** `ingest/corrections.py` (`uv run corrections`) reads `git log --grep
+  '^correction:'` → `data/corrections.json`, which `/corrections` renders — so the
+  Cloudflare build (which can't shell to git and doesn't control clone depth) still
+  "builds from data alone". Nightly regenerates it with `fetch-depth: 0`. Lighthouse
+  mobile perf + a11y ≥ 90 (`lighthouserc.cjs`, URLs derived from data, median of 3 runs
+  against `astro preview`) is wired into CI — the INC-9 acceptance gate; the MVP pages
+  carry no client JS so they score ~100.
+
 ### INC-8 (2026-08-12) — Site MVP
 
 - **D27 — detail-only bill ingest; `subjects` and `cosponsor_ids` deferred to INC-10

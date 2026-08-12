@@ -241,19 +241,20 @@ def run(argv: list[str] | None = None) -> int:
     covered-member gap, MS-row validation failure, or enumeration break (§6.1)."""
     import httpx
 
-    from ingest import config
+    from ingest import config, incremental
     from ingest.cache import RetryableHTTPError, repo_root
     from ingest.export import export_absence, export_rollcall
     from ingest.sources import senate_xml
 
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
 
+    cutoff = incremental.final_cutoff()  # finalized rolls are skipped (§6.1)
     lis_to_bioguide = _lis_to_bioguide()
     covered = _covered_senate(config.CONGRESSES)
     gaps: list[str] = []          # completeness / covered-member gaps (correctness)
     ms_failures: list[str] = []   # MS-row / tally validation failures (hard fail)
     fetch_failures: list[str] = []
-    n_votes = n_abs = 0
+    n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
 
     for congress in config.CONGRESSES:
@@ -273,6 +274,9 @@ def run(argv: list[str] | None = None) -> int:
                 gaps.append(f"{congress}/{session}: rolls not contiguous 1..{count}")
             for roll in rolls:
                 rc_id = f"s-{congress}-{session}-{roll:04d}"
+                if incremental.roll_is_final(rc_id, cutoff):
+                    n_skipped += 1
+                    continue
                 try:
                     detail = senate_xml.vote_detail(congress, session, roll).text
                 except fetch_errors as exc:
@@ -310,7 +314,8 @@ def run(argv: list[str] | None = None) -> int:
 
     for label, (got, count) in session_counts.items():
         print(f"  {label}: ingested {got} rolls (max roll {count})")
-    print(f"civic-ledger senate-votes: {n_votes} roll calls, {n_abs} absence stubs.")
+    print(f"civic-ledger senate-votes: {n_votes} new/refreshed roll calls, "
+          f"{n_abs} absence stubs, {n_skipped} finalized rolls skipped.")
     if fetch_failures:
         print(f"FAIL: {len(fetch_failures)} fetch(es) failed (re-run to retry): "
               f"{fetch_failures[:10]}")

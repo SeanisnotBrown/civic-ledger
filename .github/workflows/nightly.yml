@@ -1,0 +1,92 @@
+name: nightly
+
+# INC-9 — unattended data refresh (§7 INC-9, §9). Incremental ingest of the
+# current record → classify → export → build → checks → commit the data diff →
+# push. The push triggers Cloudflare Workers Builds (H4, static-assets Worker via
+# site/wrangler.jsonc), which is the deploy; this workflow holds NO Cloudflare
+# secrets. On any check failure the job exits nonzero WITHOUT committing, so the
+# last good deploy stays live (§6.1).
+#
+# The ingest is polite (§0.7): finalized rolls are skipped (ingest/incremental.py),
+# so a normal night fetches only new/recent rolls. `workflow_dispatch` allows a
+# manual rehearsal of the whole path.
+
+on:
+  schedule:
+    - cron: "15 09 * * *" # 09:15 UTC daily
+  workflow_dispatch:
+
+concurrency:
+  group: nightly
+  cancel-in-progress: false
+
+permissions:
+  contents: write # the job commits the data diff and pushes (fast-forward, never --force)
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # full history so `uv run corrections` sees every correction: commit
+      - name: Node 22 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+      - name: Sync Python
+        run: uv sync --frozen
+      - name: Install site deps
+        working-directory: site
+        run: npm ci
+
+      - name: Ingest, classify, export, build, checks — commit only on real change
+        env:
+          CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
+        run: |
+          set -euo pipefail
+
+          # 1) Incremental ingest (finalized rolls skipped). Bills derive from votes.
+          uv run ingest house-votes
+          uv run ingest senate-votes
+          uv run ingest bills
+
+          # 2) Re-fetching a recent roll re-exports it as provisional `unclassified`
+          #    (D24). If any vote data moved, re-classify to restore/assign vote_class.
+          if [ -n "$(git status --porcelain data/votes data/absences data/bills)" ]; then
+            uv run ingest classify
+          fi
+
+          # 3) Corrections ledger from git history (full checkout above).
+          uv run corrections
+
+          # 4) Real change? (manifest isn't regenerated yet, so it can't false-trigger.)
+          if [ -z "$(git status --porcelain data/)" ]; then
+            echo "No data change tonight — running checks for upstream drift, then exiting."
+            uv run export            # refresh manifest/schemas locally (not committed)
+            (cd site && npm run build)
+            uv run checks
+            uv run verify-recompute
+            echo "nightly: quiet night, nothing to commit."
+            exit 0
+          fi
+
+          # 5) Data changed → validate the FULL dataset before publishing anything.
+          uv run export
+          (cd site && npm run build)   # banned-words (checks) scans the real dist
+          uv run checks
+          uv run verify-recompute
+
+          # 6) All gates green → commit the data diff and push (Cloudflare deploys on push).
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A data/
+          git commit -m "data: nightly $(date -u +%Y-%m-%d)"
+          git push
+          echo "nightly: committed and pushed the data diff."

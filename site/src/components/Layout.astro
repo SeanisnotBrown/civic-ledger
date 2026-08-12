@@ -10,12 +10,17 @@ const { title, description } = Astro.props;
 
 const manifest = getManifest();
 const updated = formatDate(manifest.generated_at);
-// The commit that built THIS page (§6.7), injected in CI; falls back to the
-// data-export commit from the manifest, then "dev" for a bare local build.
-const buildCommit =
-  (import.meta.env.PUBLIC_BUILD_COMMIT as string | undefined)?.slice(0, 7) ??
+// The commit that built THIS page (§6.7). Our CI injects PUBLIC_BUILD_COMMIT
+// (import.meta.env exposes PUBLIC_-prefixed vars); Cloudflare Workers Builds sets
+// WORKERS_CI_COMMIT_SHA (not PUBLIC_-prefixed → read from process.env, which the
+// Node-side frontmatter can see). Falls back to the data-export commit from the
+// manifest, then "dev" locally.
+const buildCommit = (
+  (import.meta.env.PUBLIC_BUILD_COMMIT as string | undefined) ??
+  process.env.WORKERS_CI_COMMIT_SHA ??
   manifest.commit ??
-  "dev";
+  "dev"
+).slice(0, 7);
 const repo = "https://github.com/SeanisnotBrown/civic-ledger";
 ---
 
@@ -51,6 +56,8 @@ const repo = "https://github.com/SeanisnotBrown/civic-ledger";
         <a href="/methods" class="underline hover:text-neutral-700">Methodology</a>
         {" · "}
         <a href="/corrections" class="underline hover:text-neutral-700">Corrections</a>
+        {" · "}
+        <a href="/privacy" class="underline hover:text-neutral-700">Privacy</a>
         {" · "}
         <a href={repo} class="underline hover:text-neutral-700">Source</a>
         {" · "}

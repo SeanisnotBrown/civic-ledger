@@ -18,6 +18,7 @@ export = "ingest.export:main"
 curate = "curation.cli:main"
 checks = "ingest.checks.run:main"
 verify-recompute = "ingest.verify_recompute:main"
+corrections = "ingest.corrections:main"
 
 [dependency-groups]
 dev = [

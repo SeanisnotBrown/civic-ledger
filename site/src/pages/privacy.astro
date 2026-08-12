@@ -1,0 +1,32 @@
+---
+import Layout from "../components/Layout.astro";
+---
+<Layout title="Privacy — Civic Ledger">
+  <h1 class="text-2xl font-semibold tracking-tight">Privacy</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    This site is built to collect as little as possible — the design goal is that
+    a legal demand could not produce information about you, because it was never
+    collected. This is a summary; the full threat model lands with the interactive
+    features that could otherwise gather data.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What this site is</h2>
+  <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
+    <li>Static pages served from a public repository. No account, no login.</li>
+    <li>No cookies. No analytics. No third-party fonts, scripts, or CDNs.</li>
+    <li>Nothing you do here is sent to any server the operator runs.</li>
+  </ul>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is stored</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    The entire dataset is the public repository — the same records everyone can
+    see. There is no per-visitor data of any kind. A legal demand to the operator
+    produces only what is already public here.
+  </p>
+
+  <p class="mt-8 text-xs text-neutral-500">
+    Interactive tools (added later) keep your results only in your own browser,
+    with a button to erase them. The full threat model will document every such
+    surface before it ships.
+  </p>
+</Layout>

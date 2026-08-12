@@ -117,7 +117,7 @@ def run(argv: list[str] | None = None) -> int:
     exceed the §6.1 fraction of the set."""
     import httpx
 
-    from ingest import config
+    from ingest import config, incremental
     from ingest.cache import RetryableHTTPError
     from ingest.export import export_bill
     from ingest.sources import congress_gov
@@ -126,11 +126,19 @@ def run(argv: list[str] | None = None) -> int:
 
     bill_ids = referenced_bill_ids()
     total = len(bill_ids)
+    # Incremental (§6.1): skip bills already exported, EXCEPT those referenced by a
+    # roll from the last 7 days (their latest_action may still be moving).
+    cutoff = incremental.final_cutoff()
+    recent = incremental.recent_bill_ids(cutoff)
     exported = 0
+    skipped = 0
     quarantined: list[str] = []
     fetch_failures: list[str] = []
 
     for bill_id in bill_ids:
+        if incremental.bill_is_skippable(bill_id, recent):
+            skipped += 1
+            continue
         try:
             btype, number, congress = parse_bill_id(bill_id)
         except BadBillId as exc:
@@ -153,7 +161,8 @@ def run(argv: list[str] | None = None) -> int:
         export_bill(bill)
         exported += 1
 
-    print(f"civic-ledger bills: {exported}/{total} bills exported to data/bills/.")
+    print(f"civic-ledger bills: {exported} fetched, {skipped} skipped (already "
+          f"final), of {total} referenced bills in data/bills/.")
     if fetch_failures:
         print(f"  {len(fetch_failures)} fetch failure(s) (re-run to retry): "
               f"{fetch_failures[:10]}")

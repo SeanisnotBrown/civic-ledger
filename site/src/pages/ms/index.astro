@@ -1,0 +1,58 @@
+---
+import Layout from "../../components/Layout.astro";
+import { getMsMembers, getMsManifest } from "../../lib/data";
+
+const members = getMsMembers();
+const house = members.filter((m) => m.chamber === "house").sort((a, b) => (a.district ?? 0) - (b.district ?? 0));
+const senate = members.filter((m) => m.chamber === "senate").sort((a, b) => (a.district ?? 0) - (b.district ?? 0));
+const manifest = getMsManifest();
+
+const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
+---
+<Layout title="Civic Ledger — Mississippi Legislature">
+  <nav class="text-xs text-neutral-500"><a href="/" class="underline">U.S. delegation</a> / Mississippi Legislature</nav>
+  <h1 class="mt-1 text-2xl font-semibold tracking-tight">Mississippi Legislature</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    The recorded roll-call record of the Mississippi House and Senate for the
+    {manifest.session_name}, presented without a thumb on the scale. Every vote links to
+    its source. State data comes via LegiScan, which mirrors the official Mississippi
+    record; see <a href="/methods#mississippi" class="underline hover:text-neutral-800">how this data is sourced and its limits</a>.
+  </p>
+
+  <section class="mt-8" aria-labelledby="senate-h">
+    <h2 id="senate-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      Senate <span class="font-normal normal-case text-neutral-400">({senate.length})</span>
+    </h2>
+    <ul class="mt-2 divide-y divide-neutral-100">
+      {senate.map((m) => (
+        <li class="py-2">
+          <a href={`/ms/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
+          <span class="ml-2 text-sm text-neutral-500">
+            {PARTY_LABEL[m.party] ?? m.party}{m.district != null ? ` · SD-${m.district}` : ""}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="mt-8" aria-labelledby="house-h">
+    <h2 id="house-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      House <span class="font-normal normal-case text-neutral-400">({house.length})</span>
+    </h2>
+    <ul class="mt-2 divide-y divide-neutral-100">
+      {house.map((m) => (
+        <li class="py-2">
+          <a href={`/ms/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
+          <span class="ml-2 text-sm text-neutral-500">
+            {PARTY_LABEL[m.party] ?? m.party}{m.district != null ? ` · HD-${m.district}` : ""}
+          </span>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <p class="mt-8 text-xs text-neutral-500">
+    Coverage: {manifest.session_name} — {Number(manifest.counts.rollcalls).toLocaleString()} roll
+    calls, {manifest.counts.members} legislators. Source: LegiScan session {manifest.session_id}.
+  </p>
+</Layout>

@@ -33,6 +33,26 @@ function richVote(): { roll: string; bill: string } {
 
 const rv = richVote();
 
+// Mississippi state layer (INC-12): representative pages from data/state/ms/.
+function firstMsMemberId(): string {
+  const dir = path.join(DATA, "state", "ms", "members");
+  const f = fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()[0];
+  return JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")).id;
+}
+function richMsVote(): { roll: string; bill: string } {
+  const dir = path.join(DATA, "state", "ms", "votes");
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()) {
+    const v = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+    if (v.member_votes.length > 0 && v.rollcall.bill_id) {
+      const billPath = path.join(DATA, "state", "ms", "bills", `${v.rollcall.bill_id}.json`);
+      if (fs.existsSync(billPath)) return { roll: v.rollcall.id, bill: v.rollcall.bill_id };
+    }
+  }
+  throw new Error("no representative MS vote found");
+}
+
+const msv = richMsVote();
+
 export const PAGES: string[] = [
   "/",
   `/m/${firstMemberId()}/1`,
@@ -42,4 +62,8 @@ export const PAGES: string[] = [
   "/corrections",
   "/privacy",
   "/pairing",
+  "/ms",
+  `/ms/m/${firstMsMemberId()}/1`,
+  `/ms/v/${msv.roll}`,
+  `/ms/b/${msv.bill}`,
 ];

@@ -56,6 +56,14 @@ export function billLabel(billId: string): string {
   return `${TYPES[type] ?? type.toUpperCase()} ${num} (${congress}th)`;
 }
 
+/** "ms-hb1-2249" -> "HB 1"; unknown shapes pass through. MS uses HB/SB/HR/SR and
+ *  concurrent/resolution variants — the alpha prefix is shown verbatim, uppercased. */
+export function msBillLabel(billId: string): string {
+  const m = /^ms-([a-z]+)(\d+)-\d+$/.exec(billId);
+  if (!m) return billId;
+  return `${m[1].toUpperCase()} ${m[2]}`;
+}
+
 export function ordinal(n: number): string {
   const s = ["th", "st", "nd", "rd"];
   const v = n % 100;

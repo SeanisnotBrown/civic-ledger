@@ -1,0 +1,65 @@
+---
+import Layout from "../../../../components/Layout.astro";
+import MsVoteRow from "../../../../components/MsVoteRow.astro";
+import { getMsMembers, getMsMemberVotes, paginate } from "../../../../lib/data";
+import type { MemberVoteRow } from "../../../../lib/data";
+
+export function getStaticPaths() {
+  const PAGE_SIZE = 200; // Astro isolates getStaticPaths scope — keep locals inside.
+  const paths = [];
+  for (const member of getMsMembers()) {
+    const pages = paginate(getMsMemberVotes(member.id), PAGE_SIZE);
+    for (let i = 0; i < pages.length; i++) {
+      paths.push({
+        params: { member: member.id, page: String(i + 1) },
+        props: { memberId: member.id, rows: pages[i], pageNum: i + 1, totalPages: pages.length },
+      });
+    }
+  }
+  return paths;
+}
+
+interface Props { memberId: string; rows: MemberVoteRow[]; pageNum: number; totalPages: number }
+const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
+const member = getMsMembers().find((m) => m.id === memberId)!;
+
+const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
+const chamberLabel = member.chamber === "house" ? "Mississippi House" : "Mississippi Senate";
+const districtPrefix = member.chamber === "house" ? "HD" : "SD";
+const districtSuffix = member.district != null ? `, ${districtPrefix}-${member.district}` : "";
+---
+<Layout title={`${member.name} — Mississippi Legislature — Civic Ledger`}>
+  <nav class="text-xs text-neutral-500">
+    <a href="/ms" class="underline">Mississippi Legislature</a> / {member.name}
+  </nav>
+  <h1 class="mt-1 text-2xl font-semibold tracking-tight">{member.name}</h1>
+  <p class="mt-1 text-neutral-600">
+    {PARTY_LABEL[member.party] ?? member.party} · {chamberLabel}{districtSuffix}
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Record</h2>
+  <p class="mt-1 text-xs text-neutral-500">
+    Newest first. Page {pageNum} of {totalPages}. Each roll shows the official question
+    verbatim and links to its vote record.
+  </p>
+
+  {rows.length === 0 ? (
+    <p class="mt-4 text-neutral-600">No recorded roll-call votes this session.</p>
+  ) : (
+    <ul class="mt-2">
+      {rows.map((row) => <MsVoteRow rollcall={row.rollcall} position={row.position} />)}
+    </ul>
+  )}
+
+  {totalPages > 1 && (
+    <nav class="mt-6 flex items-center justify-between text-sm" aria-label="Pagination">
+      {pageNum > 1
+        ? <a href={`/ms/m/${member.id}/${pageNum - 1}`} class="underline hover:text-neutral-800">← Newer</a>
+        : <span class="text-neutral-300">← Newer</span>}
+      <span class="text-neutral-500">Page {pageNum} / {totalPages}</span>
+      {pageNum < totalPages
+        ? <a href={`/ms/m/${member.id}/${pageNum + 1}`} class="underline hover:text-neutral-800">Older →</a>
+        : <span class="text-neutral-300">Older →</span>}
+    </nav>
+  )}
+</Layout>

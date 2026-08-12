@@ -30,6 +30,14 @@ function richVote() {
 const member = firstJson("members").id;
 const rv = richVote();
 
+// Heaviest MS page: a legislator's paginated vote list (INC-12).
+function firstMsMember() {
+  const dir = path.join(DATA, "state", "ms", "members");
+  const f = fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()[0];
+  return JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8")).id;
+}
+const msMember = firstMsMember();
+
 module.exports = {
   ci: {
     collect: {
@@ -40,6 +48,8 @@ module.exports = {
         `${BASE}/v/${rv.roll}`,
         `${BASE}/b/${rv.bill}`,
         `${BASE}/methods`,
+        `${BASE}/ms`,
+        `${BASE}/ms/m/${msMember}/1`,
       ],
       numberOfRuns: 3, // median smooths shared-runner CPU variance
     },

@@ -186,6 +186,90 @@ export function getMemberStatements(memberId: string): Statement[] {
   return getStatements().filter((s) => s.member_id === memberId);
 }
 
+// --- Mississippi state layer (INC-12) ------------------------------------
+// Read from the data/state/ms/ partition. Kept as separate loaders (not merged into
+// the federal ones) so the federal site is byte-identical when no state data exists,
+// and the two jurisdictions never accidentally cross-contaminate a page.
+
+const MS_DIR = fileURLToPath(new URL("../../../data/state/ms/", import.meta.url));
+
+function readMsJson<T>(rel: string): T {
+  return JSON.parse(fs.readFileSync(path.join(MS_DIR, rel), "utf-8")) as T;
+}
+function readMsDir(sub: string): string[] {
+  const dir = path.join(MS_DIR, sub);
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+}
+
+let _msMembers: Member[] | null = null;
+export function getMsMembers(): Member[] {
+  if (_msMembers) return _msMembers;
+  _msMembers = readMsDir("members").map((f) => readMsJson<Member>(`members/${f}`));
+  _msMembers.sort((a, b) => a.name.localeCompare(b.name));
+  return _msMembers;
+}
+export function getMsMember(id: string): Member | undefined {
+  return getMsMembers().find((m) => m.id === id);
+}
+
+let _msVotes: VoteFile[] | null = null;
+export function getAllMsVotes(): VoteFile[] {
+  if (_msVotes) return _msVotes;
+  _msVotes = readMsDir("votes").map((f) => readMsJson<VoteFile>(`votes/${f}`));
+  return _msVotes;
+}
+export function getMsVote(rollId: string): VoteFile | undefined {
+  return getAllMsVotes().find((v) => v.rollcall.id === rollId);
+}
+
+let _msBills: Map<string, Bill> | null = null;
+function msBillMap(): Map<string, Bill> {
+  if (_msBills) return _msBills;
+  _msBills = new Map();
+  for (const f of readMsDir("bills")) {
+    const b = readMsJson<Bill>(`bills/${f}`);
+    _msBills.set(b.id, b);
+  }
+  return _msBills;
+}
+export function getMsBills(): Bill[] {
+  return [...msBillMap().values()].sort((a, b) => a.id.localeCompare(b.id));
+}
+export function getMsBill(id: string): Bill | undefined {
+  return msBillMap().get(id);
+}
+
+/** Every roll a MS member has a recorded position on (incl. Not voting), newest first. */
+export function getMsMemberVotes(memberId: string): MemberVoteRow[] {
+  const rows: MemberVoteRow[] = [];
+  for (const v of getAllMsVotes()) {
+    const mv = v.member_votes.find((x) => x.member_id === memberId);
+    if (mv) rows.push({ rollcall: v.rollcall, position: mv.position });
+  }
+  rows.sort((a, b) => byRecency(a.rollcall, b.rollcall));
+  return rows;
+}
+
+/** MS roll calls that reference a given bill, newest first. */
+export function getMsVotesForBill(billId: string): RollCall[] {
+  return getAllMsVotes()
+    .map((v) => v.rollcall)
+    .filter((rc) => rc.bill_id === billId)
+    .sort(byRecency);
+}
+
+export interface MsManifest {
+  jurisdiction: string; generated_at: string; session_id: number; session_name: string;
+  dataset_hash: string; year_start: number; year_end: number; counts: Record<string, unknown>;
+}
+let _msManifest: MsManifest | null = null;
+export function getMsManifest(): MsManifest {
+  if (_msManifest) return _msManifest;
+  _msManifest = readMsJson<MsManifest>("manifest.json");
+  return _msManifest;
+}
+
 export interface Correction { commit: string; date: string; subject: string; }
 export function getCorrections(): Correction[] {
   // Generated from git history by `uv run corrections` (INC-9). Absent on a bare

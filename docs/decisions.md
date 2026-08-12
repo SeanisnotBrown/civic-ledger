@@ -878,3 +878,22 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   automated CI guard covers the 5 GO-verdict samples; the per-person 470-position match
   is recorded in the verdict. Expanding to more samples is additive (drop a PDF text +
   its roll_call_id into `_SAMPLES`).
+
+### D54 (2026-08-12) — MS state site pages under /ms/
+
+- **The state layer renders under a `/ms/` route prefix with its own loaders and a lean
+  vote-row, so the federal site is byte-identical when no state data exists.** New pages:
+  `/ms` (index, House + Senate by district), `/ms/m/[member]/[page]` (paginated vote list),
+  `/ms/v/[roll]` (question, totals, all positions grouped Yea/Nay/Not-voting), `/ms/b/[bill]`
+  (title, sponsor/cosponsors, subjects, rolls-on-bill). `data.ts` gets parallel `getMs*`
+  loaders reading `data/state/ms/` (separate from the federal loaders — no cross-
+  contamination). `MsVoteRow` mirrors the §6.7 contract but routes to `/ms/…` and omits the
+  federal CREC "No explanation on record." line (MS has no personal-explanation pipeline;
+  the position label states Not-voting plainly). Site grew 4,540 → **7,919 pages**. The
+  federal home links to `/ms`. Gates extended to cover the partition: `check-source-links`
+  now verifies MS vote+bill pages cite their source_url (7,108 pages); the Playwright axe +
+  380px suite adds 4 MS pages (24/24 green); Lighthouse adds the heaviest MS page. `astro
+  check` clean (the `congress: int|None` widening surfaced one federal-roll-page guard).
+  Source-URL honesty: MS roll calls cite the LegiScan vote page (our data source; bots get
+  403 but humans see it — the string-presence check is unaffected), bills cite the official
+  billstatus link where present; the scrape-fidelity framing is on the limitations page.

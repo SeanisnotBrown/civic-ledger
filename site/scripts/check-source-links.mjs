@@ -46,6 +46,28 @@ for (const f of listJson("bills")) {
   checked++;
 }
 
+// Mississippi state layer (INC-12): the same guarantee over /ms/v and /ms/b pages.
+function listStateJson(sub) {
+  const dir = path.join(DATA, "state", "ms", sub);
+  if (!fs.existsSync(dir)) return [];
+  return fs.readdirSync(dir).filter((f) => f.endsWith(".json"));
+}
+for (const f of listStateJson("votes")) {
+  const rec = JSON.parse(fs.readFileSync(path.join(DATA, "state", "ms", "votes", f), "utf-8"));
+  const { id, source_url } = rec.rollcall;
+  const html = readHtml("ms", "v", id);
+  if (html === null) { misses.push(`ms/v/${id}: no page built`); continue; }
+  if (!htmlContains(html, source_url)) misses.push(`ms/v/${id}: missing source_url ${source_url}`);
+  checked++;
+}
+for (const f of listStateJson("bills")) {
+  const b = JSON.parse(fs.readFileSync(path.join(DATA, "state", "ms", "bills", f), "utf-8"));
+  const html = readHtml("ms", "b", b.id);
+  if (html === null) { misses.push(`ms/b/${b.id}: no page built`); continue; }
+  if (!htmlContains(html, b.source_url)) misses.push(`ms/b/${b.id}: missing source_url ${b.source_url}`);
+  checked++;
+}
+
 if (misses.length) {
   console.error(`source-link check FAILED — ${misses.length} miss(es):`);
   for (const m of misses.slice(0, 40)) console.error(`  ${m}`);

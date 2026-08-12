@@ -30,7 +30,7 @@ const TOTAL_ORDER = ["yea", "nay", "present", "not_voting"] as const;
     <Badge voteClass={rc.vote_class} />
   </div>
   <p class="mt-1 text-sm text-neutral-500">
-    {ordinal(rc.congress)} Congress, session {rc.session} · {formatDate(rc.date)}
+    {rc.congress != null && <>{ordinal(rc.congress)} Congress, session {rc.session} · </>}{formatDate(rc.date)}
   </p>
 
   <h2 class="mt-6 text-sm font-semibold uppercase tracking-wide text-neutral-500">Question</h2>

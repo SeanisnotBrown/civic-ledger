@@ -76,7 +76,9 @@ def test_verify_rejects_same_surname_other_state():
 
 def test_match_rollcall_uses_stub_existence(monkeypatch, tmp_path):
     monkeypatch.setattr(absences, "ABSENCES_DIR", tmp_path)
-    (tmp_path / "G000591--h-118-1-0031.json").write_text("{}", encoding="utf-8")
+    # V2-1: data/absences/ is sharded one level by congress.
+    (tmp_path / "118").mkdir()
+    (tmp_path / "118" / "G000591--h-118-1-0031.json").write_text("{}", encoding="utf-8")
     # 2023 granule → only 118/1 session qualifies; the stub exists → unique match.
     assert absences.match_rollcall("G000591", "house", 31, 2023) == "h-118-1-0031"
     # No stub for roll 99 → unmatched.
@@ -85,8 +87,9 @@ def test_match_rollcall_uses_stub_existence(monkeypatch, tmp_path):
 
 def test_match_ambiguous_returns_none(monkeypatch, tmp_path):
     monkeypatch.setattr(absences, "ABSENCES_DIR", tmp_path)
-    (tmp_path / "G000591--h-118-1-0031.json").write_text("{}", encoding="utf-8")
-    (tmp_path / "G000591--h-118-2-0031.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "118").mkdir()
+    (tmp_path / "118" / "G000591--h-118-1-0031.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "118" / "G000591--h-118-2-0031.json").write_text("{}", encoding="utf-8")
     # 2024 granule → both 118/1 and 118/2 qualify and both stubs exist → ambiguous.
     assert absences.match_rollcall("G000591", "house", 31, 2024) is None
 
@@ -96,7 +99,8 @@ def test_match_ambiguous_returns_none(monkeypatch, tmp_path):
 
 def test_build_candidate_verified_and_matched(monkeypatch, tmp_path):
     monkeypatch.setattr(absences, "ABSENCES_DIR", tmp_path)
-    (tmp_path / "G000591--h-118-1-0031.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "118").mkdir()
+    (tmp_path / "118" / "G000591--h-118-1-0031.json").write_text("{}", encoding="utf-8")
     result = {"granuleId": "CREC-2023-01-13-pt1-PgE29-4", "packageId": "CREC-2023-01-13",
               "dateIssued": "2023-01-13"}
     cand = absences.build_candidate(result, GUEST_HTML, [GUEST, THOMPSON_MS])
@@ -132,14 +136,14 @@ def _guest_candidate() -> dict:
 def test_approve_publishes_verbatim_reason(monkeypatch, tmp_path):
     absdir = tmp_path / "absences"
     qdir = tmp_path / "queue"
-    absdir.mkdir()
+    (absdir / "118").mkdir(parents=True)  # V2-1: sharded one level by congress
     qdir.mkdir()
     monkeypatch.setattr(absences, "ABSENCES_DIR", absdir)
     monkeypatch.setattr(absences, "QUEUE_DIR", qdir)
     # Seed the pending queue file + the not_voting stub it matches.
     qpath = qdir / "CREC-2023-01-13-pt1-PgE29-4.json"
     qpath.write_text(json.dumps(_guest_candidate()), encoding="utf-8")
-    stub = absdir / "G000591--h-118-1-0031.json"
+    stub = absdir / "118" / "G000591--h-118-1-0031.json"
     stub.write_text(json.dumps(
         {"member_id": "G000591", "rollcall_id": "h-118-1-0031", "stated_reason": None,
          "stated_reason_source": None, "declared_position": None}), encoding="utf-8")
@@ -159,11 +163,11 @@ def _seed_guest(tmp_path):
     """A pending Guest queue file + its matching not_voting stub, in tmp dirs."""
     absdir = tmp_path / "absences"
     qdir = tmp_path / "queue"
-    absdir.mkdir()
+    (absdir / "118").mkdir(parents=True)  # V2-1: sharded one level by congress
     qdir.mkdir()
     qpath = qdir / "CREC-2023-01-13-pt1-PgE29-4.json"
     qpath.write_text(json.dumps(_guest_candidate()), encoding="utf-8")
-    (absdir / "G000591--h-118-1-0031.json").write_text(json.dumps(
+    (absdir / "118" / "G000591--h-118-1-0031.json").write_text(json.dumps(
         {"member_id": "G000591", "rollcall_id": "h-118-1-0031", "stated_reason": None,
          "stated_reason_source": None, "declared_position": None}), encoding="utf-8")
     return absdir, qpath
@@ -205,6 +209,6 @@ def test_committed_absences_have_no_unapproved_reason():
     # Guard the whole published set: no committed absence carries a stated_reason
     # without its source (the model invariant), and unapproved stubs stay null.
     absdir = repo_root() / "data" / "absences"
-    for path in absdir.glob("*.json"):
+    for path in absdir.glob("*/*.json"):  # V2-1: sharded one level by congress
         rec = json.loads(path.read_text(encoding="utf-8"))
         Absence(**rec)  # every published file satisfies stated_reason ⇒ source

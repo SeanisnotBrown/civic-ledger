@@ -7,6 +7,7 @@ the committed menu sample and inline fixtures. No network.
 from __future__ import annotations
 
 import copy
+import re
 
 import pytest
 
@@ -24,6 +25,17 @@ MS_XWALK = {"S395": "H001079", "S318": "W000437"}
 
 def _detail(roll: int) -> str:
     return (SAMPLES / f"senate_vote_detail_119_1_{roll:05d}.xml").read_text(encoding="utf-8")
+
+
+def _full_xwalk(xml: str) -> dict[str, str]:
+    """V2-1 (D61): parse_rollcall no longer filters to MS, so every senator in
+    a fixture must resolve via the crosswalk or parsing raises KeyError. Maps
+    every lis_member_id present to a synthetic bioguide, EXCEPT the two real MS
+    senators, who keep their real bioguides so MS-specific assertions still work."""
+    lis_ids = sorted(set(re.findall(r"<lis_member_id>(\S+)</lis_member_id>", xml)))
+    xwalk = {lis: f"X{i:06d}" for i, lis in enumerate(lis_ids) if lis not in MS_XWALK}
+    xwalk.update(MS_XWALK)
+    return xwalk
 
 
 def _menu() -> str:
@@ -46,7 +58,9 @@ def test_menu_enumerates_contiguously():
 
 
 def test_parse_cloture_on_bill():
-    rc, mvs, absences = senate_votes.parse_rollcall(_detail(1), 119, 1, MS_XWALK, (84, 9))
+    # V2-1 (D61): every senator's position is persisted, not just MS's.
+    xml = _detail(1)
+    rc, mvs, absences = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), (84, 9))
     assert isinstance(rc, RollCall)
     assert rc.id == "s-119-1-0001"
     assert rc.chamber == "senate"
@@ -60,36 +74,45 @@ def test_parse_cloture_on_bill():
     for cat in ("yea", "nay", "present", "not_voting"):
         assert sum(p[cat] for p in rc.party_totals.values()) == rc.totals[cat]
     assert rc.source_url.endswith("/vote1191/vote_119_1_00001.xml")
-    assert {mv.member_id for mv in mvs} == {"H001079", "W000437"}
-    assert all(mv.position == "yea" for mv in mvs)
-    assert absences == []
+    assert len(mvs) == 99  # every senator on this fixture (84+9+6)
+    ms = {"H001079", "W000437"}
+    assert ms <= {mv.member_id for mv in mvs}
+    assert all(mv.position == "yea" for mv in mvs if mv.member_id in ms)
+    assert len(absences) == 6  # the 6 already-not_voting senators on this roll
 
 
 def test_parse_amendment_uses_underlying_bill():
     # Amendment vote: <document> type "S.Amdt." has no number; bill_id must fall
     # back to <amendment><amendment_to_document_number> = "H.R. 1".
-    rc, mvs, _ = senate_votes.parse_rollcall(_detail(371), 119, 1, MS_XWALK, (50, 50))
+    xml = _detail(371)
+    rc, mvs, _ = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), (50, 50))
     assert rc.bill_id == "hr1-119"
     assert rc.totals == {"yea": 50, "nay": 50, "present": 0, "not_voting": 0}
+    assert len(mvs) == 100
 
 
 def test_parse_passage_tie_break_totals_agree_with_menu():
     # VP tie-break passage: VP is absent from members AND the menu tally, so the
     # member-computed 50-50 matches the menu 50-50 with no special handling.
-    rc, mvs, _ = senate_votes.parse_rollcall(_detail(372), 119, 1, MS_XWALK, (50, 50))
+    xml = _detail(372)
+    rc, mvs, _ = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), (50, 50))
     assert rc.bill_id == "hr1-119"
     assert rc.result == "Bill Passed"
     assert rc.totals["yea"] == 50 and rc.totals["nay"] == 50
+    assert len(mvs) == 100
 
 
 def test_parse_nomination_has_no_bill_id():
-    # PN373 is a nomination, not legislation → bill_id None; absentees seed nothing
-    # for MS here (both MS senators voted Yea).
-    rc, mvs, absences = senate_votes.parse_rollcall(_detail(659), 119, 1, MS_XWALK, (51, 42))
+    # PN373 is a nomination, not legislation → bill_id None. Both MS senators
+    # voted Yea, so neither seeds an absence.
+    xml = _detail(659)
+    rc, mvs, absences = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), (51, 42))
     assert rc.bill_id is None
     assert rc.totals["not_voting"] == 7  # <count> absent == 7
-    assert all(mv.position == "yea" for mv in mvs)
-    assert absences == []
+    ms = {"H001079", "W000437"}
+    assert all(mv.position == "yea" for mv in mvs if mv.member_id in ms)
+    assert not ms & {a.member_id for a in absences}
+    assert len(absences) == 7  # every not_voting senator, not just MS's (none here)
 
 
 # --- cross-source tally check ---------------------------------------------
@@ -102,7 +125,8 @@ def test_tally_mismatch_raises():
 
 def test_missing_menu_tally_skips_check():
     # Vote carries no menu tally → cross-check is skipped, not failed.
-    rc, _, _ = senate_votes.parse_rollcall(_detail(1), 119, 1, MS_XWALK, (None, None))
+    xml = _detail(1)
+    rc, _, _ = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), (None, None))
     assert rc.totals["yea"] == 84
 
 
@@ -115,25 +139,48 @@ def test_not_voting_seeds_absence_stub():
         "<vote_cast>Not Voting</vote_cast>\n      <lis_member_id>S318</lis_member_id>",
     )
     # menu tally no longer matches (one fewer yea) → skip the check for this fixture.
-    rc, mvs, absences = senate_votes.parse_rollcall(xml, 119, 1, MS_XWALK, None)
+    rc, mvs, absences = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), None)
     wicker = next(mv for mv in mvs if mv.member_id == "W000437")
     assert wicker.position == "not_voting"
-    assert [a.member_id for a in absences] == ["W000437"]
-    assert absences[0].rollcall_id == "s-119-1-0001"
-    assert absences[0].stated_reason is None
+    assert len(absences) == 7  # the 6 already-not_voting senators + Wicker flipped
+    wicker_absence = next(a for a in absences if a.member_id == "W000437")
+    assert wicker_absence.rollcall_id == "s-119-1-0001"
+    assert wicker_absence.stated_reason is None
 
 
 def test_unknown_vote_cast_raises():
     xml = _detail(1).replace("<vote_cast>Yea</vote_cast>", "<vote_cast>Maybe</vote_cast>", 1)
     with pytest.raises(senate_votes.UnknownVoteCast):
-        senate_votes.parse_rollcall(xml, 119, 1, MS_XWALK, None)
+        senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(_detail(1)), None)
 
 
-def test_ms_lis_not_in_crosswalk_raises():
-    # A covered MS senator whose lis is absent from the crosswalk is a hard error,
-    # never a silent drop.
+def test_lis_not_in_crosswalk_raises():
+    # V2-1 (D61): any senator whose lis is absent from the crosswalk is a hard
+    # error, never a silent drop — not just an MS one (mirrors house_votes.py).
     with pytest.raises(KeyError):
         senate_votes.parse_rollcall(_detail(1), 119, 1, {"S395": "H001079"}, (84, 9))
+
+
+def test_unknown_member_raises_when_roster_stale():
+    # R-2/D61: every voter on the roll resolves via the crosswalk, but the
+    # (date-windowed) covered set the roster hasn't caught up to omits one —
+    # raise, mirroring house_votes.py's churn guard, which the Senate path
+    # lacked entirely before V2-1.
+    xml = _detail(1)
+    xwalk = _full_xwalk(xml)
+    covered_minus_one = set(xwalk.values()) - {"H001079"}
+    with pytest.raises(senate_votes.UnknownMember) as exc:
+        senate_votes.parse_rollcall(xml, 119, 1, xwalk, (84, 9), covered=covered_minus_one)
+    assert "H001079" in str(exc.value)
+
+
+def test_covered_set_matching_roster_does_not_raise():
+    xml = _detail(1)
+    xwalk = _full_xwalk(xml)
+    rc, mvs, _ = senate_votes.parse_rollcall(
+        xml, 119, 1, xwalk, (84, 9), covered=set(xwalk.values())
+    )
+    assert {mv.member_id for mv in mvs} == set(xwalk.values())
 
 
 # --- bill-id normalization ------------------------------------------------
@@ -169,7 +216,8 @@ def test_parse_positions_joins_crosswalk_and_filters_state():
 
 
 def test_senate_vote_export_deterministic(tmp_path):
-    rc, mvs, _ = senate_votes.parse_rollcall(_detail(1), 119, 1, MS_XWALK, (84, 9))
+    xml = _detail(1)
+    rc, mvs, _ = senate_votes.parse_rollcall(xml, 119, 1, _full_xwalk(xml), (84, 9))
     a = export_rollcall(rc, mvs, out_dir=tmp_path / "a")
     b = export_rollcall(rc, copy.deepcopy(mvs), out_dir=tmp_path / "b")
     assert a.read_bytes() == b.read_bytes()

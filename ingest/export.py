@@ -68,6 +68,14 @@ def _dumps(obj: object) -> str:
     return json.dumps(obj, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
 
 
+def congress_of(rollcall_id: str) -> str:
+    """"h-118-1-0001" -> "118". `data/absences/` shards by this (V2-1): full
+    federal coverage measured ~35,000 absence stubs (one file per not_voting
+    position — the House alone went 8,634 -> 28,140+ once every member's
+    positions are persisted, not just MS's), too many for one flat directory."""
+    return rollcall_id.split("-")[1]
+
+
 class VoteFile(BaseModel):
     """The composite shape of one data/votes/*.json file: a chamber `RollCall`
     with the covered delegation's positions embedded. Exists so the file's JSON
@@ -118,9 +126,12 @@ def export_bill(bill: Bill, out_dir: Path = BILLS_DIR) -> Path:
 def export_absence(
     absence: Absence, out_dir: Path = ABSENCES_DIR, *, overwrite: bool = True
 ) -> Path:
-    """One file per absence: data/absences/{member_id}--{rollcall_id}.json. Kept
+    """One file per absence: {out_dir}/{member_id}--{rollcall_id}.json. Kept
     separate from vote files so INC-6 curation can add a stated_reason without
-    rewriting the (much larger) vote record.
+    rewriting the (much larger) vote record. V2-1: `data/absences/` is sharded
+    one level by congress (`congress_of(rollcall_id)`) — callers pass
+    `out_dir=ABSENCES_DIR / congress_of(absence.rollcall_id)`; this function
+    itself is shard-agnostic, it just writes wherever `out_dir` points.
 
     `overwrite=False` (used by the ingest) preserves an existing file untouched:
     an ingest stub carries nothing a re-fetch can update, but the reason fields are
@@ -201,7 +212,8 @@ def _count_dataset() -> dict[str, object]:
 
     members = sorted(MEMBERS_DIR.glob("*.json")) if MEMBERS_DIR.exists() else []
     votes = sorted(VOTES_DIR.glob("*.json")) if VOTES_DIR.exists() else []
-    absences = sorted(ABSENCES_DIR.glob("*.json")) if ABSENCES_DIR.exists() else []
+    # V2-1: data/absences/ is sharded one level by congress (congress_of()).
+    absences = sorted(ABSENCES_DIR.glob("*/*.json")) if ABSENCES_DIR.exists() else []
     bills = sorted(BILLS_DIR.glob("*.json")) if BILLS_DIR.exists() else []
     # Curated statement records via the single loader (R-1b/M-3): config files (e.g.
     # `_title_allowlist.yaml`, any future `_*.json`) are excluded, so the manifest count

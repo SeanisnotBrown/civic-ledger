@@ -72,6 +72,25 @@ function readDir(sub: string): string[] {
   return fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
 }
 
+// V2-1: data/absences/ is sharded one level by congress (too many files for one
+// flat directory at full-roster scale — ~35,000 stubs). Returns paths relative
+// to `sub`, e.g. "118/E000235--h-118-1-0021.json".
+function readNestedDir(sub: string): string[] {
+  const dir = path.join(DATA_DIR, sub);
+  if (!fs.existsSync(dir)) return [];
+  const out: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      for (const f of fs.readdirSync(path.join(dir, entry.name))) {
+        if (f.endsWith(".json")) out.push(`${entry.name}/${f}`);
+      }
+    } else if (entry.name.endsWith(".json")) {
+      out.push(entry.name);
+    }
+  }
+  return out.sort();
+}
+
 let _members: Member[] | null = null;
 export function getMembers(): Member[] {
   if (_members) return _members;
@@ -114,7 +133,7 @@ let _absences: Map<string, Absence> | null = null;
 function absenceMap(): Map<string, Absence> {
   if (_absences) return _absences;
   _absences = new Map();
-  for (const f of readDir("absences")) {
+  for (const f of readNestedDir("absences")) {
     const a = readJson<Absence>(`absences/${f}`);
     _absences.set(`${a.member_id}--${a.rollcall_id}`, a);
   }

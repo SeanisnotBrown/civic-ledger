@@ -25,7 +25,7 @@ def _raw() -> list[dict]:
 
 
 def _members() -> list[Member]:
-    return legislators.covered_members(_raw(), config.CONGRESSES, config.COVERED_STATE)
+    return legislators.covered_members(_raw(), config.CONGRESSES)
 
 
 # --- schema validation ----------------------------------------------------
@@ -90,7 +90,7 @@ def test_party_switch_preserved_in_terms():
              "state": "MS", "type": "rep", "district": 2},
         ],
     }
-    (member,) = legislators.covered_members([entry], config.CONGRESSES, "MS")
+    (member,) = legislators.covered_members([entry], config.CONGRESSES)
     assert [t.party for t in member.terms] == ["D", "R"]  # both preserved, in order
     assert member.party == "R"  # current = latest term
 
@@ -144,6 +144,44 @@ def test_terms_sorted_by_start():
     wicker = {m.id: m for m in _members()}["W000437"]
     starts = [t.start for t in wicker.terms]
     assert starts == sorted(starts)
+
+
+# --- V2-1: voting-state filter + current/historical merge ------------------
+
+
+def _delegate_entry(state: str) -> dict:
+    return {
+        "id": {"bioguide": "D999999", "govtrack": 9},
+        "name": {"first": "Non", "last": "Voting", "official_full": "Non Voting"},
+        "terms": [
+            {"start": "2023-01-03", "end": "2025-01-03", "party": "Democrat",
+             "state": state, "type": "rep", "district": 0},
+        ],
+    }
+
+
+@pytest.mark.parametrize("state", ["DC", "PR", "GU", "AS", "VI", "MP"])
+def test_non_voting_delegate_included_in_roster(state):
+    # D61 (supersedes D60): delegates ARE covered members — excluding them broke
+    # full recomputability (they cast real votes on ~1/3 of House rolls). The
+    # roster is state-agnostic now; delegate detection moves to ingest/coverage.py.
+    (member,) = legislators.covered_members([_delegate_entry(state)], config.CONGRESSES)
+    assert member.state == state
+
+
+def test_voting_state_included():
+    assert len(legislators.covered_members([_delegate_entry("MS")], config.CONGRESSES)) == 1
+
+
+def test_merge_raw_unions_and_prefers_current_on_collision():
+    current_entry = {"id": {"bioguide": "X1"}, "name": {}, "flag": "current"}
+    historical_entry = {"id": {"bioguide": "X1"}, "name": {}, "flag": "historical"}
+    only_historical = {"id": {"bioguide": "X2"}, "name": {}, "flag": "historical"}
+    merged = legislators.merge_raw([current_entry], [historical_entry, only_historical])
+    by_id = {e["id"]["bioguide"]: e for e in merged}
+    assert by_id["X1"]["flag"] == "current"  # collision: current wins
+    assert by_id["X2"]["flag"] == "historical"  # historical-only entry preserved
+    assert len(merged) == 2
 
 
 # --- deterministic export -------------------------------------------------

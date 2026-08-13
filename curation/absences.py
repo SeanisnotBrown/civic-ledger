@@ -25,7 +25,7 @@ import sys
 from pathlib import Path
 
 from ingest import config
-from ingest.export import ABSENCES_DIR, _dumps
+from ingest.export import ABSENCES_DIR, _dumps, congress_of
 from ingest.models import Absence
 from ingest.sources import govinfo
 from ingest.sources.legislators import congress_window
@@ -130,7 +130,8 @@ def match_rollcall(member_id: str, chamber: str, roll: int, granule_year: int) -
             if _session_start_year(congress, session) > granule_year:
                 continue
             rc_id = f"{prefix}-{congress}-{session}-{roll:04d}"
-            if (ABSENCES_DIR / f"{member_id}--{rc_id}.json").exists():
+            # V2-1: data/absences/ is sharded one level by congress.
+            if (ABSENCES_DIR / str(congress) / f"{member_id}--{rc_id}.json").exists():
                 hits.append(rc_id)
     return hits[0] if len(hits) == 1 else None
 
@@ -230,7 +231,10 @@ def _publish(candidate: dict, reason: str) -> Path:
     rc_id = candidate["matched_rollcall_id"]
     if not rc_id:
         raise ValueError(f"{candidate['granule_id']}: no matched roll call — cannot publish")
-    path = ABSENCES_DIR / f"{candidate['member_id']}--{rc_id}.json"
+    # V2-1: data/absences/ is sharded one level by congress — the stub this
+    # publishes onto was already written there by the ingest (match_rollcall
+    # requires stub existence, so the directory is guaranteed present).
+    path = ABSENCES_DIR / congress_of(rc_id) / f"{candidate['member_id']}--{rc_id}.json"
     existing = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     absence = Absence(
         member_id=candidate["member_id"],

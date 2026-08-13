@@ -1,4 +1,5 @@
-"""INC-4 — Senate roll-call parsing (pure) + the ingest pipeline.
+"""INC-4 — Senate roll-call parsing (pure) + the ingest pipeline. V2-1 (D61)
+expands covered positions from the 2-member MS delegation to the whole Senate.
 
 Mirrors INC-3 (house_votes.py) against the senate.gov LIS XML (SHAPES §6). Two
 files back each roll: the session `vote_menu` (enumeration + independent per-vote
@@ -8,12 +9,14 @@ record; totals are computed from it and cross-checked against the menu tally —
 genuine cross-SOURCE check (two different files), the Senate analogue of INC-3's
 clerk cross-check (there is no separate clerk for the Senate).
 
-Positions are stored only for the covered MS delegation; the `lis_member_id`→
-bioguide join runs through the INC-2 member export (`Member.ids["lis"]`). VP
-tie-break votes need no special handling: the VP is absent from the member list,
-the detail `<count>` block, AND the menu tally, so member-computed totals agree
-with the menu on a 50-50 roll — the tie-break itself is carried by `result`
-(e.g. "Bill Passed"). `vote_class` is provisional until the §A1 classifier (INC-5).
+Positions are stored for every senator, no state filter (the Senate has no
+delegate seats — D61's delegate exception is a House-only concept); the
+`lis_member_id`→bioguide join runs through the INC-2 member export
+(`Member.ids["lis"]`). VP tie-break votes need no special handling: the VP is
+absent from the member list, the detail `<count>` block, AND the menu tally, so
+member-computed totals agree with the menu on a 50-50 roll — the tie-break itself
+is carried by `result` (e.g. "Bill Passed"). `vote_class` is provisional until
+the §A1 classifier (INC-5).
 """
 
 from __future__ import annotations
@@ -115,18 +118,30 @@ def _parse_date(raw: str) -> str:
     return f"{int(year):04d}-{month:02d}-{int(day):02d}T{hour:02d}:{int(mm):02d}:00"
 
 
+class UnknownMember(ValueError):
+    """A senator with no Member record — the roster changed and hasn't caught up
+    (R-2/D60/D61). Mirrors house_votes.UnknownMember; forces quarantine + run
+    failure so an orphan (votes on file, no page/metrics — value #2) never exports."""
+
+
 def parse_rollcall(
     detail_xml: str,
     congress: int,
     session: int,
     lis_to_bioguide: dict[str, str],
     menu_tally: tuple[int | None, int | None] | None = None,
+    covered: set[str] | None = None,
 ) -> tuple[RollCall, list[MemberVote], list[Absence]]:
-    """Parse one Senate detail XML into a chamber `RollCall`, the MS delegation's
-    `MemberVote`s, and an `Absence` stub per MS `not_voting`. Totals are computed
-    from the member list and, when `menu_tally` is given, cross-checked against it
-    (raises TallyMismatch on disagreement). Raises on malformed data so the caller
-    can quarantine the whole roll (§6.1)."""
+    """Parse one Senate detail XML into a chamber `RollCall`, every senator's
+    `MemberVote` (V2-1/D61: no state filter), and an `Absence` stub per
+    `not_voting`. Totals are computed from the member list and, when `menu_tally`
+    is given, cross-checked against it (raises TallyMismatch on disagreement).
+    Raises on malformed data so the caller can quarantine the whole roll (§6.1).
+
+    `covered` (the FULL roster serving ON THIS ROLL'S DATE — date-windowed,
+    `coverage.covered_on()`'s result) is the churn guard (R-2), mirroring
+    house_votes.py: when supplied, a voter outside it raises `UnknownMember`.
+    `None` (unit tests, backfill) skips the check."""
     root = ET.fromstring(detail_xml)
     roll = int((root.findtext("vote_number") or "").strip())
     rc_id = f"s-{congress}-{session}-{roll:04d}"
@@ -175,18 +190,24 @@ def parse_rollcall(
     member_votes: list[MemberVote] = []
     absences: list[Absence] = []
     for m in members:
-        if (m.findtext("state") or "").strip() != "MS":
-            continue
         lis = (m.findtext("lis_member_id") or "").strip()
         bioguide = lis_to_bioguide.get(lis)
         if bioguide is None:
-            # A covered MS senator whose lis is not in the crosswalk = a real gap
-            # (bad export or roster drift); surface it, never silently drop.
-            raise KeyError(f"{rc_id}: MS lis_member_id {lis!r} not in crosswalk")
+            # A senator whose lis is not in the crosswalk = a real gap (bad export
+            # or roster drift); surface it, never silently drop.
+            raise KeyError(f"{rc_id}: lis_member_id {lis!r} not in crosswalk")
         pos = _position((m.findtext("vote_cast") or "").strip())
         member_votes.append(MemberVote(member_id=bioguide, rollcall_id=rc_id, position=pos))
         if pos == "not_voting":
             absences.append(Absence(member_id=bioguide, rollcall_id=rc_id))
+
+    if covered is not None:
+        extra = {mv.member_id for mv in member_votes} - covered
+        if extra:
+            raise UnknownMember(
+                f"{rc_id}: voter(s) {sorted(extra)} not in roster — run "
+                f"`ingest members` to refresh the covered set, then re-ingest"
+            )
 
     member_votes.sort(key=lambda mv: mv.member_id)
     absences.sort(key=lambda a: a.member_id)
@@ -215,24 +236,6 @@ def _lis_to_bioguide() -> dict[str, str]:
     return out
 
 
-def _covered_senate(congresses: list[int]) -> dict[int, set[str]]:
-    """{congress: covered Senate-member bioguides serving that congress}."""
-    import json
-
-    from ingest.export import MEMBERS_DIR
-    from ingest.sources.legislators import _term_overlaps
-
-    per_congress: dict[int, set[str]] = {c: set() for c in congresses}
-    for path in sorted(MEMBERS_DIR.glob("*.json")):
-        m = json.loads(path.read_text(encoding="utf-8"))
-        if m["chamber"] != "senate":
-            continue
-        for c in congresses:
-            if any(_term_overlaps(t, c) for t in m["terms"] if t["chamber"] == "senate"):
-                per_congress[c].add(m["id"])
-    return per_congress
-
-
 def _quarantine(rc_id: str, error: str) -> None:
     import json
 
@@ -249,12 +252,12 @@ def _quarantine(rc_id: str, error: str) -> None:
 def run(argv: list[str] | None = None) -> int:
     """Ingest every Senate roll call for the covered Congresses → data/votes/s-*
     + data/absences/. Idempotent/resumable (cached fetches). Fails (nonzero) on any
-    covered-member gap, MS-row validation failure, or enumeration break (§6.1)."""
+    covered-member gap, roll validation failure, or enumeration break (§6.1)."""
     import httpx
 
-    from ingest import config, incremental
+    from ingest import config, coverage, incremental
     from ingest.cache import RetryableHTTPError, repo_root
-    from ingest.export import export_absence, export_rollcall
+    from ingest.export import ABSENCES_DIR, MEMBERS_DIR, congress_of, export_absence, export_rollcall
     from ingest.sources import senate_xml
 
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
@@ -262,15 +265,18 @@ def run(argv: list[str] | None = None) -> int:
     force_all = bool(argv) and "--all" in argv  # re-parse finalized rolls (schema backfill)
     cutoff = incremental.final_cutoff()  # finalized rolls are skipped (§6.1)
     lis_to_bioguide = _lis_to_bioguide()
-    covered = _covered_senate(config.CONGRESSES)
+    # Loaded once (D60): per-roll eligibility is date-windowed (ingest/coverage.py).
+    # No delegate exception applies to the Senate (no territorial seats) — an empty
+    # set is passed to expected_on() so only the Speaker (never a senator) and
+    # seating-lag exceptions can apply, which is correct and harmless either way.
+    terms = coverage.member_terms(MEMBERS_DIR, "senate")
     gaps: list[str] = []          # completeness / covered-member gaps (correctness)
-    ms_failures: list[str] = []   # MS-row / tally validation failures (hard fail)
+    ms_failures: list[str] = []   # per-row / tally validation failures (hard fail)
     fetch_failures: list[str] = []
     n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
 
     for congress in config.CONGRESSES:
-        expected_ms = covered[congress]
         for session in SESSIONS[congress]:
             try:
                 menu = senate_xml.parse_menu(senate_xml.vote_menu(congress, session).text)
@@ -295,21 +301,30 @@ def run(argv: list[str] | None = None) -> int:
                     fetch_failures.append(f"{rc_id}: {type(exc).__name__}")
                     continue
                 try:
+                    date = _parse_date(ET.fromstring(detail).findtext("vote_date") or "")
+                except ET.ParseError as exc:
+                    _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
+                    ms_failures.append(rc_id)
+                    continue
+                roster = coverage.covered_on(terms, date)  # full roster, churn guard
+                try:
                     rc, mvs, absences = parse_rollcall(
-                        detail, congress, session, lis_to_bioguide, menu[roll]
+                        detail, congress, session, lis_to_bioguide, menu[roll], covered=roster
                     )
-                except (ValidationError, KeyError, ValueError) as exc:
+                except (ValidationError, KeyError, ValueError, UnknownMember) as exc:
                     # ValueError covers UnknownVoteCast, TallyMismatch, and _parse_date.
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
                     ms_failures.append(rc_id)
                     continue
-                missing = expected_ms - {mv.member_id for mv in mvs}
+                expected = coverage.expected_on(terms, date, delegates=set())
+                missing = expected - {mv.member_id for mv in mvs}
                 if missing:
-                    gaps.append(f"{rc_id}: missing MS members {sorted(missing)}")
+                    gaps.append(f"{rc_id}: missing members {sorted(missing)}")
                 export_rollcall(rc, mvs)
+                abs_dir = ABSENCES_DIR / congress_of(rc_id)  # V2-1: sharded by congress
                 for ab in absences:
                     # overwrite=False: never clobber an owner-approved reason (D35).
-                    export_absence(ab, overwrite=False)
+                    export_absence(ab, out_dir=abs_dir, overwrite=False)
                     n_abs += 1
                 n_votes += 1
 
@@ -333,7 +348,7 @@ def run(argv: list[str] | None = None) -> int:
         print(f"FAIL: {len(fetch_failures)} fetch(es) failed (re-run to retry): "
               f"{fetch_failures[:10]}")
     if ms_failures:
-        print(f"FAIL: {len(ms_failures)} MS/tally validation failures (quarantined): "
+        print(f"FAIL: {len(ms_failures)} roll/tally validation failures (quarantined): "
               f"{ms_failures[:10]}")
     if gaps:
         print(f"FAIL: {len(gaps)} covered-member/enumeration gap(s) -> data/quality/senate-gaps.md")

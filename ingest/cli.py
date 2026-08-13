@@ -12,19 +12,39 @@ import sys
 
 
 def _members() -> int:
-    """Fetch congress-legislators, filter to the covered delegation, export."""
+    """Fetch congress-legislators (current + historical, merged so a member who
+    left office between the 118th and 119th is still covered — D60), filter to
+    the covered voting-state delegation of both chambers, export."""
     import yaml
 
     from ingest import config
     from ingest.export import export_members
     from ingest.sources import legislators
 
-    raw = yaml.safe_load(legislators.current().text)
-    members = legislators.covered_members(raw, config.CONGRESSES, config.COVERED_STATE)
+    current_raw = yaml.safe_load(legislators.current().text)
+    historical_raw = yaml.safe_load(legislators.historical().text)
+    raw = legislators.merge_raw(current_raw, historical_raw)
+    members = legislators.covered_members(raw, config.CONGRESSES)
+
+    by_chamber = {"house": 0, "senate": 0}
+    for m in members:
+        by_chamber[m.chamber] += 1
+    # Sanity bounds (D61): 435 voting House seats + 6 non-voting delegates / 100
+    # Senate seats, with headroom for mid-congress churn (resignations, deaths,
+    # special elections) across two congresses — a filter bug should never pass
+    # silently as a plausible count.
+    if not (435 <= by_chamber["house"] <= 545):
+        raise ValueError(
+            f"house member count {by_chamber['house']} outside sane bounds [435, 545]"
+        )
+    if not (95 <= by_chamber["senate"] <= 130):
+        raise ValueError(
+            f"senate member count {by_chamber['senate']} outside sane bounds [95, 130]"
+        )
+
     paths = export_members(members)
     print(f"civic-ledger ingest members: exported {len(paths)} members to data/members/")
-    for path in paths:
-        print(f"  {path.name}")
+    print(f"  house={by_chamber['house']} senate={by_chamber['senate']} total={len(paths)}")
     return 0
 
 

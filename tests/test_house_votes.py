@@ -29,7 +29,8 @@ def _sample() -> dict:
 # --- parsing --------------------------------------------------------------
 
 
-def test_parse_rollcall_totals_and_ms_votes():
+def test_parse_rollcall_totals_and_all_voting_state_votes():
+    # V2-1 (D60): every voting-state member's position is persisted, not just MS's.
     rc, mvs, absences = house_votes.parse_rollcall(_sample(), 119, 1)
     assert isinstance(rc, RollCall)
     assert rc.id == "h-119-1-0240"
@@ -43,10 +44,29 @@ def test_parse_rollcall_totals_and_ms_votes():
     assert rc.bill_id == "hr3424-119"
     assert rc.vote_class == "other" and rc.vote_class_rule == "unclassified"
     assert rc.source_url == "https://clerk.house.gov/evs/2025/roll240.xml"
-    # Exactly the 4 MS House members, all Yea on this roll.
-    assert {mv.member_id for mv in mvs} == {"E000235", "G000591", "K000388", "T000193"}
-    assert all(mv.position == "yea" for mv in mvs)
-    assert absences == []  # nobody from MS was not_voting here
+    # All 430 results become positions — this fixture's real roll has no delegates.
+    assert len(mvs) == 430
+    assert sum(1 for mv in mvs if mv.position == "not_voting") == 32
+    # The 4 MS House members are among them, all Yea on this roll.
+    ms = {"E000235", "G000591", "K000388", "T000193"}
+    assert ms <= {mv.member_id for mv in mvs}
+    assert all(mv.position == "yea" for mv in mvs if mv.member_id in ms)
+    assert len(absences) == 32  # one stub per not_voting result, matching totals
+
+
+def test_non_voting_delegate_included_in_positions():
+    # D61: a non-voting House delegate's result IS persisted when the source
+    # includes it (delegates vote in Committee of the Whole); coverage
+    # EXPECTATIONS, not what gets recorded, is where D61 excludes them
+    # (ingest/coverage.py:expected_on, exercised in test_coverage.py).
+    data = _sample()
+    data["houseRollCallVoteMemberVotes"]["results"].append(
+        {"bioguideID": "N000147", "voteState": "DC", "voteCast": "Yea", "voteParty": "D",
+         "congress": 119}
+    )
+    rc, mvs, _ = house_votes.parse_rollcall(data, 119, 1)
+    assert "N000147" in {mv.member_id for mv in mvs}
+    assert len(mvs) == 431  # the delegate result is now recorded like any other
 
 
 def test_not_voting_seeds_absence_stub():
@@ -58,9 +78,10 @@ def test_not_voting_seeds_absence_stub():
     rc, mvs, absences = house_votes.parse_rollcall(data, 119, 1)
     guest = next(mv for mv in mvs if mv.member_id == "G000591")
     assert guest.position == "not_voting"
-    assert [a.member_id for a in absences] == ["G000591"]
-    assert absences[0].rollcall_id == "h-119-1-0240"
-    assert absences[0].stated_reason is None
+    assert len(absences) == 33  # 32 already not_voting on this roll + G000591
+    guest_absence = next(a for a in absences if a.member_id == "G000591")
+    assert guest_absence.rollcall_id == "h-119-1-0240"
+    assert guest_absence.stated_reason is None
 
 
 def test_aye_no_map_to_yea_nay():
@@ -72,7 +93,10 @@ def test_aye_no_map_to_yea_nay():
             r["voteCast"] = "Aye"
     rc, mvs, _ = house_votes.parse_rollcall(data, 119, 1)
     assert rc.totals["yea"] == 397  # Aye counted as yea
-    assert all(mv.position == "yea" for mv in mvs)
+    assert sum(1 for mv in mvs if mv.position == "yea") == 397
+    # The 4 MS House members, previously asserted all-Yea, still map to yea via Aye.
+    ms = {"E000235", "G000591", "K000388", "T000193"}
+    assert all(mv.position == "yea" for mv in mvs if mv.member_id in ms)
 
 
 def test_lone_bad_cast_raises_not_non_position():
@@ -85,26 +109,29 @@ def test_lone_bad_cast_raises_not_non_position():
 
 
 MS_ON_SAMPLE = {"E000235", "G000591", "K000388", "T000193"}
+ALL_ON_SAMPLE = {
+    r["bioguideID"] for r in _sample()["houseRollCallVoteMemberVotes"]["results"]
+}
 
 
-def test_unknown_ms_member_raises_when_roster_stale():
-    # R-2: a new MS member appears in the roll but not the covered set (roster hasn't
-    # caught up) → raise, so the ingest quarantines + fails loudly instead of exporting
-    # an orphan (votes on file, no page/metrics — value #2).
+def test_unknown_member_raises_when_roster_stale():
+    # R-2/D60: a new member appears in the roll but not the (date-windowed) covered
+    # set the roster hasn't caught up to) → raise, so the ingest quarantines + fails
+    # loudly instead of exporting an orphan (votes on file, no page/metrics — value #2).
     data = _sample()
     data["houseRollCallVoteMemberVotes"]["results"].append(
         {"bioguideID": "X000999", "voteState": "MS", "voteCast": "Yea", "voteParty": "R",
          "congress": 119}
     )
     with pytest.raises(house_votes.UnknownMember) as exc:
-        house_votes.parse_rollcall(data, 119, 1, covered=MS_ON_SAMPLE)
+        house_votes.parse_rollcall(data, 119, 1, covered=ALL_ON_SAMPLE)
     assert "X000999" in str(exc.value)
 
 
 def test_covered_set_matching_roster_does_not_raise():
-    # The steady state: every MS voter is rostered → no churn alarm.
-    rc, mvs, _ = house_votes.parse_rollcall(_sample(), 119, 1, covered=MS_ON_SAMPLE)
-    assert {mv.member_id for mv in mvs} == MS_ON_SAMPLE
+    # The steady state: every voter on the roll is rostered → no churn alarm.
+    rc, mvs, _ = house_votes.parse_rollcall(_sample(), 119, 1, covered=ALL_ON_SAMPLE)
+    assert {mv.member_id for mv in mvs} == ALL_ON_SAMPLE
 
 
 def test_covered_none_skips_churn_check():

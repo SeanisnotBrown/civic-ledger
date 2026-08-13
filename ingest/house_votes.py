@@ -1,4 +1,6 @@
-"""INC-3 — House roll-call parsing (pure) + the ingest pipeline.
+"""INC-3 — House roll-call parsing (pure) + the ingest pipeline. V2-1 (D61)
+expands covered positions from the 6-member MS delegation to every member of
+the House, including the 6 non-voting delegates.
 
 The `/house-vote/{c}/{s}/{roll}/members` response is self-contained (verified in
 the INC-1 spike + INC-3 probes): it carries `voteQuestion`, `voteType`, `result`,
@@ -6,8 +8,12 @@ the INC-1 spike + INC-3 probes): it carries `voteQuestion`, `voteType`, `result`
 fetch per roll yields the whole `RollCall` plus positions. Chamber totals are
 computed from the full results list (independent of any per-party summary).
 
-Covered positions are stored only for the MS delegation (`voteState == "MS"`); the
-`RollCall` itself is a chamber-wide record. `vote_class` is a provisional
+Positions are persisted for EVERY result, with no state filter — delegates
+included (D61: excluding them broke `totals` recomputability, since they cast
+real votes in ~1/3 of rolls, Committee of the Whole). `ingest/coverage.py` keeps
+delegates out of the "expected on every roll" set for gap-reporting, since the
+Constitution bars them from final-passage rolls — a fact about coverage
+EXPECTATIONS, not about what gets recorded. `vote_class` is a provisional
 `other`/`unclassified` until the §A1 classifier lands in INC-5 (build order 3→4→5).
 """
 
@@ -49,8 +55,8 @@ class UnknownVoteCast(ValueError):
 
 
 class UnknownMember(ValueError):
-    """An MS voter with no Member record — the delegation changed and the roster
-    hasn't caught up (R-2). Forces quarantine + run failure, like the Senate path's
+    """A voting-state voter with no Member record — the roster changed and hasn't
+    caught up (R-2/D60). Forces quarantine + run failure, like the Senate path's
     KeyError, so an orphan (votes on file, no page/metrics — value #2) never exports."""
 
 
@@ -78,14 +84,17 @@ def _position(vote_cast: str) -> Position:
 def parse_rollcall(
     members_json: dict, congress: int, session: int, covered: set[str] | None = None
 ) -> tuple[RollCall, list[MemberVote], list[Absence]]:
-    """Parse one `/members` response into a chamber `RollCall`, the MS delegation's
-    `MemberVote`s, and an `Absence` stub per MS `not_voting`. Raises on malformed
+    """Parse one `/members` response into a chamber `RollCall`, every result's
+    `MemberVote` (D61: no state filter — delegates included when the source
+    includes them), and an `Absence` stub per `not_voting`. Raises on malformed
     data so the caller can quarantine the whole roll (§6.1).
 
-    `covered` (the bioguides rostered for this congress, from the INC-2 export) is the
-    churn guard (R-2): when supplied, an MS voter outside it raises `UnknownMember`, so
-    a delegation change the roster hasn't caught up to fails loudly instead of exporting
-    an orphan. `None` (unit tests, backfill) skips the check."""
+    `covered` (the FULL roster serving ON THIS ROLL'S DATE — date-windowed, not
+    just congress-windowed, D60 — pass `coverage.covered_on()`'s result, which
+    includes delegates, NOT `expected_on()`'s gap-reporting subset) is the churn
+    guard (R-2): when supplied, a voter outside it raises `UnknownMember`, so a
+    roster change the ingest hasn't caught up to fails loudly instead of
+    exporting an orphan. `None` (unit tests, backfill) skips the check."""
     mv = members_json["houseRollCallVoteMemberVotes"]
     roll = int(mv["rollCallNumber"])
     rc_id = rollcall_id("house", congress, session, roll)
@@ -139,8 +148,6 @@ def parse_rollcall(
     absences: list[Absence] = []
     if not non_position:
         for r in results:
-            if r.get("voteState") != "MS":
-                continue
             pos = _position(r["voteCast"])
             member_votes.append(
                 MemberVote(member_id=r["bioguideID"], rollcall_id=rc_id, position=pos)
@@ -153,7 +160,7 @@ def parse_rollcall(
         extra = {mv.member_id for mv in member_votes} - covered
         if extra:
             raise UnknownMember(
-                f"{rc_id}: MS voter(s) {sorted(extra)} not in roster — run "
+                f"{rc_id}: voter(s) {sorted(extra)} not in roster — run "
                 f"`ingest members` to refresh the covered set, then re-ingest"
             )
 
@@ -163,23 +170,6 @@ def parse_rollcall(
 
 
 # --- ingest pipeline ------------------------------------------------------
-
-
-def _covered_house(congresses: list[int]) -> dict[int, set[str]]:
-    """{congress: set of covered House-member bioguides serving that congress},
-    read from the INC-2 export so the covered set is never hardcoded."""
-    from ingest.export import MEMBERS_DIR
-    from ingest.sources.legislators import _term_overlaps
-
-    per_congress: dict[int, set[str]] = {c: set() for c in congresses}
-    for path in sorted(MEMBERS_DIR.glob("*.json")):
-        m = json.loads(path.read_text(encoding="utf-8"))
-        if m["chamber"] != "house":
-            continue
-        for c in congresses:
-            if any(_term_overlaps(t, c) for t in m["terms"] if t["chamber"] == "house"):
-                per_congress[c].add(m["id"])
-    return per_congress
 
 
 def _quarantine(rc_id: str, error: str) -> None:
@@ -200,9 +190,9 @@ def run(argv: list[str] | None = None) -> int:
     or MS-delegation validation failure (§6.1)."""
     import httpx
 
-    from ingest import config, incremental
+    from ingest import config, coverage, incremental
     from ingest.cache import RetryableHTTPError, repo_root
-    from ingest.export import export_absence, export_rollcall
+    from ingest.export import ABSENCES_DIR, MEMBERS_DIR, congress_of, export_absence, export_rollcall
     from ingest.sources import congress_gov
 
     # Any fetch failure that survives tenacity's retries (persistent 5xx/429 →
@@ -211,15 +201,18 @@ def run(argv: list[str] | None = None) -> int:
 
     force_all = bool(argv) and "--all" in argv  # re-parse finalized rolls (schema backfill)
     cutoff = incremental.final_cutoff()  # rolls older than this are skipped if final
-    covered = _covered_house(config.CONGRESSES)
-    gaps: list[str] = []          # rolls missing a covered MS member (correctness)
-    ms_failures: list[str] = []   # MS-row validation failures (hard fail, §6.1)
+    # Loaded once (D60): per-roll eligibility is date-windowed, not congress-windowed
+    # (see ingest/coverage.py), so it's computed fresh per roll from these terms
+    # rather than a single set reused across a whole congress.
+    terms = coverage.member_terms(MEMBERS_DIR, "house")
+    delegates = coverage.delegate_bioguides(MEMBERS_DIR)  # D61: never a gap, always accepted
+    gaps: list[str] = []          # rolls missing a covered member on that roll's date
+    ms_failures: list[str] = []   # per-row validation failures (hard fail, §6.1)
     fetch_failures: list[str] = []  # rolls whose fetch failed after retries
     n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
 
     for congress in config.CONGRESSES:
-        expected_ms = covered[congress]
         for session in SESSIONS[congress]:
             rolls, count = congress_gov.house_vote_roll_numbers(congress, session)
             session_counts[f"{congress}/{session}"] = (len(rolls), count)
@@ -241,20 +234,26 @@ def run(argv: list[str] | None = None) -> int:
                     # (cached rolls are instant). Fails the run at the end.
                     fetch_failures.append(f"{rc_id}: {type(exc).__name__}")
                     continue
+                date = data["houseRollCallVoteMemberVotes"]["startDate"]
+                roster = coverage.covered_on(terms, date)  # full roster incl. delegates
                 try:
-                    rc, mvs, absences = parse_rollcall(data, congress, session, expected_ms)
+                    rc, mvs, absences = parse_rollcall(data, congress, session, roster)
                 except (ValidationError, KeyError, UnknownVoteCast, UnknownMember) as exc:
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
-                    ms_failures.append(rc_id)  # can't confirm MS rows → treat as MS failure
+                    ms_failures.append(rc_id)  # can't confirm rows → treat as a failure
                     continue
                 if rc.vote_class_rule != NON_POSITION_RULE:
-                    missing = expected_ms - {mv.member_id for mv in mvs}
+                    # D61: gap-reporting subtracts delegates/Speaker/seating-lag —
+                    # narrower than `roster`, which stays the full churn-guard set.
+                    expected = coverage.expected_on(terms, date, delegates)
+                    missing = expected - {mv.member_id for mv in mvs}
                     if missing:
-                        gaps.append(f"{rc_id}: missing MS members {sorted(missing)}")
+                        gaps.append(f"{rc_id}: missing members {sorted(missing)}")
                 export_rollcall(rc, mvs)
+                abs_dir = ABSENCES_DIR / congress_of(rc_id)  # V2-1: sharded by congress
                 for ab in absences:
                     # overwrite=False: never clobber an owner-approved reason (D35).
-                    export_absence(ab, overwrite=False)
+                    export_absence(ab, out_dir=abs_dir, overwrite=False)
                     n_abs += 1
                 n_votes += 1
 
@@ -279,7 +278,7 @@ def run(argv: list[str] | None = None) -> int:
         print(f"FAIL: {len(fetch_failures)} roll(s) failed to fetch (re-run to retry): "
               f"{fetch_failures[:10]}")
     if ms_failures:
-        print(f"FAIL: {len(ms_failures)} MS-delegation validation failures "
+        print(f"FAIL: {len(ms_failures)} roll validation failures "
               f"(quarantined): {ms_failures[:10]}")
     if gaps:
         print(f"FAIL: {len(gaps)} covered-member gap(s) -> data/quality/house-gaps.md")

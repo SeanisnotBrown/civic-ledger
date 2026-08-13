@@ -55,7 +55,7 @@ def check_dataset() -> list[str]:
     # Absence files present on disk, keyed (member, roll) — for reciprocity.
     absence_keys: set[tuple[str, str]] = set()
     if absences_dir.exists():
-        for path in absences_dir.glob("*.json"):
+        for path in absences_dir.glob("*/*.json"):  # V2-1: sharded by congress
             rec = json.loads(path.read_text(encoding="utf-8"))
             absence_keys.add((rec["member_id"], rec["rollcall_id"]))
 

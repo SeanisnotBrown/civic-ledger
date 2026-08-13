@@ -964,3 +964,79 @@ Owner elected PROGRESS option A (run the Journal cross-check now). Result: **GO*
   pages render the tiles; the limitations page updated (stats now computed). `LegItem.congress`
   widened to `int|None`; `MsMemberMetrics`/`MsMetricsFile` models + `ms-metrics.schema.json`
   added. Still NO composite/score (Tier-3 rule holds). 254 tests; checks + 24/24 e2e green.
+
+## Constitutional amendment + spec v2 adoption (2026-08-13)
+
+The owner amended the founding values; `IMPLEMENTATION.md` and
+`civic-ledger-scope.md` are archived unchanged at `docs/archive/2026-08-13-pre-v2/`
+and superseded by **`IMPLEMENTATIONv2.md`**. The entries below are **SD-series
+(spec decisions)**; their canonical home is IMPLEMENTATIONv2.md §2 — this log
+carries the dated record. Builder ADRs continue as **D59+** in this file only.
+
+- **SD-31 (2026-08-13) — ADR renumbering ends the D19 collision.** v1 spec §2's
+  D1–D20 are renamed **SD-1..SD-20** one-to-one (canonical in IMPLEMENTATIONv2 §2);
+  this file's builder D19–D58 keep their numbers untouched (append-only, never
+  rewritten). Correcting note: **this file's line-3 header claim "D1–D18 live in
+  IMPLEMENTATION.md" was stale** — the v1 spec carried D19–D20 too, colliding with
+  this file's own D19 (Congress.gov path segment). Old citations of "the D19 line"
+  in D45/D57 meant spec-D19 = **SD-19**.
+- **SD-21 (2026-08-13) — Amendment 1: evaluative labels under a disclosure
+  standard** replace "never render partisan lean." Publishable iff: published
+  formula on /methods, official-source data, identical standard for every member
+  and party (R-vs-D and R-vs-R), rendered with inputs + denominator, thresholds
+  owner-ratified. Motive/intent/honesty/character never asserted. Value #1
+  (never false or falsely framed) is unchanged and outranks it.
+- **SD-22 (2026-08-13) — Amendment 2: data collection in scope.** Accounts
+  (email+password), quiz answers/issue weights tied to an account, aggregate
+  state-of-origin analytics; never sold; anonymous browsing stays. **Blocking
+  gate:** every privacy document must be rewritten, true, and deployed before
+  the first byte of user data is collected (V2-7 before V2-8/V2-9) — else the
+  site publishes false statements about itself, a Value-#1 violation.
+- **SD-23 (2026-08-13) — Amendment 3: the never-ask rule is scrapped.** The
+  builder asks the owner when unsure, in plain non-technical language —
+  especially judgment calls about what counts as good/poor performance.
+- **SD-24 (2026-08-13) — Amendment 4: federal-first pivot.** All serving House +
+  Senate members become the primary covered set; landing page becomes a
+  drill-down stats dashboard; Federal + States tabs; states mirror the federal
+  presentation and grow over time.
+- **SD-25 (2026-08-13) — Value #4 ("ship partial value early") reconfirmed
+  unchanged** by the owner after clarification.
+- **SD-26 (2026-08-13) — Gate 1 resolved: grading level = per-category grades
+  PLUS one fixed site-published overall grade** with an over-time trend
+  (owner chose this over ranks-only, category-only, and reader-adjustable).
+  **Retires SD-19** (grades-only-in-the-reader's-browser). The Tier-3 guard is
+  repurposed from prohibition to disclosure (composites only in the designated
+  scoring module, from ratified config) — IMPLEMENTATIONv2 §6.8.
+- **SD-27 (2026-08-13) — Gate 2 resolved: threshold authority = propose →
+  ratify → commit.** The builder proposes evaluative constants in plain English
+  with rationale/citations; the owner ratifies; the value lands in committed
+  config with its justification. Nothing evaluative publishes unratified — this
+  is how the unamended no-LLM rule (§0.5) and the evaluative turn coexist.
+- **SD-28 (2026-08-13) — Gate 3 resolved: account architecture = client-side
+  encryption.** Argon2id auth; belief payload encrypted on-device (password-
+  derived key + recovery code), server stores ciphertext only; public profile
+  strictly opt-in and outside the encryption guarantee; hard delete; trends only
+  via K-anon (=50) counters. Owner accepted the forgot-password-loses-answers
+  trade-off. Supersedes SD-12; amends SD-2 and SD-17.
+- **SD-29 (2026-08-13) — Gate 4 resolved: storage = public JSON contract +
+  SQLite build accelerator.** Published data stays deterministic in-repo JSON;
+  gitignored `build.db` becomes the required build intermediate at V2-1
+  (triggering the deferred flat-file→SQLite decision); vote pages restructured
+  to hold the built file count under the Workers Static Assets limit (verified
+  2026-08-13: 20,000 files/version Free, 100,000 Paid, 25 MiB/file).
+- **SD-30 (2026-08-13) — Gate 5 resolved: Mississippi preserved as-is through
+  the pivot**, reskinned to mirror the federal presentation and folded under the
+  States tab in V2-10. Touched once, at the end, against a finished template.
+
+**Fates of the frequently-cited old decisions:** spec **D2 → SD-2 amended**
+(counter-Worker design survives as the trends path; joined by the sync service —
+note the Worker was never built); **D12 → SD-12 superseded** by SD-28 (its
+ciphertext-only core survives inside the account architecture); **D17 → SD-17
+amended** (analytics now in scope: aggregate, cookieless, state-of-origin);
+**D19(spec) → SD-19 RETIRED** by SD-26; **D20 → SD-20 survives** (adjacency,
+never "cost per vote" — the motive line outlives the evaluative turn);
+**D1 → SD-1 amended** (covered set widens to all serving federal members);
+builder **D36 dies at V2-1** (all-member positions will be persisted; the
+"deliberately not recomputable" caveat inverts into full third-party
+recomputability — retire with a dated D59+ ADR when V2-1 ships). This file's
+**D19 (path segment) is untouched** and remains correct.

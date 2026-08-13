@@ -3,7 +3,9 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of the **member-page stats rendering** session (D57
+**Last updated:** 2026-08-13, end of the **spec v2 adoption** session (constitutional
+amendment — see the "Spec v2 adopted" section below; docs-only, no code touched).
+Previous: 2026-08-12, end of the **member-page stats rendering** session (D57
 federal + D58 Mississippi) — the review's post-INC-12 item. (Same day, earlier: INC-12 all
 6 phases; and post-review hardening round 2 — R-1/R-4/R-6/R-5.)
 **Git:** INC-1..INC-12 + member-stats closed & pushed. Sequence today: R-1..R-6
@@ -46,6 +48,37 @@ owner's call — do not commit without asking.**
 > derived — a legislation-only change must still reach the gate, D40); **export must
 > run after any ingest** or manifest/schema drift fails. (`bills`/`legislation` are
 > independent of classify; export/checks come last.)
+
+---
+
+## Spec v2 adopted (2026-08-13) — constitutional amendment, docs-only session
+
+The owner amended the founding values (evaluative grading in scope; user-data
+collection in scope; never-ask rule scrapped; federal-first pivot with a
+dashboard landing page). This session (Fable 5, spec-author role — no code):
+
+- **`IMPLEMENTATIONv2.md`** authored at the repo root — the sole spec going
+  forward. Its §CS states what exists (don't rebuild) and what doesn't (don't
+  assume); Appendix B is the disposition table proving nothing true was lost.
+- **Archived unchanged via `git mv`** to `docs/archive/2026-08-13-pre-v2/`:
+  `IMPLEMENTATION.md` (v1), `civic-ledger-scope.md`, `docs/inc-12-plan.md`
+  (+ archive README explaining supersession).
+- **ADRs SD-21..SD-31** appended to `docs/decisions.md`: the four amendments,
+  the five owner-resolved decision gates (grading = category grades + fixed
+  overall, SD-26; threshold propose→ratify→commit, SD-27; client-side-encrypted
+  accounts, SD-28; JSON contract + build.db, SD-29; MS preserved then folded in,
+  SD-30), and the SD/D renumbering that ends the D19 collision (SD-31).
+- **`.claude` → `CLAUDE.md`** (git mv; the bare `.claude` filename was never
+  auto-loaded by Claude Code) and rewritten for v2; `docs/kickoff-v2.md` added
+  for the implementing session.
+- **Verified after the moves:** `uv run pytest` 254 passed; `uv run checks`
+  ALL PASSED — nothing reads the archived paths.
+
+**Next actionable: hand `docs/kickoff-v2.md` to a Claude Code session; first
+increment is V2-0 (docs-truth pass).** This ledger continues in this file (v2
+increments will log here, newest-first, same conventions). The stale
+"Current increment: INC-11" heading and four stale "Next:" lines below are
+known and enumerated as V2-0 work — left for the implementer per v2 §7.
 
 ---
 

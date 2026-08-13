@@ -1,27 +1,31 @@
 """`verify-recompute` console entrypoint (INC-7; brief 5.2 "recompute and match").
 
 A third party clones the public repo and re-derives figures from the published
-files, matching what we ship. The genuine limit (D22/D26): `RollCall.totals` is
-the *chamber-wide* tally as published by the official source, while our
-`member_votes` carry ONLY the covered Mississippi delegation — we deliberately
-don't collect the other ~429 members' positions, so the chamber totals are not
-recomputable from our data. What IS recomputable-and-matchable over 100% of roll
-calls, and what this script checks:
+files, matching what we ship. V2-1 (D61) is the credibility upgrade this was
+always meant to reach: positions are now persisted for every result on every
+roll (delegates included), so `RollCall.totals` — the *chamber-wide* tally as
+published by the official source — is now fully, exactly recomputable from
+`member_votes`, not merely a subset check. (Before V2-1, `member_votes` carried
+only the 6-member Mississippi delegation, and D22/D26 recorded that the chamber
+totals could not be re-derived from our data — that limit is retired; the old
+docstring text is preserved in git history, not restated here since it is no
+longer true.) What this script checks, over 100% of roll calls:
 
-1. **Coverage** — every covered member (per chamber/congress) has exactly one
-   recorded position per eligible roll (a `MemberVote` OR a not_voting absence),
-   skipping `non_position` rolls (Speaker elections carry no yea/nay).
-2. **Subset consistency** — for each position category, the count of embedded MS
-   `member_votes` never exceeds `RollCall.totals[category]` (MS positions are a
-   subset of the chamber tally).
+1. **Coverage** — every covered member (date-windowed per roll, D60, with the
+   D61 exceptions — delegates, the Speaker, seating lag — excluded from
+   "expected") has exactly one recorded position per eligible roll (a
+   `MemberVote` OR a not_voting absence), skipping `non_position` rolls
+   (Speaker elections carry no yea/nay). Reuses `ingest/coverage.py`, the same
+   module `checks/symmetry.py` uses, so the two checks never drift.
+2. **Exact reproduction** — for each position category, the count of embedded
+   `member_votes` equals `RollCall.totals[category]` exactly. Every result is
+   persisted now, so this is strict equality, not a subset bound.
 3. **Absence reciprocity** — every `position == "not_voting"` MemberVote has a
-   matching data/absences/{member}--{roll}.json, and every absence file's
-   (member, roll) has a matching not_voting MemberVote.
+   matching data/absences/{congress}/{member}--{roll}.json, and every absence
+   file's (member, roll) has a matching not_voting MemberVote.
 4. **Party-total consistency** — for every position roll, the per-party breakdown
    `party_totals` sums (over parties) to the chamber `totals` in each category, and
-   `party_totals` is present exactly on position rolls (None on `non_position`). The
-   raw per-member party isn't committed, so this is what proves the aggregates that
-   feed party-unity are internally honest (INC-10, §A).
+   `party_totals` is present exactly on position rolls (None on `non_position`).
 
 Exit 0 = every invariant holds for every roll; nonzero lists the failures. It is
 also exercised as a pytest test so §8's "recompute-and-match script as a test" holds.
@@ -31,25 +35,20 @@ from __future__ import annotations
 
 import json
 
+from ingest import coverage
 from ingest.cache import repo_root
 
 _POSITIONS = ("yea", "nay", "present", "not_voting")
 
 
-def _covered_by_chamber() -> dict[str, dict[int, set[str]]]:
-    """{chamber: {congress: covered bioguides serving it}} — reuses the symmetry
-    check's covered-set logic so the two never drift."""
-    from ingest.checks.symmetry import _covered
-
-    return {chamber: _covered(chamber) for chamber in ("house", "senate")}
-
-
 def check_dataset() -> list[str]:
-    """Run all three invariants over the whole exported dataset. Returns the list
+    """Run all four invariants over the whole exported dataset. Returns the list
     of failures (empty = everything matched)."""
     votes_dir = repo_root() / "data" / "votes"
     absences_dir = repo_root() / "data" / "absences"
-    covered = _covered_by_chamber()
+    members_dir = repo_root() / "data" / "members"
+    terms_by_chamber = {c: coverage.member_terms(members_dir, c) for c in ("house", "senate")}
+    delegates = coverage.delegate_bioguides(members_dir)
     failures: list[str] = []
 
     # Absence files present on disk, keyed (member, roll) — for reciprocity.
@@ -68,33 +67,40 @@ def check_dataset() -> list[str]:
         mvs = rec["member_votes"]
 
         if rc["vote_class_rule"] != "non_position":
-            # (1) Coverage — every covered member has exactly one recorded
+            # (1) Coverage — every EXPECTED member has exactly one recorded
             # position. A not_voting member IS in member_votes (and additionally
             # carries an absence stub, checked by reciprocity below), so coverage
-            # is accounted by member_votes alone.
-            expected = covered.get(rc["chamber"], {}).get(rc["congress"], set())
+            # is accounted by member_votes alone. Date-windowed (D60); the three
+            # D61 exceptions are subtracted from `expected` only, never from
+            # `roster` (the full covered set), so a delegate or the Speaker
+            # voting is correctly accepted, never flagged unknown.
+            terms = terms_by_chamber[rc["chamber"]]
+            roster = coverage.covered_on(terms, rc["date"])
+            expected = coverage.expected_on(terms, rc["date"], delegates)
             voted = [mv["member_id"] for mv in mvs]
             voted_set = set(voted)
             missing = expected - voted_set
             if missing:
                 failures.append(f"{rc_id}: coverage — no position for {sorted(missing)}")
-            # A position for a member NOT in the covered set = roster churn drift
+            # A position for a member NOT in the full roster = roster churn drift
             # (votes on record, no page/metrics). expected−got alone misses it (R-2).
-            extra = voted_set - expected
+            extra = voted_set - roster
             if extra:
                 failures.append(f"{rc_id}: coverage — unknown member {sorted(extra)}")
             if len(voted) != len(voted_set):
                 dups = sorted({m for m in voted if voted.count(m) > 1})
                 failures.append(f"{rc_id}: coverage — duplicate positions for {dups}")
 
-            # (2) Subset consistency — MS position counts <= chamber totals.
+            # (2) Exact reproduction (D61) — every position is persisted now, so
+            # embedded counts must equal the chamber totals exactly, not just
+            # bound them from below.
             tallied: dict[str, int] = {p: 0 for p in _POSITIONS}
             for mv in mvs:
                 tallied[mv["position"]] = tallied.get(mv["position"], 0) + 1
             for pos in _POSITIONS:
-                if tallied[pos] > rc["totals"].get(pos, 0):
+                if tallied[pos] != rc["totals"].get(pos, 0):
                     failures.append(
-                        f"{rc_id}: subset — MS {pos}={tallied[pos]} exceeds "
+                        f"{rc_id}: exact-reproduction — recomputed {pos}={tallied[pos]} != "
                         f"chamber total {rc['totals'].get(pos, 0)}"
                     )
 
@@ -151,7 +157,7 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  ... and {len(failures) - 40} more")
         return 1
     print(
-        f"verify-recompute: OK — coverage, subset, and reciprocity match "
+        f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "
         f"on {n_rolls} roll calls."
     )
     return 0

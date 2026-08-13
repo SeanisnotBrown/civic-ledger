@@ -1069,3 +1069,90 @@ recomputability — retire with a dated D59+ ADR when V2-1 ships). This file's
   priority since nothing rendered publicly reads them, left for a future
   pass. `data/` untouched; zero data/behavior change; `uv run checks` +
   `uv run pytest` + `npm run build` all green after the edit.
+
+## V2-1 implementation session (2026-08-13) — federal data expansion
+
+- **D60 (2026-08-13) — federal coverage = every voting-state member of both
+  chambers, from current + historical rosters, date-windowed.** V2-1 replaces
+  the 6-member Mississippi delegation with all serving House + Senate members,
+  118th-119th. Two things this required, both mechanical (not owner-evaluative):
+  (a) `legislators.py` now fetches AND merges `legislators-current.yaml` +
+  `legislators-historical.yaml` — current-only omits anyone who left office
+  between the 118th and 119th, and since `data/members/` is the source every
+  coverage check reads, such a member would be invisible to the checks too
+  (expected and got would both silently exclude them, so a real gap reads
+  green). 88 departed-118th members recovered. (b) New `ingest/coverage.py` is
+  the single shared "who held this seat on this date" computation, imported by
+  `house_votes`/`senate_votes` (ingest-time filter + R-2 churn guard) and
+  `checks/symmetry`/`verify_recompute` (check-time verification), so the two
+  never drift. Coverage is DATE-windowed, not per-congress: the 118th alone saw
+  a Speaker resign, a member expelled, two deaths, and a Senate seat change
+  hands twice mid-term, and per-congress granularity flags all of them missing
+  outside their real service window. Bug found + fixed empirically:
+  `member_terms` first filtered on a member's CURRENT chamber, so chamber-
+  switchers (a House member who won a Senate seat) were invisible to their
+  former chamber entirely — 1,225 of 1,886 House rolls misfired before the fix.
+- **D61 (2026-08-13) — the 6 non-voting House delegates ARE included (reverses
+  D60's initial exclusion); OWNER-RATIFIED.** D60 first excluded DC/PR/GU/AS/
+  VI/MP. Reversed once exclusion was found to break full recomputability: the
+  delegates cast REAL recorded votes on 623 of 1,886 House rolls (Committee of
+  the Whole — measured), so omitting them made `RollCall.totals` non-
+  reproducible from `member_votes` on every such roll. Options put to the owner
+  in plain language: (a) include them, marked non-voting where a floor-vote
+  metric would otherwise apply; (b) leave them out and accept a permanent
+  "official total includes delegates not in this dataset" asterisk on ~1/3 of
+  House rolls. **Owner chose (a).** Delegates now join the roster and appear in
+  `member_votes` whenever the source lists them; they are structurally excluded
+  only from the "expected on every roll" set (`coverage.expected_on`), since the
+  Constitution bars them from final-passage rolls — a fact about EXPECTATION,
+  not about what is recorded. `expected_on` subtracts three empirically-found,
+  cited, non-guessed exceptions from the roster: delegates, the sitting Speaker
+  (customarily doesn't vote on routine business — McCarthy + Johnson accounted
+  for 700 of 833 raw gap entries), and a 21-day seating-lag tolerance around a
+  member's term boundary (from two real special-election members, Rulli +
+  Suozzi, whose gaps traced to their first two weeks). The R-2 `UnknownMember`
+  churn guard stays on the FULL roster (`covered_on`), so a genuine roster gap
+  still fails loudly. `legislators.VOTING_STATES` is repurposed from a roster
+  filter into a delegate-DETECTION set. Result: House 1,882/1,886 rolls succeed
+  (4 quarantined at 0.2% — a member who died the day before the 118th convened,
+  and two rolls dated one day after a member's departure — under the 2%
+  ceiling); Senate 1,581/1,581; 0 unexplained gaps either chamber.
+- **D62 (2026-08-13) — builder D36 retired; the "not recomputable" caveat
+  inverts into full recomputability.** D36 introduced aggregate `party_totals`
+  precisely BECAUSE individual non-MS positions weren't collected (so party-
+  unity could be computed without storing them). V2-1 persists every member's
+  position, so `RollCall.totals` is now EXACTLY reconstructable from
+  `member_votes` on every roll — the credibility upgrade of the pivot ("check
+  my math" now holds precisely, not as a subset bound). `verify_recompute`
+  invariant 2 changed from subset (`<=`) to strict equality; `party_totals` is
+  KEPT (it is the chamber's own official per-party tally, still what party-unity
+  reads for "the majority side," not a stand-in for missing data). The manifest
+  `covered_state` field is REMOVED (federal coverage is no longer state-scoped;
+  the MS *state-legislature* layer keeps its own separate `covered_state`,
+  unaffected). `party_unity`'s D36-derived docstring line flips here. A roll
+  that fails to re-parse under the new model is quarantined AND has any stale
+  prior export deleted (found via verify-recompute: the 4 quarantined rolls
+  were still publishing pre-V2-1 MS-only data, invisibly wrong under the new
+  "every position" contract).
+- **D63 (2026-08-13) — `data/absences/` sharded one level by congress; the
+  member-vote pagination is NOT restructured (file count is under limit).**
+  Full-roster ingest produces ~35,000 absence stubs — too many for one flat
+  directory — so `export_absence` writes to `data/absences/{congress}/`
+  (`congress_of()`), and every reader (`verify_recompute`, `curation/absences`,
+  the site's `data.ts:readNestedDir`) is updated. Separately, V2-1 task 4
+  offered "restructure member pages (summary + paginated) OR raise PAGE_SIZE —
+  builder's mechanical choice": the built file count is **13,090**, well under
+  the 18,000 warn / 20,000 Workers-Free limit, so the mechanical choice is to
+  KEEP the current `PAGE_SIZE=200` structure unchanged and add a CI file-count
+  gate (`site/scripts/check-file-count.mjs`, wired into `ci.yml` + `nightly.yml`
+  per H14) rather than restructure prematurely. `data.ts:getMemberVotes` was
+  changed from an O(members × rolls) per-page rescan to a one-pass memoized
+  `Map<memberId, rows>` index — a pure performance fix (identical output), since
+  the old scan dominated the now-much-larger build. **Open (P4/SD-29):** the
+  `build.db` SQLite intermediate is NOT built. The flat-file architecture holds
+  at full federal scale (measured: ~30s ingest re-parse, ~80s site build,
+  verify-recompute green), and the underlying deferred decision (archived
+  `inc-12-plan.md`) framed adoption as trigger-based, not date-based. This
+  tension between SD-29 ("build at V2-1") and the measured "flat files are
+  fine" is flagged for the owner rather than resolved unilaterally — do not
+  treat build.db as done.

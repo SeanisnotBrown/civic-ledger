@@ -240,7 +240,10 @@ def _count_dataset() -> dict[str, object]:
 
     return {
         "congresses": list(config.CONGRESSES),
-        "covered_state": config.COVERED_STATE,
+        # V2-1 (D61): federal coverage is no longer state-scoped (the roster is
+        # every House + Senate seat), so a "covered_state" field would misstate
+        # scope. The MS *state legislature* layer keeps its own separate
+        # manifest at data/state/ms/manifest.json, unaffected by this.
         "counts": {
             "members": len(members),
             "rollcalls": len(votes),

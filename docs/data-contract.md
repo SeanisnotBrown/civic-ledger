@@ -57,11 +57,13 @@ The file is a wrapper:
 | `bill_id` | string \| null | Linked bill (`hr2-119`) or null (nominations, quorum, etc.). |
 | `result` | string | Official result text (e.g. `Passed`). |
 | `totals` | object(string→int) | **Chamber-wide** tally: `yea`/`nay`/`present`/`not_voting`. See the recompute note. |
-| `party_totals` | object(string→object) \| null | **Aggregate** per-party split of `totals`, keyed by party letter (`D`/`R`/`I`), each `{yea,nay,present,not_voting}`. Derived from the raw response's per-member party — no individual non-MS position is stored (D36). `null` on `non_position` rolls. Sums to `totals` per category (verify-recompute invariant 4). Feeds party-unity. |
+| `party_totals` | object(string→object) \| null | **Aggregate** per-party split of `totals`, keyed by party letter (`D`/`R`/`I`), each `{yea,nay,present,not_voting}`. Derived from the raw response's per-member party (D36 retired at V2-1 — individual positions are now stored too, see `member_votes` below; `party_totals` is kept as the chamber's own official per-party tally, not a stand-in for missing data). `null` on `non_position` rolls. Sums to `totals` per category (verify-recompute invariant 4). Feeds party-unity. |
 | `source_url` | string | Official record URL. |
 
-`member_votes` (array of `MemberVote`), **covered Mississippi delegation only**,
-sorted by `member_id`:
+`member_votes` (array of `MemberVote`), **every covered member of the roll's
+chamber** (V2-1/D61 — every House and Senate seat, including the 6 non-voting
+delegates when the source includes them; not just the historical 6-member
+Mississippi delegation), sorted by `member_id`:
 
 | Field | Type | Notes |
 |---|---|---|
@@ -74,11 +76,13 @@ sorted by `member_id`:
 but are excluded from coverage/subset checks; `vote_class_rule == "non_position"`
 is the flag. There are 20 such rolls in the covered set.
 
-## `data/absences/{member_id}--{rollcall_id}.json` — one per not-voting instance
+## `data/absences/{congress}/{member_id}--{rollcall_id}.json` — one per not-voting instance
 
-Schema: `data/schema/absence.schema.json` (model `Absence`). A stub is written
-for **every** `not_voting` `member_vote` (so the file exists reciprocally with
-that position). Owner-approved CREC explanations (INC-6, H9) are added in place.
+Schema: `data/schema/absence.schema.json` (model `Absence`). Sharded one level by
+congress (V2-1) — full-roster coverage produces ~35,000 stubs, too many for one
+flat directory. A stub is written for **every** `not_voting` `member_vote` (so
+the file exists reciprocally with that position). Owner-approved CREC
+explanations (INC-6, H9) are added in place.
 
 | Field | Type | Notes |
 |---|---|---|
@@ -196,7 +200,6 @@ byte-identical.
 | `generated_at` | string | ISO-8601 UTC of the export run. **The only wall-clock value in the dataset.** |
 | `commit` | string | Short git sha = HEAD at generation time (the code that produced the export). It is **not** the commit that contains this manifest — that sha can't exist yet. |
 | `congresses` | array\<int\> | Covered Congresses (`[118, 119]`). |
-| `covered_state` | string | `MS`. |
 | `counts` | object | `members`, `rollcalls`, `rollcalls_by_chamber`, `rollcalls_by_vote_class`, `non_position_rollcalls`, `member_votes`, `absences`, `bills`, `statements`. In `rollcalls_by_vote_class`, `non_position` rolls are counted under their own `non_position` key (equal to `non_position_rollcalls`), **not** folded into `other` — so `other` reflects only the genuine one-off classifications (L-1). |
 
 ## `data/schema/*.schema.json` — JSON Schema for the above
@@ -207,31 +210,41 @@ changes — i.e. when the contract itself changes.
 
 ---
 
-## Recompute and match — what a third party can verify (D22 / D26)
+## Recompute and match — what a third party can verify (D22/D26, superseded by D61)
 
 `uv run verify-recompute` (also run as a pytest test) checks these invariants over
 **100% of roll calls** and exits nonzero on any mismatch:
 
-1. **Coverage** — every covered member (per chamber/congress) has exactly one
-   position in `member_votes` for every eligible (`non_position`-excluded) roll.
-2. **Subset consistency** — for each position category, the count of embedded MS
-   `member_votes` never exceeds `rollcall.totals[category]`.
+1. **Coverage** — every expected member (date-windowed per roll — see
+   `ingest/coverage.py` — with the D61 exceptions subtracted: the 6 non-voting
+   delegates, the sitting Speaker's customary non-votes, and a short seating-lag
+   tolerance around a member's term boundary) has exactly one position in
+   `member_votes` for every eligible (`non_position`-excluded) roll.
+2. **Exact reproduction** — for each position category, the count of embedded
+   `member_votes` equals `rollcall.totals[category]` EXACTLY.
 3. **Absence reciprocity** — every `not_voting` `member_vote` has a matching
    absence file, and every absence file has a matching `not_voting` vote.
 4. **Party-total consistency** — `party_totals` sums (over parties) to `totals` in
    every category, and is present exactly on position rolls (`null` on `non_position`).
 
 The metrics are also fully recomputable: `ingest/metrics.py` reads only this dataset,
-and a test asserts `build() == data/metrics.json` (all 8 metrics at once, D40).
+and a test asserts `build() == data/metrics.json` (all metrics at once, D40).
 
-**What is deliberately NOT recomputable:** `rollcall.totals` is the *chamber-wide*
-tally (for the House, counted at ingest from the full results list of all ~435
-members; for the Senate, cross-checked against the official menu tally — D22/D23).
-We publish `member_votes` for the covered Mississippi delegation only — we do not
-persist the other ~429 members' positions — so the chamber totals cannot be
-re-derived from this dataset. The totals are carried as the chamber figure, and
-the subset check (invariant 2) is the honest recompute-and-match tying our
-per-member data to it. This is a scope choice (the covered set), not a data gap.
+**Full recomputability, not a subset check (D61 — this is the credibility
+upgrade of the V2-1 pivot).** Before V2-1, `member_votes` carried only the
+6-member Mississippi delegation while `rollcall.totals` was the *chamber-wide*
+tally, so the chamber totals could not be re-derived from the published dataset
+(D22/D26 recorded that limit explicitly, and invariant 2 was a "never exceeds"
+subset bound tying MS's numbers to the chamber figure). V2-1 persists a position
+for every member of both chambers — delegates included, since they cast real
+recorded votes on House Committee-of-the-Whole rolls and omitting them would
+have reintroduced the same non-reproducibility on those rolls — so `member_votes`
+now reconstructs `rollcall.totals` exactly, on every roll, with no exception:
+**a third party can clone this repository and re-derive every chamber vote total
+from the published per-member positions alone.** A roll that fails to re-parse
+under the current data model is quarantined AND has any stale prior export
+removed (never a stale file from an earlier architecture sitting invisibly next
+to the current ones) — see `data/quality/quarantine/`.
 
 ---
 

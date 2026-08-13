@@ -170,8 +170,10 @@ def party_unity(mid: str, ctx: Ctx) -> dict:
     member's party split evenly are excluded (no majority) and reported as
     `excluded_ties`. The member's party is the one they held on the roll's date.
     pct is null when the member has no substantive votes. Source: data/votes
-    (positions + aggregate party_totals). We do not collect individual non-Mississippi
-    members' positions; only the per-party aggregate makes this recomputable."""
+    (positions + aggregate party_totals). Individual positions are collected for
+    every covered member (V2-1) — the aggregate `party_totals` is still what this
+    metric reads for "the majority side," since it is the chamber's own official
+    per-party tally, not merely a stand-in for missing individual data."""
     substantive = agreed = ties = 0
     member = ctx.members[mid]
     for rc, pos in ctx.positions[mid]:

@@ -119,6 +119,7 @@ jobs:
           # 5) Data changed → validate the FULL dataset before publishing anything.
           uv run export
           (cd site && npm run build)   # banned-words (checks) scans the real dist
+          (cd site && npm run test:file-count)  # V2-1/H14: stay under the Workers file limit
           uv run checks
           uv run verify-recompute
 

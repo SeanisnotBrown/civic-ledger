@@ -328,15 +328,32 @@ function byRecency(a: RollCall, b: RollCall): number {
 
 export interface MemberVoteRow { rollcall: RollCall; position: Position; }
 
+// V2-1: one-pass member→votes index, memoized. Before this, getMemberVotes
+// rescanned every vote file (with a linear .find over its member_votes) once per
+// member — at full federal scale that is ~637 members × ~3,500 rolls × ~535
+// positions/roll, which dominated the site build. Building the index once (a
+// single pass over all votes, pushing each position into its member's list)
+// turns per-member lookup into an O(1) map read. Output is identical: each
+// member's list is sorted newest-first, same as the old per-call sort.
+let _votesByMember: Map<string, MemberVoteRow[]> | null = null;
+function votesByMember(): Map<string, MemberVoteRow[]> {
+  if (_votesByMember) return _votesByMember;
+  const index = new Map<string, MemberVoteRow[]>();
+  for (const v of getAllVotes()) {
+    for (const mv of v.member_votes) {
+      let rows = index.get(mv.member_id);
+      if (!rows) { rows = []; index.set(mv.member_id, rows); }
+      rows.push({ rollcall: v.rollcall, position: mv.position });
+    }
+  }
+  for (const rows of index.values()) rows.sort((a, b) => byRecency(a.rollcall, b.rollcall));
+  _votesByMember = index;
+  return index;
+}
+
 /** Every roll a member has a recorded position on, newest first. */
 export function getMemberVotes(memberId: string): MemberVoteRow[] {
-  const rows: MemberVoteRow[] = [];
-  for (const v of getAllVotes()) {
-    const mv = v.member_votes.find((x) => x.member_id === memberId);
-    if (mv) rows.push({ rollcall: v.rollcall, position: mv.position });
-  }
-  rows.sort((a, b) => byRecency(a.rollcall, b.rollcall));
-  return rows;
+  return votesByMember().get(memberId) ?? [];
 }
 
 /** Roll calls that reference a given bill, newest first. */

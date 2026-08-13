@@ -1,11 +1,15 @@
 """§6.5 — Symmetry checks (CI, blocking). INC-3 activates the **vote-coverage**
 rule (House); INC-4 generalizes it to the Senate. INC-10 activates the **statement
 balance** rules (they stay vacuously green until statements are curated in INC-11).
+V2-1 (D60/D61) moves vote coverage from per-Congress to date-windowed, via the
+shared `ingest/coverage.py` — see that module's docstring for why (mid-congress
+churn: resignations, deaths, expulsions, seat changes) and for the three
+gap-reporting exceptions (delegates, the Speaker, seating lag).
 
-Vote coverage (§6.5): every covered member has a `MemberVote` (or `Absence`) for
-every eligible roll call of their chamber/congress. Any gap = fail. This reads the
-*exported* dataset (data/votes/ + data/members/), so it guards the published data,
-not just the ingest run.
+Vote coverage (§6.5): every covered member has a `MemberVote` for every eligible
+roll call of their chamber, on the dates they actually held the seat. Any
+UNEXPLAINED gap = fail. This reads the *exported* dataset (data/votes/ +
+data/members/), so it guards the published data, not just the ingest run.
 
 Statement balance (§6.5, D1): once the per-member statement median reaches
 `SYMMETRY_MEDIAN_ACTIVATION`, three balance rules gate the curated corpus so the
@@ -24,48 +28,41 @@ from __future__ import annotations
 import json
 from statistics import mean, median
 
+from ingest import coverage
 from ingest.cache import repo_root
-
-
-def _covered(chamber: str) -> dict[int, set[str]]:
-    """{congress: covered bioguides of `chamber` serving that congress}."""
-    from ingest import config
-    from ingest.sources.legislators import _term_overlaps
-
-    members_dir = repo_root() / "data" / "members"
-    per_congress: dict[int, set[str]] = {c: set() for c in config.CONGRESSES}
-    for path in sorted(members_dir.glob("*.json")):
-        m = json.loads(path.read_text(encoding="utf-8"))
-        if m["chamber"] != chamber:
-            continue
-        for c in config.CONGRESSES:
-            if any(_term_overlaps(t, c) for t in m["terms"] if t["chamber"] == chamber):
-                per_congress[c].add(m["id"])
-    return per_congress
 
 
 def coverage_gaps(chamber: str, prefix: str) -> list[str]:
     """Vote-coverage gaps for one chamber: every covered member of `chamber`
-    serving a covered Congress must have a `MemberVote` for every eligible roll
-    (files `data/votes/{prefix}-*.json`). Non-position rolls (Speaker elections)
-    carry no yea/nay positions and are skipped."""
+    must have a `MemberVote` for every eligible roll they were expected on
+    (files `data/votes/{prefix}-*.json`), date-windowed per roll (D60) with the
+    three D61 exceptions subtracted from "expected" (never from "covered" — an
+    UNEXPECTED voter, e.g. a delegate on a Committee-of-the-Whole roll, is still
+    a legitimate covered member, not an `UnknownMember` — only someone outside
+    the full roster is). Non-position rolls (Speaker elections) carry no
+    yea/nay positions and are skipped."""
     votes_dir = repo_root() / "data" / "votes"
-    covered = _covered(chamber)
+    members_dir = repo_root() / "data" / "members"
+    terms = coverage.member_terms(members_dir, chamber)
+    delegates = coverage.delegate_bioguides(members_dir)
     gaps: list[str] = []
     for path in sorted(votes_dir.glob(f"{prefix}-*.json")):
         rec = json.loads(path.read_text(encoding="utf-8"))
         rc = rec["rollcall"]
         if rc["vote_class_rule"] == "non_position":
             continue
-        expected = covered.get(rc["congress"], set())
+        date = rc["date"]
+        roster = coverage.covered_on(terms, date)
+        expected = coverage.expected_on(terms, date, delegates)
         got = {mv["member_id"] for mv in rec["member_votes"]}
         missing = expected - got
         if missing:
             gaps.append(f"{rc['id']}: missing {sorted(missing)}")
-        # An EXTRA member (voted, but not in the covered set) is churn drift: an
+        # An EXTRA member (voted, but not in the full roster) is churn drift: an
         # official on the vote record with no page/metrics. Flag it too — expected−got
-        # alone never catches it (R-2/H-1).
-        extra = got - expected
+        # alone never catches it (R-2/H-1). Compared against `roster`, not `expected`,
+        # so a delegate or the Speaker voting is never mistaken for an unknown member.
+        extra = got - roster
         if extra:
             gaps.append(f"{rc['id']}: unknown member {sorted(extra)}")
     return gaps

@@ -4,10 +4,13 @@ State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
 **Last updated:** 2026-08-13, mid-session on **V2-1 — federal data expansion**
-(P1-P3 of 6 done and committed — see "V2-1 — Federal data expansion" below;
-**NOT a stopping point** — `uv run pytest` is currently RED, 7 known failures,
-one root cause: `data/legislation/` only covers the original 6 members. The
-next session picks up at P4). Previous: 2026-08-13, end of the **V2-0 —
+(P1-P3 committed `2cedc532`; most of P5/P6 done + verified this checkpoint —
+`uv run checks` ALL PASSED, `verify-recompute` green, site/e2e/file-count green.
+**Still RED:** `uv run pytest` has 3 failures, all `test_metrics.py`, one root
+cause — `data/metrics.json` can't regenerate until the `ingest legislation`
+backfill finishes for all 637 members (long API-paced download, 384/637 at this
+checkpoint). See "V2-1 — Federal data expansion" below for the exact resume
+steps. Previous: 2026-08-13, end of the **V2-0 —
 docs-truth pass** session (plus a same-session follow-up, D59: the repo was
 found private, the owner chose to keep it that way, so `/privacy` +
 `/corrections` + `docs/correction-process.md` were rewritten to stop claiming
@@ -67,88 +70,77 @@ call — do not commit without asking.**
 
 ---
 
-## V2-1 — Federal data expansion (IN PROGRESS — P1-P3 of 6 done, committed `2cedc532`)
+## V2-1 — Federal data expansion (IN PROGRESS — P1-P3 + most of P5/P6 done; only the federal-metrics regen awaits a long download)
 
 **Goal (unchanged from spec):** positions persisted for every serving member of
 both chambers, 118th-119th; dataset fully recomputable; build scaled. Full
-rationale, numbers, and design reasoning are in the `2cedc532` commit message
-(long — this is the short version). **Two spec-adjacent decisions made
-mid-increment, both owner-ratified in conversation (not yet in
-`IMPLEMENTATIONv2.md` itself — a future session should fold them in as a
-dated spec note, builder's call on exact placement):**
+rationale/numbers/design in the `2cedc532` commit message and ADRs **D60-D63**
+(`docs/decisions.md`). Two owner-ratified spec-adjacent decisions (fold into
+`IMPLEMENTATIONv2.md` in a future session): **D61** (the 6 non-voting delegates
+ARE included — excluding them broke full recomputability) and the roster-source
+fix (merge `legislators-historical.yaml`, or 88 departed-118th members go
+invisible to every check, reading green on a real gap).
 
-- **D60 → D61 (delegate scope reversed):** the 6 non-voting House delegates
-  were first excluded (D60), then INCLUDED (D61) once exclusion was found to
-  break full recomputability — delegates cast real votes on 623 of 1,886
-  House rolls (Committee of the Whole), so omitting them made `RollCall.totals`
-  permanently non-reproducible from `member_votes` on those rolls. Owner chose
-  "include" over "leave out + accept a standing asterisk."
-- **Roster source gap found and fixed:** `legislators-current.yaml` alone
-  cannot deliver "every member who served 118-119" — it only has
-  currently-serving people. Now fetches + merges `legislators-historical.yaml`
-  too (88 departed-118th-only members recovered).
+**Scale now committed:** **637 members** (was 6), **966,261 member-vote rows**
+(was 10,626), 3,463 rollcalls (4 quarantined rolls correctly publish nothing),
+35,124 absence stubs sharded by congress.
 
-**P1-P3 done (this commit):** full roster (637 members) + House votes
-(1,882/1,886 succeed, 4 quarantined at 0.2%, 0 unexplained gaps) + Senate votes
-(1,581/1,581 succeed, 0 quarantines, 0 gaps) + `data/absences/` sharded by
-congress (~35,000 files at full scale). New `ingest/coverage.py` — the shared
-date-windowed "who was expected to vote" computation (three exceptions:
-delegates, the Speaker's customary non-voting, a 21-day seating-lag tolerance
-around term boundaries — all empirically found, cited, not guesses). Found +
-fixed a real bug: chamber-switchers (a House member who won a Senate seat)
-were invisible to their former chamber's coverage entirely.
+**DONE + VERIFIED GREEN this session:**
+- **P1-P3** (committed `2cedc532`): full roster + House (1,882/1,886, 4
+  quarantined at 0.2%, 0 unexplained gaps) + Senate (1,581/1,581, 0/0) votes;
+  new `ingest/coverage.py` (shared date-windowed eligibility + D61 exceptions:
+  delegates, Speaker, 21-day seating-lag — all empirical/cited); `data/absences/`
+  sharded by congress. Bug found+fixed: chamber-switchers invisible to their
+  former chamber.
+- **P5 (site) — DONE:** CI **file-count gate** (`site/scripts/check-file-count.mjs`
+  → `test:file-count`, wired into `ci.yml` + `nightly.yml`, H14) — prints the
+  built count, fails before the 20,000 Workers-Free limit; currently **13,082
+  files, 6,918 of headroom**. `data.ts:getMemberVotes` moved from an
+  O(members × rolls) per-page rescan to a one-pass memoized `Map` index (pure
+  perf, identical output). Member-page pagination **NOT restructured** — file
+  count is well under limit, so `PAGE_SIZE=200` stays (mechanical choice, D63).
+  Site build green (13,082 pages), **24/24 e2e**, file-count gate green.
+- **P6 (checks/docs) — MOSTLY DONE:** `checks/symmetry.py` + `verify_recompute.py`
+  now use `coverage.py`/`expected_on()` (ingest + checks share one module, never
+  drift) and the **subset (`<=`) invariant is upgraded to strict equality** —
+  `member_votes` reconstructs `RollCall.totals` EXACTLY on every roll (the
+  credibility payoff, D62). `checks/integrity.py` state="MS" hardcode removed —
+  now cross-checks EVERY member against the clerk/detail XML (**10/10 House +
+  10/10 Senate verified** against the independent official source). Quarantine
+  now deletes any stale prior export (found via verify-recompute: the 4
+  quarantined rolls were still publishing pre-V2-1 MS-only data). `party_unity`
+  docstring flipped; manifest `covered_state` field removed (D62);
+  `data/state/ms/metrics.json` + `data/manifest.json` regenerated. ADRs
+  **D60-D63** written; `docs/data-contract.md` inverted (recomputability
+  section + absence sharding path + member_votes scope). **`uv run checks`
+  ALL PASSED; `uv run verify-recompute` green.**
 
-**P4-P6 NOT done — next session starts here:**
-- **P4 — build.db + export restructure (SD-29):** the SQLite intermediate
-  between raw parsing and JSON export. Design already discussed (raw cache →
-  build.db → deterministic JSON export → data/; the site builds from the
-  committed JSON only, never build.db directly, to preserve the public-contract
-  trust story) but **not yet built**. Scope it to `members`/`rollcalls`/
-  `member_votes` only — NOT `absences`/`statements` (those must stay on the
-  existing direct-JSON path with `overwrite=False`, or D35's protection against
-  clobbering an owner-approved absence reason breaks).
-- **Legislation backfill:** `data/legislation/` only has records for the
-  original 6 members. `metrics.py`'s `_load()` hard-fails the moment
-  `data/members/` has more than that — this is why `uv run pytest` is
-  currently red (7 tests, one root cause). Running `ingest legislation` for
-  ~630 members is a real, API-heavy, long-running step (Congress.gov,
-  paginated sponsored/cosponsored fetches per member) — budget real wall-clock
-  time, run it paced/cached per §0.7, ideally in the background.
-- **`ingest/checks/symmetry.py` + `ingest/verify_recompute.py`:** still use the
-  OLD per-congress `_covered()` and the OLD subset (`<=`) invariant. Need the
-  same `coverage.py`/`expected_on()` treatment as the ingest side (so ingest
-  and checks never drift — the whole reason `coverage.py` is a shared module),
-  plus the upgrade to **strict equality** now that positions are complete
-  (V2-1 spec task 6) — this should now hold exactly, since every result is
-  persisted (delegates included) so `member_votes` recomputes to `totals`
-  precisely.
-- **`ingest/checks/integrity.py`:** the House/Senate clerk cross-checks still
-  hardcode `state="MS"` — needs to become "no state filter" to match the
-  now-unfiltered `published` dict, or every non-MS member's cross-check
-  compares against a `None` clerk lookup and spuriously mismatches.
-- **P5 — site restructure + file-count gate (H14):** `data.ts`'s
-  `getMemberVotes` does an O(members × rolls) scan per member page build —
-  fine at 6 members, needs a one-pass `Map<memberId, rows>` index at 637
-  (pure TS, no SQLite in the site build). Member page restructure (default =
-  summary + latest votes; full record paginated) still needs a design call
-  and a CI-enforced file-count assertion against the Workers Free/Paid
-  ceiling (20,000 / 100,000 files).
-- **P6 — docs-truth finalization:** `docs/data-contract.md`'s "deliberately
-  NOT recomputable" section inverts (delete + replace — this is the
-  credibility-upgrade payoff of the whole increment); retire builder D36 with
-  a dated **D62** ADR (D59-61 are already spent — D59 private-repo, D60/D61
-  delegate scope); `party_unity`'s "we do not collect non-Mississippi
-  positions" docstring line flips (it's false now); manifest's
-  `covered_state` field needs a decision (it described federal scope, which
-  is no longer state-scoped — MS state-layer's own use of `COVERED_STATE` is
-  unaffected and correct as-is); old `/m/{id}/{page}` URLs — decide
-  continuity consciously if the P5 restructure changes the route shape.
+**REMAINING (the only things not green):**
+- **Federal metrics regen — BLOCKED on a long download.** `ingest legislation`
+  is backfilling sponsored/cosponsored bills for ~637 members from Congress.gov
+  (API-paced, ~20-28s/member, ~2-3h total; **384/637 at this checkpoint**,
+  resumable via cache — it was killed once and resumed cleanly). `metrics.py`'s
+  `_load()` hard-fails until every member has a `data/legislation/` record, so
+  **3 pytest tests stay red** (`test_metrics.py::{test_recompute_matches_committed_metrics_json,
+  test_metrics_carry_formula_identity, test_metrics_history_reproduces_head}`)
+  — all one root cause. **On resume / when legislation finishes:** run
+  `ingest legislation` (finishes the tail), then `ingest metrics` (regen
+  `data/metrics.json`), then `uv run pytest` → green, then commit.
+- **P4 — build.db (SD-29) — NOT built; flagged to owner as a decision (D63).**
+  The flat-file architecture holds at full scale (measured: ~30s ingest
+  re-parse, ~80s site build, all checks + verify-recompute green). SD-29 says
+  build it at V2-1; the underlying deferred decision (archived `inc-12-plan.md`)
+  framed adoption as trigger-based. This tension is the owner's call — do NOT
+  treat build.db as done, and do not build it unilaterally.
+- **Member-page rendering of the new stats:** D57/D58 render the Tier-2 stat
+  tiles for the 6 MS + MS-state members. At 637 federal members those tiles now
+  need the regenerated `data/metrics.json` to render for everyone — verify after
+  the metrics regen (the templates already read `getMetrics()`, so likely just
+  works once the data exists, but confirm on a non-MS member page).
 
-**Acceptance still to reach:** `uv run checks && uv run pytest &&
-uv run verify-recompute` green; `npm run build` green with file-count printed
-< plan limit; `npm run test:links` green. **On resume:** read the `2cedc532`
-commit message in full before touching anything — it has the numbers, the
-exact bugs found, and the reasoning behind every design choice above.
+**Acceptance target:** `uv run checks` ✅ + `uv run verify-recompute` ✅ +
+`npm run build`/e2e/file-count ✅ already green; **`uv run pytest` green is the
+last gate**, waiting only on the metrics regen behind the legislation download.
 
 ---
 

@@ -58,6 +58,9 @@ jobs:
         run: npm run build
       - name: Checks (banned-words, no-llm, ...)
         run: uv run checks
+      - name: File-count gate (built files < Workers plan limit — H14)
+        working-directory: site
+        run: npm run test:file-count
       - name: Source-link trace (every vote/bill page cites its source_url)
         working-directory: site
         run: npm run test:links

@@ -31,12 +31,15 @@ def test_manifest_injects_wall_clock_only_here() -> None:
     m = export.build_manifest(FIXED_TS, FIXED_COMMIT)
     assert m["generated_at"] == FIXED_TS
     assert m["commit"] == FIXED_COMMIT
-    # Counts reflect the real committed dataset.
-    assert m["counts"]["members"] == 6
+    # Counts reflect the real committed dataset (V2-1: no fixed member count —
+    # the full roster churns; compare against what's actually on disk instead).
+    assert m["counts"]["members"] == len(list((repo_root() / "data" / "members").glob("*.json")))
     assert m["counts"]["rollcalls"] == m["counts"]["rollcalls_by_chamber"]["house"] + \
         m["counts"]["rollcalls_by_chamber"]["senate"]
     assert m["congresses"] == list(config.CONGRESSES)
-    assert m["covered_state"] == config.COVERED_STATE
+    # "covered_state" was removed from the manifest (D61): federal coverage is no
+    # longer state-scoped, so the field would misstate scope.
+    assert "covered_state" not in m
     # non_position rolls are counted under their own key, not lumped into `other`
     # (L-1): `other` reads as the genuine one-off rate, and the two keys agree with
     # the standalone non_position count.

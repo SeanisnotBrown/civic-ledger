@@ -1,18 +1,18 @@
 {
-  "commit": "4ef6e3b",
+  "commit": "df2ab3b3",
   "congresses": [
     118,
     119
   ],
   "counts": {
-    "absences": 243,
+    "absences": 35124,
     "bills": 1011,
-    "member_votes": 10626,
-    "members": 6,
+    "member_votes": 966261,
+    "members": 637,
     "non_position_rollcalls": 20,
-    "rollcalls": 3467,
+    "rollcalls": 3463,
     "rollcalls_by_chamber": {
-      "house": 1886,
+      "house": 1882,
       "senate": 1581
     },
     "rollcalls_by_vote_class": {
@@ -20,12 +20,11 @@
       "nomination": 447,
       "non_position": 20,
       "other": 4,
-      "passage": 886,
-      "procedural": 1285,
+      "passage": 885,
+      "procedural": 1282,
       "veto_override": 14
     },
     "statements": 0
   },
-  "covered_state": "MS",
-  "generated_at": "2026-08-12T21:32:26Z"
+  "generated_at": "2026-08-13T20:06:29Z"
 }

@@ -92,8 +92,8 @@ def _sample_ids(ids: list[str]) -> list[str]:
 
 
 def cross_check(sample_ids: list[str]) -> tuple[list[str], list[str]]:
-    """Return (mismatches, unreachable). Compares each sampled vote's MS positions
-    against the clerk XML at its source_url."""
+    """Return (mismatches, unreachable). Compares each sampled vote's positions
+    (V2-1: every member, not just MS's) against the clerk XML at its source_url."""
     from ingest.sources import clerk_house
 
     votes_dir = repo_root() / "data" / "votes"
@@ -108,19 +108,22 @@ def cross_check(sample_ids: list[str]) -> tuple[list[str], list[str]]:
         except (httpx.HTTPError, OSError) as exc:
             unreachable.append(f"{rc_id}: {type(exc).__name__}")
             continue
-        clerk_ms = clerk_house.parse_positions(xml, state="MS")
+        # No state filter (V2-1): `published` now covers every member, so the
+        # independent re-parse must too, or every non-MS bioguide compares
+        # against a None clerk lookup and spuriously mismatches.
+        clerk_all = clerk_house.parse_positions(xml)
         for bioguide, pos in published.items():
-            if clerk_ms.get(bioguide) != pos:
+            if clerk_all.get(bioguide) != pos:
                 mismatches.append(
-                    f"{rc_id} {bioguide}: published={pos} clerk={clerk_ms.get(bioguide)}"
+                    f"{rc_id} {bioguide}: published={pos} clerk={clerk_all.get(bioguide)}"
                 )
     return mismatches, unreachable
 
 
 def senate_cross_check(sample_ids: list[str]) -> tuple[list[str], list[str]]:
     """Return (mismatches, unreachable). Re-fetch each sampled Senate roll's detail
-    XML at its source_url and re-parse the MS positions through the crosswalk,
-    comparing to what we published."""
+    XML at its source_url and re-parse positions (V2-1: every senator, not just
+    MS's) through the crosswalk, comparing to what we published."""
     from ingest.senate_votes import _lis_to_bioguide
     from ingest.sources import senate_xml
 
@@ -137,7 +140,8 @@ def senate_cross_check(sample_ids: list[str]) -> tuple[list[str], list[str]]:
         except (httpx.HTTPError, OSError) as exc:
             unreachable.append(f"{rc_id}: {type(exc).__name__}")
             continue
-        reparsed = senate_xml.parse_positions(xml, lis_to_bioguide, state="MS")
+        # No state filter (V2-1) — see cross_check() above for why.
+        reparsed = senate_xml.parse_positions(xml, lis_to_bioguide)
         for bioguide, pos in published.items():
             if reparsed.get(bioguide) != pos:
                 mismatches.append(

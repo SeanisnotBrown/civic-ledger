@@ -237,9 +237,12 @@ def _lis_to_bioguide() -> dict[str, str]:
 
 
 def _quarantine(rc_id: str, error: str) -> None:
+    """Record the failure AND remove any stale prior export for this roll — see
+    house_votes.py's `_quarantine` docstring (V2-1, found via verify-recompute)."""
     import json
 
     from ingest.cache import repo_root
+    from ingest.export import ABSENCES_DIR, VOTES_DIR, congress_of
 
     qdir = repo_root() / "data" / "quality" / "quarantine"
     qdir.mkdir(parents=True, exist_ok=True)
@@ -247,6 +250,13 @@ def _quarantine(rc_id: str, error: str) -> None:
         json.dumps({"rollcall_id": rc_id, "error": error}, indent=2, sort_keys=True),
         encoding="utf-8", newline="\n",
     )
+    stale_votes = VOTES_DIR / f"{rc_id}.json"
+    if stale_votes.exists():
+        stale_votes.unlink()
+    abs_dir = ABSENCES_DIR / congress_of(rc_id)
+    if abs_dir.exists():
+        for stale_abs in abs_dir.glob(f"*--{rc_id}.json"):
+            stale_abs.unlink()
 
 
 def run(argv: list[str] | None = None) -> int:

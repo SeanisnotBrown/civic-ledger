@@ -34,7 +34,8 @@ def test_coverage_gaps_flags_unknown_member(tmp_path, monkeypatch) -> None:
     )
     (data / "votes" / "h-119-1-0001.json").write_text(
         json.dumps({
-            "rollcall": {"id": "h-119-1-0001", "congress": 119, "vote_class_rule": "unclassified"},
+            "rollcall": {"id": "h-119-1-0001", "congress": 119, "vote_class_rule": "unclassified",
+                         "date": "2025-06-01"},
             "member_votes": [{"member_id": "M000001"}, {"member_id": "EXTRA999"}],
         }),
         encoding="utf-8",

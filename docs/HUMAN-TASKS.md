@@ -23,13 +23,22 @@ the owner completes each task.
 
 Legend: ⬜ pending · 🟨 in progress · ✅ done
 
-## Impact on current build (INC-1 done)
+## Impact on current build (INC-0..INC-12 + member-page stats done)
 
-INC-0 and INC-1 are complete. **H1** (Congress.gov key) unblocked the INC-1
-federal spike — all six federal sources reached, samples committed. **H2**
-(LegiScan) remained pending, so the MS-state verdict resolved **DEFER** by rule
-(D18) with no effect on the federal path. **H4 + H5 (Cloudflare Workers +
-`civicledger.net`) are done — the site is live and auto-deploys on push**, so
-INC-9 is fully unblocked; the only remaining INC-9 acceptance box is observing
-one untouched nightly commit + deploy (fires on the next real data-change night).
-The next gating human tasks are content/recurring (H6, H8–H12) and INC-11+.
+**No human task blocks the current build.** H1 (Congress.gov) + H3 (repo/secrets) +
+H4/H5 (Cloudflare Workers + `civicledger.net`) are done — the site is live and
+auto-deploys on push. **H2 (LegiScan) is done and now fully consumed:** INC-12 branch A
+built the MS state layer on it (174 legislators, 1,725 rolls; ADRs D51–D58), and the GO
+gate resolved 5/5 (D21). Member pages in both jurisdictions render the Tier-2 stat tiles
+(D57/D58).
+
+The remaining human tasks are all **content/recurring or optional**, none blocking code:
+- **H6** (archive.org S3 keys) — optional; the statement tool works without it.
+- **H7** (FEC key) — only for the optional INC-10b funding increment.
+- **H8/H9** (statement + absence content) — tools shipped; owner-curated content.
+- **H10** (candidate list/scoring) — for INC-13 (Candidate Tracker), not yet built.
+- **H11/H12/H13** — quiz bank review, warrant-canary signing, byline decision (later increments).
+
+Open runtime-verification boxes (not blockers, observed on the next scheduled run): the
+INC-9 first-real-data nightly commit + deploy, the R-5 raw-cache hit, and the first MS
+nightly hash-gate no-op.

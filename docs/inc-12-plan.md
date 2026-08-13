@@ -1,5 +1,13 @@
 # INC-12 — Mississippi state legislature layer (branch A / GO) — scope & plan
 
+> **STATUS: ✅ COMPLETE (2026-08-12).** All 6 phases shipped (ADRs D51–D56), plus the
+> follow-on member-page Tier-2 stats for both jurisdictions (D57 federal, D58 MS). CI green,
+> live on `civicledger.net/ms`. This doc is retained as the original scoping record; the
+> authoritative current state is `docs/PROGRESS.md`. Actuals vs. the plan below: 174
+> members / 1,725 rolls / 905 voted bills / 144,007 member votes / 0 quarantined; site
+> 4,540→7,919 pages; the integrity spot-check shipped as the 5 GO-verdict samples (offline),
+> and MS metrics (D58) were added on top of the plan's phase list.
+
 Scoping doc for the next increment, written 2026-08-12 after the R-1..R-6 review
 hardening closed. Branch A is unlocked (`data/quality/ms-state-verdict.md`: GO, 5/5
 position match, 470 positions). This is the **largest increment yet** — it adds a whole

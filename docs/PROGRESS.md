@@ -3,20 +3,24 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-12, end of **INC-12 (Mississippi state legislature layer)**
-session — all 6 phases built. See "INC-12" below. (Prior this day: post-review hardening
-round 2 — R-1/R-4/R-6/R-5, closing the review backlog.)
-**Git:** INC-1..INC-12 closed & pushed. Earlier today: R-1..R-6 remediation (`17ea5be`
-R-1, `4ef6e3b` R-4, `65f36b7` R-6, `92702ac` R-5). Then **INC-12** in six commits:
-`803e3044` (P1 schema/partition), `5826ac62` (P2 LegiScan ingest), `14b15cab` (P3 checks),
-`feebe206` (P4 site), `0ec9051b` (P5 nightly), `8ac74cb1` (P6 limitations/docs). **Local ==
-origin/master; CI GREEN on HEAD `8ac74cb1`** (run 31648033970, both jobs) — **and the live
-site is deployed**: `https://civicledger.net/ms` renders (174 legislators, 1,725 rolls),
-so the Cloudflare Workers build fired on the push. Now **6 checks** (added `ms`), **247 py
-tests** (200 → +11 R-1, +3 R-4, +3 R-6, +30 INC-12), ruff, verify-recompute, Astro build
-(**7,919 pages**, was 4,540), **24/24 Playwright e2e** (12 URLs × 2, added 4 MS pages),
-Lighthouse (added heaviest MS page), `astro check` 0 errors. Classify verified byte-stable
-on the jurisdiction-migrated federal files (no phantom nightly diff).
+**Last updated:** 2026-08-12, end of the **member-page stats rendering** session (D57
+federal + D58 Mississippi) — the review's post-INC-12 item. (Same day, earlier: INC-12 all
+6 phases; and post-review hardening round 2 — R-1/R-4/R-6/R-5.)
+**Git:** INC-1..INC-12 + member-stats closed & pushed. Sequence today: R-1..R-6
+(`17ea5be`/`4ef6e3b`/`65f36b7`/`92702ac`); **INC-12** six commits
+(`803e3044` P1 schema/partition, `5826ac62` P2 LegiScan ingest, `14b15cab` P3 checks,
+`feebe206` P4 site, `0ec9051b` P5 nightly, `8ac74cb1` P6 docs) + `9096c1b5` (PROGRESS) +
+`5876f838` (e2e screenshot flake fix, non-fatal); then **member-page stats**:
+`5002e641` (**D57** — render the 8 federal Tier-2 metrics as a KPI stat-tile row on member
+pages, no composite/score) and `aa16914c` (**D58** — compute + render the 5 MS metrics; new
+committed `data/state/ms/legislation/` from all 4,006 bills + `data/state/ms/metrics.json`).
+**Local == origin/master; CI GREEN on HEAD `aa16914c`** — **live site deployed** (verified
+`/m/W000437/1` and `/ms/m/ms-12068/1` both render their Record summary). Now **6 checks**
+(incl. `ms`, with MS metrics recompute-and-match), **254 py tests**, ruff, verify-recompute,
+Astro build (**7,919 pages**), **24/24 Playwright e2e**, Lighthouse, `astro check` 0 errors.
+Classify verified byte-stable on the jurisdiction-migrated federal files (no phantom nightly
+diff). The e2e 380px screenshot artifact is now fully non-fatal (a CI Chromium capture flake
+had failed a passing layout check once).
 **H4 + H5 DONE:** the site is **live at `civicledger.net`** via **Cloudflare Workers**
 (Static Assets, deployed by **Workers Builds** on push — no `CLOUDFLARE_*` secret in GitHub
 CI). Planned `.org` was taken → `.net`. Only remaining INC-9 acceptance box: observe one
@@ -630,7 +634,8 @@ Playwright); 380px layout + screenshot ✅; every rendered claim traces to a `so
 | INC-10 | Metrics + methodology | ✅ done | 8 Tier-2 metrics → data/metrics.json; methods page auto-built from docstrings (section-set == metric-key-set); bill subjects/cosponsors backfilled; data/legislation/ + aggregate party_totals; Tier-3 AST guard + symmetry statement rules active; verify-recompute 4th invariant + metrics recompute-match; 149 py tests, D36–D40 |
 | INC-10b | FEC funding (optional) | not started | blocked by H7 |
 | INC-11 | Statement ledger + curation | ✅ build done; content = H8 | curation Flask app (loopback-only, no-capture-no-save server-side) + SPN2 verified capture; Statement stance + D9 single-source pairing (paired_bill_ids); named_measure_mismatch un-failed-closed (stance vs passage vote); member timeline interleave + /pairing page; weekly archive-links sweep (dead → build-excluded); 187 py tests at close (217 after R-1/R-4/R-6 hardening), D41–D44 + D47–D50. Phase-3 content acceptance (20+ statements, ≥5 pairs) is H8 |
-| INC-12 | Mississippi state layer | ✅ done (branch A) | LegiScan bulk ingest → data/state/ms/ (174 members, 1,725 rolls, 905 bills, 144,007 member votes, 0 quarantined); jurisdiction schema + partitioned storage (D51); MS classifier + TTL cache (D52); checks/ms consistency + 5/5 official-PDF spot-check (D53); /ms site pages, site 4,540→7,919 (D54); hash-gated nightly (D55); /methods#mississippi limitations page (D56). 247 py tests; checks + 24/24 e2e + astro-check green |
+| INC-12 | Mississippi state layer | ✅ done (branch A) | LegiScan bulk ingest → data/state/ms/ (174 members, 1,725 rolls, 905 voted bills, 144,007 member votes, 0 quarantined); jurisdiction schema + partitioned storage (D51); MS classifier + TTL cache (D52); checks/ms consistency + 5/5 official-PDF spot-check (D53); /ms site pages, site 4,540→7,919 (D54); hash-gated nightly (D55); /methods#mississippi limitations page (D56). **Member-page Tier-2 stats: federal (D57) + MS (D58 — legislation layer from all 4,006 bills + metrics.json).** 254 py tests; checks + 24/24 e2e + astro-check green |
+| — | Member-page stat rendering | ✅ done (D57/D58) | 8 federal + 5 MS Tier-2 metrics rendered as a KPI stat-tile row atop each member page (`MemberStats.astro`, jurisdiction-aware) — each with its denominator, NO composite/score. The review's post-INC-12 item |
 | INC-13 | Candidate Tracker | not started | content = H10 |
 | INC-14 | Alignment Quiz engine | not started | content = H11 |
 | INC-15 | Alignment outputs | not started | — |
@@ -767,13 +772,17 @@ subcommand wired in `cli.py`. Test count 15 → 23.
   `TECHNICAL_REVIEW.md`). H8 statement curation is unblocked (R-1 landed).
 - **INC-12 (MS state layer) ADRs: D51–D56** (`docs/decisions.md`); full plan in
   `docs/inc-12-plan.md`; contract in `docs/data-contract.md` (state section). **INC-12 is
-  DONE** (all 6 phases). **Next actionable = INC-13** (Candidate Tracker, content = H10) or
-  member-page metric rendering (the review's post-INC-12 queue item) — owner's pick. Open
-  runtime-verification boxes (not blockers): R-5 cache-hit on the 2nd nightly; INC-9
-  first-real-data nightly commit + deploy; the first MS nightly hash-gate no-op.
-- **INC-12 deferred (later increments):** backfill prior MS sessions; MS Tier-2 metrics;
-  the flat-file→SQLite build-accelerator decision (review §6 — revisit before a 2nd state;
-  MS kept flat-file, ~7,900 pages, still fine).
+  DONE** (all 6 phases). **Member-page stats: D57 (federal) + D58 (Mississippi) — DONE:**
+  both jurisdictions render the Tier-2 stat tiles on member pages (attendance, party unity,
+  sponsored/authored, cosponsored/co-authored, enacted/became-law), each with its
+  denominator, NO composite score (Tier-3 rule holds). **Next actionable = the
+  reader-adjustable scorecard** (the overall-grade experience, client-side weights per D19 —
+  the remaining big item the owner flagged) OR **INC-13** (Candidate Tracker, content = H10)
+  — owner's pick. Open runtime-verification boxes (not blockers): R-5 cache-hit on the 2nd
+  nightly; INC-9 first-real-data nightly commit + deploy; the first MS nightly hash-gate no-op.
+- **Deferred (later increments):** backfill prior MS sessions; the flat-file→SQLite
+  build-accelerator decision (review §6 — revisit before a 2nd state; MS kept flat-file,
+  ~7,900 pages, still fine).
 - Version pins recorded in `docs/decisions.md` (Python + Node) at INC-0.
 - Dev environment: Windows 11 + PowerShell. `uv` at
   `%APPDATA%\Python\Python314\Scripts` on user PATH. Local Python 3.14 → project

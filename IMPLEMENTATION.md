@@ -378,6 +378,9 @@ In-state vs out-of-state %, PAC vs individual % from api.open.fec.gov, formulas 
 **Acceptance:** brief Phase-3 criteria: 20+ statements, per-member/party symmetry green, every archive link verified live, ≥ 5 pairs rendering under the strict rule, banned-words green on all curated text.
 
 ### INC-12 — Mississippi state layer *(branch chosen by INC-1 verdict)*
+> **✅ BUILT 2026-08-12 (branch A). See `docs/PROGRESS.md` + ADRs D51–D58.** Spot check
+> shipped as 5 offline GO-verdict samples (per-vote PDF URLs aren't derivable for arbitrary
+> rolls); member-page Tier-2 stats added on top (D57/D58). Deferred: prior-session backfill.
 **Branch A (GO):** LegiScan ingest module → map `people_id`→state-member records (new `ms_leg` id namespace, crosswalk file), bills/roll calls to canonical schema with `jurisdiction: "ms"`; district lookup; state member pages; 10-vote spot check vs Journal PDFs; public data-limitations page documenting anything LegiScan lacks. **Acceptance:** roadmap Phase-4 criteria (both chambers' current session; spot check passes; gaps documented publicly).
 **Branch B (DEFER):** produce `data/quality/ms-state-verdict.md` expansion: Journal PDF parseability assessment (text-layer vs scanned, one sample parsed), effort estimate, and a `/methodology#mississippi` public note that state coverage is deferred and why. **No other increment changes.** Build proceeds to INC-13.
 

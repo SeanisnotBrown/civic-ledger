@@ -284,13 +284,17 @@ distinguishing the two.
 | `data/state/ms/votes/ms-{h\|s}-{session_id}-{roll_call_id}.json` | `VoteFile` (`RollCall` + every member's `MemberVote`). `RollCall.jurisdiction: "ms"`, `congress: null`, `session` = LegiScan session_id, `number` = roll_call_id, `party_totals` fully computed (every position is present). `member_votes` include `not_voting` rows (no separate absence stubs). |
 | `data/state/ms/bills/ms-{type}{number}-{session_id}.json` | `Bill`, `jurisdiction: "ms"`, `congress: null`. Only vote-referenced measures. `source_url` = the official billstatus link where present. |
 | `data/state/ms/crosswalk.json` | `ms-id → {legiscan_people_id, name, party, chamber, district}`. |
+| `data/state/ms/legislation/ms-{people_id}.json` | `MemberLegislation` (INC-13). Per-member `sponsored` + `cosponsored` `LegItem`s built from **ALL** session bills (not just the vote-referenced ones), so authorship counts are complete + recomputable. MS reading: the FIRST-listed author is the principal ("sponsored"), the rest are "cosponsored" (LegiScan gives no primary/co split); `LegItem.became_law` = the official history action "Approved by Governor", `congress: null`. |
+| `data/state/ms/metrics.json` | `MsMetricsFile` (INC-13). The MS Tier-2 subset per member — `attendance`, `party_unity`, `sponsored`, `cosponsored`, `enacted_rate` — computed by REUSING the federal metric formulas (`ingest/metrics.py`) over the MS partition; recomputable (`ms_metrics.build() == committed`, `checks/ms.py`). The federal list-type metrics (gap/mismatch/absence_context) are not computed for MS. No wall-clock. |
 | `data/state/ms/manifest.json` | MS partition manifest: `session_id`, `session_name`, `dataset_hash` (the nightly change gate), counts. Carries the one injected `generated_at`. |
 
 **Differences from the federal record (documented on `/methods#mississippi`):** positions
 are Yea/Nay/not-voting only (LegiScan gives no Present/Absent split — `not_voting` folds
 both); there is no personal-explanation pipeline (a missed vote shows no reason); LegiScan
-party `N` (nonpartisan) is shown as `I`; only vote-referenced bills are published; the
-Tier-2 metrics are not yet computed for MS members. **Source integrity:** LegiScan mirrors
+party `N` (nonpartisan) is shown as `I`; only vote-referenced bills are published as bill
+pages (though authorship is counted over ALL bills via `legislation/`); MS "sponsored" =
+principal (first-listed) author, "cosponsored" = additional author (INC-13). **Source
+integrity:** LegiScan mirrors
 the official `billstatus.ls.state.ms.us` record; scrape fidelity is verified against the
 official per-vote PDFs (470 positions in the GO verdict; `checks/ms.py` re-confirms the
 sampled tallies every build). Not recomputable from a third-party origin — it is the

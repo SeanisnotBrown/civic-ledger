@@ -147,9 +147,12 @@ wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
   `party_unity`, `sponsored`, `cosponsored`, `enacted_rate`, `cosponsor_vote_gap`,
   `named_measure_mismatch`, `absence_context`. `pct` fields are `null` on a zero
   denominator (never a fabricated 0). No metric is a composite of others — the
-  Tier-3 guard enforces it (§5). `named_measure_mismatch` is `[]` until INC-11 and
-  fails closed thereafter (D39); `cosponsor_vote_gap` is a factual list to be
-  rendered only against its denominator, never as a headline (D38).
+  Tier-3 guard enforces it (§5). `named_measure_mismatch` compares a statement's
+  owner-assigned stance to the member's own passage vote on the paired measure
+  (D42, superseding D39's fail-closed design); it stays `[]` until a qualifying
+  statement — specificity 2/3, a stance, a bill-id pairing — is curated (content
+  = H8), never guessed. `cosponsor_vote_gap` is a factual list to be rendered
+  only against its denominator, never as a headline (D38).
 
 ## `data/statements/{id}.json` — one per curated statement (INC-11)
 

@@ -8,8 +8,8 @@ Scope is EXACTLY the three trees named in §6.4:
     data/**            (published dataset)
     site/src/**        (site source)
     site/dist/**       (built output)
-The repo root is deliberately out of scope — IMPLEMENTATION.md quotes every
-banned word while specifying this check.
+The repo root is deliberately out of scope — IMPLEMENTATIONv2.md §6.4 quotes
+every banned word while specifying this check.
 
 The glossary page is the single allowlisted file, for defining procedural
 terms; it is manually reviewed (§6.4). A hit anywhere else fails the build.

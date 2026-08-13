@@ -3,11 +3,13 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, end of the **spec v2 adoption** session (constitutional
-amendment — see the "Spec v2 adopted" section below; docs-only, no code touched).
-Previous: 2026-08-12, end of the **member-page stats rendering** session (D57
-federal + D58 Mississippi) — the review's post-INC-12 item. (Same day, earlier: INC-12 all
-6 phases; and post-review hardening round 2 — R-1/R-4/R-6/R-5.)
+**Last updated:** 2026-08-13, end of the **V2-0 — docs-truth pass** session (first
+v2 implementation increment — see the "V2-0 — Docs-truth pass" section below;
+docs-only, zero behavior change; acceptance green). Previous: 2026-08-13, end of
+the **spec v2 adoption** session (constitutional amendment — see "Spec v2 adopted"
+below). Before that: 2026-08-12, end of the **member-page stats rendering** session
+(D57 federal + D58 Mississippi) — the review's post-INC-12 item. (Same day, earlier:
+INC-12 all 6 phases; and post-review hardening round 2 — R-1/R-4/R-6/R-5.)
 **Git:** INC-1..INC-12 + member-stats closed & pushed. Sequence today: R-1..R-6
 (`17ea5be`/`4ef6e3b`/`65f36b7`/`92702ac`); **INC-12** six commits
 (`803e3044` P1 schema/partition, `5826ac62` P2 LegiScan ingest, `14b15cab` P3 checks,
@@ -30,12 +32,19 @@ untouched nightly commit + deploy on the next real data-change night (a real nig
 **not** triggered this session — this local env has no secrets, so only GitHub Actions /
 the owner's machine can run the live pipeline; confirm the first `data: nightly …` build's
 author reads `github-actions[bot]`).
-**Remote:** https://github.com/SeanisnotBrown/civic-ledger.git (public).
+**Remote:** https://github.com/SeanisnotBrown/civic-ledger.git — **⚠ found PRIVATE
+during the V2-0 session (2026-08-13)**, contradicting `IMPLEMENTATIONv2.md` §3
+("the client is open source") and the live `/privacy` + `/corrections` pages, which
+both assert the repo is public. Flagged to the owner; not resolved by the builder
+(see the V2-0 section below) — do not describe this repo as public elsewhere until
+the owner confirms which is wrong, the doc/copy or the GitHub setting.
 **Untracked, local-only (NOT committed):** `TECHNICAL_REVIEW.md`,
-`TECHNICAL_REVIEW_SUMMARY.md`, `civic-ledger-review-directive.md` — the code review +
-directive that drove this session. The remediation backlog (R-1..R-6) is summarized below
-so it survives even if these stay local. **Publishing them to the public repo is the
-owner's call — do not commit without asking.**
+`TECHNICAL_REVIEW_SUMMARY.md`, `civic-ledger-review-directive.md`, and
+`PROMPT-A-fable5-spec-author.md` — the code review + directive that drove the
+2026-08-12 session, and the spec-authoring prompt that drove the 2026-08-13 v2
+adoption. The remediation backlog (R-1..R-6) is summarized below so it survives
+even if these stay local. **Publishing them to the public repo is the owner's
+call — do not commit without asking.**
 
 > **PIPELINE ORDER (load-bearing, D24 + INC-7/8/10 + R-2/D46):** `ingest members`
 > (roster refresh FIRST — R-2, so vote coverage + unknown-member alarms read a fresh
@@ -48,6 +57,56 @@ owner's call — do not commit without asking.**
 > derived — a legislation-only change must still reach the gate, D40); **export must
 > run after any ingest** or manifest/schema drift fails. (`bills`/`legislation` are
 > independent of classify; export/checks come last.)
+
+---
+
+## V2-0 — Docs-truth pass (2026-08-13) — ✅ COMPLETE
+
+First v2 implementation increment (hand-off from `docs/kickoff-v2.md`), all 7
+tasks from `IMPLEMENTATIONv2.md` §7 V2-0 done, zero behavior change:
+
+- `docs/data-contract.md` — `named_measure_mismatch` fail-closed text (stale
+  since D42 superseded D39) rewritten to describe the shipped stance-vs-
+  passage-vote mechanism. The "deliberately NOT recomputable" section is
+  untouched per the task (still true until V2-1).
+- `CONTRIBUTING.md` — four-values paragraph replaced with the §0.4 amended
+  values (evaluative-label disclosure standard, collect-minimum/encrypt-belief);
+  `§6.11` → `§6.9`; both the LLM-policy and values sections now point at
+  `IMPLEMENTATIONv2.md`.
+- `docs/PROGRESS.md` (this file) — the stale "Current increment: INC-11"
+  heading converted to `**(historical — INC-11)**` (matching the INC-10..
+  INC-5 style below it); the four stale "Next: INC-N — NOT STARTED" lines
+  (INC-10/INC-9/INC-8/INC-6) deleted; the stale "no CLAUDE.md file" note
+  corrected; untracked-file list corrected to 4 files (added
+  `PROMPT-A-fable5-spec-author.md`).
+- `ingest/config.py` — module docstring's false claim of an existing
+  worker↔ingest `K_ANON` equality test reworded to state the Worker (V2-8)
+  doesn't exist yet.
+- `docs/HUMAN-TASKS.md` — H14–H19 rows added (§1 of `IMPLEMENTATIONv2.md`);
+  impact narrative refreshed with which v2 increment each blocks.
+- `ingest/checks/banned_words.py` — module docstring's `IMPLEMENTATION.md`
+  citation (now archived) reworded to `IMPLEMENTATIONv2.md` §6.4.
+- **H16 (branch protection)** — NOT enabled; per the task, the owner does the
+  click (GitHub → Settings → Branches). The builder's read-only pre-check
+  (`gh api repos/.../branches/master/protection`) 403'd — see the flag below.
+
+**Unplanned but load-bearing finding (surfaced to the owner, not resolved by
+the builder):** while pre-checking H16, `gh repo view` showed the GitHub repo
+is currently **PRIVATE**. This contradicts `IMPLEMENTATIONv2.md` §3 ("the
+client is open source"), `docs/correction-process.md`, `ingest/
+verify_recompute.py`'s docstring, and — most importantly — the LIVE site:
+`site/src/pages/privacy.astro` ("the entire dataset is the public
+repository") and `corrections.astro` ("the full history... is in the public
+repository") both currently assert a fact about the live system that may not
+be true. This is a possible Value #1 concern (§0.4.1) if the claim is false
+right now, so it is flagged rather than silently fixed either direction —
+see this session's message to the owner. Nothing in `data/`, `site/src/
+pages/privacy.astro`, or `corrections.astro` was edited.
+
+**Acceptance met:** `uv run checks` (6/6) + `uv run pytest` (254 passed) +
+`uv run ruff check ingest tests` all green; `git status` shows only the six
+files above touched, nothing under `data/`; `cd site && npm run build`
+green, 7,919 pages (unchanged count — confirms zero behavior/data change).
 
 ---
 
@@ -74,11 +133,12 @@ dashboard landing page). This session (Fable 5, spec-author role — no code):
 - **Verified after the moves:** `uv run pytest` 254 passed; `uv run checks`
   ALL PASSED — nothing reads the archived paths.
 
-**Next actionable: hand `docs/kickoff-v2.md` to a Claude Code session; first
-increment is V2-0 (docs-truth pass).** This ledger continues in this file (v2
-increments will log here, newest-first, same conventions). The stale
-"Current increment: INC-11" heading and four stale "Next:" lines below are
-known and enumerated as V2-0 work — left for the implementer per v2 §7.
+**V2-0 is now done — see the "V2-0 — Docs-truth pass" section above.** Next
+actionable is **V2-1** (federal data expansion, the blocking gate for V2-2/
+V2-5) — but it opens with a delegate/territory-coverage question that
+`IMPLEMENTATIONv2.md` §0.1 flags as a MUST-ask, so it waits on the owner
+(see this session's message). This ledger continues in this file (v2
+increments log here, newest-first, same conventions).
 
 ---
 
@@ -152,10 +212,12 @@ for the former; the engine is a separate owner decision.
 
 ---
 
-## Current increment
+## Increment history (INC-5..INC-11 detail — INC-12 + v2 status is in "Spec v2
+adopted" and "Post-review hardening" above)
 
-**INC-11 — Statement ledger + curation tool + pairing — ✅ BUILD COMPLETE (this
-session); content = H8 (owner), H6 optional.**
+**(historical — INC-11)**
+**INC-11 — Statement ledger + curation tool + pairing — ✅ BUILD COMPLETE;
+content = H8 (owner), H6 optional.**
 Machinery shipped and proven end-to-end; the published corpus is **empty by design**
 (a statement is an owner-selected verbatim quote with a verified archive — principle 5;
 the builder never authors one, exactly as INC-6 shipped the absence pipeline with zero
@@ -248,12 +310,6 @@ acceptance is to **observe one untouched nightly run commit + live deploy** on t
 real data-change night. If branch protection is enabled on `master`, the
 `github-actions[bot]` push needs a ruleset bypass (H4 note). Lighthouse ≥ 90 passes CI.
 
-**Next: INC-10 — Metrics layer + methodology page — NOT STARTED.** `metrics.py`
-(attendance, party-unity on substantive votes, sponsored/cosponsored/enacted-rate,
-cosponsor-to-vote gap, named-measure mismatch list); methodology page auto-built from
-docstrings; symmetry full activation; Tier-3 grep guard. **NB INC-10 backfills bill
-`subjects`/`cosponsor_ids`** (the D27 `None` fields) — it needs the cosponsor sub-resource.
-
 **(historical — INC-8)**
 **INC-8 — Site MVP — ✅ COMPLETE.**
 The static site renders the record: **member index** (`/`), **member detail** with a
@@ -273,12 +329,6 @@ Acceptance enforced by 3 CI gates (D30): `astro build` offline; `check-source-li
 (4,478 vote/bill pages each cite their `source_url`); Playwright `@axe-core` WCAG2 A/AA +
 380px no-overflow on 6 representative pages. Design in **D27–D30**. See "INC-8 output".
 
-**Next: INC-9 — Automation + deploy → PUBLIC MVP — NOT STARTED. Blocked by H4, H5.**
-`nightly.yml` (cron): ingest (current congress) → bills → classify → export → checks →
-commit data diff → Pages deploy. Needs Cloudflare Pages + token (H4) and the domain (H5),
-both still pending. Build the workflow + deploy config regardless; the deploy step no-ops
-without the secrets. See the PIPELINE ORDER callout above — nightly must sequence it.
-
 **(historical — INC-7)**
 **INC-7 — JSON export contracts — ✅ COMPLETE.**
 The published dataset is now a stable, documented, deterministic contract.
@@ -297,11 +347,6 @@ honest recompute-and-match given MS-only `member_votes` vs chamber-wide `totals`
 `docs/data-contract.md` documents every file + field, the `non_position` special
 case, the absence filename convention, and what is/isn't recomputable. Design in
 **D26**. See "INC-7 output" below.
-
-**Next: INC-8 — Site MVP — NOT STARTED.** Member index, member detail (vote list
-w/ class badges), single-vote page, single-bill page; §6.7 copy rules in full.
-`astro build` from data alone (no network at build); axe-core a11y; 380px layout;
-every rendered claim traces to a `source_url` in data. Unblocked.
 
 **(historical — INC-6)**
 **INC-6 — Absences & personal explanations — ✅ COMPLETE (build); content = H9.**
@@ -333,11 +378,6 @@ a committees fetch) vs `passage` (substantive) — the split INC-10 party-unity
 depends on. `classify()` is pure/offline; golden test `tests/fixtures/questions.yaml`
 (52 real strings) 100% pass. New CI gate `checks/classification.py` fails on any
 `unclassified` roll or other-rate > 5%. Design in **D24**. See "INC-5 output" below.
-
-**Next: INC-6 — Absences & personal explanations (content = H9) — NOT STARTED.**
-CREC "personal explanation" search (govinfo, resolved INC-1) + covered-member names
-→ review queue `data/quality/absence-queue/` → minimal CLI approver
-(`uv run curate absences`) writes verbatim `Absence.stated_reason` + CREC page URL.
 
 > **RESOLVED (2026-08-11): MS state verdict flipped DEFER → GO.** Owner chose
 > option A — ran the 5-bill Journal cross-check now. **5/5 votes matched** (470
@@ -825,8 +865,10 @@ subcommand wired in `cli.py`. Test count 15 → 23.
   *runner-infra* deprecation of the actions' own Node runtime, **not** our Node
   22 pin. Does not fail CI; resolves when those actions ship Node-24 releases.
   No action needed; revisit only if it ever turns into a hard failure.
-- **CLAUDE.md note:** there is no `CLAUDE.md` file; its content lives in the
-  `.claude` file (points to IMPLEMENTATION.md + working rules). Followed as-is.
+- **CLAUDE.md note (historical):** through the v1 build, there was no `CLAUDE.md`
+  file — its content lived in the bare `.claude` file (never auto-loaded by
+  Claude Code), pointing at `IMPLEMENTATION.md`. Fixed at v2 adoption: `.claude`
+  → `CLAUDE.md` (git mv), rewritten to point at `IMPLEMENTATIONv2.md`.
 - **Watch in INC-1:** (a) the `/house-vote` beta endpoint may 404 → clerk XML
   fallback + log deviation; (b) Senate vote filename must be discovered from the
   `vote_menu` XML, not assumed; (c) H2 absence forces the state verdict to DEFER.

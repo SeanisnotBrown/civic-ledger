@@ -1,7 +1,9 @@
 """Global constants. Single source of truth for cross-module thresholds.
 
-K_ANON is asserted equal to the Worker's copy by a test (§10.3). Symmetry
-thresholds are read by checks/symmetry.py. Congress coverage per Decision D5.
+K_ANON is the single source of truth for k-anonymity; the Worker (V2-8, not
+yet built) must import/mirror this value, and a test will assert equality
+once it exists (§10.3). Symmetry thresholds are read by checks/symmetry.py.
+Congress coverage per Decision D5.
 """
 
 from __future__ import annotations

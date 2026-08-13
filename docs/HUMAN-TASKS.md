@@ -20,10 +20,16 @@ the owner completes each task.
 | **H11** | Quiz question bank review (one-time + on change) | INC-14 content | ⬜ pending | Bank ships from ANES/Pew/CCES via sourcing workflow; owner reviews every item; recruits a disagreeing external reviewer for original-wording items. |
 | **H12** | Warrant canary signing (recurring, monthly) | INC-16 | ⬜ pending | Update `site/src/content/canary.md` date monthly. CI warns at 35 days, fails scheduled build at 45 (never blocks a correction deploy). |
 | **H13** | Byline decision (pre-launch, non-blocking) | — | ⬜ pending | Site builds unattributed (brief §10). Flip `SITE_ATTRIBUTION` in `site/config.ts` before launch if desired. |
+| **H14** | Cloudflare Workers plan check | V2-1 | ⬜ pending | Static-asset limits (checked 2026-08-13): 20,000 files/version on Workers Free, 100,000 on Paid (raised 2025-09-02; requires wrangler ≥ 4.34.0), 25 MiB/file. V2-1's projected build is ~13k files — fits Free. When the build's file count reports ≥ 18,000 (CI prints it), decide: upgrade to Workers Paid ($5/mo) or hold state expansion. |
+| **H15** | Threshold ratification (recurring) | V2-4, V2-5, V2-10 | ⬜ pending | Per IMPLEMENTATIONv2.md §0.8. The builder brings options in plain English with the reasoning; you pick; your choice is committed with its justification. Expect one sitting per increment that introduces evaluative output. |
+| **H16** | Branch protection on `master` | V2-0 | ⬜ pending | GitHub → Settings → Branches → protect `master`: require CI, forbid force-push. Makes the correction-history promise (`docs/correction-process.md`) enforced rather than assumed. **Note found 2026-08-13: the repo is currently PRIVATE, and GitHub's branch-protection API requires a paid plan for private repos** — see the flag in this session's summary before doing this. |
+| **H17** | Turnstile site + secret keys | V2-8 | ⬜ pending | Cloudflare dashboard → Turnstile → new widget (invisible mode) → `.env` / repo secrets `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET`. |
+| **H18** | Transactional email provider | V2-8 | ⬜ pending | Account signup/reset needs outbound email. Pick a provider (e.g. Resend/MailChannels free tier), create API key → secret `EMAIL_API_KEY`. Note: the provider sees recipient addresses; `/privacy` must name it (V2-7 text anticipates this). |
+| **H19** | Warrant-canary decision | V2-7 | ⬜ pending | Decide-item, plain terms in V2-7: the old canary promise ("we can't hand anything over because we hold nothing") dies once accounts exist. Options the builder will present: retire the canary idea, or reshape it ("we have received no demand as of {date}"). No canary was ever published, so retiring costs nothing visible. |
 
 Legend: ⬜ pending · 🟨 in progress · ✅ done
 
-## Impact on current build (INC-0..INC-12 + member-page stats done)
+## Impact on current build (INC-0..INC-12 + member-page stats done; v2 adopted 2026-08-13)
 
 **No human task blocks the current build.** H1 (Congress.gov) + H3 (repo/secrets) +
 H4/H5 (Cloudflare Workers + `civicledger.net`) are done — the site is live and
@@ -42,3 +48,16 @@ The remaining human tasks are all **content/recurring or optional**, none blocki
 Open runtime-verification boxes (not blockers, observed on the next scheduled run): the
 INC-9 first-real-data nightly commit + deploy, the R-5 raw-cache hit, and the first MS
 nightly hash-gate no-op.
+
+**v2 human tasks (H14–H19), added at v2 adoption:** none block **V2-0**
+(docs-only) except **H16**, whose click is this increment's own task-list
+item — the builder verifies force-push refusal by reading the branch's
+protection settings once done. **H14** (Workers file-count/plan check) blocks
+**V2-1**; **H15** (threshold ratification) blocks **V2-4/V2-5/V2-10**; **H17**
+(Turnstile) and **H18** (email provider) block **V2-8**; **H19** (canary
+decision) blocks **V2-7**. All six are ⬜ pending. **H16 has a wrinkle found
+this session: the repo is currently PRIVATE**, and GitHub's branch-protection
+API requires a paid plan on a private repo (confirmed via a live 403) — the
+owner should decide whether to make the repo public (as `IMPLEMENTATIONv2.md`
+§3 and the live `/privacy` and `/corrections` pages already assume) before
+or as part of doing H16.

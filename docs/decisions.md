@@ -1040,3 +1040,32 @@ builder **D36 dies at V2-1** (all-member positions will be persisted; the
 "deliberately not recomputable" caveat inverts into full third-party
 recomputability — retire with a dated D59+ ADR when V2-1 ships). This file's
 **D19 (path segment) is untouched** and remains correct.
+
+## V2-0 implementation session (2026-08-13)
+
+- **D59 (2026-08-13) — GitHub repo stays private; site copy corrected to
+  match, instead of making the repo public.** While pre-checking H16 (branch
+  protection) the builder found `gh repo view` reports the repo as
+  **private**, contradicting `IMPLEMENTATIONv2.md` §3 ("the client is open
+  source"), `docs/correction-process.md`, and — live on the site —
+  `/privacy` ("the entire dataset is the public repository") and
+  `/corrections` ("the full history of the dataset is in the public
+  repository"). Flagged to the owner as a possible Value #1 issue (a live
+  page asserting something that may not be true). **Owner decision: leave
+  the repo private; rewrite the site copy instead of flipping visibility.**
+  Builder then rewrote `site/src/pages/privacy.astro` and `corrections.astro`
+  to drop the public-repository claims (kept: no per-visitor data, every
+  fact links to its official source, the corrections log itself — rendered
+  from committed `data/corrections.json` — is public regardless of repo
+  visibility) and removed the now-dead GitHub issue/commit/commits links,
+  since a private repo 404s them for the public. `docs/correction-process.md`
+  §1 reworded: no public issue tracker exists today; this is a known,
+  unbuilt gap (a future email-based reporting channel is one option, not
+  decided). `docs/HUMAN-TASKS.md` H3 and H16 updated to state the repo is
+  private by decision. **Not touched:** `IMPLEMENTATIONv2.md` §3 (spec text —
+  changing it is the owner's call, not the builder's); internal (non-public-
+  facing) docstrings in `ingest/verify_recompute.py`, `models.py`,
+  `legislation.py`, `ms_metrics.py` that also say "the public repo" — lower
+  priority since nothing rendered publicly reads them, left for a future
+  pass. `data/` untouched; zero data/behavior change; `uv run checks` +
+  `uv run pytest` + `npm run build` all green after the edit.

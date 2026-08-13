@@ -5,7 +5,10 @@ Single source of truth for: current increment, acceptance status, blocked H-task
 
 **Last updated:** 2026-08-13, end of the **V2-0 — docs-truth pass** session (first
 v2 implementation increment — see the "V2-0 — Docs-truth pass" section below;
-docs-only, zero behavior change; acceptance green). Previous: 2026-08-13, end of
+docs-only, zero behavior change; acceptance green — **plus one same-session
+follow-up fix, D59: the repo was found private, the owner chose to keep it that
+way, so `/privacy` + `/corrections` + `docs/correction-process.md` were rewritten
+to stop claiming a public repository**). Previous: 2026-08-13, end of
 the **spec v2 adoption** session (constitutional amendment — see "Spec v2 adopted"
 below). Before that: 2026-08-12, end of the **member-page stats rendering** session
 (D57 federal + D58 Mississippi) — the review's post-INC-12 item. (Same day, earlier:
@@ -32,12 +35,13 @@ untouched nightly commit + deploy on the next real data-change night (a real nig
 **not** triggered this session — this local env has no secrets, so only GitHub Actions /
 the owner's machine can run the live pipeline; confirm the first `data: nightly …` build's
 author reads `github-actions[bot]`).
-**Remote:** https://github.com/SeanisnotBrown/civic-ledger.git — **⚠ found PRIVATE
-during the V2-0 session (2026-08-13)**, contradicting `IMPLEMENTATIONv2.md` §3
-("the client is open source") and the live `/privacy` + `/corrections` pages, which
-both assert the repo is public. Flagged to the owner; not resolved by the builder
-(see the V2-0 section below) — do not describe this repo as public elsewhere until
-the owner confirms which is wrong, the doc/copy or the GitHub setting.
+**Remote:** https://github.com/SeanisnotBrown/civic-ledger.git — **private, by
+owner decision (D59, 2026-08-13).** Found private (not the public repo the spec
+assumed) during the V2-0 session; owner chose to keep it private and have the
+builder rewrite the site copy that had claimed a public repository (`/privacy`,
+`/corrections`, `docs/correction-process.md`) instead of flipping visibility —
+see the V2-0 section below and `docs/decisions.md` D59. Do not describe this
+repo as public anywhere else in the docs or site.
 **Untracked, local-only (NOT committed):** `TECHNICAL_REVIEW.md`,
 `TECHNICAL_REVIEW_SUMMARY.md`, `civic-ledger-review-directive.md`, and
 `PROMPT-A-fable5-spec-author.md` — the code review + directive that drove the
@@ -90,18 +94,26 @@ tasks from `IMPLEMENTATIONv2.md` §7 V2-0 done, zero behavior change:
   click (GitHub → Settings → Branches). The builder's read-only pre-check
   (`gh api repos/.../branches/master/protection`) 403'd — see the flag below.
 
-**Unplanned but load-bearing finding (surfaced to the owner, not resolved by
-the builder):** while pre-checking H16, `gh repo view` showed the GitHub repo
-is currently **PRIVATE**. This contradicts `IMPLEMENTATIONv2.md` §3 ("the
-client is open source"), `docs/correction-process.md`, `ingest/
-verify_recompute.py`'s docstring, and — most importantly — the LIVE site:
-`site/src/pages/privacy.astro` ("the entire dataset is the public
-repository") and `corrections.astro` ("the full history... is in the public
-repository") both currently assert a fact about the live system that may not
-be true. This is a possible Value #1 concern (§0.4.1) if the claim is false
-right now, so it is flagged rather than silently fixed either direction —
-see this session's message to the owner. Nothing in `data/`, `site/src/
-pages/privacy.astro`, or `corrections.astro` was edited.
+**Unplanned but load-bearing finding, resolved same session:** while
+pre-checking H16, `gh repo view` showed the GitHub repo is **PRIVATE**,
+contradicting `IMPLEMENTATIONv2.md` §3 ("the client is open source"),
+`docs/correction-process.md`, and — most importantly — the LIVE site:
+`site/src/pages/privacy.astro` and `corrections.astro` both asserted "the
+public repository" as fact. Flagged to the owner as a possible Value #1
+issue. **Owner decision (D59): keep the repo private; rewrite the site copy
+instead of making it public.** Done same session: `privacy.astro` +
+`corrections.astro` rewritten to drop every public-repository claim (the
+corrections log itself stays genuinely public — it's rendered from
+committed `data/corrections.json` regardless of repo visibility — but the
+now-dead GitHub issue/commit links were removed, since a private repo 404s
+them for a visitor); `docs/correction-process.md` §1 reworded (no public
+issue tracker exists today — a real, currently-unbuilt gap, not decided
+whether/how to fill); `docs/HUMAN-TASKS.md` H3/H16 corrected. Full detail in
+`docs/decisions.md` D59. **Left alone, on purpose:** `IMPLEMENTATIONv2.md`
+§3's "open source" line (spec text — the owner's call to amend, not the
+builder's) and the internal (non-public-facing) "public repo" docstrings in
+`ingest/verify_recompute.py`/`models.py`/`legislation.py`/`ms_metrics.py`
+(lower priority — nothing rendered publicly reads them).
 
 **Acceptance met:** `uv run checks` (6/6) + `uv run pytest` (254 passed) +
 `uv run ruff check ingest tests` all green; `git status` shows only the six

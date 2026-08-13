@@ -4,15 +4,16 @@ import { getCorrections } from "../lib/data";
 import { formatDate } from "../lib/display";
 
 const corrections = getCorrections();
-const repo = "https://github.com/SeanisnotBrown/civic-ledger";
 ---
 <Layout title="Corrections — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Corrections</h1>
   <p class="mt-2 max-w-prose text-neutral-700">
-    Corrections are made as ordinary public commits — never silent edits, never
-    force-pushes. Every commit tagged <code>correction:</code> is listed below,
-    with a link to the exact change and the primary source it was checked against.
-    The full history of the dataset is in the public repository.
+    Corrections are made as ordinary commits to the operator's dataset —
+    never silent edits, never force-pushes. Every commit tagged
+    <code>correction:</code> is listed below with the date, what changed, and
+    the primary source it was checked against. The dataset's repository is
+    not currently public, so this log is the public record of every
+    correction made.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Log</h2>
@@ -24,7 +25,7 @@ const repo = "https://github.com/SeanisnotBrown/civic-ledger";
         <li class="py-3">
           <div class="flex flex-wrap items-baseline gap-x-2 text-sm">
             <span class="text-xs text-neutral-500">{formatDate(c.date)}</span>
-            <a href={`${repo}/commit/${c.commit}`} rel="nofollow" class="font-mono text-xs underline hover:text-neutral-800">{c.commit}</a>
+            <span class="font-mono text-xs text-neutral-600">{c.commit}</span>
           </div>
           <p class="mt-0.5 text-sm text-neutral-800">{c.subject}</p>
         </li>
@@ -34,12 +35,10 @@ const repo = "https://github.com/SeanisnotBrown/civic-ledger";
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Report an error</h2>
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
-    Found something wrong? Open an issue against the source, citing the official
-    record. See the correction process for how reports become fixes.
-  </p>
-  <p class="mt-2 text-sm">
-    <a href={`${repo}/issues`} rel="nofollow" class="underline hover:text-neutral-800">Report a correction</a>
-    {" · "}
-    <a href={`${repo}/commits`} rel="nofollow" class="underline hover:text-neutral-800">Full change history</a>
+    Found something wrong? Every fact on this site links to the official
+    government record it came from — check the source first. This site does
+    not yet have a public channel for submitting a correction report; see
+    <a href="/methods" class="underline hover:text-neutral-800">methodology</a>
+    for how every figure is sourced and verified.
   </p>
 </Layout>

@@ -1,16 +1,21 @@
 # Correction process
 
 How an error in the published record is reported, verified, and fixed. The
-governing rule (brief 5.12): **corrections are ordinary public commits — never a
-force-push, never a silent edit.** Every correction is visible in the repository
-history and auto-listed on the site's `/corrections` page.
+governing rule (brief 5.12): **corrections are ordinary commits — never a
+force-push, never a silent edit.** Every correction is captured in the
+repository's commit history and auto-listed on the site's `/corrections`
+page, which is the public-facing record regardless of the repository's own
+visibility (D59: the repository is currently private, by owner decision).
 
 ## 1. Report
 
-Anyone can report an error by opening a GitHub issue against the public repo,
-citing the **primary source** (the clerk/senate roll-call record, the
-Congressional Record page, the Congress.gov bill detail) that shows the correct
-value. An email alias may be added later; the issue tracker is the system of record.
+The repository is currently private, so there is no public issue tracker to
+file against today (a known gap — a public reporting channel, e.g. an email
+alias, is unbuilt). Until one exists, corrections are initiated by the
+operator, who checks published values against the **primary source** (the
+clerk/senate roll-call record, the Congressional Record page, the
+Congress.gov bill detail) whenever a discrepancy is found or reported by
+some other means (e.g. directly to the owner).
 
 ## 2. Verify
 

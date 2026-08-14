@@ -1470,3 +1470,46 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   loud. Note the honesty point: the CI failure did not roll anything back — the
   Cloudflare deploy is push-triggered and independent of CI, so the slower `/federal`
   was briefly live between `aa3b6fdf` and this fix.
+
+- **D74 (2026-08-14) — Nocturne design pass: colour-as-meaning reversal + design
+  tokens + self-hosted Inter.** The owner's separate "Claude design" step (parked in
+  `IMPLEMENTATIONv2.md` Appendix B as a want, and in `docs/PROGRESS.md` as the pass
+  after V2-5) arrived as a handoff bundle, `claudedesign/` (README + two `.dc.html`
+  prototypes + a flattened data sample). It specifies the **Nocturne** dark theme,
+  build-time charts, a multi-metric members explorer, and a `/compare` view. This ADR
+  records the load-bearing decisions of implementing it; the mechanical work is design,
+  not evaluative.
+  1. **Colour-as-meaning reversed.** `Badge.astro` and `MemberStats.astro` carried
+     comments asserting a blanket *no colour-as-meaning* rule. The owner's redesign
+     deliberately colour-codes **attendance grade bands, party, and vote positions**.
+     The reversal is presentational — colour is added *around* the owner-ratified grade
+     label (the exact string still renders inside `<span data-grade-label>`, so the
+     §6.8 grade-labels guard is untouched), around a party letter, around a vote
+     position — it authors **no new evaluative number**. The graded values and their
+     labels were already ratified at V2-4 (`thresholds.yaml`). The **vote-class** badge
+     (`Badge.astro`) stays visually neutral on purpose: a procedural category is neither
+     evaluative nor partisan, so it takes no colour. Value #2's disclosure standard is
+     unaffected — every graded figure still links to its formula and shows its
+     denominator.
+  2. **Token authority.** The bundle references `_ds/nocturne-*/styles.css`, which it
+     does **not** ship (five files only). The design README's token table and the
+     prototype inline styles are therefore the authoritative token source. Tokens live
+     in `site/src/styles/global.css` as a Tailwind v4 `@theme` block (ground/surface,
+     accent, grade bands, party, vote positions, hairlines). Legacy pages not yet
+     redesigned are carried to dark by remapping Tailwind's `neutral` ramp inside the
+     same `@theme` (light-theme utilities → dark values, kept ≥ WCAG-AA on ground and
+     surface; verified by the axe e2e suite) — a mechanical choice that avoids editing
+     241 utility occurrences across 22 files in one commit; each page converts to the
+     named tokens as it is redesigned.
+  3. **Inter self-hosted (§10.1).** The prototypes load Inter from Google Fonts; that
+     must not ship. Vendored `site/public/fonts/inter-latin.woff2` (48 KB) +
+     `inter-latin-ext.woff2` (85 KB, fetched only when a glyph in its `unicode-range`
+     appears) — Google's css2 now serves one variable woff2 per subset covering the
+     400–500 range Nocturne uses — with `OFL.txt` (SIL Open Font License 1.1) alongside.
+     `@font-face` is declared locally with `font-display: swap`; the latin file is
+     preloaded. The few symbol glyphs outside the subset (arrows, check/cross) fall back
+     to the system UI sans.
+  This pass is **design only within the still-OPEN V2-5**: it introduces no new
+  evaluative constant, so it needs no H15 ratification, and it does **not** close V2-5 —
+  the "lowest N%" wide-eyed headline (H15 round two) remains owner-gated. Commits carry
+  the `V2-5:` convention.

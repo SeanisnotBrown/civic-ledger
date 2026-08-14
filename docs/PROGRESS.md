@@ -3,7 +3,7 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, **V2-5 (partial) — layout restructure** session.
+**Last updated:** 2026-08-14, **V2-5 design pass (Nocturne)** session — in progress.
 **V2-1..V2-4 are COMPLETE and PUSHED** (through `4bb77d56`; CI green; live). V2-4 put
 the first **attendance letter grades** (A–F, owner-ratified) live. **V2-5 is PARTIAL:**
 the site's information architecture was rebuilt (landing dashboard + Federal/States
@@ -11,7 +11,37 @@ tabs + a filterable federal browser island) under the owner's standing authoriza
 restructure and push without a per-change ask. But V2-5's own evaluative headline (the
 "lowest N%" wide-eyed cut) is a NEW ratified threshold (**H15 round two**) and is
 **DEFERRED to an owner sitting** — so **V2-5 stays OPEN; do not start V2-6.**
-- **V2-5 (this session, PARTIAL) — information architecture restructure (D72).** The
+- **V2-5 DESIGN PASS (2026-08-14, IN PROGRESS) — Nocturne (owner's "Claude design"
+  step).** The owner handed off `claudedesign/` (README + prototypes) — the parked
+  visual-direction step — and asked to implement it: Nocturne dark theme, build-time
+  charts, a multi-metric members explorer, `/compare`, and redesigned member/roll-call/
+  methodology/MS views. Governance (D74, full detail in `decisions.md`): the pass is
+  **design only within the still-OPEN V2-5** — it authors **no new evaluative constant**
+  (colour is added *around* already-ratified V2-4 grade labels; the §6.8 grade-labels
+  guard is untouched), so it needs no H15, and it does **not** close V2-5 (the "lowest
+  N%" headline, H15 round two, stays owner-gated). Implementation order per the README's
+  suggested sequence; committing green at each checkpoint.
+  - **CHECKPOINT 1 — foundation (this commit).** `@theme` tokens + neutral-ramp remap in
+    `global.css` (legacy pages carried to dark with no per-file churn; text shades kept
+    ≥ WCAG-AA on ground + surface); **self-hosted Inter** (`site/public/fonts/`, latin +
+    latin-ext variable woff2, OFL, preloaded, `swap`) replacing the prototype's Google
+    Fonts link (§10.1); `Layout.astro` reshelled (1180px container, sticky dark nav,
+    footer); `Badge.astro` recoloured (vote-class stays neutral — procedural, not
+    evaluative); `MemberStats.astro` grade badge now tinted with its ratified band colour
+    (colour-as-meaning reversal, D74); `MemberBrowser.tsx` controls recoloured (contract
+    unchanged — drilldown intact). **Green:** `npm run build` 13,084 pages; grade-labels
+    (5 pages/6 labels), metrics-sections (8+5), file-count (13,093/20,000); **e2e 31/31**
+    (axe a11y + 380px on all 15 representative pages + the drill-down flow). Python suite
+    unaffected (site-only). Lighthouse NOT re-run locally (CI≠local proxy, D73); the
+    foundation is CSS+font only (no new JS/DOM weight), so perf delta is negligible — the
+    real Lighthouse risk is the heavy redesigned views (later checkpoints), which will be
+    calibrated against a known-passing baseline before commit.
+  - **REMAINING (this pass):** chart components → roll-call view → overview dashboard →
+    new Tier-2 metrics (yea/nay share, laws-enacted count, cosponsored→law %; factual,
+    no H15) + their `/methods` sections → members explorer rebuild + island → member
+    profile + `/compare` (needs a static-host carve-out ADR — island reads
+    `location.search`) → methodology + Mississippi.
+- **V2-5 (prior session, PARTIAL) — information architecture restructure (D72).** The
   old flat ~540-name landing page + two-item nav became: **four-tab nav** (Home ·
   Federal · States · Methodology, active-aware); **`/` overview dashboard** (plain-count
   coverage line — 637 members / 3,463 rolls / 966,261 votes, facts not evaluative;

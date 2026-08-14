@@ -92,8 +92,10 @@ export default function MemberBrowser({ listId, total }: { listId: string; total
   }, [chamber, party, grade, q, sort, listId]);
 
   const labelCls = "block text-xs font-medium text-neutral-500";
+  // Nocturne (D74): dark controls. `color-scheme: dark` on <html> also darkens the
+  // native <select> dropdowns and the search field's clear affordance.
   const inputCls =
-    "mt-1 rounded-md border border-neutral-300 bg-white px-2 py-1 text-sm text-neutral-900";
+    "mt-1 rounded-md border border-[rgba(233,233,237,0.16)] bg-surface px-2 py-1 text-sm text-text focus:border-accent";
 
   return (
     <div>

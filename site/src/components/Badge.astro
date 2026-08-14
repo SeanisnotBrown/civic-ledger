@@ -6,10 +6,13 @@ import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
 interface Props { voteClass: VoteClass }
 const { voteClass } = Astro.props;
 
-// Neutral, colour-blind-safe styling — the badge NEVER encodes approval/lean,
-// only the procedural category. Same visual weight for every class.
+// The vote-class badge stays visually neutral: a procedural category is not an
+// evaluative or partisan signal, so it carries no colour-as-meaning even after D74
+// (2026-08-14) reversed the blanket no-colour rule for grade bands, party, and vote
+// positions — those ARE colour-coded now, in MemberStats / the roll-call view / the
+// members explorer. Same visual weight for every class here.
 ---
 <span
-  class="inline-block rounded border border-neutral-300 bg-neutral-100 px-1.5 py-0.5 text-xs font-medium text-neutral-700"
+  class="inline-block rounded border border-line bg-neutral-100 px-1.5 py-0.5 text-xs font-medium text-neutral-500"
   title={VOTE_CLASS_TOOLTIP[voteClass]}
 >{VOTE_CLASS_LABEL[voteClass]}</span>

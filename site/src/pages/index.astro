@@ -92,10 +92,10 @@ const setAside = att ? Object.keys(att.exceptions).length : 0;
         Attendance grades
       </h2>
       <p class="mt-2 max-w-prose text-sm text-neutral-600">
-        Every member with a full-enough voting record is graded A–F on attendance
+        Every voting member with a full-enough record is graded A–F on attendance
         against fixed thresholds. Across the {gradedTotal} members graded ({setAside}
-        set aside — non-voting delegates and members with too thin a record). Select a
-        grade to see those members:
+        set aside — non-voting delegates, who cannot vote on final passage, and members
+        with too thin a record). Select a grade to see those members:
       </p>
       <ul class="mt-3 max-w-prose space-y-1">
         {bandCounts.map((b) => (

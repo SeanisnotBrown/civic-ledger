@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import inspect
 import json
+import subprocess
 
 import pytest
 
@@ -346,3 +347,128 @@ def test_load_raises_on_position_for_unknown_member(tmp_path, monkeypatch) -> No
     with pytest.raises(FileNotFoundError) as exc:
         metrics._load()
     assert "GHOST999" in str(exc.value)
+
+
+# --- §8 branch-coverage tests (V2-2 gate) ---------------------------------
+
+
+def test_load_raises_on_missing_legislation(tmp_path, monkeypatch) -> None:
+    # A covered member with a recorded vote but NO data/legislation record → _load
+    # fails rather than publish a false `sponsored: 0` (D27). Covers the guard.
+    data = tmp_path / "data"
+    (data / "members").mkdir(parents=True)
+    (data / "votes").mkdir(parents=True)
+    (data / "members" / "M000001.json").write_text(
+        json.dumps({"id": "M000001", "party": "R", "chamber": "house",
+                    "terms": [{"start": "2023-01-03", "end": "2027-01-03",
+                               "party": "R", "chamber": "house"}]}),
+        encoding="utf-8")
+    (data / "votes" / "h-119-1-0001.json").write_text(
+        json.dumps({"rollcall": {"id": "h-119-1-0001", "bill_id": None},
+                    "member_votes": [{"member_id": "M000001", "position": "yea"}]}),
+        encoding="utf-8")
+    monkeypatch.setattr(metrics, "repo_root", lambda: tmp_path)
+    with pytest.raises(FileNotFoundError, match="legislation"):
+        metrics._load()
+
+
+def test_party_unity_falls_back_to_current_party_off_term() -> None:
+    # A substantive roll dated before every term → _party_on falls back to the
+    # member's current party (defensive branch; should not happen for a covered roll).
+    rc = _rc("s-119-1-0001", "passage", "hr1-119", "2020-06-01", pt=_R(10, 2))
+    out = metrics.party_unity("M1", _ctx([(rc, "yea")]))
+    assert out["substantive"] == 1 and out["agreed"] == 1
+
+
+def test_named_measure_mismatch_skips_other_members_statement() -> None:
+    rc = _rc("s-119-1-0001", "passage", "hr1-119", "2025-03-01")
+    other = {"id": "st9", "member_id": "OTHER", "source_url": "https://x", "date": "2025-02-01",
+             "specificity_level": 3, "stated_position": "support", "paired_bill_ids": ["hr1-119"]}
+    assert metrics.named_measure_mismatch("M1", _ctx([(rc, "nay")], statements=[other])) == []
+
+
+def _git(cwd, *args) -> None:
+    subprocess.run(["git", *args], cwd=cwd, check=True, capture_output=True, text=True)
+
+
+def _commit_metrics(tmp_path, m, man, *, m_text, man_text, msg):
+    """Write metrics.json (always — so the commit shows in its git-log) and set the
+    manifest to present/corrupt/absent, then commit."""
+    m.write_text(m_text, encoding="utf-8")
+    if man_text is None:
+        man.unlink(missing_ok=True)
+    else:
+        man.write_text(man_text, encoding="utf-8")
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-qm", msg)
+
+
+def _seed_git_metrics_history(tmp_path):
+    """A tmp git repo whose data/metrics.json history exercises every history()
+    branch. Each commit CHANGES metrics.json (or it would not appear in the file's
+    git-log). M1 is present+valid in c1-c3 (manifest valid / corrupt / absent), then
+    absent (c4), corrupt (c5), and deleted (c6)."""
+    _git(tmp_path, "init", "-q")
+    _git(tmp_path, "config", "user.email", "t@example.com")  # CI has no global identity
+    _git(tmp_path, "config", "user.name", "Test")
+    data = tmp_path / "data"
+    data.mkdir()
+    m, man = data / "metrics.json", data / "manifest.json"
+
+    def m1(pct):
+        return json.dumps({"schema_version": 2, "members": {
+            "M1": {"attendance": {"pct": pct}, "party_unity": {"pct": 80}}}})
+
+    _commit_metrics(tmp_path, m, man, m_text=m1(90),
+                    man_text=json.dumps({"generated_at": "2026-01-01T00:00:00Z"}), msg="c1")
+    _commit_metrics(tmp_path, m, man, m_text=m1(91), man_text="{ not json", msg="c2")
+    _commit_metrics(tmp_path, m, man, m_text=m1(92), man_text=None, msg="c3")
+    _commit_metrics(tmp_path, m, man, m_text=json.dumps({"members": {"OTHER": {}}}),
+                    man_text=None, msg="c4")
+    _commit_metrics(tmp_path, m, man, m_text="{ not json", man_text=None, msg="c5")
+    m.unlink()
+    _git(tmp_path, "add", "-A")
+    _git(tmp_path, "commit", "-qm", "c6")
+    return tmp_path
+
+
+def test_history_covers_all_snapshot_branches(tmp_path, monkeypatch) -> None:
+    _seed_git_metrics_history(tmp_path)
+    monkeypatch.setattr(metrics, "repo_root", lambda: tmp_path)
+
+    series = metrics.history("M1")
+    # c1-c3 have M1 (valid/corrupt/absent manifest); c4 lacks M1, c5 is corrupt JSON,
+    # c6 deleted the file — three rows, oldest→newest.
+    assert [r["metrics"]["attendance"]["pct"] for r in series] == [90, 91, 92]
+    assert series[0]["generated_at"] == "2026-01-01T00:00:00Z"  # valid manifest
+    assert series[1]["generated_at"] is None  # corrupt manifest → left None
+    assert series[2]["generated_at"] is None  # manifest absent → left None
+
+    assert metrics.history("M1", metric="attendance")[0]["metrics"] == {"attendance": {"pct": 90}}
+    assert metrics.history("M1", metric="bogus") == []  # metric absent in member → skipped
+
+
+def test_run_history_usage_error() -> None:
+    assert metrics.run(["history"]) == 2
+
+
+def test_run_history_unknown_metric() -> None:
+    assert metrics.run(["history", "M1", "--metric", "bogus"]) == 2
+
+
+def test_run_history_prints_series(monkeypatch, capsys) -> None:
+    monkeypatch.setattr(metrics, "history", lambda mid, metric=None: [{"commit": "abc"}])
+    assert metrics.run(["history", "M1"]) == 0
+    assert metrics.run(["history", "M1", "--metric", "attendance"]) == 0
+    assert metrics.run(["history", "M1", "--metric"]) == 0  # --metric with no value → None
+
+
+def test_run_default_exports(monkeypatch, capsys) -> None:
+    from pathlib import Path
+
+    from ingest import export
+
+    monkeypatch.setattr(metrics, "build", lambda: "FAKE")
+    monkeypatch.setattr(export, "export_metrics", lambda mf: Path("data/metrics.json"))
+    assert metrics.run([]) == 0
+    assert "metrics.json" in capsys.readouterr().out

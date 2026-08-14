@@ -26,8 +26,16 @@ jobs:
         run: uv sync --frozen
       - name: Ruff
         run: uv run ruff check .
-      - name: Pytest
-        run: uv run pytest -q
+      - name: Pytest (+ §8 100%-branch gate on metrics + rankings)
+        # One run: the full suite AND the coverage gate. §8 enforces 100% branch on
+        # the small, pure, credibility-bearing modules; aggregate 100% over exactly
+        # these two targets ⟺ each at 100%. `term-missing` localizes any regression.
+        # (Not in pytest addopts on purpose — a plain/subset `uv run pytest` stays
+        # usable; classify.py joins at V2-4 with scoring.py, D68.)
+        run: >
+          uv run pytest -q
+          --cov=ingest.metrics --cov=ingest.rankings
+          --cov-branch --cov-fail-under=100 --cov-report=term-missing
       - name: Verify-recompute (recompute-and-match over the dataset)
         run: uv run verify-recompute
 

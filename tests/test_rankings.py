@@ -3,6 +3,7 @@ pure over injected metrics+members fixtures (no committed-data read)."""
 
 from __future__ import annotations
 
+from ingest import rankings
 from ingest.rankings import (
     RANKED_METRICS,
     VOTE_METRICS,
@@ -118,3 +119,17 @@ def test_export_writes_one_file_per_ranked_metric(tmp_path):
     assert written == ["attendance.json", "cosponsored.json", "enacted_rate.json",
                        "party_unity.json", "sponsored.json"]
     assert len(paths) == 5
+
+
+def test_run_loads_committed_data_and_returns_zero(monkeypatch):
+    # run() loads the committed dataset (exercising _load_inputs) then exports; stub
+    # only the writer so the test does not touch data/rankings/.
+    from ingest import export
+
+    captured: dict[str, list[str]] = {}
+    monkeypatch.setattr(
+        export, "export_rankings",
+        lambda built, **kw: captured.setdefault("keys", sorted(built)) and [],
+    )
+    assert rankings.run() == 0
+    assert captured["keys"] == sorted(RANKED_METRICS)

@@ -3,10 +3,13 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, mid-session on **V2-2 — ranking & percentile
-layer**. **V2-1 is COMPLETE and PUSHED** (`df2ab3b3..09d051a4`; CI fully green
-incl. Lighthouse; live site rebuilt with all 637 members). **V2-2 FEATURE is
-built and green; the §8 coverage tooling is the one remaining V2-2 task.**
+**Last updated:** 2026-08-13, end of the **V2-2 — ranking & percentile layer**
+session. **V2-1 is COMPLETE and PUSHED** (`df2ab3b3..09d051a4`; CI fully green
+incl. Lighthouse; live site rebuilt with all 637 members). **V2-2 is COMPLETE —
+feature + §8 coverage tooling both done and green** (feature commit `f955151f`;
+coverage-tooling commit follows). **The V2-2 commits are NOT yet pushed — pushing
+is a NEW owner decision** (it deploys the /methods rankings page live; "push then
+begin V2-2" authorized only the V2-1 stack).
 - **V2-2 feature (this session):** `ingest/rankings.py` → `data/rankings/
   {metric}.json` (the 5 scalar Tier-2 metrics: attendance/party_unity/
   enacted_rate as pct, sponsored/cosponsored as count), ranked WITHIN chamber,
@@ -22,11 +25,14 @@ built and green; the §8 coverage tooling is the one remaining V2-2 task.**
   verify-recompute` (rankings recompute + 3,463 rolls), `uv run export` (9
   schemas), ruff, `npm run build` (13,082 pages), `test:metrics-sections` (8
   metrics + 5 rankings), `astro check` (0).
-- **REMAINING for V2-2 (§8 coverage tooling):** pytest-cov 100% branch on
-  `ingest/metrics.py` + `ingest/rankings.py` (+ `classify.py`), enforced as a CI
-  gate. NOT built yet — the closing task before V2-2 is declared complete. (If
-  100% proves unreachable on a module, list the branches and ASK the owner — do
-  not silently lower it, §8.)
+- **§8 coverage tooling — DONE (D68).** pytest-cov added; a CI step enforces
+  **100% branch** on `ingest/metrics.py` + `ingest/rankings.py` (both driven to
+  100% with real tests — no pragma-ing plumbing, no metric-body edits). Gate is a
+  dedicated invocation, NOT in pytest addopts (plain/subset pytest stays fast); the
+  exact command is in "How to resume" above. `classify.py` joins the gate at V2-4
+  with `scoring.py` (its pure `classify()` is covered; only the live-fetch `run()`
+  isn't — spec-faithful per §7 V2-2's task line naming only metrics+rankings). The
+  one coverage exclusion is `if __name__ == "__main__":` (documented, §8).
 - **Doctrine (§6.7):** `methods.astro:26` ("nothing is summarized, characterized,
   or scored") is KEPT — a rank is a position, not a score; it flips at V2-4 with
   grades, not now.
@@ -540,6 +546,13 @@ depends on. `classify()` is pure/offline; golden test `tests/fixtures/questions.
    re-runnable, resumes on interruption; `ingest members` / `spike` likewise cached.)
    Note: the `integrity` check makes ~10 live clerk.house.gov fetches; a clerk
    outage warns (not a failure).
+   **§8 coverage gate (V2-2, D68) — CI runs this; plain `uv run pytest` does NOT
+   measure coverage (kept fast/subset-usable), so run the gate explicitly before a
+   change to `ingest/metrics.py` or `ingest/rankings.py`:**
+   `uv run pytest --cov=ingest.metrics --cov=ingest.rankings --cov-branch --cov-fail-under=100 --cov-report=term-missing`
+   (must stay 100% branch on both; `classify.py` joins at V2-4). `ingest rankings`
+   regenerates `data/rankings/*.json` from `data/metrics.json` (pure/offline, after
+   `ingest metrics`).
 3. Python is uv-managed **3.12.13** (system Python is 3.14; project pins 3.12 via
    `.python-version`). `uv sync --frozen` is what CI runs; lockfile is consistent.
 4. **Secrets:** `.env` holds `CONGRESS_API_KEY` (H1 done) and empty

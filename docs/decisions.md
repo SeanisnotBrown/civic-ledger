@@ -1280,3 +1280,28 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
     R-vs-R — every party under the same standard, §0.4.2(c)) are rendered on
     `/methods`. `check-metrics-sections.mjs` extended: `data-ranking` sections set
     == ranked-metric set (a ranking can't ship without its disclosed methodology).
+- **D68 (2026-08-13) — §8 coverage gate: 100% branch on `ingest/metrics.py` +
+  `ingest/rankings.py`, enforced in CI; `classify.py` deferred to V2-4.** §8
+  requires 100% branch coverage on the small, pure, credibility-bearing modules,
+  and forbids silently lowering it. Implemented as a dedicated CI invocation
+  (`uv run pytest --cov=ingest.metrics --cov=ingest.rankings --cov-branch
+  --cov-fail-under=100 --cov-report=term-missing`) — NOT in pytest `addopts`, so a
+  plain/subset `uv run pytest` stays usable; the exact gate command is recorded in
+  `docs/PROGRESS.md`. Both modules were driven to 100% with real tests (rankings'
+  `run()` + loader; metrics' `_load` missing-legislation guard, `_party_on`
+  off-term fallback, `named_measure_mismatch` other-member skip, the full `history()`
+  git-series edge branches via a tmp git repo — with `git config user.name/email`
+  set in the fixture since CI runners have no global identity — and the `run()`
+  history-CLI + export paths). **Two scope decisions, both spec-faithful, not
+  silent-lowering:**
+  - `classify.py` is in §8's eventual list but NOT §7 V2-2's task line ("coverage
+    tooling lands for `metrics.py`/`rankings.py`"). Its gap is the bulk — the entire
+    live-fetch, file-rewriting `run()` orchestration (~75 lines); its pure,
+    credibility-bearing `classify()` is already covered. It joins the gate at V2-4,
+    when `scoring.py` lands and §6.8 rewrites `checks/integrity.py` — the natural
+    moment to add the I/O-path tests. Listed here, not silently skipped.
+  - The one coverage exclusion is `if __name__ == "__main__":` (the module runner,
+    never executed under pytest) via `[tool.coverage.report] exclude_lines` — the
+    "listed, not silent" form §8 allows. No metric/ranking function body was edited
+    to reach a branch (that would churn `_formula_digest` → metrics.json); every
+    branch is reached by a test as the code stands.

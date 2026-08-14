@@ -1513,3 +1513,21 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   evaluative constant, so it needs no H15 ratification, and it does **not** close V2-5 —
   the "lowest N%" wide-eyed headline (H15 round two) remains owner-gated. Commits carry
   the `V2-5:` convention.
+
+- **D75 (2026-08-14) — attendance percentile now renders on the member profile
+  (reverses D69's tile choice).** The Nocturne member profile (D74) shows the attendance
+  percentile in two places: the grade card's rank line ("… higher than {p}% of them")
+  and a "Attendance percentile" fact tile. **D69 deliberately kept percentile OFF the
+  member-page tile** for two reasons: a worst-ranked member's page would read "0th
+  percentile," and rendering risked rounding a published number at display time. This
+  ADR reverses that, because the owner's design handoff (`claudedesign/`) calls for the
+  percentile on the profile, and the reversal is safe on both of D69's counts:
+  (a) the value rendered is the **published** V2-2 percentile read verbatim from
+  `data/rankings/attendance.json` via `getMemberRanks()` — it is NOT recomputed or
+  re-rounded at render; (b) the rank line uses the **per-chamber** covered N
+  (`getMemberRanks().covered`, delegates excluded per D66), never the cross-chamber 627,
+  so a per-chamber rank is never printed against a whole-population denominator (that
+  would be a Value-#1 false frame). A 0th-percentile member honestly reads "higher than
+  0% of them" — factual, and the design's intent. Non-ranked members (delegates) show
+  "not ranked", never a fabricated percentile. Presentational only (no new evaluative
+  constant; §0.8 untouched). Recorded so a later session does not "fix" it back to D69.

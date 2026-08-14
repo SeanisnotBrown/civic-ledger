@@ -54,13 +54,62 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     (10) + metrics.schema.json regenerated (manifest byte-stable). 100% branch coverage
     held on the 4 gated modules; checks (Tier-3 guard) + verify-recompute + metrics-
     sections (10) + ruff green. "Laws enacted"/"Became law" columns reuse enacted_rate.
-  - **REMAINING (this pass):** member profile (grade card + DotStrip + 6 fact tiles +
-    delegation) → members explorer rebuild + island (DOM-bomb/Lighthouse risk — calibrate
-    vs a known-passing page before commit; keep controls-only per D73; e2e drilldown
-    contract must survive) → `/compare` (needs a static-host carve-out ADR — island reads
-    `location.search`; JS-off shows a picker) → methodology + Mississippi (convert to
-    named tokens). Per-chamber rank line must use `getMemberRanks().covered`, NOT 627
-    (advisor); rendering percentile on-page reverses D69 → record a second ADR.
+  - **CHECKPOINT 5 — member profile + DotStrip (`0df1f1a4`).** `charts/DotStrip.astro`
+    (linear distribution strip, deterministic scatter — no Math.random, byte-stable,
+    focus marker). `/m/[member]` header rebuilt: identity + party dot, grade card (72px
+    letter, band-colour tint, verbatim `data-grade-label`), per-CHAMBER rank line via
+    `getMemberRanks().covered` (NOT 627), chamber attendance distribution strip, six fact
+    tiles (incl. the new Yea/Nay share `position_mix`), state-delegation chart. Vote
+    record + pagination unchanged; `MemberStats.astro` kept for MS pages. `data.ts` gains
+    memoized `getGradedAttendanceByChamber()`. Percentile now renders on-page (**ADR
+    D75**, reverses D69 safely — published value read verbatim, per-chamber denominator).
+    Green: astro check 0, build 13,084, grade-labels, e2e 31/31 (a11y + 380px on graded
+    + delegate pages). **⚠ Lighthouse mobile-perf on `/m/*/1` was NOT confirmed** — the
+    ~440-dot DotStrip is new weight on a Lighthouse-targeted page (`lighthouserc.cjs`);
+    was mid-measurement when the session was stopped. **First next-session action: run
+    `npm run test:lighthouse` and confirm `/m/A000055/1` perf ≥ 0.9; if it fails, switch
+    DotStrip to inline SVG or bin the dots** (README permits SVG for the dot strip).
+
+  ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass, IN PROGRESS)
+  - **State:** 5 checkpoints committed + pushed (`df225fa7..0df1f1a4`, all `V2-5:`).
+    Whole site is Nocturne dark; dashboard, roll-call, and member profile are redesigned;
+    2 new Tier-2 metrics landed. Everything green EXCEPT the one unverified Lighthouse
+    gate above — verify it first.
+  - **Design source:** `claudedesign/README.md` (the spec) + `Civic Ledger - Redesign.dc.html`
+    (reference; read the relevant view's inline styles per screen). Tokens: `@theme` in
+    `site/src/styles/global.css` (named Nocturne tokens + the neutral-ramp remap that
+    carries un-redesigned pages to dark). Charts live in `site/src/components/charts/`
+    (SplitBar, Histogram, BandLegend, DotStrip — pure props in, markup out).
+  - **REMAINING views (README order):**
+    1. **Members explorer** (`/federal`, README screen 2) — the biggest/riskiest.
+       Multi-metric sortable/filterable table replacing the single attendance figure.
+       Rows render server-side; the island toggles `display` + reorders only (D73).
+       HARD constraints: keep the drilldown e2e contract alive — dashboard link
+       `a[href="/federal?grade=A&sort=grade"]`, `#member-list li[data-grade]` computed
+       visibility, `a[href^="/m/"]`, and controls whose values the e2e reads (currently
+       `#mb-grade`/`#mb-sort` `<select>`s — if you move to chip filters, UPDATE
+       `e2e/drilldown.spec.ts` to assert chip active-state, don't just break it).
+       DOM-bomb risk: 637 rows × up to 10 metric columns (all toggleable columns must be
+       in the DOM for the island to show/hide) — calibrate Lighthouse vs `/federal`'s
+       known-passing baseline BEFORE committing. Column defs come from
+       `ingest/metrics.py` docstrings via `getMetrics().methodology` (don't retype).
+       Metrics available now: attendance, party_unity, position_mix (yea_pct/nay_pct),
+       sponsored, cosponsored, enacted_rate (pct + enacted count = "Laws enacted"),
+       cosponsor_enacted_rate; attendance percentile via `getMemberRanks`.
+    2. **`/compare`** (new, README screen 4) — needs a **static-host carve-out ADR**:
+       `?m=A&m=B` is invisible to a static build, so a small island reads
+       `location.search` and renders from an embedded serialized `{id, metrics}` array
+       (or hidden per-member fragments). Define + document the JS-off behaviour (a member
+       picker) — the "everything present JS-off" acceptance can't literally hold here.
+       Cap 2–4 members. The profile's "Compare with someone" button already links to
+       `/compare?m={id}` (a temporary dead link until this ships). Needs a `CompareBars`
+       chart (per-metric rows scaled within their own domain, domain printed).
+    3. **Methodology + Mississippi** — convert `methods.astro`, `states/`, and the `ms/*`
+       pages from the neutral-ramp fallback to the named Nocturne tokens (they render
+       dark + a11y-green today via the ramp, but aren't "designed"). MS must NOT show the
+       federal attendance grades (keep that paragraph).
+  - **Not committed (owner's call):** `claudedesign/` bundle + the untracked review docs
+    stay untracked — do not push without asking.
 - **V2-5 (prior session, PARTIAL) — information architecture restructure (D72).** The
   old flat ~540-name landing page + two-item nav became: **four-tab nav** (Home ·
   Federal · States · Methodology, active-aware); **`/` overview dashboard** (plain-count

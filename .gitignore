@@ -27,3 +27,8 @@ site/.playwright/
 
 # Lighthouse CI output
 site/.lighthouseci/
+
+# Coverage artifacts (§8 gate; V2-2)
+.coverage
+.coverage.*
+htmlcov/

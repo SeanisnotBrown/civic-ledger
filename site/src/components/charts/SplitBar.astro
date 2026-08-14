@@ -1,0 +1,81 @@
+---
+// A horizontal stacked bar (server-rendered, no JS): one segment per position,
+// width proportional to its share. Used for the roll-call chamber split (34px) and
+// the per-party rows (22px). Pure props → markup.
+//
+// Inline count discipline: the number is drawn inside a segment only when a text
+// colour clears WCAG-AA (4.5:1) against that segment AND the segment is wide enough
+// to fit it (and, for the party rows, its count meets `minInline`). Otherwise the
+// number is dropped from the bar — it is never illegible — while the segment's
+// `title` and the page's totals list still carry the figure. Position colours vary
+// (the not-voting grey can't legibly hold 11px text either way), so the guard is
+// computed, not assumed.
+
+interface Seg { key: string; label: string; count: number; color: string } // color = hex
+interface Props {
+  segments: Seg[];
+  height?: number;
+  minInline?: number; // suppress inline counts below this count (party rows: 8)
+  total?: number; // override denominator (else = sum of counts)
+}
+const { segments, height = 34, minInline = 0, total: totalProp } = Astro.props as Props;
+
+const total = (totalProp ?? segments.reduce((s, x) => s + x.count, 0)) || 1;
+const radius = Math.min(7, Math.round(height / 2));
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+// WCAG relative luminance + contrast, so the inline number is only drawn when legible.
+function lum(hex: string): number {
+  const h = hex.replace("#", "");
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const c = parseInt(h.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+function contrast(a: string, b: string): number {
+  const [l1, l2] = [lum(a), lum(b)].sort((x, y) => y - x);
+  return (l1 + 0.05) / (l2 + 0.05);
+}
+function inkFor(bg: string): string | null {
+  const dark = "#161826";
+  const light = "#e9e9ed";
+  if (contrast(dark, bg) >= 4.5) return dark;
+  if (contrast(light, bg) >= 4.5) return light;
+  return null; // neither legible → no inline number
+}
+
+const parts = segments
+  .filter((s) => s.count > 0)
+  .map((s) => {
+    const share = (s.count / total) * 100;
+    const ink = inkFor(s.color);
+    return {
+      ...s,
+      share,
+      // wide enough for ~2–4 digits, count threshold met, and a legible ink exists
+      inline: ink != null && s.count >= minInline && share >= 8,
+      ink,
+    };
+  });
+
+const ariaLabel = parts.map((s) => `${s.label} ${fmt(s.count)}`).join(", ");
+---
+<div
+  class="flex w-full overflow-hidden"
+  style={`height:${height}px;border-radius:${radius}px;background:var(--color-track)`}
+  role="img"
+  aria-label={ariaLabel}
+>
+  {parts.map((s) => (
+    <div
+      class="flex items-center justify-center overflow-hidden"
+      style={`width:${s.share}%;background:${s.color}`}
+      title={`${s.label}: ${fmt(s.count)}`}
+    >
+      {s.inline && (
+        <span class="px-1 text-[11px] font-medium tabular-nums" style={`color:${s.ink}`}>{fmt(s.count)}</span>
+      )}
+    </div>
+  ))}
+</div>

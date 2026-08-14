@@ -1,6 +1,7 @@
 ---
 import Layout from "../../components/Layout.astro";
 import Badge from "../../components/Badge.astro";
+import SplitBar from "../../components/charts/SplitBar.astro";
 import { getAllVotes, getMember, getAbsence } from "../../lib/data";
 import type { VoteFile } from "../../lib/data";
 import { POSITION_LABEL, formatDate, billLabel, ordinal } from "../../lib/display";
@@ -14,75 +15,157 @@ const { vote } = Astro.props as Props;
 const rc = vote.rollcall;
 const chamber = rc.chamber === "house" ? "House" : "Senate";
 
-// Delegation positions, sorted by member name for a stable display.
-const rows = vote.member_votes
-  .map((mv) => ({ mv, member: getMember(mv.member_id) }))
-  .sort((a, b) => (a.member?.name ?? a.mv.member_id).localeCompare(b.member?.name ?? b.mv.member_id));
+// Position colours (D74). Order = the segment order in the stacked bars.
+const POS_ORDER = ["yea", "nay", "present", "not_voting"] as const;
+const POS_HEX: Record<string, string> = {
+  yea: "#7fbf9a", nay: "#d96b7a", present: "#c9b06a", not_voting: "#6b6f80",
+};
 
-const TOTAL_ORDER = ["yea", "nay", "present", "not_voting"] as const;
+const chamberSegs = POS_ORDER.map((k) => ({
+  key: k, label: POSITION_LABEL[k], count: rc.totals[k] ?? 0, color: POS_HEX[k],
+}));
+const posSum = chamberSegs.reduce((s, x) => s + x.count, 0);
+const hasSplit = posSum > 0;
+const yea = rc.totals.yea ?? 0;
+const nay = rc.totals.nay ?? 0;
+const fmt = (n: number) => n.toLocaleString("en-US");
+
+// Per-party rows, in a fixed order, skipping parties with no positions on this roll.
+const PARTY = [
+  { key: "D", label: "Democrats", color: "#6f93e6" },
+  { key: "R", label: "Republicans", color: "#e0736b" },
+  { key: "I", label: "Independents", color: "#c9b06a" },
+];
+const partyRows = PARTY.map((p) => {
+  const pt = rc.party_totals?.[p.key];
+  if (!pt) return null;
+  const segs = POS_ORDER.map((k) => ({
+    key: k, label: POSITION_LABEL[k], count: pt[k] ?? 0, color: POS_HEX[k],
+  }));
+  const tot = segs.reduce((s, x) => s + x.count, 0);
+  return tot === 0 ? null : { ...p, segs, tot };
+}).filter((x): x is NonNullable<typeof x> => x != null);
+
+// Every individual position, grouped by position (so the colour bands cluster),
+// then by member name. Each carries its member + any curated absence explanation.
+const posRank: Record<string, number> = { yea: 0, nay: 1, present: 2, not_voting: 3 };
+const rows = vote.member_votes
+  .map((mv) => ({
+    mv,
+    member: getMember(mv.member_id),
+    absence: mv.position === "not_voting" ? getAbsence(mv.member_id, rc.id) : undefined,
+  }))
+  .sort((a, b) => {
+    const pr = (posRank[a.mv.position] ?? 9) - (posRank[b.mv.position] ?? 9);
+    return pr !== 0 ? pr : (a.member?.name ?? a.mv.member_id).localeCompare(b.member?.name ?? b.mv.member_id);
+  });
+const statedAbsences = rows.filter((r) => r.absence?.stated_reason);
 ---
 <Layout title={`${chamber} Roll ${rc.number} (${rc.congress}th) — Civic Ledger`}>
-  <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / Roll call</nav>
-  <div class="mt-1 flex flex-wrap items-center gap-2">
-    <h1 class="text-xl font-semibold tracking-tight">
-      {chamber} Roll #{rc.number}
-    </h1>
+  <nav class="text-xs text-neutral-500">
+    <a href="/federal" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Federal</a>
+    <span aria-hidden="true"> / </span>Roll call
+  </nav>
+
+  <div class="mt-2 flex flex-wrap items-center gap-2.5">
+    <h1 class="text-[32px] font-medium leading-tight tracking-[-0.025em] text-text">{chamber} Roll #{rc.number}</h1>
     <Badge voteClass={rc.vote_class} />
   </div>
-  <p class="mt-1 text-sm text-neutral-500">
-    {rc.congress != null && <>{ordinal(rc.congress)} Congress, session {rc.session} · </>}{formatDate(rc.date)}
+  <p class="mt-2 max-w-[76ch] text-[15px] leading-relaxed text-neutral-700">{rc.question}</p>
+  <p class="mt-2.5 text-[13px] text-neutral-500">
+    {rc.congress != null && <>{ordinal(rc.congress)} Congress · session {rc.session} · </>}{formatDate(rc.date)}
+    <span aria-hidden="true"> · </span>class rule <span class="text-neutral-400">{rc.vote_class_rule}</span>
   </p>
-
-  <h2 class="mt-6 text-sm font-semibold uppercase tracking-wide text-neutral-500">Question</h2>
-  <p class="mt-1 text-neutral-900">{rc.question}</p>
-  <p class="mt-2 text-sm text-neutral-600">Result: {rc.result}</p>
-
-  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+  <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[13px]">
     {rc.bill_id && (
-      <a href={`/b/${rc.bill_id}`} class="underline hover:text-neutral-800">{billLabel(rc.bill_id)}</a>
+      <a href={`/b/${rc.bill_id}`} class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">{billLabel(rc.bill_id)}</a>
     )}
-    <a href={rc.source_url} rel="nofollow" class="underline hover:text-neutral-800">Official record</a>
+    <a href={rc.source_url} rel="nofollow" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">Official record ↗</a>
   </div>
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-    Chamber totals
-  </h2>
-  <ul class="mt-1 flex flex-wrap gap-x-6 text-sm text-neutral-700">
-    {TOTAL_ORDER.map((k) => (
-      <li>{POSITION_LABEL[k]}: <span class="font-medium">{rc.totals[k] ?? 0}</span></li>
-    ))}
-  </ul>
-
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-    Mississippi delegation
-  </h2>
-  {rows.length === 0 ? (
-    <p class="mt-1 text-sm text-neutral-600">
-      This roll records votes for candidates by name (an officer election), not
-      yea/nay positions, so no delegation positions are shown.
-    </p>
-  ) : (
-    <ul class="mt-2 divide-y divide-neutral-100">
-      {rows.map(({ mv, member }) => {
-        const absence = mv.position === "not_voting" ? getAbsence(mv.member_id, rc.id) : undefined;
-        return (
-          <li class="py-2">
-            <div class="flex flex-wrap items-baseline gap-x-2">
-              <a href={`/m/${mv.member_id}/1`} class="font-medium underline hover:text-neutral-800">
-                {member?.name ?? mv.member_id}
-              </a>
-              <span class="text-sm">{POSITION_LABEL[mv.position]}</span>
-            </div>
-            {mv.position === "not_voting" && (
-              <p class="mt-0.5 text-xs text-neutral-600">
-                {absence?.stated_reason
-                  ? (<><span class="italic">“{absence.stated_reason}”</span>{absence.stated_reason_source && (<>{" "}<a href={absence.stated_reason_source} class="underline">Congressional Record</a></>)}</>)
-                  : <span>No explanation on record.</span>}
-              </p>
-            )}
+  {hasSplit ? (
+    <section class="mt-8 rounded-lg border border-line bg-surface p-5">
+      <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Chamber split</h2>
+      <div class="mt-3">
+        <SplitBar segments={chamberSegs} height={34} />
+      </div>
+      <ul class="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-[13px] text-neutral-500">
+        {chamberSegs.map((s) => (
+          <li class="flex items-center gap-1.5">
+            <span aria-hidden="true" class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${s.color}`}></span>
+            {s.label} <span class="tabular-nums text-neutral-700">{fmt(s.count)}</span>
           </li>
-        );
-      })}
-    </ul>
+        ))}
+      </ul>
+      <p class="mt-3 text-[13px] text-text">
+        {rc.result}{(yea > 0 || nay > 0) && <> — {fmt(yea)} yea to {fmt(nay)} nay
+          {yea !== nay && <span class="text-neutral-500"> (margin {fmt(Math.abs(yea - nay))})</span>}</>}
+      </p>
+
+      {partyRows.length > 0 && (
+        <div class="mt-6">
+          <h3 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">By party</h3>
+          <div class="mt-3 space-y-2.5">
+            {partyRows.map((p) => (
+              <div class="grid grid-cols-[112px_minmax(0,1fr)] items-center gap-3">
+                <div class="flex items-center gap-2 text-[13px] text-neutral-700">
+                  <span aria-hidden="true" class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${p.color}`}></span>
+                  {p.label}
+                </div>
+                <SplitBar segments={p.segs} height={22} minInline={8} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  ) : (
+    <p class="mt-8 rounded-lg border border-line bg-surface p-5 text-[13px] text-neutral-500">
+      This roll records votes for candidates by name (an officer election), not
+      yea/nay positions, so no chamber split is shown.
+    </p>
+  )}
+
+  {rows.length > 0 && (
+    <section class="mt-8">
+      <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+        Individual positions <span class="text-neutral-400">({fmt(rows.length)})</span>
+      </h2>
+      <ul class="mt-3 grid gap-2" style="grid-template-columns:repeat(auto-fill,minmax(214px,1fr))">
+        {rows.map(({ mv, member }) => (
+          <li>
+            <a
+              href={`/m/${mv.member_id}/1`}
+              class="flex items-center gap-2 rounded-md border border-line px-2.5 py-2 text-[13px] text-text transition-colors hover:border-[rgba(233,233,237,0.22)]"
+              style={`background:${POS_HEX[mv.position]}14`}
+            >
+              <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 rounded-full" style={`background:${POS_HEX[mv.position]}`}></span>
+              <span class="truncate">{member?.name ?? mv.member_id}</span>
+              <span class="ml-auto shrink-0 text-[11px] text-neutral-500">{POSITION_LABEL[mv.position]}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-3 max-w-[76ch] text-[12px] leading-relaxed text-neutral-500">
+        Members shown as “Not voting” had no explanation on record, except where a
+        statement is quoted below. The site reports the split and draws no conclusion
+        about why a member voted as they did.
+      </p>
+
+      {statedAbsences.length > 0 && (
+        <div class="mt-4 max-w-[76ch] space-y-2">
+          <h3 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Stated absence explanations</h3>
+          {statedAbsences.map(({ mv, member, absence }) => (
+            <p class="border-l-2 border-accent-700 pl-3 text-[12px] text-neutral-600">
+              <span class="text-neutral-800">{member?.name ?? mv.member_id}:</span>{" "}
+              <span class="italic">“{absence!.stated_reason}”</span>
+              {absence!.stated_reason_source && (
+                <> <a href={absence!.stated_reason_source} class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">Congressional Record</a></>
+              )}
+            </p>
+          ))}
+        </div>
+      )}
+    </section>
   )}
 </Layout>

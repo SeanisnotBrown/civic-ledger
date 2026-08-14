@@ -28,7 +28,11 @@ export interface RollCall {
   id: string; chamber: Chamber; jurisdiction: Jurisdiction; congress: number | null;
   session: number; number: number;
   date: string; question: string; vote_class: VoteClass; vote_class_rule: string;
-  bill_id: string | null; result: string; totals: Record<string, number>; source_url: string;
+  bill_id: string | null; result: string; totals: Record<string, number>;
+  // Per-party position tallies (INC-10 aggregate; recomputable from member_votes).
+  // Keyed by party letter → position → count. Present on every federal roll.
+  party_totals: Record<string, Record<string, number>>;
+  source_url: string;
 }
 export interface MemberVote { member_id: string; rollcall_id: string; position: Position; }
 export interface VoteFile { rollcall: RollCall; member_votes: MemberVote[]; }

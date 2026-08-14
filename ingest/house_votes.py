@@ -208,7 +208,13 @@ def run(argv: list[str] | None = None) -> int:
 
     from ingest import config, coverage, incremental
     from ingest.cache import RetryableHTTPError, repo_root
-    from ingest.export import ABSENCES_DIR, MEMBERS_DIR, congress_of, export_absence, export_rollcall
+    from ingest.export import (
+        ABSENCES_DIR,
+        MEMBERS_DIR,
+        congress_of,
+        export_absence,
+        export_rollcall,
+    )
     from ingest.sources import congress_gov
 
     # Any fetch failure that survives tenacity's retries (persistent 5xx/429 →

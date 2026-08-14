@@ -3,7 +3,7 @@ import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
 import StatementCard from "../../../components/StatementCard.astro";
 import MemberStats from "../../../components/MemberStats.astro";
-import { getMembers, getMemberTimeline, getAbsence, paginate, getMetrics, getManifest } from "../../../lib/data";
+import { getMembers, getMemberTimeline, getAbsence, paginate, getMetrics, getMemberRanks, getRankings, getManifest } from "../../../lib/data";
 import type { TimelineItem } from "../../../lib/data";
 
 export function getStaticPaths() {
@@ -28,6 +28,12 @@ const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
 const member = getMembers().find((m) => m.id === memberId)!;
 const hasStatements = rows.some((r) => r.kind === "statement");
 const memberMetrics = getMetrics().members[memberId]; // undefined-safe: only render if present
+const memberRanks = getMemberRanks(memberId, member.chamber); // V2-3: rank within chamber
+const chamberWord = member.chamber === "house" ? "House" : "Senate";
+// A non-voting delegate excluded from the vote-metric rankings (D66) — the authoritative
+// signal is the ranking's own excluded list, not a guess from which tiles lack a rank.
+const isDelegate =
+  getRankings().attendance?.chambers[member.chamber]?.excluded_delegates.includes(memberId) ?? false;
 const congresses = getManifest().congresses;
 const periodLabel = `${congresses.map((c) => `${c}th`).join("–")} Congresses`;
 
@@ -42,7 +48,7 @@ const districtSuffix = member.district != null ? `, District ${member.district}`
     {PARTY_LABEL[member.party]} · {chamberLabel}, {member.state}{districtSuffix}
   </p>
 
-  {memberMetrics && <MemberStats metrics={memberMetrics} periodLabel={periodLabel} jurisdiction="us" />}
+  {memberMetrics && <MemberStats metrics={memberMetrics} periodLabel={periodLabel} jurisdiction="us" ranks={memberRanks} chamberWord={chamberWord} isDelegate={isDelegate} />}
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
     Record

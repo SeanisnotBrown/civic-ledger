@@ -1,12 +1,17 @@
 ---
-// INC-13 (member-page metric rendering, D38). A KPI row of stat tiles surfacing the
-// already-computed Tier-2 metrics (data/metrics.json) on a member's page. Discipline:
+// INC-13 (member-page metric rendering, D38) + V2-3 (rank context). A KPI row of stat
+// tiles surfacing the already-computed Tier-2 metrics (data/metrics.json) on a member's
+// page, each with its rank within the chamber (data/rankings, V2-2). Discipline:
 //   * every figure is shown WITH its denominator/context — never a bare count (D38);
-//   * NOTHING is combined into a single per-member score (the Tier-3 no-composite rule /
-//     "no thumb on the scale" — the site never grades; a reader may weigh these later);
-//   * no characterization, no ranking, no color-as-meaning — plain ink on the neutral
-//     surface, each label linking to its exact methodology.
+//   * rank context is a factual POSITION within the chamber (Nth of M, percentile),
+//     NOT a grade — V2-3 adds ranks; grades and any good/poor label are V2-4 (SD-26);
+//   * NOTHING is combined into a single per-member score (the no-composite rule /
+//     "no thumb on the scale" caption below stays true until V2-4 ships grades);
+//   * no color-as-meaning — plain ink on the neutral surface, each figure and rank
+//     linking to its exact methodology.
 // Values mirror the pydantic metric models; pct is null on a zero denominator (R-4).
+
+import type { MemberRank } from "../lib/data";
 
 interface Attendance { eligible: number; cast: number; missed: number; pct: number | null }
 interface PartyUnity { substantive: number; agreed: number; pct: number | null; excluded_ties: number }
@@ -18,9 +23,25 @@ interface Props {
   metrics: Record<string, unknown>;
   periodLabel: string; // e.g. "118th–119th Congresses" or "2026 Regular Session"
   jurisdiction?: "us" | "ms";
+  // V2-3: per-metric rank within the chamber; a key is present only when the member is
+  // ranked on it (absent for a null value, or a delegate on a vote metric — D66). MS
+  // members have no federal rankings, so this is undefined for them.
+  ranks?: Record<string, MemberRank>;
+  chamberWord?: string; // "House" / "Senate" — the noun the rank line reads "of N in the …"
+  // V2-3: true when the member is a non-voting delegate excluded from the vote-metric
+  // rankings (D66) — drives the explanatory caption clause where their tiles lack a rank.
+  isDelegate?: boolean;
 }
-const { metrics, periodLabel, jurisdiction = "us" } = Astro.props as Props;
+const { metrics, periodLabel, jurisdiction = "us", ranks, chamberWord = "chamber",
+        isDelegate = false } = Astro.props as Props;
 const isMs = jurisdiction === "ms";
+
+// 1 → "1st", 2 → "2nd", 12 → "12th" (factual ordinal for rank + percentile).
+const ordinal = (x: number): string => {
+  const v = x % 100;
+  const suffix = v >= 11 && v <= 13 ? "th" : (["th", "st", "nd", "rd"][x % 10] ?? "th");
+  return `${x.toLocaleString("en-US")}${suffix}`;
+};
 
 const att = metrics.attendance as Attendance;
 const pu = metrics.party_unity as PartyUnity;
@@ -61,21 +82,31 @@ const tiles = [
     Record summary
   </h2>
   <p class="mt-1 max-w-prose text-xs text-neutral-500">
-    Each figure is a plain count or rate shown with its denominator. The site combines
+    Each figure is a plain count or rate shown with its denominator{!isMs && ", and its rank within the chamber"}.{isDelegate && " As a non-voting delegate, they are not ranked on attendance or party unity, which require voting on final passage; they are ranked on the bill measures."} The site combines
     nothing into an overall score and draws no conclusion — see
     <a href={methodsLink} class="underline hover:text-neutral-700">how each is computed</a>.
   </p>
 
   <dl class="mt-3 grid grid-cols-2 gap-x-4 gap-y-4 sm:grid-cols-3 lg:grid-cols-5">
-    {tiles.map((t) => (
-      <div class="rounded-lg border border-neutral-200 bg-neutral-50 p-3">
-        <dt class="text-xs font-medium text-neutral-500">
-          <a href={href(t.key)} class="hover:text-neutral-700 hover:underline">{t.label}</a>
-        </dt>
-        <dd class="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">{t.value}</dd>
-        <dd class="mt-0.5 text-xs leading-snug text-neutral-500">{t.context}</dd>
-      </div>
-    ))}
+    {tiles.map((t) => {
+      const r = ranks?.[t.key];
+      return (
+        <div class="rounded-lg border border-neutral-200 bg-neutral-50 p-3">
+          <dt class="text-xs font-medium text-neutral-500">
+            <a href={href(t.key)} class="hover:text-neutral-700 hover:underline">{t.label}</a>
+          </dt>
+          <dd class="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">{t.value}</dd>
+          {r && (
+            <dd class="mt-0.5 text-xs font-medium text-neutral-600">
+              <a href={`/methods#ranking-${t.key}`} class="hover:text-neutral-800 hover:underline">
+                {ordinal(r.rank)} of {n(r.covered)} in the {chamberWord}
+              </a>
+            </dd>
+          )}
+          <dd class="mt-0.5 text-xs leading-snug text-neutral-500">{t.context}</dd>
+        </div>
+      );
+    })}
   </dl>
 
   <p class="mt-2 max-w-prose text-xs text-neutral-500">

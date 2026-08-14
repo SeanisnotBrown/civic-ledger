@@ -3,13 +3,27 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, end of the **V2-2 — ranking & percentile layer**
-session. **V2-1 is COMPLETE and PUSHED** (`df2ab3b3..09d051a4`; CI fully green
-incl. Lighthouse; live site rebuilt with all 637 members). **V2-2 is COMPLETE —
-feature + §8 coverage tooling both done and green** (feature commit `f955151f`;
-coverage-tooling commit follows). **The V2-2 commits are NOT yet pushed — pushing
-is a NEW owner decision** (it deploys the /methods rankings page live; "push then
-begin V2-2" authorized only the V2-1 stack).
+**Last updated:** 2026-08-13, end of the **V2-3 — member-page rank context**
+session. **V2-1 + V2-2 are COMPLETE and PUSHED** (through `8169a9d7`; CI green;
+live site has all 637 members + the /methods rankings section). **V2-3 is COMPLETE
+and green** (rank context on member-page stat tiles) — commit pending, then push
+(owner pre-authorized: "push when complete"). Next actionable = **V2-4 (grades)**,
+the first evaluative increment — it opens with an owner threshold-ratification
+sitting (H15/§0.8) and must NOT publish any grade from an unratified number.
+- **V2-3 (this session):** member pages' five stat tiles now show each metric's
+  rank within the chamber — `"{ordinal} of {N} in the {House/Senate}"`, linking to
+  the ranking methodology (`MemberStats.astro` + `getMemberRanks` in `data.ts`).
+  Factual position only, NO grade/label (D69). Percentile deliberately not on the
+  tile (would print "0th percentile" on worst-ranked pages + round a published
+  number at render time); it stays in the JSON + `/methods`. Non-voting delegates
+  show ranks only on the bill metrics + an on-page caption explaining the vote-metric
+  exclusion (D66, made visible where the reader sees it). MS members unchanged (no
+  MS rankings until V2-10). The `§6.7` "combines nothing into an overall score"
+  caption is KEPT (flips at V2-4). e2e gains a delegate page. **Green:** `astro
+  check` (0), `npm run build` (13,082 pages — V2-3 enriches pages, adds none),
+  `npm run test:e2e` (26, incl. delegate a11y + 380px), `npm run test:lighthouse`
+  (7 URLs, 21 runs, perf/a11y ≥ 90, exit 0 — ran cleanly locally this time),
+  python suite unaffected (site-only change; still 301 green). Design in **D69**.
 - **V2-2 feature (this session):** `ingest/rankings.py` → `data/rankings/
   {metric}.json` (the 5 scalar Tier-2 metrics: attendance/party_unity/
   enacted_rate as pct, sponsored/cosponsored as count), ranked WITHIN chamber,

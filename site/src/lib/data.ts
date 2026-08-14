@@ -188,6 +188,22 @@ export function getRankings(): Record<string, RankingsFile> {
   return _rankings;
 }
 
+// V2-3: one member's rank context, per ranked metric, within their chamber — for the
+// member-page stat tiles. A metric is present ONLY when the member is actually ranked
+// on it: a null metric value, or a non-voting delegate on a vote metric (D66), yields
+// no entry (the tile then shows the figure with no rank line). MS members have no
+// federal rankings, so this returns {} for them.
+export interface MemberRank { rank: number; percentile: number; covered: number; }
+export function getMemberRanks(memberId: string, chamber: string): Record<string, MemberRank> {
+  const out: Record<string, MemberRank> = {};
+  for (const [metric, rf] of Object.entries(getRankings())) {
+    const ch = rf.chambers[chamber];
+    const entry = ch?.members[memberId];
+    if (entry) out[metric] = { rank: entry.rank, percentile: entry.percentile, covered: ch.covered };
+  }
+  return out;
+}
+
 export interface Statement {
   id: string; member_id: string; text: string; date: string; venue: string;
   source_url: string; archive_url: string; archive_captured_at: string;

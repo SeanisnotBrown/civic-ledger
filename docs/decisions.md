@@ -1305,3 +1305,39 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
     "listed, not silent" form §8 allows. No metric/ranking function body was edited
     to reach a branch (that would churn `_formula_digest` → metrics.json); every
     branch is reached by a test as the code stands.
+
+---
+
+## V2-3 — member-page rank context (2026-08-13)
+
+- **D69 (2026-08-13) — member-page rank rendering (mechanical, non-evaluative).**
+  V2-3 puts each member's V2-2 rank onto their own page's five stat tiles
+  (`MemberStats.astro`, fed a `ranks` prop the federal member template builds via
+  `getMemberRanks`). Choices, all builder-level (no threshold, no label — grades
+  are V2-4):
+  - **Tile rank line renders `"{ordinal(rank)} of {covered} in the {House/Senate}"`**
+    (e.g. "12th of 100 in the Senate") — the spec's own `§6.7` example shape
+    ("42nd of 100 senators"), linking to `/methods#ranking-{metric}`. The
+    **percentile is deliberately NOT shown on the tile**: ordinalizing a rounded
+    percentile would (a) print "0th percentile" on the worst-ranked members' pages —
+    the most-scrutinized pages — and (b) round a published number at render time,
+    against §0.4.2(d)'s inputs-visible rule. The exact percentile stays in
+    `data/rankings/*.json` and is defined on `/methods`.
+  - **A member is shown a rank only where they are actually ranked.** A null metric
+    value (e.g. no enacted rate when nothing was sponsored) → no rank line on that
+    tile. A **non-voting delegate** (D66) → no rank line on attendance/party-unity,
+    PLUS an explanatory caption clause on their page ("As a non-voting delegate, they
+    are not ranked on attendance or party unity … they are ranked on the bill
+    measures") so the missing ranks are explained WHERE the reader sees them, not only
+    on `/methods` (§6.5 symmetry, made visible). Delegate detection uses the ranking's
+    own `excluded_delegates` list — the authoritative D66 signal — never a guess from
+    which tiles lack a rank (which a newly-seated null-value member would trip).
+  - **MS members get no rank context** — there are no MS rankings until V2-10; the MS
+    template passes no `ranks`, so the tiles render exactly as before.
+  - **Doctrine (§6.7):** the "combines nothing into an overall score and draws no
+    conclusion" caption is KEPT — a rank is a factual position on one metric, not a
+    composite/score; it flips at V2-4 with grades. The intro line gains "and its rank
+    within the chamber" (federal only) — true today.
+  - **Tests:** the e2e page list (`e2e/fixtures.ts`) gains a delegate page, derived
+    from `excluded_delegates` so it never rots — covering the mixed ranked/unranked
+    tile path + the delegate caption at a11y and 380px.

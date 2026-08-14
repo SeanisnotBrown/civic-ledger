@@ -16,6 +16,15 @@ function firstMemberId(): string {
   return firstJson("members").id;
 }
 
+// V2-3: a non-voting delegate's page — exercises the mixed ranked/unranked tile path
+// (ranked on bill metrics, not on the vote metrics — D66) and the delegate caption.
+// Derived from the ranking's own excluded list so it never rots.
+function firstDelegateId(): string {
+  const att = JSON.parse(
+    fs.readFileSync(path.join(DATA, "rankings", "attendance.json"), "utf-8"));
+  return [...att.chambers.house.excluded_delegates].sort()[0];
+}
+
 // A vote that carries delegation positions AND a bill link, so the vote page
 // exercises every §6.7 branch (badge, positions, bill link, official record).
 function richVote(): { roll: string; bill: string } {
@@ -56,6 +65,7 @@ const msv = richMsVote();
 export const PAGES: string[] = [
   "/",
   `/m/${firstMemberId()}/1`,
+  `/m/${firstDelegateId()}/1`, // V2-3: a delegate page (mixed ranked/unranked tiles)
   `/v/${rv.roll}`,
   `/b/${rv.bill}`,
   "/methods",

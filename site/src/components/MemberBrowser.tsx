@@ -1,53 +1,35 @@
 /** @jsxImportSource preact */
-import { useEffect, useMemo, useState } from "preact/hooks";
+import { useEffect, useRef, useState } from "preact/hooks";
 
-// V2-5: the federal-members browser island. The page (/federal) passes the FULL
-// roster as props and mounts this with `client:visible`, so Astro renders the
-// complete, sorted list to static HTML at build time (crawlable by the links
-// check, byte-deterministic, and fully usable with JavaScript off). Hydration
-// only layers filtering/sorting on top — it never fetches and never removes a
-// member from the no-JS render.
+// V2-5 (perf revision, D73): a CONTROLS-ONLY island. The 637-row member list is
+// rendered as static HTML by the Astro page (/federal) — crawlable, usable with JS
+// off, deterministic, and cheap to load. An earlier version rendered the whole roster
+// inside this Preact island; that hydrated 637 rows AND serialized the roster a second
+// time as JSON island props, which sank mobile performance (CI Lighthouse 0.8 < 0.9 on
+// /federal). This island now hydrates only the controls and enhances the existing list
+// in place: it filters by toggling each row's inline `display` and sorts by reordering
+// rows, both driven by the rows' own `data-*` attributes. It never owns the rows.
 //
-// Discipline carried from the member pages: the attendance grade is shown as the
-// exact ratified band label inside a `data-grade-label` span (check-grade-labels
-// verifies every such string against data/config/thresholds.yaml). Non-voting
-// delegates (D66) and thin records are shown as "Not graded", never scored.
+// Filtering uses `li.style.display` (an inline style) rather than the `hidden`
+// attribute on purpose: the rows carry Tailwind's `flex` class, and an author-stylesheet
+// `display:flex` beats the user-agent `[hidden]{display:none}` in the cascade — so
+// `hidden` would leave "filtered-out" rows visible while the count claimed otherwise.
+// Inline style wins over any class, so it can't silently fail that way.
 
-export interface MemberRow {
-  id: string;
-  name: string;
-  party: "D" | "R" | "I";
-  state: string;
-  district: number | null;
-  chamber: "house" | "senate";
-  attendancePct: number | null;
-  gradeLetter: string | null; // "A".."F" — data-bound from the grades export, or null
-  gradeLabel: string | null; // full ratified band label, e.g. "B — Good attendance"
-  gradeExceptionLabel: string | null; // set only for a gradeable-but-set-aside record
-}
-
-const PARTY_LABEL: Record<string, string> = {
-  D: "Democrat",
-  R: "Republican",
-  I: "Independent",
-};
 const GRADE_ORDER: Record<string, number> = { A: 0, B: 1, C: 2, D: 3, F: 4 };
-
-type Chamber = "all" | "house" | "senate";
-type Party = "all" | "D" | "R" | "I";
-type Grade = "all" | "A" | "B" | "C" | "D" | "F";
 type SortKey = "name" | "attendance" | "grade";
 
-export default function MemberBrowser({ members }: { members: MemberRow[] }) {
-  const [chamber, setChamber] = useState<Chamber>("all");
-  const [party, setParty] = useState<Party>("all");
-  const [grade, setGrade] = useState<Grade>("all");
+export default function MemberBrowser({ listId, total }: { listId: string; total: number }) {
+  const [chamber, setChamber] = useState("all");
+  const [party, setParty] = useState("all");
+  const [grade, setGrade] = useState("all");
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<SortKey>("name");
+  const [count, setCount] = useState<number | null>(null);
+  const first = useRef(true);
 
-  // Deep-link support: dashboard tiles link here with query params (?grade=F,
-  // ?chamber=senate, …) so a headline number clicks straight through to the list
-  // that reproduces it (V2-5's click-through rule). Runs after hydration only.
+  // Deep-link support: dashboard tiles link here with query params (?grade=F, …) so a
+  // headline number clicks straight through to the list that reproduces it. Client-only.
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
     const ch = p.get("chamber");
@@ -56,7 +38,7 @@ export default function MemberBrowser({ members }: { members: MemberRow[] }) {
     if (pa === "D" || pa === "R" || pa === "I") setParty(pa);
     const gr = p.get("grade");
     if (gr && gr in GRADE_ORDER) {
-      setGrade(gr as Grade);
+      setGrade(gr);
       setSort("grade");
     }
     const so = p.get("sort");
@@ -65,34 +47,49 @@ export default function MemberBrowser({ members }: { members: MemberRow[] }) {
     if (query) setQ(query);
   }, []);
 
-  const rows = useMemo(() => {
+  useEffect(() => {
+    const list = document.getElementById(listId);
+    if (!list) return;
+    const items = Array.from(list.querySelectorAll<HTMLElement>("li[data-member]"));
     const needle = q.trim().toLowerCase();
-    const filtered = members.filter((m) => {
-      if (chamber !== "all" && m.chamber !== chamber) return false;
-      if (party !== "all" && m.party !== party) return false;
-      if (grade !== "all" && m.gradeLetter !== grade) return false;
-      if (needle && !`${m.name} ${m.state}`.toLowerCase().includes(needle)) return false;
-      return true;
-    });
-    return filtered.sort((a, b) => {
-      if (sort === "attendance") {
-        const av = a.attendancePct;
-        const bv = b.attendancePct;
-        if (av == null && bv == null) return a.name.localeCompare(b.name);
-        if (av == null) return 1; // no record sorts last
-        if (bv == null) return -1;
-        if (bv !== av) return bv - av; // high → low
-        return a.name.localeCompare(b.name);
-      }
-      if (sort === "grade") {
-        const ao = a.gradeLetter ? GRADE_ORDER[a.gradeLetter] : 99;
-        const bo = b.gradeLetter ? GRADE_ORDER[b.gradeLetter] : 99;
-        if (ao !== bo) return ao - bo; // A → F, ungraded last
-        return a.name.localeCompare(b.name);
-      }
-      return a.name.localeCompare(b.name);
-    });
-  }, [members, chamber, party, grade, q, sort]);
+    let shown = 0;
+    for (const li of items) {
+      const ok =
+        (chamber === "all" || li.dataset.chamber === chamber) &&
+        (party === "all" || li.dataset.party === party) &&
+        (grade === "all" || li.dataset.grade === grade) &&
+        (!needle || (li.dataset.search ?? "").includes(needle));
+      li.style.display = ok ? "" : "none";
+      if (ok) shown++;
+    }
+    setCount(shown);
+
+    // The Astro page renders the list name-sorted, so on the first (perf-critical) pass
+    // with the default name sort we skip the reorder entirely; we only pay for a reorder
+    // when the user (or a deep-link) actually asks for a non-default sort.
+    if (!(first.current && sort === "name")) {
+      const cmpName = (a: HTMLElement, b: HTMLElement) =>
+        (a.dataset.name ?? "").localeCompare(b.dataset.name ?? "");
+      const sorted = items.slice().sort((a, b) => {
+        if (sort === "attendance") {
+          const av = a.dataset.att === "" ? null : Number(a.dataset.att);
+          const bv = b.dataset.att === "" ? null : Number(b.dataset.att);
+          if (av == null && bv == null) return cmpName(a, b);
+          if (av == null) return 1; // no record sorts last
+          if (bv == null) return -1;
+          return bv !== av ? bv - av : cmpName(a, b); // high → low
+        }
+        if (sort === "grade") {
+          const ao = a.dataset.grade ? GRADE_ORDER[a.dataset.grade] : 99;
+          const bo = b.dataset.grade ? GRADE_ORDER[b.dataset.grade] : 99;
+          return ao !== bo ? ao - bo : cmpName(a, b); // A → F, ungraded last
+        }
+        return cmpName(a, b);
+      });
+      for (const li of sorted) list.appendChild(li);
+    }
+    first.current = false;
+  }, [chamber, party, grade, q, sort, listId]);
 
   const labelCls = "block text-xs font-medium text-neutral-500";
   const inputCls =
@@ -107,14 +104,14 @@ export default function MemberBrowser({ members }: { members: MemberRow[] }) {
             id="mb-q"
             type="search"
             value={q}
-            placeholder="e.g. Smith or Ohio"
+            placeholder="e.g. Smith or OH"
             onInput={(e) => setQ((e.target as HTMLInputElement).value)}
             class={`${inputCls} w-full`}
           />
         </div>
         <div>
           <label for="mb-chamber" class={labelCls}>Chamber</label>
-          <select id="mb-chamber" value={chamber} onChange={(e) => setChamber((e.target as HTMLSelectElement).value as Chamber)} class={inputCls}>
+          <select id="mb-chamber" value={chamber} onChange={(e) => setChamber((e.target as HTMLSelectElement).value)} class={inputCls}>
             <option value="all">All</option>
             <option value="house">House</option>
             <option value="senate">Senate</option>
@@ -122,7 +119,7 @@ export default function MemberBrowser({ members }: { members: MemberRow[] }) {
         </div>
         <div>
           <label for="mb-party" class={labelCls}>Party</label>
-          <select id="mb-party" value={party} onChange={(e) => setParty((e.target as HTMLSelectElement).value as Party)} class={inputCls}>
+          <select id="mb-party" value={party} onChange={(e) => setParty((e.target as HTMLSelectElement).value)} class={inputCls}>
             <option value="all">All</option>
             <option value="D">Democrat</option>
             <option value="R">Republican</option>
@@ -131,7 +128,7 @@ export default function MemberBrowser({ members }: { members: MemberRow[] }) {
         </div>
         <div>
           <label for="mb-grade" class={labelCls}>Attendance grade</label>
-          <select id="mb-grade" value={grade} onChange={(e) => setGrade((e.target as HTMLSelectElement).value as Grade)} class={inputCls}>
+          <select id="mb-grade" value={grade} onChange={(e) => setGrade((e.target as HTMLSelectElement).value)} class={inputCls}>
             <option value="all">All</option>
             <option value="A">A</option>
             <option value="B">B</option>
@@ -151,41 +148,8 @@ export default function MemberBrowser({ members }: { members: MemberRow[] }) {
       </div>
 
       <p aria-live="polite" class="mt-4 text-xs text-neutral-500">
-        {rows.length} {rows.length === 1 ? "member" : "members"}
+        {count === null || count === total ? `${total} members` : `${count} of ${total} members`}
       </p>
-
-      <ul class="mt-1 divide-y divide-neutral-100">
-        {rows.map((m) => (
-          <li key={m.id} class="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3">
-            <a href={`/m/${m.id}/1`} class="font-medium text-neutral-900 underline hover:text-neutral-700">
-              {m.name}
-            </a>
-            <span class="text-sm text-neutral-500">
-              {PARTY_LABEL[m.party]} · {m.state}
-              {m.district != null ? `-${m.district}` : ""}
-            </span>
-            <span class="text-sm text-neutral-500">
-              Attendance {m.attendancePct == null ? "—" : `${m.attendancePct}%`}
-            </span>
-            <span class="ml-auto text-sm">
-              {m.gradeLetter ? (
-                <span
-                  data-grade-label=""
-                  class="rounded border border-neutral-300 px-1.5 py-0.5 text-xs font-medium text-neutral-700"
-                >
-                  {m.gradeLabel}
-                </span>
-              ) : m.gradeExceptionLabel ? (
-                <span data-grade-label="" class="text-xs italic text-neutral-400">
-                  {m.gradeExceptionLabel}
-                </span>
-              ) : (
-                <span class="text-xs text-neutral-400">Not graded</span>
-              )}
-            </span>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }

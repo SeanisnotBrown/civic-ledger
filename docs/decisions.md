@@ -1448,3 +1448,25 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
     unchanged. **V2-5 therefore stays OPEN** pending the owner sitting.
   Preact was already pinned (astro.config + package.json since setup); no new
   dependency. Visual/design polish is a separate later pass (owner's "Claude design").
+
+- **D73 (2026-08-13) — /federal mobile-performance fix + correction to D72's
+  "green" claim.** D72, that increment's PROGRESS "Green" line, and the V2-5 commit
+  messages (`aa3b6fdf`, `d910562e`) all stated Lighthouse passed. That was true
+  locally but NOT on CI: run `31769853844` failed the Lighthouse gate — `/federal`
+  scored **0.8 mobile performance** (gate ≥ 0.9; a11y passed). The local machine is
+  faster than the CI runner, so a local pass was not a safe proxy — a calibration
+  error on my part. **Diagnosis:** the first `/federal` build rendered the full
+  637-row roster *inside* the Preact island, which (a) hydrated 637 rows on load and
+  (b) serialized the roster a second time as JSON island props — high Total Blocking
+  Time + LCP under throttled-mobile emulation. **Fix:** the roster is now static Astro
+  HTML on the page (the same shape as the old ~540-row homepage, which has always
+  cleared CI Lighthouse); the island is **controls-only** and enhances that list in
+  place — filtering by each row's inline `display` (an inline style, chosen over the
+  `hidden` attribute because the rows' Tailwind `flex` class would beat a UA
+  `[hidden]{display:none}` in the cascade and silently leave "hidden" rows visible),
+  sorting by reordering rows, both from `data-*` attributes. The island props blob
+  drops from the whole roster to `{listId,total}`. The drill-down e2e now asserts
+  computed visibility (`toBeHidden`), not the attribute, so a cascade regression fails
+  loud. Note the honesty point: the CI failure did not roll anything back — the
+  Cloudflare deploy is push-triggered and independent of CI, so the slower `/federal`
+  was briefly live between `aa3b6fdf` and this fix.

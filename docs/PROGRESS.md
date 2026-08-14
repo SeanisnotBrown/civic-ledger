@@ -31,9 +31,12 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
   **Green:** astro check 0, build 13,084 pages, grade-labels (5 pages / 6 labels),
   metrics-sections (8+5), links (7,104), file-count (13,090/20,000), e2e **31** (incl.
   `/federal` + `/states` a11y + 380px, and the dashboard→filtered-list→member
-  drill-down); `uv run checks` and `npm run test:lighthouse` (now incl. `/federal`,
-  the heaviest page) confirmed green this session. Python suite unaffected (site-only).
-  Visual/design polish is the owner's separate later "Claude design" pass.
+  drill-down); `uv run checks` all-passed. Python suite unaffected (site-only).
+  **Lighthouse correction (D73):** the first `/federal` build passed local Lighthouse
+  but FAILED CI (run `31769853844`, `/federal` mobile perf 0.8 < 0.9 — the island
+  hydrated all 637 rows). Fixed by making the roster static Astro HTML with a
+  controls-only island; re-verified. Visual/design polish is the owner's separate
+  later "Claude design" pass.
 - **V2-4 (this session) — attendance grade (D70, owner-ratified H15 round one).**
   Propose→ratify→commit (§0.8): the owner picked, in two plain-language sittings with
   the data, to grade **attendance only** (overall composite DEFERRED — "a formula I

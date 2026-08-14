@@ -1,25 +1,27 @@
 ---
-// V2-5: the Federal tab — the browsable, filterable all-members list. Replaces the
-// old flat wall of names on the homepage. The heavy lifting (filter/sort/search) is
-// the MemberBrowser island, hydrated with `client:visible`; every member is present
-// in the static HTML before hydration, so this page works with JavaScript off and is
-// fully crawlable by the links check.
+// V2-5: the Federal tab — the browsable, filterable all-members list. Replaces the old
+// flat wall of names on the homepage. The full roster is rendered here as STATIC HTML
+// (crawlable, works with JavaScript off, byte-deterministic, and cheap to load); the
+// MemberBrowser island hydrates only the filter/search/sort controls and enhances this
+// list in place via each row's data-* attributes. Rendering the rows in the island
+// instead cost too much mobile performance (D73), so they live here.
 import Layout from "../../components/Layout.astro";
 import MemberBrowser from "../../components/MemberBrowser.tsx";
-import type { MemberRow } from "../../components/MemberBrowser.tsx";
 import { getMembers, getMemberGrade, getMetrics, getManifest } from "../../lib/data";
 import { ordinal } from "../../lib/display";
 
-const members = getMembers();
+const members = getMembers(); // already name-sorted (localeCompare)
 const metrics = getMetrics();
 const manifest = getManifest();
 
-const rows: MemberRow[] = members.map((m) => {
+const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
+
+const rows = members.map((m) => {
   const mm = metrics.members[m.id] ?? {};
   const att = mm.attendance as { pct: number | null } | undefined;
   const g = getMemberGrade(m.id); // {grade,label} | {exception,exceptionLabel} | undefined
-  // A delegate's exclusion (D66) is explained here as "Not graded", not as a thin-record
-  // exception — so only a genuine set-aside (thin/absent record) passes an exception label.
+  // A delegate's exclusion (D66) reads as "Not graded", not a thin-record exception —
+  // so only a genuine set-aside (thin/absent record) carries an exception label.
   const exceptionLabel = g?.exception && g.exception !== "delegate" ? g.exceptionLabel ?? null : null;
   return {
     id: m.id,
@@ -53,6 +55,35 @@ const periodLabel = congresses.length
   </p>
 
   <div class="mt-6">
-    <MemberBrowser members={rows} client:visible />
+    <MemberBrowser client:idle listId="member-list" total={rows.length} />
+    <ul id="member-list" class="mt-1 divide-y divide-neutral-100">
+      {rows.map((m) => (
+        <li
+          data-member
+          data-chamber={m.chamber}
+          data-party={m.party}
+          data-grade={m.gradeLetter ?? ""}
+          data-att={m.attendancePct ?? ""}
+          data-name={m.name}
+          data-search={`${m.name} ${m.state}`.toLowerCase()}
+          class="flex flex-wrap items-baseline gap-x-3 gap-y-1 py-3"
+        >
+          <a href={`/m/${m.id}/1`} class="font-medium text-neutral-900 underline hover:text-neutral-700">
+            {m.name}
+          </a>
+          <span class="text-sm text-neutral-500">
+            {PARTY_LABEL[m.party]} · {m.state}{m.district != null ? `-${m.district}` : ""} · Attendance{" "}
+            {m.attendancePct == null ? "—" : `${m.attendancePct}%`}
+          </span>
+          {m.gradeLetter ? (
+            <span class="ml-auto rounded border border-neutral-300 px-1.5 py-0.5 text-xs font-medium text-neutral-700" data-grade-label>{m.gradeLabel}</span>
+          ) : m.gradeExceptionLabel ? (
+            <span class="ml-auto text-xs italic text-neutral-400" data-grade-label>{m.gradeExceptionLabel}</span>
+          ) : (
+            <span class="ml-auto text-xs text-neutral-400">Not graded</span>
+          )}
+        </li>
+      ))}
+    </ul>
   </div>
 </Layout>

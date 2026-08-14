@@ -44,6 +44,8 @@ module.exports = {
       startServerCommand: "npm run preview -- --port 4321",
       url: [
         `${BASE}/`,
+        `${BASE}/federal`, // V2-5: heaviest page — the hydrated Preact members browser
+        `${BASE}/states`,
         `${BASE}/m/${member}/1`,
         `${BASE}/v/${rv.roll}`,
         `${BASE}/b/${rv.bill}`,

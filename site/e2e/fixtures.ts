@@ -64,6 +64,8 @@ const msv = richMsVote();
 
 export const PAGES: string[] = [
   "/",
+  "/federal", // V2-5: the filterable federal-members browser (Preact island)
+  "/states", // V2-5: the States tab
   `/m/${firstMemberId()}/1`,
   `/m/${firstDelegateId()}/1`, // V2-3: a delegate page (mixed ranked/unranked tiles)
   `/v/${rv.roll}`,

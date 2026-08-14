@@ -43,7 +43,7 @@ const chamberLabel = member.chamber === "house" ? "U.S. House" : "U.S. Senate";
 const districtSuffix = member.district != null ? `, District ${member.district}` : "";
 ---
 <Layout title={`${member.name} — Civic Ledger`}>
-  <nav class="text-xs text-neutral-500"><a href="/" class="underline">Members</a> / {member.name}</nav>
+  <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / {member.name}</nav>
   <h1 class="mt-1 text-2xl font-semibold tracking-tight">{member.name}</h1>
   <p class="mt-1 text-neutral-600">
     {PARTY_LABEL[member.party]} · {chamberLabel}, {member.state}{districtSuffix}

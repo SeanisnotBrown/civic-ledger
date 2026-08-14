@@ -15,7 +15,7 @@ const sponsor = bill.sponsor_id ? getMember(bill.sponsor_id) : undefined;
 const rolls = getVotesForBill(bill.id);
 ---
 <Layout title={`${billLabel(bill.id)} — Civic Ledger`}>
-  <nav class="text-xs text-neutral-500"><a href="/" class="underline">Members</a> / Bill</nav>
+  <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / Bill</nav>
   <p class="mt-1 text-sm font-medium text-neutral-500">{billLabel(bill.id)}</p>
   <h1 class="mt-1 text-xl font-semibold tracking-tight">
     {bill.title_official}<sup

@@ -36,8 +36,15 @@ for (const f of gradeFiles) {
 
 // The MemberStats component is shared by every member page, so a stray hardcoded label
 // would appear on all of them — scanning /methods + a graded + an excepted page is
-// enough to catch it.
-const pages = ["methods/index.html", ...memberPages.map((b) => path.join("m", b, "1", "index.html"))];
+// enough to catch it. V2-5 adds two pages that also render ratified labels: the
+// dashboard (the attendance-grade distribution) and the federal browser (the island
+// SSRs a grade label per member).
+const pages = [
+  "index.html", // V2-5 dashboard — grade distribution
+  "federal/index.html", // V2-5 federal browser island — per-member grade labels
+  "methods/index.html",
+  ...memberPages.map((b) => path.join("m", b, "1", "index.html")),
+];
 
 const stray = new Set();
 let scanned = 0;
@@ -46,7 +53,11 @@ for (const rel of pages) {
   if (!fs.existsSync(p)) continue;
   scanned++;
   const html = fs.readFileSync(p, "utf-8");
-  for (const m of html.matchAll(/data-grade-label>([^<]+)</g)) {
+  // `data-grade-label[^>]*>` tolerates the two ways the marker renders: bare + last
+  // (Astro: `data-grade-label>`) and Preact's serialized form with the value and a
+  // following attribute (`data-grade-label="" class="…">`). The captured TEXT — the
+  // thing actually checked against the ratified set — stays exact either way.
+  for (const m of html.matchAll(/data-grade-label[^>]*>([^<]+)</g)) {
     const label = m[1].trim();
     if (!allowed.has(label)) stray.add(label);
   }

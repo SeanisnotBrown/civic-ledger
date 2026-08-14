@@ -21,7 +21,19 @@ const buildCommit = (
   manifest.commit ??
   "dev"
 ).slice(0, 7);
-const repo = "https://github.com/SeanisnotBrown/civic-ledger";
+
+// Primary tabs (V2-5). `match` decides the active tab from the current path so a
+// detail page still highlights its section: a federal member/vote/bill page lights
+// "Federal"; anything under /ms or /states lights "States". Home is active only on
+// the exact root. aria-current="page" marks it for assistive tech.
+const path = Astro.url.pathname;
+const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
+  { href: "/", label: "Home", match: (p) => p === "/" },
+  { href: "/federal", label: "Federal",
+    match: (p) => ["/federal", "/m/", "/v/", "/b/", "/pairing"].some((x) => p === x || p.startsWith(x)) },
+  { href: "/states", label: "States", match: (p) => p.startsWith("/states") || p.startsWith("/ms") },
+  { href: "/methods", label: "Methodology", match: (p) => p.startsWith("/methods") },
+];
 ---
 
 <!doctype html>
@@ -35,11 +47,20 @@ const repo = "https://github.com/SeanisnotBrown/civic-ledger";
   <body class="min-h-screen bg-white text-neutral-900 antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-2">Skip to content</a>
     <header class="border-b border-neutral-200">
-      <nav class="mx-auto flex max-w-3xl items-center justify-between px-4 py-3 text-sm" aria-label="Primary">
-        <a href="/" class="font-semibold tracking-tight">Civic Ledger</a>
-        <ul class="flex gap-4 text-neutral-600">
-          <li><a href="/" class="hover:text-neutral-900">Members</a></li>
-          <li><a href="/methods" class="hover:text-neutral-900">Methodology</a></li>
+      <nav class="mx-auto flex max-w-3xl flex-wrap items-center gap-x-6 gap-y-2 px-4 py-3 text-sm" aria-label="Primary">
+        <a href="/" class="mr-auto font-semibold tracking-tight">Civic Ledger</a>
+        <ul class="flex flex-wrap gap-x-4 gap-y-1">
+          {TABS.map((t) => {
+            const active = t.match(path);
+            return (
+              <li>
+                <a href={t.href} aria-current={active ? "page" : undefined}
+                   class={active ? "font-medium text-neutral-900" : "text-neutral-600 hover:text-neutral-900"}>
+                  {t.label}
+                </a>
+              </li>
+            );
+          })}
         </ul>
       </nav>
     </header>
@@ -58,8 +79,6 @@ const repo = "https://github.com/SeanisnotBrown/civic-ledger";
         <a href="/corrections" class="underline hover:text-neutral-700">Corrections</a>
         {" · "}
         <a href="/privacy" class="underline hover:text-neutral-700">Privacy</a>
-        {" · "}
-        <a href={repo} class="underline hover:text-neutral-700">Source</a>
         {" · "}
         <span>Build <code>{buildCommit}</code></span>
       </p>

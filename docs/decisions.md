@@ -1409,3 +1409,42 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   claim (kept "every figure traces to an official source"). Both are Value #1 (never
   publish something false/falsely framed), which outranks everything — fixed on
   sight, not deferred to V2-5's dashboard rebuild.
+
+- **D72 (2026-08-13) — V2-5 information architecture: landing dashboard + Federal/
+  States tabs (PARTIAL; the evaluative headline is deferred).** The site's front door
+  was a flat wall of ~540 member names under a two-item nav (Members | Methodology).
+  Built under the owner's standing authorization to restructure the layout and push
+  without a per-change ask ("Push it all… re-structure the site's layout… do not ask
+  me to push or not"). Changes:
+  - **Nav → four tabs** (Home · Federal · States · Methodology), active-aware; the
+    brand still links home. Detail pages light their section (member/vote/bill →
+    Federal; `/ms/*` → States).
+  - **`/` is now an overview dashboard**, not a member list: a plain-count coverage
+    line (637 members, 3,463 roll calls, 966,261 recorded votes — facts, not
+    evaluative), two entry cards (Federal, States), and a NEUTRAL attendance-grade
+    distribution — the already-ratified grades tallied A→F in band order, each band
+    linking into the federal list filtered to it. No single band is promoted to a
+    headline number.
+  - **`/federal`** is the browsable all-members list: a **Preact island**
+    (`MemberBrowser.tsx`, the repo's first) mounted `client:visible`, so the full
+    637-row list is server-rendered into static HTML (usable with JS off, crawlable,
+    deterministic) and hydration only adds filter/search/sort. It reads
+    `?grade`/`?chamber`/`?party`/`?sort`/`?q` on mount so a dashboard tile deep-links
+    straight to the filtered view (V2-5's click-through rule). Delegates are shown but
+    "Not graded" on attendance (D66), never scored.
+  - **`/states`** is a thin tab: one Mississippi card → existing `/ms` (MS URLs
+    unchanged), plus a "more states over time" note.
+  - **Stale nav wording fixed (D71 family):** federal breadcrumbs "Members → /" became
+    "Federal → /federal"; the `/ms` breadcrumb "U.S. delegation" became "States"; 404
+    updated. The footer **"Source" link to the private repo was removed** — same
+    false-availability class as D71 (a public visitor hits a login wall); it returns
+    if/when the repo goes public.
+  - **§0.8 held while the owner is away:** the V2-5 "lowest N% wide-eyed" headline is a
+    NEW ratified threshold (H15 round two) and was NOT made here. The grade
+    distribution is only a tally of already-ratified outputs (no new evaluative
+    constant). `check-grade-labels.mjs` was extended to scan the dashboard + federal
+    island, and its extractor regex broadened to also match Preact's
+    `data-grade-label=""` serialization; the text checked against the ratified set is
+    unchanged. **V2-5 therefore stays OPEN** pending the owner sitting.
+  Preact was already pinned (astro.config + package.json since setup); no new
+  dependency. Visual/design polish is a separate later pass (owner's "Claude design").

@@ -1,0 +1,58 @@
+---
+// V2-5: the Federal tab — the browsable, filterable all-members list. Replaces the
+// old flat wall of names on the homepage. The heavy lifting (filter/sort/search) is
+// the MemberBrowser island, hydrated with `client:visible`; every member is present
+// in the static HTML before hydration, so this page works with JavaScript off and is
+// fully crawlable by the links check.
+import Layout from "../../components/Layout.astro";
+import MemberBrowser from "../../components/MemberBrowser.tsx";
+import type { MemberRow } from "../../components/MemberBrowser.tsx";
+import { getMembers, getMemberGrade, getMetrics, getManifest } from "../../lib/data";
+import { ordinal } from "../../lib/display";
+
+const members = getMembers();
+const metrics = getMetrics();
+const manifest = getManifest();
+
+const rows: MemberRow[] = members.map((m) => {
+  const mm = metrics.members[m.id] ?? {};
+  const att = mm.attendance as { pct: number | null } | undefined;
+  const g = getMemberGrade(m.id); // {grade,label} | {exception,exceptionLabel} | undefined
+  // A delegate's exclusion (D66) is explained here as "Not graded", not as a thin-record
+  // exception — so only a genuine set-aside (thin/absent record) passes an exception label.
+  const exceptionLabel = g?.exception && g.exception !== "delegate" ? g.exceptionLabel ?? null : null;
+  return {
+    id: m.id,
+    name: m.name,
+    party: m.party,
+    state: m.state,
+    district: m.district,
+    chamber: m.chamber,
+    attendancePct: att?.pct ?? null,
+    gradeLetter: g?.grade ?? null,
+    gradeLabel: g?.label ?? null,
+    gradeExceptionLabel: exceptionLabel,
+  };
+});
+
+const congresses = manifest.congresses ?? [];
+const periodLabel = congresses.length
+  ? `the ${ordinal(congresses[0])}–${ordinal(congresses[congresses.length - 1])} Congresses`
+  : "the covered Congresses";
+---
+<Layout title="Civic Ledger — Federal members" description="Every member of the U.S. House and Senate, with their recorded legislative figures and attendance grade.">
+  <h1 class="text-2xl font-semibold tracking-tight">Federal members</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    Every member of the U.S. House and Senate serving in {periodLabel}. Filter by
+    chamber or party, search by name or state, or sort by attendance. Attendance is
+    graded A–F against fixed thresholds
+    <a href="/methods#grade-attendance" class="underline hover:text-neutral-900">published on the methodology page</a>;
+    the same standard applies to every member. Non-voting delegates are shown but not
+    graded on attendance — they cannot vote on final passage, so their record is not
+    comparable.
+  </p>
+
+  <div class="mt-6">
+    <MemberBrowser members={rows} client:visible />
+  </div>
+</Layout>

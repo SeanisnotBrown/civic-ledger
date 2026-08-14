@@ -1,0 +1,35 @@
+---
+// V2-5: the States tab. One entry today — Mississippi — with a plain note that more
+// states are added over time. The Mississippi detail pages keep their existing /ms
+// URLs (unchanged); this tab is the front door to them from the primary nav.
+import Layout from "../../components/Layout.astro";
+import { getMsManifest } from "../../lib/data";
+
+const ms = getMsManifest();
+const rollcalls = Number(ms.counts.rollcalls ?? 0).toLocaleString("en-US");
+const legislators = Number(ms.counts.members ?? 0).toLocaleString("en-US");
+---
+<Layout title="Civic Ledger — States" description="State legislative records covered by Civic Ledger. Mississippi today; more states over time.">
+  <h1 class="text-2xl font-semibold tracking-tight">States</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    State legislatures are covered one at a time. The recorded roll-call record below
+    is the plain vote record — the attendance grades on the federal pages do not extend
+    to the states yet.
+  </p>
+
+  <section class="mt-8">
+    <a href="/ms" class="block max-w-prose rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-400">
+      <h2 class="text-lg font-semibold tracking-tight text-neutral-900">Mississippi Legislature</h2>
+      <p class="mt-1 text-sm text-neutral-600">{ms.session_name}</p>
+      <p class="mt-2 text-sm text-neutral-500">
+        {rollcalls} roll calls · {legislators} legislators · House and Senate
+      </p>
+      <p class="mt-3 text-sm font-medium text-neutral-700">Browse Mississippi →</p>
+    </a>
+  </section>
+
+  <p class="mt-8 max-w-prose text-xs text-neutral-500">
+    More states are added over time. Coverage begins with Mississippi; each state is
+    ingested from its official record before it appears here.
+  </p>
+</Layout>

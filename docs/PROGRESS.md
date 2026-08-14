@@ -3,11 +3,37 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, end of the **V2-4 — grades** session. **V2-1..V2-3
-are COMPLETE and PUSHED** (through `b4057848`; CI green; live). **V2-4 is COMPLETE
-and green — the first EVALUATIVE increment.** The site now publishes an **attendance
-letter grade** (A–F) per member, from owner-ratified thresholds. Commits pending;
-**V2-4 push is a NEW owner ask** (it puts the first grades live).
+**Last updated:** 2026-08-13, **V2-5 (partial) — layout restructure** session.
+**V2-1..V2-4 are COMPLETE and PUSHED** (through `4bb77d56`; CI green; live). V2-4 put
+the first **attendance letter grades** (A–F, owner-ratified) live. **V2-5 is PARTIAL:**
+the site's information architecture was rebuilt (landing dashboard + Federal/States
+tabs + a filterable federal browser island) under the owner's standing authorization to
+restructure and push without a per-change ask. But V2-5's own evaluative headline (the
+"lowest N%" wide-eyed cut) is a NEW ratified threshold (**H15 round two**) and is
+**DEFERRED to an owner sitting** — so **V2-5 stays OPEN; do not start V2-6.**
+- **V2-5 (this session, PARTIAL) — information architecture restructure (D72).** The
+  old flat ~540-name landing page + two-item nav became: **four-tab nav** (Home ·
+  Federal · States · Methodology, active-aware); **`/` overview dashboard** (plain-count
+  coverage line — 637 members / 3,463 rolls / 966,261 votes, facts not evaluative;
+  Federal/States entry cards; a NEUTRAL A→F attendance-grade distribution, each band
+  deep-linking into the filtered federal list, no band promoted to a headline number —
+  §0.8 held); **`/federal`** browsable all-members list via the repo's first **Preact
+  island** (`MemberBrowser.tsx`, `client:visible` — the full 637-row list is SSR'd into
+  static HTML so it works JS-off, is crawlable + deterministic; hydration adds
+  filter/search/sort and reads `?grade/?chamber/?party/?sort/?q` for tile deep-links);
+  **`/states`** thin MS card → existing `/ms` (MS URLs unchanged). **Nav-truth fixes
+  (D71 family):** federal breadcrumbs Members→Federal (`/`→`/federal`); `/ms`
+  breadcrumb "U.S. delegation"→"States"; 404 updated; footer **"Source" link to the
+  private repo removed** (false-availability, like D71). `check-grade-labels.mjs`
+  extended to scan the dashboard + federal island (regex broadened for Preact's
+  `data-grade-label=""`). **DEFERRED (H15 round two, owner away):** the "lowest N%"
+  wide-eyed headline is a new evaluative threshold, not made here; V2-5 stays OPEN.
+  **Green:** astro check 0, build 13,084 pages, grade-labels (5 pages / 6 labels),
+  metrics-sections (8+5), links (7,104), file-count (13,090/20,000), e2e **31** (incl.
+  `/federal` + `/states` a11y + 380px, and the dashboard→filtered-list→member
+  drill-down); `uv run checks` and `npm run test:lighthouse` (now incl. `/federal`,
+  the heaviest page) confirmed green this session. Python suite unaffected (site-only).
+  Visual/design polish is the owner's separate later "Claude design" pass.
 - **V2-4 (this session) — attendance grade (D70, owner-ratified H15 round one).**
   Propose→ratify→commit (§0.8): the owner picked, in two plain-language sittings with
   the data, to grade **attendance only** (overall composite DEFERRED — "a formula I

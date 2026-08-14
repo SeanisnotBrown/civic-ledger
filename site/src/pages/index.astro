@@ -1,62 +1,120 @@
 ---
+// V2-5: the landing dashboard. Replaces the old flat wall of ~540 member names with
+// an overview that routes into the Federal and States tabs. Discipline (§0.8):
+//   * the large numbers that have NO index page reproducing them (votes, roll calls)
+//     are body-line coverage text, never clickable headline tiles — a headline number
+//     that cannot be clicked through to its full list may not render (V2-5 on-failure);
+//   * every clickable figure resolves to a list that reproduces it (Members → /federal;
+//     each attendance-grade band → the federal list filtered to that grade);
+//   * the attendance-grade distribution is a NEUTRAL tally of the already-ratified
+//     grades in band order — no single band is promoted to a wide-eyed number (that
+//     "lowest N%" cut is a separate ratified threshold, H15 round two, not yet made).
 import Layout from "../components/Layout.astro";
-import { getMembers } from "../lib/data";
+import { getManifest, getMsManifest, getGrades } from "../lib/data";
 import { ordinal } from "../lib/display";
 
-const members = getMembers();
-const house = members.filter((m) => m.chamber === "house");
-const senate = members.filter((m) => m.chamber === "senate");
+const manifest = getManifest();
+const ms = getMsManifest();
+const n = (x: number | unknown) => Number(x ?? 0).toLocaleString("en-US");
 
-const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
+const congresses = manifest.congresses ?? [];
+const congressLabel = congresses.length
+  ? `${ordinal(congresses[0])}–${ordinal(congresses[congresses.length - 1])} Congresses`
+  : "covered Congresses";
+
+const c = manifest.counts;
+
+// Attendance-grade distribution: count the already-published grades per band, in the
+// band order of the ratified export. Labels are rendered verbatim (data-grade-label)
+// so check-grade-labels ties them back to data/config/thresholds.yaml.
+const grades = getGrades();
+const att = grades.attendance;
+const bandCounts = att
+  ? att.bands.map((b) => ({
+      grade: b.grade,
+      label: b.label,
+      count: Object.values(att.members).filter((e) => e.grade === b.grade).length,
+    }))
+  : [];
+const gradedTotal = att ? Object.keys(att.members).length : 0;
+const setAside = att ? Object.keys(att.exceptions).length : 0;
 ---
-<Layout title="Civic Ledger — Members of Congress">
-  <h1 class="text-2xl font-semibold tracking-tight">Members of Congress</h1>
-  <p class="mt-2 max-w-prose text-neutral-700">
-    The recorded legislative record for every member of the U.S. House and Senate.
-    Every vote links to its official source. The site grades one measure —
-    attendance — against fixed thresholds published on the methodology page, and
-    applies the same standard to every member; the rest are the plain recorded
-    figures, characterized by no automated writer.
+<Layout
+  title="Civic Ledger — the legislative record, on the record"
+  description="A non-partisan public ledger of the U.S. Congress and state legislatures. Every vote links to its official source; attendance is graded against fixed, published thresholds."
+>
+  <h1 class="text-3xl font-semibold tracking-tight">Civic Ledger</h1>
+  <p class="mt-3 max-w-prose text-lg text-neutral-700">
+    The legislative record, on the record. A non-partisan ledger of how members of
+    Congress and state legislatures vote — every figure links to its official source.
+  </p>
+  <p class="mt-3 max-w-prose text-sm text-neutral-600">
+    One measure is graded: attendance, A–F, against fixed thresholds
+    <a href="/methods#grade-attendance" class="underline hover:text-neutral-900">published on the methodology page</a>,
+    with the same standard applied to every member. Everything else is the plain
+    recorded figure — nothing is combined into an overall score, and no automated
+    writer characterizes anyone.
   </p>
 
-  <section class="mt-8" aria-labelledby="senate-h">
-    <h2 id="senate-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">Senate</h2>
-    <ul class="mt-2 divide-y divide-neutral-100">
-      {senate.map((m) => (
-        <li class="py-3">
-          <a href={`/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
-          <span class="ml-2 text-sm text-neutral-500">{PARTY_LABEL[m.party]} · {m.state}</span>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="mt-8" aria-labelledby="house-h">
-    <h2 id="house-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">House</h2>
-    <ul class="mt-2 divide-y divide-neutral-100">
-      {house.map((m) => (
-        <li class="py-3">
-          <a href={`/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
-          <span class="ml-2 text-sm text-neutral-500">
-            {PARTY_LABEL[m.party]} · {m.state}{m.district != null ? `-${m.district}` : ""}
-          </span>
-        </li>
-      ))}
-    </ul>
-  </section>
-
-  <section class="mt-10 border-t border-neutral-100 pt-6">
-    <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
-      Mississippi Legislature
-    </h2>
-    <p class="mt-2 max-w-prose text-sm text-neutral-700">
-      The recorded roll-call record of the Mississippi state House and Senate is now
-      covered too. <a href="/ms" class="underline hover:text-neutral-800">Browse the Mississippi Legislature →</a>
-    </p>
-  </section>
-
-  <p class="mt-8 text-xs text-neutral-500">
-    Coverage: the {ordinal(118)} and {ordinal(119)} Congresses (federal); the current
-    regular session (Mississippi state).
+  <p class="mt-4 max-w-prose text-sm text-neutral-500">
+    Covering {n(c.members)} members of Congress across the {congressLabel}, and the
+    {ms.session_name} of the Mississippi Legislature. Behind these pages:
+    {n(c.rollcalls)} federal roll calls and {n(c.member_votes)} individual recorded
+    votes ({n(ms.counts.rollcalls)} roll calls and {n(ms.counts.member_votes)} votes in
+    Mississippi), each linking to its official record.
   </p>
+
+  <!-- Primary entry points -->
+  <section class="mt-8 grid gap-4 sm:grid-cols-2" aria-labelledby="browse-h">
+    <h2 id="browse-h" class="sr-only">Browse</h2>
+    <a href="/federal" class="rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-400">
+      <h3 class="text-lg font-semibold tracking-tight text-neutral-900">Federal</h3>
+      <p class="mt-1 text-sm text-neutral-600">
+        {n(c.members)} members of the U.S. House and Senate. Filter, search, and sort by
+        attendance.
+      </p>
+      <p class="mt-3 text-sm font-medium text-neutral-700">Browse members →</p>
+    </a>
+    <a href="/states" class="rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-400">
+      <h3 class="text-lg font-semibold tracking-tight text-neutral-900">States</h3>
+      <p class="mt-1 text-sm text-neutral-600">
+        Mississippi today — {n(ms.counts.members)} legislators, {n(ms.counts.rollcalls)}
+        roll calls. More states over time.
+      </p>
+      <p class="mt-3 text-sm font-medium text-neutral-700">Browse states →</p>
+    </a>
+  </section>
+
+  <!-- Attendance grade distribution — neutral tally, each band clicks through -->
+  {att && (
+    <section class="mt-10 border-t border-neutral-100 pt-6" aria-labelledby="grades-h">
+      <h2 id="grades-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+        Attendance grades
+      </h2>
+      <p class="mt-2 max-w-prose text-sm text-neutral-600">
+        Every member with a full-enough voting record is graded A–F on attendance
+        against fixed thresholds. Across the {gradedTotal} members graded ({setAside}
+        set aside — non-voting delegates and members with too thin a record). Select a
+        grade to see those members:
+      </p>
+      <ul class="mt-3 max-w-prose space-y-1">
+        {bandCounts.map((b) => (
+          <li>
+            <a
+              href={`/federal?grade=${b.grade}&sort=grade`}
+              class="flex items-baseline justify-between gap-3 rounded px-2 py-1 hover:bg-neutral-50"
+            >
+              <span class="text-sm text-neutral-800" data-grade-label>{b.label}</span>
+              <span class="text-sm tabular-nums text-neutral-500">{n(b.count)} members</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-3 text-xs text-neutral-500">
+        <a href="/methods#grade-attendance" class="underline hover:text-neutral-700">
+          How attendance is graded
+        </a>
+      </p>
+    </section>
+  )}
 </Layout>

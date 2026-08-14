@@ -22,7 +22,7 @@ const rows = vote.member_votes
 const TOTAL_ORDER = ["yea", "nay", "present", "not_voting"] as const;
 ---
 <Layout title={`${chamber} Roll ${rc.number} (${rc.congress}th) — Civic Ledger`}>
-  <nav class="text-xs text-neutral-500"><a href="/" class="underline">Members</a> / Roll call</nav>
+  <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / Roll call</nav>
   <div class="mt-1 flex flex-wrap items-center gap-2">
     <h1 class="text-xl font-semibold tracking-tight">
       {chamber} Roll #{rc.number}

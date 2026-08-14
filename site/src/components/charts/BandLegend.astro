@@ -1,0 +1,25 @@
+---
+// Attendance grade-band legend: one chip per band, each a link to the federal list
+// pre-filtered to that grade. The href format `/federal?grade=A&sort=grade` is the
+// drill-down contract the dashboard e2e asserts — keep it verbatim. Labels render
+// inside <span data-grade-label> with the exact ratified string (check-grade-labels).
+
+interface Band { grade: string; label: string; count: number; color: string }
+interface Props { bands: Band[] }
+const { bands } = Astro.props as Props;
+const n = (x: number) => x.toLocaleString("en-US");
+---
+<ul class="flex flex-wrap gap-2">
+  {bands.map((b) => (
+    <li>
+      <a
+        href={`/federal?grade=${b.grade}&sort=grade`}
+        class="flex items-center gap-2 rounded-md border border-line bg-surface px-3 py-1.5 text-[13px] text-neutral-700 transition-colors hover:border-[rgba(233,233,237,0.22)] hover:text-text"
+      >
+        <span aria-hidden="true" class="inline-block h-[9px] w-[9px] rounded-full" style={`background:${b.color}`}></span>
+        <span data-grade-label>{b.label}</span>
+        <span class="tabular-nums text-neutral-500">{n(b.count)}</span>
+      </a>
+    </li>
+  ))}
+</ul>

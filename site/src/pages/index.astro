@@ -1,120 +1,179 @@
 ---
-// V2-5: the landing dashboard. Replaces the old flat wall of ~540 member names with
-// an overview that routes into the Federal and States tabs. Discipline (§0.8):
-//   * the large numbers that have NO index page reproducing them (votes, roll calls)
-//     are body-line coverage text, never clickable headline tiles — a headline number
-//     that cannot be clicked through to its full list may not render (V2-5 on-failure);
-//   * every clickable figure resolves to a list that reproduces it (Members → /federal;
-//     each attendance-grade band → the federal list filtered to that grade);
-//   * the attendance-grade distribution is a NEUTRAL tally of the already-ratified
-//     grades in band order — no single band is promoted to a wide-eyed number (that
-//     "lowest N%" cut is a separate ratified threshold, H15 round two, not yet made).
+// V2-5 landing dashboard (Nocturne redesign, D74). Discipline (§0.8) unchanged from
+// the prior dashboard: colour is added around already-ratified grades; NO new
+// evaluative number (no "lowest N%" cut — that is H15 round two, still owner-gated);
+// a headline figure is a clickable tile ONLY when a list reproduces it. Members →
+// /federal and Graded → the grade methodology both resolve to a reproducing surface;
+// Roll calls and Individual votes have no single index page, so they render as
+// non-clickable stats whose detail is the by-class / by-chamber cards on this page.
 import Layout from "../components/Layout.astro";
+import Histogram from "../components/charts/Histogram.astro";
+import BandLegend from "../components/charts/BandLegend.astro";
 import { getManifest, getMsManifest, getGrades } from "../lib/data";
-import { ordinal } from "../lib/display";
+import { ordinal, formatDate, VOTE_CLASS_LABEL } from "../lib/display";
 
 const manifest = getManifest();
 const ms = getMsManifest();
 const n = (x: number | unknown) => Number(x ?? 0).toLocaleString("en-US");
+const c = manifest.counts as Record<string, any>;
 
 const congresses = manifest.congresses ?? [];
 const congressLabel = congresses.length
   ? `${ordinal(congresses[0])}–${ordinal(congresses[congresses.length - 1])} Congresses`
   : "covered Congresses";
 
-const c = manifest.counts;
-
-// Attendance-grade distribution: count the already-published grades per band, in the
-// band order of the ratified export. Labels are rendered verbatim (data-grade-label)
-// so check-grade-labels ties them back to data/config/thresholds.yaml.
+// Grade band colours mirror --color-grade-* (global.css), keyed by the ratified letter.
+const GRADE_HEX: Record<string, string> = {
+  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
+};
 const grades = getGrades();
 const att = grades.attendance;
 const bandCounts = att
   ? att.bands.map((b) => ({
-      grade: b.grade,
-      label: b.label,
+      grade: b.grade, label: b.label, color: GRADE_HEX[b.grade],
       count: Object.values(att.members).filter((e) => e.grade === b.grade).length,
     }))
   : [];
+const histBands = att ? att.bands.map((b) => ({ grade: b.grade, min: b.min, color: GRADE_HEX[b.grade] })) : [];
+const attValues = att ? Object.values(att.members).map((e) => e.value) : [];
 const gradedTotal = att ? Object.keys(att.members).length : 0;
 const setAside = att ? Object.keys(att.exceptions).length : 0;
+
+const house = c.rollcalls_by_chamber?.house ?? 0;
+const senate = c.rollcalls_by_chamber?.senate ?? 0;
+
+const tiles = [
+  { kicker: "Members", value: n(c.members), note: `House and Senate · ${congressLabel}`,
+    href: "/federal", cta: "Browse members →" },
+  { kicker: "Graded on attendance", value: n(gradedTotal),
+    note: `${setAside} set aside, each with a published reason`,
+    href: "/methods#grade-attendance", cta: "How grading works →" },
+  { kicker: "Roll calls", value: n(c.rollcalls), note: `${n(house)} House · ${n(senate)} Senate` },
+  { kicker: "Individual recorded votes", value: n(c.member_votes), note: `across ${n(c.bills)} bills` },
+];
+
+// Roll calls by class, descending; passage gets the accent, every other class a
+// dimmer accent, so "procedural outnumbers passage" reads at a glance.
+const classCounts = Object.entries(c.rollcalls_by_vote_class ?? {})
+  .map(([k, v]) => ({
+    key: k,
+    label: k === "non_position" ? "Non-position" : (VOTE_CLASS_LABEL as any)[k] ?? k,
+    count: v as number,
+  }))
+  .sort((a, b) => b.count - a.count);
+const classPeak = Math.max(1, ...classCounts.map((x) => x.count));
+
+const updated = formatDate(manifest.generated_at);
 ---
 <Layout
-  title="Civic Ledger — the legislative record, on the record"
+  title="Civic Ledger — who shows up, and how they vote"
   description="A non-partisan public ledger of the U.S. Congress and state legislatures. Every vote links to its official source; attendance is graded against fixed, published thresholds."
 >
-  <h1 class="text-3xl font-semibold tracking-tight">Civic Ledger</h1>
-  <p class="mt-3 max-w-prose text-lg text-neutral-700">
-    The legislative record, on the record. A non-partisan ledger of how members of
-    Congress and state legislatures vote — every figure links to its official source.
-  </p>
-  <p class="mt-3 max-w-prose text-sm text-neutral-600">
-    One measure is graded: attendance, A–F, against fixed thresholds
-    <a href="/methods#grade-attendance" class="underline hover:text-neutral-900">published on the methodology page</a>,
-    with the same standard applied to every member. Everything else is the plain
-    recorded figure — nothing is combined into an overall score, and no automated
-    writer characterizes anyone.
-  </p>
-
-  <p class="mt-4 max-w-prose text-sm text-neutral-500">
-    Covering {n(c.members)} members of Congress across the {congressLabel}, and the
-    {ms.session_name} of the Mississippi Legislature. Behind these pages:
-    {n(c.rollcalls)} federal roll calls and {n(c.member_votes)} individual recorded
-    votes ({n(ms.counts.rollcalls)} roll calls and {n(ms.counts.member_votes)} votes in
-    Mississippi), each linking to its official record.
-  </p>
-
-  <!-- Primary entry points -->
-  <section class="mt-8 grid gap-4 sm:grid-cols-2" aria-labelledby="browse-h">
-    <h2 id="browse-h" class="sr-only">Browse</h2>
-    <a href="/federal" class="rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-400">
-      <h3 class="text-lg font-semibold tracking-tight text-neutral-900">Federal</h3>
-      <p class="mt-1 text-sm text-neutral-600">
-        {n(c.members)} members of the U.S. House and Senate. Filter, search, and sort by
-        attendance.
+  <!-- Hero -->
+  <section class="grid items-end gap-6 sm:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] sm:gap-10">
+    <div>
+      <h1 class="text-[36px] font-medium leading-[1.05] tracking-[-0.025em] text-text sm:text-[44px]">
+        Who shows up,<br />and how they vote.
+      </h1>
+      <p class="mt-4 max-w-[52ch] text-[15px] leading-relaxed text-neutral-600">
+        A non-partisan ledger of how members of Congress and state legislatures vote.
+        Every figure links to its official source. One measure is graded — attendance,
+        A–F, against fixed thresholds applied the same way to every member; everything
+        else is the plain recorded number, combined into no overall score.
       </p>
-      <p class="mt-3 text-sm font-medium text-neutral-700">Browse members →</p>
-    </a>
-    <a href="/states" class="rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-400">
-      <h3 class="text-lg font-semibold tracking-tight text-neutral-900">States</h3>
-      <p class="mt-1 text-sm text-neutral-600">
-        Mississippi today — {n(ms.counts.members)} legislators, {n(ms.counts.rollcalls)}
-        roll calls. More states over time.
-      </p>
-      <p class="mt-3 text-sm font-medium text-neutral-700">Browse states →</p>
-    </a>
+    </div>
+    <p class="text-[13px] text-neutral-500 sm:text-right">
+      Data last updated<br /><span class="text-neutral-400">{updated}</span>
+    </p>
   </section>
 
-  <!-- Attendance grade distribution — neutral tally, each band clicks through -->
-  {att && (
-    <section class="mt-10 border-t border-neutral-100 pt-6" aria-labelledby="grades-h">
-      <h2 id="grades-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
-        Attendance grades
-      </h2>
-      <p class="mt-2 max-w-prose text-sm text-neutral-600">
-        Every voting member with a full-enough record is graded A–F on attendance
-        against fixed thresholds. Across the {gradedTotal} members graded ({setAside}
-        set aside — non-voting delegates, who cannot vote on final passage, and members
-        with too thin a record). Select a grade to see those members:
-      </p>
-      <ul class="mt-3 max-w-prose space-y-1">
-        {bandCounts.map((b) => (
-          <li>
-            <a
-              href={`/federal?grade=${b.grade}&sort=grade`}
-              class="flex items-baseline justify-between gap-3 rounded px-2 py-1 hover:bg-neutral-50"
-            >
-              <span class="text-sm text-neutral-800" data-grade-label>{b.label}</span>
-              <span class="text-sm tabular-nums text-neutral-500">{n(b.count)} members</span>
-            </a>
-          </li>
-        ))}
-      </ul>
-      <p class="mt-3 text-xs text-neutral-500">
-        <a href="/methods#grade-attendance" class="underline hover:text-neutral-700">
-          How attendance is graded
+  <!-- Stat tiles -->
+  <section class="mt-9 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4" aria-label="Dataset at a glance">
+    {tiles.map((t) => {
+      const inner = (
+        <>
+          <span class="text-[10px] font-medium uppercase tracking-[0.1em] text-accent-300">{t.kicker}</span>
+          <span class="text-[30px] font-medium leading-none tabular-nums text-text">{t.value}</span>
+          <span class="text-[12px] text-neutral-500">{t.note}</span>
+          {t.cta && <span class="mt-1 text-[12px] text-accent-300">{t.cta}</span>}
+        </>
+      );
+      return t.href ? (
+        <a href={t.href}
+           class="flex flex-col gap-1.5 rounded-lg border border-line bg-surface p-4 transition-shadow hover:shadow-md hover:ring-1 hover:ring-accent">
+          {inner}
         </a>
+      ) : (
+        <div class="flex flex-col gap-1.5 rounded-lg border border-line bg-surface p-4">{inner}</div>
+      );
+    })}
+  </section>
+
+  <!-- Attendance histogram (flagship) -->
+  {att && (
+    <section class="mt-4 rounded-lg border border-line bg-surface p-5 sm:p-[22px]" aria-labelledby="dist-h">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 id="dist-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Attendance, every graded member</h2>
+        <span class="text-[12px] text-neutral-500">{n(gradedTotal)} members · {setAside} set aside</span>
+      </div>
+      <div class="mt-4">
+        <Histogram values={attValues} bands={histBands} />
+      </div>
+      <div class="mt-5">
+        <BandLegend bands={bandCounts} />
+      </div>
+      <p class="mt-4 max-w-[68ch] text-[12px] leading-relaxed text-neutral-500">
+        Each bar counts members whose attendance falls in a 2.5-point range; bar colour
+        follows the grade band of that range. Select a band to see those members. Grades
+        use fixed, published thresholds —
+        <a href="/methods#grade-attendance" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">how attendance is graded</a>.
       </p>
     </section>
   )}
+
+  <!-- Roll-call composition + chamber/state -->
+  <section class="mt-4 grid gap-3.5 lg:grid-cols-2">
+    <div class="rounded-lg border border-line bg-surface p-5 sm:p-[22px]">
+      <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Roll calls by class</h2>
+      <ul class="mt-4 space-y-2">
+        {classCounts.map((x) => (
+          <li class="grid grid-cols-[104px_minmax(0,1fr)_54px] items-center gap-2.5">
+            <span class="truncate text-[12px] text-neutral-600">{x.label}</span>
+            <span class="h-2.5 rounded-full" style={`width:${(x.count / classPeak) * 100}%;min-width:2px;background:${x.key === "passage" ? "#9184d9" : "#5d5294"}`}></span>
+            <span class="text-right text-[12px] tabular-nums text-neutral-500">{n(x.count)}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-4 max-w-[60ch] text-[12px] leading-relaxed text-neutral-500">
+        Procedural votes outnumber passage votes — which is why a bare “votes missed”
+        count, without its class breakdown, can mislead.
+      </p>
+    </div>
+
+    <div class="grid gap-3.5">
+      <div class="rounded-lg border border-line bg-surface p-5 sm:p-[22px]">
+        <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Roll calls by chamber</h2>
+        <div class="mt-4 space-y-3">
+          {[{ label: "House", v: house }, { label: "Senate", v: senate }].map((r) => (
+            <div>
+              <div class="flex items-baseline justify-between text-[12px] text-neutral-600">
+                <span>{r.label}</span><span class="tabular-nums text-neutral-500">{n(r.v)}</span>
+              </div>
+              <div class="mt-1 h-3 rounded-full" style={`width:${(r.v / Math.max(house, senate)) * 100}%;min-width:2px;background:#5d5294`}></div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- The one saturated surface on the page (Nocturne: presence, once per page). -->
+      <a href="/states" class="block rounded-lg border border-[rgba(233,233,237,0.12)] p-5 transition-shadow hover:shadow-md sm:p-[22px]" style="background:#262a60">
+        <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-400">States</h2>
+        <p class="mt-2 text-[15px] text-text">
+          {ms.session_name} of the Mississippi Legislature — {n(ms.counts.members)}
+          legislators, {n(ms.counts.rollcalls)} roll calls, {n(ms.counts.member_votes)} votes.
+        </p>
+        <p class="mt-3 text-[12px] text-accent-300">Browse states →</p>
+      </a>
+    </div>
+  </section>
 </Layout>

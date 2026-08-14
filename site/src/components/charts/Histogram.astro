@@ -1,0 +1,81 @@
+---
+// The attendance distribution (server-rendered, no JS). 20 equal bins of `step`
+// points across [min,max) plus a terminal bin for exactly `max` — 21 bars total.
+// Each bar is filled with the colour of the grade band its MIDPOINT falls in
+// (per the design: bar colour follows the bin, not each member's own grade).
+//
+// AXIS TICKS are index-based, matching the bars: a tick for value v sits at
+// ((v-min)/step)/barCount * 100% — NOT a linear min..max position. The bars are
+// equal-width (one per bin), so a linear tick would drift off its bar; getting this
+// wrong put 90% and 95% under the wrong bars in the prototype. Do not reuse this
+// tick math for a LINEAR strip (e.g. the member-profile dot strip) — that one is
+// genuinely linear.
+
+interface Band { grade: string; min: number; color: string } // sorted desc by min
+
+interface Props {
+  values: number[]; // graded attendance percentages
+  bands: Band[];
+  min?: number;
+  max?: number;
+  step?: number;
+  ticks?: number[];
+  maxHeight?: number;
+}
+const {
+  values, bands, min = 50, max = 100, step = 2.5,
+  ticks = [50, 60, 70, 80, 90, 95, 100], maxHeight = 150,
+} = Astro.props as Props;
+
+const regular = Math.round((max - min) / step); // 20
+const barCount = regular + 1; // + terminal bin for exactly `max`
+
+// first band (desc by min) whose min <= x
+const bandFor = (x: number): Band => bands.find((b) => x >= b.min) ?? bands[bands.length - 1];
+
+interface Bin { lo: number; hi: number; count: number; band: Band; terminal: boolean }
+const bins: Bin[] = [];
+for (let i = 0; i < regular; i++) {
+  const lo = min + step * i;
+  const hi = min + step * (i + 1);
+  const mid = lo + step / 2;
+  bins.push({ lo, hi, count: 0, band: bandFor(mid), terminal: false });
+}
+bins.push({ lo: max, hi: max, count: 0, band: bandFor(max), terminal: true });
+
+for (const v of values) {
+  if (v >= max) { bins[bins.length - 1].count++; continue; }
+  if (v < min) { bins[0].count++; continue; } // clamp below-min into the first bin
+  const idx = Math.min(regular - 1, Math.floor((v - min) / step));
+  bins[idx].count++;
+}
+const peak = Math.max(1, ...bins.map((b) => b.count));
+const fmtPct = (x: number) => (Number.isInteger(x) ? `${x}` : x.toFixed(1));
+const pos = (v: number) => (((v - min) / step) / barCount) * 100;
+---
+<div>
+  <!-- bars -->
+  <div class="flex items-end gap-1" style={`height:${maxHeight + 18}px`}>
+    {bins.map((b) => (
+      <div class="flex flex-1 flex-col items-center justify-end gap-1">
+        <span class="text-[11px] tabular-nums text-neutral-500 leading-none">{b.count || ""}</span>
+        <div
+          class="w-full"
+          style={`height:${(b.count / peak) * maxHeight}px;min-height:${b.count ? 2 : 0}px;background:${b.band.color};opacity:0.9;border-radius:3px 3px 0 0`}
+          title={b.terminal
+            ? `${fmtPct(max)}% · ${b.count.toLocaleString("en-US")} members · band ${b.band.grade}`
+            : `${fmtPct(b.lo)}–${fmtPct(b.hi)}% · ${b.count.toLocaleString("en-US")} members · band ${b.band.grade}`}
+        ></div>
+      </div>
+    ))}
+  </div>
+  <!-- axis: ticks positioned with the SAME index math as the bars -->
+  <div class="relative mt-1.5 h-4 border-t border-line">
+    {ticks.map((v, i) => (
+      <span
+        class="absolute top-1.5 text-[10px] tabular-nums text-neutral-500"
+        style={`left:${pos(v)}%;transform:${i === 0 ? "translateX(0)" : i === ticks.length - 1 ? "translateX(-100%)" : "translateX(-50%)"}`}
+      >{fmtPct(v)}</span>
+    ))}
+  </div>
+</div>

@@ -292,6 +292,46 @@ class MsMetricsFile(_Strict):
     members: dict[str, MsMemberMetrics]
 
 
+# --- Rankings (V2-2) ------------------------------------------------------
+# Pure per-metric rank/percentile/mean context, computed from data/metrics.json
+# alone (recomputable — the verify-recompute contract). No thresholds, no labels,
+# no composite: a rank is the ordinal position by value, not a judgment (best/
+# worst framing is V2-4). `value` is int for count metrics, float for percentage
+# metrics; the union preserves the source type so a count never renders as "45.0".
+
+
+class RankingEntry(_Strict):
+    value: int | float  # the metric's scalar value for this member (count or pct)
+    rank: int  # standard competition rank within chamber (1 = highest value; ties
+    # share a rank and the next rank skips, e.g. values 100,90,90,80 → ranks 1,2,2,4)
+    percentile: float  # % of the chamber's ranked set with a STRICTLY LOWER value
+
+
+class ChamberRanking(_Strict):
+    covered: int  # members ranked in this chamber (non-null value; delegates per D66)
+    mean: float | None  # mean value over the ranked set (null when covered == 0)
+    median: float | None
+    party_means: dict[str, float]  # party code (from the member's current party) ->
+    # mean value within the chamber; only parties with >= 1 ranked member appear
+    excluded_delegates: list[str]  # bioguides excluded from THIS ranking by D66,
+    # sorted (non-voting delegates on the two vote metrics); [] when none excluded
+    members: dict[str, RankingEntry]  # bioguide -> entry, ranked members only
+
+
+class RankingsFile(_Strict):
+    """data/rankings/{metric}.json (V2-2). Per-chamber rank/percentile/mean context
+    for one Tier-2 metric, recomputed from the committed data/metrics.json. No
+    wall-clock (determinism)."""
+
+    metric: str  # the Tier-2 metric key this ranks (== a data/metrics.json key)
+    value_field: str  # which scalar field of that metric is ranked ("pct"/"count")
+    label: str  # human label (== METRIC_LABELS[metric]) for the methods page
+    methodology: str  # the shared ranking-method text, rendered on /methods
+    ranks_delegates: bool  # D66: True for the three bill metrics, False for the two
+    # vote metrics (delegates cannot vote on final passage — not comparable)
+    chambers: dict[str, ChamberRanking]  # "house" / "senate"
+
+
 # --- Statements & candidates ----------------------------------------------
 
 

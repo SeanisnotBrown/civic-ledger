@@ -26,6 +26,10 @@ longer true.) What this script checks, over 100% of roll calls:
 4. **Party-total consistency** — for every position roll, the per-party breakdown
    `party_totals` sums (over parties) to the chamber `totals` in each category, and
    `party_totals` is present exactly on position rolls (None on `non_position`).
+5. **Rankings recompute** (V2-2) — every data/rankings/{metric}.json re-derives
+   byte-for-byte from the committed data/metrics.json + data/members alone. A
+   ranking that cannot be recomputed from published data may not ship (§7 V2-2
+   "on failure"). No-op until data/rankings/ exists.
 
 Exit 0 = every invariant holds for every roll; nonzero lists the failures. It is
 also exercised as a pytest test so §8's "recompute-and-match script as a test" holds.
@@ -142,12 +146,40 @@ def check_dataset() -> list[str]:
     return failures
 
 
+def check_rankings() -> list[str]:
+    """(5) Rankings recompute exactly from published data. Each committed
+    data/rankings/{metric}.json must equal a fresh `rankings.build_all()` (which
+    reads only data/metrics.json + data/members) byte-for-byte, and the set of
+    ranking files must be exactly the ranked metrics — no stale file, no missing
+    one. No-op until data/rankings/ exists (pre-V2-2)."""
+    from ingest import rankings
+    from ingest.export import _dumps
+
+    rankings_dir = repo_root() / "data" / "rankings"
+    if not rankings_dir.exists() or not any(rankings_dir.glob("*.json")):
+        return []
+    failures: list[str] = []
+    recomputed = rankings.build_all()  # reads committed metrics.json + members
+    committed = {p.stem for p in rankings_dir.glob("*.json")}
+    if committed != set(recomputed):
+        failures.append(
+            f"rankings — file set {sorted(committed)} != ranked metrics {sorted(recomputed)}"
+        )
+    for metric, rf in recomputed.items():
+        path = rankings_dir / f"{metric}.json"
+        if not path.exists():
+            continue  # reported above as a set mismatch
+        if path.read_text(encoding="utf-8") != _dumps(rf.model_dump()):
+            failures.append(f"rankings — {metric}.json does not match a fresh recompute")
+    return failures
+
+
 def main(argv: list[str] | None = None) -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not votes_dir.exists() or not any(votes_dir.glob("*.json")):
         print("verify-recompute: no roll-call data yet (no-op).")
         return 0
-    failures = check_dataset()
+    failures = check_dataset() + check_rankings()
     n_rolls = sum(1 for _ in votes_dir.glob("*.json"))
     if failures:
         print(f"VERIFY-RECOMPUTE FAILED — {len(failures)} mismatch(es):")
@@ -156,9 +188,12 @@ def main(argv: list[str] | None = None) -> int:
         if len(failures) > 40:
             print(f"  ... and {len(failures) - 40} more")
         return 1
+    n_rankings = sum(1 for _ in (repo_root() / "data" / "rankings").glob("*.json")) \
+        if (repo_root() / "data" / "rankings").exists() else 0
     print(
         f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "
-        f"on {n_rolls} roll calls."
+        f"on {n_rolls} roll calls"
+        + (f"; {n_rankings} ranking files recompute exactly." if n_rankings else ".")
     )
     return 0
 

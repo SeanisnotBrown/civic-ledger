@@ -28,4 +28,29 @@ if (missingSections.length || orphanSections.length) {
   if (orphanSections.length) console.error(`  sections with no metric: ${orphanSections.join(", ")}`);
   process.exit(1);
 }
-console.log(`metrics-sections check OK — ${metricKeys.size} metrics, each with exactly one section.`);
+
+// V2-2: the same set-equality for rankings. Every data/rankings/{metric}.json must
+// have exactly one data-ranking section on /methods, and no orphan section. This is
+// how the ranking families' methodology can never ship without being disclosed.
+const RANKINGS_DIR = path.join(DATA, "rankings");
+const rankingKeys = new Set(
+  fs.existsSync(RANKINGS_DIR)
+    ? fs.readdirSync(RANKINGS_DIR).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, ""))
+    : [],
+);
+const rankingSections = new Set(
+  [...html.matchAll(/data-ranking="([^"]+)"/g)].map((m) => m[1]),
+);
+const missingRankings = [...rankingKeys].filter((k) => !rankingSections.has(k));
+const orphanRankings = [...rankingSections].filter((k) => !rankingKeys.has(k));
+if (missingRankings.length || orphanRankings.length) {
+  console.error("metrics-sections check FAILED — ranking page/data set mismatch:");
+  if (missingRankings.length) console.error(`  rankings with no section: ${missingRankings.join(", ")}`);
+  if (orphanRankings.length) console.error(`  sections with no ranking data: ${orphanRankings.join(", ")}`);
+  process.exit(1);
+}
+
+console.log(
+  `metrics-sections check OK — ${metricKeys.size} metrics and ${rankingKeys.size} rankings, ` +
+    `each with exactly one section.`,
+);

@@ -3,32 +3,37 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, end of the **V2-1 — federal data expansion**
-session. **V2-1 ACCEPTANCE MET — the increment is COMPLETE.** The `ingest
-legislation` backfill finished (637/637 members), `data/metrics.json` regenerated
-over the full roster, and every gate is green: `uv run checks` (6/6), `uv run
-verify-recompute` (**exact** reproduction + reciprocity on 3,463 rolls — the D62
-"check my math" invariant now holds at full scale, not as a subset bound), `uv
-run pytest` (282 passed; the one git-history test `test_metrics_history_
-reproduces_head` reproduces HEAD only *after* the metrics commit lands, by
-construction — green once committed), `uv run export`, `uv run ruff check ingest
-tests`, `npm run build` (**13,082 pages**), `test:file-count` (13,086 files,
-6,914 under the 20,000 Workers-Free limit), `test:links` (7,104 pages).
-**Unplanned finding, resolved this session (D64):** the backfill's exit gate
-flagged 10 members "no sponsored bill in congress {c}" — all verified GENUINE
-zeros (4 served only days of the congress → VP/State/NSA/resignation, 4 late
-special-election seatings, 2 low-output former leaders confirmed via a forced
-live-API re-fetch), NOT truncations. The unsound `_sponsored_gaps` heuristic was
-replaced with a fetch-level `TruncatedFetchError` guard + a zero-regression check
-(catches strictly more, false-positives on none). **This session's commits (on
-`master`, NOT pushed — push is owner-gated, private repo):** `699f859b` (D64
-truncation guard + tests), `3851e0eb` (pre-existing ruff I001/E501 hygiene in
-house/senate_votes), and the V2-1 data commit (legislation backfill + metrics
-regen + D65 repo-size ADR — `.git` 27→48 MB, healthy, no LFS/escalation).
-**Still owner-gated / open (unchanged from checkpoint):** P4 build.db (SD-29 vs
-measured "flat files are fine" — D63, do NOT build unilaterally); `git push` of
-this session's commits. **Next actionable:** V2-2 (ranking & percentile layer) —
-V2-1 was its blocking gate and is now clear. Previous: 2026-08-13, end of the **V2-0 —
+**Last updated:** 2026-08-13, mid-session on **V2-2 — ranking & percentile
+layer**. **V2-1 is COMPLETE and PUSHED** (`df2ab3b3..09d051a4`; CI fully green
+incl. Lighthouse; live site rebuilt with all 637 members). **V2-2 FEATURE is
+built and green; the §8 coverage tooling is the one remaining V2-2 task.**
+- **V2-2 feature (this session):** `ingest/rankings.py` → `data/rankings/
+  {metric}.json` (the 5 scalar Tier-2 metrics: attendance/party_unity/
+  enacted_rate as pct, sponsored/cosponsored as count), ranked WITHIN chamber,
+  standard competition ranking, percentile = % of chamber strictly below, chamber
+  + party means (R-vs-D and R-vs-R) rendered on `/methods`. Recomputable from
+  `data/metrics.json` alone — `verify-recompute` gains invariant 5 (byte-match).
+  `check-metrics-sections.mjs` extended to the ranking sections; `nightly.yml`
+  regenerates rankings after metrics. **Owner decision D66:** non-voting delegates
+  are ranked on the 3 bill metrics only, excluded from attendance/party-unity
+  (barred from final passage — not comparable), exclusion published on `/methods`.
+  Design in **D66/D67**; `data-contract.md` documents `data/rankings/`.
+  **Green:** `uv run checks` (6/6), `uv run pytest` (292 passed), `uv run
+  verify-recompute` (rankings recompute + 3,463 rolls), `uv run export` (9
+  schemas), ruff, `npm run build` (13,082 pages), `test:metrics-sections` (8
+  metrics + 5 rankings), `astro check` (0).
+- **REMAINING for V2-2 (§8 coverage tooling):** pytest-cov 100% branch on
+  `ingest/metrics.py` + `ingest/rankings.py` (+ `classify.py`), enforced as a CI
+  gate. NOT built yet — the closing task before V2-2 is declared complete. (If
+  100% proves unreachable on a module, list the branches and ASK the owner — do
+  not silently lower it, §8.)
+- **Doctrine (§6.7):** `methods.astro:26` ("nothing is summarized, characterized,
+  or scored") is KEPT — a rank is a position, not a score; it flips at V2-4 with
+  grades, not now.
+- **Still owner-gated / open:** P4 build.db (SD-29 vs measured "flat files fine" —
+  D63, do NOT build unilaterally). V2-1's D64 (legislation truncation guard —
+  10 verified genuine zeros) is in git history / decisions.md.
+Previous: 2026-08-13, end of the **V2-0 —
 docs-truth pass** session (plus a same-session follow-up, D59: the repo was
 found private, the owner chose to keep it that way, so `/privacy` +
 `/corrections` + `docs/correction-process.md` were rewritten to stop claiming

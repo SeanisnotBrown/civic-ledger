@@ -1224,3 +1224,59 @@ the commit, by construction) · `uv run export` · `uv run ruff check ingest tes
 · `npm run build` (13,082 pages) · `npm run test:file-count` (13,086 files, 6,914
 under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages cite
 `source_url`). Scale: 637 members, 966,261 member-vote rows, 3,463 roll calls.
+
+---
+
+## V2-2 — ranking & percentile layer (2026-08-13)
+
+- **D66 (2026-08-13) — non-voting delegates are ranked ONLY on the bill metrics;
+  OWNER-RATIFIED.** V2-2 introduces comparative rankings. The non-voting House
+  delegates (DC, PR, GU, VI, AS, MP — 8 delegate records across the 118th-119th,
+  a couple of seats changing hands mid-period) are barred from voting on final
+  passage, so their attendance and party-unity figures are measured over
+  a much smaller, different set of rolls (85–623 vs a full member's ~1,862) and are
+  not comparable — but they sponsor and cosponsor bills fully (Delegate Norton of
+  DC ranks #2 in the House for bills sponsored). Put to the owner in plain language
+  (§0.1 — this is the exact delegate question §0.1/§7 V2-1 flags as must-ask, not
+  builder-resolvable), with three options (bill-metrics-only / out-of-all /
+  in-everything). **Owner chose bill-metrics-only.** Implemented in
+  `rankings.VOTE_METRICS = {attendance, party_unity}`: delegates are excluded from
+  those two rankings and listed per-chamber in `excluded_delegates`; they are
+  ranked on sponsored/cosponsored/enacted_rate. The exclusion is never silent —
+  `/methods` states it and the reason (§6.5). Parallels D61 (delegate coverage
+  handling, owner-ratified); delegates keep full record pages and stat tiles
+  regardless — this affects only the comparison lists.
+- **D67 (2026-08-13) — rankings design (mechanical, non-evaluative).** `ingest/
+  rankings.py` → `data/rankings/{metric}.json` (one per ranked metric), a new
+  `ingest rankings` step (pipeline: after `ingest metrics`, before the diff-gate —
+  same D40 "derived artifact reaches the gate" rule; wired into `nightly.yml`).
+  Choices, each a builder call under §0.1(d), no threshold or label (that is V2-4
+  under §0.8):
+  - **Rankable set:** the 5 SCALAR Tier-2 metrics — attendance/party_unity/
+    enacted_rate (`pct`) and sponsored/cosponsored (`count`). The other three
+    (cosponsor_vote_gap, named_measure_mismatch, absence_context) are lists of
+    records, not a single comparable number, and are not ranked.
+  - **Grouping:** within chamber (House/Senate separate — different calendars and
+    vote counts). Chamber + party come from the member's CURRENT record; a
+    chamber-switcher ranks in the chamber they now sit in. Metrics use per-roll
+    party; rankings group by current party — stated on `/methods`.
+  - **Ties:** standard competition ranking (§5 pre-decided) — tied members share a
+    rank, the next rank skips.
+  - **Percentile:** the % of the chamber's ranked set with a STRICTLY LOWER value
+    (so the count behind each percentile is visible, §0.4.2(d)); defined in the
+    rendered methods text.
+  - **Null values** (attendance pct before a first vote; enacted_rate when nothing
+    was sponsored): the member is not ranked on that metric — never at a fabricated 0.
+  - **`value` type:** int for counts, float for percentages (`int | float`, smart
+    union preserves the source type so a count never renders "45.0").
+  - **Recompute contract:** rankings read ONLY committed `data/metrics.json` +
+    `data/members`, so a third party re-derives them; `verify-recompute` invariant
+    5 re-runs `build_all()` and byte-compares every committed file (a ranking that
+    cannot be recomputed may not ship — §7 V2-2 "on failure").
+  - **Doctrine (§6.7):** rank/percentile/mean of published facts is a factual
+    position, not a score/label; `methods.astro:26` ("nothing is summarized,
+    characterized, or scored") is KEPT per §6.7 (it flips at V2-4 with grades), and
+    the ranking copy uses no best/worst/grade wording. Party means (R-vs-D and
+    R-vs-R — every party under the same standard, §0.4.2(c)) are rendered on
+    `/methods`. `check-metrics-sections.mjs` extended: `data-ranking` sections set
+    == ranked-metric set (a ranking can't ship without its disclosed methodology).

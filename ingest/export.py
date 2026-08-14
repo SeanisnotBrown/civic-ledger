@@ -34,6 +34,7 @@ from ingest.models import (
     MemberVote,
     MetricsFile,
     MsMetricsFile,
+    RankingsFile,
     RollCall,
     Statement,
 )
@@ -48,6 +49,7 @@ STATEMENTS_DIR = DATA_DIR / "statements"
 SCHEMA_DIR = DATA_DIR / "schema"
 MANIFEST_PATH = DATA_DIR / "manifest.json"
 METRICS_PATH = DATA_DIR / "metrics.json"
+RANKINGS_DIR = DATA_DIR / "rankings"
 
 # State-jurisdiction partition (INC-12/D51). MS data lives under data/state/ms/ so the
 # federal checks — which glob data/{members,votes,bills}/*.json NON-recursively — never
@@ -164,6 +166,20 @@ def export_metrics(metrics: MetricsFile, path: Path = METRICS_PATH) -> Path:
     return path
 
 
+def export_rankings(
+    rankings: dict[str, RankingsFile], out_dir: Path = RANKINGS_DIR
+) -> list[Path]:
+    """Write data/rankings/{metric}.json for each ranked metric (V2-2). Deterministic
+    (`_dumps`, no wall-clock) and recomputable from data/metrics.json alone."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    for metric, rf in rankings.items():
+        path = out_dir / f"{metric}.json"
+        path.write_text(_dumps(rf.model_dump()), encoding="utf-8", newline="\n")
+        written.append(path)
+    return sorted(written)
+
+
 def export_statement(statement: Statement, out_dir: Path = STATEMENTS_DIR) -> Path:
     """Write one deterministic JSON file per curated statement:
     data/statements/{id}.json. Statements are OWNER-curated (H8) via the Flask
@@ -186,6 +202,7 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("legislation", MemberLegislation),
     ("metrics", MetricsFile),
     ("ms-metrics", MsMetricsFile),
+    ("rankings", RankingsFile),
     ("statement", Statement),
 )
 

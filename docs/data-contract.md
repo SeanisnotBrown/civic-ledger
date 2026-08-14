@@ -158,6 +158,36 @@ wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
   = H8), never guessed. `cosponsor_vote_gap` is a factual list to be rendered
   only against its denominator, never as a headline (D38).
 
+## `data/rankings/{metric}.json` — per-metric rank/percentile/mean (V2-2)
+
+Schema: `data/schema/rankings.schema.json` (model `RankingsFile`), one file per
+ranked metric: `attendance`, `party_unity`, `sponsored`, `cosponsored`,
+`enacted_rate` (the five SCALAR Tier-2 metrics; the three list-type metrics are
+not ranked). Deterministic, no wall-clock. **Recomputable from published data**:
+`rankings.build_all()` reads ONLY `data/metrics.json` + `data/members` and
+reproduces every file byte-for-byte — `verify-recompute` invariant 5 enforces it
+(a ranking that cannot be re-derived may not ship). No thresholds, no labels: a
+rank is a position, not a score (D67; evaluative grades are V2-4/`scoring.py`).
+
+- `metric` / `value_field`: the ranked Tier-2 key and which scalar of it is ranked
+  (`pct` for the three rate metrics, `count` for sponsored/cosponsored).
+- `label`: `== METRIC_LABELS[metric]`. `methodology`: the shared ranking-method
+  text, rendered on `/methods` (one `data-ranking` section per file, asserted equal
+  to the file set by `check-metrics-sections.mjs`).
+- `ranks_delegates`: `false` for `attendance`/`party_unity`, `true` for the three
+  bill metrics (**D66**, owner-ratified). Non-voting delegates cannot vote on final
+  passage, so their attendance/party-unity denominators are not comparable; they
+  are held out of those two rankings (and listed in `excluded_delegates`) but ranked
+  on the bill metrics.
+- `chambers`: `{ house, senate }` — members are ranked WITHIN chamber. Each
+  `ChamberRanking` carries `covered` (N ranked), `mean`/`median` (null when
+  `covered == 0`), `party_means` (`{ party: mean }`, grouped by the member's current
+  party; R-vs-D and R-vs-R both present, §0.4.2(c)), `excluded_delegates` (sorted
+  bioguides held out by D66; `[]` when none), and `members` (`{ bioguide: { value,
+  rank, percentile } }`). Rank is standard **competition** ranking (ties share a
+  rank; the next rank skips). Percentile is the % of the chamber's ranked set with a
+  strictly lower value. A member with a `null` metric value is not ranked on it.
+
 ## `data/statements/{id}.json` — one per curated statement (INC-11)
 
 Schema: `data/schema/statement.schema.json` (model `Statement`). OWNER-curated

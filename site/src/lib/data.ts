@@ -59,6 +59,23 @@ export interface Metrics {
   methodology: Record<string, MetricMethodology>;
   members: Record<string, Record<string, unknown>>;
 }
+// V2-2 rankings (data/rankings/{metric}.json). Pure per-chamber rank/percentile/
+// mean context; no label/score (that is V2-4). `value` is a count (int) or a
+// percentage (float) depending on the metric.
+export interface RankingEntry { value: number; rank: number; percentile: number; }
+export interface ChamberRanking {
+  covered: number;
+  mean: number | null;
+  median: number | null;
+  party_means: Record<string, number>;
+  excluded_delegates: string[];
+  members: Record<string, RankingEntry>;
+}
+export interface RankingsFile {
+  metric: string; value_field: string; label: string; methodology: string;
+  ranks_delegates: boolean;
+  chambers: Record<string, ChamberRanking>;
+}
 
 // --- Low-level readers (memoized at module scope) -------------------------
 
@@ -155,6 +172,20 @@ export function getMetrics(): Metrics {
   if (_metrics) return _metrics;
   _metrics = readJson<Metrics>("metrics.json");
   return _metrics;
+}
+
+// V2-2: every data/rankings/{metric}.json, keyed by metric. Empty before V2-2's
+// `ingest rankings` has run (readDir returns [] on a missing directory).
+let _rankings: Record<string, RankingsFile> | null = null;
+export function getRankings(): Record<string, RankingsFile> {
+  if (_rankings) return _rankings;
+  const out: Record<string, RankingsFile> = {};
+  for (const f of readDir("rankings")) {
+    const rf = readJson<RankingsFile>(`rankings/${f}`);
+    out[rf.metric] = rf;
+  }
+  _rankings = out;
+  return _rankings;
 }
 
 export interface Statement {

@@ -105,6 +105,11 @@ jobs:
           #     truly-quiet night regenerates metrics.json byte-identically (D33).
           uv run ingest metrics
 
+          # 3c) Rankings (V2-2) are derived from metrics.json — regenerate right after
+          #     metrics, still before the diff-gate, so a change that moves a rank
+          #     (any member's metric changing) reaches the gate and gets committed.
+          uv run ingest rankings
+
           # 4) Real change? (manifest isn't regenerated yet, so it can't false-trigger.)
           if [ -z "$(git status --porcelain data/)" ]; then
             echo "No data change tonight — running checks for upstream drift, then exiting."

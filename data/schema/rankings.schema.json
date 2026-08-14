@@ -1,0 +1,138 @@
+{
+  "$defs": {
+    "ChamberRanking": {
+      "additionalProperties": false,
+      "properties": {
+        "covered": {
+          "title": "Covered",
+          "type": "integer"
+        },
+        "excluded_delegates": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Excluded Delegates",
+          "type": "array"
+        },
+        "mean": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Mean"
+        },
+        "median": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Median"
+        },
+        "members": {
+          "additionalProperties": {
+            "$ref": "#/$defs/RankingEntry"
+          },
+          "title": "Members",
+          "type": "object"
+        },
+        "party_means": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Party Means",
+          "type": "object"
+        }
+      },
+      "required": [
+        "covered",
+        "mean",
+        "median",
+        "party_means",
+        "excluded_delegates",
+        "members"
+      ],
+      "title": "ChamberRanking",
+      "type": "object"
+    },
+    "RankingEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "percentile": {
+          "title": "Percentile",
+          "type": "number"
+        },
+        "rank": {
+          "title": "Rank",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "rank",
+        "percentile"
+      ],
+      "title": "RankingEntry",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "data/rankings/{metric}.json (V2-2). Per-chamber rank/percentile/mean context\nfor one Tier-2 metric, recomputed from the committed data/metrics.json. No\nwall-clock (determinism).",
+  "properties": {
+    "chambers": {
+      "additionalProperties": {
+        "$ref": "#/$defs/ChamberRanking"
+      },
+      "title": "Chambers",
+      "type": "object"
+    },
+    "label": {
+      "title": "Label",
+      "type": "string"
+    },
+    "methodology": {
+      "title": "Methodology",
+      "type": "string"
+    },
+    "metric": {
+      "title": "Metric",
+      "type": "string"
+    },
+    "ranks_delegates": {
+      "title": "Ranks Delegates",
+      "type": "boolean"
+    },
+    "value_field": {
+      "title": "Value Field",
+      "type": "string"
+    }
+  },
+  "required": [
+    "metric",
+    "value_field",
+    "label",
+    "methodology",
+    "ranks_delegates",
+    "chambers"
+  ],
+  "title": "RankingsFile",
+  "type": "object"
+}

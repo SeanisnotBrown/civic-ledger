@@ -1195,3 +1195,32 @@ recomputability — retire with a dated D59+ ADR when V2-1 ships). This file's
   functions' docstrings. Ingest re-run after the fix: exit 0, 637/637, no FAIL.
   Metrics are unaffected (the `sponsored`/`cosponsored` metrics count the whole
   118–119 record, so e.g. Rubio's tile reads 270, never a per-congress 0).
+- **D65 (2026-08-13) — V2-1 repo-size observation (spec V2-1 task 9): `.git`
+  growth is healthy; no LFS/split, no owner escalation.** Measured at V2-1
+  completion, this machine: the committed dataset in the working tree is
+  ~324 MB (`data/legislation` 134 MB — the V2-1 addition, `data/votes` 108 MB,
+  `data/absences` 49 MB, `data/state` 26 MB, `bills` 4.8 MB, `members` 2.3 MB).
+  JSON compresses well in git: staging the 631 new legislation files +
+  regenerated `metrics.json`/`manifest.json` grew `.git` **27 MB → 48 MB**, i.e.
+  the ~134 MB legislation add is ~21 MB packed (≈6.4:1). The raw API cache
+  (`data/raw`, 699 MB) stays gitignored and never enters history. The spec's
+  escalation trigger is `.git` growth "> a few hundred MB"; at 48 MB total we are
+  an order of magnitude under it, so the flat-file-in-repo contract (SD-29's
+  "inspectable JSON is the product's credibility") holds unchanged — no Git LFS,
+  no repo split, nothing to bring to the owner on size. Nightly diffs stay small
+  (incremental ingest + the quiet-night diff-gate touch few files). Re-measure at
+  each state added under V2-10; revisit only if a single commit or the pack
+  crosses the few-hundred-MB line.
+
+---
+
+## V2-1 acceptance (2026-08-13) — MET
+
+`uv run checks` (6/6) · `uv run verify-recompute` (exact reproduction +
+reciprocity on 3,463 rolls — the D62 "check my math" invariant at full scale) ·
+`uv run pytest` (all green once the regenerated `metrics.json` is committed — the
+git-history test `test_metrics_history_reproduces_head` reproduces HEAD only after
+the commit, by construction) · `uv run export` · `uv run ruff check ingest tests`
+· `npm run build` (13,082 pages) · `npm run test:file-count` (13,086 files, 6,914
+under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages cite
+`source_url`). Scale: 637 members, 966,261 member-vote rows, 3,463 roll calls.

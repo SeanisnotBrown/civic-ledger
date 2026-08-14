@@ -3,14 +3,32 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, mid-session on **V2-1 — federal data expansion**
-(P1-P3 committed `2cedc532`; most of P5/P6 done + verified this checkpoint —
-`uv run checks` ALL PASSED, `verify-recompute` green, site/e2e/file-count green.
-**Still RED:** `uv run pytest` has 3 failures, all `test_metrics.py`, one root
-cause — `data/metrics.json` can't regenerate until the `ingest legislation`
-backfill finishes for all 637 members (long API-paced download, 384/637 at this
-checkpoint). See "V2-1 — Federal data expansion" below for the exact resume
-steps. Previous: 2026-08-13, end of the **V2-0 —
+**Last updated:** 2026-08-13, end of the **V2-1 — federal data expansion**
+session. **V2-1 ACCEPTANCE MET — the increment is COMPLETE.** The `ingest
+legislation` backfill finished (637/637 members), `data/metrics.json` regenerated
+over the full roster, and every gate is green: `uv run checks` (6/6), `uv run
+verify-recompute` (**exact** reproduction + reciprocity on 3,463 rolls — the D62
+"check my math" invariant now holds at full scale, not as a subset bound), `uv
+run pytest` (282 passed; the one git-history test `test_metrics_history_
+reproduces_head` reproduces HEAD only *after* the metrics commit lands, by
+construction — green once committed), `uv run export`, `uv run ruff check ingest
+tests`, `npm run build` (**13,082 pages**), `test:file-count` (13,086 files,
+6,914 under the 20,000 Workers-Free limit), `test:links` (7,104 pages).
+**Unplanned finding, resolved this session (D64):** the backfill's exit gate
+flagged 10 members "no sponsored bill in congress {c}" — all verified GENUINE
+zeros (4 served only days of the congress → VP/State/NSA/resignation, 4 late
+special-election seatings, 2 low-output former leaders confirmed via a forced
+live-API re-fetch), NOT truncations. The unsound `_sponsored_gaps` heuristic was
+replaced with a fetch-level `TruncatedFetchError` guard + a zero-regression check
+(catches strictly more, false-positives on none). **This session's commits (on
+`master`, NOT pushed — push is owner-gated, private repo):** `699f859b` (D64
+truncation guard + tests), `3851e0eb` (pre-existing ruff I001/E501 hygiene in
+house/senate_votes), and the V2-1 data commit (legislation backfill + metrics
+regen + D65 repo-size ADR — `.git` 27→48 MB, healthy, no LFS/escalation).
+**Still owner-gated / open (unchanged from checkpoint):** P4 build.db (SD-29 vs
+measured "flat files are fine" — D63, do NOT build unilaterally); `git push` of
+this session's commits. **Next actionable:** V2-2 (ranking & percentile layer) —
+V2-1 was its blocking gate and is now clear. Previous: 2026-08-13, end of the **V2-0 —
 docs-truth pass** session (plus a same-session follow-up, D59: the repo was
 found private, the owner chose to keep it that way, so `/privacy` +
 `/corrections` + `docs/correction-process.md` were rewritten to stop claiming
@@ -70,7 +88,7 @@ call — do not commit without asking.**
 
 ---
 
-## V2-1 — Federal data expansion (IN PROGRESS — P1-P3 + most of P5/P6 done; only the federal-metrics regen awaits a long download)
+## V2-1 — Federal data expansion (✅ COMPLETE — acceptance met 2026-08-13)
 
 **Goal (unchanged from spec):** positions persisted for every serving member of
 both chambers, 118th-119th; dataset fully recomputable; build scaled. Full
@@ -115,32 +133,50 @@ invisible to every check, reading green on a real gap).
   section + absence sharding path + member_votes scope). **`uv run checks`
   ALL PASSED; `uv run verify-recompute` green.**
 
-**REMAINING (the only things not green):**
-- **Federal metrics regen — BLOCKED on a long download.** `ingest legislation`
-  is backfilling sponsored/cosponsored bills for ~637 members from Congress.gov
-  (API-paced, ~20-28s/member, ~2-3h total; **384/637 at this checkpoint**,
-  resumable via cache — it was killed once and resumed cleanly). `metrics.py`'s
-  `_load()` hard-fails until every member has a `data/legislation/` record, so
-  **3 pytest tests stay red** (`test_metrics.py::{test_recompute_matches_committed_metrics_json,
-  test_metrics_carry_formula_identity, test_metrics_history_reproduces_head}`)
-  — all one root cause. **On resume / when legislation finishes:** run
-  `ingest legislation` (finishes the tail), then `ingest metrics` (regen
-  `data/metrics.json`), then `uv run pytest` → green, then commit.
-- **P4 — build.db (SD-29) — NOT built; flagged to owner as a decision (D63).**
-  The flat-file architecture holds at full scale (measured: ~30s ingest
-  re-parse, ~80s site build, all checks + verify-recompute green). SD-29 says
-  build it at V2-1; the underlying deferred decision (archived `inc-12-plan.md`)
-  framed adoption as trigger-based. This tension is the owner's call — do NOT
-  treat build.db as done, and do not build it unilaterally.
-- **Member-page rendering of the new stats:** D57/D58 render the Tier-2 stat
-  tiles for the 6 MS + MS-state members. At 637 federal members those tiles now
-  need the regenerated `data/metrics.json` to render for everyone — verify after
-  the metrics regen (the templates already read `getMetrics()`, so likely just
-  works once the data exists, but confirm on a non-MS member page).
+**DONE this session (V2-1 finish) — the last gates closed:**
+- **Federal legislation backfill COMPLETE — 637/637 members.** `ingest
+  legislation` finished the 53-member tail from Congress.gov (cache-resumable).
+  The exit gate flagged 10 members "no sponsored bill in congress {c}" — all
+  **verified GENUINE zeros, not truncations**, and the unsound check was fixed
+  (**D64**, see below). `data/metrics.json` regenerated over all 637 (the
+  `sponsored`/`cosponsored` metrics count the whole 118–119 record, so e.g.
+  Rubio reads 270, never a per-congress 0).
+- **D64 — legislation truncation guard replaced** (commit `699f859b`). The 10
+  flags were false positives of the `_sponsored_gaps` heuristic ("a served-
+  congress zero can only be a broken fetch" — false). Causes: 4 served only days
+  of the flagged congress (`S001197` Sasse 5d, `V000137` Vance 6d→VP, `R000595`
+  Rubio 17d→State, `W000823` Waltz 17d→NSA), 4 late special-election seatings
+  (`L000605`, `W000829`, `R000619`, `M001246`), 2 low-output former leaders
+  (`P000197` Pelosi, `H000874` Hoyer — each 2 sponsored in 118–119, both 118th,
+  **verified against the live API by a forced re-fetch**). Fix moves the Value-#1
+  guard to where it is sound: `congress_gov.member_legislation` raises
+  `TruncatedFetchError` on a premature-empty page (`offset < count`), and
+  `legislation._count_regressions` fails on any congress that had records last
+  run and now parses to zero. Catches a strict superset of the old heuristic,
+  false-positives on none. Re-run after fix: exit 0, 637/637, no FAIL.
+- **All acceptance gates GREEN** (working tree): `uv run checks` 6/6; `uv run
+  verify-recompute` **exact** on 3,463 rolls; `uv run pytest` 282 passed (the
+  git-history test flips green once the metrics commit lands — by construction);
+  `uv run export`; `uv run ruff check ingest tests` (also fixed a pre-existing
+  I001/E501 in house/senate_votes — commit `3851e0eb`); `npm run build` 13,082
+  pages; `test:file-count` 13,086 files (6,914 under limit); `test:links` 7,104
+  pages. Non-MS member page (`B001320`) renders the Tier-2 tiles with real values.
+- **D65 — repo-size observation (spec V2-1 task 9):** `.git` grew 27→48 MB
+  (134 MB legislation JSON packs to ~21 MB); `data/raw` (699 MB) stays gitignored.
+  Well under the "few-hundred-MB" escalation line — no LFS/split, nothing for the
+  owner on size.
 
-**Acceptance target:** `uv run checks` ✅ + `uv run verify-recompute` ✅ +
-`npm run build`/e2e/file-count ✅ already green; **`uv run pytest` green is the
-last gate**, waiting only on the metrics regen behind the legislation download.
+**Still open / owner-gated (unchanged):**
+- **P4 — build.db (SD-29) — NOT built; owner decision (D63).** Flat files hold
+  at full scale (all gates green). SD-29 says build it at V2-1; the archived
+  `inc-12-plan.md` framed adoption as trigger-based. Owner's call — do NOT build
+  unilaterally, do NOT treat as done.
+- **`git push`** of this session's three commits (`699f859b`, `3851e0eb`, + the
+  V2-1 data commit) — private repo, owner's call whether/when to push to origin.
+
+**Acceptance: MET.** `uv run checks` ✅ · `uv run verify-recompute` ✅ · `uv run
+pytest` ✅ (post-commit) · `npm run build`/file-count/links ✅. V2-1 is the
+blocking gate for V2-2/V2-5 — now clear.
 
 ---
 

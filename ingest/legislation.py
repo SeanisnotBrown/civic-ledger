@@ -13,25 +13,61 @@ See `LegItem` for why no live latest-action field is stored (quiet-night diff-ga
 from __future__ import annotations
 
 import html
+from collections import Counter
 
 from ingest.models import LegItem, MemberLegislation
-from ingest.sources.legislators import _term_overlaps
 
 
-def _sponsored_gaps(
-    mid: str, terms: list[dict], sponsored: list[LegItem], congresses: list[int]
+def _count_regressions(
+    mid: str,
+    prior_sponsored: Counter[int],
+    prior_cosponsored: Counter[int],
+    fresh_sponsored: Counter[int],
+    fresh_cosponsored: Counter[int],
+    congresses: list[int],
 ) -> list[str]:
-    """Sanity gaps (value #1): a member must have >= 1 sponsored bill in each covered
-    congress THEY SERVED (from `terms`). A served-congress zero is a truncated fetch;
-    a congress they didn't serve is legitimately empty and never checked (R-2 — a
-    member who joined after the 118th has no 118th bills, and must not false-fail).
-    Pure, so the churn relaxation is unit-testable without the fetch/export path."""
-    served = [c for c in congresses if any(_term_overlaps(t, c) for t in terms)]
-    return [
-        f"{mid}: no sponsored bill in congress {c} (truncated fetch?)"
-        for c in served
-        if not any(li.congress == c for li in sponsored)
-    ]
+    """Regression guard (value #1, D64): if the previously-committed record had >0
+    items for a congress and the fresh parse now has 0, that is a truncated/corrupt
+    refetch — bills do not un-sponsor. Fires ONLY on a real drop-to-zero, so it is
+    quiet on the unattended nightly path (a genuine served-congress zero — a member
+    who resigned days into the term, a late special-election seating, or a low-output
+    former leader — was zero last run too and never trips it). This complements the
+    fetch-level `TruncatedFetchError`, which catches an *empty* premature page; this
+    catches a *non-empty-but-corrupt* page whose items parse to zero in-window. Pure,
+    so it is unit-testable without the fetch/export path. On a first-ever ingest (no
+    prior record) both prior counters are empty and nothing fires.
+
+    (This replaces the pre-D64 `_sponsored_gaps` heuristic, which inferred "truncated
+    fetch" from any served-congress zero and so false-failed on ten legitimate 2026
+    cases — see D64 for the roster and the soundness argument.)"""
+    out: list[str] = []
+    for kind, prior, fresh in (
+        ("sponsored", prior_sponsored, fresh_sponsored),
+        ("cosponsored", prior_cosponsored, fresh_cosponsored),
+    ):
+        for c in congresses:
+            if prior.get(c, 0) > 0 and fresh.get(c, 0) == 0:
+                out.append(
+                    f"{mid}: {kind} count in congress {c} regressed "
+                    f"{prior[c]}→0 (truncated fetch?)"
+                )
+    return out
+
+
+def _prior_counts(path) -> tuple[Counter[int], Counter[int]]:
+    """(sponsored, cosponsored) per-congress counts from the previously-committed
+    export at `path`, or empty counters if it does not exist yet (first ingest).
+    The committed file is in export shape (LegItem dumps), so we count `congress`
+    directly rather than re-parsing raw API items."""
+    import json
+
+    if not path.exists():
+        return Counter(), Counter()
+    rec = json.loads(path.read_text(encoding="utf-8"))
+    return (
+        Counter(it["congress"] for it in rec.get("sponsored", [])),
+        Counter(it["congress"] for it in rec.get("cosponsored", [])),
+    )
 
 # Bill-type code -> congress.gov URL segment, for a human-checkable source_url.
 _URL_TYPE: dict[str, str] = {
@@ -89,20 +125,23 @@ def parse_items(raw: list[dict]) -> list[LegItem]:
 
 def run(argv: list[str] | None = None) -> int:
     """Fetch + export data/legislation/{member}.json for every covered member.
-    Idempotent (cached fetches). Fails if a member has no sponsored bill in a
-    covered congress THEY SERVED — an empty list for a served congress signals a
-    broken fetch, not reality (value #1: never publish a false zero). A congress a
-    member did not serve is legitimately empty and never checked (R-2: a member who
-    joined after the 118th has no 118th bills — don't false-fail on churn)."""
+    Idempotent (cached fetches). Two value-#1 truncation guards (D64): the fetch
+    raises `TruncatedFetchError` on a premature-empty page, and `_count_regressions`
+    fails the run if any congress that had records before now parses to zero (bills
+    do not un-sponsor). A genuine served-congress zero — a member who served only
+    days of a congress, or a low-output leader — is a true fact and does NOT fail."""
     import httpx
 
     from ingest import config
     from ingest.cache import RetryableHTTPError, repo_root
     from ingest.export import export_member_legislation
     from ingest.sources import congress_gov
+    from ingest.sources.congress_gov import TruncatedFetchError
 
-    fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
-    members_dir = repo_root() / "data" / "members"
+    fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError, TruncatedFetchError)
+    data_dir = repo_root() / "data"
+    members_dir = data_dir / "members"
+    leg_dir = data_dir / "legislation"
     import json
 
     members = {
@@ -124,8 +163,15 @@ def run(argv: list[str] | None = None) -> int:
         sponsored = parse_items(sponsored_raw)
         cosponsored = parse_items(cosponsored_raw)
 
-        # Sanity (value #1), churn-aware: served congresses only (see _sponsored_gaps).
-        failures.extend(_sponsored_gaps(mid, members[mid]["terms"], sponsored, config.CONGRESSES))
+        # Sanity (value #1): a previously-present congress must not drop to zero on a
+        # refetch (truncation). Read the prior committed record BEFORE overwriting it.
+        prior_sp, prior_co = _prior_counts(leg_dir / f"{mid}.json")
+        failures.extend(_count_regressions(
+            mid, prior_sp, prior_co,
+            Counter(li.congress for li in sponsored),
+            Counter(li.congress for li in cosponsored),
+            config.CONGRESSES,
+        ))
 
         rec = MemberLegislation(
             member_id=mid,

@@ -4,39 +4,44 @@ Offline: parse_items is pure; the paginator is driven by monkeypatched pages.
 
 from __future__ import annotations
 
+from collections import Counter
+
 import pytest
 
-from ingest.legislation import _sponsored_gaps, parse_items
-from ingest.models import LegItem
+from ingest.legislation import _count_regressions, parse_items
 
 CONGS = [118, 119]
-# 118th window is 2023-01-03..2025-01-03; 119th is 2025-01-03..2027-01-03.
-TERMS_BOTH = [{"start": "2023-01-03", "end": "2027-01-03", "chamber": "house"}]
-TERMS_119_ONLY = [{"start": "2025-01-03", "end": "2027-01-03", "chamber": "house"}]
 
 
-def _leg(congress: int, bill_id: str = "hr1-119") -> LegItem:
-    return LegItem(
-        bill_id=bill_id, congress=congress, title="A Bill",
-        introduced_date="2025-01-01", became_law=False,
-        source_url="https://api.congress.gov/v3/bill/x",
+# --- D64 zero-regression guard (replaces the pre-D64 _sponsored_gaps heuristic) ---
+def test_count_regressions_present_to_zero_flagged():
+    # 119th had 3 sponsored last run, now 0 → truncation (bills don't un-sponsor).
+    gaps = _count_regressions(
+        "X", Counter({118: 2, 119: 3}), Counter(), Counter({118: 2}), Counter(), CONGS
     )
+    assert len(gaps) == 1 and "sponsored" in gaps[0] and "congress 119" in gaps[0]
 
 
-def test_sponsored_gaps_new_member_zero_prior_congress_is_ok():
-    # R-2: terms begin in the 119th → the 118th is not served, so zero 118th bills is
-    # legitimate (not a truncated fetch) and must not fail.
-    assert _sponsored_gaps("N000001", TERMS_119_ONLY, [_leg(119)], CONGS) == []
+def test_count_regressions_genuine_zero_not_flagged():
+    # Pelosi/Hoyer-like: 0 sponsored in the 119th before AND after → a true zero, not
+    # a regression. Must NOT fail (this is exactly the pre-D64 false positive).
+    assert _count_regressions(
+        "P000197", Counter({118: 2}), Counter(), Counter({118: 2}), Counter(), CONGS
+    ) == []
 
 
-def test_sponsored_gaps_served_congress_zero_still_fails():
-    # Served both, but no 118th bill → truncated fetch, still flagged (guard intact).
-    gaps = _sponsored_gaps("E000235", TERMS_BOTH, [_leg(119)], CONGS)
-    assert len(gaps) == 1 and "congress 118" in gaps[0]
+def test_count_regressions_no_prior_baseline_ok():
+    # First-ever ingest: no prior record → empty baseline → nothing fires on a zero.
+    assert _count_regressions(
+        "N000001", Counter(), Counter(), Counter(), Counter(), CONGS
+    ) == []
 
 
-def test_sponsored_gaps_both_served_both_present_ok():
-    assert _sponsored_gaps("E000235", TERMS_BOTH, [_leg(118), _leg(119)], CONGS) == []
+def test_count_regressions_cosponsored_side_too():
+    gaps = _count_regressions(
+        "X", Counter(), Counter({119: 5}), Counter(), Counter(), CONGS
+    )
+    assert len(gaps) == 1 and "cosponsored" in gaps[0] and "congress 119" in gaps[0]
 
 
 def _item(bill_type, number, congress, action=None, title="A Bill", introduced="2025-01-01"):
@@ -109,3 +114,49 @@ def test_paginator_stops_on_first_empty_window_page(monkeypatch: pytest.MonkeyPa
     got = congress_gov.member_legislation("X", "sponsored-legislation", [118, 119])
     congs = sorted(it["congress"] for it in got)
     assert congs == [118, 118, 119]  # kept the page-1 118 item; dropped 117/116/115
+
+
+class _Resp:
+    def __init__(self, page): self._page = page
+    def json(self): return self._page
+
+
+def _patched(monkeypatch, pages_by_offset):
+    from ingest.sources import congress_gov
+
+    def fake_get(path, params, **kw):
+        return _Resp(pages_by_offset[int(params["offset"])])
+
+    monkeypatch.setattr(congress_gov, "_get", fake_get)
+    return congress_gov
+
+
+def test_member_legislation_raises_on_premature_empty_page(monkeypatch):
+    # D64: page 0 is full (count=600), page 1 comes back EMPTY while offset 250 < 600.
+    # That can only be a truncated/corrupt 200 — must raise, never publish a false 0.
+    cg = _patched(monkeypatch, {
+        0: {"sponsoredLegislation": [_item("s", "1", 119), _item("s", "2", 118)],
+            "pagination": {"count": 600}},
+        250: {"sponsoredLegislation": [], "pagination": {"count": 600}},
+    })
+    with pytest.raises(cg.TruncatedFetchError):
+        cg.member_legislation("X", "sponsored-legislation", [118, 119])
+
+
+def test_member_legislation_out_of_window_first_page_returns_empty(monkeypatch):
+    # A member whose newest bills are all pre-window (e.g. served days of the term):
+    # page 0 is non-empty but wholly out of window → clean stop, [] — NOT a truncation.
+    cg = _patched(monkeypatch, {
+        0: {"sponsoredLegislation": [_item("s", "9", 117), _item("s", "8", 116)],
+            "pagination": {"count": 400}},
+    })
+    assert cg.member_legislation("X", "sponsored-legislation", [118, 119]) == []
+
+
+def test_member_legislation_zero_lifetime_returns_empty(monkeypatch):
+    # count == 0 at offset 0: a member with no lifetime legislation — empty is real,
+    # offset(0) < count(0) is False, so it returns [] without raising.
+    cg = _patched(monkeypatch, {
+        0: {"sponsoredLegislation": [], "pagination": {"count": 0}},
+    })
+    assert cg.member_legislation("X", "sponsored-legislation", [118, 119]) == []

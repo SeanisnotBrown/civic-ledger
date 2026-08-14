@@ -21,6 +21,12 @@ BASE = "https://api.congress.gov/v3"
 SOURCE = "congress_gov"
 
 
+class TruncatedFetchError(Exception):
+    """A paginated fetch returned an empty page before reaching its official
+    `pagination.count` — a premature/corrupt 200 that would silently undercount
+    (value #1: never publish a false zero). Raised by `member_legislation` (D64)."""
+
+
 def _headers() -> dict[str, str]:
     # Header-only auth; the key never enters a URL, param, or cache key.
     return {"X-Api-Key": env.require("CONGRESS_API_KEY")}
@@ -158,19 +164,37 @@ def member_legislation(
     first out-of-window item: the ordering is by action/introduced date, not
     strictly by congress, so a boundary page can interleave a covered and an
     uncovered item; stopping on the first uncovered one would silently drop covered
-    tail items (an undercount — value #1). One page of slack removes that risk."""
+    tail items (an undercount — value #1). One page of slack removes that risk.
+
+    Truncation guard (D64): the loop breaks on `offset >= count` before it can page
+    past the end, so an *empty* page while `offset < count` is never legitimate — it
+    is a premature/corrupt 200 that would publish a false zero. We raise
+    `TruncatedFetchError` there rather than silently undercount. `count` is read once
+    from page 0 (a later corrupt page's own metadata is not trusted). Residual blind
+    spot (tripwire, not proof — §CS): a corrupt response returning `count: 0`/no
+    pagination at offset 0 is indistinguishable from a member with zero lifetime
+    items; the caller's zero-regression check (`legislation._count_regressions`) is
+    the complementary guard for that case on the nightly refetch path."""
     key = "sponsoredLegislation" if kind.startswith("sponsored") else "cosponsoredLegislation"
     covered = set(congresses)
     items: list[dict] = []
     offset = 0
+    count: int | None = None
     while True:
         page = _get(
             f"member/{bioguide}/{kind}",
             {"limit": "250", "offset": str(offset)},
             force=force,
         ).json()
+        if count is None:
+            count = int(page.get("pagination", {}).get("count", 0))
         batch = page.get(key) or []
         if not batch:
+            if offset < count:
+                raise TruncatedFetchError(
+                    f"{bioguide} {kind}: empty page at offset {offset} < count "
+                    f"{count} (truncated fetch — would publish a false zero)"
+                )
             break
         in_window = [it for it in batch if it.get("congress") in covered]
         items.extend(in_window)
@@ -179,7 +203,7 @@ def member_legislation(
         if not in_window:
             break
         offset += 250
-        if offset >= int(page.get("pagination", {}).get("count", 0)):
+        if offset >= count:
             break
     return items
 

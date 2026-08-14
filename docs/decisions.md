@@ -1156,3 +1156,42 @@ recomputability — retire with a dated D59+ ADR when V2-1 ships). This file's
   tension between SD-29 ("build at V2-1") and the measured "flat files are
   fine" is flagged for the owner rather than resolved unilaterally — do not
   treat build.db as done.
+- **D64 (2026-08-13) — legislation truncation guard moved from a result-level
+  heuristic to a fetch-level check + a zero-regression check (value #1).** The
+  full-roster legislation backfill (637/637) failed its exit gate on **10
+  members** flagged "no sponsored bill in congress {c} (truncated fetch?)" by
+  the pre-D64 `_sponsored_gaps` heuristic. All 10 were verified GENUINE zeros,
+  not truncations — the heuristic's premise ("a served-congress zero can only
+  be a broken fetch") is false. The roster and cause of each:
+  - **Served only days of the flagged congress** (a term technically overlaps,
+    but no one authors a bill in a week): `S001197` Sasse (5 days of the 118th,
+    resigned 2023-01-08), `V000137` Vance (6 days of the 119th → Vice
+    President), `R000595` Rubio (17 days of the 119th → Secretary of State),
+    `W000823` Waltz (17 days of the 119th → National Security Advisor).
+  - **Late special-election seatings** (seated near/after the congress's active
+    legislating): `L000605` Lee Carter & `W000829` Wied (~8 weeks at the end of
+    the 118th), `R000619` Rulli (~7 months of the 118th), `M001246` Mejia
+    (seated 2026-04-20, ~4 months into the 119th).
+  - **Full-term but genuinely low output** — verified against the LIVE API by a
+    forced (cache-busting) re-fetch: `P000197` Pelosi and `H000874` Hoyer each
+    sponsored exactly **2** bills in the whole 118–119 window, both in the
+    118th, zero in the 119th (former leadership sponsor almost nothing). This is
+    the case no mechanical served-days rule can catch, and it is precisely why
+    the guard must not infer truncation from a zero.
+  **Fix.** The real Value-#1 risk (a broken fetch publishing a false zero) is
+  now caught at its source. (1) `congress_gov.member_legislation` raises
+  `TruncatedFetchError` on an *empty* page returned while `offset < count`
+  (the paginator breaks on `offset >= count` before it can page past the end,
+  so an empty page mid-stream is never legitimate; `count` is read once from
+  page 0). (2) `legislation._count_regressions` fails the run if any congress
+  that had records in the previously-committed export now parses to zero — bills
+  do not un-sponsor, so a drop-to-zero on a refetch is a corrupt-but-non-empty
+  page the fetch guard can't see. Together they catch a strict superset of what
+  the old heuristic caught (total-zero truncation) plus the corrupt-page case,
+  while eliminating the 10 false positives; a genuine served-congress zero (zero
+  before AND after) is a true fact and never fails. Residual blind spot (tripwire
+  not proof, §CS): a corrupt `count: 0`/no-pagination response at offset 0 on a
+  *first-ever* ingest has no baseline and no count to check — documented in both
+  functions' docstrings. Ingest re-run after the fix: exit 0, 637/637, no FAIL.
+  Metrics are unaffected (the `sponsored`/`cosponsored` metrics count the whole
+  118–119 record, so e.g. Rubio's tile reads 270, never a per-congress 0).

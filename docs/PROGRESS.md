@@ -36,11 +36,31 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     foundation is CSS+font only (no new JS/DOM weight), so perf delta is negligible — the
     real Lighthouse risk is the heavy redesigned views (later checkpoints), which will be
     calibrated against a known-passing baseline before commit.
-  - **REMAINING (this pass):** chart components → roll-call view → overview dashboard →
-    new Tier-2 metrics (yea/nay share, laws-enacted count, cosponsored→law %; factual,
-    no H15) + their `/methods` sections → members explorer rebuild + island → member
-    profile + `/compare` (needs a static-host carve-out ADR — island reads
-    `location.search`) → methodology + Mississippi.
+  - **CHECKPOINT 2 — roll-call view + SplitBar (`44a7c59a`).** `charts/SplitBar.astro`
+    (stacked position bar, contrast-adaptive inline counts). `/v/[roll]` rebuilt:
+    chamber split + margin, per-party bars, tinted individual-positions grid; fixed the
+    stale "Mississippi delegation" heading (member_votes has been chamber-wide since
+    V2-1); absence disclosure preserved. `party_totals` typed on RollCall.
+  - **CHECKPOINT 3 — overview dashboard + Histogram/BandLegend (`a17874e1`).**
+    `charts/Histogram.astro` (21 index-based bins, band-coloured, index-math axis ticks;
+    bins sum to 627, verified) + `charts/BandLegend.astro` (band chips → filtered federal
+    list, drilldown href + verbatim labels kept). `index.astro` Nocturne hero + stat
+    tiles (Members/Graded clickable; Roll calls/Individual votes non-clickable per §0.8)
+    + histogram + by-class + chamber split + the single saturated States card. Every
+    number derived; no new evaluative constant.
+  - **CHECKPOINT 4 — two Tier-2 metrics (this commit).** `position_mix` (Yea/Nay share)
+    and `cosponsor_enacted_rate` (cosponsored→law %) added to `ingest/metrics.py` +
+    pydantic models — factual, no H15. Needed by the explorer + profile. metrics.json
+    (10) + metrics.schema.json regenerated (manifest byte-stable). 100% branch coverage
+    held on the 4 gated modules; checks (Tier-3 guard) + verify-recompute + metrics-
+    sections (10) + ruff green. "Laws enacted"/"Became law" columns reuse enacted_rate.
+  - **REMAINING (this pass):** member profile (grade card + DotStrip + 6 fact tiles +
+    delegation) → members explorer rebuild + island (DOM-bomb/Lighthouse risk — calibrate
+    vs a known-passing page before commit; keep controls-only per D73; e2e drilldown
+    contract must survive) → `/compare` (needs a static-host carve-out ADR — island reads
+    `location.search`; JS-off shows a picker) → methodology + Mississippi (convert to
+    named tokens). Per-chamber rank line must use `getMemberRanks().covered`, NOT 627
+    (advisor); rendering percentile on-page reverses D69 → record a second ADR.
 - **V2-5 (prior session, PARTIAL) — information architecture restructure (D72).** The
   old flat ~540-name landing page + two-item nav became: **four-tab nav** (Home ·
   Federal · States · Methodology, active-aware); **`/` overview dashboard** (plain-count

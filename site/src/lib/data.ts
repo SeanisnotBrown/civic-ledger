@@ -228,6 +228,31 @@ export function getGrades(): Record<string, GradesFile> {
   _grades = out;
   return _grades;
 }
+// Graded attendance values grouped by chamber (for the member-profile distribution
+// strip). Memoized: computed once from the grades export + the member roster, not
+// per page. Each entry is {value, grade} for a graded member of that chamber; the
+// non-comparability of House vs Senate attendance (why ranks are per-chamber, D66)
+// is why this is grouped rather than one pooled distribution.
+let _gradedAtt: { house: { value: number; grade: string }[]; senate: { value: number; grade: string }[] } | null = null;
+export function getGradedAttendanceByChamber(): {
+  house: { value: number; grade: string }[]; senate: { value: number; grade: string }[];
+} {
+  if (_gradedAtt) return _gradedAtt;
+  const out = { house: [] as { value: number; grade: string }[], senate: [] as { value: number; grade: string }[] };
+  const g = getGrades().attendance;
+  if (g) {
+    const chamberOf = new Map(getMembers().map((m) => [m.id, m.chamber]));
+    for (const [id, e] of Object.entries(g.members)) {
+      const ch = chamberOf.get(id);
+      if (ch === "house" || ch === "senate") out[ch].push({ value: e.value, grade: e.grade });
+    }
+    out.house.sort((a, b) => a.value - b.value);
+    out.senate.sort((a, b) => a.value - b.value);
+  }
+  _gradedAtt = out;
+  return out;
+}
+
 // One member's grade for a category: the ratified grade+label if graded, or the
 // exception reason + rendered label if set aside. undefined if grades don't exist for
 // this member (MS members have no federal grades) or the category is absent.

@@ -2,16 +2,17 @@
 import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
 import StatementCard from "../../../components/StatementCard.astro";
-import MemberStats from "../../../components/MemberStats.astro";
-import { getMembers, getMemberTimeline, getAbsence, paginate, getMetrics, getMemberRanks, getRankings, getMemberGrade, getManifest } from "../../../lib/data";
+import DotStrip from "../../../components/charts/DotStrip.astro";
+import {
+  getMembers, getMemberTimeline, getAbsence, paginate, getMetrics, getMemberRanks,
+  getRankings, getMemberGrade, getManifest, getGrades, getGradedAttendanceByChamber,
+} from "../../../lib/data";
 import type { TimelineItem } from "../../../lib/data";
 
 export function getStaticPaths() {
   const PAGE_SIZE = 200; // Astro isolates getStaticPaths scope — keep locals inside.
   const paths = [];
   for (const member of getMembers()) {
-    // Statements + votes interleaved (INC-11). With no curated statements this is
-    // exactly the vote list, so the zero-statement page is the vote page unchanged.
     const pages = paginate(getMemberTimeline(member.id), PAGE_SIZE);
     for (let i = 0; i < pages.length; i++) {
       paths.push({
@@ -27,37 +28,190 @@ interface Props { memberId: string; rows: TimelineItem[]; pageNum: number; total
 const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
 const member = getMembers().find((m) => m.id === memberId)!;
 const hasStatements = rows.some((r) => r.kind === "statement");
-const memberMetrics = getMetrics().members[memberId]; // undefined-safe: only render if present
-const memberRanks = getMemberRanks(memberId, member.chamber); // V2-3: rank within chamber
+const mm = getMetrics().members[memberId] as Record<string, any> | undefined;
+const ranks = getMemberRanks(memberId, member.chamber);
 const chamberWord = member.chamber === "house" ? "House" : "Senate";
-// A non-voting delegate excluded from the vote-metric rankings (D66) — the authoritative
-// signal is the ranking's own excluded list, not a guess from which tiles lack a rank.
 const isDelegate =
   getRankings().attendance?.chambers[member.chamber]?.excluded_delegates.includes(memberId) ?? false;
-const memberGrade = getMemberGrade(memberId); // V2-4: attendance letter grade (or set-aside)
+const grade = getMemberGrade(memberId);
 const congresses = getManifest().congresses;
 const periodLabel = `${congresses.map((c) => `${c}th`).join("–")} Congresses`;
 
+const GRADE_HEX: Record<string, string> = {
+  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
+};
+const PARTY_HEX: Record<string, string> = { D: "#6f93e6", R: "#e0736b", I: "#c9b06a" };
 const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 const chamberLabel = member.chamber === "house" ? "U.S. House" : "U.S. Senate";
 const districtSuffix = member.district != null ? `, District ${member.district}` : "";
+
+const n = (x: number) => x.toLocaleString("en-US");
+const pctOrDash = (x: number | null | undefined) => (x == null ? "—" : `${x}%`);
+const ordinal = (x: number): string => {
+  const v = x % 100;
+  const suffix = v >= 11 && v <= 13 ? "th" : (["th", "st", "nd", "rd"][x % 10] ?? "th");
+  return `${n(x)}${suffix}`;
+};
+
+const att = mm?.attendance;
+const pu = mm?.party_unity;
+const posmix = mm?.position_mix;
+const enact = mm?.enacted_rate;
+const attRank = ranks.attendance; // present only when ranked (delegates excluded, D66)
+const gradeColor = grade?.grade ? GRADE_HEX[grade.grade] : "#6b6f80";
+
+// Distribution strip: this member's chamber, coloured by each dot's grade band.
+const dist = getGradedAttendanceByChamber()[member.chamber].map((e) => ({
+  value: e.value, color: GRADE_HEX[e.grade] ?? "#6b6f80",
+}));
+
+// State delegation: same-state members with a graded/known attendance value, on the
+// same 50–100 axis. The member themself is drawn in white and labelled.
+const gradesAtt = getGrades().attendance;
+const allMetrics = getMetrics().members as Record<string, any>;
+const delegation = getMembers()
+  .filter((m) => m.state === member.state && m.jurisdiction === "us")
+  .map((m) => ({
+    id: m.id, name: m.name,
+    pct: allMetrics[m.id]?.attendance?.pct as number | null | undefined,
+    grade: gradesAtt?.members[m.id]?.grade as string | undefined,
+    self: m.id === member.id,
+  }))
+  .filter((d) => d.pct != null)
+  .sort((a, b) => (b.pct as number) - (a.pct as number));
+const showDelegation = delegation.length >= 2;
+
+const officialUrl = `https://bioguide.congress.gov/search/bio/${member.id}`;
+
+// Fact tiles (6). Yea/Nay share is the new position_mix metric.
+const tiles = [
+  { key: "attendance", label: "Attendance", value: pctOrDash(att?.pct),
+    note: att && att.pct != null ? `${n(att.cast)} of ${n(att.eligible)} eligible` : "no eligible rolls yet" },
+  { key: "attendance", anchor: "ranking-attendance", label: "Attendance percentile",
+    value: attRank ? `${attRank.percentile}%` : "—",
+    note: attRank ? `${ordinal(attRank.rank)} of ${n(attRank.covered)} in the ${chamberWord}` : "not ranked" },
+  { key: "party_unity", label: "Party unity", value: pctOrDash(pu?.pct),
+    note: pu && pu.pct != null ? `with party on ${n(pu.agreed)} of ${n(pu.substantive)}` : "no substantive votes" },
+  { key: "position_mix", label: "Yea / Nay share",
+    value: posmix && posmix.yea_pct != null ? `${posmix.yea_pct}% / ${posmix.nay_pct}%` : "—",
+    note: posmix && posmix.cast ? `of ${n(posmix.cast)} cast — not an approval measure` : "nothing cast" },
+  { key: "sponsored", label: "Sponsored · cosponsored",
+    value: `${n(mm?.sponsored?.count ?? 0)} · ${n(mm?.cosponsored?.count ?? 0)}`,
+    note: "bills sponsored · cosponsored" },
+  { key: "enacted_rate", label: "Became law",
+    value: enact ? `${n(enact.enacted)} of ${n(enact.sponsored)}` : "—",
+    note: "enacted under their own bill number" },
+];
 ---
 <Layout title={`${member.name} — Civic Ledger`}>
-  <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / {member.name}</nav>
-  <h1 class="mt-1 text-2xl font-semibold tracking-tight">{member.name}</h1>
-  <p class="mt-1 text-neutral-600">
-    {PARTY_LABEL[member.party]} · {chamberLabel}, {member.state}{districtSuffix}
-  </p>
+  <nav class="text-xs text-neutral-500">
+    <a href="/federal" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Federal</a>
+    <span aria-hidden="true"> / </span>{member.name}
+  </nav>
 
-  {memberMetrics && <MemberStats metrics={memberMetrics} periodLabel={periodLabel} jurisdiction="us" ranks={memberRanks} chamberWord={chamberWord} isDelegate={isDelegate} grade={memberGrade} />}
+  <!-- Header: identity + grade card -->
+  <section class="mt-3 grid gap-5 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,1fr)] lg:items-start">
+    <div>
+      <h1 class="text-[32px] font-medium leading-tight tracking-[-0.025em] text-text sm:text-[36px]">{member.name}</h1>
+      <p class="mt-2 flex items-center gap-2 text-[15px] text-neutral-600">
+        <span aria-hidden="true" class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${PARTY_HEX[member.party]}`}></span>
+        {PARTY_LABEL[member.party]} · {chamberLabel}, {member.state}{districtSuffix}
+      </p>
+      <div class="mt-4 flex flex-wrap gap-2.5">
+        <a href={`/compare?m=${member.id}`}
+           class="rounded-md bg-accent px-3 py-1.5 text-[13px] font-medium text-bg transition-opacity hover:opacity-90">Compare with someone</a>
+        <a href={officialUrl} rel="nofollow"
+           class="rounded-md border border-line px-3 py-1.5 text-[13px] text-neutral-700 transition-colors hover:border-[rgba(233,233,237,0.22)] hover:text-text">Official record ↗</a>
+      </div>
+    </div>
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-    Record
-  </h2>
+    <!-- Grade card -->
+    <div class="rounded-lg border p-4" style={`background:${gradeColor}1f;border-color:${gradeColor}59`}>
+      {grade?.grade ? (
+        <>
+          <div class="flex items-baseline gap-3">
+            <span class="text-[72px] font-medium leading-none tracking-[-0.04em] text-text">{grade.grade}</span>
+            <span class="text-[26px] font-medium tabular-nums text-text">{pctOrDash(att?.pct)}</span>
+          </div>
+          <p class="mt-2 text-[13px] text-neutral-700"><span data-grade-label>{grade.label}</span></p>
+          {attRank && (
+            <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
+              {ordinal(attRank.rank)} of {n(attRank.covered)} {chamberWord} members by attendance —
+              higher than {attRank.percentile}% of them.
+            </p>
+          )}
+        </>
+      ) : (
+        <>
+          <p class="text-[20px] font-medium text-text">Not graded on attendance</p>
+          <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
+            {isDelegate
+              ? "Non-voting delegate — cannot vote on final passage, so attendance is not comparable to a full member's."
+              : <span data-grade-label>{grade?.exceptionLabel}</span>}
+          </p>
+          {att?.pct != null && (
+            <p class="mt-2 text-[13px] text-neutral-600">Attendance on record: <span class="tabular-nums text-text">{att.pct}%</span></p>
+          )}
+        </>
+      )}
+    </div>
+  </section>
+
+  <!-- Distribution strip: where this member sits among their chamber -->
+  {dist.length > 0 && (
+    <section class="mt-5 rounded-lg border border-line bg-surface p-5" aria-labelledby="dist-h">
+      <h2 id="dist-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+        Attendance across the {chamberWord} <span class="text-neutral-400">({n(dist.length)} graded)</span>
+      </h2>
+      <div class="mt-4">
+        <DotStrip points={dist} focus={att?.pct ?? null}
+                  focusLabel={att?.pct != null ? `${member.name.split(" ").slice(-1)[0]} ${att.pct}%` : undefined} />
+      </div>
+    </section>
+  )}
+
+  <!-- Fact tiles -->
+  {mm && (
+    <section class="mt-4 grid grid-cols-2 gap-3.5 sm:grid-cols-3" aria-label="Record summary">
+      <h2 class="sr-only">Record summary</h2>
+      {tiles.map((t) => (
+        <div class="rounded-lg border border-line bg-surface p-4">
+          <a href={`/methods#${t.anchor ?? `metric-${t.key}`}`} class="text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500 hover:text-neutral-700">{t.label}</a>
+          <p class="mt-1.5 text-[24px] font-medium tabular-nums text-text">{t.value}</p>
+          <p class="mt-1 text-[12px] leading-snug text-neutral-500">{t.note}</p>
+        </div>
+      ))}
+    </section>
+  )}
+
+  <!-- State delegation -->
+  {showDelegation && (
+    <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="deleg-h">
+      <h2 id="deleg-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+        {member.state} delegation — attendance
+      </h2>
+      <div class="mt-4 space-y-2">
+        {delegation.map((d) => (
+          <div class="grid grid-cols-[minmax(120px,160px)_minmax(0,1fr)_44px] items-center gap-3">
+            <span class={`truncate text-[12px] ${d.self ? "text-text" : "text-neutral-600"}`}>
+              {d.name}{d.self && <span class="text-neutral-500"> (this member)</span>}
+            </span>
+            <span class="h-2.5 rounded-full"
+                  style={`width:${Math.max(0, Math.min(100, (((d.pct as number) - 50) / 50) * 100))}%;min-width:2px;background:${d.self ? "#e9e9ed" : (d.grade ? GRADE_HEX[d.grade] : "#6b6f80")};opacity:${d.self ? 1 : 0.85}`}></span>
+            <span class="text-right text-[12px] tabular-nums text-neutral-500">{d.pct}%</span>
+          </div>
+        ))}
+      </div>
+      <p class="mt-3 text-[11px] text-neutral-500">Bars scaled 50–100%.</p>
+    </section>
+  )}
+
+  <!-- Record -->
+  <h2 class="mt-8 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Record</h2>
   <p class="mt-1 text-xs text-neutral-500">
     Newest first. Page {pageNum} of {totalPages}. Recorded votes show the official
     question verbatim and link to the official record.{hasStatements ? " Curated statements are shown with a permanent archived copy; a paired vote is placed adjacent under the mechanical pairing rule — the site draws no conclusion." : ""}
-    {" "}<a href="/pairing" class="underline hover:text-neutral-700">How statements and votes are paired</a>.
+    {" "}<a href="/pairing" class="underline decoration-line underline-offset-2 hover:text-text">How statements and votes are paired</a>.
   </p>
 
   {rows.length === 0 ? (
@@ -81,11 +235,11 @@ const districtSuffix = member.district != null ? `, District ${member.district}`
   {totalPages > 1 && (
     <nav class="mt-6 flex items-center justify-between text-sm" aria-label="Pagination">
       {pageNum > 1
-        ? <a href={`/m/${member.id}/${pageNum - 1}`} class="underline hover:text-neutral-800">← Newer</a>
+        ? <a href={`/m/${member.id}/${pageNum - 1}`} class="underline decoration-line underline-offset-2 hover:text-text">← Newer</a>
         : <span class="text-neutral-300">← Newer</span>}
       <span class="text-neutral-500">Page {pageNum} / {totalPages}</span>
       {pageNum < totalPages
-        ? <a href={`/m/${member.id}/${pageNum + 1}`} class="underline hover:text-neutral-800">Older →</a>
+        ? <a href={`/m/${member.id}/${pageNum + 1}`} class="underline decoration-line underline-offset-2 hover:text-text">Older →</a>
         : <span class="text-neutral-300">Older →</span>}
     </nav>
   )}

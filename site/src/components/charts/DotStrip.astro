@@ -1,0 +1,65 @@
+---
+// A distribution strip: one dot per member on a LINEAR axis (unlike Histogram, which
+// is index-based). Server-rendered, no JS. The focus member gets a full-height marker
+// and a value label. Vertical scatter is DETERMINISTIC (a hash of the dot's index), so
+// the build is byte-stable — never Math.random.
+//
+// Ticks here are LINEAR: a tick for value v sits at (v-min)/(max-min). Do NOT reuse
+// Histogram's index-based tick math on this component.
+
+interface Point { value: number; color: string }
+interface Props {
+  points: Point[];
+  focus?: number | null;      // the focused member's value → full-height marker
+  min?: number;
+  max?: number;
+  ticks?: number[];
+  height?: number;
+  focusLabel?: string;
+}
+const {
+  points, focus = null, min = 50, max = 100,
+  ticks = [50, 60, 70, 80, 90, 95, 100], height = 96, focusLabel,
+} = Astro.props as Props;
+
+const span = max - min || 1;
+const clampPos = (v: number) => Math.max(0, Math.min(100, ((v - min) / span) * 100));
+// deterministic 0..1 from an index — stable across builds
+const jitter = (i: number) => {
+  const s = Math.sin((i + 1) * 78.233) * 43758.5453;
+  return s - Math.floor(s);
+};
+const dotSize = 5;
+const focusPos = focus == null ? null : clampPos(focus);
+const fmtPct = (x: number) => (Number.isInteger(x) ? `${x}` : x.toFixed(1));
+---
+<div>
+  <div class="relative w-full" style={`height:${height}px`} role="img"
+       aria-label={`Attendance distribution of ${points.length} members${focus != null ? `; this member at ${fmtPct(focus)}%` : ""}`}>
+    {points.map((p, i) => (
+      <span
+        class="absolute rounded-full"
+        style={`left:${clampPos(p.value)}%;top:${jitter(i) * (height - dotSize)}px;width:${dotSize}px;height:${dotSize}px;background:${p.color};opacity:0.5;transform:translateX(-50%)`}
+      ></span>
+    ))}
+    {focusPos != null && (
+      <>
+        <span class="absolute top-0" style={`left:${focusPos}%;height:${height}px;width:2px;background:#e9e9ed;transform:translateX(-50%)`}></span>
+        {focusLabel && (
+          <span
+            class="absolute -top-0.5 whitespace-nowrap rounded bg-bg px-1 text-[11px] tabular-nums text-text"
+            style={`left:${focusPos}%;transform:translateX(${focusPos > 85 ? "-100%" : focusPos < 15 ? "0" : "-50%"})`}
+          >{focusLabel}</span>
+        )}
+      </>
+    )}
+  </div>
+  <div class="relative mt-1 h-4 border-t border-line">
+    {ticks.map((v, i) => (
+      <span
+        class="absolute top-1 text-[10px] tabular-nums text-neutral-500"
+        style={`left:${clampPos(v)}%;transform:${i === 0 ? "translateX(0)" : i === ticks.length - 1 ? "translateX(-100%)" : "translateX(-50%)"}`}
+      >{fmtPct(v)}</span>
+    ))}
+  </div>
+</div>

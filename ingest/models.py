@@ -332,6 +332,42 @@ class RankingsFile(_Strict):
     chambers: dict[str, ChamberRanking]  # "house" / "senate"
 
 
+# --- Grades (V2-4, Tier 3) ------------------------------------------------
+# The FIRST evaluative output (SD-26). Computed ONLY in ingest/scoring.py from the
+# owner-ratified data/config/thresholds.yaml (§0.8) — every label here appears
+# verbatim in that config, enforced by the §6.8 guard. V2-4 grades one category
+# (attendance) on fixed bars; the overall composite grade is deferred until its
+# formula is ratified. No wall-clock: provenance is `formula_version` + `ratified`.
+
+
+class GradeBand(_Strict):
+    grade: str  # "A".."F"
+    min: int | float  # the metric value at/above which this band applies (top-down)
+    label: str  # the EXACT rendered string, e.g. "A — Strong attendance"
+
+
+class GradeEntry(_Strict):
+    value: int | float  # the graded metric value (e.g. attendance pct)
+    grade: str
+    label: str
+
+
+class GradesFile(_Strict):
+    """data/grades/{category}.json (V2-4). One evaluative category's grade per member,
+    recomputed from data/metrics.json + the ratified thresholds. No wall-clock."""
+
+    category: str  # "attendance"
+    metric: str  # the Tier-2 metric key graded
+    field: str  # the scalar field of that metric graded ("pct")
+    formula_version: int  # bumps when a ratified value changes (grade provenance)
+    ratified: str  # the thresholds' ratification date (provenance, not wall-clock)
+    min_eligible: int  # members with fewer eligible rolls are set aside (min_service)
+    bands: list[GradeBand]  # the ratified cutoffs, echoed from config
+    exception_label: str  # rendered for members set aside (too few votes)
+    members: dict[str, GradeEntry]  # bioguide -> grade (members actually graded)
+    exceptions: dict[str, str]  # bioguide -> reason (delegate | min_service | no_record)
+
+
 # --- Statements & candidates ----------------------------------------------
 
 

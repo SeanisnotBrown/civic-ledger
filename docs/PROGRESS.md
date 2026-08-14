@@ -3,13 +3,35 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-13, end of the **V2-3 — member-page rank context**
-session. **V2-1 + V2-2 are COMPLETE and PUSHED** (through `8169a9d7`; CI green;
-live site has all 637 members + the /methods rankings section). **V2-3 is COMPLETE
-and green** (rank context on member-page stat tiles) — commit pending, then push
-(owner pre-authorized: "push when complete"). Next actionable = **V2-4 (grades)**,
-the first evaluative increment — it opens with an owner threshold-ratification
-sitting (H15/§0.8) and must NOT publish any grade from an unratified number.
+**Last updated:** 2026-08-13, end of the **V2-4 — grades** session. **V2-1..V2-3
+are COMPLETE and PUSHED** (through `b4057848`; CI green; live). **V2-4 is COMPLETE
+and green — the first EVALUATIVE increment.** The site now publishes an **attendance
+letter grade** (A–F) per member, from owner-ratified thresholds. Commits pending;
+**V2-4 push is a NEW owner ask** (it puts the first grades live).
+- **V2-4 (this session) — attendance grade (D70, owner-ratified H15 round one).**
+  Propose→ratify→commit (§0.8): the owner picked, in two plain-language sittings with
+  the data, to grade **attendance only** (overall composite DEFERRED — "a formula I
+  will have to work on"; no unratified formula publishes); **letter grades A–F**;
+  **fixed bars** A ≥99 · B ≥97 · C ≥95 · D ≥90 · F <90; **labels** Strong/Good/Fair/
+  Weak/Poor; **min-service** < 50 eligible → "Too few votes to grade". Ratified values
+  live in `data/config/thresholds.yaml`. `ingest/scoring.py` (Tier-3 module) →
+  `data/grades/attendance.json` (627 graded, 10 excepted = delegate/min_service/
+  no_record — every member graded ∪ excepted, §6.5). No wall-clock (§6.3). §6.8 guard
+  rewritten prohibition→disclosure (`grades_disclosure` + `check-grade-labels.mjs`);
+  `verify-recompute` inv 6; §8 gate gains scoring.py + **classify.py** (D68 paid).
+  Member pages show a grade badge on the attendance tile (delegates: none — caption
+  explains); `/methods` gains a Grades section. **§6.7 doctrine flipped partially**
+  (only attendance graded): index/methods intros flip; MemberStats caption splits
+  ("combines nothing into an overall score" stays, "draws no conclusion" flips for
+  federal); metrics.py site-level "draws no conclusion" scoped (churned 2 digests →
+  metrics.json regen, values unchanged, NO formula-version bump). **D71: two live
+  Value-#1 falsehoods fixed** — the home page said "Mississippi delegation" while
+  listing all 637 members (V2-1 miss); methods.astro claimed "source code is public"
+  (false since D59). **Green:** checks 6/6 (grading-coverage + disclosure pass),
+  coverage gate 100% on 4 modules, verify-recompute (grades + rankings + 3,463 rolls),
+  export (10 schemas), ruff, build 13,082 pages, grade-labels/metrics-sections/
+  file-count/links, e2e 26, astro check 0. (pytest full-suite: the git-history test
+  goes green once the metrics.json regen is committed, as in V2-1.)
 - **V2-3 (this session):** member pages' five stat tiles now show each metric's
   rank within the chamber — `"{ordinal} of {N} in the {House/Senate}"`, linking to
   the ranking methodology (`MemberStats.astro` + `getMemberRanks` in `data.ts`).
@@ -103,13 +125,14 @@ call — do not commit without asking.**
 > (roster refresh FIRST — R-2, so vote coverage + unknown-member alarms read a fresh
 > covered set) → `ingest {house,senate}-votes`
 > → `ingest bills` → `ingest legislation` → `ingest classify` → `corrections` →
-> `ingest metrics` → `ingest rankings` → `uv run export` → `uv run checks`. An ingest
-> re-export resets every roll to the provisional `unclassified`, so **classify must run
-> after any vote ingest**; **metrics must run after classify** (party-unity reads final
-> `vote_class`) **+ after legislation**; **rankings (V2-2) must run after metrics**
-> (they are derived from `data/metrics.json`), and both metrics and rankings run
-> **before the nightly diff-gate** (both are derived — a change that only moves a
-> rank must still reach the gate, D40/D67); **export must run after any ingest** or
+> `ingest metrics` → `ingest rankings` → `ingest grades` → `uv run export` → `uv run
+> checks`. An ingest re-export resets every roll to the provisional `unclassified`, so
+> **classify must run after any vote ingest**; **metrics must run after classify**
+> (party-unity reads final `vote_class`) **+ after legislation**; **rankings (V2-2) and
+> grades (V2-4) must run after metrics** (both derived from `data/metrics.json`; grades
+> also read the ratified `data/config/thresholds.yaml`), and metrics/rankings/grades all
+> run **before the nightly diff-gate** (derived — a change that only moves a rank or a
+> grade must still reach the gate, D40/D67/D70); **export must run after any ingest** or
 > manifest/schema drift fails. (`bills`/`legislation` are independent of classify;
 > export/checks come last.)
 
@@ -562,13 +585,14 @@ depends on. `classify()` is pure/offline; golden test `tests/fixtures/questions.
    re-runnable, resumes on interruption; `ingest members` / `spike` likewise cached.)
    Note: the `integrity` check makes ~10 live clerk.house.gov fetches; a clerk
    outage warns (not a failure).
-   **§8 coverage gate (V2-2, D68) — CI runs this; plain `uv run pytest` does NOT
+   **§8 coverage gate (V2-2/V2-4, D68) — CI runs this; plain `uv run pytest` does NOT
    measure coverage (kept fast/subset-usable), so run the gate explicitly before a
-   change to `ingest/metrics.py` or `ingest/rankings.py`:**
-   `uv run pytest --cov=ingest.metrics --cov=ingest.rankings --cov-branch --cov-fail-under=100 --cov-report=term-missing`
-   (must stay 100% branch on both; `classify.py` joins at V2-4). `ingest rankings`
-   regenerates `data/rankings/*.json` from `data/metrics.json` (pure/offline, after
-   `ingest metrics`).
+   change to any of the four gated modules:**
+   `uv run pytest --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov-branch --cov-fail-under=100 --cov-report=term-missing`
+   (must stay 100% branch on all four). `ingest rankings` → `data/rankings/*.json` and
+   `ingest grades` → `data/grades/*.json` are both pure/offline, derived from
+   `data/metrics.json` (grades also read `data/config/thresholds.yaml`), run after
+   `ingest metrics`.
 3. Python is uv-managed **3.12.13** (system Python is 3.14; project pins 3.12 via
    `.python-version`). `uv sync --frozen` is what CI runs; lockfile is consistent.
 4. **Secrets:** `.env` holds `CONGRESS_API_KEY` (H1 done) and empty

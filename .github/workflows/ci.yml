@@ -26,15 +26,16 @@ jobs:
         run: uv sync --frozen
       - name: Ruff
         run: uv run ruff check .
-      - name: Pytest (+ §8 100%-branch gate on metrics + rankings)
+      - name: Pytest (+ §8 100%-branch gate on the credibility-bearing modules)
         # One run: the full suite AND the coverage gate. §8 enforces 100% branch on
         # the small, pure, credibility-bearing modules; aggregate 100% over exactly
-        # these two targets ⟺ each at 100%. `term-missing` localizes any regression.
+        # these targets ⟺ each at 100%. `term-missing` localizes any regression.
         # (Not in pytest addopts on purpose — a plain/subset `uv run pytest` stays
-        # usable; classify.py joins at V2-4 with scoring.py, D68.)
+        # usable.) V2-4 (D68) adds scoring.py + classify.py to the metrics+rankings set.
         run: >
           uv run pytest -q
           --cov=ingest.metrics --cov=ingest.rankings
+          --cov=ingest.scoring --cov=ingest.classify
           --cov-branch --cov-fail-under=100 --cov-report=term-missing
       - name: Verify-recompute (recompute-and-match over the dataset)
         run: uv run verify-recompute
@@ -75,6 +76,9 @@ jobs:
       - name: Metrics-sections (methods page == metric-key set)
         working-directory: site
         run: npm run test:metrics-sections
+      - name: Grade-labels (rendered grade labels ⊆ ratified config — §6.8)
+        working-directory: site
+        run: npm run test:grade-labels
       - name: Install Playwright browser
         working-directory: site
         run: npx playwright install --with-deps chromium

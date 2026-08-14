@@ -12,8 +12,10 @@ Discipline:
     the `METRICS` registry below and fails if one metric function calls another.
     Shared read-only helpers (the `_`-prefixed functions) are not metrics.
 
-Nothing here characterizes, ranks, or scores a member. The site draws no
-conclusions; it publishes the recorded facts and how each was computed.
+Nothing HERE characterizes, ranks, or scores a member — ranking
+(ingest/rankings.py) and grading (ingest/scoring.py, from owner-ratified
+thresholds) are separate layers that READ these figures. This module publishes
+only the recorded facts and how each was computed.
 """
 
 from __future__ import annotations
@@ -245,8 +247,8 @@ def cosponsor_vote_gap(mid: str, ctx: Ctx) -> list[dict]:
     not by a bill's cosponsors. This list is therefore expected to contain most of
     any member's cosponsorships; it is provided for inspection, not as an indicator
     about the member, and must always be shown against its denominator (of N bills
-    cosponsored), never as a bare count or a headline. The site draws no conclusion.
-    Source: data/legislation (cosponsorships) + data/votes (rolls)."""
+    cosponsored), never as a bare count or a headline; no conclusion is drawn from
+    the adjacency. Source: data/legislation (cosponsorships) + data/votes (rolls)."""
     cospon = ctx.legislation[mid]["cosponsored"]
     cospon_ids = {li["bill_id"] for li in cospon}
     gaps: list[dict] = []
@@ -283,7 +285,7 @@ def named_measure_mismatch(mid: str, ctx: Ctx) -> list[dict]:
     non-passage vote class (a Nay on a procedural motion is not a vote against the
     bill). Each entry carries the statement, the roll call, and both dates so a reader
     can check the record directly; NO sequence or motive is claimed — the statement
-    and the vote are simply placed adjacent. The site draws no conclusion. A statement
+    and the vote are simply placed adjacent, with no conclusion drawn. A statement
     whose archived source no longer resolves is unpublishable and is excluded here too,
     so this list never cites a statement the site itself withholds. This is empty until
     qualifying statements are curated (content = H8). Source: data/statements (stance +

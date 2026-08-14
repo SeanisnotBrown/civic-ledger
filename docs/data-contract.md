@@ -188,6 +188,37 @@ rank is a position, not a score (D67; evaluative grades are V2-4/`scoring.py`).
   rank; the next rank skips). Percentile is the % of the chamber's ranked set with a
   strictly lower value. A member with a `null` metric value is not ranked on it.
 
+## `data/config/thresholds.yaml` — ratified evaluative constants (V2-4)
+
+Owner-ratified under propose→ratify→commit (§0.8/SD-27). Every evaluative number the
+site publishes lives here with its `justification`, `citation` (URL or null), and
+`ratified` date. **Nothing evaluative may publish from a value not committed here** —
+`checks/integrity.py:grades_disclosure` (data side) and
+`site/scripts/check-grade-labels.mjs` (render side) enforce it. V2-4 holds one entry,
+`grades.attendance`: the letter-grade `bands` (grade/min/label), `min_eligible`, the
+`exception_label`, and `formula_version`. The overall composite grade is deferred
+until its formula is ratified.
+
+## `data/grades/{category}.json` — evaluative grades (V2-4)
+
+Schema: `data/schema/grades.schema.json` (model `GradesFile`), one file per graded
+category (V2-4: `attendance`). Deterministic, **no wall-clock** (§6.3 beats §5's
+"computed-at" wording — provenance is `formula_version` + the thresholds' `ratified`
+date). **Recomputable**: `scoring.build_all()` reads only `data/metrics.json` +
+`data/members` + `data/config/thresholds.yaml` and reproduces each file byte-for-byte
+(`verify-recompute` invariant 6). Computed ONLY in `ingest/scoring.py` (the designated
+Tier-3 module, §6.8).
+
+- `category`/`metric`/`field`: what is graded (`attendance` → the `pct` of the
+  attendance metric). `formula_version`/`ratified`/`min_eligible`/`exception_label`/
+  `bands`: echoed from `thresholds.yaml` (the disclosure guard asserts an exact match).
+- `members`: `{ bioguide: { value, grade, label } }` — the members actually graded,
+  with the exact ratified `label` (e.g. `"F — Poor attendance"`).
+- `exceptions`: `{ bioguide: reason }` where reason ∈ `delegate` (non-voting delegate,
+  inherited D66 — eligible set not comparable), `min_service` (fewer than
+  `min_eligible` eligible rolls), `no_record` (null attendance). §6.5 grading-coverage:
+  every covered member is in `members` ∪ `exceptions` — silent drop = fail.
+
 ## `data/statements/{id}.json` — one per curated statement (INC-11)
 
 Schema: `data/schema/statement.schema.json` (model `Statement`). OWNER-curated

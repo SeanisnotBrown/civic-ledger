@@ -156,6 +156,42 @@ def statement_balance(members: list[dict], statements: list[dict]) -> dict:
     }
 
 
+def grading_coverage(members: list[dict]) -> dict:
+    """§6.5 grading-coverage (V2-4): for every committed grade category, each covered
+    member is either GRADED or in the published exceptions list with a mechanical
+    reason — never silently dropped, and no grade points at a member who is gone
+    (roster churn). Set equality: `members ∪ exceptions == the roster`. The best/worst
+    symmetry rule (any surface listing worst performers renders best performers with
+    equal prominence) activates with the V2-5 dashboard; no such surface exists yet,
+    so it is vacuously satisfied. INACTIVE (no-op) until grades exist."""
+    grades_dir = repo_root() / "data" / "grades"
+    files = sorted(grades_dir.glob("*.json")) if grades_dir.exists() else []
+    if not files:
+        return {"status": "inactive", "reason": "no grades yet"}
+    roster = {m["id"] for m in members}
+    findings: list[str] = []
+    for path in files:
+        gf = json.loads(path.read_text(encoding="utf-8"))
+        accounted = set(gf.get("members", {})) | set(gf.get("exceptions", {}))
+        dropped = roster - accounted
+        if dropped:
+            findings.append(
+                f"{path.stem}: {len(dropped)} covered member(s) neither graded nor "
+                f"excepted (silent exemption), e.g. {sorted(dropped)[:5]}"
+            )
+        stale = accounted - roster
+        if stale:
+            findings.append(
+                f"{path.stem}: {len(stale)} graded/excepted id(s) with no member record "
+                f"(roster churn), e.g. {sorted(stale)[:5]}"
+            )
+    return {
+        "status": "fail" if findings else "pass",
+        "findings": findings,
+        "categories": [p.stem for p in files],
+    }
+
+
 def main() -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not any(votes_dir.glob("*.json")):
@@ -177,7 +213,9 @@ def main() -> int:
         for p in sorted(members_dir.glob("*.json"))
     ]
     statements = statement_balance(members, _load_statements())
-    report = {"vote_coverage": coverage, "statement_balance": statements}
+    grading = grading_coverage(members)
+    report = {"vote_coverage": coverage, "statement_balance": statements,
+              "grading_coverage": grading}
     report_path = repo_root() / "data" / "quality" / "symmetry-report.json"
     report_path.parent.mkdir(parents=True, exist_ok=True)
     report_path.write_text(
@@ -195,12 +233,17 @@ def main() -> int:
         print(f"SYMMETRY FAILED — {len(statements['findings'])} statement-balance finding(s):")
         for f in statements["findings"][:20]:
             print(f"  {f}")
+    if grading["status"] == "fail":
+        failed = True
+        print(f"SYMMETRY FAILED — {len(grading['findings'])} grading-coverage finding(s):")
+        for f in grading["findings"][:20]:
+            print(f"  {f}")
     if failed:
         return 1
 
     covered_chambers = ", ".join(coverage)
     print(f"symmetry: OK (vote coverage complete: {covered_chambers}; "
-          f"statement balance {statements['status']}).")
+          f"statement balance {statements['status']}; grading coverage {grading['status']}).")
     return 0
 
 

@@ -11,6 +11,7 @@
     "test:links": "node scripts/check-source-links.mjs",
     "test:file-count": "node scripts/check-file-count.mjs",
     "test:metrics-sections": "node scripts/check-metrics-sections.mjs",
+    "test:grade-labels": "node scripts/check-grade-labels.mjs",
     "test:e2e": "playwright test",
     "test:lighthouse": "lhci autorun"
   },

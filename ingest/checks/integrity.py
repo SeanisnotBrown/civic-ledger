@@ -32,14 +32,22 @@ from ingest.cache import repo_root
 SAMPLE_SIZE = 10
 
 
-# --- Tier-3 guard (§5 Tier discipline; INC-10) ----------------------------
-# The site publishes Tier-2 metrics (independent per-member factual formulas) and
-# is forbidden a Tier-3 output: any composite that folds several metrics into one
-# number per member is a political "spectrum" by the back door. The structural
-# guarantee is that no metric function consumes another metric's output — enforced
-# by a source-level (AST) check over ingest/metrics.py: a function registered in
-# the module's `METRICS` dict must not call another registered metric function.
-# Shared pure helpers (not in the registry) are fine. No-op until metrics.py exists.
+# --- Tier-3 guard: disclosure, not prohibition (§6.8, V2-4; was §5 INC-10) -
+# Old rule (INC-10): NO composite anywhere — no metric may fold in another. New rule
+# (SD-26/§6.8): composites and grades exist, but ONLY in ingest/scoring.py, and every
+# published evaluative output traces to a ratified data/config/thresholds.yaml entry.
+# Two mechanical guards, both tripwires-backed-by-review (blind spots in §CS carry
+# over — a lockstep edit to code+config passes; the recompute check + review are the
+# real proof):
+#   (1) Tier-2 metrics stay independent: `tier3_violations` still asserts no function
+#       in metrics.py's `METRICS` registry calls another registered metric. scoring.py
+#       is the sole permitted composer (and at V2-4 composes nothing — one metric per
+#       grade); metrics.py must remain pure factual formulas.
+#   (2) Grades disclose their source: `grades_disclosure` asserts every committed
+#       data/grades/{category}.json carries EXACTLY the config's bands, labels,
+#       exception_label, formula_version and ratified date — so no evaluative number
+#       or wording ships unratified. The render-side half is site/scripts/
+#       check-grade-labels.mjs (rendered grade strings ⊆ config labels).
 
 
 def _metric_names(tree: ast.Module, registry: str = "METRICS") -> set[str]:
@@ -74,6 +82,49 @@ def tier3_violations(source: str, registry: str = "METRICS") -> list[str]:
                     violations.append(
                         f"{name}() calls metric {callee}() — Tier-3 aggregation forbidden (§5)"
                     )
+    return violations
+
+
+def grades_disclosure() -> list[str]:
+    """§6.8 disclosure guard (V2-4): every published grade traces to the owner-ratified
+    thresholds. Each committed data/grades/{category}.json must carry EXACTLY the
+    config's bands (grade/min/label), exception_label, formula_version and ratified
+    date, and every rendered member label must be one of the config's strings — so no
+    evaluative number or wording can ship that the owner did not ratify. Empty = clean.
+    No-op until grades exist. Tripwire, not proof (see the section comment)."""
+    import yaml
+
+    root = repo_root()
+    grades_dir = root / "data" / "grades"
+    files = sorted(grades_dir.glob("*.json")) if grades_dir.exists() else []
+    if not files:
+        return []
+    config = yaml.safe_load(
+        (root / "data" / "config" / "thresholds.yaml").read_text(encoding="utf-8")
+    )
+    violations: list[str] = []
+    for path in files:
+        gf = json.loads(path.read_text(encoding="utf-8"))
+        cfg = (config.get("grades") or {}).get(gf.get("category"))
+        if cfg is None:
+            violations.append(f"{path.stem}: category not in thresholds.yaml (unratified grade)")
+            continue
+        want = [(b["grade"], b["min"], b["label"]) for b in cfg["bands"]]
+        got = [(b["grade"], b["min"], b["label"]) for b in gf.get("bands", [])]
+        if got != want:
+            violations.append(f"{path.stem}: bands differ from the ratified thresholds")
+        if gf.get("exception_label") != cfg.get("exception_label"):
+            violations.append(f"{path.stem}: exception_label is not the ratified string")
+        if gf.get("min_eligible") != cfg.get("min_eligible"):
+            violations.append(f"{path.stem}: min_eligible does not match the config")
+        if gf.get("formula_version") != config.get("formula_version"):
+            violations.append(f"{path.stem}: formula_version does not match the config")
+        if gf.get("ratified") != cfg.get("ratified"):
+            violations.append(f"{path.stem}: ratified date does not match the config")
+        allowed = {b["label"] for b in cfg["bands"]} | {cfg["exception_label"]}
+        stray = {e["label"] for e in gf.get("members", {}).values()} - allowed
+        if stray:
+            violations.append(f"{path.stem}: member label(s) not in config: {sorted(stray)[:3]}")
     return violations
 
 
@@ -171,6 +222,16 @@ def main() -> int:
             print(f"    {v}")
     else:
         print("integrity: Tier-3 guard OK (no metric consumes another metric's output).")
+
+    # §6.8 disclosure guard: published grades trace to the ratified thresholds.
+    disclosure = grades_disclosure()
+    if disclosure:
+        failed = True
+        print(f"integrity: DISCLOSURE GUARD FAILED — {len(disclosure)} violation(s):")
+        for v in disclosure:
+            print(f"    {v}")
+    else:
+        print("integrity: disclosure guard OK (grades trace to ratified thresholds.yaml).")
 
     # (prefix, human label, cross-check fn). Sample only rolls that carry MS
     # positions (skip Speaker-election rolls, which have none to cross-check).

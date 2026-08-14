@@ -110,6 +110,12 @@ jobs:
           #     (any member's metric changing) reaches the gate and gets committed.
           uv run ingest rankings
 
+          # 3d) Grades (V2-4) are derived from metrics.json + the ratified
+          #     data/config/thresholds.yaml — regenerate after metrics, before the
+          #     diff-gate, so a change that moves a grade reaches the gate. Reads only
+          #     committed config; no owner ratification happens here (that is H15).
+          uv run ingest grades
+
           # 4) Real change? (manifest isn't regenerated yet, so it can't false-trigger.)
           if [ -z "$(git status --porcelain data/)" ]; then
             echo "No data change tonight — running checks for upstream drift, then exiting."

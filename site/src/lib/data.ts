@@ -204,6 +204,42 @@ export function getMemberRanks(memberId: string, chamber: string): Record<string
   return out;
 }
 
+// V2-4 grades (data/grades/{category}.json). Computed only in ingest/scoring.py from
+// the owner-ratified thresholds; every label here appears verbatim in that config.
+export interface GradeBand { grade: string; min: number; label: string; }
+export interface GradeEntry { value: number; grade: string; label: string; }
+export interface GradesFile {
+  category: string; metric: string; field: string; formula_version: number;
+  ratified: string; min_eligible: number; bands: GradeBand[]; exception_label: string;
+  members: Record<string, GradeEntry>; exceptions: Record<string, string>;
+}
+let _grades: Record<string, GradesFile> | null = null;
+export function getGrades(): Record<string, GradesFile> {
+  if (_grades) return _grades;
+  const out: Record<string, GradesFile> = {};
+  for (const f of readDir("grades")) {
+    const gf = readJson<GradesFile>(`grades/${f}`);
+    out[gf.category] = gf;
+  }
+  _grades = out;
+  return _grades;
+}
+// One member's grade for a category: the ratified grade+label if graded, or the
+// exception reason + rendered label if set aside. undefined if grades don't exist for
+// this member (MS members have no federal grades) or the category is absent.
+export interface MemberGrade {
+  grade?: string; label?: string; exception?: string; exceptionLabel?: string;
+}
+export function getMemberGrade(memberId: string, category = "attendance"): MemberGrade | undefined {
+  const gf = getGrades()[category];
+  if (!gf) return undefined;
+  const entry = gf.members[memberId];
+  if (entry) return { grade: entry.grade, label: entry.label };
+  const reason = gf.exceptions[memberId];
+  if (reason) return { exception: reason, exceptionLabel: gf.exception_label };
+  return undefined;
+}
+
 export interface Statement {
   id: string; member_id: string; text: string; date: string; venue: string;
   source_url: string; archive_url: string; archive_captured_at: string;

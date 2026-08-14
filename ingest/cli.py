@@ -84,6 +84,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import rankings
 
         return rankings.run(args[1:])
+    if args and args[0] == "grades":
+        from ingest import scoring
+
+        return scoring.run(args[1:])
     if args and args[0] == "ms":
         from ingest import ms_legislature
 
@@ -99,6 +103,7 @@ def main(argv: list[str] | None = None) -> int:
     print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")
     print("                  metrics history <bioguide> [--metric <key>] — git series (R-3)")
     print("  rankings      V2-2 per-metric rank/percentile/mean -> data/rankings/ (after metrics)")
+    print("  grades        V2-4 grades from ratified thresholds -> data/grades/ (after metrics)")
     print("  ms            INC-12 Mississippi state legislature (LegiScan) -> data/state/ms/")
     if args:
         print(f"unknown args: {args}")

@@ -29,6 +29,7 @@ from ingest.cache import repo_root
 from ingest.models import (
     Absence,
     Bill,
+    GradesFile,
     Member,
     MemberLegislation,
     MemberVote,
@@ -50,6 +51,7 @@ SCHEMA_DIR = DATA_DIR / "schema"
 MANIFEST_PATH = DATA_DIR / "manifest.json"
 METRICS_PATH = DATA_DIR / "metrics.json"
 RANKINGS_DIR = DATA_DIR / "rankings"
+GRADES_DIR = DATA_DIR / "grades"
 
 # State-jurisdiction partition (INC-12/D51). MS data lives under data/state/ms/ so the
 # federal checks — which glob data/{members,votes,bills}/*.json NON-recursively — never
@@ -180,6 +182,21 @@ def export_rankings(
     return sorted(written)
 
 
+def export_grades(
+    grades: dict[str, GradesFile], out_dir: Path = GRADES_DIR
+) -> list[Path]:
+    """Write data/grades/{category}.json for each graded category (V2-4). Deterministic
+    (`_dumps`, no wall-clock) and recomputable from data/metrics.json + the ratified
+    data/config/thresholds.yaml alone."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    for category, gf in grades.items():
+        path = out_dir / f"{category}.json"
+        path.write_text(_dumps(gf.model_dump()), encoding="utf-8", newline="\n")
+        written.append(path)
+    return sorted(written)
+
+
 def export_statement(statement: Statement, out_dir: Path = STATEMENTS_DIR) -> Path:
     """Write one deterministic JSON file per curated statement:
     data/statements/{id}.json. Statements are OWNER-curated (H8) via the Flask
@@ -203,6 +220,7 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("metrics", MetricsFile),
     ("ms-metrics", MsMetricsFile),
     ("rankings", RankingsFile),
+    ("grades", GradesFile),
     ("statement", Statement),
 )
 

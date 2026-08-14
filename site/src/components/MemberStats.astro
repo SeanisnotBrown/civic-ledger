@@ -11,7 +11,7 @@
 //     linking to its exact methodology.
 // Values mirror the pydantic metric models; pct is null on a zero denominator (R-4).
 
-import type { MemberRank } from "../lib/data";
+import type { MemberRank, MemberGrade } from "../lib/data";
 
 interface Attendance { eligible: number; cast: number; missed: number; pct: number | null }
 interface PartyUnity { substantive: number; agreed: number; pct: number | null; excluded_ties: number }
@@ -31,9 +31,13 @@ interface Props {
   // V2-3: true when the member is a non-voting delegate excluded from the vote-metric
   // rankings (D66) — drives the explanatory caption clause where their tiles lack a rank.
   isDelegate?: boolean;
+  // V2-4: the member's attendance grade (ratified thresholds). Present on federal
+  // pages; undefined for MS (no state grades yet). Either a graded {grade,label} or a
+  // set-aside {exception,exceptionLabel}.
+  grade?: MemberGrade;
 }
 const { metrics, periodLabel, jurisdiction = "us", ranks, chamberWord = "chamber",
-        isDelegate = false } = Astro.props as Props;
+        isDelegate = false, grade } = Astro.props as Props;
 const isMs = jurisdiction === "ms";
 
 // 1 → "1st", 2 → "2nd", 12 → "12th" (factual ordinal for rank + percentile).
@@ -82,8 +86,8 @@ const tiles = [
     Record summary
   </h2>
   <p class="mt-1 max-w-prose text-xs text-neutral-500">
-    Each figure is a plain count or rate shown with its denominator{!isMs && ", and its rank within the chamber"}.{isDelegate && " As a non-voting delegate, they are not ranked on attendance or party unity, which require voting on final passage; they are ranked on the bill measures."} The site combines
-    nothing into an overall score and draws no conclusion — see
+    Each figure is a plain count or rate shown with its denominator{!isMs && ", its rank within the chamber, and — for attendance — a letter grade against fixed, published thresholds"}.{isDelegate && " As a non-voting delegate, they are not ranked or graded on attendance or party unity, which require voting on final passage; they are ranked on the bill measures."} The site combines
+    nothing into an overall score{isMs && " and draws no conclusion"} — see
     <a href={methodsLink} class="underline hover:text-neutral-700">how each is computed</a>.
   </p>
 
@@ -96,6 +100,17 @@ const tiles = [
             <a href={href(t.key)} class="hover:text-neutral-700 hover:underline">{t.label}</a>
           </dt>
           <dd class="mt-1 text-2xl font-semibold tracking-tight text-neutral-900">{t.value}</dd>
+          {t.key === "attendance" && grade?.grade && (
+            <dd class="mt-1">
+              <a href="/methods#grade-attendance"
+                 class="inline-block rounded border border-neutral-400 bg-white px-2 py-0.5 text-sm font-bold text-neutral-900 hover:border-neutral-600"><span data-grade-label>{grade.label}</span></a>
+            </dd>
+          )}
+          {/* Set-aside note only for a thin/absent record; a delegate's exclusion (D66)
+              is explained by the caption above, not repeated as "too few votes" here. */}
+          {t.key === "attendance" && grade?.exception && grade.exception !== "delegate" && (
+            <dd class="mt-1 text-xs italic text-neutral-500"><span data-grade-label>{grade.exceptionLabel}</span></dd>
+          )}
           {r && (
             <dd class="mt-0.5 text-xs font-medium text-neutral-600">
               <a href={`/methods#ranking-${t.key}`} class="hover:text-neutral-800 hover:underline">

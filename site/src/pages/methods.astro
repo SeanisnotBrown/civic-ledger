@@ -1,6 +1,6 @@
 ---
 import Layout from "../components/Layout.astro";
-import { getManifest, getMetrics, getMsManifest, getRankings } from "../lib/data";
+import { getManifest, getMetrics, getMsManifest, getRankings, getGrades } from "../lib/data";
 import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
 import type { VoteClass } from "../lib/data";
 
@@ -28,16 +28,74 @@ const rankingMethodology = rankedKeys.length ? rankings[rankedKeys[0]].methodolo
 const chamberLabel: Record<string, string> = { house: "House", senate: "Senate" };
 const fmtVal = (n: number | null, isPct: boolean): string =>
   n == null ? "—" : isPct ? `${n}%` : `${n}`;
+
+// V2-4 grades. One section per graded category, id `grade-{category}` (the member-page
+// badge links here). Band ranges are derived from consecutive cutoffs; the labels are
+// the exact ratified strings — check-grade-labels.mjs asserts the site renders only
+// strings that appear in the config.
+const grades = getGrades();
+const gradeCats = Object.keys(grades).sort();
+const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
+const bandRange = (bands: { min: number }[], i: number): string => {
+  const lo = bands[i].min;
+  const hi = i === 0 ? null : bands[i - 1].min;
+  if (hi == null) return `${lo}% or above`;
+  return lo === 0 ? `below ${hi}%` : `${lo}% to under ${hi}%`;
+};
 ---
 <Layout title="Methodology — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Methodology</h1>
   <p class="mt-2 max-w-prose text-neutral-700">
-    This site publishes the recorded legislative record. Every figure traces to an
-    official source, and nothing is summarized, characterized, or scored by an
-    automated process. The full data pipeline and this site's source code are
-    public. Each metric below states its exact formula, what it includes and
-    excludes, and its source — the same text that documents the code that computes it.
+    This site publishes the recorded legislative record and grades one measure —
+    attendance — against fixed thresholds the site's owner approved (see Grades,
+    below). Every figure traces to an official source, and every grade applies the
+    same published cutoffs to every member of both chambers; nothing is written,
+    summarized, or characterized by an automated process. Each metric below states
+    its exact formula, what it includes and excludes, and its source — the same text
+    that documents the code that computes it.
   </p>
+
+  {gradeCats.length > 0 && (
+    <>
+      <h2 id="grades" class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+        Grades
+      </h2>
+      <p class="mt-2 max-w-prose text-sm text-neutral-700">
+        The site grades one measure so far — attendance — with more to come. A grade is
+        a fixed judgment against lines the site's owner approved, applied identically to
+        every member of both chambers; a member's grade never changes because of what
+        other members do. The overall grade that would combine categories is not
+        published yet — it awaits its formula.
+      </p>
+      <div class="mt-3 space-y-5">
+        {gradeCats.map((cat) => {
+          const g = grades[cat];
+          return (
+            <section id={`grade-${cat}`} data-grade={cat} aria-labelledby={`grade-h-${cat}`}>
+              <h3 id={`grade-h-${cat}`} class="text-base font-semibold text-neutral-800">
+                {cap(g.category)}
+              </h3>
+              <dl class="mt-1 max-w-prose space-y-1 text-sm">
+                {g.bands.map((b, i) => (
+                  <div class="flex gap-2">
+                    <dt class="font-semibold text-neutral-800"><span data-grade-label>{b.label}</span></dt>
+                    <dd class="text-neutral-500">— {bandRange(g.bands, i)}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p class="mt-2 max-w-prose text-sm text-neutral-600">
+                Members with fewer than {g.min_eligible} eligible roll calls are
+                not graded off a thin record — they show "{g.exception_label}". Non-voting
+                delegates are not graded on attendance either: they cannot vote on final
+                passage, so their eligible set (about a third of roll calls) is not
+                comparable to a full member's. Ratified {g.ratified}.
+              </p>
+            </section>
+          );
+        })}
+      </div>
+    </>
+  )}
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Metrics</h2>
   <div class="mt-2 space-y-6">

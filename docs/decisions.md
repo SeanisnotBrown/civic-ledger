@@ -1341,3 +1341,71 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   - **Tests:** the e2e page list (`e2e/fixtures.ts`) gains a delegate page, derived
     from `excluded_delegates` so it never rots — covering the mixed ranked/unranked
     tile path + the delegate caption at a11y and 380px.
+
+---
+
+## V2-4 — grades (first evaluative increment, 2026-08-13)
+
+- **D70 (2026-08-13) — attendance letter grade; OWNER-RATIFIED via propose→ratify
+  →commit (§0.8/SD-27, H15 round one).** The first evaluative output (SD-26). The
+  owner was brought two rounds of options in plain English WITH the data
+  distributions; every ratified value below is the owner's pick, committed in
+  `data/config/thresholds.yaml` with its reasoning + date. The paper trail:
+  - **Scope:** grade ONE category, attendance, for now. The owner explicitly
+    deferred the OVERALL composite grade ("that will be a formula I will have to
+    work on") — so V2-4 publishes an attendance grade and NO overall grade; the
+    composite lands when its formula + category weights are ratified (§0.8 — no
+    unratified formula publishes).
+  - **Which measures:** owner chose attendance only. The other four were declined
+    with the data reasons shown to them (party-unity has no neutral direction —
+    grading it is a political stance; sponsored/cosponsored are volume not quality;
+    enacted-rate is median-zero and understates — grading "0% = poor" is a false
+    frame). Attendance is the clean one (higher plainly better, a real low tail).
+  - **Style:** letter grades A–F. **Cutoffs (fixed bars, "spread across the real
+    range"):** A ≥99% · B ≥97% · C ≥95% · D ≥90% · F <90%. **Labels:** A "Strong",
+    B "Good", C "Fair", D "Weak", F "Poor" attendance. Fixed bars (not a curve) so
+    a member's grade never moves because of others (fits "check my math"); one bar
+    set applies to both chambers (an attendance % means the same in each).
+  - **Minimum service:** owner chose < 50 eligible roll calls → set aside, shown
+    "Too few votes to grade" (sets aside 1 member today). Non-voting delegates are
+    also not graded (inherited D66 — eligible set not comparable). §6.5
+    grading-coverage: every covered member is graded OR in the published
+    `exceptions` map (delegate / min_service / no_record) — 627 graded + 10
+    excepted = all 637, silent drop = fail.
+  - **Design:** `ingest/scoring.py` (the sole Tier-3 composer; composes nothing yet
+    — one metric per grade) → `data/grades/attendance.json`, from ratified
+    thresholds only. **No wall-clock** in grade records (§6.3 beats §5's "computed-at
+    date" wording — code is authoritative when the spec disagrees; provenance is
+    `formula_version` + `ratified`). `verify-recompute` invariant 6 (grades re-derive
+    byte-for-byte). **§6.8 guard rewritten prohibition→disclosure** (`checks/
+    integrity.py`): Tier-2 metrics still may not compose (metrics.py AST check kept);
+    published grades must carry EXACTLY the config's bands/labels/exception_label/
+    min_eligible/formula_version/ratified (`grades_disclosure`); the render-side half
+    is `site/scripts/check-grade-labels.mjs` (every `data-grade-label` on the built
+    site ⊆ config labels). Both are tripwires-plus-review (§CS blind spots carry).
+    §8 coverage gate gains `scoring.py` (100%) **and `classify.py`** (100%, the D68
+    commitment — its live-fetch `run()` now has tmp-repo/mock tests).
+  - **§6.7 doctrine flips (partial, because only attendance is graded):**
+    `index.astro` and `methods.astro` intros flip (site now grades/characterizes);
+    `MemberStats` caption SPLITS — "combines nothing into an overall score" STAYS
+    (no composite), "draws no conclusion" flips (federal); MS keeps "draws no
+    conclusion" (state figures aren't graded); `ms/index.astro` reworded to scope
+    the no-grades claim to the states; `metrics.py` — the module + two list-metric
+    docstrings' SITE-level "draws no conclusion" scoped (metrics.py still doesn't
+    score; "here" stays true), the per-metric "not a score" claims kept; rankings/
+    adjacency "not a score" kept (SD-20). The docstring edits churn `_formula_digest`
+    for two metrics → `metrics.json` regenerated (values byte-unchanged → rankings +
+    grades byte-identical); **no `FORMULA_SCHEMA_VERSION` bump** — a docstring edit is
+    not a change to how a number is computed.
+- **D71 (2026-08-13) — two live Value-#1 falsehoods fixed in the V2-4 doctrine
+  pass.** Both pre-existed V2-4 and were caught while editing the same files:
+  (1) the **home page** was titled "Mississippi delegation" and its intro said "for
+  Mississippi's members of Congress," but since V2-1 it lists all **637** federal
+  members (Butler of CA included) — a false frame shipped live through V2-1/2/3.
+  Retitled "Members of Congress"; intro rewritten to the U.S. House and Senate.
+  (2) `methods.astro` still claimed "The full data pipeline and this site's source
+  code are public" — false since D59 (the repo is private); the V2-0 truth sweep
+  fixed `/privacy` + `/corrections` but missed this line. Removed the public-source
+  claim (kept "every figure traces to an official source"). Both are Value #1 (never
+  publish something false/falsely framed), which outranks everything — fixed on
+  sight, not deferred to V2-5's dashboard rebuild.

@@ -1,0 +1,61 @@
+# data/config/thresholds.yaml — ratified evaluative constants (§0.8 / SD-27).
+#
+# Every value here was proposed to the owner in plain English WITH the data, chosen by
+# the owner, and committed with the reasoning + the ratification date. Nothing
+# evaluative may publish from a value not committed here; the §6.8 guard
+# (checks/integrity.py + site/scripts/check-grade-labels.mjs) enforces that every grade
+# label rendered on the site appears verbatim below. `citation` is an external source
+# URL or null (these grades are grounded in the committed data distribution, not an
+# outside standard). `ratified` is the date the owner chose the values.
+#
+# V2-4 (2026-08-13) grades ONE category — attendance. The OVERALL grade that combines
+# categories is deferred: the owner is still authoring that formula, and no unratified
+# formula publishes (§0.8). Further categories + the overall grade + its weights land
+# when they are ratified in a later round.
+
+# Bumps whenever any ratified value below changes, so a published grade always states
+# which formula produced it (honest historical re-grading, §5). NOT bumped by a
+# docstring/methodology edit — that is not a change to an evaluative value.
+formula_version: 1
+
+grades:
+  attendance:
+    metric: attendance          # the Tier-2 metric key this grades (data/metrics.json)
+    field: pct                  # the scalar field of that metric that is graded
+    ratified: "2026-08-13"
+    citation: null
+    justification: >-
+      First evaluative category. Attendance is the cleanest to grade: showing up to
+      vote is the job, higher is plainly better, and the data has a real low tail to
+      point at (a typical House member votes on 97.7% of roll calls; 9 in 10 are above
+      92.5%). The owner chose FIXED bars — the same line for every member, House and
+      Senate, because an attendance percentage means the same thing in both — over a
+      curve, so a member's grade never moves because of what other members do. The
+      owner chose the "spread across the real range" cutoffs below so the grades use
+      the full range members actually occupy rather than bunching everyone at the top.
+    # Members with fewer than `min_eligible` eligible roll calls are never graded off a
+    # handful of votes: they show `exception_label` with the reason stated. Non-voting
+    # delegates are also not graded on attendance (inherited D66 — their eligible set,
+    # ~1/3 of rolls, is not comparable to a full member's). Both appear in the
+    # published exceptions list (§6.5 grading-coverage: graded or excepted, never
+    # silently dropped).
+    min_eligible: 50
+    exception_label: "Too few votes to grade"
+    # First band (top-down) whose `min` the member's value meets wins. `label` is the
+    # EXACT rendered string — the §6.8 guard matches it verbatim. Owner-ratified words.
+    bands:
+      - grade: A
+        min: 99
+        label: "A — Strong attendance"
+      - grade: B
+        min: 97
+        label: "B — Good attendance"
+      - grade: C
+        min: 95
+        label: "C — Fair attendance"
+      - grade: D
+        min: 90
+        label: "D — Weak attendance"
+      - grade: F
+        min: 0
+        label: "F — Poor attendance"

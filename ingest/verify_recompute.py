@@ -30,6 +30,10 @@ longer true.) What this script checks, over 100% of roll calls:
    byte-for-byte from the committed data/metrics.json + data/members alone. A
    ranking that cannot be recomputed from published data may not ship (§7 V2-2
    "on failure"). No-op until data/rankings/ exists.
+6. **Grades recompute** (V2-4) — every data/grades/{category}.json re-derives
+   byte-for-byte from data/metrics.json + data/members + the ratified
+   data/config/thresholds.yaml. A grade that cannot be re-derived from the public
+   repo may not ship. No-op until data/grades/ exists.
 
 Exit 0 = every invariant holds for every roll; nonzero lists the failures. It is
 also exercised as a pytest test so §8's "recompute-and-match script as a test" holds.
@@ -174,12 +178,40 @@ def check_rankings() -> list[str]:
     return failures
 
 
+def check_grades() -> list[str]:
+    """(6) Grades recompute exactly from published data + ratified config (V2-4). Each
+    committed data/grades/{category}.json must equal a fresh `scoring.build_all()`
+    (which reads only data/metrics.json + data/members + data/config/thresholds.yaml)
+    byte-for-byte — a grade that cannot be re-derived from the public repo may not
+    ship. No-op until data/grades/ exists (pre-V2-4)."""
+    from ingest import scoring
+    from ingest.export import _dumps
+
+    grades_dir = repo_root() / "data" / "grades"
+    if not grades_dir.exists() or not any(grades_dir.glob("*.json")):
+        return []
+    failures: list[str] = []
+    recomputed = scoring.build_all()
+    committed = {p.stem for p in grades_dir.glob("*.json")}
+    if committed != set(recomputed):
+        failures.append(
+            f"grades — file set {sorted(committed)} != graded categories {sorted(recomputed)}"
+        )
+    for category, gf in recomputed.items():
+        path = grades_dir / f"{category}.json"
+        if not path.exists():
+            continue
+        if path.read_text(encoding="utf-8") != _dumps(gf.model_dump()):
+            failures.append(f"grades — {category}.json does not match a fresh recompute")
+    return failures
+
+
 def main(argv: list[str] | None = None) -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not votes_dir.exists() or not any(votes_dir.glob("*.json")):
         print("verify-recompute: no roll-call data yet (no-op).")
         return 0
-    failures = check_dataset() + check_rankings()
+    failures = check_dataset() + check_rankings() + check_grades()
     n_rolls = sum(1 for _ in votes_dir.glob("*.json"))
     if failures:
         print(f"VERIFY-RECOMPUTE FAILED — {len(failures)} mismatch(es):")
@@ -188,12 +220,20 @@ def main(argv: list[str] | None = None) -> int:
         if len(failures) > 40:
             print(f"  ... and {len(failures) - 40} more")
         return 1
-    n_rankings = sum(1 for _ in (repo_root() / "data" / "rankings").glob("*.json")) \
-        if (repo_root() / "data" / "rankings").exists() else 0
+    def _count(sub: str) -> int:
+        d = repo_root() / "data" / sub
+        return sum(1 for _ in d.glob("*.json")) if d.exists() else 0
+
+    n_rankings, n_grades = _count("rankings"), _count("grades")
+    derived = []
+    if n_rankings:
+        derived.append(f"{n_rankings} ranking files")
+    if n_grades:
+        derived.append(f"{n_grades} grade file(s)")
+    tail = f"; {' and '.join(derived)} recompute exactly." if derived else "."
     print(
         f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "
-        f"on {n_rolls} roll calls"
-        + (f"; {n_rankings} ranking files recompute exactly." if n_rankings else ".")
+        f"on {n_rolls} roll calls{tail}"
     )
     return 0
 

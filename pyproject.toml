@@ -47,17 +47,17 @@ select = ["E", "F", "I", "UP", "B"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 
-# §8 coverage gate (V2-2). Enforced on the small, pure, credibility-bearing
-# modules — the ones whose branches decide a published number. Coverage is NOT in
-# `addopts` on purpose: a plain `uv run pytest` (or a single-file run) stays fast
-# and usable; the 100%-branch GATE is a dedicated invocation (CI + the command in
-# docs/PROGRESS.md):
+# §8 coverage gate. Enforced on the small, pure, credibility-bearing modules — the
+# ones whose branches decide a published number. Coverage is NOT in `addopts` on
+# purpose: a plain `uv run pytest` (or a single-file run) stays fast and usable; the
+# 100%-branch GATE is a dedicated invocation (CI + the command in docs/PROGRESS.md):
 #   uv run pytest --cov=ingest.metrics --cov=ingest.rankings \
+#       --cov=ingest.scoring --cov=ingest.classify \
 #       --cov-branch --cov-fail-under=100 --cov-report=term-missing
-# Aggregate 100% over exactly these targets ⟺ each at 100%. `classify.py` joins the
-# gate at V2-4 with `scoring.py` (§8) — its pure `classify()` is already covered;
-# only its live-fetch `run()` plumbing is not, and V2-4's §6.8 rewrite is the
-# natural moment to add the I/O-path tests (D68).
+# Aggregate 100% over exactly these targets ⟺ each at 100%. V2-2 seeded the gate with
+# metrics + rankings; V2-4 (D68) added scoring.py + classify.py (its live-fetch run()
+# I/O now has tmp-repo/mock tests). Add a module here when it starts deciding a
+# published evaluative number.
 [tool.coverage.run]
 branch = true
 

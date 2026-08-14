@@ -1,0 +1,133 @@
+{
+  "$defs": {
+    "GradeBand": {
+      "additionalProperties": false,
+      "properties": {
+        "grade": {
+          "title": "Grade",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "min": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Min"
+        }
+      },
+      "required": [
+        "grade",
+        "min",
+        "label"
+      ],
+      "title": "GradeBand",
+      "type": "object"
+    },
+    "GradeEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "grade": {
+          "title": "Grade",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "number"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "value",
+        "grade",
+        "label"
+      ],
+      "title": "GradeEntry",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "data/grades/{category}.json (V2-4). One evaluative category's grade per member,\nrecomputed from data/metrics.json + the ratified thresholds. No wall-clock.",
+  "properties": {
+    "bands": {
+      "items": {
+        "$ref": "#/$defs/GradeBand"
+      },
+      "title": "Bands",
+      "type": "array"
+    },
+    "category": {
+      "title": "Category",
+      "type": "string"
+    },
+    "exception_label": {
+      "title": "Exception Label",
+      "type": "string"
+    },
+    "exceptions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Exceptions",
+      "type": "object"
+    },
+    "field": {
+      "title": "Field",
+      "type": "string"
+    },
+    "formula_version": {
+      "title": "Formula Version",
+      "type": "integer"
+    },
+    "members": {
+      "additionalProperties": {
+        "$ref": "#/$defs/GradeEntry"
+      },
+      "title": "Members",
+      "type": "object"
+    },
+    "metric": {
+      "title": "Metric",
+      "type": "string"
+    },
+    "min_eligible": {
+      "title": "Min Eligible",
+      "type": "integer"
+    },
+    "ratified": {
+      "title": "Ratified",
+      "type": "string"
+    }
+  },
+  "required": [
+    "category",
+    "metric",
+    "field",
+    "formula_version",
+    "ratified",
+    "min_eligible",
+    "bands",
+    "exception_label",
+    "members",
+    "exceptions"
+  ],
+  "title": "GradesFile",
+  "type": "object"
+}

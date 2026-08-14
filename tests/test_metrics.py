@@ -103,6 +103,47 @@ def test_enacted_rate_null_when_no_sponsored() -> None:
     assert metrics.enacted_rate("M1", _ctx([]))["pct"] is None
 
 
+# --- position_mix (Yea / Nay share) ---------------------------------------
+
+
+def test_position_mix_shares_of_cast() -> None:
+    # yea/nay/present are cast; not_voting is absence (excluded from the denominator).
+    pos = [
+        (_rc("r1", "passage", "b1", "2025-01-01", _R(1, 0)), "yea"),
+        (_rc("r2", "passage", "b2", "2025-01-02", _R(1, 0)), "nay"),
+        (_rc("r3", "passage", "b3", "2025-01-03", _R(1, 0)), "present"),
+        (_rc("r4", "passage", "b4", "2025-01-04", _R(1, 0)), "not_voting"),
+    ]
+    v = metrics.position_mix("M1", _ctx(pos))
+    assert v == {"cast": 3, "yea": 1, "nay": 1, "present": 1, "yea_pct": 33.33, "nay_pct": 33.33}
+    from ingest.models import PositionMixValue
+    PositionMixValue.model_validate(v)
+
+
+def test_position_mix_null_pct_when_nothing_cast() -> None:
+    # Only Not Voting → cast == 0 → both shares null (never a fabricated 0%).
+    pos = [(_rc("r1", "passage", "b1", "2025-01-01", _R(1, 0)), "not_voting")]
+    v = metrics.position_mix("M1", _ctx(pos))
+    assert v == {"cast": 0, "yea": 0, "nay": 0, "present": 0, "yea_pct": None, "nay_pct": None}
+
+
+# --- cosponsor_enacted_rate -----------------------------------------------
+
+
+def test_cosponsor_enacted_rate_share() -> None:
+    leg = {"M1": {"member_id": "M1", "sponsored": [], "cosponsored": [
+        {"bill_id": "s1-119", "congress": 119, "became_law": True},
+        {"bill_id": "s2-119", "congress": 119, "became_law": False}]}}
+    v = metrics.cosponsor_enacted_rate("M1", _ctx([], legislation=leg))
+    assert v == {"cosponsored": 2, "enacted": 1, "pct": 50.0}
+    from ingest.models import CosponsorEnactedValue
+    CosponsorEnactedValue.model_validate(v)
+
+
+def test_cosponsor_enacted_rate_null_when_none() -> None:
+    assert metrics.cosponsor_enacted_rate("M1", _ctx([]))["pct"] is None
+
+
 # --- cosponsor_vote_gap ---------------------------------------------------
 
 

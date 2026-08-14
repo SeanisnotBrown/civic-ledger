@@ -65,6 +65,37 @@
       "title": "AttendanceValue",
       "type": "object"
     },
+    "CosponsorEnactedValue": {
+      "additionalProperties": false,
+      "properties": {
+        "cosponsored": {
+          "title": "Cosponsored",
+          "type": "integer"
+        },
+        "enacted": {
+          "title": "Enacted",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        }
+      },
+      "required": [
+        "cosponsored",
+        "enacted",
+        "pct"
+      ],
+      "title": "CosponsorEnactedValue",
+      "type": "object"
+    },
     "CountValue": {
       "additionalProperties": false,
       "properties": {
@@ -158,6 +189,9 @@
         "attendance": {
           "$ref": "#/$defs/AttendanceValue"
         },
+        "cosponsor_enacted_rate": {
+          "$ref": "#/$defs/CosponsorEnactedValue"
+        },
         "cosponsor_vote_gap": {
           "items": {
             "$ref": "#/$defs/GapItem"
@@ -181,6 +215,9 @@
         "party_unity": {
           "$ref": "#/$defs/PartyUnityValue"
         },
+        "position_mix": {
+          "$ref": "#/$defs/PositionMixValue"
+        },
         "sponsored": {
           "$ref": "#/$defs/CountValue"
         }
@@ -188,9 +225,11 @@
       "required": [
         "attendance",
         "party_unity",
+        "position_mix",
         "sponsored",
         "cosponsored",
         "enacted_rate",
+        "cosponsor_enacted_rate",
         "cosponsor_vote_gap",
         "named_measure_mismatch",
         "absence_context"
@@ -315,6 +354,59 @@
         "excluded_ties"
       ],
       "title": "PartyUnityValue",
+      "type": "object"
+    },
+    "PositionMixValue": {
+      "additionalProperties": false,
+      "properties": {
+        "cast": {
+          "title": "Cast",
+          "type": "integer"
+        },
+        "nay": {
+          "title": "Nay",
+          "type": "integer"
+        },
+        "nay_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Nay Pct"
+        },
+        "present": {
+          "title": "Present",
+          "type": "integer"
+        },
+        "yea": {
+          "title": "Yea",
+          "type": "integer"
+        },
+        "yea_pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Yea Pct"
+        }
+      },
+      "required": [
+        "cast",
+        "yea",
+        "nay",
+        "present",
+        "yea_pct",
+        "nay_pct"
+      ],
+      "title": "PositionMixValue",
       "type": "object"
     }
   },

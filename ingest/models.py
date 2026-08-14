@@ -211,6 +211,21 @@ class EnactedRateValue(_Strict):
     pct: float | None    # 100 * enacted / sponsored; None if sponsored == 0
 
 
+class PositionMixValue(_Strict):
+    cast: int            # yea + nay + present (positions actually cast; not_voting excluded)
+    yea: int
+    nay: int
+    present: int
+    yea_pct: float | None  # 100 * yea / cast; None when cast == 0. NOT an approval measure.
+    nay_pct: float | None  # 100 * nay / cast; None when cast == 0
+
+
+class CosponsorEnactedValue(_Strict):
+    cosponsored: int
+    enacted: int         # cosponsored bills that became law under their own bill number
+    pct: float | None    # 100 * enacted / cosponsored; None if cosponsored == 0
+
+
 class GapItem(_Strict):
     bill_id: str
     kind: Literal["cosponsored_and_voted_nay", "cosponsored_no_floor_action"]
@@ -242,9 +257,11 @@ class AbsenceContextItem(_Strict):
 class MemberMetrics(_Strict):
     attendance: AttendanceValue
     party_unity: PartyUnityValue
+    position_mix: PositionMixValue
     sponsored: CountValue
     cosponsored: CountValue
     enacted_rate: EnactedRateValue
+    cosponsor_enacted_rate: CosponsorEnactedValue
     cosponsor_vote_gap: list[GapItem]
     named_measure_mismatch: list[MismatchItem]
     absence_context: list[AbsenceContextItem]

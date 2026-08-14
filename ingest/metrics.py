@@ -47,9 +47,11 @@ SUBSTANTIVE: frozenset[str] = frozenset({"passage", "amendment", "veto_override"
 METRIC_LABELS: dict[str, str] = {
     "attendance": "Attendance",
     "party_unity": "Party unity",
+    "position_mix": "Yea / Nay share",
     "sponsored": "Bills sponsored",
     "cosponsored": "Bills cosponsored",
     "enacted_rate": "Enacted rate",
+    "cosponsor_enacted_rate": "Cosponsored bills enacted",
     "cosponsor_vote_gap": "Cosponsor-to-vote gap",
     "named_measure_mismatch": "Named-measure mismatch",
     "absence_context": "Missed-vote context",
@@ -199,6 +201,33 @@ def party_unity(mid: str, ctx: Ctx) -> dict:
     }
 
 
+def position_mix(mid: str, ctx: Ctx) -> dict:
+    """Of the positions the member actually cast (Yea, Nay, or Present — Not Voting is
+    absence, and the attendance metric owns it), the share that were Yea and the share
+    that were Nay.
+
+    This is NOT an approval measure and must never be labelled as one: it depends
+    entirely on what the chamber was asked to vote on — a chamber that spends a session
+    on measures a member's side favours produces a high Yea share for reasons that have
+    nothing to do with the member. yea_pct = yea / cast, nay_pct = nay / cast, where
+    cast = Yea + Nay + Present across every eligible roll. Both pct fields are null when
+    the member cast nothing. Source: the recorded positions (data/votes)."""
+    yea = nay = present = 0
+    for _, pos in ctx.positions[mid]:
+        if pos == "yea":
+            yea += 1
+        elif pos == "nay":
+            nay += 1
+        elif pos == "present":
+            present += 1
+    cast = yea + nay + present
+    return {
+        "cast": cast, "yea": yea, "nay": nay, "present": present,
+        "yea_pct": round(100 * yea / cast, 2) if cast else None,
+        "nay_pct": round(100 * nay / cast, 2) if cast else None,
+    }
+
+
 def sponsored(mid: str, ctx: Ctx) -> dict:
     """Count of bills and resolutions the member sponsored (was the primary
     sponsor of) in the covered Congresses. Floor amendments are not counted (they
@@ -226,6 +255,25 @@ def enacted_rate(mid: str, ctx: Ctx) -> dict:
     return {
         "sponsored": len(spon), "enacted": enacted,
         "pct": round(100 * enacted / len(spon), 2) if spon else None,
+    }
+
+
+def cosponsor_enacted_rate(mid: str, ctx: Ctx) -> dict:
+    """Of the bills the member cosponsored in the covered Congresses, the share that
+    became law under their own bill number (official latest action "Became Public
+    Law").
+
+    This is a WEAK signal about the member: a cosponsor is one of many names on a
+    bill and does not control whether it advances, so this rate reflects the fate of
+    the bills a member lent their name to far more than the member's own influence —
+    and, like the sponsored enacted rate, it understates influence because text folded
+    into another vehicle is not attributed here. pct is null when the member
+    cosponsored nothing. Source: data/legislation."""
+    cospon = ctx.legislation[mid]["cosponsored"]
+    enacted = sum(1 for li in cospon if li["became_law"])
+    return {
+        "cosponsored": len(cospon), "enacted": enacted,
+        "pct": round(100 * enacted / len(cospon), 2) if cospon else None,
     }
 
 
@@ -348,9 +396,11 @@ def absence_context(mid: str, ctx: Ctx) -> list[dict]:
 METRICS = {
     "attendance": attendance,
     "party_unity": party_unity,
+    "position_mix": position_mix,
     "sponsored": sponsored,
     "cosponsored": cosponsored,
     "enacted_rate": enacted_rate,
+    "cosponsor_enacted_rate": cosponsor_enacted_rate,
     "cosponsor_vote_gap": cosponsor_vote_gap,
     "named_measure_mismatch": named_measure_mismatch,
     "absence_context": absence_context,

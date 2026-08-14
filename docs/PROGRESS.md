@@ -85,17 +85,19 @@ adoption. The remediation backlog (R-1..R-6) is summarized below so it survives
 even if these stay local. **Publishing them to the public repo is the owner's
 call — do not commit without asking.**
 
-> **PIPELINE ORDER (load-bearing, D24 + INC-7/8/10 + R-2/D46):** `ingest members`
+> **PIPELINE ORDER (load-bearing, D24 + INC-7/8/10 + R-2/D46 + V2-2/D67):** `ingest members`
 > (roster refresh FIRST — R-2, so vote coverage + unknown-member alarms read a fresh
 > covered set) → `ingest {house,senate}-votes`
 > → `ingest bills` → `ingest legislation` → `ingest classify` → `corrections` →
-> `ingest metrics` → `uv run export` → `uv run checks`. An ingest re-export resets
-> every roll to the provisional `unclassified`, so **classify must run after any vote
-> ingest**; **metrics must run after classify** (party-unity reads final `vote_class`)
-> **+ after legislation**, and **before the nightly diff-gate** (metrics.json is
-> derived — a legislation-only change must still reach the gate, D40); **export must
-> run after any ingest** or manifest/schema drift fails. (`bills`/`legislation` are
-> independent of classify; export/checks come last.)
+> `ingest metrics` → `ingest rankings` → `uv run export` → `uv run checks`. An ingest
+> re-export resets every roll to the provisional `unclassified`, so **classify must run
+> after any vote ingest**; **metrics must run after classify** (party-unity reads final
+> `vote_class`) **+ after legislation**; **rankings (V2-2) must run after metrics**
+> (they are derived from `data/metrics.json`), and both metrics and rankings run
+> **before the nightly diff-gate** (both are derived — a change that only moves a
+> rank must still reach the gate, D40/D67); **export must run after any ingest** or
+> manifest/schema drift fails. (`bills`/`legislation` are independent of classify;
+> export/checks come last.)
 
 ---
 

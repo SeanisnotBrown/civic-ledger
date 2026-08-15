@@ -79,6 +79,15 @@ export function compareIds(): { a: string; b: string } {
   return { a: gradedByChamber.house[0], b: gradedByChamber.senate[0] };
 }
 
+// V2-5 /compare delegate case (D66/D77): a non-voting delegate paired with a GRADED House
+// member, so the test proves the vote metrics (attendance/unity/yea) are suppressed for the
+// delegate ONLY — the graded member's vote metrics still render. Both are House, so the pair
+// carries no cross-chamber disclosure to confound the assertion. Derived from the committed
+// delegate list + grades, so the ids never rot.
+export function compareDelegatePair(): { delegate: string; graded: string } {
+  return { delegate: firstDelegateId(), graded: compareIds().a };
+}
+
 export const PAGES: string[] = [
   "/",
   "/federal", // V2-5: the filterable federal-members browser (Preact island)

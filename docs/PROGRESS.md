@@ -104,8 +104,12 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     score is saturated/useless): **Style & Layout 83 ms vs the CI-green `/m/A000055/1`
     anchor's 258 ms** (was 663 ms). Same columns/cells/`data-*`; island row selector
     `tr[data-member]`→`[data-member]` + `aria-sort` on the columnheader; header-sort e2e
-    hydration-race fixed with a `data-mb-ready` marker. Pushed ALONE, CI watched to green
-    before `/compare`. Lesson saved in [[civic-ledger-ci-lighthouse-proxy]].
+    hydration-race fixed with a `data-mb-ready` marker. **Follow-on (2nd fix push):** CI
+    then failed at the E2E step — `axe.analyze()` on `/federal` TIMED OUT (>30s) on the CI
+    runner. `content-visibility` makes axe SLOWER: reading each off-screen row's computed
+    style for the colour-contrast rule forces the per-row layout cv defers (~25s local, >30s
+    CI). Not a violation — bumped the a11y test timeout to 150s (`e2e/a11y.spec.ts`). Pushed
+    ALONE, CI watched to green before `/compare`. Lesson in [[civic-ledger-ci-lighthouse-proxy]].
 
   ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass, IN PROGRESS)
   - **State:** explorer (CP6) + its CI fix (CP6b, D78) done. `/compare` (CP7, D77) built +

@@ -1,35 +1,46 @@
 /** @jsxImportSource preact */
-import { useEffect, useRef, useState } from "preact/hooks";
+import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 
-// V2-5 (perf revision, D73): a CONTROLS-ONLY island. The 637-row member list is
-// rendered as static HTML by the Astro page (/federal) — crawlable, usable with JS
-// off, deterministic, and cheap to load. An earlier version rendered the whole roster
-// inside this Preact island; that hydrated 637 rows AND serialized the roster a second
-// time as JSON island props, which sank mobile performance (CI Lighthouse 0.8 < 0.9 on
-// /federal). This island now hydrates only the controls and enhances the existing list
-// in place: it filters by toggling each row's inline `display` and sorts by reordering
-// rows, both driven by the rows' own `data-*` attributes. It never owns the rows.
+// V2-5 Nocturne (explorer, D73/D74): a CONTROLS-ONLY island. The 637-row metric table is
+// static HTML rendered by /federal (crawlable, works JS-off, cheap first paint). This
+// island hydrates the search box + chip filters + column toggles and enhances the table in
+// place: it filters by toggling each row's inline `display`, sorts by reordering rows, and
+// hides a column by toggling `display` on every `[data-col=key]`. It reads only the rows'
+// own `data-*` attributes — it never owns or re-serialises the rows (rendering rows in the
+// island is what sank mobile perf at D73). Default sort stays `name` and matches the static
+// order, so the first (perf-critical) pass does no reorder and adds no layout shift.
 //
-// Filtering uses `li.style.display` (an inline style) rather than the `hidden`
-// attribute on purpose: the rows carry Tailwind's `flex` class, and an author-stylesheet
-// `display:flex` beats the user-agent `[hidden]{display:none}` in the cascade — so
-// `hidden` would leave "filtered-out" rows visible while the count claimed otherwise.
-// Inline style wins over any class, so it can't silently fail that way.
+// Filtering uses `el.style.display` (inline) not the `hidden` attribute: table cells and
+// rows carry author `display` values that beat the UA `[hidden]{display:none}` in the
+// cascade, so `hidden` could leave a "filtered-out" row visible while the count disagreed.
 
 const GRADE_ORDER: Record<string, number> = { A: 0, B: 1, C: 2, D: 3, F: 4 };
-type SortKey = "name" | "attendance" | "grade";
+const LIST_ID = "member-list";
 
-export default function MemberBrowser({ listId, total }: { listId: string; total: number }) {
+type Col = { key: string; short: string };
+type SortKey = string; // "name" | "grade" | a column key
+
+function num(v: string | undefined): number | null {
+  if (v == null || v === "") return null;
+  const n = Number(v);
+  return Number.isNaN(n) ? null : n;
+}
+
+export default function MemberBrowser({ total, columns }: { total: number; columns: Col[] }) {
   const [chamber, setChamber] = useState("all");
   const [party, setParty] = useState("all");
   const [grade, setGrade] = useState("all");
   const [q, setQ] = useState("");
   const [sort, setSort] = useState<SortKey>("name");
+  const [dir, setDir] = useState<"asc" | "desc">("asc");
+  const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [count, setCount] = useState<number | null>(null);
   const first = useRef(true);
 
-  // Deep-link support: dashboard tiles link here with query params (?grade=F, …) so a
-  // headline number clicks straight through to the list that reproduces it. Client-only.
+  const colKeys = useMemo(() => columns.map((c) => c.key), [columns]);
+
+  // Deep-link support: dashboard tiles/band chips link here with query params so a headline
+  // number clicks straight through to the list that reproduces it (?grade=A&sort=grade, …).
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
     const ch = p.get("chamber");
@@ -37,119 +48,206 @@ export default function MemberBrowser({ listId, total }: { listId: string; total
     const pa = p.get("party");
     if (pa === "D" || pa === "R" || pa === "I") setParty(pa);
     const gr = p.get("grade");
-    if (gr && gr in GRADE_ORDER) {
-      setGrade(gr);
-      setSort("grade");
-    }
+    if (gr && gr in GRADE_ORDER) { setGrade(gr); setSort("grade"); setDir("asc"); }
     const so = p.get("sort");
-    if (so === "name" || so === "attendance" || so === "grade") setSort(so);
+    if (so === "name") { setSort("name"); setDir("asc"); }
+    else if (so === "grade") { setSort("grade"); setDir("asc"); }
+    else if (so && colKeys.includes(so)) { setSort(so); setDir("desc"); }
     const query = p.get("q");
     if (query) setQ(query);
-  }, []);
+  }, [colKeys]);
 
+  // The one effect that touches the DOM: filter → sort → column visibility → header state.
   useEffect(() => {
-    const list = document.getElementById(listId);
+    const list = document.getElementById(LIST_ID);
     if (!list) return;
-    const items = Array.from(list.querySelectorAll<HTMLElement>("li[data-member]"));
+    const isFirst = first.current;
+    const rows = Array.from(list.querySelectorAll<HTMLElement>("tr[data-member]"));
     const needle = q.trim().toLowerCase();
     let shown = 0;
-    for (const li of items) {
+    for (const tr of rows) {
       const ok =
-        (chamber === "all" || li.dataset.chamber === chamber) &&
-        (party === "all" || li.dataset.party === party) &&
-        (grade === "all" || li.dataset.grade === grade) &&
-        (!needle || (li.dataset.search ?? "").includes(needle));
-      li.style.display = ok ? "" : "none";
+        (chamber === "all" || tr.dataset.chamber === chamber) &&
+        (party === "all" || tr.dataset.party === party) &&
+        (grade === "all" || tr.dataset.grade === grade) &&
+        (!needle || (tr.dataset.search ?? "").includes(needle));
+      tr.style.display = ok ? "" : "none";
       if (ok) shown++;
     }
     setCount(shown);
 
-    // The Astro page renders the list name-sorted, so on the first (perf-critical) pass
-    // with the default name sort we skip the reorder entirely; we only pay for a reorder
-    // when the user (or a deep-link) actually asks for a non-default sort.
-    if (!(first.current && sort === "name")) {
+    // Sort. Skip entirely on the first pass while at the default name sort (static order
+    // already matches) — that keeps the perf-critical initial render reorder-free.
+    if (!(isFirst && sort === "name")) {
       const cmpName = (a: HTMLElement, b: HTMLElement) =>
         (a.dataset.name ?? "").localeCompare(b.dataset.name ?? "");
-      const sorted = items.slice().sort((a, b) => {
-        if (sort === "attendance") {
-          const av = a.dataset.att === "" ? null : Number(a.dataset.att);
-          const bv = b.dataset.att === "" ? null : Number(b.dataset.att);
-          if (av == null && bv == null) return cmpName(a, b);
-          if (av == null) return 1; // no record sorts last
-          if (bv == null) return -1;
-          return bv !== av ? bv - av : cmpName(a, b); // high → low
-        }
+      const sign = dir === "asc" ? 1 : -1;
+      const sorted = rows.slice().sort((a, b) => {
+        if (sort === "name") return sign * cmpName(a, b);
         if (sort === "grade") {
           const ao = a.dataset.grade ? GRADE_ORDER[a.dataset.grade] : 99;
           const bo = b.dataset.grade ? GRADE_ORDER[b.dataset.grade] : 99;
-          return ao !== bo ? ao - bo : cmpName(a, b); // A → F, ungraded last
+          if (ao === 99 && bo === 99) return cmpName(a, b);
+          if (ao === 99) return 1; // ungraded last, both directions
+          if (bo === 99) return -1;
+          return ao !== bo ? sign * (ao - bo) : cmpName(a, b);
         }
-        return cmpName(a, b);
+        const av = num(a.dataset[sort]);
+        const bv = num(b.dataset[sort]);
+        if (av == null && bv == null) return cmpName(a, b);
+        if (av == null) return 1; // missing values sort LAST in both directions
+        if (bv == null) return -1;
+        return av !== bv ? sign * (av - bv) : cmpName(a, b);
       });
-      for (const li of sorted) list.appendChild(li);
+      const body = rows[0]?.parentNode;
+      if (body) for (const tr of sorted) body.appendChild(tr);
     }
-    first.current = false;
-  }, [chamber, party, grade, q, sort, listId]);
 
-  const labelCls = "block text-xs font-medium text-neutral-500";
-  // Nocturne (D74): dark controls. `color-scheme: dark` on <html> also darkens the
-  // native <select> dropdowns and the search field's clear affordance.
-  const inputCls =
-    "mt-1 rounded-md border border-[rgba(233,233,237,0.16)] bg-surface px-2 py-1 text-sm text-text focus:border-accent";
+    // Column visibility — hide/show every header, cell, and definition entry by data-col.
+    for (const key of colKeys) {
+      const on = !hidden.has(key);
+      for (const el of list.querySelectorAll<HTMLElement>(`[data-col="${key}"]`)) {
+        el.style.display = on ? "" : "none";
+      }
+      const def = document.querySelector<HTMLElement>(`#defs-h ~ div [data-col="${key}"]`);
+      if (def) def.style.display = on ? "" : "none";
+    }
+
+    // Header active/direction markers (CSS renders the ↑/↓ arrow from these).
+    for (const btn of list.querySelectorAll<HTMLElement>(".hdr-btn")) {
+      const active = btn.dataset.sort === sort;
+      if (active) { btn.dataset.active = ""; btn.dataset.dir = dir; }
+      else { delete btn.dataset.active; delete btn.dataset.dir; }
+    }
+
+    // Reflect filter/sort state in the URL so a filtered view is linkable. Skip on the
+    // very first pass so an incoming deep-link (?grade=A&sort=grade) is not clobbered
+    // before its state has been applied.
+    if (!isFirst) {
+      const p = new URLSearchParams();
+      if (chamber !== "all") p.set("chamber", chamber);
+      if (party !== "all") p.set("party", party);
+      if (grade !== "all") p.set("grade", grade);
+      if (q.trim()) p.set("q", q.trim());
+      if (sort !== "name") p.set("sort", sort);
+      const qs = p.toString();
+      window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
+    }
+
+    first.current = false;
+  }, [chamber, party, grade, q, sort, dir, hidden, colKeys]);
+
+  // Wire the static column-header buttons to sorting (they live in the Astro table). The
+  // listener re-binds when sort/dir change so it closes over fresh state — that lets the
+  // handler use plain setState calls (never a side-effect inside a functional updater,
+  // which Preact may drop or replay). Clicking the active column flips direction; a new
+  // column opens ascending for name/grade, descending (high→low) for the metric columns.
+  useEffect(() => {
+    const list = document.getElementById(LIST_ID);
+    if (!list) return;
+    const btns = Array.from(list.querySelectorAll<HTMLButtonElement>(".hdr-btn"));
+    const onClick = (e: Event) => {
+      const key = (e.currentTarget as HTMLElement).dataset.sort;
+      if (!key) return;
+      if (key === sort) {
+        setDir(dir === "asc" ? "desc" : "asc");
+      } else {
+        setSort(key);
+        setDir(key === "name" || key === "grade" ? "asc" : "desc");
+      }
+    };
+    for (const b of btns) b.addEventListener("click", onClick);
+    return () => { for (const b of btns) b.removeEventListener("click", onClick); };
+  }, [sort, dir]);
+
+  const toggleCol = (key: string) => {
+    setHidden((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else if (colKeys.length - next.size > 1) next.add(key); // never hide the last column
+      return next;
+    });
+  };
+
+  const chipBase =
+    "rounded-md border px-2.5 py-1 text-[12px] whitespace-nowrap transition-colors";
+  const chip = (active: boolean) =>
+    `${chipBase} ${active
+      ? "border-accent bg-[rgba(145,132,217,0.15)] text-text"
+      : "border-[rgba(233,233,237,0.16)] text-neutral-500 hover:text-text hover:border-[rgba(233,233,237,0.28)]"}`;
+
+  const group = (
+    label: string,
+    name: string,
+    value: string,
+    set: (v: string) => void,
+    opts: { v: string; l: string }[],
+  ) => (
+    <div>
+      <div class="mb-1 text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">{label}</div>
+      <div class="flex flex-wrap gap-1.5">
+        {opts.map((o) => (
+          <button
+            type="button"
+            data-chip={name}
+            data-value={o.v}
+            aria-pressed={value === o.v}
+            onClick={() => set(o.v)}
+            class={chip(value === o.v)}
+          >{o.l}</button>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
-    <div>
-      <div class="flex flex-wrap items-end gap-3">
-        <div class="grow">
-          <label for="mb-q" class={labelCls}>Search name or state</label>
-          <input
-            id="mb-q"
-            type="search"
-            value={q}
-            placeholder="e.g. Smith or OH"
-            onInput={(e) => setQ((e.target as HTMLInputElement).value)}
-            class={`${inputCls} w-full`}
-          />
+    <div class="mt-6 rounded-lg border border-line bg-surface p-4">
+      <div class="flex flex-col gap-3.5">
+        <div class="flex flex-wrap items-end gap-x-5 gap-y-3">
+          <div class="min-w-[220px] grow">
+            <label for="mb-q" class="mb-1 block text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Search name or state</label>
+            <input
+              id="mb-q"
+              type="search"
+              value={q}
+              placeholder="e.g. Smith or OH"
+              onInput={(e) => setQ((e.target as HTMLInputElement).value)}
+              class="w-full rounded-md border border-[rgba(233,233,237,0.16)] bg-bg px-2.5 py-1.5 text-[13px] text-text placeholder:text-neutral-500 focus:border-accent"
+            />
+          </div>
+          {group("Chamber", "chamber", chamber, setChamber, [
+            { v: "all", l: "All" }, { v: "house", l: "House" }, { v: "senate", l: "Senate" },
+          ])}
+          {group("Party", "party", party, setParty, [
+            { v: "all", l: "All" }, { v: "D", l: "Dem" }, { v: "R", l: "Rep" }, { v: "I", l: "Ind" },
+          ])}
+          {group("Attendance grade", "grade", grade, setGrade, [
+            { v: "all", l: "All" }, { v: "A", l: "A" }, { v: "B", l: "B" },
+            { v: "C", l: "C" }, { v: "D", l: "D" }, { v: "F", l: "F" },
+          ])}
         </div>
-        <div>
-          <label for="mb-chamber" class={labelCls}>Chamber</label>
-          <select id="mb-chamber" value={chamber} onChange={(e) => setChamber((e.target as HTMLSelectElement).value)} class={inputCls}>
-            <option value="all">All</option>
-            <option value="house">House</option>
-            <option value="senate">Senate</option>
-          </select>
-        </div>
-        <div>
-          <label for="mb-party" class={labelCls}>Party</label>
-          <select id="mb-party" value={party} onChange={(e) => setParty((e.target as HTMLSelectElement).value)} class={inputCls}>
-            <option value="all">All</option>
-            <option value="D">Democrat</option>
-            <option value="R">Republican</option>
-            <option value="I">Independent</option>
-          </select>
-        </div>
-        <div>
-          <label for="mb-grade" class={labelCls}>Attendance grade</label>
-          <select id="mb-grade" value={grade} onChange={(e) => setGrade((e.target as HTMLSelectElement).value)} class={inputCls}>
-            <option value="all">All</option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-            <option value="D">D</option>
-            <option value="F">F</option>
-          </select>
-        </div>
-        <div>
-          <label for="mb-sort" class={labelCls}>Sort by</label>
-          <select id="mb-sort" value={sort} onChange={(e) => setSort((e.target as HTMLSelectElement).value as SortKey)} class={inputCls}>
-            <option value="name">Name (A–Z)</option>
-            <option value="attendance">Attendance (high to low)</option>
-            <option value="grade">Attendance grade (A to F)</option>
-          </select>
+
+        <div class="border-t border-line-soft pt-3">
+          <div class="mb-1 text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Columns</div>
+          <div class="flex flex-wrap gap-1.5">
+            {columns.map((c) => {
+              const on = !hidden.has(c.key);
+              return (
+                <button
+                  type="button"
+                  data-chip="col"
+                  data-value={c.key}
+                  aria-pressed={on}
+                  onClick={() => toggleCol(c.key)}
+                  class={chip(on)}
+                >{c.short}</button>
+              );
+            })}
+          </div>
         </div>
       </div>
 
-      <p aria-live="polite" class="mt-4 text-xs text-neutral-500">
+      <p aria-live="polite" class="mt-3 text-[12px] text-neutral-500">
         {count === null || count === total ? `${total} members` : `${count} of ${total} members`}
       </p>
     </div>

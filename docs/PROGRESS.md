@@ -3,7 +3,8 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-14, **V2-5 design pass (Nocturne)** session — in progress.
+**Last updated:** 2026-08-15, **V2-5 design pass (Nocturne)** session — in progress
+(checkpoint 6, members explorer / D76).
 **V2-1..V2-4 are COMPLETE and PUSHED** (through `4bb77d56`; CI green; live). V2-4 put
 the first **attendance letter grades** (A–F, owner-ratified) live. **V2-5 is PARTIAL:**
 the site's information architecture was rebuilt (landing dashboard + Federal/States
@@ -64,38 +65,52 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     memoized `getGradedAttendanceByChamber()`. Percentile now renders on-page (**ADR
     D75**, reverses D69 safely — published value read verbatim, per-chamber denominator).
     Green: astro check 0, build 13,084, grade-labels, e2e 31/31 (a11y + 380px on graded
-    + delegate pages). **⚠ Lighthouse mobile-perf on `/m/*/1` was NOT confirmed** — the
-    ~440-dot DotStrip is new weight on a Lighthouse-targeted page (`lighthouserc.cjs`);
-    was mid-measurement when the session was stopped. **First next-session action: run
-    `npm run test:lighthouse` and confirm `/m/A000055/1` perf ≥ 0.9; if it fails, switch
-    DotStrip to inline SVG or bin the dots** (README permits SVG for the dot strip).
+    + delegate pages). **✅ Lighthouse gate on `/m/A000055/1` (the ~440-dot DotStrip page)
+    CONFIRMED GREEN — resolved 2026-08-15.** The DotStrip commit's own CI run
+    (`0df1f1a4`) was cancelled when the D75 docs push superseded it, but HEAD `2192e879`
+    (a superset — the DotStrip is present in its tree) ran the "Lighthouse (mobile perf +
+    a11y >= 90)" step to a ✓ (CI run `31842462403`, job `site-and-checks`). CI's
+    Lighthouse targets `/m/${firstMember}/1` = `/m/A000055/1`, so the real gate (the
+    slower CI runner — the one that matters per D73/[[civic-ledger-ci-lighthouse-proxy]])
+    passed WITH the DotStrip present. No DotStrip→SVG/bin change needed.
+  - **CHECKPOINT 6 — members explorer (this commit; ADR D76).** `/federal` is now a
+    multi-metric TABLE (attendance, party unity, yea share, sponsored, cosponsored,
+    became-law), one row per member, static HTML + a controls-only island (chip filters,
+    sortable headers, column-toggle). `lib/columns.ts` (`getExplorerColumns`) computes
+    every cell + pulls each column's definition from the `ingest/metrics.py` docstring.
+    **DOM budget was measured, not guessed** (the biggest risk): a throwaway 10-column
+    spike hit **23,662 nodes / perf 93**; the shipped **6-column** lean table (bar as a
+    `::before` pseudo = 0 nodes; value span dropped) is **10,964 nodes / perf 98, a11y
+    100, CLS 0.000, TBT 0** — full CI Lighthouse config (9 URLs) green. The four extra
+    metrics (nay share, laws enacted, cospon→law, percentile) stay on the member profile
+    (D76 §1 — perf carve-out, no evaluative number). Kept the fraction denominator a real
+    `<i>` (SR-readable/copyable) over a leaner `::after` (D76 §2). Default sort = `name`
+    (static == island default → zero reorder → CLS 0 on the Lighthouse page; deviates from
+    the README's attendance-desc, D76 §3). `.sub` median line 38%-opacity → neutral-500
+    (WCAG-AA contrast fix the axe e2e caught, D76 §4). e2e migrated (`li`→`tr`, select→chip
+    active-state; kept `#member-list`, `data-grade`, `a[href^="/m/"]`, computed visibility,
+    the `?grade=A&sort=grade` deep-link) + a header-click sort test added. **DEFERRED to
+    the `/compare` checkpoint:** the explorer's exclude ("set aside") + compare-select
+    per-row controls (they pair with `/compare`, best injected on hydration).
 
   ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass, IN PROGRESS)
-  - **State:** 5 checkpoints committed + pushed (`df225fa7..0df1f1a4`, all `V2-5:`).
-    Whole site is Nocturne dark; dashboard, roll-call, and member profile are redesigned;
-    2 new Tier-2 metrics landed. Everything green EXCEPT the one unverified Lighthouse
-    gate above — verify it first.
+  - **State:** 6 checkpoints committed (`df225fa7..0df1f1a4` pushed; checkpoint 6 =
+    explorer, this session). Whole site is Nocturne dark; dashboard, roll-call, member
+    profile, AND the members explorer are redesigned; 2 new Tier-2 metrics landed.
+    Everything green (build 13,084; grade-labels; e2e; full Lighthouse 9-URL green,
+    `/federal` perf 98 / a11y 100). The DotStrip Lighthouse gate is confirmed (above).
   - **Design source:** `claudedesign/README.md` (the spec) + `Civic Ledger - Redesign.dc.html`
     (reference; read the relevant view's inline styles per screen). Tokens: `@theme` in
     `site/src/styles/global.css` (named Nocturne tokens + the neutral-ramp remap that
     carries un-redesigned pages to dark). Charts live in `site/src/components/charts/`
     (SplitBar, Histogram, BandLegend, DotStrip — pure props in, markup out).
   - **REMAINING views (README order):**
-    1. **Members explorer** (`/federal`, README screen 2) — the biggest/riskiest.
-       Multi-metric sortable/filterable table replacing the single attendance figure.
-       Rows render server-side; the island toggles `display` + reorders only (D73).
-       HARD constraints: keep the drilldown e2e contract alive — dashboard link
-       `a[href="/federal?grade=A&sort=grade"]`, `#member-list li[data-grade]` computed
-       visibility, `a[href^="/m/"]`, and controls whose values the e2e reads (currently
-       `#mb-grade`/`#mb-sort` `<select>`s — if you move to chip filters, UPDATE
-       `e2e/drilldown.spec.ts` to assert chip active-state, don't just break it).
-       DOM-bomb risk: 637 rows × up to 10 metric columns (all toggleable columns must be
-       in the DOM for the island to show/hide) — calibrate Lighthouse vs `/federal`'s
-       known-passing baseline BEFORE committing. Column defs come from
-       `ingest/metrics.py` docstrings via `getMetrics().methodology` (don't retype).
-       Metrics available now: attendance, party_unity, position_mix (yea_pct/nay_pct),
-       sponsored, cosponsored, enacted_rate (pct + enacted count = "Laws enacted"),
-       cosponsor_enacted_rate; attendance percentile via `getMemberRanks`.
+    1. ✅ **Members explorer** (`/federal`, README screen 2) — DONE, CHECKPOINT 6 / D76
+       (see above). The one thing NOT yet built from screen 2: the per-row **exclude**
+       ("set aside by you") + **compare-select** controls — deferred to the `/compare`
+       checkpoint (they pair with it; inject them on hydration to keep the static DOM
+       lean — the current static row is 17 elements, and 637 rows sit at 10,964 nodes /
+       perf 98, so don't add per-row static nodes without re-measuring Lighthouse).
     2. **`/compare`** (new, README screen 4) — needs a **static-host carve-out ADR**:
        `?m=A&m=B` is invisible to a static build, so a small island reads
        `location.search` and renders from an embedded serialized `{id, metrics}` array
@@ -103,7 +118,9 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
        picker) — the "everything present JS-off" acceptance can't literally hold here.
        Cap 2–4 members. The profile's "Compare with someone" button already links to
        `/compare?m={id}` (a temporary dead link until this ships). Needs a `CompareBars`
-       chart (per-metric rows scaled within their own domain, domain printed).
+       chart (per-metric rows scaled within their own domain, domain printed). Reuse
+       `lib/columns.ts` (`getExplorerColumns`) for the per-metric domains/definitions.
+       Wire the explorer's compare-select here (multi-select → `/compare?m=…&m=…`).
     3. **Methodology + Mississippi** — convert `methods.astro`, `states/`, and the `ms/*`
        pages from the neutral-ramp fallback to the named Nocturne tokens (they render
        dark + a11y-green today via the ramp, but aren't "designed"). MS must NOT show the

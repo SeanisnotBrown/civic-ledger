@@ -1531,3 +1531,67 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   0% of them" — factual, and the design's intent. Non-ranked members (delegates) show
   "not ranked", never a fabricated percentile. Presentational only (no new evaluative
   constant; §0.8 untouched). Recorded so a later session does not "fix" it back to D69.
+
+- **D76 (2026-08-15) — Nocturne members explorer (README screen 2): a multi-metric
+  table under a measured DOM budget.** `/federal` becomes a sortable/filterable metric
+  table (attendance, party unity, yea share, sponsored, cosponsored, became-law), one
+  row per member. Rows are STATIC Astro HTML (D73 holds — the roster is never rendered
+  or serialised inside the island); `MemberBrowser.tsx` is a controls-only island that
+  filters by row `display`, sorts by reordering rows, and hides columns by `data-col`,
+  all from each row's `data-*`. Column definitions are read from `ingest/metrics.py`
+  docstrings via `getExplorerColumns()` (`lib/columns.ts`) — the sentence beside a number
+  is the one the function that computes it carries; never retyped (a README acceptance
+  criterion). Load-bearing decisions:
+  1. **Six columns, not ten — a MEASURED DOM-budget carve-out.** The cost driver on
+     mobile is *node count* (Style & Layout), not bytes: a throwaway spike of the full
+     ten-column table measured **23,662 DOM nodes / perf 93** locally (gzip made transfer
+     a non-issue at 159 KB). Node count — not markup verbosity — sets first paint, and
+     the CI runner is slower than local (the D73 lesson). So the table renders the
+     README's **six default columns**; the four the prototype could toggle in (nay share,
+     laws enacted, cosponsored→law, attendance percentile) are dropped from the table and
+     already live on each member's **profile** page. This relaxes the prototype's
+     "one chip per available metric / all columns in the DOM" — that was the previous
+     session's reading, not an owner ratification, and it is the right lever to give.
+     The carve-out is **presentational/performance, authors no evaluative number**, so it
+     needs no H15. Lean cells hold the budget: the value bar is a `::before`
+     pseudo-element (**0 DOM nodes**), and the per-cell value `<span>` was dropped
+     (−3,822 nodes). Final `/federal`: **10,964 nodes, perf 98, a11y 100, CLS 0.000,
+     TBT 0**; the full CI Lighthouse config (9 URLs) passes, every other page 100.
+  2. **The fraction denominator stays a real `<i>` element, not a `::after`.** Moving it
+     to `content: attr()` would have saved ~2,548 nodes and reached perf ~100, but the
+     site's premise is *the denominator is always visible* — pseudo-content is not
+     selectable, not copyable, and outside the a11y tree. Keeping it a real element (SR-
+     readable, copyable) at perf 98 was chosen over a leaner-but-hollow denominator. This
+     is safe for CI: unlike D73 (which failed on Total-Blocking-Time from hydrating 637
+     rows), this page has **TBT 0 and CLS 0** — only FCP/LCP degrade under CI throttling,
+     roughly linearly, and the layout-heavier DotStrip member page already clears CI.
+  3. **Default sort is `name`, not the README's attendance-descending.** The static
+     table and the island's default sort must match, or hydration reorders 637 rows and
+     spikes CLS on the one Lighthouse-tested page. Name order also keeps the neutral,
+     crawlable default (no evaluative ordering promoted by default, §0.8) and needs zero
+     reorder. Attendance-descending is one header-click away; a deep-link (`?sort=…`)
+     reorders on its own page, which is not Lighthouse-gated.
+  4. **`.sub` median line: 38% opacity → `neutral-500` (a11y over fidelity).** The
+     prototype's "median {value}" at 38% opacity renders `#6e6f79` on the surface —
+     **3.0:1 at 10px, a WCAG-AA color-contrast failure** the axe e2e caught. Raised to
+     the ramp's AA-on-every-surface shade. Grade colour stays honest too: the grade
+     letter is neutral full-contrast `--color-text` with the band colour carried by the
+     attendance bar + a low-alpha cell tint (a colourblind-safe reading that also passes
+     contrast), never a low-contrast coloured letter.
+  5. **`content-visibility: auto` on rows is a no-op for first paint here** (kept as a
+     harmless scroll-repaint hint): under `table-layout: auto` the browser lays out every
+     row to size the columns, so it does not cut FCP. A `table-layout: fixed` rewrite
+     would be needed to make it help; not taken this checkpoint (regression risk for no
+     gate need — 98 passes).
+  6. **e2e migrated, invariants kept.** `drilldown.spec.ts` moves `li`→`tr` and
+     select-value assertions → chip active-state (`[data-chip="grade"][data-value="A"]`
+     `aria-pressed`) + active header (`[data-sort="grade"][data-active]`); it keeps the
+     dashboard href `/federal?grade=A&sort=grade` and its query semantics, `#member-list`
+     as the row container, per-row `data-grade`, `a[href^="/m/"]`, and **computed
+     visibility** (`toBeHidden`) so a cascade regression still fails loud. A header-click
+     sort test was added (deep-link was the only sort coverage). Grade labels still render
+     verbatim inside `<span data-grade-label>` (the §6.8 guard scans all 637 rows).
+  **Deferred to the `/compare` checkpoint:** the explorer's "set aside" (exclude) and
+  "compare selected" per-row controls — they pair with the `/compare` page and are best
+  injected on hydration (keeping the static DOM lean). Design-only within the still-OPEN
+  V2-5: no new evaluative constant, §0.8 untouched, H15-round-two headline still gated.

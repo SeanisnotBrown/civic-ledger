@@ -1,16 +1,17 @@
 ---
-// V2-5 Nocturne — the members explorer (README screen 2). The full 637-member roster is
-// a multi-metric table rendered as STATIC HTML: crawlable, correct with JavaScript off,
-// byte-deterministic. The MemberBrowser island hydrates only the controls (search, chip
-// filters, column toggles) and enhances this table in place — filtering by toggling row
-// `display`, sorting by reordering rows, hiding columns by `data-col` — all driven by the
-// rows' own `data-*` attributes. It never owns the rows (D73: rendering rows in the island
-// sank mobile perf). Column definitions come from ingest/metrics.py via getExplorerColumns.
+// V2-5 Nocturne — the members explorer (README screen 2). The full 637-member roster is a
+// multi-metric grid rendered as STATIC HTML: crawlable, correct with JavaScript off,
+// byte-deterministic. The MemberBrowser island hydrates only the controls and enhances
+// this grid in place — filtering by row `display`, sorting by reordering rows, hiding
+// columns by `data-col` — all from each row's `data-*`. It never owns the rows (D73).
 //
-// DOM budget: node count (not bytes) drives mobile FCP — so cells are lean (the value bar
-// is a ::before pseudo-element = 0 DOM nodes) and the column set is the README's six
-// defaults. The spike measured 10 columns at 23.6k nodes / perf 93; six lean columns land
-// near the current baseline. See docs/decisions.md and the V2-5 spike note in PROGRESS.md.
+// This is an ARIA grid of <div>s, NOT a <table> — deliberately (D78). `content-visibility:
+// auto` on each row lets the browser skip layout/paint for the ~620 off-screen rows, which
+// is the only thing that keeps 637 rich rows inside the CI mobile-Lighthouse budget. That
+// containment optimisation CANNOT apply to <tr>/table-row-group boxes (they can't establish
+// layout containment), so a real table measured perf 0.77 on the CI runner; block-level
+// rows measured well under the budget. Column definitions come from ingest/metrics.py
+// docstrings via getExplorerColumns.
 import Layout from "../../components/Layout.astro";
 import MemberBrowser from "../../components/MemberBrowser.tsx";
 import { getMembers, getMemberGrade, getManifest } from "../../lib/data";
@@ -26,10 +27,6 @@ const PARTY_COLOR: Record<string, string> = {
   D: "var(--color-party-d)", R: "var(--color-party-r)", I: "var(--color-party-i)",
 };
 
-// Precompute each row's cells + sort values once. The grade cell follows the same rule as
-// the old list: a genuine ratified label (band or non-delegate exception) is wrapped in
-// data-grade-label for the §6.8 render guard; a delegate / unranked member reads a plain
-// "Not graded" (never a guarded label).
 const rows = members.map((m) => {
   const g = getMemberGrade(m.id);
   const exceptionLabel = g?.exception && g.exception !== "delegate" ? g.exceptionLabel ?? null : null;
@@ -61,78 +58,72 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
     attendance — they cannot vote on final passage, so their record is not comparable.
   </p>
 
-  <!-- Controls island (search + chip filters + column toggles). Enhances the table below. -->
   <MemberBrowser client:idle total={members.length} columns={columns.map((c) => ({ key: c.key, short: c.short }))} />
 
-  <!-- The table. Rendered static + name-sorted; the island reorders/filters in place. -->
   <div class="mt-4 overflow-x-auto rounded-lg border border-line bg-surface">
-    <table id="member-list" class="ledger w-full min-w-[880px] border-collapse text-left">
-      <thead>
-        <tr class="border-b border-line align-bottom">
-          <th class="th-lbl px-3 py-2.5">
-            <button type="button" data-sort="name" class="hdr-btn flex items-center gap-1">Member<span class="arrow" aria-hidden="true"></span></button>
-          </th>
-          <th class="th-lbl px-2 py-2.5">Seat</th>
-          <th class="th-lbl px-2 py-2.5">
-            <button type="button" data-sort="grade" class="hdr-btn flex items-center gap-1">Grade<span class="arrow" aria-hidden="true"></span></button>
-          </th>
-          {columns.map((c) => (
-            <th data-col={c.key} class="th-lbl px-2 py-2.5 text-right" title={c.def}>
-              <button type="button" data-sort={c.key} class="hdr-btn ml-auto flex items-center gap-1 tabular-nums">
-                {c.short}<span class="arrow" aria-hidden="true"></span>
-              </button>
-              <span class="sub tabular-nums">med {c.median}</span>
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((r) => (
-          <tr
-            data-member
-            data-chamber={r.chamber}
-            data-party={r.party}
-            data-grade={r.gradeLetter ?? ""}
-            data-name={r.name}
-            data-search={`${r.name} ${r.state}`.toLowerCase()}
-            data-att={r.cells[0].sort ?? ""}
-            data-unity={r.cells[1].sort ?? ""}
-            data-yea={r.cells[2].sort ?? ""}
-            data-spon={r.cells[3].sort ?? ""}
-            data-cospon={r.cells[4].sort ?? ""}
-            data-law={r.cells[5].sort ?? ""}
-            class="row border-b border-line-soft"
-          >
-            <td class="px-3 py-2">
-              <a href={`/m/${r.id}/1`} class="font-medium text-text underline decoration-transparent underline-offset-2 hover:decoration-line">{r.name}</a>
-            </td>
-            <td class="whitespace-nowrap px-2 py-2 text-[12px] text-neutral-500">
-              <span class="dot" aria-hidden="true" style={`background:${PARTY_COLOR[r.party]}`}></span>{PARTY_INITIAL[r.party]} · {r.state}{r.district != null ? `-${r.district}` : ""}
-            </td>
-            <td class:list={["gr px-2 py-2 text-[13px] tabular-nums", r.gradeLetter ? `gr-${r.gradeLetter}` : ""]}>
-              {r.gradeLetter ?? "—"}
-              {r.gradeLabel ? (
-                <span class="sr-only" data-grade-label>{r.gradeLabel}</span>
-              ) : r.exceptionLabel ? (
-                <span class="sr-only" data-grade-label>{r.exceptionLabel}</span>
-              ) : (
-                <span class="sr-only">Not graded</span>
-              )}
-            </td>
-            {r.cells.map((c) => (
-              <td
-                data-col={c.key}
-                class:list={["mc px-2 py-2 text-right text-[12px] tabular-nums", c.barClass]}
-                style={c.barColor ? `--f:${c.fill}%;--bar:${c.barColor}` : `--f:${c.fill}%`}
-              >{c.display}{c.fraction && <i>{c.fraction}</i>}</td>
-            ))}
-          </tr>
+    <div id="member-list" role="table" aria-label="Federal members" class="ledger text-left">
+      <div role="row" class="hrow border-b border-line">
+        <div role="columnheader" class="cell c-name th-lbl">
+          <button type="button" data-sort="name" class="hdr-btn">Member<span class="arrow" aria-hidden="true"></span></button>
+        </div>
+        <div role="columnheader" class="cell c-seat th-lbl">Seat</div>
+        <div role="columnheader" class="cell c-grade th-lbl">
+          <button type="button" data-sort="grade" class="hdr-btn">Grade<span class="arrow" aria-hidden="true"></span></button>
+        </div>
+        {columns.map((c) => (
+          <div role="columnheader" data-col={c.key} aria-sort="none" class="cell c-metric th-lbl" title={c.def}>
+            <button type="button" data-sort={c.key} class="hdr-btn tabular-nums">{c.short}<span class="arrow" aria-hidden="true"></span></button>
+            <span class="sub tabular-nums">med {c.median}</span>
+          </div>
         ))}
-      </tbody>
-    </table>
+      </div>
+
+      {rows.map((r) => (
+        <div
+          role="row"
+          data-member
+          data-chamber={r.chamber}
+          data-party={r.party}
+          data-grade={r.gradeLetter ?? ""}
+          data-name={r.name}
+          data-search={`${r.name} ${r.state}`.toLowerCase()}
+          data-att={r.cells[0].sort ?? ""}
+          data-unity={r.cells[1].sort ?? ""}
+          data-yea={r.cells[2].sort ?? ""}
+          data-spon={r.cells[3].sort ?? ""}
+          data-cospon={r.cells[4].sort ?? ""}
+          data-law={r.cells[5].sort ?? ""}
+          class="row border-b border-line-soft"
+        >
+          <div role="cell" class="cell c-name">
+            <a href={`/m/${r.id}/1`} class="font-medium text-text underline decoration-transparent underline-offset-2 hover:decoration-line">{r.name}</a>
+          </div>
+          <div role="cell" class="cell c-seat whitespace-nowrap text-[12px] text-neutral-500">
+            <span class="dot" aria-hidden="true" style={`background:${PARTY_COLOR[r.party]}`}></span>{PARTY_INITIAL[r.party]} · {r.state}{r.district != null ? `-${r.district}` : ""}
+          </div>
+          <div role="cell" class:list={["cell c-grade gr text-[13px] tabular-nums", r.gradeLetter ? `gr-${r.gradeLetter}` : ""]}>
+            {r.gradeLetter ?? "—"}
+            {r.gradeLabel ? (
+              <span class="sr-only" data-grade-label>{r.gradeLabel}</span>
+            ) : r.exceptionLabel ? (
+              <span class="sr-only" data-grade-label>{r.exceptionLabel}</span>
+            ) : (
+              <span class="sr-only">Not graded</span>
+            )}
+          </div>
+          {r.cells.map((c) => (
+            <div
+              role="cell"
+              data-col={c.key}
+              class:list={["cell c-metric mc text-[12px] tabular-nums", c.barClass]}
+              style={c.barColor ? `--f:${c.fill}%;--bar:${c.barColor}` : `--f:${c.fill}%`}
+            >{c.display}{c.fraction && <i>{c.fraction}</i>}</div>
+          ))}
+        </div>
+      ))}
+    </div>
   </div>
 
-  <!-- What each column counts — definitions sourced from ingest/metrics.py docstrings. -->
   <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="defs-h">
     <h2 id="defs-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">What each column counts</h2>
     <div class="mt-3 grid gap-3 sm:grid-cols-2">
@@ -147,26 +138,34 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
 </Layout>
 
 <style>
-  /* Table + lean metric cell. The value bar is a ::before pseudo-element — zero DOM nodes,
-     real paint — so 637 rows stay inside the mobile FCP budget (V2-5 spike). */
+  /* An ARIA grid of divs (NOT a <table>) so `content-visibility` can skip off-screen rows —
+     table-row boxes cannot establish layout containment, which is why the real-table build
+     measured 0.77 on CI (D78). Rows are flex; cells have fixed flex bases so columns line up
+     without the browser measuring every row (which pairs with content-visibility). */
+  .ledger { min-width: 880px; }
+  .hrow, .row { display: flex; align-items: stretch; }
+  .cell { padding: 8px; min-width: 0; }
+  .c-name { flex: 1 1 150px; min-width: 150px; display: flex; align-items: center; }
+  .c-seat { flex: 0 0 108px; display: flex; align-items: center; }
+  .c-grade { flex: 0 0 58px; display: flex; align-items: center; }
+  .c-metric { flex: 0 0 92px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; text-align: right; }
+  .hrow .c-metric { justify-content: flex-end; }
+
+  /* Skip layout + paint for the ~620 off-screen rows. `auto` remembers each row's real
+     height after first render; the header row is NEVER contained. */
+  .row { content-visibility: auto; contain-intrinsic-size: auto 38px; }
+  .row:hover { background: rgba(233,233,237,0.05); }
+
   .th-lbl { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-neutral-500); }
-  .hdr-btn { color: var(--color-neutral-500); }
+  .hrow .cell { padding-top: 10px; padding-bottom: 10px; }
+  .hdr-btn { display: inline-flex; align-items: center; gap: 4px; color: var(--color-neutral-500); }
   .hdr-btn:hover { color: var(--color-text); }
   .hdr-btn[data-active] { color: var(--color-accent-300); }
-  .arrow::after { content: ""; }
   .hdr-btn[data-active][data-dir="desc"] .arrow::after { content: " \2193"; }
   .hdr-btn[data-active][data-dir="asc"] .arrow::after { content: " \2191"; }
-  /* median sub-line: the design's 38%-opacity grey fails WCAG-AA at 10px (3.0:1 on the
-     surface); neutral-500 is the ramp's AA-on-every-surface shade — a11y over fidelity. */
-  .sub { display: block; margin-top: 2px; font-size: 10px; color: var(--color-neutral-500); text-align: right; }
-  /* content-visibility lets the browser skip painting off-screen rows on scroll (rows stay
-     in the a11y tree + find-in-page). It does NOT cut the initial mobile FCP here — under
-     table-layout:auto the browser still lays out every row to size the columns, so the
-     measured perf is unchanged (98; TBT 0, CLS 0, gate ≥ 0.9 green). Kept as a harmless
-     scroll-repaint hint; a table-layout:fixed rewrite would be needed to help first paint. */
-  .row { content-visibility: auto; contain-intrinsic-size: auto 36px; }
-  .row:hover { background: rgba(233,233,237,0.05); }
-  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+  .sub { display: block; margin-top: 2px; font-size: 10px; color: var(--color-neutral-500); }
+
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; flex: none; }
 
   /* grade cell: neutral letter (keeps AA contrast) + a subtle band tint conveying colour. */
   .gr { color: var(--color-text); }
@@ -176,6 +175,8 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
   .gr-D { background: rgba(217,154,107,0.12); }
   .gr-F { background: rgba(217,107,122,0.13); }
 
+  /* metric cell: value + optional fraction, with a magnitude bar drawn as ::before
+     (0 DOM nodes) at the bottom of the cell. */
   .mc { position: relative; color: rgba(233,233,237,0.85); }
   .mc i { font-style: normal; margin-left: 4px; font-size: 10px; color: var(--color-neutral-500); }
   .mc::before {

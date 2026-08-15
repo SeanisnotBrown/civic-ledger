@@ -62,7 +62,7 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
     const list = document.getElementById(LIST_ID);
     if (!list) return;
     const isFirst = first.current;
-    const rows = Array.from(list.querySelectorAll<HTMLElement>("tr[data-member]"));
+    const rows = Array.from(list.querySelectorAll<HTMLElement>("[data-member]"));
     const needle = q.trim().toLowerCase();
     let shown = 0;
     for (const tr of rows) {
@@ -113,11 +113,14 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
       if (def) def.style.display = on ? "" : "none";
     }
 
-    // Header active/direction markers (CSS renders the ↑/↓ arrow from these).
+    // Header active/direction markers (CSS renders the ↑/↓ arrow from these) + aria-sort on
+    // the enclosing columnheader so assistive tech announces the sorted column + direction.
     for (const btn of list.querySelectorAll<HTMLElement>(".hdr-btn")) {
       const active = btn.dataset.sort === sort;
       if (active) { btn.dataset.active = ""; btn.dataset.dir = dir; }
       else { delete btn.dataset.active; delete btn.dataset.dir; }
+      const header = btn.closest<HTMLElement>('[role="columnheader"]');
+      if (header) header.setAttribute("aria-sort", active ? (dir === "asc" ? "ascending" : "descending") : "none");
     }
 
     // Reflect filter/sort state in the URL so a filtered view is linkable. Skip on the
@@ -157,6 +160,9 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
       }
     };
     for (const b of btns) b.addEventListener("click", onClick);
+    // Signal that header sorting is wired, so tests (and anything else) can wait for the
+    // island to finish enhancing the grid instead of racing client:idle hydration.
+    list.setAttribute("data-mb-ready", "");
     return () => { for (const b of btns) b.removeEventListener("click", onClick); };
   }, [sort, dir]);
 

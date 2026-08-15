@@ -1578,11 +1578,15 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
      letter is neutral full-contrast `--color-text` with the band colour carried by the
      attendance bar + a low-alpha cell tint (a colourblind-safe reading that also passes
      contrast), never a low-contrast coloured letter.
-  5. **`content-visibility: auto` on rows is a no-op for first paint here** (kept as a
-     harmless scroll-repaint hint): under `table-layout: auto` the browser lays out every
-     row to size the columns, so it does not cut FCP. A `table-layout: fixed` rewrite
-     would be needed to make it help; not taken this checkpoint (regression risk for no
-     gate need — 98 passes).
+  5. **`content-visibility: auto` on the `<tr>` rows was a no-op — and the reason given
+     here was wrong (corrected by D78).** This ADR originally blamed `table-layout: auto`
+     and proposed a `table-layout: fixed` fix. That is incorrect: layout containment can
+     **never** apply to `<tr>`/row-group boxes (they can't establish containment),
+     regardless of `table-layout`, so no table variant would have helped. And the "98
+     passes" claim below was **local-only** — this build scored perf **0.77 on CI**
+     (run `31895378122`), the D73 pattern repeating. Both are fixed in **D78**: `/federal`
+     was rebuilt as a `role="table"` grid of `<div>`s (block rows CAN be contained), where
+     `content-visibility` genuinely skips the off-screen rows.
   6. **e2e migrated, invariants kept.** `drilldown.spec.ts` moves `li`→`tr` and
      select-value assertions → chip active-state (`[data-chip="grade"][data-value="A"]`
      `aria-pressed`) + active header (`[data-sort="grade"][data-active]`); it keeps the
@@ -1595,3 +1599,32 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   "compare selected" per-row controls — they pair with the `/compare` page and are best
   injected on hydration (keeping the static DOM lean). Design-only within the still-OPEN
   V2-5: no new evaluative constant, §0.8 untouched, H15-round-two headline still gated.
+
+- **D78 (2026-08-15) — the explorer failed CI Lighthouse at 0.77; fixed by making the
+  rows block-level so `content-visibility` actually works (the D73 pattern, again).**
+  D76's `/federal` scored perf **0.98 locally but 0.77 on CI** (run `31895378122`; gate
+  ≥ 0.9), with build/checks/e2e all green — the slower CI runner, exactly the calibration
+  trap D73 warned about ([[civic-ledger-ci-lighthouse-proxy]]), and my D76 §5 "full CI
+  Lighthouse green" line was a **local-only overclaim** (corrected in D76 + PROGRESS). The
+  Cloudflare deploy is push-triggered and independent of CI, so the slow page was briefly
+  live. **Root cause:** the `content-visibility: auto` I'd added to the `<tr>` rows was a
+  **no-op** — CSS layout containment cannot apply to internal table boxes (`<tr>`, row
+  groups), so all ~11,000 nodes laid out on every paint; on the throttled CI CPU that
+  dominated FCP/LCP. (My local proof: adding/removing it moved Style & Layout by 0ms.)
+  **Fix:** `/federal` is rebuilt as an ARIA `role="table"` grid of `<div>`s — block-level
+  rows CAN establish containment, so `content-visibility: auto` (with
+  `contain-intrinsic-size`) skips layout + paint for the ~620 off-screen rows. Same six
+  columns, same lean cells, same `data-*` contract; the island's row selector moves from
+  `tr[data-member]` to `[data-member]` and it now sets `aria-sort` on the active
+  `columnheader`. **New push gate (the lesson): the local score is saturated and useless
+  as a proxy** — instead compare the page's **Style & Layout milliseconds** against a
+  known-CI-green anchor page on the same machine. Measured: `/m/A000055/1` (CI-green
+  anchor, 2,658 nodes) = **258 ms**; the rebuilt `/federal` (10,973 nodes) = **83 ms**,
+  i.e. *below* the anchor — where the real-table build was 663 ms. perf 99 local, CLS
+  0.000, a11y 100 (the new ARIA grid re-verified with axe). e2e: the `drilldown` selectors
+  moved `tr`→`[data-member]`, and a hydration-race in the header-sort test (it clicked a
+  header before `client:idle` wired it) is fixed with a `data-mb-ready` marker the island
+  sets once wired. Kept every contract piece verbatim: `#member-list`, `data-grade`,
+  `a[href^="/m/"]`, computed-visibility, the `?grade=A&sort=grade` deep-link. Committed +
+  pushed **alone** (not stacked under `/compare`), CI watched to green before `/compare`.
+  Design-only within OPEN V2-5; no evaluative constant; §0.8 untouched.

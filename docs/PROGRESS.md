@@ -80,8 +80,11 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     every cell + pulls each column's definition from the `ingest/metrics.py` docstring.
     **DOM budget was measured, not guessed** (the biggest risk): a throwaway 10-column
     spike hit **23,662 nodes / perf 93**; the shipped **6-column** lean table (bar as a
-    `::before` pseudo = 0 nodes; value span dropped) is **10,964 nodes / perf 98, a11y
-    100, CLS 0.000, TBT 0** — full CI Lighthouse config (9 URLs) green. The four extra
+    `::before` pseudo = 0 nodes; value span dropped) is **10,964 nodes / perf 98 LOCAL**.
+    ⚠ **That perf 98 was LOCAL only and it FAILED CI at 0.77** (D78 — the D73 trap again;
+    `content-visibility` on `<tr>` is a no-op). **Fixed by D78** (block-row ARIA grid);
+    checkpoint-6's original "full CI Lighthouse green" claim was a local-only overclaim.
+    The four extra
     metrics (nay share, laws enacted, cospon→law, percentile) stay on the member profile
     (D76 §1 — perf carve-out, no evaluative number). Kept the fraction denominator a real
     `<i>` (SR-readable/copyable) over a leaner `::after` (D76 §2). Default sort = `name`
@@ -93,12 +96,26 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     the `/compare` checkpoint:** the explorer's exclude ("set aside") + compare-select
     per-row controls (they pair with `/compare`, best injected on hydration).
 
+  - **CHECKPOINT 6b — /federal CI Lighthouse fix (this commit; ADR D78).** D76 shipped
+    perf 0.77 on CI (local said 0.98). Root cause: `content-visibility` is a no-op on
+    `<tr>` (table-internal boxes can't be containment contexts), so all ~11k nodes laid
+    out on the slow CI runner. Rebuilt `/federal` as a `role="table"` grid of `<div>`s so
+    `content-visibility` skips the ~620 off-screen rows. Validated by the NEW gate (local
+    score is saturated/useless): **Style & Layout 83 ms vs the CI-green `/m/A000055/1`
+    anchor's 258 ms** (was 663 ms). Same columns/cells/`data-*`; island row selector
+    `tr[data-member]`→`[data-member]` + `aria-sort` on the columnheader; header-sort e2e
+    hydration-race fixed with a `data-mb-ready` marker. Pushed ALONE, CI watched to green
+    before `/compare`. Lesson saved in [[civic-ledger-ci-lighthouse-proxy]].
+
   ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass, IN PROGRESS)
-  - **State:** 6 checkpoints committed (`df225fa7..0df1f1a4` pushed; checkpoint 6 =
-    explorer, this session). Whole site is Nocturne dark; dashboard, roll-call, member
-    profile, AND the members explorer are redesigned; 2 new Tier-2 metrics landed.
-    Everything green (build 13,084; grade-labels; e2e; full Lighthouse 9-URL green,
-    `/federal` perf 98 / a11y 100). The DotStrip Lighthouse gate is confirmed (above).
+  - **State:** explorer (CP6) + its CI fix (CP6b, D78) done. `/compare` (CP7, D77) built +
+    locally green (e2e 36 passed incl. axe on the rendered comparison) but its commit was
+    **HELD** behind the CP6b fix (don't stack an unverified fix under a new feature) — the
+    `/compare` files + D77 are uncommitted; D77 text is parked in the session scratchpad
+    (`d77-compare.txt`) and must be re-inserted into decisions.md (between D76 and D78) for
+    the `/compare` commit. Whole site is Nocturne dark; dashboard, roll-call, member
+    profile, explorer redesigned. **Verify the CP6b CI run is green, then commit + push
+    `/compare`.**
   - **Design source:** `claudedesign/README.md` (the spec) + `Civic Ledger - Redesign.dc.html`
     (reference; read the relevant view's inline styles per screen). Tokens: `@theme` in
     `site/src/styles/global.css` (named Nocturne tokens + the neutral-ramp remap that

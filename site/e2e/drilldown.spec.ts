@@ -26,8 +26,8 @@ test("dashboard grade band → filtered federal list → member page", async ({ 
   await expect(page.locator('#member-list .hdr-btn[data-sort="grade"]')).toHaveAttribute("data-active", "");
 
   // The filter really hides non-A rows (computed visibility), and A rows remain shown.
-  await expect(page.locator('#member-list tr[data-grade="F"]').first()).toBeHidden();
-  const firstA = page.locator('#member-list tr[data-grade="A"] a[href^="/m/"]').first();
+  await expect(page.locator('#member-list [data-grade="F"]').first()).toBeHidden();
+  const firstA = page.locator('#member-list [data-grade="A"] a[href^="/m/"]').first();
   await expect(firstA).toBeVisible();
 
   // Click through to that member's page — it renders the record summary that holds the
@@ -41,6 +41,9 @@ test("dashboard grade band → filtered federal list → member page", async ({ 
 // grade). Clicking the Attendance header opens it descending and reorders the rows.
 test("clicking a metric column header sorts the table", async ({ page }) => {
   await page.goto("/federal");
+  // Wait for the controls island to finish wiring the headers (client:idle) before
+  // clicking, so the test doesn't race hydration.
+  await expect(page.locator("#member-list[data-mb-ready]")).toBeAttached();
   const attHdr = page.locator('#member-list .hdr-btn[data-sort="att"]');
   await attHdr.click();
   await expect(attHdr).toHaveAttribute("data-active", "");
@@ -49,7 +52,7 @@ test("clicking a metric column header sorts the table", async ({ page }) => {
   // First two visible rows are in descending attendance order (nulls sort last, so the
   // top rows always carry a value).
   const vals = await page
-    .locator('#member-list tr[data-member]:visible')
+    .locator('#member-list [data-member]:visible')
     .evaluateAll((rows) =>
       rows.slice(0, 2).map((r) => Number((r as HTMLElement).dataset.att)),
     );

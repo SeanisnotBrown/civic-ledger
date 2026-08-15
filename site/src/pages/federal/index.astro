@@ -46,8 +46,19 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
 ---
 <Layout title="Civic Ledger — Federal members" description="Every member of the U.S. House and Senate — attendance, party unity, vote mix, and legislative output, sortable and filterable.">
   <div class="flex flex-wrap items-end justify-between gap-3">
-    <h1 class="text-[32px] font-medium tracking-[-0.025em]">Members explorer</h1>
-    <p class="text-[13px] text-neutral-500">{fmtInt(members.length)} members · {periodLabel}</p>
+    <div class="flex flex-wrap items-end gap-x-3 gap-y-1">
+      <h1 class="text-[32px] font-medium tracking-[-0.025em]">Members explorer</h1>
+      <p class="text-[13px] text-neutral-500">{fmtInt(members.length)} members · {periodLabel}</p>
+    </div>
+    {/* The MemberBrowser island sets href/count and unhides this once two members are picked
+       for comparison. Static <a hidden> so it's a real link (no author display, so the UA
+       [hidden]{display:none} applies cleanly) and JS-off it simply stays hidden. */}
+    <a
+      id="mb-compare"
+      href="/compare"
+      hidden
+      class="rounded-md border border-accent bg-[rgba(145,132,217,0.15)] px-3 py-1.5 text-[13px] font-medium text-text hover:bg-[rgba(145,132,217,0.24)]"
+    >Compare selected (<span data-cmp-n>0</span>)</a>
   </div>
   <p class="mt-2 max-w-[62ch] text-[15px] leading-[1.6] text-neutral-700">
     Every member of the U.S. House and Senate serving in {periodLabel}. Filter by chamber,
@@ -82,6 +93,7 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
         <div
           role="row"
           data-member
+          data-id={r.id}
           data-chamber={r.chamber}
           data-party={r.party}
           data-grade={r.gradeLetter ?? ""}
@@ -142,9 +154,28 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
      table-row boxes cannot establish layout containment, which is why the real-table build
      measured 0.77 on CI (D78). Rows are flex; cells have fixed flex bases so columns line up
      without the browser measuring every row (which pairs with content-visibility). */
-  .ledger { min-width: 880px; }
+  .ledger { min-width: 960px; }
   .hrow, .row { display: flex; align-items: stretch; }
   .cell { padding: 8px; min-width: 0; }
+
+  /* Interactive control gutters — compare-select (left, 30px) and exclude (right, 24px) —
+     are reserved STATICALLY so the MemberBrowser island can drop absolutely-positioned
+     controls into them on hydration with ZERO layout shift (the flex row never reflows;
+     CLS is 25% of the mobile-perf score, D78's runner fails at the margin). JS-off the
+     gutters are simply empty. The controls are role="cell"/columnheader wrappers so the
+     ARIA grid keeps a valid child structure (a bare <button> child of role="row" fails
+     axe aria-required-children). */
+  .hrow, .row { position: relative; padding-left: 30px; padding-right: 24px; }
+  .c-cmp, .c-excl { position: absolute; top: 0; bottom: 0; display: flex; align-items: center; justify-content: center; }
+  .c-cmp { left: 0; width: 30px; }
+  .c-excl { right: 0; width: 24px; }
+  .c-cmp button, .c-excl button {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 4px; font-size: 12px; line-height: 1;
+    color: var(--color-neutral-500);
+  }
+  .c-cmp button:hover, .c-excl button:hover { color: var(--color-text); background: rgba(233,233,237,0.08); }
+  .c-cmp button[aria-pressed="true"] { color: var(--color-accent-300); box-shadow: inset 0 0 0 1px var(--color-accent); }
   .c-name { flex: 1 1 150px; min-width: 150px; display: flex; align-items: center; }
   .c-seat { flex: 0 0 108px; display: flex; align-items: center; }
   .c-grade { flex: 0 0 58px; display: flex; align-items: center; }

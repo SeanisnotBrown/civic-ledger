@@ -141,14 +141,26 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     made `tabindex="0"`+labelled (`scrollable-region-focusable` — no focusable children).
     Green: astro check 0, build 13,085, grade-labels, metrics-sections (10+5), e2e 36.
 
-  ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass — VIEW COVERAGE COMPLETE)
-  - **State:** CP1–CP8 done + pushed + CI-green. **Every Nocturne view is now redesigned:**
-    dashboard, roll-call, member profile, members explorer (CP6 + block-row grid CP6b),
-    `/compare` (CP7), and methodology + Mississippi (CP8). The `claudedesign/` handoff's
-    view list is fully implemented. **Remaining Nocturne work is POLISH only:** the
-    explorer's exclude ("set aside") + compare-select per-row controls (pair with `/compare`;
-    inject on hydration — don't add static per-row nodes without re-measuring Lighthouse), and
-    the two `/compare` next-touch fixes (data-source the delegate check; add a delegate test).
+  ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass — COMPLETE: views + polish)
+  - **State:** CP1–CP9 done + pushed + CI-green. **Every Nocturne view is redesigned AND the
+    polish items are done:** dashboard, roll-call, member profile, members explorer (CP6 +
+    block-row grid CP6b + CP9 per-row controls), `/compare` (CP7), methodology + Mississippi
+    (CP8). The `claudedesign/` handoff's view list is fully implemented.
+    - **CP9 (D80): the explorer's per-row selection controls — DONE.** compare-select +
+      exclude, INJECTED on hydration into statically-reserved 30px/24px gutters (absolutely
+      positioned → CLS 0.0000; role="cell" wrappers → axe-clean; one delegated listener).
+      Heading "Compare selected (n)" link + filter-card "Set aside by you" restore row.
+      Perf re-measured the D78 way: `/federal` Style & Layout 81 ms vs anchor 153 ms
+      (below), perf 0.98, TBT 5 ms. e2e 40 (exclude/restore, select-2→compare, axe scan).
+    - **The two `/compare` next-touch fixes — DONE** (commit `2de090cd`): delegate flag is now
+      data-sourced (`getMemberGrade → exception==="delegate"`); compare.spec.ts has a
+      delegate-in-set case proving the D66 vote-metric suppression.
+  - **Nocturne design pass is now COMPLETE — no Nocturne work remains.** One documented
+    **spec gap, deliberately not built** (out of the polish scope): README screen 2 lists a
+    "Not graded" grade filter chip that `MemberBrowser` lacks (its grade chips are A–F only).
+    Small, self-contained if a future session wants it: add `{ v: "none", l: "Not graded" }`
+    to the grade chip group + handle `grade==="none"` → rows with empty `data-grade` in the
+    filter effect. NOT started; no owner input needed for it (it's a UI filter, not evaluative).
   - **V2-5 still OPEN + owner-gated:** the design pass adds NO evaluative constant so it does
     NOT close V2-5 — the "lowest N%" wide-eyed headline (H15 round two) is still the owner's
     to ratify. Do NOT start V2-6. Blocking gate ahead: V2-7 (privacy truth) before V2-8/9.
@@ -158,18 +170,15 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     carries un-redesigned pages to dark). Charts live in `site/src/components/charts/`
     (SplitBar, Histogram, BandLegend, DotStrip — pure props in, markup out).
   - **REMAINING views (README order):**
-    1. ✅ **Members explorer** (`/federal`, README screen 2) — DONE, CHECKPOINT 6 / D76
-       (see above). The one thing NOT yet built from screen 2: the per-row **exclude**
-       ("set aside by you") + **compare-select** controls — deferred to the `/compare`
-       checkpoint (they pair with it; inject them on hydration to keep the static DOM
-       lean — the current static row is 17 elements, and 637 rows sit at 10,964 nodes /
-       perf 98, so don't add per-row static nodes without re-measuring Lighthouse).
-    2. ✅ **`/compare`** (README screen 4) — DONE, CHECKPOINT 7 / D77 (see above). The
-       static-host carve-out ADR is written; the profile's dead link is fixed. Still to do
-       (deferred polish): wire the explorer's multi-select "compare selected" →
-       `/compare?m=…&m=…` and the exclude ("set aside") per-row controls (inject on
-       hydration — do NOT add per-row static nodes without re-measuring Lighthouse; /federal
-       is at the block-row-grid budget).
+    1. ✅ **Members explorer** (`/federal`, README screen 2) — DONE, CHECKPOINT 6 / D76,
+       and the per-row **exclude** ("set aside by you") + **compare-select** controls now
+       DONE too (CHECKPOINT 9 / D80) — injected on hydration into statically-reserved gutters
+       (CLS 0, S&L 81 ms vs anchor 153 ms, axe-clean). Only screen-2 item not built: the
+       "Not graded" grade chip (spec gap noted above; deliberately out of scope).
+    2. ✅ **`/compare`** (README screen 4) — DONE, CHECKPOINT 7 / D77, plus the two
+       next-touch fixes (data-sourced delegate flag + delegate test, `2de090cd`). The
+       explorer's "compare selected" → `/compare?m=…&m=…` wiring and the exclude controls
+       shipped with CHECKPOINT 9 / D80 (see item 1). Nothing outstanding on `/compare`.
     3. ✅ **Methodology + Mississippi** — DONE, CHECKPOINT 8 / D79 (see above). methods.astro
        + states/ + ms/* converted to named Nocturne tokens + weights; /methods gained the
        bands table + set-aside card; /ms gained count tiles + roll-call charts; MS keeps the

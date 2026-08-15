@@ -16,6 +16,7 @@ import { useEffect, useMemo, useRef, useState } from "preact/hooks";
 
 const GRADE_ORDER: Record<string, number> = { A: 0, B: 1, C: 2, D: 3, F: 4 };
 const LIST_ID = "member-list";
+const MAX_COMPARE = 4; // /compare is hard-capped at four members.
 
 type Col = { key: string; short: string };
 type SortKey = string; // "name" | "grade" | a column key
@@ -35,6 +36,11 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
   const [dir, setDir] = useState<"asc" | "desc">("asc");
   const [hidden, setHidden] = useState<Set<string>>(new Set());
   const [count, setCount] = useState<number | null>(null);
+  // Reader-side selection. Both are session-ephemeral (NOT in the URL — only filter/column
+  // state is linkable per the spec). `excluded` maps id → name so the "Set aside" chips can
+  // show the name without a DOM lookup. `compare` is an ordered id list, capped at 4.
+  const [excluded, setExcluded] = useState<Map<string, string>>(new Map());
+  const [compare, setCompare] = useState<string[]>([]);
   const first = useRef(true);
 
   const colKeys = useMemo(() => columns.map((c) => c.key), [columns]);
@@ -67,6 +73,7 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
     let shown = 0;
     for (const tr of rows) {
       const ok =
+        !excluded.has(tr.dataset.id ?? "") &&
         (chamber === "all" || tr.dataset.chamber === chamber) &&
         (party === "all" || tr.dataset.party === party) &&
         (grade === "all" || tr.dataset.grade === grade) &&
@@ -138,7 +145,112 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
     }
 
     first.current = false;
-  }, [chamber, party, grade, q, sort, dir, hidden, colKeys]);
+  }, [chamber, party, grade, q, sort, dir, hidden, excluded, colKeys]);
+
+  // Inject the per-row selection controls ON HYDRATION rather than shipping them static:
+  // 637 extra static cells would grow the perf-critical initial DOM (D73/D78). Each control
+  // is a role="cell"/columnheader wrapper (a bare <button> child of role="row" fails axe
+  // aria-required-children) absolutely positioned into the statically-reserved 30px/24px
+  // gutters, so nothing reflows (CLS stays ~0). ONE delegated click listener on the list
+  // (not 1,274) reads the member off the clicked row and mutates state with functional
+  // updaters, so it never closes over a stale selection. Runs once; the loop is write-only
+  // (no interleaved layout reads, which would force 637 synchronous layouts).
+  useEffect(() => {
+    const list = document.getElementById(LIST_ID);
+    if (!list) return;
+
+    const header = list.querySelector<HTMLElement>('[role="row"].hrow');
+    if (header && !header.querySelector(".c-cmp")) {
+      const h1 = document.createElement("div");
+      h1.className = "c-cmp"; h1.setAttribute("role", "columnheader");
+      h1.innerHTML = '<span class="sr-only">Compare</span>';
+      const h2 = document.createElement("div");
+      h2.className = "c-excl"; h2.setAttribute("role", "columnheader");
+      h2.innerHTML = '<span class="sr-only">Set aside</span>';
+      header.insertBefore(h1, header.firstChild);
+      header.appendChild(h2);
+    }
+
+    for (const row of Array.from(list.querySelectorAll<HTMLElement>("[data-member]"))) {
+      if (row.querySelector(".c-cmp")) continue; // idempotent (StrictMode / re-mount)
+      const name = row.dataset.name ?? "";
+
+      const cmpCell = document.createElement("div");
+      cmpCell.className = "c-cmp"; cmpCell.setAttribute("role", "cell");
+      const cmpBtn = document.createElement("button");
+      cmpBtn.type = "button"; cmpBtn.dataset.act = "cmp";
+      cmpBtn.setAttribute("aria-pressed", "false");
+      cmpBtn.setAttribute("aria-label", `Add ${name} to comparison`);
+      cmpBtn.textContent = "+";
+      cmpCell.appendChild(cmpBtn);
+
+      const exclCell = document.createElement("div");
+      exclCell.className = "c-excl"; exclCell.setAttribute("role", "cell");
+      const exclBtn = document.createElement("button");
+      exclBtn.type = "button"; exclBtn.dataset.act = "excl";
+      exclBtn.setAttribute("aria-label", `Set aside ${name}`);
+      exclBtn.textContent = "✕";
+      exclCell.appendChild(exclBtn);
+
+      row.insertBefore(cmpCell, row.firstChild);
+      row.appendChild(exclCell);
+    }
+
+    const onClick = (e: Event) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button[data-act]");
+      if (!btn) return;
+      const row = btn.closest<HTMLElement>("[data-member]");
+      const id = row?.dataset.id;
+      if (!id) return;
+      const name = row?.dataset.name ?? "";
+      if (btn.dataset.act === "cmp") {
+        setCompare((prev) =>
+          prev.includes(id) ? prev.filter((x) => x !== id)
+            : prev.length >= MAX_COMPARE ? prev : [...prev, id]);
+      } else {
+        setExcluded((prev) => new Map(prev).set(id, name));
+        setCompare((prev) => prev.filter((x) => x !== id)); // can't compare someone set aside
+      }
+    };
+    list.addEventListener("click", onClick);
+    return () => list.removeEventListener("click", onClick);
+  }, []);
+
+  // Reflect the compare set onto the injected buttons + the heading "Compare selected (n)"
+  // link. Runs after injection; on the empty initial set it's a harmless no-op. At the cap,
+  // un-selected buttons disable so the four-member max is visible rather than a silent
+  // no-op. The heading link appears only at two or more (a comparison needs a second member).
+  useEffect(() => {
+    const list = document.getElementById(LIST_ID);
+    if (list) {
+      const selected = new Set(compare);
+      const atCap = compare.length >= MAX_COMPARE;
+      for (const btn of Array.from(list.querySelectorAll<HTMLButtonElement>('button[data-act="cmp"]'))) {
+        const row = btn.closest<HTMLElement>("[data-member]");
+        const id = row?.dataset.id ?? "";
+        const name = row?.dataset.name ?? "";
+        const on = selected.has(id);
+        btn.setAttribute("aria-pressed", on ? "true" : "false");
+        btn.textContent = on ? "✓" : "+";
+        btn.setAttribute("aria-label", on ? `Remove ${name} from comparison` : `Add ${name} to comparison`);
+        btn.disabled = !on && atCap;
+      }
+    }
+    const cmp = document.getElementById("mb-compare") as HTMLAnchorElement | null;
+    if (cmp) {
+      const nSpan = cmp.querySelector("[data-cmp-n]");
+      if (nSpan) nSpan.textContent = String(compare.length);
+      if (compare.length >= 2) {
+        const p = new URLSearchParams();
+        for (const id of compare) p.append("m", id);
+        cmp.setAttribute("href", `/compare?${p.toString()}`);
+        cmp.hidden = false;
+      } else {
+        cmp.hidden = true;
+        cmp.setAttribute("href", "/compare");
+      }
+    }
+  }, [compare]);
 
   // Wire the static column-header buttons to sorting (they live in the Astro table). The
   // listener re-binds when sort/dir change so it closes over fresh state — that lets the
@@ -174,6 +286,10 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
       return next;
     });
   };
+
+  const restore = (id: string) =>
+    setExcluded((prev) => { const n = new Map(prev); n.delete(id); return n; });
+  const restoreAll = () => setExcluded(new Map());
 
   const chipBase =
     "rounded-md border px-2.5 py-1 text-[12px] whitespace-nowrap transition-colors";
@@ -251,6 +367,23 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
             })}
           </div>
         </div>
+
+        {excluded.size > 0 && (
+          <div class="border-t border-line-soft pt-3">
+            <div class="mb-1 text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Set aside by you</div>
+            <div class="flex flex-wrap items-center gap-1.5">
+              {[...excluded].map(([id, name]) => (
+                <button
+                  type="button"
+                  onClick={() => restore(id)}
+                  aria-label={`Restore ${name}`}
+                  class="rounded-md border border-dashed border-[rgba(233,233,237,0.28)] px-2.5 py-1 text-[12px] text-neutral-500 hover:text-text hover:border-[rgba(233,233,237,0.44)]"
+                >{name} <span aria-hidden="true">↺</span></button>
+              ))}
+              <button type="button" onClick={restoreAll} class="ml-1 text-[12px] text-accent-300 hover:underline">Put everyone back</button>
+            </div>
+          </div>
+        )}
       </div>
 
       <p aria-live="polite" class="mt-3 text-[12px] text-neutral-500">

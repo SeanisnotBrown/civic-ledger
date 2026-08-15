@@ -1712,3 +1712,47 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   "lowest N%" headline, still owner-gated). This completes the Nocturne pass's VIEW coverage;
   the only remaining Nocturne items are polish: the explorer's exclude + compare-select
   per-row controls (inject on hydration).
+- **D80 (2026-08-15) — the explorer's per-row selection controls (README screen 2, the last
+  Nocturne polish item): compare-select + exclude, injected on hydration into statically
+  reserved gutters.** Design-only; no evaluative constant, §0.8 untouched. README screen 2
+  specs a compare-toggle column (leading, 30px) and an exclude column (trailing, 24px) per
+  row, a heading "Compare selected (n)" primary button, and a filter-card "Set aside by you"
+  restore row. The tension: `/federal` already carries 637 rich rows at the block-row-grid
+  content-visibility budget (D78), so 637 × extra STATIC cells would grow the perf-critical
+  initial DOM — the very trap D73/D78 warn against. Resolution, three constraints, each
+  chosen to clear a specific CI gate:
+  1. **Zero layout shift (CLS is 25% of the mobile-perf score; D78's runner fails at the
+     margin).** The two gutters are reserved **statically** in CSS (`.row/.hrow {
+     position: relative; padding-left: 30px; padding-right: 24px }`, `min-width` 880 → 960),
+     so first paint already has the space. The island injects the controls as
+     **absolutely-positioned** `role="cell"` children into those gutters — they never enter
+     flex layout, so nothing reflows. Measured **CLS 0.0000** locally (the one Lighthouse
+     number that does NOT saturate on this machine, so it's trustworthy — see
+     [[civic-ledger-ci-lighthouse-proxy]]).
+  2. **Valid ARIA grid.** A bare `<button>` child of `role="row"` fails axe's
+     `aria-required-children` (wcag2a → the a11y gate). So each control is injected as
+     `<div role="cell"><button></button></div>`, with two matching sr-only `role=
+     "columnheader"` divs in the header. A dedicated e2e (`drilldown.spec.ts`) waits for the
+     controls to be present (`data-mb-ready`, set AFTER injection) and asserts axe returns
+     zero violations — the generic a11y sweep can race the `client:idle` injection.
+  3. **Cheap injection.** ONE delegated `click` listener on `#member-list` (not 1,274),
+     matching via `closest('button[data-act]')`; the handler reads the member off the clicked
+     row's `data-id`/`data-name` and mutates state with **functional** setState updaters, so
+     it never closes over a stale selection and survives sort re-appends. The injection loop
+     is write-only (no interleaved `offsetWidth`-style reads that would force 637 synchronous
+     layouts). State (`excluded: Map<id,name>`, `compare: string[]` capped at 4) is
+     session-ephemeral and stays OUT of the URL — only filter/column state is linkable per
+     the spec. Excluding folds into the existing filter effect (`display:none` + not counted);
+     the heading link appears at ≥2 selections and points at `/compare?m=…&m=…`; excluding a
+     selected member drops them from the compare set.
+  **Perf verdict (the D78 proxy, not the saturated score):** `/federal` Style & Layout
+  **81 ms** vs the CI-green anchor `/m/A000055/1` at **153 ms** — comfortably below, on the
+  exact axis that sank the `<table>` build (663 ms → 0.77). Script Eval 80 ms (hydration +
+  the ~1,274-node injection), TBT 5 ms, perf 0.98 local. DOM grew 10,964 → 13,517 (a
+  diagnostic, not a scored gate; the injected nodes sit inside content-visibility rows).
+  **Deliberately NOT built (out of documented polish scope):** README screen 2 also lists a
+  "Not graded" grade filter chip the island lacks — noted as a spec gap in PROGRESS, not
+  added here. Gates: astro check 0, build 13,085, e2e **40** (incl. exclude→hide→restore,
+  select-2→compare-link→navigate, and the injected-controls axe scan), grade-labels (5/6),
+  metrics-sections (10+5), links, file-count. This closes the Nocturne pass's polish items;
+  **V2-5 stays OPEN — the "lowest N%" headline (H15 round two) is still owner-gated.**

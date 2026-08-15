@@ -1680,3 +1680,35 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   `a[href^="/m/"]`, computed-visibility, the `?grade=A&sort=grade` deep-link. Committed +
   pushed **alone** (not stacked under `/compare`), CI watched to green before `/compare`.
   Design-only within OPEN V2-5; no evaluative constant; §0.8 untouched.
+
+- **D79 (2026-08-15) — methodology + Mississippi redesign (README screens 6–7): the last
+  Nocturne view.** Design-only. Converts `methods.astro`, `states/index.astro`, and the
+  `ms/*` pages from the neutral-ramp fallback to the named Nocturne tokens, and to Nocturne
+  weights — `font-semibold` → `font-medium` (the ramp remaps colour but NOT font weight, so
+  every heading was still bolder than Nocturne's 400/500 rule). The two "designed" surfaces:
+  1. **Methodology.** The Grades section becomes a bands **table** (a dot in the band
+     colour + the verbatim ratified label inside `<span data-grade-label>` + the numeric
+     range derived from consecutive cutoffs + a population bar + the count) and a **Set
+     aside** card naming all 10 exceptions with a human-readable reason (`delegate` →
+     "Non-voting delegate", `min_service` → "Too little service", `no_record` → "No eligible
+     record"). The band population counts (A 139 … F 40) are the SAME neutral distribution
+     the dashboard already publishes via BandLegend — no band promoted, **no new evaluative
+     constant, §0.8 held**. The `check-metrics-sections` `data-metric`/`data-ranking`
+     sections, the `#grade-attendance` anchor (the member badge's target), the
+     `#mississippi` anchor, and the `check-grade-labels` markers are all preserved. The
+     bands table sits in an `overflow-x-auto` region that is `tabindex="0"` + labelled — it
+     has no focusable children (unlike `/federal`), so axe's `scrollable-region-focusable`
+     rule needs the region itself keyboard-reachable (caught by the mobile a11y e2e).
+  2. **Mississippi.** `/ms` gains four count tiles (legislators, roll calls, bills voted,
+     individual votes) + roll-calls-by-chamber (SplitBar) + roll-calls-by-category bars,
+     read straight from the committed manifest counts (`rollcalls_by_chamber` /
+     `rollcalls_by_vote_class`), above the navigable roster. **HARD constraint kept
+     (README screen 6): Mississippi does NOT show the federal attendance grades** — MS's
+     record can't support the same eligible-roll-call denominator; the "grades do not
+     extend to the states" paragraph stays verbatim.
+  Gates: astro check 0, build 13,085 (page count unchanged — existing pages restyled),
+  grade-labels, metrics-sections (10 + 5), e2e 36 (incl. `/methods` + `/ms` axe a11y and
+  380px). No new evaluative constant; §0.8 untouched; V2-5 stays OPEN (H15 round two, the
+  "lowest N%" headline, still owner-gated). This completes the Nocturne pass's VIEW coverage;
+  the only remaining Nocturne items are polish: the explorer's exclude + compare-select
+  per-row controls (inject on hydration).

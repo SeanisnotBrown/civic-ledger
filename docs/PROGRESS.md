@@ -3,8 +3,8 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-15, **V2-5 design pass (Nocturne)** session — in progress
-(checkpoint 6, members explorer / D76).
+**Last updated:** 2026-08-15, **V2-5 design pass (Nocturne)** session — Nocturne VIEW
+coverage COMPLETE (CP1–CP8: explorer D76 + CI-fix D78, /compare D77, methodology+MS D79).
 **V2-1..V2-4 are COMPLETE and PUSHED** (through `4bb77d56`; CI green; live). V2-4 put
 the first **attendance letter grades** (A–F, owner-ratified) live. **V2-5 is PARTIAL:**
 the site's information architecture was rebuilt (landing dashboard + Federal/States
@@ -126,13 +126,32 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     checks remove-updates-URL). `/compare` deliberately NOT in `lighthouserc.cjs` (client-
     rendered → noisy gate). **Still deferred:** the explorer's multi-select "compare selected"
     → `/compare?m=…` and the exclude ("set aside") per-row controls (inject on hydration).
+  - **CHECKPOINT 8 — methodology + Mississippi redesign (this commit; ADR D79).** The LAST
+    Nocturne view. Converts methods.astro + states/ + ms/* from the neutral-ramp fallback to
+    named Nocturne tokens + weights (font-semibold→font-medium — the ramp doesn't fix weight).
+    **Methodology:** Grades section → a bands TABLE (dot + verbatim `data-grade-label` +
+    range + population bar + count) + a "Set aside" card naming all 10 exceptions with
+    human-readable reasons. Band counts = the dashboard's already-published distribution (no
+    new evaluative constant, §0.8). Preserved: `data-metric`/`data-ranking` sections,
+    `#grade-attendance` + `#mississippi` anchors, grade-labels. **Mississippi (`/ms`):** four
+    count tiles + roll-calls-by-chamber (SplitBar) + roll-calls-by-category bars from the
+    committed manifest counts, above the roster. HARD constraint kept: MS does NOT show
+    federal grades (the "grades do not extend to the states" paragraph stays). Two a11y fixes
+    the e2e caught: the bands table wrapped in an `overflow-x-auto` region (380px overflow),
+    made `tabindex="0"`+labelled (`scrollable-region-focusable` — no focusable children).
+    Green: astro check 0, build 13,085, grade-labels, metrics-sections (10+5), e2e 36.
 
-  ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass, IN PROGRESS)
-  - **State:** CP1–CP7 done + pushed. Whole site is Nocturne dark; dashboard, roll-call,
-    member profile, members explorer (CP6, block-row grid CP6b), and `/compare` (CP7) are
-    all redesigned + CI-green. **ONLY REMAINING Nocturne view:** methodology + Mississippi
-    token conversion (item 3 below). Plus two deferred polish items: the explorer's
-    exclude/compare-select per-row controls (pair with `/compare`; inject on hydration).
+  ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass — VIEW COVERAGE COMPLETE)
+  - **State:** CP1–CP8 done + pushed + CI-green. **Every Nocturne view is now redesigned:**
+    dashboard, roll-call, member profile, members explorer (CP6 + block-row grid CP6b),
+    `/compare` (CP7), and methodology + Mississippi (CP8). The `claudedesign/` handoff's
+    view list is fully implemented. **Remaining Nocturne work is POLISH only:** the
+    explorer's exclude ("set aside") + compare-select per-row controls (pair with `/compare`;
+    inject on hydration — don't add static per-row nodes without re-measuring Lighthouse), and
+    the two `/compare` next-touch fixes (data-source the delegate check; add a delegate test).
+  - **V2-5 still OPEN + owner-gated:** the design pass adds NO evaluative constant so it does
+    NOT close V2-5 — the "lowest N%" wide-eyed headline (H15 round two) is still the owner's
+    to ratify. Do NOT start V2-6. Blocking gate ahead: V2-7 (privacy truth) before V2-8/9.
   - **Design source:** `claudedesign/README.md` (the spec) + `Civic Ledger - Redesign.dc.html`
     (reference; read the relevant view's inline styles per screen). Tokens: `@theme` in
     `site/src/styles/global.css` (named Nocturne tokens + the neutral-ramp remap that
@@ -151,10 +170,10 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
        `/compare?m=…&m=…` and the exclude ("set aside") per-row controls (inject on
        hydration — do NOT add per-row static nodes without re-measuring Lighthouse; /federal
        is at the block-row-grid budget).
-    3. **Methodology + Mississippi** — convert `methods.astro`, `states/`, and the `ms/*`
-       pages from the neutral-ramp fallback to the named Nocturne tokens (they render
-       dark + a11y-green today via the ramp, but aren't "designed"). MS must NOT show the
-       federal attendance grades (keep that paragraph).
+    3. ✅ **Methodology + Mississippi** — DONE, CHECKPOINT 8 / D79 (see above). methods.astro
+       + states/ + ms/* converted to named Nocturne tokens + weights; /methods gained the
+       bands table + set-aside card; /ms gained count tiles + roll-call charts; MS keeps the
+       no-federal-grades paragraph.
   - **Not committed (owner's call):** `claudedesign/` bundle + the untracked review docs
     stay untracked — do not push without asking.
 - **V2-5 (prior session, PARTIAL) — information architecture restructure (D72).** The

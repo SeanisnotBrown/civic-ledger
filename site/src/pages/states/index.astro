@@ -10,26 +10,26 @@ const rollcalls = Number(ms.counts.rollcalls ?? 0).toLocaleString("en-US");
 const legislators = Number(ms.counts.members ?? 0).toLocaleString("en-US");
 ---
 <Layout title="Civic Ledger — States" description="State legislative records covered by Civic Ledger. Mississippi today; more states over time.">
-  <h1 class="text-2xl font-semibold tracking-tight">States</h1>
-  <p class="mt-2 max-w-prose text-neutral-700">
-    State legislatures are covered one at a time. The recorded roll-call record below
-    is the plain vote record — the attendance grades on the federal pages do not extend
-    to the states yet.
+  <h1 class="text-[32px] font-medium tracking-[-0.025em]">States</h1>
+  <p class="mt-2 max-w-[62ch] text-[15px] leading-[1.6] text-neutral-700">
+    State legislatures are covered one at a time. The recorded roll-call record below is the
+    plain vote record — the attendance grades on the federal pages do not extend to the
+    states yet.
   </p>
 
   <section class="mt-8">
-    <a href="/ms" class="block max-w-prose rounded-lg border border-neutral-200 bg-neutral-50 p-4 hover:border-neutral-400">
-      <h2 class="text-lg font-semibold tracking-tight text-neutral-900">Mississippi Legislature</h2>
-      <p class="mt-1 text-sm text-neutral-600">{ms.session_name}</p>
-      <p class="mt-2 text-sm text-neutral-500">
+    <a href="/ms" class="group block max-w-md rounded-lg border border-line bg-surface p-5 transition-colors hover:border-[rgba(233,233,237,0.22)]">
+      <h2 class="text-[18px] font-medium tracking-[-0.015em] text-text">Mississippi Legislature</h2>
+      <p class="mt-1 text-[13px] text-neutral-500">{ms.session_name}</p>
+      <p class="mt-2 text-[13px] tabular-nums text-neutral-500">
         {rollcalls} roll calls · {legislators} legislators · House and Senate
       </p>
-      <p class="mt-3 text-sm font-medium text-neutral-700">Browse Mississippi →</p>
+      <p class="mt-3 text-[13px] font-medium text-accent-300">Browse Mississippi →</p>
     </a>
   </section>
 
-  <p class="mt-8 max-w-prose text-xs text-neutral-500">
-    More states are added over time. Coverage begins with Mississippi; each state is
-    ingested from its official record before it appears here.
+  <p class="mt-8 max-w-[62ch] text-[12px] text-neutral-500">
+    More states are added over time. Coverage begins with Mississippi; each state is ingested
+    from its official record before it appears here.
   </p>
 </Layout>

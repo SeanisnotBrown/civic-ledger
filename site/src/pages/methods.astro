@@ -1,6 +1,17 @@
 ---
+// V2-5 Nocturne — Methodology (README screen 7). Named Nocturne tokens (not the neutral-
+// ramp fallback), Nocturne weights (400/500 only). The Grades section is the redesigned
+// piece: a bands TABLE (dot + verbatim ratified label + numeric range + population bar +
+// count) and a "Set aside" card listing all 10 exceptions by name with a human-readable
+// reason. Everything evaluative is READ from committed data — band labels render verbatim
+// inside <span data-grade-label> (check-grade-labels scans this page), band ranges come
+// from consecutive ratified cutoffs, and the population counts are the same neutral
+// distribution the dashboard already publishes (no band promoted, §0.8). The metric- and
+// ranking-section sets are still asserted equal to the code by check-metrics-sections, so
+// the data-metric / data-ranking sections and the #grade-attendance / #mississippi anchors
+// are preserved.
 import Layout from "../components/Layout.astro";
-import { getManifest, getMetrics, getMsManifest, getRankings, getGrades } from "../lib/data";
+import { getManifest, getMetrics, getMsManifest, getRankings, getGrades, getMembers } from "../lib/data";
 import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
 import type { VoteClass } from "../lib/data";
 
@@ -9,19 +20,11 @@ const ms = getMsManifest();
 const classes = Object.keys(VOTE_CLASS_LABEL) as VoteClass[];
 const rollcallCount = (manifest.counts as Record<string, unknown>).rollcalls;
 
-// One section per published metric, built from the metric functions' docstrings
-// (data/metrics.json). The section set is asserted equal to the metric-key set by
-// scripts/check-metrics-sections.mjs, so this page can never drift from the code.
 const metrics = getMetrics();
 const metricKeys = Object.keys(metrics.methodology).sort();
-// Docstrings are paragraph-separated prose; render each paragraph, collapsing the
-// internal line wrapping the source uses.
 const paragraphs = (text: string): string[] =>
   text.split(/\n\s*\n/).map((p) => p.replace(/\s*\n\s*/g, " ").trim()).filter(Boolean);
 
-// V2-2 rankings. One section per ranked metric (data-ranking), asserted equal to
-// the ranked-metric set by check-metrics-sections.mjs. The methodology text is
-// shared across metrics; party means are published here (§0.4.2(c), §6.5).
 const rankings = getRankings();
 const rankedKeys = Object.keys(rankings).sort();
 const rankingMethodology = rankedKeys.length ? rankings[rankedKeys[0]].methodology : "";
@@ -29,10 +32,7 @@ const chamberLabel: Record<string, string> = { house: "House", senate: "Senate" 
 const fmtVal = (n: number | null, isPct: boolean): string =>
   n == null ? "—" : isPct ? `${n}%` : `${n}`;
 
-// V2-4 grades. One section per graded category, id `grade-{category}` (the member-page
-// badge links here). Band ranges are derived from consecutive cutoffs; the labels are
-// the exact ratified strings — check-grade-labels.mjs asserts the site renders only
-// strings that appear in the config.
+// V2-4 grades → bands table + set-aside card (V2-5 redesign).
 const grades = getGrades();
 const gradeCats = Object.keys(grades).sort();
 const cap = (s: string): string => s.charAt(0).toUpperCase() + s.slice(1);
@@ -42,70 +42,107 @@ const bandRange = (bands: { min: number }[], i: number): string => {
   if (hi == null) return `${lo}% or above`;
   return lo === 0 ? `below ${hi}%` : `${lo}% to under ${hi}%`;
 };
+const GRADE_COLOR: Record<string, string> = {
+  A: "var(--color-grade-a)", B: "var(--color-grade-b)", C: "var(--color-grade-c)",
+  D: "var(--color-grade-d)", F: "var(--color-grade-f)",
+};
+const REASON_LABEL: Record<string, string> = {
+  delegate: "Non-voting delegate", min_service: "Too little service", no_record: "No eligible record",
+};
+const nameOf = new Map(getMembers().map((m) => [m.id, m.name]));
+// per-category band population counts + the set-aside list (named), computed from the
+// committed grades export — never typed in.
+const gradeView = gradeCats.map((cat) => {
+  const g = grades[cat];
+  const counts: Record<string, number> = {};
+  for (const e of Object.values(g.members)) counts[e.grade] = (counts[e.grade] ?? 0) + 1;
+  const maxCount = Math.max(1, ...Object.values(counts));
+  const setAside = Object.entries(g.exceptions)
+    .map(([id, reason]) => ({ id, name: nameOf.get(id) ?? id, reason, label: REASON_LABEL[reason] ?? reason }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+  return { cat, g, counts, maxCount, setAside };
+});
+const n = (x: number) => x.toLocaleString("en-US");
 ---
 <Layout title="Methodology — Civic Ledger">
-  <h1 class="text-2xl font-semibold tracking-tight">Methodology</h1>
-  <p class="mt-2 max-w-prose text-neutral-700">
-    This site publishes the recorded legislative record and grades one measure —
-    attendance — against fixed thresholds the site's owner approved (see Grades,
-    below). Every figure traces to an official source, and every grade applies the
-    same published cutoffs to every member of both chambers; nothing is written,
-    summarized, or characterized by an automated process. Each metric below states
-    its exact formula, what it includes and excludes, and its source — the same text
-    that documents the code that computes it.
+  <h1 class="text-[32px] font-medium tracking-[-0.025em]">Methodology</h1>
+  <p class="mt-2 max-w-[62ch] text-[15px] leading-[1.6] text-neutral-700">
+    This site publishes the recorded legislative record and grades one measure — attendance
+    — against fixed thresholds the site's owner approved (see Grades, below). Every figure
+    traces to an official source, and every grade applies the same published cutoffs to
+    every member of both chambers; nothing is written, summarized, or characterized by an
+    automated process. Each metric below states its exact formula, what it includes and
+    excludes, and its source — the same text that documents the code that computes it.
   </p>
 
-  {gradeCats.length > 0 && (
+  {gradeView.length > 0 && (
     <>
-      <h2 id="grades" class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-        Grades
-      </h2>
-      <p class="mt-2 max-w-prose text-sm text-neutral-700">
-        The site grades one measure so far — attendance — with more to come. A grade is
-        a fixed judgment against lines the site's owner approved, applied identically to
-        every member of both chambers; a member's grade never changes because of what
-        other members do. The overall grade that would combine categories is not
-        published yet — it awaits its formula.
+      <h2 id="grades" class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Grades</h2>
+      <p class="mt-2 max-w-[62ch] text-[14px] leading-relaxed text-neutral-700">
+        The site grades one measure so far — attendance — with more to come. A grade is a
+        fixed judgment against lines the site's owner approved, applied identically to every
+        member of both chambers; a member's grade never changes because of what other members
+        do. The overall grade that would combine categories is not published yet — it awaits
+        its formula.
       </p>
-      <div class="mt-3 space-y-5">
-        {gradeCats.map((cat) => {
-          const g = grades[cat];
-          return (
-            <section id={`grade-${cat}`} data-grade={cat} aria-labelledby={`grade-h-${cat}`}>
-              <h3 id={`grade-h-${cat}`} class="text-base font-semibold text-neutral-800">
-                {cap(g.category)}
-              </h3>
-              <dl class="mt-1 max-w-prose space-y-1 text-sm">
-                {g.bands.map((b, i) => (
-                  <div class="flex gap-2">
-                    <dt class="font-semibold text-neutral-800"><span data-grade-label>{b.label}</span></dt>
-                    <dd class="text-neutral-500">— {bandRange(g.bands, i)}</dd>
+      {gradeView.map(({ cat, g, counts, maxCount, setAside }) => (
+        <section id={`grade-${cat}`} data-grade={cat} aria-labelledby={`grade-h-${cat}`} class="mt-4 rounded-lg border border-line bg-surface p-5">
+          <h3 id={`grade-h-${cat}`} class="text-[15px] font-medium text-text">{cap(g.category)}</h3>
+          <!-- Bands table: dot + verbatim label | range | population bar | count. Wrapped
+               in a horizontal scroller so the fixed label/range columns don't overflow the
+               page body at 380px (the mobile e2e gate) — same pattern as /federal. -->
+          <div class="mt-3 overflow-x-auto" tabindex="0" role="region" aria-label={`${cap(g.category)} grade bands`}>
+          <div class="min-w-[400px] space-y-2">
+            {g.bands.map((b, i) => {
+              const count = counts[b.grade] ?? 0;
+              return (
+                <div class="grid items-center gap-3" style="grid-template-columns:150px 128px minmax(0,1fr) 44px">
+                  <div class="flex items-center gap-2 text-[13px] text-text">
+                    <span aria-hidden="true" class="inline-block h-[10px] w-[10px] rounded-full" style={`background:${GRADE_COLOR[b.grade]}`}></span>
+                    <span data-grade-label>{b.label}</span>
                   </div>
+                  <div class="text-[12px] tabular-nums text-neutral-500">{bandRange(g.bands, i)}</div>
+                  <div class="h-2 rounded" style="background:var(--color-track)">
+                    <div class="h-2 rounded" style={`width:${(count / maxCount) * 100}%;background:${GRADE_COLOR[b.grade]};opacity:0.9`}></div>
+                  </div>
+                  <div class="text-right text-[12px] tabular-nums text-neutral-600">{n(count)}</div>
+                </div>
+              );
+            })}
+          </div>
+          </div>
+          <p class="mt-3 max-w-[62ch] text-[12px] leading-relaxed text-neutral-500">
+            Members with fewer than {g.min_eligible} eligible roll calls are not graded off a
+            thin record. Non-voting delegates are not graded on attendance either: they cannot
+            vote on final passage, so their eligible set (about a third of roll calls) is not
+            comparable to a full member's. Ratified {g.ratified}.
+          </p>
+
+          {setAside.length > 0 && (
+            <div class="mt-4 border-t border-line-soft pt-3">
+              <h4 class="text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Set aside ({setAside.length})</h4>
+              <ul class="mt-2 grid gap-x-6 gap-y-1 sm:grid-cols-2">
+                {setAside.map((s) => (
+                  <li class="flex items-baseline justify-between gap-2 text-[13px]">
+                    <a href={`/m/${s.id}/1`} class="text-text hover:text-accent-300">{s.name}</a>
+                    <span class="text-[12px] text-neutral-500">{s.label}</span>
+                  </li>
                 ))}
-              </dl>
-              <p class="mt-2 max-w-prose text-sm text-neutral-600">
-                Members with fewer than {g.min_eligible} eligible roll calls are
-                not graded off a thin record — they show "{g.exception_label}". Non-voting
-                delegates are not graded on attendance either: they cannot vote on final
-                passage, so their eligible set (about a third of roll calls) is not
-                comparable to a full member's. Ratified {g.ratified}.
-              </p>
-            </section>
-          );
-        })}
-      </div>
+              </ul>
+            </div>
+          )}
+        </section>
+      ))}
     </>
   )}
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Metrics</h2>
-  <div class="mt-2 space-y-6">
+  <h2 class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Metrics</h2>
+  <div class="mt-3 space-y-6">
     {metricKeys.map((key) => (
       <section data-metric={key} aria-labelledby={`metric-${key}`}>
-        <h3 id={`metric-${key}`} class="text-base font-semibold text-neutral-800">
-          {metrics.methodology[key].label}
-        </h3>
+        <h3 id={`metric-${key}`} class="text-[15px] font-medium text-text">{metrics.methodology[key].label}</h3>
         {paragraphs(metrics.methodology[key].text).map((p) => (
-          <p class="mt-1 max-w-prose text-sm text-neutral-700">{p}</p>
+          <p class="mt-1 max-w-[62ch] text-[14px] leading-relaxed text-neutral-700">{p}</p>
         ))}
       </section>
     ))}
@@ -113,41 +150,31 @@ const bandRange = (bands: { min: number }[], i: number): string => {
 
   {rankedKeys.length > 0 && (
     <>
-      <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-        Rankings &amp; percentiles
-      </h2>
+      <h2 class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Rankings &amp; percentiles</h2>
       {paragraphs(rankingMethodology).map((p) => (
-        <p class="mt-2 max-w-prose text-sm text-neutral-700">{p}</p>
+        <p class="mt-2 max-w-[62ch] text-[14px] leading-relaxed text-neutral-700">{p}</p>
       ))}
-      <div class="mt-4 space-y-5">
+      <div class="mt-3 space-y-5">
         {rankedKeys.map((key) => {
           const rf = rankings[key];
           const isPct = rf.value_field === "pct";
           return (
             <section data-ranking={key} aria-labelledby={`ranking-${key}`}>
-              <h3 id={`ranking-${key}`} class="text-base font-semibold text-neutral-800">
-                {rf.label}
-              </h3>
+              <h3 id={`ranking-${key}`} class="text-[15px] font-medium text-text">{rf.label}</h3>
               {["house", "senate"].map((ch) => {
                 const c = rf.chambers[ch];
                 if (!c || c.covered === 0) return null;
                 const parties = Object.keys(c.party_means).sort();
                 return (
-                  <p class="mt-1 max-w-prose text-sm text-neutral-700">
-                    <span class="font-medium">{chamberLabel[ch]}:</span>{" "}
-                    {c.covered} ranked · chamber average {fmtVal(c.mean, isPct)},
-                    median {fmtVal(c.median, isPct)}
+                  <p class="mt-1 max-w-[62ch] text-[14px] leading-relaxed text-neutral-700">
+                    <span class="font-medium text-text">{chamberLabel[ch]}:</span>{" "}
+                    {c.covered} ranked · chamber average {fmtVal(c.mean, isPct)}, median {fmtVal(c.median, isPct)}
                     {parties.length > 0 && (
-                      <span>
-                        {" "}· party averages{" "}
-                        {parties.map((p) => `${p} ${fmtVal(c.party_means[p], isPct)}`).join(", ")}
-                      </span>
+                      <span>{" "}· party averages {parties.map((p) => `${p} ${fmtVal(c.party_means[p], isPct)}`).join(", ")}</span>
                     )}
                     {c.excluded_delegates.length > 0 && (
                       <span class="text-neutral-500">
-                        {" "}· {c.excluded_delegates.length} non-voting delegate
-                        {c.excluded_delegates.length === 1 ? "" : "s"} not ranked here
-                        (cannot vote on final passage)
+                        {" "}· {c.excluded_delegates.length} non-voting delegate{c.excluded_delegates.length === 1 ? "" : "s"} not ranked here (cannot vote on final passage)
                       </span>
                     )}
                   </p>
@@ -160,81 +187,71 @@ const bandRange = (bands: { min: number }[], i: number): string => {
     </>
   )}
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Sources</h2>
-  <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
+  <h2 class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Sources</h2>
+  <ul class="mt-2 max-w-[62ch] list-disc space-y-1 pl-5 text-[14px] text-neutral-700">
     <li>House roll calls: api.congress.gov, cross-checked against clerk.house.gov XML.</li>
     <li>Senate roll calls: senate.gov LIS XML, cross-checked against the published tallies.</li>
     <li>Bills: api.congress.gov bill detail (title, sponsor, policy area, CBO links).</li>
     <li>Absence explanations: the Congressional Record, owner-reviewed and verbatim.</li>
   </ul>
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">
-    Vote categories
-  </h2>
-  <p class="mt-1 max-w-prose text-sm text-neutral-600">
-    Every roll call is placed in one procedural category by a published rules
-    table. The category describes the parliamentary action, never its merits.
+  <h2 class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Vote categories</h2>
+  <p class="mt-1 max-w-[62ch] text-[14px] leading-relaxed text-neutral-600">
+    Every roll call is placed in one procedural category by a published rules table. The
+    category describes the parliamentary action, never its merits.
   </p>
-  <dl class="mt-2 max-w-prose space-y-2 text-sm">
+  <dl class="mt-2 max-w-[62ch] space-y-2 text-[14px]">
     {classes.map((c) => (
       <div>
-        <dt class="font-medium text-neutral-800">{VOTE_CLASS_LABEL[c]}</dt>
+        <dt class="font-medium text-text">{VOTE_CLASS_LABEL[c]}</dt>
         <dd class="text-neutral-600">{VOTE_CLASS_TOOLTIP[c]}</dd>
       </div>
     ))}
   </dl>
 
-  <h2 id="mississippi" class="mt-10 border-t border-neutral-100 pt-6 text-sm font-semibold uppercase tracking-wide text-neutral-500">
+  <h2 id="mississippi" class="mt-10 border-t border-line pt-6 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
     Mississippi Legislature — sources &amp; limits
   </h2>
-  <p class="mt-2 max-w-prose text-sm text-neutral-700">
+  <p class="mt-2 max-w-[62ch] text-[14px] leading-relaxed text-neutral-700">
     The Mississippi state layer covers the {ms.session_name}
     ({Number(ms.counts.rollcalls).toLocaleString()} roll calls,
-    {String(ms.counts.members)} legislators). It follows the same "publish the record,
-    draw no conclusion" rules as the federal data, with these specific sources and limits:
+    {String(ms.counts.members)} legislators). It follows the same "publish the record, draw
+    no conclusion" rules as the federal data, with these specific sources and limits:
   </p>
-  <ul class="mt-2 max-w-prose list-disc space-y-2 pl-5 text-sm text-neutral-700">
+  <ul class="mt-2 max-w-[62ch] list-disc space-y-2 pl-5 text-[14px] text-neutral-700">
     <li>
-      <strong>Source and verification.</strong> State roll calls come from
-      <span class="whitespace-nowrap">LegiScan</span>, which mirrors the official
-      Mississippi Legislature record at <code>billstatus.ls.state.ms.us</code>. Because
-      LegiScan is a mirror of that record rather than a second independent origin, we
-      verify its fidelity: a sample of votes was matched person-by-person against the
-      official per-vote PDFs (470 individual positions, zero mismatches), and an automated
-      check re-confirms each sampled vote's official Yeas/Nays/Absent totals on every build.
-      Individual roll calls link to their LegiScan vote page; bills link to the official
-      Mississippi record where available.
+      <strong class="font-medium text-text">Source and verification.</strong> State roll calls come from
+      <span class="whitespace-nowrap">LegiScan</span>, which mirrors the official Mississippi
+      Legislature record at <code class="text-neutral-500">billstatus.ls.state.ms.us</code>. Because LegiScan is a
+      mirror of that record rather than a second independent origin, we verify its fidelity: a
+      sample of votes was matched person-by-person against the official per-vote PDFs (470
+      individual positions, zero mismatches), and an automated check re-confirms each sampled
+      vote's official Yeas/Nays/Absent totals on every build. Individual roll calls link to
+      their LegiScan vote page; bills link to the official Mississippi record where available.
     </li>
+    <li><strong class="font-medium text-text">Coverage.</strong> Only the current regular session is included; earlier sessions are not yet published.</li>
     <li>
-      <strong>Coverage.</strong> Only the current regular session is included; earlier
-      sessions are not yet published.
-    </li>
-    <li>
-      <strong>Recorded positions.</strong> The official record distinguishes Yea, Nay, and
-      not-voting only. A "Not voting" row combines members recorded absent and present-but-
+      <strong class="font-medium text-text">Recorded positions.</strong> The official record distinguishes Yea, Nay,
+      and not-voting only. A "Not voting" row combines members recorded absent and present-but-
       not-voting. Unlike the federal record, there is no personal-explanation process, so a
       missed state vote carries no stated reason.
     </li>
     <li>
-      <strong>Party.</strong> One member is recorded by LegiScan as "Nonpartisan"; in the
-      Democrat/Republican/Independent model used here that member is shown as Independent.
+      <strong class="font-medium text-text">Party.</strong> One member is recorded by LegiScan as "Nonpartisan"; in
+      the Democrat/Republican/Independent model used here that member is shown as Independent.
     </li>
+    <li><strong class="font-medium text-text">Bills.</strong> Only measures that received a recorded roll-call vote are published as bill pages (not every measure introduced).</li>
     <li>
-      <strong>Bills.</strong> Only measures that received a recorded roll-call vote are
-      published as bill pages (not every measure introduced).
-    </li>
-    <li>
-      <strong>Authorship &amp; statistics.</strong> Mississippi legislator pages show
-      attendance, party unity, bills authored and co-authored, and how many authored
-      bills the Governor approved — computed by the same formulas as the federal figures.
-      Two Mississippi-specific notes: LegiScan does not mark a single primary author, so
-      the first-listed author of a bill is taken as its principal ("authored") and the
-      rest as "co-authored"; and "became law" counts bills whose official history records
-      "Approved by Governor" this session.
+      <strong class="font-medium text-text">Authorship &amp; statistics.</strong> Mississippi legislator pages show
+      attendance, party unity, bills authored and co-authored, and how many authored bills the
+      Governor approved — computed by the same formulas as the federal figures. Two Mississippi-
+      specific notes: LegiScan does not mark a single primary author, so the first-listed author
+      of a bill is taken as its principal ("authored") and the rest as "co-authored"; and
+      "became law" counts bills whose official history records "Approved by Governor" this session.
     </li>
   </ul>
 
-  <p class="mt-8 text-xs text-neutral-500">
+  <p class="mt-8 text-[12px] text-neutral-500">
     Coverage: {manifest.congresses.join("–")}th Congresses ·
     {String(rollcallCount)} roll calls (federal). Mississippi: {ms.session_name} ·
     {Number(ms.counts.rollcalls).toLocaleString()} roll calls.

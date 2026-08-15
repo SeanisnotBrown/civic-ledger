@@ -33,16 +33,16 @@ const districtSuffix = member.district != null ? `, ${districtPrefix}-${member.d
 ---
 <Layout title={`${member.name} — Mississippi Legislature — Civic Ledger`}>
   <nav class="text-xs text-neutral-500">
-    <a href="/ms" class="underline">Mississippi Legislature</a> / {member.name}
+    <a href="/ms" class="underline decoration-line underline-offset-2 hover:text-text">Mississippi Legislature</a> / {member.name}
   </nav>
-  <h1 class="mt-1 text-2xl font-semibold tracking-tight">{member.name}</h1>
+  <h1 class="mt-1 text-2xl font-medium tracking-tight text-text">{member.name}</h1>
   <p class="mt-1 text-neutral-600">
     {PARTY_LABEL[member.party] ?? member.party} · {chamberLabel}{districtSuffix}
   </p>
 
   {memberMetrics && <MemberStats metrics={memberMetrics} periodLabel={sessionLabel} jurisdiction="ms" />}
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Record</h2>
+  <h2 class="mt-8 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Record</h2>
   <p class="mt-1 text-xs text-neutral-500">
     Newest first. Page {pageNum} of {totalPages}. Each roll shows the official question
     verbatim and links to its vote record.
@@ -59,11 +59,11 @@ const districtSuffix = member.district != null ? `, ${districtPrefix}-${member.d
   {totalPages > 1 && (
     <nav class="mt-6 flex items-center justify-between text-sm" aria-label="Pagination">
       {pageNum > 1
-        ? <a href={`/ms/m/${member.id}/${pageNum - 1}`} class="underline hover:text-neutral-800">← Newer</a>
+        ? <a href={`/ms/m/${member.id}/${pageNum - 1}`} class="text-accent-300 underline underline-offset-2">← Newer</a>
         : <span class="text-neutral-300">← Newer</span>}
       <span class="text-neutral-500">Page {pageNum} / {totalPages}</span>
       {pageNum < totalPages
-        ? <a href={`/ms/m/${member.id}/${pageNum + 1}`} class="underline hover:text-neutral-800">Older →</a>
+        ? <a href={`/ms/m/${member.id}/${pageNum + 1}`} class="text-accent-300 underline underline-offset-2">Older →</a>
         : <span class="text-neutral-300">Older →</span>}
     </nav>
   )}

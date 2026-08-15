@@ -1,34 +1,117 @@
 ---
+// V2-5 Nocturne — Mississippi overview (README screen 6). Four count tiles + roll-calls-
+// by-chamber + roll-calls-by-class, then the navigable roster. The federal attendance
+// grades MUST NOT appear here — Mississippi's record does not support the same eligible-
+// roll-call denominator; the intro says so and that paragraph is kept. Chamber/class
+// breakdowns are read straight from the committed manifest counts (no re-scan).
 import Layout from "../../components/Layout.astro";
+import SplitBar from "../../components/charts/SplitBar.astro";
 import { getMsMembers, getMsManifest } from "../../lib/data";
+import { VOTE_CLASS_LABEL } from "../../lib/display";
+import type { VoteClass } from "../../lib/data";
 
 const members = getMsMembers();
 const house = members.filter((m) => m.chamber === "house").sort((a, b) => (a.district ?? 0) - (b.district ?? 0));
 const senate = members.filter((m) => m.chamber === "senate").sort((a, b) => (a.district ?? 0) - (b.district ?? 0));
 const manifest = getMsManifest();
+const counts = manifest.counts as Record<string, unknown>;
+const n = (x: number) => x.toLocaleString("en-US");
+
+const byChamber = (counts.rollcalls_by_chamber ?? {}) as Record<string, number>;
+const byClass = (counts.rollcalls_by_vote_class ?? {}) as Record<string, number>;
+
+const tiles = [
+  { kicker: "Legislators", value: Number(counts.members ?? members.length), note: "House and Senate" },
+  { kicker: "Roll calls", value: Number(counts.rollcalls ?? 0), note: `${manifest.session_name}` },
+  { kicker: "Bills voted", value: Number(counts.bills ?? 0), note: "measures with a recorded vote" },
+  { kicker: "Individual votes", value: Number(counts.member_votes ?? 0), note: "recorded positions" },
+];
+
+// Chamber split → SplitBar (House / Senate). Neutral accent shades — chamber is not party.
+const chamberSegs = [
+  { key: "house", label: "House", count: byChamber.house ?? 0, color: "#9184d9" },
+  { key: "senate", label: "Senate", count: byChamber.senate ?? 0, color: "#5d5294" },
+];
+
+// Class breakdown → horizontal bars, sorted desc. Passage gets the accent; the rest muted.
+const classRows = Object.entries(byClass)
+  .map(([k, c]) => ({ key: k as VoteClass, label: VOTE_CLASS_LABEL[k as VoteClass] ?? k, count: c }))
+  .sort((a, b) => b.count - a.count);
+const maxClass = Math.max(1, ...classRows.map((r) => r.count));
 
 const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
+const PARTY_COLOR: Record<string, string> = { D: "var(--color-party-d)", R: "var(--color-party-r)", I: "var(--color-party-i)" };
 ---
 <Layout title="Civic Ledger — Mississippi Legislature">
-  <nav class="text-xs text-neutral-500"><a href="/states" class="underline">States</a> / Mississippi Legislature</nav>
-  <h1 class="mt-1 text-2xl font-semibold tracking-tight">Mississippi Legislature</h1>
-  <p class="mt-2 max-w-prose text-neutral-700">
+  <nav class="text-xs text-neutral-500">
+    <a href="/states" class="underline decoration-line underline-offset-2 hover:text-text">States</a>
+    <span aria-hidden="true"> / </span>Mississippi Legislature
+  </nav>
+  <h1 class="mt-1 text-[32px] font-medium tracking-[-0.025em]">Mississippi Legislature</h1>
+  <p class="mt-2 max-w-[62ch] text-[15px] leading-[1.6] text-neutral-700">
     The recorded roll-call record of the Mississippi House and Senate for the
-    {manifest.session_name} — the plain record, with no grades yet (the attendance
-    grades on the federal pages do not extend to the states). Every vote links to
-    its source. State data comes via LegiScan, which mirrors the official Mississippi
-    record; see <a href="/methods#mississippi" class="underline hover:text-neutral-800">how this data is sourced and its limits</a>.
+    {manifest.session_name} — the plain record, with no grades yet (the attendance grades on
+    the federal pages do not extend to the states). Every vote links to its source. State
+    data comes via LegiScan, which mirrors the official Mississippi record; see
+    <a href="/methods#mississippi" class="text-accent-300 underline underline-offset-2">how this data is sourced and its limits</a>.
   </p>
 
+  <!-- Count tiles -->
+  <section class="mt-6 grid grid-cols-2 gap-3.5 sm:grid-cols-4" aria-label="Mississippi coverage">
+    {tiles.map((t) => (
+      <div class="rounded-lg border border-line bg-surface p-4">
+        <div class="text-[10px] font-medium uppercase tracking-[0.1em] text-accent-300">{t.kicker}</div>
+        <div class="mt-1 text-[26px] font-medium tabular-nums leading-none text-text">{n(t.value)}</div>
+        <div class="mt-1.5 text-[12px] text-neutral-500">{t.note}</div>
+      </div>
+    ))}
+  </section>
+
+  <!-- Roll calls by chamber + by class -->
+  <section class="mt-4 grid gap-4 lg:grid-cols-2">
+    <div class="rounded-lg border border-line bg-surface p-5">
+      <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Roll calls by chamber</h2>
+      <div class="mt-4"><SplitBar segments={chamberSegs} height={30} /></div>
+      <div class="mt-3 flex gap-4 text-[12px] text-neutral-500">
+        {chamberSegs.map((s) => (
+          <span class="flex items-center gap-1.5">
+            <span aria-hidden="true" class="inline-block h-[9px] w-[9px] rounded-full" style={`background:${s.color}`}></span>
+            {s.label} <span class="tabular-nums text-text">{n(s.count)}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <div class="rounded-lg border border-line bg-surface p-5">
+      <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Roll calls by category</h2>
+      <div class="mt-3 space-y-2">
+        {classRows.map((r) => (
+          <div class="grid items-center gap-3" style="grid-template-columns:120px minmax(0,1fr) 54px">
+            <span class="text-[12px] text-neutral-600">{r.label}</span>
+            <span class="h-2.5 rounded" style="background:var(--color-track)">
+              <span class="block h-2.5 rounded" style={`width:${(r.count / maxClass) * 100}%;background:${r.key === "passage" ? "var(--color-accent)" : "var(--color-accent-700)"};opacity:0.9`}></span>
+            </span>
+            <span class="text-right text-[12px] tabular-nums text-neutral-600">{n(r.count)}</span>
+          </div>
+        ))}
+      </div>
+      <p class="mt-3 text-[11px] leading-relaxed text-neutral-500">
+        The category describes the parliamentary action, never its merits.
+      </p>
+    </div>
+  </section>
+
+  <!-- Roster -->
   <section class="mt-8" aria-labelledby="senate-h">
-    <h2 id="senate-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
-      Senate <span class="font-normal normal-case text-neutral-400">({senate.length})</span>
+    <h2 id="senate-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+      Senate <span class="text-neutral-400">({senate.length})</span>
     </h2>
-    <ul class="mt-2 divide-y divide-neutral-100">
+    <ul class="mt-2 divide-y divide-line-soft">
       {senate.map((m) => (
-        <li class="py-2">
-          <a href={`/ms/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
-          <span class="ml-2 text-sm text-neutral-500">
+        <li class="flex flex-wrap items-baseline gap-x-3 py-2">
+          <a href={`/ms/m/${m.id}/1`} class="font-medium text-text underline decoration-transparent underline-offset-2 hover:decoration-line">{m.name}</a>
+          <span class="text-[13px] text-neutral-500">
+            <span aria-hidden="true" class="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={`background:${PARTY_COLOR[m.party] ?? "var(--color-party-i)"}`}></span>
             {PARTY_LABEL[m.party] ?? m.party}{m.district != null ? ` · SD-${m.district}` : ""}
           </span>
         </li>
@@ -37,14 +120,15 @@ const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I:
   </section>
 
   <section class="mt-8" aria-labelledby="house-h">
-    <h2 id="house-h" class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
-      House <span class="font-normal normal-case text-neutral-400">({house.length})</span>
+    <h2 id="house-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+      House <span class="text-neutral-400">({house.length})</span>
     </h2>
-    <ul class="mt-2 divide-y divide-neutral-100">
+    <ul class="mt-2 divide-y divide-line-soft">
       {house.map((m) => (
-        <li class="py-2">
-          <a href={`/ms/m/${m.id}/1`} class="font-medium underline hover:text-neutral-800">{m.name}</a>
-          <span class="ml-2 text-sm text-neutral-500">
+        <li class="flex flex-wrap items-baseline gap-x-3 py-2">
+          <a href={`/ms/m/${m.id}/1`} class="font-medium text-text underline decoration-transparent underline-offset-2 hover:decoration-line">{m.name}</a>
+          <span class="text-[13px] text-neutral-500">
+            <span aria-hidden="true" class="mr-1.5 inline-block h-2 w-2 rounded-full align-middle" style={`background:${PARTY_COLOR[m.party] ?? "var(--color-party-i)"}`}></span>
             {PARTY_LABEL[m.party] ?? m.party}{m.district != null ? ` · HD-${m.district}` : ""}
           </span>
         </li>
@@ -52,8 +136,8 @@ const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I:
     </ul>
   </section>
 
-  <p class="mt-8 text-xs text-neutral-500">
-    Coverage: {manifest.session_name} — {Number(manifest.counts.rollcalls).toLocaleString()} roll
-    calls, {manifest.counts.members} legislators. Source: LegiScan session {manifest.session_id}.
+  <p class="mt-8 text-[12px] text-neutral-500">
+    Coverage: {manifest.session_name} — {n(Number(counts.rollcalls ?? 0))} roll calls,
+    {String(counts.members)} legislators. Source: LegiScan session {manifest.session_id}.
   </p>
 </Layout>

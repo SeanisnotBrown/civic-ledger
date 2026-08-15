@@ -52,15 +52,16 @@ from ingest.sources.legislators import VOTING_STATES
 # are lists of records, not a single comparable number, and are not ranked.
 RANKED_METRICS: dict[str, str] = {
     "attendance": "pct",
-    "party_unity": "pct",
+    "cross_aisle_support": "pct",  # replaced party_unity federally (2026-08-15)
     "sponsored": "count",
     "cosponsored": "count",
     "enacted_rate": "pct",
 }
 
-# The two vote-based metrics delegates are excluded from (D66). The three
+# The two vote-based metrics delegates are excluded from (D66) — they cannot vote on final
+# passage, so neither attendance nor cross-aisle support is comparable. The three
 # legislation metrics (the rest of RANKED_METRICS) include delegates.
-VOTE_METRICS: frozenset[str] = frozenset({"attendance", "party_unity"})
+VOTE_METRICS: frozenset[str] = frozenset({"attendance", "cross_aisle_support"})
 
 CHAMBERS: tuple[str, ...] = ("house", "senate")
 

@@ -44,7 +44,7 @@ const periodLabel = congresses.length
   : "the covered Congresses";
 const fmtInt = (x: number) => x.toLocaleString("en-US");
 ---
-<Layout title="Civic Ledger — Federal members" description="Every member of the U.S. House and Senate — attendance, party unity, vote mix, and legislative output, sortable and filterable.">
+<Layout title="Civic Ledger — Federal members" description="Every member of the U.S. House and Senate — attendance, cross-aisle support, vote mix, and legislative output, sortable and filterable.">
   <div class="flex flex-wrap items-end justify-between gap-3">
     <div class="flex flex-wrap items-end gap-x-3 gap-y-1">
       <h1 class="text-[32px] font-medium tracking-[-0.025em]">Members explorer</h1>
@@ -100,7 +100,7 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
           data-name={r.name}
           data-search={`${r.name} ${r.state}`.toLowerCase()}
           data-att={r.cells[0].sort ?? ""}
-          data-unity={r.cells[1].sort ?? ""}
+          data-cross={r.cells[1].sort ?? ""}
           data-yea={r.cells[2].sort ?? ""}
           data-spon={r.cells[3].sort ?? ""}
           data-cospon={r.cells[4].sort ?? ""}
@@ -216,6 +216,6 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
     opacity: 0.85; border-radius: 0 2px 2px 0;
   }
   .bar-acc { --bar: var(--color-accent); }
-  .bar-unity { --bar: var(--color-accent-300); }
+  .bar-cross { --bar: var(--color-accent-300); }
   .bar-yea { --bar: var(--color-pos-yea); }
 </style>

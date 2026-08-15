@@ -116,8 +116,8 @@ def test_export_writes_one_file_per_ranked_metric(tmp_path):
     out = tmp_path / "rankings"
     paths = export_rankings(build_all(METRICS, MEMBERS), out_dir=out)
     written = sorted(p.name for p in out.glob("*.json"))
-    assert written == ["attendance.json", "cosponsored.json", "enacted_rate.json",
-                       "party_unity.json", "sponsored.json"]
+    assert written == ["attendance.json", "cosponsored.json", "cross_aisle_support.json",
+                       "enacted_rate.json", "sponsored.json"]
     assert len(paths) == 5
 
 

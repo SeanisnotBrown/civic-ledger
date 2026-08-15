@@ -199,6 +199,17 @@ class PartyUnityValue(_Strict):
     agreed: int          # of those, votes matching the member's party majority
     pct: float | None    # 100 * agreed / substantive; None if substantive == 0
     excluded_ties: int   # substantive rolls dropped: the member's party split evenly
+    # NOTE: retired from the FEDERAL published set (2026-08-15, owner: "a dumb stat");
+    # kept here because the Mississippi layer (MsMemberMetrics) still publishes it.
+
+
+class CrossAisleValue(_Strict):
+    # Final-passage rolls sponsored by the OTHER major party that the member cast yea/nay on,
+    # and how many of those they voted Yea. Independents contribute nothing (no single
+    # opposing party), so their denominator is 0 → pct null. Replaces party_unity federally.
+    opposing_considered: int  # opposing-party final-passage bills the member voted on (yea/nay)
+    opposing_yea: int         # of those, ones the member voted Yea (supported)
+    pct: float | None         # 100 * opposing_yea / opposing_considered; None if considered == 0
 
 
 class CountValue(_Strict):
@@ -256,7 +267,7 @@ class AbsenceContextItem(_Strict):
 
 class MemberMetrics(_Strict):
     attendance: AttendanceValue
-    party_unity: PartyUnityValue
+    cross_aisle_support: CrossAisleValue  # replaced party_unity federally (2026-08-15)
     position_mix: PositionMixValue
     sponsored: CountValue
     cosponsored: CountValue

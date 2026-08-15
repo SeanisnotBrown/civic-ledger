@@ -37,16 +37,31 @@ from ingest.models import MetricMethodology, MetricsFile
 # v2 (R-1b/R-4a, D47): dead-archive statements are now excluded from the metric input
 # universe (a shared-helper change the per-metric digest cannot see), and attendance
 # reports a null pct on a zero denominator instead of a fabricated 0.
-FORMULA_SCHEMA_VERSION: int = 2
+# v3 (2026-08-15): _load() now also reads each bill's sponsor into the Ctx (a shared-input
+# change the per-metric digest cannot see), for the new cross_aisle_support metric that
+# replaced party_unity in the FEDERAL published set (FEDERAL_METRICS below).
+FORMULA_SCHEMA_VERSION: int = 3
 
 # Substantive vote classes for party unity (§A1; excludes `procedural` — the
 # R-RULE/R-RES split in INC-5 exists precisely so special rules don't count here).
 SUBSTANTIVE: frozenset[str] = frozenset({"passage", "amendment", "veto_override", "nomination"})
 
-# Human labels for the methods-page section headings (keys == METRICS keys).
+# Final-passage classes for cross_aisle_support: a Yea on either is a vote to ENACT the
+# bill (a veto override enacts it over the President's veto), so both point the same way.
+# Amendments/nominations/procedural are excluded — they are not "the other party's bill".
+FINAL_PASSAGE: frozenset[str] = frozenset({"passage", "veto_override"})
+
+# The opposing MAJOR party. An independent has no single opposite, so a member whose
+# per-roll party is not a key here contributes nothing to cross_aisle_support (denominator
+# stays 0 → pct null) — no special-case code, the mapping does it.
+_OPPOSITE: dict[str, str] = {"D": "R", "R": "D"}
+
+# Human labels for the methods-page section headings (keys == METRICS keys; party_unity is
+# kept for the MS layer even though it is not in the FEDERAL published set).
 METRIC_LABELS: dict[str, str] = {
     "attendance": "Attendance",
     "party_unity": "Party unity",
+    "cross_aisle_support": "Cross-aisle support",
     "position_mix": "Yea / Nay share",
     "sponsored": "Bills sponsored",
     "cosponsored": "Bills cosponsored",
@@ -69,6 +84,10 @@ class Ctx:
     statements: list[dict]                          # curated Statements (empty pre-INC-11)
     voted_bill_ids: set[str]                        # every bill_id that got a floor roll
     ended_congresses: frozenset[int] = field(default_factory=frozenset)
+    # bill_id -> sponsor bioguide (None when the bill lists no sponsor). Only cross_aisle_
+    # support reads it; defaults empty so the MS loader (ms_metrics._load_ctx), which does
+    # not compute cross_aisle, need not populate it.
+    bill_sponsor: dict[str, str | None] = field(default_factory=dict)
 
 
 def _load() -> Ctx:
@@ -117,12 +136,19 @@ def _load() -> Ctx:
     # archive died is unpublishable — the site hides it, so the metric layer must not
     # publish a mismatch from it either. `data` honors the monkeypatched repo_root.
     statements = statements_io.load_statements(data_dir=data, exclude_dead=True)
+    # Each bill's sponsor (for cross_aisle_support: attributing a voted bill to a party).
+    # Read ONLY the committed bill records so the metric stays recomputable (offline).
+    bill_sponsor = {
+        (b := json.loads(p.read_text(encoding="utf-8")))["id"]: b.get("sponsor_id")
+        for p in sorted((data / "bills").glob("*.json"))
+    }
     from ingest import config
     # The ongoing Congress is the newest covered one; every older covered Congress
     # has ended. Static + deterministic (no wall-clock), auto-correct when the next
     # Congress is added to config.CONGRESSES.
     ended = frozenset(c for c in config.CONGRESSES if c != max(config.CONGRESSES))
-    return Ctx(members, positions, legislation, statements, voted_bill_ids, ended)
+    return Ctx(members, positions, legislation, statements, voted_bill_ids, ended,
+               bill_sponsor=bill_sponsor)
 
 
 def _party_on(member: dict, date: str) -> str:
@@ -198,6 +224,61 @@ def party_unity(mid: str, ctx: Ctx) -> dict:
         "substantive": substantive, "agreed": agreed,
         "pct": round(100 * agreed / substantive, 2) if substantive else None,
         "excluded_ties": ties,
+    }
+
+
+def cross_aisle_support(mid: str, ctx: Ctx) -> dict:
+    """Of the final-passage bills sponsored by the OTHER major party that the member voted
+    on, the share they voted Yea.
+
+    "Final passage" is the passage and veto-override rolls (a Yea on a veto override enacts
+    the bill over the President's veto — the same direction as a passage Yea); amendments,
+    nominations, and procedural motions are excluded, as are rolls with no bill. "The other
+    party" is the major party opposite the member's own party on the roll's date; the bill's
+    party is its sponsor's party on that same date (data/bills carries no introduced date, so
+    the roll date is the one consistent reference). `opposing_considered` counts the
+    opposing-party final-passage bills the member cast Yea or Nay on (Present/Not Voting are
+    not a position on the bill); `opposing_yea` counts the Yeas among them; pct = 100 *
+    opposing_yea / opposing_considered, null when opposing_considered == 0 — never a
+    fabricated 0. A member with no major-party affiliation (independent) has no single
+    opposing party, so nothing is counted and pct is null.
+
+    This measures support for the other side's bills WHEN THEY REACH THE FLOOR — it is NOT a
+    complete bipartisanship score and must never be labelled one. The majority party controls
+    which bills get a final-passage vote, so the pool of "opposing-party bills" differs by
+    party (and tends, for the minority, to be the less-contested measures leadership allows
+    up); read it as a floor-vote fact, with the denominator always shown, not a character
+    verdict. Source: data/votes (positions) + data/bills (each bill's sponsor) + the roster
+    (each sponsor's party). A voted-on bill absent from data/bills raises rather than silently
+    shrinking the denominator (mirrors the orphan-vote guard in _load)."""
+    member = ctx.members[mid]
+    considered = yea = 0
+    for rc, pos in ctx.positions[mid]:
+        if rc["vote_class"] not in FINAL_PASSAGE or pos not in ("yea", "nay"):
+            continue
+        opp = _OPPOSITE.get(_party_on(member, rc["date"]))
+        if opp is None:  # independent — no single opposing party
+            continue
+        bill_id = rc["bill_id"]
+        if not bill_id:
+            continue
+        if bill_id not in ctx.bill_sponsor:
+            raise KeyError(
+                f"roll {rc['id']} voted on bill {bill_id} with no committed data/bills "
+                f"record — run `ingest bills` to refresh"
+            )
+        sponsor_id = ctx.bill_sponsor[bill_id]
+        sponsor = ctx.members.get(sponsor_id) if sponsor_id else None
+        if sponsor is None:  # sponsor-less bill, or a sponsor outside the roster — unattributable
+            continue
+        if _party_on(sponsor, rc["date"]) != opp:
+            continue  # not the OTHER major party's bill
+        considered += 1
+        if pos == "yea":
+            yea += 1
+    return {
+        "opposing_considered": considered, "opposing_yea": yea,
+        "pct": round(100 * yea / considered, 2) if considered else None,
     }
 
 
@@ -392,10 +473,13 @@ def absence_context(mid: str, ctx: Ctx) -> list[dict]:
     return out
 
 
-# The Tier-3 guard reads this registry: no listed function may call another.
+# The Tier-3 guard reads this registry: no listed function may call another. It is the FULL
+# formula registry — party_unity stays here (with its label + digest) because the MS layer
+# (ingest/ms_metrics.py) still computes it, even though it is no longer FEDERALLY published.
 METRICS = {
     "attendance": attendance,
     "party_unity": party_unity,
+    "cross_aisle_support": cross_aisle_support,
     "position_mix": position_mix,
     "sponsored": sponsored,
     "cosponsored": cosponsored,
@@ -405,6 +489,13 @@ METRICS = {
     "named_measure_mismatch": named_measure_mismatch,
     "absence_context": absence_context,
 }
+
+# Metrics PUBLISHED in the FEDERAL data/metrics.json (+ methodology sections + rankings).
+# party_unity was retired federally on 2026-08-15 (owner: "delete the party unity. This is
+# a dumb stat.") and replaced by cross_aisle_support; it survives in METRICS above only for
+# the Mississippi layer. This subset (registry order, minus party_unity) is what federal
+# build() iterates and what MemberMetrics is validated against (test_metrics).
+FEDERAL_METRICS = {k: fn for k, fn in METRICS.items() if k != "party_unity"}
 
 
 def _formula_digest(fn) -> str:
@@ -420,10 +511,12 @@ def _formula_digest(fn) -> str:
 
 
 def build() -> MetricsFile:
-    """Compute every metric for every covered member from the committed dataset."""
+    """Compute every FEDERALLY-published metric for every covered member from the committed
+    dataset. party_unity is excluded here (retired federally; it lives on only in the MS
+    layer) — see FEDERAL_METRICS."""
     ctx = _load()
     members = {
-        mid: {key: fn(mid, ctx) for key, fn in METRICS.items()}
+        mid: {key: fn(mid, ctx) for key, fn in FEDERAL_METRICS.items()}
         for mid in sorted(ctx.members)
     }
     methodology = {
@@ -432,7 +525,7 @@ def build() -> MetricsFile:
             text=inspect.cleandoc(fn.__doc__ or ""),
             digest=_formula_digest(fn),
         )
-        for key, fn in METRICS.items()
+        for key, fn in FEDERAL_METRICS.items()
     }
     return MetricsFile(
         schema_version=FORMULA_SCHEMA_VERSION, methodology=methodology, members=members
@@ -531,7 +624,7 @@ def run(argv: list[str] | None = None) -> int:
 
     path = export_metrics(build())
     print(f"civic-ledger metrics: wrote {path.name} "
-          f"({len(METRICS)} metrics × committed members).")
+          f"({len(FEDERAL_METRICS)} metrics × committed members).")
     return 0
 
 

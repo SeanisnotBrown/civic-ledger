@@ -54,7 +54,7 @@ const ordinal = (x: number): string => {
 };
 
 const att = mm?.attendance;
-const pu = mm?.party_unity;
+const ca = mm?.cross_aisle_support;
 const posmix = mm?.position_mix;
 const enact = mm?.enacted_rate;
 const attRank = ranks.attendance; // present only when ranked (delegates excluded, D66)
@@ -90,8 +90,8 @@ const tiles = [
   { key: "attendance", anchor: "ranking-attendance", label: "Attendance percentile",
     value: attRank ? `${attRank.percentile}%` : "—",
     note: attRank ? `${ordinal(attRank.rank)} of ${n(attRank.covered)} in the ${chamberWord}` : "not ranked" },
-  { key: "party_unity", label: "Party unity", value: pctOrDash(pu?.pct),
-    note: pu && pu.pct != null ? `with party on ${n(pu.agreed)} of ${n(pu.substantive)}` : "no substantive votes" },
+  { key: "cross_aisle_support", label: "Cross-aisle support", value: pctOrDash(ca?.pct),
+    note: ca && ca.pct != null ? `voted yes on ${n(ca.opposing_yea)} of ${n(ca.opposing_considered)} opposing-party bills` : "no opposing-party bills voted" },
   { key: "position_mix", label: "Yea / Nay share",
     value: posmix && posmix.yea_pct != null ? `${posmix.yea_pct}% / ${posmix.nay_pct}%` : "—",
     note: posmix && posmix.cast ? `of ${n(posmix.cast)} cast — not an approval measure` : "nothing cast" },

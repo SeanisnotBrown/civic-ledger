@@ -1756,3 +1756,48 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   select-2→compare-link→navigate, and the injected-controls axe scan), grade-labels (5/6),
   metrics-sections (10+5), links, file-count. This closes the Nocturne pass's polish items;
   **V2-5 stays OPEN — the "lowest N%" headline (H15 round two) is still owner-gated.**
+- **D81 (2026-08-15) — retired `party_unity` federally; added `cross_aisle_support`.**
+  Direct owner instruction while preparing the H15 round-two headline options: **"delete the
+  party unity. This is a dumb stat."** and, choosing among the cross-aisle definitions I
+  brought, **"Go with option two."** (option two = of the OTHER major party's final-passage
+  bills a member voted on, the share they voted Yea). Factual metric work (Tier-2) — no H15
+  and no evaluative constant; a rate with its denominator always shown, not a grade.
+  - **New metric `cross_aisle_support`** (`ingest/metrics.py`): over the passage + veto-
+    override rolls sponsored by the member's opposite major party that they cast Yea/Nay on,
+    `pct = yea / considered`; null when `considered == 0` (independents have no single
+    opposing party, so they fall out with a 0 denominator — no special-case, the `_OPPOSITE`
+    map does it; **no min-N threshold** — a min-N would be an unratified cutoff, and the
+    denominator is always published). Voter and sponsor party are both taken on the roll's
+    date (`_party_on`); `data/bills` carries no introduced date, so the roll date is the one
+    consistent reference. A voted-on bill absent from `data/bills` **raises** (mirrors the
+    `_load` orphan-vote guard) rather than silently shrinking the denominator. `_load` now
+    also reads each bill's sponsor into `Ctx.bill_sponsor` — a shared-input change the
+    per-metric digest can't see, so **`FORMULA_SCHEMA_VERSION` 2 → 3**.
+  - **Honesty caveat, published in the docstring → methods page** (the `position_mix`
+    "NOT an approval measure" precedent): the majority controls which bills reach a final-
+    passage vote, so the pool of "opposing-party bills" differs by party and, for the
+    minority, skews to the less-contested measures leadership allows up. It reads as support-
+    when-it-comes-up, NOT a complete bipartisanship score. Validated for face-value: the top
+    scorers are the known cross-aisle names (Fitzpatrick 95%, Bacon 94%, Lawler 92%).
+  - **Federal-only (owner decision, this session).** Asked whether the deletion reaches
+    Mississippi (which shows the same stat via the shared `MemberStats.astro`), the owner
+    chose **"Federal only; keep party unity on MS."** So `party_unity` stays in the `METRICS`
+    registry, `METRIC_LABELS`, and `PartyUnityValue` — the MS layer (`ms_metrics.py`) still
+    computes and publishes it unchanged (MS `metrics.json` is byte-identical after this
+    change). Federal build iterates a new **`FEDERAL_METRICS`** subset (registry minus
+    `party_unity`); `MemberMetrics` swaps `party_unity`→`cross_aisle_support`; the
+    `set(FEDERAL_METRICS) == MemberMetrics.model_fields` test replaces the old `set(METRICS)`
+    one. Rankings swap `party_unity`→`cross_aisle_support` in `RANKED_METRICS` + the delegate-
+    excluded `VOTE_METRICS`. Site: the explorer column, the federal member-page tile, and the
+    `/compare` island/prose move to cross-aisle; the MS-only `MemberStats.astro` and the MS
+    methodology paragraph keep "party unity" verbatim.
+  - **Spec note (NOT edited — owner's document):** IMPLEMENTATIONv2.md still lists
+    "Party unity %" in its metric table. Flagged to the owner to amend; the builder does not
+    edit the spec.
+  - Gates: `checks` all-passed (Tier-3 guard OK on the new metric; MS metrics recompute),
+    `verify-recompute` OK (metrics + 5 rankings incl. `cross_aisle_support` + grade recompute
+    exactly), pytest 319 passed (+ the known git-history test, green once this regen commits),
+    build 13,085, astro check 0, metrics-sections (10+5), grade-labels, e2e 40. The
+    regenerated `data/metrics.json` + `data/rankings/` + `data/schema/metrics.schema.json`
+    ship in the SAME commit as the code (the D40 `build() == committed` determinism test is
+    red between halves of a split commit).

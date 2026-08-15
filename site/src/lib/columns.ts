@@ -62,18 +62,18 @@ export function getExplorerColumns(memberIds: string[]): ExplorerColumn[] {
 
   // dataset maxima for count / observed-max-% domains
   let maxSpon = 1, maxCospon = 1, maxLawPct = 1;
-  const vAtt: number[] = [], vUnity: number[] = [], vYea: number[] = [],
+  const vAtt: number[] = [], vCross: number[] = [], vYea: number[] = [],
     vSpon: number[] = [], vCospon: number[] = [], vLaw: number[] = [];
   for (const id of memberIds) {
     const m = M(id);
     const s = num((m.sponsored as any)?.count), c = num((m.cosponsored as any)?.count),
       lp = num((m.enacted_rate as any)?.pct), a = num((m.attendance as any)?.pct),
-      u = num((m.party_unity as any)?.pct), y = num((m.position_mix as any)?.yea_pct);
+      x = num((m.cross_aisle_support as any)?.pct), y = num((m.position_mix as any)?.yea_pct);
     if (s != null) { maxSpon = Math.max(maxSpon, s); vSpon.push(s); }
     if (c != null) { maxCospon = Math.max(maxCospon, c); vCospon.push(c); }
     if (lp != null) { maxLawPct = Math.max(maxLawPct, lp); vLaw.push(lp); }
     if (a != null) vAtt.push(a);
-    if (u != null) vUnity.push(u);
+    if (x != null) vCross.push(x);
     if (y != null) vYea.push(y);
   }
   const medPct = (vals: number[]) => { const m = median(vals); return m == null ? "—" : `${Math.round(m)}%`; };
@@ -97,13 +97,13 @@ export function getExplorerColumns(memberIds: string[]): ExplorerColumn[] {
       },
     },
     {
-      key: "unity", short: "Party unity", full: meth.party_unity?.label ?? "Party unity",
-      def: meth.party_unity?.text ?? "", domain: "50–100%", barClass: "bar-unity",
-      median: medPct(vUnity),
+      key: "cross", short: "Cross-aisle", full: meth.cross_aisle_support?.label ?? "Cross-aisle support",
+      def: meth.cross_aisle_support?.text ?? "", domain: "0–100%", barClass: "bar-cross",
+      median: medPct(vCross),
       cellFor(id) {
-        const u = M(id).party_unity as any;
-        const p = num(u?.pct);
-        return { display: asPct(p), sort: p, fraction: u ? `${u.agreed}/${u.substantive}` : null, fill: clampFill(p, 50, 100), barColor: null };
+        const x = M(id).cross_aisle_support as any;
+        const p = num(x?.pct);
+        return { display: asPct(p), sort: p, fraction: x ? `${x.opposing_yea}/${x.opposing_considered}` : null, fill: clampFill(p, 0, 100), barColor: null };
       },
     },
     {

@@ -14,7 +14,7 @@ const GRADE_COLOR: Record<string, string> = {
   A: "--color-grade-a", B: "--color-grade-b", C: "--color-grade-c", D: "--color-grade-d", F: "--color-grade-f",
 };
 const COL_COLOR: Record<string, string> = {
-  unity: "--color-accent-300", yea: "--color-pos-yea", spon: "--color-accent",
+  cross: "--color-accent-300", yea: "--color-pos-yea", spon: "--color-accent",
   cospon: "--color-accent", law: "--color-accent",
 };
 const PARTY_COLOR: Record<string, string> = {
@@ -23,7 +23,7 @@ const PARTY_COLOR: Record<string, string> = {
 const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 // The three vote-derived measures are NOT comparable for a non-voting delegate (D66 —
 // barred from final passage), so a delegate shows "—" on these and only their bill metrics.
-const VOTE_METRICS = new Set(["att", "unity", "yea"]);
+const VOTE_METRICS = new Set(["att", "cross", "yea"]);
 
 function barVar(key: string, gradeLetter: string | null): string {
   if (key === "att") return `var(${gradeLetter ? GRADE_COLOR[gradeLetter] : "--color-accent-700"})`;
@@ -104,8 +104,8 @@ export default function Compare() {
   if (members.length === 0) {
     return (
       <p class="mt-6 rounded-lg border border-line bg-surface p-5 text-[14px] text-neutral-600">
-        Add a member above to start. You can compare up to four at once — attendance, party
-        unity, vote mix, and legislative output, each on its own stated scale.
+        Add a member above to start. You can compare up to four at once — attendance,
+        cross-aisle support, vote mix, and legislative output, each on its own stated scale.
       </p>
     );
   }

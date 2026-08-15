@@ -34,7 +34,7 @@ test("a non-voting delegate's vote measures are suppressed, not blank-graded (D6
   await expect(page.getByText(/Non-voting delegate.*attendance is not graded or ranked/)).toBeVisible();
 
   // In "Every measure, side by side" exactly the delegate's three vote measures
-  // (attendance, unity, yea) are suppressed — the graded member's are NOT — so the D66
+  // (attendance, cross-aisle support, yea) are suppressed — the graded member's are NOT — so the D66
   // marker appears exactly three times, proving the suppression is delegate-specific.
   await expect(
     page.locator('[title="Non-voting delegate — not comparable on vote measures (D66)"]'),

@@ -147,9 +147,11 @@ wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
   published value states exactly which formula produced it (it bumps on any change to
   that function's body). The methods page renders one section per key (asserted equal
   by `check-metrics-sections.mjs`).
-- `members`: `{ <bioguide>: MemberMetrics }` with the 8 keys `attendance`,
-  `party_unity`, `sponsored`, `cosponsored`, `enacted_rate`, `cosponsor_vote_gap`,
-  `named_measure_mismatch`, `absence_context`. `pct` fields are `null` on a zero
+- `members`: `{ <bioguide>: MemberMetrics }` keyed by `attendance`,
+  `cross_aisle_support`, `sponsored`, `cosponsored`, `enacted_rate`, `cosponsor_vote_gap`,
+  `named_measure_mismatch`, `absence_context` (+ `position_mix`, `cosponsor_enacted_rate`).
+  `cross_aisle_support` replaced `party_unity` federally (2026-08-15, owner: "a dumb stat");
+  `party_unity` survives only in the MS subset (`MsMemberMetrics`, below). `pct` fields are `null` on a zero
   denominator (never a fabricated 0). No metric is a composite of others — the
   Tier-3 guard enforces it (§5). `named_measure_mismatch` compares a statement's
   owner-assigned stance to the member's own passage vote on the paired measure
@@ -161,7 +163,7 @@ wall-clock. Recomputable in full: `build().model_dump()` equals this file (D40).
 ## `data/rankings/{metric}.json` — per-metric rank/percentile/mean (V2-2)
 
 Schema: `data/schema/rankings.schema.json` (model `RankingsFile`), one file per
-ranked metric: `attendance`, `party_unity`, `sponsored`, `cosponsored`,
+ranked metric: `attendance`, `cross_aisle_support`, `sponsored`, `cosponsored`,
 `enacted_rate` (the five SCALAR Tier-2 metrics; the three list-type metrics are
 not ranked). Deterministic, no wall-clock. **Recomputable from published data**:
 `rankings.build_all()` reads ONLY `data/metrics.json` + `data/members` and
@@ -174,9 +176,9 @@ rank is a position, not a score (D67; evaluative grades are V2-4/`scoring.py`).
 - `label`: `== METRIC_LABELS[metric]`. `methodology`: the shared ranking-method
   text, rendered on `/methods` (one `data-ranking` section per file, asserted equal
   to the file set by `check-metrics-sections.mjs`).
-- `ranks_delegates`: `false` for `attendance`/`party_unity`, `true` for the three
+- `ranks_delegates`: `false` for `attendance`/`cross_aisle_support`, `true` for the three
   bill metrics (**D66**, owner-ratified). Non-voting delegates cannot vote on final
-  passage, so their attendance/party-unity denominators are not comparable; they
+  passage, so their attendance/cross-aisle-support denominators are not comparable; they
   are held out of those two rankings (and listed in `excluded_delegates`) but ranked
   on the bill metrics.
 - `chambers`: `{ house, senate }` — members are ranked WITHIN chamber. Each

@@ -14,7 +14,7 @@ import pytest
 
 from ingest import metrics
 from ingest.cache import repo_root
-from ingest.metrics import METRICS, Ctx
+from ingest.metrics import FEDERAL_METRICS, METRICS, Ctx
 from ingest.models import MemberMetrics, MetricsFile
 
 _TERM = {"start": "2023-01-03", "end": "2029-01-03", "party": "R", "chamber": "senate"}
@@ -31,15 +31,23 @@ def _R(yea, nay):  # a party_totals block with only R present
     return {"R": {"yea": yea, "nay": nay, "present": 0, "not_voting": 0}}
 
 
-def _ctx(positions, legislation=None, statements=None, voted=None, ended=frozenset({118})):
+def _ctx(positions, legislation=None, statements=None, voted=None, ended=frozenset({118}),
+         members=None, bill_sponsor=None):
     return Ctx(
-        members={"M1": _MEMBER},
+        members=members or {"M1": _MEMBER},
         positions={"M1": positions},
         legislation=legislation or {"M1": {"member_id": "M1", "sponsored": [], "cosponsored": []}},
         statements=statements or [],
         voted_bill_ids=voted or set(),
         ended_congresses=ended,
+        bill_sponsor=bill_sponsor or {},
     )
+
+
+# A D and an R sponsor (senate term brackets the 2025 test dates), for cross_aisle_support.
+def _sponsor(mid, party):
+    return {"id": mid, "party": party, "chamber": "senate",
+            "terms": [{"start": "2023-01-03", "end": "2029-01-03", "party": party, "chamber": "senate"}]}
 
 
 # --- attendance -----------------------------------------------------------
@@ -82,6 +90,57 @@ def test_party_unity_majority_ties_and_procedural_exclusion() -> None:
 def test_party_unity_null_when_no_substantive() -> None:
     v = metrics.party_unity("M1", _ctx([]))
     assert v["substantive"] == 0 and v["pct"] is None
+
+
+# --- cross_aisle_support (replaced party_unity federally, 2026-08-15) ------
+
+
+def test_cross_aisle_support_counts_opposing_party_final_passage_yeas() -> None:
+    # M1 is R; the OTHER major party is D. Only D-sponsored passage/veto rolls M1 cast
+    # yea/nay on count; own-party bills, amendments, present, and no-bill rolls do not.
+    members = {"M1": _MEMBER, "D1": _sponsor("D1", "D"), "R2": _sponsor("R2", "R")}
+    bs = {"bD1": "D1", "bD2": "D1", "bD3": "D1", "bR1": "R2", "bD4": "D1", "bD5": "D1"}
+    pos = [
+        (_rc("r1", "passage", "bD1", "2025-01-01"), "yea"),        # opposing bill, YEA -> counted, yea
+        (_rc("r2", "passage", "bD2", "2025-01-02"), "nay"),        # opposing bill, NAY -> counted, not yea
+        (_rc("r3", "veto_override", "bD3", "2025-01-03"), "yea"),  # opposing veto override, YEA -> counted, yea
+        (_rc("r4", "passage", "bR1", "2025-01-04"), "yea"),        # OWN party's bill -> not counted
+        (_rc("r5", "amendment", "bD4", "2025-01-05"), "yea"),      # not final passage -> excluded
+        (_rc("r6", "passage", "bD5", "2025-01-06"), "present"),    # no yea/nay position -> excluded
+        (_rc("r7", "passage", None, "2025-01-07"), "yea"),         # no bill -> excluded
+    ]
+    v = metrics.cross_aisle_support("M1", _ctx(pos, members=members, bill_sponsor=bs))
+    assert v == {"opposing_considered": 3, "opposing_yea": 2, "pct": round(200 / 3, 2)}
+    from ingest.models import CrossAisleValue
+    CrossAisleValue.model_validate(v)
+
+
+def test_cross_aisle_support_null_when_no_opposing_bills() -> None:
+    # Voted only on their own party's bills: 0 denominator -> pct None, never a fake 0.
+    members = {"M1": _MEMBER, "R2": _sponsor("R2", "R")}
+    pos = [(_rc("r1", "passage", "bR1", "2025-01-01"), "yea")]
+    v = metrics.cross_aisle_support("M1", _ctx(pos, members=members, bill_sponsor={"bR1": "R2"}))
+    assert v == {"opposing_considered": 0, "opposing_yea": 0, "pct": None}
+
+
+def test_cross_aisle_support_independent_has_no_opposing_party() -> None:
+    # An independent has no single opposing major party -> nothing counted, pct None.
+    ind = {"id": "M1", "party": "I", "chamber": "senate",
+           "terms": [{"start": "2023-01-03", "end": "2029-01-03", "party": "I", "chamber": "senate"}]}
+    members = {"M1": ind, "D1": _sponsor("D1", "D"), "R2": _sponsor("R2", "R")}
+    bs = {"bD1": "D1", "bR1": "R2"}
+    pos = [(_rc("r1", "passage", "bD1", "2025-01-01"), "yea"),
+           (_rc("r2", "passage", "bR1", "2025-01-02"), "yea")]
+    v = metrics.cross_aisle_support("M1", _ctx(pos, members=members, bill_sponsor=bs))
+    assert v["opposing_considered"] == 0 and v["pct"] is None
+
+
+def test_cross_aisle_support_raises_on_uningested_voted_bill() -> None:
+    # A final-passage roll on a bill absent from data/bills is a pipeline break, not a
+    # member with a quietly-smaller denominator (mirrors the _load orphan-vote guard).
+    pos = [(_rc("r1", "passage", "bX", "2025-01-01"), "yea")]
+    with pytest.raises(KeyError):
+        metrics.cross_aisle_support("M1", _ctx(pos, bill_sponsor={}))
 
 
 # --- sponsored / cosponsored / enacted_rate -------------------------------
@@ -246,8 +305,11 @@ def test_absence_context_same_day_participation() -> None:
 
 
 def test_metric_keys_equal_published_model_fields() -> None:
-    # The methods-page set-equality contract rides on these three being identical.
-    assert set(METRICS) == set(MemberMetrics.model_fields)
+    # The methods-page set-equality contract rides on these being identical. It is the
+    # FEDERAL published set (FEDERAL_METRICS), not the full registry: party_unity stays in
+    # METRICS for the MS layer but is not in the federal MemberMetrics model (2026-08-15).
+    assert set(FEDERAL_METRICS) == set(MemberMetrics.model_fields)
+    assert "party_unity" in METRICS and "party_unity" not in FEDERAL_METRICS
 
 
 def test_recompute_matches_committed_metrics_json() -> None:

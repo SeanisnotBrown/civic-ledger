@@ -3,8 +3,25 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-15, **V2-5 design pass (Nocturne)** session — Nocturne VIEW
-coverage COMPLETE (CP1–CP8: explorer D76 + CI-fix D78, /compare D77, methodology+MS D79).
+**Last updated:** 2026-08-15, **V2-5 design pass (Nocturne)** session — Nocturne complete
+(CP1–CP9); then an owner-directed metric change: **retired `party_unity` federally, added
+`cross_aisle_support` (D81).**
+- **METRIC CHANGE (D81, 2026-08-15) — owner-directed, factual (no H15).** While preparing
+  the H15 round-two headline options the owner said *"delete the party unity. This is a dumb
+  stat."* and picked the cross-aisle definition *"option two."* Built `cross_aisle_support`
+  (of the OTHER party's final-passage bills the member voted on, share voted Yea; floor-
+  control caveat published in the docstring) and retired `party_unity` from the FEDERAL set.
+  **Federal-only** by owner choice — MS keeps party unity (its `metrics.json` is byte-
+  unchanged); `party_unity` stays in `METRICS`/`METRIC_LABELS` for the MS layer, federal
+  build uses a new `FEDERAL_METRICS` subset. `FORMULA_SCHEMA_VERSION` 2→3. Gates green
+  (checks, verify-recompute, pytest 319 + the known git-history transient, build, e2e 40).
+  **⚠ OWNER TO-DO:** IMPLEMENTATIONv2.md's metric table still lists "Party unity %" — the
+  builder did not edit the spec; the owner should amend that row (or authorize the edit).
+  **Still open from that conversation:** the wide-eyed headline itself (owner unsure what it
+  should be; open to pulling more data — e.g. full introduced-bill universe → "X% of bills
+  never got a vote"), and whether to authorize that data pull (also enables a cosponsorship-
+  based cross-aisle metric, the cleaner but data-hungry "option B").
+
 **V2-1..V2-4 are COMPLETE and PUSHED** (through `4bb77d56`; CI green; live). V2-4 put
 the first **attendance letter grades** (A–F, owner-ratified) live. **V2-5 is PARTIAL:**
 the site's information architecture was rebuilt (landing dashboard + Federal/States

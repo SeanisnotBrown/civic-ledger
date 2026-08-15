@@ -1,0 +1,3154 @@
+{
+  "chambers": {
+    "house": {
+      "covered": 510,
+      "excluded_delegates": [],
+      "mean": 62.09,
+      "median": 56.17,
+      "members": {
+        "A000055": {
+          "percentile": 79.4,
+          "rank": 105,
+          "value": 83.05
+        },
+        "A000148": {
+          "percentile": 36.5,
+          "rank": 324,
+          "value": 48.77
+        },
+        "A000369": {
+          "percentile": 87.1,
+          "rank": 63,
+          "value": 84.38
+        },
+        "A000370": {
+          "percentile": 28.0,
+          "rank": 367,
+          "value": 46.67
+        },
+        "A000371": {
+          "percentile": 35.1,
+          "rank": 331,
+          "value": 48.26
+        },
+        "A000372": {
+          "percentile": 72.7,
+          "rank": 138,
+          "value": 80.47
+        },
+        "A000375": {
+          "percentile": 65.9,
+          "rank": 174,
+          "value": 74.38
+        },
+        "A000376": {
+          "percentile": 55.7,
+          "rank": 226,
+          "value": 59.77
+        },
+        "A000377": {
+          "percentile": 95.7,
+          "rank": 22,
+          "value": 98.28
+        },
+        "A000379": {
+          "percentile": 70.4,
+          "rank": 150,
+          "value": 79.69
+        },
+        "A000380": {
+          "percentile": 29.0,
+          "rank": 361,
+          "value": 47.14
+        },
+        "A000381": {
+          "percentile": 6.3,
+          "rank": 478,
+          "value": 40.36
+        },
+        "B000490": {
+          "percentile": 45.7,
+          "rank": 277,
+          "value": 52.46
+        },
+        "B000574": {
+          "percentile": 17.1,
+          "rank": 423,
+          "value": 43.99
+        },
+        "B000668": {
+          "percentile": 84.5,
+          "rank": 75,
+          "value": 84.13
+        },
+        "B000740": {
+          "percentile": 86.1,
+          "rank": 67,
+          "value": 84.25
+        },
+        "B000825": {
+          "percentile": 45.9,
+          "rank": 276,
+          "value": 52.99
+        },
+        "B001223": {
+          "percentile": 2.2,
+          "rank": 499,
+          "value": 36.74
+        },
+        "B001224": {
+          "percentile": 3.7,
+          "rank": 491,
+          "value": 37.76
+        },
+        "B001248": {
+          "percentile": 92.0,
+          "rank": 41,
+          "value": 87.69
+        },
+        "B001257": {
+          "percentile": 80.0,
+          "rank": 98,
+          "value": 83.33
+        },
+        "B001260": {
+          "percentile": 75.7,
+          "rank": 124,
+          "value": 81.48
+        },
+        "B001275": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "B001278": {
+          "percentile": 10.6,
+          "rank": 456,
+          "value": 42.36
+        },
+        "B001281": {
+          "percentile": 33.1,
+          "rank": 340,
+          "value": 47.87
+        },
+        "B001282": {
+          "percentile": 83.5,
+          "rank": 84,
+          "value": 83.93
+        },
+        "B001285": {
+          "percentile": 31.2,
+          "rank": 351,
+          "value": 47.53
+        },
+        "B001287": {
+          "percentile": 41.6,
+          "rank": 297,
+          "value": 50.32
+        },
+        "B001291": {
+          "percentile": 68.8,
+          "rank": 159,
+          "value": 78.51
+        },
+        "B001292": {
+          "percentile": 14.9,
+          "rank": 434,
+          "value": 43.66
+        },
+        "B001295": {
+          "percentile": 90.4,
+          "rank": 49,
+          "value": 85.95
+        },
+        "B001296": {
+          "percentile": 43.3,
+          "rank": 289,
+          "value": 51.0
+        },
+        "B001297": {
+          "percentile": 63.1,
+          "rank": 188,
+          "value": 69.7
+        },
+        "B001298": {
+          "percentile": 94.3,
+          "rank": 29,
+          "value": 93.65
+        },
+        "B001300": {
+          "percentile": 21.0,
+          "rank": 403,
+          "value": 44.95
+        },
+        "B001301": {
+          "percentile": 80.0,
+          "rank": 98,
+          "value": 83.33
+        },
+        "B001302": {
+          "percentile": 0.6,
+          "rank": 507,
+          "value": 31.15
+        },
+        "B001306": {
+          "percentile": 77.8,
+          "rank": 111,
+          "value": 82.81
+        },
+        "B001307": {
+          "percentile": 85.5,
+          "rank": 72,
+          "value": 84.17
+        },
+        "B001309": {
+          "percentile": 23.9,
+          "rank": 388,
+          "value": 45.6
+        },
+        "B001311": {
+          "percentile": 61.6,
+          "rank": 196,
+          "value": 67.74
+        },
+        "B001313": {
+          "percentile": 25.7,
+          "rank": 378,
+          "value": 45.91
+        },
+        "B001314": {
+          "percentile": 59.6,
+          "rank": 206,
+          "value": 63.78
+        },
+        "B001315": {
+          "percentile": 50.2,
+          "rank": 253,
+          "value": 56.67
+        },
+        "B001316": {
+          "percentile": 3.3,
+          "rank": 492,
+          "value": 37.5
+        },
+        "B001317": {
+          "percentile": 1.4,
+          "rank": 503,
+          "value": 35.77
+        },
+        "B001318": {
+          "percentile": 9.2,
+          "rank": 463,
+          "value": 41.96
+        },
+        "B001321": {
+          "percentile": 56.7,
+          "rank": 218,
+          "value": 60.71
+        },
+        "B001322": {
+          "percentile": 56.7,
+          "rank": 218,
+          "value": 60.71
+        },
+        "B001323": {
+          "percentile": 49.0,
+          "rank": 260,
+          "value": 55.36
+        },
+        "B001324": {
+          "percentile": 8.4,
+          "rank": 466,
+          "value": 41.64
+        },
+        "B001325": {
+          "percentile": 4.7,
+          "rank": 486,
+          "value": 39.29
+        },
+        "B001326": {
+          "percentile": 37.1,
+          "rank": 321,
+          "value": 49.1
+        },
+        "B001327": {
+          "percentile": 67.3,
+          "rank": 167,
+          "value": 76.79
+        },
+        "C000059": {
+          "percentile": 87.1,
+          "rank": 63,
+          "value": 84.38
+        },
+        "C000537": {
+          "percentile": 27.8,
+          "rank": 368,
+          "value": 46.66
+        },
+        "C001039": {
+          "percentile": 62.2,
+          "rank": 193,
+          "value": 68.55
+        },
+        "C001051": {
+          "percentile": 73.3,
+          "rank": 136,
+          "value": 80.67
+        },
+        "C001053": {
+          "percentile": 80.0,
+          "rank": 98,
+          "value": 83.33
+        },
+        "C001054": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "C001055": {
+          "percentile": 44.9,
+          "rank": 281,
+          "value": 51.97
+        },
+        "C001059": {
+          "percentile": 55.5,
+          "rank": 227,
+          "value": 59.56
+        },
+        "C001061": {
+          "percentile": 21.4,
+          "rank": 401,
+          "value": 45.01
+        },
+        "C001063": {
+          "percentile": 74.1,
+          "rank": 132,
+          "value": 80.83
+        },
+        "C001066": {
+          "percentile": 39.6,
+          "rank": 308,
+          "value": 49.84
+        },
+        "C001067": {
+          "percentile": 11.2,
+          "rank": 453,
+          "value": 42.52
+        },
+        "C001068": {
+          "percentile": 30.6,
+          "rank": 354,
+          "value": 47.41
+        },
+        "C001069": {
+          "percentile": 44.1,
+          "rank": 285,
+          "value": 51.45
+        },
+        "C001072": {
+          "percentile": 14.5,
+          "rank": 436,
+          "value": 43.52
+        },
+        "C001078": {
+          "percentile": 37.3,
+          "rank": 319,
+          "value": 49.11
+        },
+        "C001080": {
+          "percentile": 14.3,
+          "rank": 437,
+          "value": 43.5
+        },
+        "C001084": {
+          "percentile": 15.7,
+          "rank": 430,
+          "value": 43.75
+        },
+        "C001087": {
+          "percentile": 71.4,
+          "rank": 144,
+          "value": 80.0
+        },
+        "C001090": {
+          "percentile": 54.7,
+          "rank": 231,
+          "value": 59.36
+        },
+        "C001091": {
+          "percentile": 7.1,
+          "rank": 474,
+          "value": 40.96
+        },
+        "C001097": {
+          "percentile": 30.2,
+          "rank": 355,
+          "value": 47.34
+        },
+        "C001101": {
+          "percentile": 28.4,
+          "rank": 365,
+          "value": 46.79
+        },
+        "C001103": {
+          "percentile": 81.8,
+          "rank": 91,
+          "value": 83.47
+        },
+        "C001108": {
+          "percentile": 74.5,
+          "rank": 130,
+          "value": 81.1
+        },
+        "C001110": {
+          "percentile": 45.1,
+          "rank": 280,
+          "value": 52.11
+        },
+        "C001112": {
+          "percentile": 38.4,
+          "rank": 314,
+          "value": 49.53
+        },
+        "C001115": {
+          "percentile": 22.5,
+          "rank": 395,
+          "value": 45.24
+        },
+        "C001116": {
+          "percentile": 38.8,
+          "rank": 311,
+          "value": 49.61
+        },
+        "C001117": {
+          "percentile": 22.7,
+          "rank": 394,
+          "value": 45.3
+        },
+        "C001118": {
+          "percentile": 51.8,
+          "rank": 246,
+          "value": 57.26
+        },
+        "C001119": {
+          "percentile": 51.0,
+          "rank": 250,
+          "value": 57.07
+        },
+        "C001120": {
+          "percentile": 73.7,
+          "rank": 134,
+          "value": 80.73
+        },
+        "C001121": {
+          "percentile": 25.3,
+          "rank": 380,
+          "value": 45.89
+        },
+        "C001123": {
+          "percentile": 18.2,
+          "rank": 417,
+          "value": 44.09
+        },
+        "C001125": {
+          "percentile": 30.2,
+          "rank": 355,
+          "value": 47.34
+        },
+        "C001126": {
+          "percentile": 91.0,
+          "rank": 46,
+          "value": 86.61
+        },
+        "C001127": {
+          "percentile": 28.8,
+          "rank": 363,
+          "value": 47.05
+        },
+        "C001129": {
+          "percentile": 54.3,
+          "rank": 233,
+          "value": 59.2
+        },
+        "C001130": {
+          "percentile": 20.2,
+          "rank": 407,
+          "value": 44.66
+        },
+        "C001131": {
+          "percentile": 3.3,
+          "rank": 492,
+          "value": 37.5
+        },
+        "C001132": {
+          "percentile": 1.6,
+          "rank": 502,
+          "value": 36.0
+        },
+        "C001133": {
+          "percentile": 85.5,
+          "rank": 72,
+          "value": 84.17
+        },
+        "C001134": {
+          "percentile": 60.6,
+          "rank": 201,
+          "value": 65.97
+        },
+        "C001135": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "C001136": {
+          "percentile": 27.1,
+          "rank": 372,
+          "value": 46.47
+        },
+        "C001137": {
+          "percentile": 8.8,
+          "rank": 464,
+          "value": 41.82
+        },
+        "D000032": {
+          "percentile": 58.0,
+          "rank": 214,
+          "value": 61.67
+        },
+        "D000096": {
+          "percentile": 12.0,
+          "rank": 449,
+          "value": 42.9
+        },
+        "D000197": {
+          "percentile": 17.8,
+          "rank": 419,
+          "value": 44.07
+        },
+        "D000216": {
+          "percentile": 26.7,
+          "rank": 373,
+          "value": 46.43
+        },
+        "D000230": {
+          "percentile": 72.0,
+          "rank": 143,
+          "value": 80.23
+        },
+        "D000399": {
+          "percentile": 12.4,
+          "rank": 447,
+          "value": 43.18
+        },
+        "D000530": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "D000594": {
+          "percentile": 84.1,
+          "rank": 80,
+          "value": 84.03
+        },
+        "D000600": {
+          "percentile": 89.2,
+          "rank": 54,
+          "value": 85.59
+        },
+        "D000615": {
+          "percentile": 89.0,
+          "rank": 56,
+          "value": 85.51
+        },
+        "D000616": {
+          "percentile": 70.2,
+          "rank": 152,
+          "value": 79.49
+        },
+        "D000617": {
+          "percentile": 31.4,
+          "rank": 349,
+          "value": 47.63
+        },
+        "D000623": {
+          "percentile": 15.3,
+          "rank": 432,
+          "value": 43.7
+        },
+        "D000624": {
+          "percentile": 26.7,
+          "rank": 373,
+          "value": 46.43
+        },
+        "D000626": {
+          "percentile": 56.5,
+          "rank": 222,
+          "value": 60.66
+        },
+        "D000628": {
+          "percentile": 88.6,
+          "rank": 58,
+          "value": 85.34
+        },
+        "D000629": {
+          "percentile": 48.2,
+          "rank": 264,
+          "value": 54.96
+        },
+        "D000631": {
+          "percentile": 26.1,
+          "rank": 377,
+          "value": 46.03
+        },
+        "D000632": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "D000633": {
+          "percentile": 96.3,
+          "rank": 19,
+          "value": 98.61
+        },
+        "D000634": {
+          "percentile": 30.0,
+          "rank": 357,
+          "value": 47.27
+        },
+        "D000635": {
+          "percentile": 3.1,
+          "rank": 494,
+          "value": 37.45
+        },
+        "E000071": {
+          "percentile": 77.3,
+          "rank": 115,
+          "value": 82.54
+        },
+        "E000215": {
+          "percentile": 42.5,
+          "rank": 293,
+          "value": 50.58
+        },
+        "E000235": {
+          "percentile": 70.8,
+          "rank": 147,
+          "value": 79.84
+        },
+        "E000246": {
+          "percentile": 66.1,
+          "rank": 173,
+          "value": 75.0
+        },
+        "E000294": {
+          "percentile": 84.5,
+          "rank": 75,
+          "value": 84.13
+        },
+        "E000296": {
+          "percentile": 18.4,
+          "rank": 416,
+          "value": 44.16
+        },
+        "E000297": {
+          "percentile": 24.9,
+          "rank": 383,
+          "value": 45.87
+        },
+        "E000298": {
+          "percentile": 66.7,
+          "rank": 169,
+          "value": 75.59
+        },
+        "E000299": {
+          "percentile": 17.5,
+          "rank": 420,
+          "value": 44.05
+        },
+        "E000300": {
+          "percentile": 60.8,
+          "rank": 200,
+          "value": 66.07
+        },
+        "E000301": {
+          "percentile": 15.9,
+          "rank": 429,
+          "value": 43.77
+        },
+        "F000110": {
+          "percentile": 20.8,
+          "rank": 404,
+          "value": 44.85
+        },
+        "F000246": {
+          "percentile": 66.7,
+          "rank": 169,
+          "value": 75.59
+        },
+        "F000446": {
+          "percentile": 80.0,
+          "rank": 98,
+          "value": 83.33
+        },
+        "F000450": {
+          "percentile": 68.0,
+          "rank": 161,
+          "value": 78.12
+        },
+        "F000454": {
+          "percentile": 32.4,
+          "rank": 345,
+          "value": 47.78
+        },
+        "F000459": {
+          "percentile": 82.4,
+          "rank": 90,
+          "value": 83.59
+        },
+        "F000462": {
+          "percentile": 38.6,
+          "rank": 313,
+          "value": 49.58
+        },
+        "F000465": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "F000466": {
+          "percentile": 94.9,
+          "rank": 26,
+          "value": 95.31
+        },
+        "F000468": {
+          "percentile": 16.1,
+          "rank": 426,
+          "value": 43.79
+        },
+        "F000469": {
+          "percentile": 60.2,
+          "rank": 203,
+          "value": 64.8
+        },
+        "F000470": {
+          "percentile": 69.2,
+          "rank": 157,
+          "value": 78.74
+        },
+        "F000471": {
+          "percentile": 71.4,
+          "rank": 144,
+          "value": 80.0
+        },
+        "F000472": {
+          "percentile": 68.0,
+          "rank": 161,
+          "value": 78.12
+        },
+        "F000474": {
+          "percentile": 79.8,
+          "rank": 103,
+          "value": 83.2
+        },
+        "F000475": {
+          "percentile": 72.7,
+          "rank": 138,
+          "value": 80.47
+        },
+        "F000476": {
+          "percentile": 5.9,
+          "rank": 480,
+          "value": 40.03
+        },
+        "F000477": {
+          "percentile": 12.7,
+          "rank": 445,
+          "value": 43.21
+        },
+        "F000478": {
+          "percentile": 62.5,
+          "rank": 191,
+          "value": 69.29
+        },
+        "F000480": {
+          "percentile": 65.3,
+          "rank": 177,
+          "value": 74.03
+        },
+        "F000481": {
+          "percentile": 35.9,
+          "rank": 327,
+          "value": 48.54
+        },
+        "F000482": {
+          "percentile": 52.2,
+          "rank": 243,
+          "value": 57.41
+        },
+        "F000483": {
+          "percentile": 6.9,
+          "rank": 475,
+          "value": 40.94
+        },
+        "F000484": {
+          "percentile": 11.8,
+          "rank": 450,
+          "value": 42.86
+        },
+        "F000485": {
+          "percentile": 1.0,
+          "rank": 505,
+          "value": 35.0
+        },
+        "G000061": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "G000377": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "G000546": {
+          "percentile": 82.9,
+          "rank": 87,
+          "value": 83.76
+        },
+        "G000551": {
+          "percentile": 4.9,
+          "rank": 485,
+          "value": 39.31
+        },
+        "G000553": {
+          "percentile": 13.9,
+          "rank": 439,
+          "value": 43.44
+        },
+        "G000558": {
+          "percentile": 84.5,
+          "rank": 75,
+          "value": 84.13
+        },
+        "G000559": {
+          "percentile": 29.0,
+          "rank": 361,
+          "value": 47.14
+        },
+        "G000565": {
+          "percentile": 7.5,
+          "rank": 472,
+          "value": 41.07
+        },
+        "G000568": {
+          "percentile": 65.5,
+          "rank": 176,
+          "value": 74.19
+        },
+        "G000576": {
+          "percentile": 62.4,
+          "rank": 192,
+          "value": 68.8
+        },
+        "G000577": {
+          "percentile": 95.3,
+          "rank": 24,
+          "value": 97.1
+        },
+        "G000578": {
+          "percentile": 63.5,
+          "rank": 186,
+          "value": 71.7
+        },
+        "G000579": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "G000581": {
+          "percentile": 64.1,
+          "rank": 183,
+          "value": 72.34
+        },
+        "G000583": {
+          "percentile": 54.9,
+          "rank": 229,
+          "value": 59.46
+        },
+        "G000585": {
+          "percentile": 10.4,
+          "rank": 457,
+          "value": 42.32
+        },
+        "G000586": {
+          "percentile": 5.3,
+          "rank": 483,
+          "value": 39.5
+        },
+        "G000587": {
+          "percentile": 17.5,
+          "rank": 420,
+          "value": 44.05
+        },
+        "G000589": {
+          "percentile": 67.5,
+          "rank": 165,
+          "value": 76.98
+        },
+        "G000590": {
+          "percentile": 90.2,
+          "rank": 50,
+          "value": 85.88
+        },
+        "G000591": {
+          "percentile": 70.8,
+          "rank": 147,
+          "value": 79.84
+        },
+        "G000592": {
+          "percentile": 70.8,
+          "rank": 147,
+          "value": 79.84
+        },
+        "G000593": {
+          "percentile": 92.7,
+          "rank": 37,
+          "value": 88.52
+        },
+        "G000594": {
+          "percentile": 93.9,
+          "rank": 31,
+          "value": 92.08
+        },
+        "G000595": {
+          "percentile": 36.1,
+          "rank": 326,
+          "value": 48.57
+        },
+        "G000596": {
+          "percentile": 42.4,
+          "rank": 294,
+          "value": 50.57
+        },
+        "G000597": {
+          "percentile": 91.6,
+          "rank": 43,
+          "value": 87.6
+        },
+        "G000598": {
+          "percentile": 10.0,
+          "rank": 459,
+          "value": 42.29
+        },
+        "G000599": {
+          "percentile": 16.9,
+          "rank": 424,
+          "value": 43.93
+        },
+        "G000600": {
+          "percentile": 72.5,
+          "rank": 140,
+          "value": 80.41
+        },
+        "G000601": {
+          "percentile": 46.3,
+          "rank": 274,
+          "value": 53.57
+        },
+        "G000602": {
+          "percentile": 60.0,
+          "rank": 204,
+          "value": 64.47
+        },
+        "G000603": {
+          "percentile": 5.5,
+          "rank": 482,
+          "value": 39.62
+        },
+        "G000604": {
+          "percentile": 47.1,
+          "rank": 270,
+          "value": 54.15
+        },
+        "G000605": {
+          "percentile": 64.9,
+          "rank": 179,
+          "value": 73.52
+        },
+        "G000606": {
+          "percentile": 0.8,
+          "rank": 506,
+          "value": 34.9
+        },
+        "G000607": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "H000874": {
+          "percentile": 34.5,
+          "rank": 334,
+          "value": 48.2
+        },
+        "H001038": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "H001047": {
+          "percentile": 39.8,
+          "rank": 307,
+          "value": 49.92
+        },
+        "H001052": {
+          "percentile": 11.6,
+          "rank": 451,
+          "value": 42.74
+        },
+        "H001058": {
+          "percentile": 75.3,
+          "rank": 125,
+          "value": 81.45
+        },
+        "H001066": {
+          "percentile": 50.8,
+          "rank": 251,
+          "value": 56.91
+        },
+        "H001067": {
+          "percentile": 79.0,
+          "rank": 106,
+          "value": 82.93
+        },
+        "H001068": {
+          "percentile": 11.0,
+          "rank": 454,
+          "value": 42.51
+        },
+        "H001072": {
+          "percentile": 83.7,
+          "rank": 82,
+          "value": 84.0
+        },
+        "H001077": {
+          "percentile": 50.2,
+          "rank": 253,
+          "value": 56.67
+        },
+        "H001081": {
+          "percentile": 35.3,
+          "rank": 330,
+          "value": 48.41
+        },
+        "H001082": {
+          "percentile": 67.1,
+          "rank": 168,
+          "value": 76.19
+        },
+        "H001085": {
+          "percentile": 47.6,
+          "rank": 267,
+          "value": 54.8
+        },
+        "H001086": {
+          "percentile": 58.6,
+          "rank": 211,
+          "value": 62.2
+        },
+        "H001090": {
+          "percentile": 54.1,
+          "rank": 234,
+          "value": 59.04
+        },
+        "H001091": {
+          "percentile": 86.1,
+          "rank": 67,
+          "value": 84.25
+        },
+        "H001093": {
+          "percentile": 72.2,
+          "rank": 142,
+          "value": 80.31
+        },
+        "H001094": {
+          "percentile": 34.1,
+          "rank": 336,
+          "value": 48.17
+        },
+        "H001095": {
+          "percentile": 62.7,
+          "rank": 190,
+          "value": 69.52
+        },
+        "H001096": {
+          "percentile": 49.6,
+          "rank": 257,
+          "value": 55.65
+        },
+        "H001098": {
+          "percentile": 22.9,
+          "rank": 393,
+          "value": 45.45
+        },
+        "H001099": {
+          "percentile": 59.2,
+          "rank": 208,
+          "value": 62.96
+        },
+        "H001100": {
+          "percentile": 62.0,
+          "rank": 194,
+          "value": 68.52
+        },
+        "H001101": {
+          "percentile": 0.2,
+          "rank": 509,
+          "value": 30.91
+        },
+        "H001102": {
+          "percentile": 19.8,
+          "rank": 408,
+          "value": 44.64
+        },
+        "I000056": {
+          "percentile": 84.5,
+          "rank": 75,
+          "value": 84.13
+        },
+        "I000058": {
+          "percentile": 24.7,
+          "rank": 384,
+          "value": 45.86
+        },
+        "J000032": {
+          "percentile": 33.7,
+          "rank": 337,
+          "value": 48.15
+        },
+        "J000288": {
+          "percentile": 10.2,
+          "rank": 458,
+          "value": 42.31
+        },
+        "J000289": {
+          "percentile": 63.3,
+          "rank": 187,
+          "value": 71.43
+        },
+        "J000292": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "J000294": {
+          "percentile": 29.8,
+          "rank": 358,
+          "value": 47.24
+        },
+        "J000295": {
+          "percentile": 93.1,
+          "rank": 35,
+          "value": 89.52
+        },
+        "J000298": {
+          "percentile": 3.9,
+          "rank": 490,
+          "value": 38.31
+        },
+        "J000299": {
+          "percentile": 64.3,
+          "rank": 182,
+          "value": 72.73
+        },
+        "J000301": {
+          "percentile": 89.6,
+          "rank": 51,
+          "value": 85.71
+        },
+        "J000302": {
+          "percentile": 64.7,
+          "rank": 180,
+          "value": 73.44
+        },
+        "J000304": {
+          "percentile": 61.4,
+          "rank": 197,
+          "value": 66.94
+        },
+        "J000305": {
+          "percentile": 18.6,
+          "rank": 415,
+          "value": 44.25
+        },
+        "J000307": {
+          "percentile": 78.4,
+          "rank": 108,
+          "value": 82.91
+        },
+        "J000308": {
+          "percentile": 53.5,
+          "rank": 237,
+          "value": 58.43
+        },
+        "J000309": {
+          "percentile": 9.8,
+          "rank": 460,
+          "value": 42.26
+        },
+        "J000310": {
+          "percentile": 27.6,
+          "rank": 369,
+          "value": 46.59
+        },
+        "J000311": {
+          "percentile": 53.9,
+          "rank": 235,
+          "value": 58.93
+        },
+        "K000009": {
+          "percentile": 54.5,
+          "rank": 232,
+          "value": 59.26
+        },
+        "K000375": {
+          "percentile": 35.5,
+          "rank": 329,
+          "value": 48.43
+        },
+        "K000376": {
+          "percentile": 78.4,
+          "rank": 108,
+          "value": 82.91
+        },
+        "K000380": {
+          "percentile": 46.7,
+          "rank": 272,
+          "value": 53.73
+        },
+        "K000381": {
+          "percentile": 46.9,
+          "rank": 271,
+          "value": 54.08
+        },
+        "K000382": {
+          "percentile": 46.5,
+          "rank": 273,
+          "value": 53.61
+        },
+        "K000385": {
+          "percentile": 23.5,
+          "rank": 390,
+          "value": 45.54
+        },
+        "K000388": {
+          "percentile": 67.8,
+          "rank": 164,
+          "value": 77.34
+        },
+        "K000389": {
+          "percentile": 23.7,
+          "rank": 389,
+          "value": 45.59
+        },
+        "K000391": {
+          "percentile": 32.7,
+          "rank": 343,
+          "value": 47.85
+        },
+        "K000392": {
+          "percentile": 74.7,
+          "rank": 129,
+          "value": 81.3
+        },
+        "K000397": {
+          "percentile": 86.1,
+          "rank": 67,
+          "value": 84.25
+        },
+        "K000398": {
+          "percentile": 94.7,
+          "rank": 27,
+          "value": 94.5
+        },
+        "K000399": {
+          "percentile": 88.4,
+          "rank": 59,
+          "value": 85.25
+        },
+        "K000400": {
+          "percentile": 9.6,
+          "rank": 461,
+          "value": 42.13
+        },
+        "K000401": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "K000402": {
+          "percentile": 30.8,
+          "rank": 353,
+          "value": 47.47
+        },
+        "K000403": {
+          "percentile": 4.5,
+          "rank": 487,
+          "value": 38.89
+        },
+        "K000405": {
+          "percentile": 11.4,
+          "rank": 452,
+          "value": 42.59
+        },
+        "L000266": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "L000273": {
+          "percentile": 26.5,
+          "rank": 375,
+          "value": 46.3
+        },
+        "L000397": {
+          "percentile": 22.2,
+          "rank": 397,
+          "value": 45.19
+        },
+        "L000491": {
+          "percentile": 85.5,
+          "rank": 72,
+          "value": 84.17
+        },
+        "L000551": {
+          "percentile": 7.8,
+          "rank": 470,
+          "value": 41.37
+        },
+        "L000557": {
+          "percentile": 24.3,
+          "rank": 386,
+          "value": 45.77
+        },
+        "L000560": {
+          "percentile": 33.7,
+          "rank": 337,
+          "value": 48.15
+        },
+        "L000562": {
+          "percentile": 42.0,
+          "rank": 296,
+          "value": 50.33
+        },
+        "L000564": {
+          "percentile": 96.1,
+          "rank": 20,
+          "value": 98.39
+        },
+        "L000566": {
+          "percentile": 77.8,
+          "rank": 111,
+          "value": 82.81
+        },
+        "L000569": {
+          "percentile": 95.5,
+          "rank": 23,
+          "value": 98.18
+        },
+        "L000578": {
+          "percentile": 93.7,
+          "rank": 32,
+          "value": 91.11
+        },
+        "L000582": {
+          "percentile": 32.9,
+          "rank": 342,
+          "value": 47.86
+        },
+        "L000583": {
+          "percentile": 63.7,
+          "rank": 185,
+          "value": 71.79
+        },
+        "L000585": {
+          "percentile": 82.5,
+          "rank": 88,
+          "value": 83.74
+        },
+        "L000589": {
+          "percentile": 68.6,
+          "rank": 160,
+          "value": 78.46
+        },
+        "L000590": {
+          "percentile": 57.8,
+          "rank": 215,
+          "value": 61.34
+        },
+        "L000593": {
+          "percentile": 46.1,
+          "rank": 275,
+          "value": 53.06
+        },
+        "L000595": {
+          "percentile": 81.8,
+          "rank": 91,
+          "value": 83.47
+        },
+        "L000596": {
+          "percentile": 59.0,
+          "rank": 209,
+          "value": 62.86
+        },
+        "L000597": {
+          "percentile": 81.0,
+          "rank": 94,
+          "value": 83.46
+        },
+        "L000598": {
+          "percentile": 93.3,
+          "rank": 34,
+          "value": 89.68
+        },
+        "L000599": {
+          "percentile": 94.1,
+          "rank": 30,
+          "value": 92.19
+        },
+        "L000600": {
+          "percentile": 84.1,
+          "rank": 80,
+          "value": 84.03
+        },
+        "L000601": {
+          "percentile": 55.3,
+          "rank": 228,
+          "value": 59.49
+        },
+        "L000602": {
+          "percentile": 2.7,
+          "rank": 496,
+          "value": 36.88
+        },
+        "L000603": {
+          "percentile": 66.5,
+          "rank": 171,
+          "value": 75.41
+        },
+        "L000604": {
+          "percentile": 76.5,
+          "rank": 119,
+          "value": 82.35
+        },
+        "L000605": {
+          "percentile": 49.2,
+          "rank": 259,
+          "value": 55.56
+        },
+        "L000606": {
+          "percentile": 24.5,
+          "rank": 385,
+          "value": 45.79
+        },
+        "L000607": {
+          "percentile": 13.7,
+          "rank": 440,
+          "value": 43.43
+        },
+        "M000194": {
+          "percentile": 92.4,
+          "rank": 39,
+          "value": 87.96
+        },
+        "M000312": {
+          "percentile": 7.3,
+          "rank": 473,
+          "value": 41.05
+        },
+        "M000317": {
+          "percentile": 91.4,
+          "rank": 44,
+          "value": 87.4
+        },
+        "M000687": {
+          "percentile": 12.9,
+          "rank": 444,
+          "value": 43.29
+        },
+        "M000871": {
+          "percentile": 69.0,
+          "rank": 158,
+          "value": 78.57
+        },
+        "M001135": {
+          "percentile": 56.3,
+          "rank": 223,
+          "value": 60.45
+        },
+        "M001136": {
+          "percentile": 79.0,
+          "rank": 106,
+          "value": 82.93
+        },
+        "M001137": {
+          "percentile": 23.1,
+          "rank": 392,
+          "value": 45.48
+        },
+        "M001143": {
+          "percentile": 18.8,
+          "rank": 414,
+          "value": 44.36
+        },
+        "M001156": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "M001157": {
+          "percentile": 89.2,
+          "rank": 54,
+          "value": 85.59
+        },
+        "M001159": {
+          "percentile": 95.9,
+          "rank": 21,
+          "value": 98.31
+        },
+        "M001160": {
+          "percentile": 8.4,
+          "rank": 466,
+          "value": 41.64
+        },
+        "M001163": {
+          "percentile": 25.7,
+          "rank": 378,
+          "value": 45.91
+        },
+        "M001165": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "M001177": {
+          "percentile": 60.4,
+          "rank": 202,
+          "value": 65.04
+        },
+        "M001184": {
+          "percentile": 5.1,
+          "rank": 484,
+          "value": 39.47
+        },
+        "M001188": {
+          "percentile": 12.2,
+          "rank": 448,
+          "value": 42.98
+        },
+        "M001194": {
+          "percentile": 77.6,
+          "rank": 114,
+          "value": 82.68
+        },
+        "M001195": {
+          "percentile": 69.6,
+          "rank": 155,
+          "value": 79.17
+        },
+        "M001196": {
+          "percentile": 26.3,
+          "rank": 376,
+          "value": 46.25
+        },
+        "M001199": {
+          "percentile": 65.1,
+          "rank": 178,
+          "value": 73.77
+        },
+        "M001204": {
+          "percentile": 76.9,
+          "rank": 117,
+          "value": 82.4
+        },
+        "M001205": {
+          "percentile": 72.4,
+          "rank": 141,
+          "value": 80.33
+        },
+        "M001206": {
+          "percentile": 42.2,
+          "rank": 295,
+          "value": 50.56
+        },
+        "M001208": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "M001210": {
+          "percentile": 92.2,
+          "rank": 40,
+          "value": 87.74
+        },
+        "M001211": {
+          "percentile": 48.6,
+          "rank": 261,
+          "value": 55.28
+        },
+        "M001212": {
+          "percentile": 52.7,
+          "rank": 241,
+          "value": 57.94
+        },
+        "M001213": {
+          "percentile": 82.5,
+          "rank": 88,
+          "value": 83.74
+        },
+        "M001214": {
+          "percentile": 51.6,
+          "rank": 247,
+          "value": 57.17
+        },
+        "M001215": {
+          "percentile": 83.7,
+          "rank": 82,
+          "value": 84.0
+        },
+        "M001216": {
+          "percentile": 61.8,
+          "rank": 195,
+          "value": 68.25
+        },
+        "M001217": {
+          "percentile": 58.2,
+          "rank": 213,
+          "value": 61.86
+        },
+        "M001218": {
+          "percentile": 56.1,
+          "rank": 224,
+          "value": 60.32
+        },
+        "M001220": {
+          "percentile": 22.4,
+          "rank": 396,
+          "value": 45.21
+        },
+        "M001221": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "M001222": {
+          "percentile": 92.9,
+          "rank": 36,
+          "value": 88.98
+        },
+        "M001223": {
+          "percentile": 37.3,
+          "rank": 319,
+          "value": 49.11
+        },
+        "M001224": {
+          "percentile": 75.9,
+          "rank": 123,
+          "value": 81.89
+        },
+        "M001225": {
+          "percentile": 19.4,
+          "rank": 411,
+          "value": 44.41
+        },
+        "M001226": {
+          "percentile": 28.2,
+          "rank": 366,
+          "value": 46.77
+        },
+        "M001227": {
+          "percentile": 25.3,
+          "rank": 380,
+          "value": 45.89
+        },
+        "M001228": {
+          "percentile": 70.0,
+          "rank": 153,
+          "value": 79.41
+        },
+        "M001229": {
+          "percentile": 6.5,
+          "rank": 477,
+          "value": 40.69
+        },
+        "M001230": {
+          "percentile": 62.9,
+          "rank": 189,
+          "value": 69.64
+        },
+        "M001231": {
+          "percentile": 42.9,
+          "rank": 291,
+          "value": 50.72
+        },
+        "M001232": {
+          "percentile": 29.6,
+          "rank": 359,
+          "value": 47.21
+        },
+        "M001233": {
+          "percentile": 57.5,
+          "rank": 217,
+          "value": 61.11
+        },
+        "M001234": {
+          "percentile": 15.5,
+          "rank": 431,
+          "value": 43.73
+        },
+        "M001235": {
+          "percentile": 47.5,
+          "rank": 268,
+          "value": 54.72
+        },
+        "M001236": {
+          "percentile": 56.7,
+          "rank": 218,
+          "value": 60.71
+        },
+        "M001237": {
+          "percentile": 53.1,
+          "rank": 239,
+          "value": 58.24
+        },
+        "M001238": {
+          "percentile": 15.1,
+          "rank": 433,
+          "value": 43.68
+        },
+        "M001239": {
+          "percentile": 13.3,
+          "rank": 442,
+          "value": 43.4
+        },
+        "M001240": {
+          "percentile": 51.2,
+          "rank": 248,
+          "value": 57.14
+        },
+        "M001241": {
+          "percentile": 34.7,
+          "rank": 332,
+          "value": 48.21
+        },
+        "M001245": {
+          "percentile": 14.1,
+          "rank": 438,
+          "value": 43.48
+        },
+        "M001246": {
+          "percentile": 22.0,
+          "rank": 398,
+          "value": 45.16
+        },
+        "N000002": {
+          "percentile": 13.5,
+          "rank": 441,
+          "value": 43.41
+        },
+        "N000015": {
+          "percentile": 23.3,
+          "rank": 391,
+          "value": 45.53
+        },
+        "N000026": {
+          "percentile": 61.2,
+          "rank": 198,
+          "value": 66.36
+        },
+        "N000179": {
+          "percentile": 32.0,
+          "rank": 346,
+          "value": 47.76
+        },
+        "N000188": {
+          "percentile": 42.7,
+          "rank": 292,
+          "value": 50.71
+        },
+        "N000189": {
+          "percentile": 89.6,
+          "rank": 51,
+          "value": 85.71
+        },
+        "N000190": {
+          "percentile": 34.7,
+          "rank": 332,
+          "value": 48.21
+        },
+        "N000191": {
+          "percentile": 27.5,
+          "rank": 370,
+          "value": 46.55
+        },
+        "N000193": {
+          "percentile": 90.6,
+          "rank": 48,
+          "value": 86.29
+        },
+        "N000194": {
+          "percentile": 58.4,
+          "rank": 212,
+          "value": 62.07
+        },
+        "O000019": {
+          "percentile": 84.5,
+          "rank": 75,
+          "value": 84.13
+        },
+        "O000086": {
+          "percentile": 87.1,
+          "rank": 63,
+          "value": 84.38
+        },
+        "O000172": {
+          "percentile": 2.0,
+          "rank": 500,
+          "value": 36.39
+        },
+        "O000173": {
+          "percentile": 2.9,
+          "rank": 495,
+          "value": 37.44
+        },
+        "O000175": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "O000176": {
+          "percentile": 16.7,
+          "rank": 425,
+          "value": 43.88
+        },
+        "O000177": {
+          "percentile": 29.4,
+          "rank": 360,
+          "value": 47.17
+        },
+        "P000034": {
+          "percentile": 34.3,
+          "rank": 335,
+          "value": 48.19
+        },
+        "P000048": {
+          "percentile": 70.4,
+          "rank": 150,
+          "value": 79.69
+        },
+        "P000096": {
+          "percentile": 39.4,
+          "rank": 309,
+          "value": 49.82
+        },
+        "P000197": {
+          "percentile": 17.3,
+          "rank": 422,
+          "value": 44.0
+        },
+        "P000597": {
+          "percentile": 18.0,
+          "rank": 418,
+          "value": 44.08
+        },
+        "P000599": {
+          "percentile": 73.1,
+          "rank": 137,
+          "value": 80.6
+        },
+        "P000604": {
+          "percentile": 33.1,
+          "rank": 340,
+          "value": 47.87
+        },
+        "P000605": {
+          "percentile": 13.1,
+          "rank": 443,
+          "value": 43.31
+        },
+        "P000607": {
+          "percentile": 8.2,
+          "rank": 468,
+          "value": 41.57
+        },
+        "P000608": {
+          "percentile": 44.5,
+          "rank": 283,
+          "value": 51.78
+        },
+        "P000609": {
+          "percentile": 66.3,
+          "rank": 172,
+          "value": 75.4
+        },
+        "P000613": {
+          "percentile": 52.5,
+          "rank": 242,
+          "value": 57.52
+        },
+        "P000614": {
+          "percentile": 57.6,
+          "rank": 216,
+          "value": 61.2
+        },
+        "P000615": {
+          "percentile": 95.1,
+          "rank": 25,
+          "value": 96.92
+        },
+        "P000616": {
+          "percentile": 49.4,
+          "rank": 258,
+          "value": 55.64
+        },
+        "P000617": {
+          "percentile": 2.5,
+          "rank": 497,
+          "value": 36.87
+        },
+        "P000618": {
+          "percentile": 16.1,
+          "rank": 426,
+          "value": 43.79
+        },
+        "P000619": {
+          "percentile": 63.9,
+          "rank": 184,
+          "value": 71.92
+        },
+        "P000620": {
+          "percentile": 35.7,
+          "rank": 328,
+          "value": 48.51
+        },
+        "P000621": {
+          "percentile": 28.6,
+          "rank": 364,
+          "value": 46.98
+        },
+        "P000622": {
+          "percentile": 43.5,
+          "rank": 288,
+          "value": 51.02
+        },
+        "Q000023": {
+          "percentile": 33.5,
+          "rank": 339,
+          "value": 48.1
+        },
+        "R000103": {
+          "percentile": 2.4,
+          "rank": 498,
+          "value": 36.76
+        },
+        "R000305": {
+          "percentile": 32.0,
+          "rank": 346,
+          "value": 47.76
+        },
+        "R000395": {
+          "percentile": 78.4,
+          "rank": 108,
+          "value": 82.91
+        },
+        "R000575": {
+          "percentile": 79.6,
+          "rank": 104,
+          "value": 83.19
+        },
+        "R000576": {
+          "percentile": 39.2,
+          "rank": 310,
+          "value": 49.7
+        },
+        "R000579": {
+          "percentile": 52.2,
+          "rank": 243,
+          "value": 57.41
+        },
+        "R000599": {
+          "percentile": 38.0,
+          "rank": 316,
+          "value": 49.36
+        },
+        "R000603": {
+          "percentile": 81.0,
+          "rank": 94,
+          "value": 83.46
+        },
+        "R000606": {
+          "percentile": 20.6,
+          "rank": 405,
+          "value": 44.83
+        },
+        "R000609": {
+          "percentile": 88.2,
+          "rank": 60,
+          "value": 84.62
+        },
+        "R000610": {
+          "percentile": 80.0,
+          "rank": 98,
+          "value": 83.33
+        },
+        "R000612": {
+          "percentile": 71.4,
+          "rank": 144,
+          "value": 80.0
+        },
+        "R000614": {
+          "percentile": 0.0,
+          "rank": 510,
+          "value": 25.0
+        },
+        "R000617": {
+          "percentile": 1.8,
+          "rank": 501,
+          "value": 36.13
+        },
+        "R000619": {
+          "percentile": 64.5,
+          "rank": 181,
+          "value": 72.86
+        },
+        "R000620": {
+          "percentile": 6.1,
+          "rank": 479,
+          "value": 40.14
+        },
+        "R000621": {
+          "percentile": 4.3,
+          "rank": 488,
+          "value": 38.52
+        },
+        "R000622": {
+          "percentile": 51.2,
+          "rank": 248,
+          "value": 57.14
+        },
+        "S000168": {
+          "percentile": 91.8,
+          "rank": 42,
+          "value": 87.62
+        },
+        "S000185": {
+          "percentile": 14.7,
+          "rank": 435,
+          "value": 43.55
+        },
+        "S000250": {
+          "percentile": 76.9,
+          "rank": 117,
+          "value": 82.4
+        },
+        "S000344": {
+          "percentile": 27.3,
+          "rank": 371,
+          "value": 46.54
+        },
+        "S000510": {
+          "percentile": 25.1,
+          "rank": 382,
+          "value": 45.88
+        },
+        "S000522": {
+          "percentile": 89.6,
+          "rank": 51,
+          "value": 85.71
+        },
+        "S000929": {
+          "percentile": 59.8,
+          "rank": 205,
+          "value": 63.96
+        },
+        "S001135": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "S001145": {
+          "percentile": 6.7,
+          "rank": 476,
+          "value": 40.88
+        },
+        "S001148": {
+          "percentile": 74.9,
+          "rank": 127,
+          "value": 81.42
+        },
+        "S001156": {
+          "percentile": 21.6,
+          "rank": 400,
+          "value": 45.09
+        },
+        "S001157": {
+          "percentile": 43.9,
+          "rank": 286,
+          "value": 51.42
+        },
+        "S001159": {
+          "percentile": 36.9,
+          "rank": 322,
+          "value": 48.95
+        },
+        "S001168": {
+          "percentile": 32.5,
+          "rank": 344,
+          "value": 47.83
+        },
+        "S001172": {
+          "percentile": 76.5,
+          "rank": 119,
+          "value": 82.35
+        },
+        "S001176": {
+          "percentile": 73.5,
+          "rank": 135,
+          "value": 80.7
+        },
+        "S001183": {
+          "percentile": 68.0,
+          "rank": 161,
+          "value": 78.12
+        },
+        "S001185": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "S001188": {
+          "percentile": 47.3,
+          "rank": 269,
+          "value": 54.55
+        },
+        "S001189": {
+          "percentile": 74.3,
+          "rank": 131,
+          "value": 80.95
+        },
+        "S001190": {
+          "percentile": 43.7,
+          "rank": 287,
+          "value": 51.06
+        },
+        "S001192": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "S001193": {
+          "percentile": 36.7,
+          "rank": 323,
+          "value": 48.86
+        },
+        "S001195": {
+          "percentile": 86.1,
+          "rank": 67,
+          "value": 84.25
+        },
+        "S001196": {
+          "percentile": 83.1,
+          "rank": 86,
+          "value": 83.87
+        },
+        "S001199": {
+          "percentile": 76.3,
+          "rank": 121,
+          "value": 82.11
+        },
+        "S001200": {
+          "percentile": 49.8,
+          "rank": 256,
+          "value": 55.82
+        },
+        "S001201": {
+          "percentile": 59.4,
+          "rank": 207,
+          "value": 63.0
+        },
+        "S001205": {
+          "percentile": 19.6,
+          "rank": 410,
+          "value": 44.57
+        },
+        "S001207": {
+          "percentile": 45.3,
+          "rank": 279,
+          "value": 52.21
+        },
+        "S001209": {
+          "percentile": 53.7,
+          "rank": 236,
+          "value": 58.87
+        },
+        "S001211": {
+          "percentile": 50.0,
+          "rank": 255,
+          "value": 56.53
+        },
+        "S001212": {
+          "percentile": 88.0,
+          "rank": 61,
+          "value": 84.55
+        },
+        "S001213": {
+          "percentile": 87.1,
+          "rank": 63,
+          "value": 84.38
+        },
+        "S001214": {
+          "percentile": 31.0,
+          "rank": 352,
+          "value": 47.5
+        },
+        "S001215": {
+          "percentile": 41.4,
+          "rank": 299,
+          "value": 50.08
+        },
+        "S001216": {
+          "percentile": 52.0,
+          "rank": 245,
+          "value": 57.39
+        },
+        "S001218": {
+          "percentile": 21.8,
+          "rank": 399,
+          "value": 45.1
+        },
+        "S001220": {
+          "percentile": 75.3,
+          "rank": 125,
+          "value": 81.45
+        },
+        "S001221": {
+          "percentile": 48.6,
+          "rank": 261,
+          "value": 55.28
+        },
+        "S001222": {
+          "percentile": 93.5,
+          "rank": 33,
+          "value": 90.48
+        },
+        "S001223": {
+          "percentile": 44.7,
+          "rank": 282,
+          "value": 51.96
+        },
+        "S001224": {
+          "percentile": 12.5,
+          "rank": 446,
+          "value": 43.2
+        },
+        "S001225": {
+          "percentile": 52.9,
+          "rank": 240,
+          "value": 58.23
+        },
+        "S001226": {
+          "percentile": 43.1,
+          "rank": 290,
+          "value": 50.95
+        },
+        "S001228": {
+          "percentile": 40.0,
+          "rank": 300,
+          "value": 50.0
+        },
+        "S001229": {
+          "percentile": 58.8,
+          "rank": 210,
+          "value": 62.5
+        },
+        "S001230": {
+          "percentile": 20.4,
+          "rank": 406,
+          "value": 44.8
+        },
+        "S001231": {
+          "percentile": 4.1,
+          "rank": 489,
+          "value": 38.32
+        },
+        "T000165": {
+          "percentile": 55.9,
+          "rank": 225,
+          "value": 59.83
+        },
+        "T000193": {
+          "percentile": 21.2,
+          "rank": 402,
+          "value": 44.98
+        },
+        "T000460": {
+          "percentile": 37.6,
+          "rank": 318,
+          "value": 49.13
+        },
+        "T000463": {
+          "percentile": 92.5,
+          "rank": 38,
+          "value": 88.43
+        },
+        "T000467": {
+          "percentile": 86.1,
+          "rank": 67,
+          "value": 84.25
+        },
+        "T000468": {
+          "percentile": 38.2,
+          "rank": 315,
+          "value": 49.41
+        },
+        "T000469": {
+          "percentile": 24.1,
+          "rank": 387,
+          "value": 45.64
+        },
+        "T000472": {
+          "percentile": 9.4,
+          "rank": 462,
+          "value": 42.0
+        },
+        "T000474": {
+          "percentile": 37.8,
+          "rank": 317,
+          "value": 49.29
+        },
+        "T000478": {
+          "percentile": 76.1,
+          "rank": 122,
+          "value": 82.03
+        },
+        "T000480": {
+          "percentile": 73.9,
+          "rank": 133,
+          "value": 80.8
+        },
+        "T000481": {
+          "percentile": 1.2,
+          "rank": 504,
+          "value": 35.28
+        },
+        "T000482": {
+          "percentile": 31.4,
+          "rank": 349,
+          "value": 47.63
+        },
+        "T000483": {
+          "percentile": 44.3,
+          "rank": 284,
+          "value": 51.72
+        },
+        "T000486": {
+          "percentile": 36.3,
+          "rank": 325,
+          "value": 48.68
+        },
+        "T000487": {
+          "percentile": 19.0,
+          "rank": 413,
+          "value": 44.37
+        },
+        "T000488": {
+          "percentile": 38.8,
+          "rank": 311,
+          "value": 49.61
+        },
+        "T000489": {
+          "percentile": 47.8,
+          "rank": 265,
+          "value": 54.84
+        },
+        "T000490": {
+          "percentile": 56.7,
+          "rank": 218,
+          "value": 60.71
+        },
+        "T000491": {
+          "percentile": 47.8,
+          "rank": 265,
+          "value": 54.84
+        },
+        "U000040": {
+          "percentile": 19.2,
+          "rank": 412,
+          "value": 44.39
+        },
+        "V000081": {
+          "percentile": 5.7,
+          "rank": 481,
+          "value": 39.77
+        },
+        "V000129": {
+          "percentile": 91.2,
+          "rank": 45,
+          "value": 87.1
+        },
+        "V000130": {
+          "percentile": 19.8,
+          "rank": 408,
+          "value": 44.64
+        },
+        "V000131": {
+          "percentile": 45.5,
+          "rank": 278,
+          "value": 52.31
+        },
+        "V000133": {
+          "percentile": 81.0,
+          "rank": 94,
+          "value": 83.46
+        },
+        "V000134": {
+          "percentile": 65.7,
+          "rank": 175,
+          "value": 74.22
+        },
+        "V000135": {
+          "percentile": 90.8,
+          "rank": 47,
+          "value": 86.44
+        },
+        "V000136": {
+          "percentile": 54.9,
+          "rank": 229,
+          "value": 59.46
+        },
+        "V000138": {
+          "percentile": 53.3,
+          "rank": 238,
+          "value": 58.27
+        },
+        "V000139": {
+          "percentile": 0.4,
+          "rank": 508,
+          "value": 31.03
+        },
+        "W000187": {
+          "percentile": 7.6,
+          "rank": 471,
+          "value": 41.1
+        },
+        "W000788": {
+          "percentile": 16.1,
+          "rank": 426,
+          "value": 43.79
+        },
+        "W000795": {
+          "percentile": 83.3,
+          "rank": 85,
+          "value": 83.9
+        },
+        "W000797": {
+          "percentile": 41.6,
+          "rank": 297,
+          "value": 50.32
+        },
+        "W000798": {
+          "percentile": 77.3,
+          "rank": 115,
+          "value": 82.54
+        },
+        "W000804": {
+          "percentile": 87.8,
+          "rank": 62,
+          "value": 84.43
+        },
+        "W000806": {
+          "percentile": 69.4,
+          "rank": 156,
+          "value": 79.03
+        },
+        "W000808": {
+          "percentile": 8.0,
+          "rank": 469,
+          "value": 41.39
+        },
+        "W000809": {
+          "percentile": 88.8,
+          "rank": 57,
+          "value": 85.37
+        },
+        "W000812": {
+          "percentile": 81.8,
+          "rank": 91,
+          "value": 83.47
+        },
+        "W000814": {
+          "percentile": 67.5,
+          "rank": 165,
+          "value": 76.98
+        },
+        "W000815": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "W000816": {
+          "percentile": 74.9,
+          "rank": 127,
+          "value": 81.42
+        },
+        "W000821": {
+          "percentile": 81.0,
+          "rank": 94,
+          "value": 83.46
+        },
+        "W000822": {
+          "percentile": 10.8,
+          "rank": 455,
+          "value": 42.41
+        },
+        "W000823": {
+          "percentile": 94.5,
+          "rank": 28,
+          "value": 94.44
+        },
+        "W000825": {
+          "percentile": 31.8,
+          "rank": 348,
+          "value": 47.64
+        },
+        "W000826": {
+          "percentile": 50.6,
+          "rank": 252,
+          "value": 56.8
+        },
+        "W000828": {
+          "percentile": 96.5,
+          "rank": 1,
+          "value": 100.0
+        },
+        "W000829": {
+          "percentile": 61.0,
+          "rank": 199,
+          "value": 66.18
+        },
+        "W000830": {
+          "percentile": 48.4,
+          "rank": 263,
+          "value": 54.98
+        },
+        "W000831": {
+          "percentile": 8.8,
+          "rank": 464,
+          "value": 41.82
+        },
+        "Y000067": {
+          "percentile": 77.8,
+          "rank": 111,
+          "value": 82.81
+        },
+        "Z000018": {
+          "percentile": 69.8,
+          "rank": 154,
+          "value": 79.37
+        }
+      },
+      "party_means": {
+        "D": 48.58,
+        "I": 100.0,
+        "R": 75.0
+      }
+    },
+    "senate": {
+      "covered": 114,
+      "excluded_delegates": [],
+      "mean": 41.5,
+      "median": 43.84,
+      "members": {
+        "A000382": {
+          "percentile": 10.5,
+          "rank": 102,
+          "value": 19.61
+        },
+        "A000383": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "B000944": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "B001230": {
+          "percentile": 21.9,
+          "rank": 89,
+          "value": 25.71
+        },
+        "B001236": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "B001243": {
+          "percentile": 56.1,
+          "rank": 49,
+          "value": 47.37
+        },
+        "B001261": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "B001267": {
+          "percentile": 14.9,
+          "rank": 97,
+          "value": 23.0
+        },
+        "B001277": {
+          "percentile": 24.6,
+          "rank": 86,
+          "value": 26.67
+        },
+        "B001288": {
+          "percentile": 12.3,
+          "rank": 100,
+          "value": 21.57
+        },
+        "B001299": {
+          "percentile": 91.2,
+          "rank": 10,
+          "value": 78.21
+        },
+        "B001303": {
+          "percentile": 53.5,
+          "rank": 53,
+          "value": 45.64
+        },
+        "B001305": {
+          "percentile": 78.1,
+          "rank": 21,
+          "value": 52.38
+        },
+        "B001310": {
+          "percentile": 95.6,
+          "rank": 5,
+          "value": 87.5
+        },
+        "B001319": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "B001320": {
+          "percentile": 45.6,
+          "rank": 62,
+          "value": 40.0
+        },
+        "C000127": {
+          "percentile": 17.5,
+          "rank": 94,
+          "value": 24.04
+        },
+        "C000141": {
+          "percentile": 39.5,
+          "rank": 69,
+          "value": 32.69
+        },
+        "C000174": {
+          "percentile": 40.4,
+          "rank": 68,
+          "value": 33.33
+        },
+        "C000880": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "C001035": {
+          "percentile": 93.0,
+          "rank": 8,
+          "value": 80.95
+        },
+        "C001047": {
+          "percentile": 50.9,
+          "rank": 54,
+          "value": 45.0
+        },
+        "C001056": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "C001070": {
+          "percentile": 50.0,
+          "rank": 57,
+          "value": 44.23
+        },
+        "C001075": {
+          "percentile": 86.0,
+          "rank": 15,
+          "value": 55.0
+        },
+        "C001088": {
+          "percentile": 25.4,
+          "rank": 85,
+          "value": 26.8
+        },
+        "C001095": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "C001096": {
+          "percentile": 82.5,
+          "rank": 17,
+          "value": 52.63
+        },
+        "C001098": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "C001113": {
+          "percentile": 43.0,
+          "rank": 65,
+          "value": 35.64
+        },
+        "C001114": {
+          "percentile": 93.9,
+          "rank": 7,
+          "value": 85.07
+        },
+        "D000563": {
+          "percentile": 22.8,
+          "rank": 88,
+          "value": 26.21
+        },
+        "D000618": {
+          "percentile": 78.1,
+          "rank": 21,
+          "value": 52.38
+        },
+        "D000622": {
+          "percentile": 14.0,
+          "rank": 98,
+          "value": 22.12
+        },
+        "E000295": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "F000062": {
+          "percentile": 5.3,
+          "rank": 108,
+          "value": 12.5
+        },
+        "F000463": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "F000479": {
+          "percentile": 42.1,
+          "rank": 66,
+          "value": 35.35
+        },
+        "G000359": {
+          "percentile": 47.4,
+          "rank": 59,
+          "value": 42.11
+        },
+        "G000386": {
+          "percentile": 78.1,
+          "rank": 21,
+          "value": 52.38
+        },
+        "G000555": {
+          "percentile": 31.6,
+          "rank": 77,
+          "value": 30.48
+        },
+        "G000574": {
+          "percentile": 87.7,
+          "rank": 14,
+          "value": 55.62
+        },
+        "G000608": {
+          "percentile": 98.2,
+          "rank": 1,
+          "value": 100.0
+        },
+        "H000273": {
+          "percentile": 41.2,
+          "rank": 67,
+          "value": 33.65
+        },
+        "H000601": {
+          "percentile": 50.9,
+          "rank": 54,
+          "value": 45.0
+        },
+        "H001042": {
+          "percentile": 16.7,
+          "rank": 95,
+          "value": 23.81
+        },
+        "H001046": {
+          "percentile": 34.2,
+          "rank": 75,
+          "value": 31.0
+        },
+        "H001061": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "H001076": {
+          "percentile": 35.1,
+          "rank": 74,
+          "value": 31.43
+        },
+        "H001079": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "H001089": {
+          "percentile": 78.1,
+          "rank": 21,
+          "value": 52.38
+        },
+        "H001097": {
+          "percentile": 98.2,
+          "rank": 1,
+          "value": 100.0
+        },
+        "H001104": {
+          "percentile": 0.0,
+          "rank": 111,
+          "value": 9.09
+        },
+        "J000293": {
+          "percentile": 56.1,
+          "rank": 49,
+          "value": 47.37
+        },
+        "J000312": {
+          "percentile": 0.0,
+          "rank": 111,
+          "value": 9.09
+        },
+        "K000367": {
+          "percentile": 27.2,
+          "rank": 83,
+          "value": 29.13
+        },
+        "K000377": {
+          "percentile": 28.1,
+          "rank": 82,
+          "value": 29.41
+        },
+        "K000384": {
+          "percentile": 26.3,
+          "rank": 84,
+          "value": 27.62
+        },
+        "K000393": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "K000394": {
+          "percentile": 49.1,
+          "rank": 58,
+          "value": 43.45
+        },
+        "L000570": {
+          "percentile": 31.6,
+          "rank": 77,
+          "value": 30.48
+        },
+        "L000571": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "L000575": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "L000577": {
+          "percentile": 36.0,
+          "rank": 73,
+          "value": 31.58
+        },
+        "M000133": {
+          "percentile": 6.1,
+          "rank": 107,
+          "value": 15.24
+        },
+        "M000355": {
+          "percentile": 90.4,
+          "rank": 11,
+          "value": 76.47
+        },
+        "M000639": {
+          "percentile": 33.3,
+          "rank": 76,
+          "value": 30.95
+        },
+        "M000934": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "M001111": {
+          "percentile": 15.8,
+          "rank": 96,
+          "value": 23.76
+        },
+        "M001153": {
+          "percentile": 92.1,
+          "rank": 9,
+          "value": 80.0
+        },
+        "M001169": {
+          "percentile": 9.6,
+          "rank": 103,
+          "value": 19.42
+        },
+        "M001176": {
+          "percentile": 7.9,
+          "rank": 105,
+          "value": 16.67
+        },
+        "M001190": {
+          "percentile": 55.3,
+          "rank": 51,
+          "value": 47.06
+        },
+        "M001198": {
+          "percentile": 82.5,
+          "rank": 17,
+          "value": 52.63
+        },
+        "M001242": {
+          "percentile": 0.0,
+          "rank": 111,
+          "value": 9.09
+        },
+        "M001243": {
+          "percentile": 3.5,
+          "rank": 109,
+          "value": 10.0
+        },
+        "M001244": {
+          "percentile": 0.0,
+          "rank": 111,
+          "value": 9.09
+        },
+        "O000174": {
+          "percentile": 38.6,
+          "rank": 70,
+          "value": 32.38
+        },
+        "P000145": {
+          "percentile": 18.4,
+          "rank": 93,
+          "value": 24.27
+        },
+        "P000595": {
+          "percentile": 30.7,
+          "rank": 79,
+          "value": 29.81
+        },
+        "P000603": {
+          "percentile": 86.0,
+          "rank": 15,
+          "value": 55.0
+        },
+        "R000122": {
+          "percentile": 19.3,
+          "rank": 92,
+          "value": 24.76
+        },
+        "R000584": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "R000595": {
+          "percentile": 96.5,
+          "rank": 3,
+          "value": 88.89
+        },
+        "R000605": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "R000608": {
+          "percentile": 43.9,
+          "rank": 64,
+          "value": 36.19
+        },
+        "R000615": {
+          "percentile": 96.5,
+          "rank": 3,
+          "value": 88.89
+        },
+        "R000618": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "S000148": {
+          "percentile": 28.9,
+          "rank": 81,
+          "value": 29.52
+        },
+        "S000770": {
+          "percentile": 44.7,
+          "rank": 63,
+          "value": 36.73
+        },
+        "S001150": {
+          "percentile": 54.4,
+          "rank": 52,
+          "value": 45.65
+        },
+        "S001181": {
+          "percentile": 36.8,
+          "rank": 72,
+          "value": 31.68
+        },
+        "S001184": {
+          "percentile": 46.5,
+          "rank": 61,
+          "value": 41.18
+        },
+        "S001194": {
+          "percentile": 20.2,
+          "rank": 90,
+          "value": 25.0
+        },
+        "S001198": {
+          "percentile": 47.4,
+          "rank": 59,
+          "value": 42.11
+        },
+        "S001203": {
+          "percentile": 20.2,
+          "rank": 90,
+          "value": 25.0
+        },
+        "S001208": {
+          "percentile": 88.6,
+          "rank": 13,
+          "value": 56.05
+        },
+        "S001217": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "S001227": {
+          "percentile": 82.5,
+          "rank": 17,
+          "value": 52.63
+        },
+        "S001232": {
+          "percentile": 3.5,
+          "rank": 109,
+          "value": 10.0
+        },
+        "T000250": {
+          "percentile": 57.9,
+          "rank": 35,
+          "value": 47.62
+        },
+        "T000278": {
+          "percentile": 50.9,
+          "rank": 54,
+          "value": 45.0
+        },
+        "T000464": {
+          "percentile": 89.5,
+          "rank": 12,
+          "value": 62.75
+        },
+        "T000476": {
+          "percentile": 70.2,
+          "rank": 26,
+          "value": 50.0
+        },
+        "V000128": {
+          "percentile": 11.4,
+          "rank": 101,
+          "value": 20.0
+        },
+        "V000137": {
+          "percentile": 94.7,
+          "rank": 6,
+          "value": 85.71
+        },
+        "W000437": {
+          "percentile": 82.5,
+          "rank": 17,
+          "value": 52.63
+        },
+        "W000779": {
+          "percentile": 13.2,
+          "rank": 99,
+          "value": 21.9
+        },
+        "W000790": {
+          "percentile": 29.8,
+          "rank": 80,
+          "value": 29.7
+        },
+        "W000800": {
+          "percentile": 8.8,
+          "rank": 104,
+          "value": 17.31
+        },
+        "W000802": {
+          "percentile": 23.7,
+          "rank": 87,
+          "value": 26.26
+        },
+        "W000805": {
+          "percentile": 37.7,
+          "rank": 71,
+          "value": 32.04
+        },
+        "W000817": {
+          "percentile": 7.0,
+          "rank": 106,
+          "value": 15.38
+        },
+        "Y000064": {
+          "percentile": 78.1,
+          "rank": 21,
+          "value": 52.38
+        }
+      },
+      "party_means": {
+        "D": 31.63,
+        "R": 50.69
+      }
+    }
+  },
+  "label": "Cross-aisle support",
+  "methodology": "Members are ranked within their own chamber — the House and the Senate are ranked separately, because their vote counts and calendars differ. For each metric a member's rank is their position when members are ordered by that metric's value, highest first, using standard competition ranking: members with the same value share a rank, and the next rank skips accordingly. A member's percentile is the percentage of the ranked members in their chamber whose value is lower than theirs, so the count behind every percentile is visible. The chamber mean and median, and the mean for each party (grouped by the member's current party), are published alongside. A rank is a position in an ordering, not a judgment; this layer attaches no label to it. Members with no value for a metric (for example, no enacted rate when they sponsored no bills) are not ranked on that metric. Non-voting House delegates are ranked only on bills sponsored, bills cosponsored, and enacted rate; they are left out of the attendance and party-unity rankings because they cannot vote on final passage, so those figures are measured over a different, smaller set of votes and are not comparable to a voting member's.",
+  "metric": "cross_aisle_support",
+  "ranks_delegates": false,
+  "value_field": "pct"
+}

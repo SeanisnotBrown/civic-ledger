@@ -80,7 +80,7 @@ export function compareIds(): { a: string; b: string } {
 }
 
 // V2-5 /compare delegate case (D66/D77): a non-voting delegate paired with a GRADED House
-// member, so the test proves the vote metrics (attendance/unity/yea) are suppressed for the
+// member, so the test proves the vote metrics (attendance/cross-aisle/yea) are suppressed for the
 // delegate ONLY — the graded member's vote metrics still render. Both are House, so the pair
 // carries no cross-chamber disclosure to confound the assertion. Derived from the committed
 // delegate list + grades, so the ids never rot.

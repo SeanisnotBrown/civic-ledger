@@ -110,6 +110,37 @@
       "title": "CountValue",
       "type": "object"
     },
+    "CrossAisleValue": {
+      "additionalProperties": false,
+      "properties": {
+        "opposing_considered": {
+          "title": "Opposing Considered",
+          "type": "integer"
+        },
+        "opposing_yea": {
+          "title": "Opposing Yea",
+          "type": "integer"
+        },
+        "pct": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Pct"
+        }
+      },
+      "required": [
+        "opposing_considered",
+        "opposing_yea",
+        "pct"
+      ],
+      "title": "CrossAisleValue",
+      "type": "object"
+    },
     "EnactedRateValue": {
       "additionalProperties": false,
       "properties": {
@@ -202,6 +233,9 @@
         "cosponsored": {
           "$ref": "#/$defs/CountValue"
         },
+        "cross_aisle_support": {
+          "$ref": "#/$defs/CrossAisleValue"
+        },
         "enacted_rate": {
           "$ref": "#/$defs/EnactedRateValue"
         },
@@ -212,9 +246,6 @@
           "title": "Named Measure Mismatch",
           "type": "array"
         },
-        "party_unity": {
-          "$ref": "#/$defs/PartyUnityValue"
-        },
         "position_mix": {
           "$ref": "#/$defs/PositionMixValue"
         },
@@ -224,7 +255,7 @@
       },
       "required": [
         "attendance",
-        "party_unity",
+        "cross_aisle_support",
         "position_mix",
         "sponsored",
         "cosponsored",
@@ -318,42 +349,6 @@
         "recorded_position"
       ],
       "title": "MismatchItem",
-      "type": "object"
-    },
-    "PartyUnityValue": {
-      "additionalProperties": false,
-      "properties": {
-        "agreed": {
-          "title": "Agreed",
-          "type": "integer"
-        },
-        "excluded_ties": {
-          "title": "Excluded Ties",
-          "type": "integer"
-        },
-        "pct": {
-          "anyOf": [
-            {
-              "type": "number"
-            },
-            {
-              "type": "null"
-            }
-          ],
-          "title": "Pct"
-        },
-        "substantive": {
-          "title": "Substantive",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "substantive",
-        "agreed",
-        "pct",
-        "excluded_ties"
-      ],
-      "title": "PartyUnityValue",
       "type": "object"
     },
     "PositionMixValue": {

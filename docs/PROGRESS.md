@@ -109,17 +109,30 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
     runner. `content-visibility` makes axe SLOWER: reading each off-screen row's computed
     style for the colour-contrast rule forces the per-row layout cv defers (~25s local, >30s
     CI). Not a violation — bumped the a11y test timeout to 150s (`e2e/a11y.spec.ts`). Pushed
-    ALONE, CI watched to green before `/compare`. Lesson in [[civic-ledger-ci-lighthouse-proxy]].
+    ALONE, **CI GREEN — confirmed run `31898469095`** (build + checks + E2E + Lighthouse all
+    pass; the S&L-83ms gate correctly predicted the Lighthouse pass). Lesson in
+    [[civic-ledger-ci-lighthouse-proxy]].
+  - **CHECKPOINT 7 — /compare (this commit; ADR D77).** New `/compare` view (README screen
+    4): the site's ONE client-rendered page — the member set (`?m=A&m=B`, 2–4) is in the
+    URL, invisible to a static build, so `Compare.tsx` renders it from a data blob embedded
+    by `compare.astro` (server-rendered shell + 637-option picker + `<noscript>`→`/federal`).
+    Reuses `getExplorerColumns`. Value-#1 care (D77): cross-chamber attendance is disclosed
+    (shared-axis caption fires when chambers mix), delegates get grade-null cards + their 3
+    vote metrics suppressed (D66), the C-grade tick reads the band min from data (not "95"),
+    grade labels pass through the blob verbatim (§6.8 holds by construction — the label
+    scanner can't see client-rendered HTML). Fixes the profile's dead "Compare with someone"
+    link. Verified: build 13,085, astro check 0, e2e 36 (bare `/compare` a11y+380px + a
+    `compare.spec.ts` that drives `?m=house&m=senate`, waits for the render, axe-scans it,
+    checks remove-updates-URL). `/compare` deliberately NOT in `lighthouserc.cjs` (client-
+    rendered → noisy gate). **Still deferred:** the explorer's multi-select "compare selected"
+    → `/compare?m=…` and the exclude ("set aside") per-row controls (inject on hydration).
 
   ### ▶ NEXT SESSION — start here (V2-5 Nocturne design pass, IN PROGRESS)
-  - **State:** explorer (CP6) + its CI fix (CP6b, D78) done. `/compare` (CP7, D77) built +
-    locally green (e2e 36 passed incl. axe on the rendered comparison) but its commit was
-    **HELD** behind the CP6b fix (don't stack an unverified fix under a new feature) — the
-    `/compare` files + D77 are uncommitted; D77 text is parked in the session scratchpad
-    (`d77-compare.txt`) and must be re-inserted into decisions.md (between D76 and D78) for
-    the `/compare` commit. Whole site is Nocturne dark; dashboard, roll-call, member
-    profile, explorer redesigned. **Verify the CP6b CI run is green, then commit + push
-    `/compare`.**
+  - **State:** CP1–CP7 done + pushed. Whole site is Nocturne dark; dashboard, roll-call,
+    member profile, members explorer (CP6, block-row grid CP6b), and `/compare` (CP7) are
+    all redesigned + CI-green. **ONLY REMAINING Nocturne view:** methodology + Mississippi
+    token conversion (item 3 below). Plus two deferred polish items: the explorer's
+    exclude/compare-select per-row controls (pair with `/compare`; inject on hydration).
   - **Design source:** `claudedesign/README.md` (the spec) + `Civic Ledger - Redesign.dc.html`
     (reference; read the relevant view's inline styles per screen). Tokens: `@theme` in
     `site/src/styles/global.css` (named Nocturne tokens + the neutral-ramp remap that
@@ -132,16 +145,12 @@ restructure and push without a per-change ask. But V2-5's own evaluative headlin
        checkpoint (they pair with it; inject them on hydration to keep the static DOM
        lean — the current static row is 17 elements, and 637 rows sit at 10,964 nodes /
        perf 98, so don't add per-row static nodes without re-measuring Lighthouse).
-    2. **`/compare`** (new, README screen 4) — needs a **static-host carve-out ADR**:
-       `?m=A&m=B` is invisible to a static build, so a small island reads
-       `location.search` and renders from an embedded serialized `{id, metrics}` array
-       (or hidden per-member fragments). Define + document the JS-off behaviour (a member
-       picker) — the "everything present JS-off" acceptance can't literally hold here.
-       Cap 2–4 members. The profile's "Compare with someone" button already links to
-       `/compare?m={id}` (a temporary dead link until this ships). Needs a `CompareBars`
-       chart (per-metric rows scaled within their own domain, domain printed). Reuse
-       `lib/columns.ts` (`getExplorerColumns`) for the per-metric domains/definitions.
-       Wire the explorer's compare-select here (multi-select → `/compare?m=…&m=…`).
+    2. ✅ **`/compare`** (README screen 4) — DONE, CHECKPOINT 7 / D77 (see above). The
+       static-host carve-out ADR is written; the profile's dead link is fixed. Still to do
+       (deferred polish): wire the explorer's multi-select "compare selected" →
+       `/compare?m=…&m=…` and the exclude ("set aside") per-row controls (inject on
+       hydration — do NOT add per-row static nodes without re-measuring Lighthouse; /federal
+       is at the block-row-grid budget).
     3. **Methodology + Mississippi** — convert `methods.astro`, `states/`, and the `ms/*`
        pages from the neutral-ramp fallback to the named Nocturne tokens (they render
        dark + a11y-green today via the ramp, but aren't "designed"). MS must NOT show the

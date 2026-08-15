@@ -62,9 +62,27 @@ function richMsVote(): { roll: string; bill: string } {
 
 const msv = richMsVote();
 
+// V2-5 /compare: two GRADED members from different chambers, so the functional test
+// exercises graded cards, the shared attendance axis, and the mixed-chamber disclosure.
+// Derived from the committed grades + roster so the ids never rot.
+export function compareIds(): { a: string; b: string } {
+  const grades = JSON.parse(fs.readFileSync(path.join(DATA, "grades", "attendance.json"), "utf-8"));
+  const gradedByChamber: Record<string, string[]> = { house: [], senate: [] };
+  for (const id of Object.keys(grades.members)) {
+    try {
+      const m = JSON.parse(fs.readFileSync(path.join(DATA, "members", `${id}.json`), "utf-8"));
+      if (m.chamber === "house" || m.chamber === "senate") gradedByChamber[m.chamber].push(id);
+    } catch { /* skip */ }
+  }
+  gradedByChamber.house.sort();
+  gradedByChamber.senate.sort();
+  return { a: gradedByChamber.house[0], b: gradedByChamber.senate[0] };
+}
+
 export const PAGES: string[] = [
   "/",
   "/federal", // V2-5: the filterable federal-members browser (Preact island)
+  "/compare", // V2-5: the compare view (bare — the picker + prompt, JS-rendered)
   "/states", // V2-5: the States tab
   `/m/${firstMemberId()}/1`,
   `/m/${firstDelegateId()}/1`, // V2-3: a delegate page (mixed ranked/unranked tiles)

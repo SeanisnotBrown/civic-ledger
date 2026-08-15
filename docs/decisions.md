@@ -1600,6 +1600,58 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   injected on hydration (keeping the static DOM lean). Design-only within the still-OPEN
   V2-5: no new evaluative constant, §0.8 untouched, H15-round-two headline still gated.
 
+- **D77 (2026-08-15) — `/compare` (README screen 4): the site's one client-rendered view,
+  a deliberate carve-out from "works with JS off".** The member set lives in the query
+  string (`?m=A&m=B`, 2–4 members). A static build cannot know it, and pre-building every
+  member combination is impossible, so the comparison is rendered **client-side** by the
+  `Compare` island from a data blob embedded in the page. `compare.astro` server-renders
+  the shell (heading, lede, the 637-option picker `<select>`, a `<noscript>` that points
+  to `/federal`) + a compact blob (every member's identity, verbatim grade, per-chamber
+  attendance rank, and the six columns' precomputed `{display, fraction, fill}` — reusing
+  `getExplorerColumns`). This is the FIRST page where the general acceptance "everything
+  present with JS disabled" cannot literally hold; JS-off users get the picker + the
+  noscript pointer, not the comparison. Load-bearing decisions:
+  1. **Cross-chamber attendance is disclosed, never silently juxtaposed (Value #1).** The
+     site's own doctrine (D66) says House vs Senate attendance is not comparable — that is
+     why ranks are per-chamber. `/compare`'s shared 50–100 attendance axis could place
+     members of different chambers on one scale, so when the selected set spans chambers
+     the axis caption states each figure is measured against that member's own chamber and
+     that the site does not rank attendance across chambers. Rank lines already use the
+     per-chamber `covered` N. **Delegates** (non-voting) render a grade-null card with the
+     same non-comparability language the profile uses and plot no marker on the axis — an
+     empty grade is never shown as if it were a low one.
+  2. **Every evaluative constant comes from data, and §6.8 holds here BY CONSTRUCTION.**
+     The shared-axis tick marks the C grade at the C band's `min` **read from
+     `data/grades/attendance.json`**, never a literal `95` that would go stale on a
+     re-ratification. Grade band labels pass through the blob **verbatim** from
+     `getMemberGrade()`. Critical note for future sessions: `check-grade-labels.mjs` scans
+     built *HTML* and therefore **cannot see client-rendered labels** — on `/compare` the
+     §6.8 guarantee is upheld not by the scanner but by construction: the island prints
+     only strings the blob carried and contains **no grade-label literal**. Any future
+     evaluative string on this page must likewise come from committed data, not the island.
+  3. **No colour literals in the blob or the island's data.** Bar/grade colours are derived
+     client-side from `(columnKey, gradeLetter)` via a ~10-entry map, so the blob carries
+     no `var(--color-…)` strings (≈3,800 avoided) and the island invents no colour meaning
+     beyond the ratified grade letter it was given.
+  4. **Bars scale within each metric's own stated domain** (the `fill` is precomputed to
+     that domain in `getExplorerColumns`), with the domain printed under each row label, so
+     a count column can never masquerade as a percentage — the same honesty rule as the
+     explorer. The `</script>`-in-JSON hazard is closed by replacing every `<` in the
+     embedded blob with its JSON unicode escape.
+  **Verification:** bare `/compare` joins the e2e `PAGES` sweep (axe a11y + 380px on the
+  picker/prompt); a dedicated `compare.spec.ts` drives `?m=<house>&m=<senate>`, waits for
+  the client render, asserts both cards + both chart sections + the cross-chamber
+  disclosure, runs **axe on the fully rendered comparison** (the only a11y coverage the
+  island markup gets), and checks that removing a member updates the cards + the `?m=` URL.
+  `/compare` is deliberately NOT added to `lighthouserc.cjs`: a fully client-rendered page
+  measures the island's render, not a static document, so gating its mobile perf would be
+  noise; it is kept lean (blob is data, not DOM; only the 2–4 selected members render).
+  The profile's "Compare with someone" link (`/compare?m={id}`) is now live (was a dead
+  link since D74). Design-only within the still-OPEN V2-5: no new evaluative constant,
+  §0.8 untouched, H15-round-two headline still gated. **Still deferred:** wiring the
+  explorer's multi-select "compare selected (n)" → `/compare?m=…&m=…` (the picker + the
+  profile link reach `/compare` today; the explorer bulk-select is a later polish).
+
 - **D78 (2026-08-15) — the explorer failed CI Lighthouse at 0.77; fixed by making the
   rows block-level so `content-visibility` actually works (the D73 pattern, again).**
   D76's `/federal` scored perf **0.98 locally but 0.77 on CI** (run `31895378122`; gate

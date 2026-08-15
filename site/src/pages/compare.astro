@@ -1,0 +1,90 @@
+---
+// V2-5 Nocturne — /compare (README screen 4). The ONE view whose content is genuinely
+// client-determined: the member set lives in the query string (?m=A&m=B), which a static
+// build cannot know, so the comparison is rendered client-side by the Compare island from
+// an embedded data blob. This is a deliberate carve-out from the site's "works with JS off"
+// rule (ADR D77): JS-off users get the picker + a <noscript> pointer to /federal, not the
+// comparison. Everything evaluative still comes from committed data — the blob carries
+// verbatim grade labels and the C-grade threshold read from data/grades, never a literal
+// (note: check-grade-labels.mjs scans built HTML and cannot see client-rendered labels, so
+// §6.8 holds here BY CONSTRUCTION — the island prints only blob strings, no label literal).
+import Layout from "../components/Layout.astro";
+import Compare from "../components/Compare.tsx";
+import { getMembers, getMemberGrade, getMemberRanks, getGrades } from "../lib/data";
+import { getExplorerColumns } from "../lib/columns";
+
+const members = getMembers(); // name-sorted
+const columns = getExplorerColumns(members.map((m) => m.id));
+
+// Non-voting delegates are not graded on attendance (D66) — flag them so the island shows
+// the same non-comparability language the profile does, rather than an empty grade.
+const DELEGATE_STATES = new Set(["DC", "PR", "VI", "GU", "AS", "MP"]);
+
+const memberData: Record<string, unknown> = {};
+for (const m of members) {
+  const g = getMemberGrade(m.id);
+  const ranks = getMemberRanks(m.id, m.chamber);
+  const cells: Record<string, { display: string; fraction: string | null; fill: number }> = {};
+  for (const c of columns) {
+    const cell = c.cellFor(m.id);
+    cells[c.key] = { display: cell.display, fraction: cell.fraction, fill: cell.fill };
+  }
+  // grade: {letter,label} when graded; {letter:null,label} for a ratified exception; null
+  // for a delegate / no ratified label. label is always a verbatim ratified string.
+  let grade: { letter: string | null; label: string } | null = null;
+  if (g?.grade) grade = { letter: g.grade, label: g.label ?? "" };
+  else if (g?.exception && g.exception !== "delegate") grade = { letter: null, label: g.exceptionLabel ?? "" };
+  // The shared attendance axis reads cells.att.fill (already the position on the 50–100
+  // domain) and cells.att.display (the label); a "—" display means no attendance on record.
+  memberData[m.id] = {
+    name: m.name, party: m.party, state: m.state, district: m.district, chamber: m.chamber,
+    isDelegate: DELEGATE_STATES.has(m.state),
+    attRank: ranks.attendance ? { rank: ranks.attendance.rank, percentile: ranks.attendance.percentile, covered: ranks.attendance.covered } : null,
+    grade, cells,
+  };
+}
+
+// C-grade threshold for the shared-axis tick — READ from the ratified bands, never "95".
+const bands = getGrades().attendance?.bands ?? [];
+const cThreshold = bands.find((b) => b.grade === "C")?.min ?? null;
+
+const blob = {
+  columns: columns.map((c) => ({ key: c.key, short: c.short, domain: c.domain, def: c.def })),
+  cThreshold,
+  members: memberData,
+};
+// Escape </script> so an embedded string can never close the tag early.
+const blobJson = JSON.stringify(blob).replace(/</g, "\\u003c");
+
+const PARTY_LABEL: Record<string, string> = { D: "D", R: "R", I: "I" };
+---
+<Layout title="Civic Ledger — Compare members" description="Put 2–4 members of Congress side by side on attendance, party unity, vote mix, and legislative output — each measure on one honest axis.">
+  <h1 class="text-[32px] font-medium tracking-[-0.025em]">Compare members</h1>
+  <p class="mt-2 max-w-[60ch] text-[15px] leading-[1.6] text-neutral-700">
+    Put two to four members side by side. Every measure is drawn on one shared axis with its
+    range stated, so a cropped scale can't exaggerate a small difference. Attendance is
+    measured against each member's own chamber, which the site does not rank across chambers.
+  </p>
+
+  <!-- Server-rendered picker (the island wires it). Present JS-off so the control is real. -->
+  <div class="mt-5 flex flex-wrap items-center gap-2">
+    <label for="cmp-add" class="text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Add a member</label>
+    <select id="cmp-add" class="rounded-md border border-[rgba(233,233,237,0.16)] bg-surface px-2.5 py-1.5 text-[13px] text-text focus:border-accent">
+      <option value="">Choose a member…</option>
+      {members.map((m) => (
+        <option value={m.id}>{m.name} ({PARTY_LABEL[m.party]}-{m.state}{m.district != null ? `-${m.district}` : ""})</option>
+      ))}
+    </select>
+  </div>
+
+  <script type="application/json" id="cmp-data" is:inline set:html={blobJson}></script>
+  <Compare client:load />
+
+  <noscript>
+    <p class="mt-6 rounded-lg border border-line bg-surface p-4 text-[14px] text-neutral-700">
+      Comparing members side by side needs JavaScript. You can still browse every member and
+      their figures at <a href="/federal" class="text-accent-300 underline">the members explorer</a>,
+      or open any member's full record directly.
+    </p>
+  </noscript>
+</Layout>

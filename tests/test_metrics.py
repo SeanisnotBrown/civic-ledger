@@ -46,8 +46,8 @@ def _ctx(positions, legislation=None, statements=None, voted=None, ended=frozens
 
 # A D and an R sponsor (senate term brackets the 2025 test dates), for cross_aisle_support.
 def _sponsor(mid, party):
-    return {"id": mid, "party": party, "chamber": "senate",
-            "terms": [{"start": "2023-01-03", "end": "2029-01-03", "party": party, "chamber": "senate"}]}
+    term = {"start": "2023-01-03", "end": "2029-01-03", "party": party, "chamber": "senate"}
+    return {"id": mid, "party": party, "chamber": "senate", "terms": [term]}
 
 
 # --- attendance -----------------------------------------------------------
@@ -101,13 +101,13 @@ def test_cross_aisle_support_counts_opposing_party_final_passage_yeas() -> None:
     members = {"M1": _MEMBER, "D1": _sponsor("D1", "D"), "R2": _sponsor("R2", "R")}
     bs = {"bD1": "D1", "bD2": "D1", "bD3": "D1", "bR1": "R2", "bD4": "D1", "bD5": "D1"}
     pos = [
-        (_rc("r1", "passage", "bD1", "2025-01-01"), "yea"),        # opposing bill, YEA -> counted, yea
-        (_rc("r2", "passage", "bD2", "2025-01-02"), "nay"),        # opposing bill, NAY -> counted, not yea
-        (_rc("r3", "veto_override", "bD3", "2025-01-03"), "yea"),  # opposing veto override, YEA -> counted, yea
-        (_rc("r4", "passage", "bR1", "2025-01-04"), "yea"),        # OWN party's bill -> not counted
-        (_rc("r5", "amendment", "bD4", "2025-01-05"), "yea"),      # not final passage -> excluded
-        (_rc("r6", "passage", "bD5", "2025-01-06"), "present"),    # no yea/nay position -> excluded
-        (_rc("r7", "passage", None, "2025-01-07"), "yea"),         # no bill -> excluded
+        (_rc("r1", "passage", "bD1", "2025-01-01"), "yea"),  # opposing bill, YEA -> counts
+        (_rc("r2", "passage", "bD2", "2025-01-02"), "nay"),  # opposing bill, NAY -> counts, not yea
+        (_rc("r3", "veto_override", "bD3", "2025-01-03"), "yea"),  # opposing override -> counts
+        (_rc("r4", "passage", "bR1", "2025-01-04"), "yea"),  # own party's bill -> excluded
+        (_rc("r5", "amendment", "bD4", "2025-01-05"), "yea"),  # not final passage -> excluded
+        (_rc("r6", "passage", "bD5", "2025-01-06"), "present"),  # no yea/nay position -> excluded
+        (_rc("r7", "passage", None, "2025-01-07"), "yea"),  # no bill -> excluded
     ]
     v = metrics.cross_aisle_support("M1", _ctx(pos, members=members, bill_sponsor=bs))
     assert v == {"opposing_considered": 3, "opposing_yea": 2, "pct": round(200 / 3, 2)}
@@ -125,8 +125,7 @@ def test_cross_aisle_support_null_when_no_opposing_bills() -> None:
 
 def test_cross_aisle_support_independent_has_no_opposing_party() -> None:
     # An independent has no single opposing major party -> nothing counted, pct None.
-    ind = {"id": "M1", "party": "I", "chamber": "senate",
-           "terms": [{"start": "2023-01-03", "end": "2029-01-03", "party": "I", "chamber": "senate"}]}
+    ind = _sponsor("M1", "I")  # an independent voter (no single opposing major party)
     members = {"M1": ind, "D1": _sponsor("D1", "D"), "R2": _sponsor("R2", "R")}
     bs = {"bD1": "D1", "bR1": "R2"}
     pos = [(_rc("r1", "passage", "bD1", "2025-01-01"), "yea"),

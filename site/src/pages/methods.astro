@@ -166,7 +166,10 @@ const n = (x: number) => x.toLocaleString("en-US");
           {" "}{n(legTotal)} bills in all.
           A bill is counted as having reached a floor vote only if it appears in our roll-call
           data as the subject of a recorded vote; {n(legc.sponsored_with_rollcall)} did, so
-          {" "}{n(legNever)} did not. Most of those never left committee.
+          {" "}{n(legNever)} did not. Most of those never left committee. The count spans every
+          measure a member can sponsor — House and Senate bills and joint, concurrent, and simple
+          resolutions; limiting it to the bills that can actually become law (House and Senate
+          bills and joint resolutions) leaves the share essentially unchanged.
         </p>
         <p>
           “Floor vote” here means a <strong class="font-medium text-text">recorded roll-call
@@ -179,8 +182,9 @@ const n = (x: number) => x.toLocaleString("en-US");
         </p>
         <p>
           This is a plain count of the public record — no threshold, no grade, and no member is
-          singled out. It is recomputed from the committed dataset on every build; a number that
-          could not be re-derived from the published data would not appear here.
+          singled out. It is derived from the committed dataset, and a continuous-integration
+          check re-derives it from that data on every change; a number that could not be
+          reproduced from the published data would not appear here.
         </p>
       </div>
     </section>

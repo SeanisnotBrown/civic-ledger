@@ -92,6 +92,16 @@ def test_party_unity_null_when_no_substantive() -> None:
     assert v["substantive"] == 0 and v["pct"] is None
 
 
+def test_party_unity_skips_roll_with_no_own_party_totals() -> None:
+    # A substantive roll whose party_totals carry no entry for the member's own party
+    # (M1 is R; this roll reports only D) has no majority side to agree with -> the roll
+    # is skipped, not counted as a disagreement. (Once incidentally covered by the federal
+    # recompute; party_unity is MS-only federally since D81, so it needs its own unit test.)
+    pos = [(_rc("r1", "passage", "b1", "2025-01-01", {"D": {"yea": 40, "nay": 5}}), "yea")]
+    v = metrics.party_unity("M1", _ctx(pos))
+    assert v == {"substantive": 0, "agreed": 0, "pct": None, "excluded_ties": 0}
+
+
 # --- cross_aisle_support (replaced party_unity federally, 2026-08-15) ------
 
 
@@ -140,6 +150,15 @@ def test_cross_aisle_support_raises_on_uningested_voted_bill() -> None:
     pos = [(_rc("r1", "passage", "bX", "2025-01-01"), "yea")]
     with pytest.raises(KeyError):
         metrics.cross_aisle_support("M1", _ctx(pos, bill_sponsor={}))
+
+
+def test_cross_aisle_support_skips_bill_with_no_attributable_sponsor() -> None:
+    # A voted final-passage bill whose data/bills record lists no sponsor (or a sponsor
+    # outside the roster) is unattributable to a party -> skipped, denominator not inflated.
+    members = {"M1": _MEMBER}
+    pos = [(_rc("r1", "passage", "bN", "2025-01-01"), "yea")]  # bN has a null sponsor_id
+    v = metrics.cross_aisle_support("M1", _ctx(pos, members=members, bill_sponsor={"bN": None}))
+    assert v == {"opposing_considered": 0, "opposing_yea": 0, "pct": None}
 
 
 # --- sponsored / cosponsored / enacted_rate -------------------------------

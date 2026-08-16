@@ -64,6 +64,16 @@ const classCounts = Object.entries(c.rollcalls_by_vote_class ?? {})
 const classPeak = Math.max(1, ...classCounts.map((x) => x.count));
 
 const updated = formatDate(manifest.generated_at);
+
+// V2-5 flagship headline (owner-ratified 2026-08-16, factual — no cutoff/grade, §0.8).
+// The "97%" is a display rounding of the exact committed counts, which are shown in
+// full beside it; the precise claim is "recorded roll-call vote" (voice/UC votes leave
+// no roll), disclosed on /methods#floor-votes. All figures come from the recompute-
+// gated manifest block (verify_recompute invariant 7); nothing computed here.
+const leg = (c.legislation ?? {}) as Record<string, number>;
+const sponsoredTotal = leg.sponsored_bills ?? 0;
+const neverVoted = leg.sponsored_without_rollcall ?? 0;
+const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100) : 0;
 ---
 <Layout
   title="Civic Ledger — who shows up, and how they vote"
@@ -87,8 +97,29 @@ const updated = formatDate(manifest.generated_at);
     </p>
   </section>
 
+  <!-- Flagship headline: the introduced-bill universe (V2-5) -->
+  {sponsoredTotal > 0 && (
+    <section class="mt-9 rounded-lg border border-line bg-surface p-6 sm:p-8" aria-labelledby="floor-h">
+      <div class="grid items-center gap-5 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8">
+        <span class="text-[64px] font-medium leading-none tabular-nums text-accent-300 sm:text-[88px]">{neverPct}%</span>
+        <div>
+          <h2 id="floor-h" class="text-[20px] font-medium leading-snug text-text sm:text-[24px]">
+            of the bills members introduced never got a floor vote.
+          </h2>
+          <p class="mt-2 max-w-[60ch] text-[13px] leading-relaxed text-neutral-600">
+            {n(neverVoted)} of the {n(sponsoredTotal)} bills members of Congress sponsored in the
+            {" "}{congressLabel} never reached a recorded roll-call vote — most died in committee
+            without one. Some bills still advance by voice vote or unanimous consent, which leave
+            no roll call, so this counts recorded floor votes —
+            {" "}<a href="/methods#floor-votes" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">how this is counted</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+  )}
+
   <!-- Stat tiles -->
-  <section class="mt-9 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4" aria-label="Dataset at a glance">
+  <section class="mt-4 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-4" aria-label="Dataset at a glance">
     {tiles.map((t) => {
       const inner = (
         <>

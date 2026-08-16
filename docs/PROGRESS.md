@@ -3,9 +3,40 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-15, **V2-5 design pass (Nocturne)** session — Nocturne complete
-(CP1–CP9); then an owner-directed metric change: **retired `party_unity` federally, added
-`cross_aisle_support` (D81).**
+**Last updated:** 2026-08-16, **V2-5 wide-eyed headline** session — the deferred landing
+headline is now BUILT and owner-ratified (factual, no H15): **"97% of bills introduced never
+got a floor vote" (D82).** Also this session: the D81 CI-red fix (§8 coverage, `675d9464`,
+CI-green run 31956907062). Prior: Nocturne complete (CP1–CP9); the D81 metric swap.
+- **V2-5 HEADLINE (D82, 2026-08-16) — owner-ratified, factual (no H15).** The long-deferred
+  "wide-eyed" landing headline (H15 round two) turned out NOT to need a ratified threshold:
+  orientation found it computable from EXISTING committed data (no data pull — the owner had
+  authorized one, found moot). Of the **37,669** distinct bills covered members SPONSORED
+  (union of `data/legislation/*.json`), only **1,011 (2.7%)** ever appear as a `RollCall.bill_id`
+  → **36,658 (97.3%) never got a recorded roll-call vote**; 375 became law. Owner picked the
+  "all measures / 97%" framing from three options (also offered law-track-only 97.7%, 118th-only
+  97.2%). **Truth caveat, disclosed on `/methods#floor-votes`:** "floor vote" = recorded
+  roll-call vote; **232 of the 375 enacted bills became law with NO roll call** (voice/UC), so
+  the copy says "recorded floor votes," never "any consideration." A plain count (no cutoff, no
+  grade, no member singled out) → §0.8 satisfied like the D81 swap; owner ratified the wording.
+  **Build:** `ingest/legislation_stats.py` (pure `compute(data_dir)`) → new recompute-gated
+  `manifest.counts.legislation` block; `verify_recompute` **invariant 7** re-derives it byte-
+  exact; dashboard flagship band (88px "97%", exact counts inline, methods link — non-clickable,
+  see nuance below) + `/methods` "Bills and floor votes" disclosure. legislation_stats.py joined
+  the **§8 coverage gate** (now 5 modules, 100% branch, 326 passed). **Gates green:** §8 cov,
+  ruff, `uv run checks` (10/10 clerk + MS), verify-recompute (inv 7 named), export determinism
+  (re-export adds ONLY the block), build 13,085, e2e (`/` + `/methods` axe/380px pass; one
+  PRE-EXISTING `/federal` hydration-race flake, passes in isolation, untouched page).
+  - **⚠ SPEC-ACCEPTANCE NUANCE to confirm with owner:** spec §7 V2-5 says "a headline number
+    that cannot be clicked through to its full list may not render." This headline is a SYSTEMIC
+    bill count (no per-member "who"), so no member-list reproduces it and a literal list = 36,658
+    dead-bill rows (huge surface + file-count risk). Shipped as a **non-clickable flagship stat**
+    with exact counts inline + a methodology link — consistent with the D72-shipped precedent
+    ("Roll calls"/"Individual votes" are non-clickable factual stats). Flagged to owner: is that
+    sufficient, or does he want a bill drill-down list? NOT built pending his call.
+  - **⚠ OWNER TO-DO (spec text):** IMPLEMENTATIONv2.md §7 V2-5 still frames the headline as
+    "the 'lowest N%' cut is a ratified threshold — H15 round two." The adopted headline is a
+    FACTUAL count, not a lowest-N% cut, so H15-round-two was not needed; the spec line is now
+    stale (like the D81 "Party unity %" row). Owner to amend or authorize the edit.
 - **METRIC CHANGE (D81, 2026-08-15) — owner-directed, factual (no H15).** While preparing
   the H15 round-two headline options the owner said *"delete the party unity. This is a dumb
   stat."* and picked the cross-aisle definition *"option two."* Built `cross_aisle_support`
@@ -817,11 +848,12 @@ depends on. `classify()` is pure/offline; golden test `tests/fixtures/questions.
    re-runnable, resumes on interruption; `ingest members` / `spike` likewise cached.)
    Note: the `integrity` check makes ~10 live clerk.house.gov fetches; a clerk
    outage warns (not a failure).
-   **§8 coverage gate (V2-2/V2-4, D68) — CI runs this; plain `uv run pytest` does NOT
+   **§8 coverage gate (V2-2/V2-4/V2-5) — CI runs this; plain `uv run pytest` does NOT
    measure coverage (kept fast/subset-usable), so run the gate explicitly before a
-   change to any of the four gated modules:**
-   `uv run pytest --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov-branch --cov-fail-under=100 --cov-report=term-missing`
-   (must stay 100% branch on all four). `ingest rankings` → `data/rankings/*.json` and
+   change to any of the five gated modules:**
+   `uv run pytest --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov-branch --cov-fail-under=100 --cov-report=term-missing`
+   (must stay 100% branch on all five — legislation_stats.py, the dashboard-headline
+   source, joined at V2-5). `ingest rankings` → `data/rankings/*.json` and
    `ingest grades` → `data/grades/*.json` are both pure/offline, derived from
    `data/metrics.json` (grades also read `data/config/thresholds.yaml`), run after
    `ingest metrics`.

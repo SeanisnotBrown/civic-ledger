@@ -19,6 +19,13 @@ const manifest = getManifest();
 const ms = getMsManifest();
 const classes = Object.keys(VOTE_CLASS_LABEL) as VoteClass[];
 const rollcallCount = (manifest.counts as Record<string, unknown>).rollcalls;
+// V2-5 dashboard-headline disclosure (recompute-gated manifest block; see /). Exact
+// counts drive the copy so it can never drift from the published figure.
+const legc = ((manifest.counts as Record<string, any>).legislation ?? {}) as Record<string, number>;
+const legTotal = legc.sponsored_bills ?? 0;
+const legNever = legc.sponsored_without_rollcall ?? 0;
+const legPct = legTotal ? Math.round((legNever / legTotal) * 100) : 0;
+const congressRange = (manifest.congresses ?? []).join("–");
 
 const metrics = getMetrics();
 const metricKeys = Object.keys(metrics.methodology).sort();
@@ -147,6 +154,37 @@ const n = (x: number) => x.toLocaleString("en-US");
       </section>
     ))}
   </div>
+
+  {legTotal > 0 && (
+    <section id="floor-votes" aria-labelledby="floor-votes-h">
+      <h2 id="floor-votes-h" class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Bills and floor votes</h2>
+      <div class="mt-3 space-y-3 max-w-[62ch] text-[14px] leading-relaxed text-neutral-700">
+        <p>
+          The dashboard headline — <strong class="font-medium text-text">{legPct}% of the bills
+          members introduced never got a floor vote</strong> — counts every distinct bill
+          sponsored by a covered member across the {congressRange}th Congresses:
+          {" "}{n(legTotal)} bills in all.
+          A bill is counted as having reached a floor vote only if it appears in our roll-call
+          data as the subject of a recorded vote; {n(legc.sponsored_with_rollcall)} did, so
+          {" "}{n(legNever)} did not. Most of those never left committee.
+        </p>
+        <p>
+          “Floor vote” here means a <strong class="font-medium text-text">recorded roll-call
+          vote</strong>, and that precision matters: a bill can still pass the floor by voice
+          vote or unanimous consent, which leave no roll call. That is not a rare edge case —
+          of the {n(legc.sponsored_became_law)} of these bills that became law,
+          {" "}{n(legc.became_law_without_rollcall)} did so without ever appearing in our
+          roll-call data. So the figure describes recorded floor votes, not whether a bill
+          received any consideration at all.
+        </p>
+        <p>
+          This is a plain count of the public record — no threshold, no grade, and no member is
+          singled out. It is recomputed from the committed dataset on every build; a number that
+          could not be re-derived from the published data would not appear here.
+        </p>
+      </div>
+    </section>
+  )}
 
   {rankedKeys.length > 0 && (
     <>

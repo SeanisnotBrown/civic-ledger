@@ -206,12 +206,37 @@ def check_grades() -> list[str]:
     return failures
 
 
+def check_legislation_stats() -> list[str]:
+    """(7) The dashboard headline recomputes exactly from published data (V2-5). The
+    manifest's `counts.legislation` block (the introduced-bill universe vs recorded
+    roll-call votes) must equal a fresh `legislation_stats.compute()` over
+    data/legislation + data/votes — a landing-page number that cannot be re-derived
+    from the public dataset may not ship. No-op until data/legislation/ exists."""
+    from ingest import legislation_stats
+
+    data = repo_root() / "data"
+    legislation_dir = data / "legislation"
+    manifest_path = data / "manifest.json"
+    if not legislation_dir.exists() or not manifest_path.exists():
+        return []
+    committed = json.loads(manifest_path.read_text(encoding="utf-8"))
+    published = (committed.get("counts") or {}).get("legislation")
+    if published is None:
+        return []  # pre-V2-5 manifest without the block
+    recomputed = legislation_stats.compute(data)
+    if published != recomputed:
+        return [f"legislation stats — manifest {published} != recompute {recomputed}"]
+    return []
+
+
 def main(argv: list[str] | None = None) -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not votes_dir.exists() or not any(votes_dir.glob("*.json")):
         print("verify-recompute: no roll-call data yet (no-op).")
         return 0
-    failures = check_dataset() + check_rankings() + check_grades()
+    failures = (
+        check_dataset() + check_rankings() + check_grades() + check_legislation_stats()
+    )
     n_rolls = sum(1 for _ in votes_dir.glob("*.json"))
     if failures:
         print(f"VERIFY-RECOMPUTE FAILED — {len(failures)} mismatch(es):")
@@ -230,6 +255,8 @@ def main(argv: list[str] | None = None) -> int:
         derived.append(f"{n_rankings} ranking files")
     if n_grades:
         derived.append(f"{n_grades} grade file(s)")
+    if _count("legislation"):
+        derived.append("the legislation-universe headline")
     tail = f"; {' and '.join(derived)} recompute exactly." if derived else "."
     print(
         f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "

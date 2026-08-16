@@ -243,7 +243,7 @@ def export_schemas(out_dir: Path = SCHEMA_DIR) -> list[Path]:
 
 def _count_dataset() -> dict[str, object]:
     """Deterministic counts over the committed dataset (no wall-clock)."""
-    from ingest import config, statements_io
+    from ingest import config, legislation_stats, statements_io
 
     members = sorted(MEMBERS_DIR.glob("*.json")) if MEMBERS_DIR.exists() else []
     votes = sorted(VOTES_DIR.glob("*.json")) if VOTES_DIR.exists() else []
@@ -289,6 +289,11 @@ def _count_dataset() -> dict[str, object]:
             "absences": len(absences),
             "bills": len(bills),
             "statements": len(statements),
+            # V2-5 dashboard headline: the introduced-bill universe (bills our members
+            # sponsored) vs how many ever got a recorded roll-call vote. Factual counts
+            # only — the "97%" is a display rounding of these exact figures, never a
+            # stored evaluative number. verify_recompute invariant 7 re-derives it.
+            "legislation": legislation_stats.compute(DATA_DIR),
         },
     }
 

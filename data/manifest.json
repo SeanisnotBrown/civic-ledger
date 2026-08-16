@@ -1,5 +1,5 @@
 {
-  "commit": "dd3d8477",
+  "commit": "1f7a953a",
   "congresses": [
     118,
     119
@@ -7,6 +7,13 @@
   "counts": {
     "absences": 35124,
     "bills": 1011,
+    "legislation": {
+      "became_law_without_rollcall": 232,
+      "sponsored_became_law": 375,
+      "sponsored_bills": 37669,
+      "sponsored_with_rollcall": 1011,
+      "sponsored_without_rollcall": 36658
+    },
     "member_votes": 966261,
     "members": 637,
     "non_position_rollcalls": 20,
@@ -26,5 +33,5 @@
     },
     "statements": 0
   },
-  "generated_at": "2026-08-15T21:22:26Z"
+  "generated_at": "2026-08-16T17:58:33Z"
 }

@@ -52,12 +52,12 @@ testpaths = ["tests"]
 # purpose: a plain `uv run pytest` (or a single-file run) stays fast and usable; the
 # 100%-branch GATE is a dedicated invocation (CI + the command in docs/PROGRESS.md):
 #   uv run pytest --cov=ingest.metrics --cov=ingest.rankings \
-#       --cov=ingest.scoring --cov=ingest.classify \
+#       --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats \
 #       --cov-branch --cov-fail-under=100 --cov-report=term-missing
 # Aggregate 100% over exactly these targets ⟺ each at 100%. V2-2 seeded the gate with
 # metrics + rankings; V2-4 (D68) added scoring.py + classify.py (its live-fetch run()
-# I/O now has tmp-repo/mock tests). Add a module here when it starts deciding a
-# published evaluative number.
+# I/O now has tmp-repo/mock tests); V2-5 added legislation_stats.py (the dashboard-
+# headline source). Add a module here when it starts deciding a published number.
 [tool.coverage.run]
 branch = true
 

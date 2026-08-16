@@ -1801,3 +1801,33 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
     regenerated `data/metrics.json` + `data/rankings/` + `data/schema/metrics.schema.json`
     ship in the SAME commit as the code (the D40 `build() == committed` determinism test is
     red between halves of a split commit).
+
+- **D82 (2026-08-16) — V2-5 wide-eyed headline: "97% of bills introduced never got a floor
+  vote."** The landing headline deferred since V2-5 opened (framed in the spec as "the
+  'lowest N%' cut is a ratified threshold — H15 round two"). Two findings collapsed it into a
+  factual, no-ratification-of-a-threshold build. **(1) No data pull needed.** The owner had
+  authorized pulling the "full introduced-bill universe"; orientation found it already in
+  committed data — `data/legislation/{member}.json` holds every bill all 637 covered members
+  SPONSORED (bill_id + introduced_date + became_law). Union = **37,669** distinct bills; the
+  voted set = distinct non-null `RollCall.bill_id` (**1,011**). So **36,658 (97.3%)** of members'
+  bills never appear in a recorded roll call. Robustness checks (all from existing data): law-
+  track only (hr/s/hjres/sjres) = 97.7%; 118th (closed) = 97.2%, 119th = 97.4% — the number does
+  not depend on lumping in resolutions or on the ongoing Congress. Option B (cosponsorship cross-
+  aisle) is ALSO computable now (30,076/30,078 cosponsored bills resolve to a sponsor) — the pull
+  is entirely moot. **(2) Factual, not evaluative (§0.8, D81 precedent).** A plain count with no
+  cutoff, no grade, no member singled out needs no ratified threshold; the owner still ratified
+  the *wording* + denominator, choosing "all measures / 97%" from three framings I offered.
+  **Truth caveat (Value #1), disclosed on `/methods#floor-votes`:** "floor vote" = *recorded
+  roll-call* vote — a bill can still pass by voice/UC with no roll. This is not hypothetical:
+  **232 of the 375** of these bills that became law did so with no roll call in our data. So the
+  headline says "recorded floor votes" and the sub-copy says "most died in committee," never
+  "got no consideration." **Mechanics:** `ingest/legislation_stats.py` (`compute(data_dir)`,
+  pure, single-source) → new `manifest.counts.legislation` block; `verify_recompute` invariant 7
+  re-derives it byte-exact (a landing number that can't be recomputed from public data may not
+  ship). The "97%" is a display rounding of the exact committed counts, which are shown in full
+  beside it — no stored evaluative number. Added to the §8 100%-branch coverage gate (5th
+  module). **Open nuance flagged to owner:** spec V2-5 says a headline "that cannot be clicked
+  through to its full list may not render"; this is a systemic bill count with no per-member
+  "who," so it renders as a non-clickable flagship stat (exact counts inline + methods link) —
+  the D72 precedent for "Roll calls"/"Individual votes." Whether to build a bill drill-down list
+  is the owner's call; not built. Spec §7 V2-5 headline line is now stale (owner to amend).

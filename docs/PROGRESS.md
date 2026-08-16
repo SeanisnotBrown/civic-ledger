@@ -15,6 +15,18 @@ Single source of truth for: current increment, acceptance status, blocked H-task
   unchanged); `party_unity` stays in `METRICS`/`METRIC_LABELS` for the MS layer, federal
   build uses a new `FEDERAL_METRICS` subset. `FORMULA_SCHEMA_VERSION` 2→3. Gates green
   (checks, verify-recompute, pytest 319 + the known git-history transient, build, e2e 40).
+- **D81 CI FIX (2026-08-16, `675d9464`, pushed).** D81 shipped **CI-red twice**: first ruff
+  E501 (`ec49607a`), then the **§8 100%-branch coverage gate at 99.35%** — `metrics.py:273`
+  (`cross_aisle_support`'s unattributable-sponsor `continue`, a new D81 branch never unit-
+  tested) and `metrics.py:215` (`party_unity`'s no-own-party-totals `continue`, previously
+  covered only *incidentally* by the federal recompute, which stopped computing party_unity
+  once D81 dropped it from `FEDERAL_METRICS`). D81's "pytest 319 green" missed this because
+  the §8 gate is a **separate invocation, not in pytest addopts**. Fixed with two dedicated
+  unit tests (`test_party_unity_skips_roll_with_no_own_party_totals`,
+  `test_cross_aisle_support_skips_bill_with_no_attributable_sponsor`) — coverage back to 100%
+  on all 4 gated modules, 322 passed, ruff clean (verified with the exact CI command).
+  **CI GREEN — confirmed run `31956907062` on `675d9464`** (python + site-and-checks both
+  pass). D81 is now fully landed and green; the last-green before it was `dd3d8477` (CP9/D80).
   **⚠ OWNER TO-DO:** IMPLEMENTATIONv2.md's metric table still lists "Party unity %" — the
   builder did not edit the spec; the owner should amend that row (or authorize the edit).
   **Still open from that conversation:** the wide-eyed headline itself (owner unsure what it

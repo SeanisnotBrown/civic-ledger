@@ -1,0 +1,16 @@
+# Accepted quarantines (§6.1) — roll-call votes the owner has REVIEWED and
+# accepted as un-ingestable under the current roster.
+#
+# A quarantine (data/quality/quarantine/<id>.json) on one of these ids does NOT
+# fail the nightly run: the roll still publishes nothing (its stale export, if
+# any, is removed like any quarantine), but the run stays green. This reserves
+# the "nightly failed" signal for NEW, unexpected quarantines — a fresh id here
+# still fails loudly so it gets attention.
+#
+# Ratified 2026-09-21 by the owner (accept-list option). See docs/decisions.md D83.
+# Each entry: <rollcall_id>: "<factual reason>". Bioguide ids identify the voter
+# whose recorded appearance falls outside the covered roster on the roll's date.
+h-118-1-0001: "voter M001200 not in the covered roster on this roll's date"
+h-119-1-0001: "voter G000578 outside their roster term window on this roll's date"
+h-119-2-0130: "voter S001157 outside their roster term window on this roll's date"
+h-119-2-0131: "voter S001157 outside their roster term window on this roll's date"

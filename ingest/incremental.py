@@ -67,6 +67,19 @@ def roll_is_final(rc_id: str, cutoff: datetime, votes_dir: Path | None = None) -
     return is_final(date_iso, cutoff)
 
 
+def accepted_quarantines(root: Path | None = None) -> dict[str, str]:
+    """Roll-call ids the owner has reviewed and accepted as un-ingestable (a voter
+    outside their roster term window, etc.), mapped to a factual reason. A quarantine
+    on one of these is NOT a nightly failure (§6.1): the roll still publishes nothing,
+    but the run stays green so the failure signal is reserved for NEW, unexpected
+    quarantines. Missing file → empty (nothing accepted). Pure given `root`."""
+    import yaml
+    path = (root or repo_root()) / "data" / "quality" / "accepted-quarantine.yaml"
+    if not path.exists():
+        return {}
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+
+
 def bill_is_skippable(bill_id: str, recent: set[str], bills_dir: Path | None = None) -> bool:
     """True if the bill is already exported AND not referenced by a recent roll."""
     if bill_id in recent:

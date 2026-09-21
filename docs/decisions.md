@@ -1831,3 +1831,28 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   "who," so it renders as a non-clickable flagship stat (exact counts inline + methods link) —
   the D72 precedent for "Roll calls"/"Individual votes." Whether to build a bill drill-down list
   is the owner's call; not built. Spec §7 V2-5 headline line is now stale (owner to amend).
+- **D83 (2026-09-21) — accept-list for known-quarantined rolls; the nightly stops failing on
+  them.** The `nightly` workflow had failed **every night since V2-1** (`2cedc532`) — `uv run
+  ingest house-votes` returns nonzero whenever any roll is quarantined, and four House rolls are
+  permanently quarantined as `UnknownMember` because a recorded voter falls outside the covered
+  roster on the roll's date: `h-118-1-0001` (M001200, not rostered), `h-119-1-0001` (G000578,
+  term ends 2024-11-13 in the roster), `h-119-2-0130` + `h-119-2-0131` (S001157, term ends
+  2026-04-21). Quarantine deletes the votes file, so `incremental.roll_is_final` sees no export
+  → the rolls re-fetch and re-quarantine every night → exit 1 → a nightly-failure email, forever.
+  Nothing bad was ever published (the committed data is byte-stable; `ci.yml`'s verify-recompute +
+  checks are green *without* these four rolls), so the only effect was the recurring email.
+  **Decision (owner-ratified 2026-09-21 via an in-session choice among four options — accept-list,
+  fix roster, investigate source, silence emails — owner picked accept-list).** Added
+  `data/quality/accepted-quarantine.yaml`: owner-reviewed roll ids → factual reason. A quarantine
+  on a listed id is recorded and its stale export removed exactly as before, but it lands in an
+  `accepted` list (printed as `note:`, not `FAIL:`) instead of `ms_failures`, so the run stays
+  green. A **new/unexpected** quarantine still fails loudly — the "nightly failed" signal is
+  preserved for genuine drift, just not spent on these four known cases. Loader
+  `incremental.accepted_quarantines()` (pure, missing file → empty) is wired into **both**
+  `house_votes.run()` and `senate_votes.run()` (senate matches today empty — guards against the
+  identical future email loop). Reasons stay factual/neutral because §6.4 banned-words scans
+  `data/quality/` (this file is not excluded). Tests: loader (missing file, load), the partition
+  decision (known→non-fatal, new→fatal), and a drift guard (accept-list ids == committed
+  quarantine ids). Gates green: ruff, pytest 330, §8 100%-branch, checks, verify-recompute. **Not
+  a data fix:** the four votes remain unpublished; whether to correct the roster (widen a term,
+  add M001200) so they ingest is a separate owner call, left open.

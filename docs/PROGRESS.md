@@ -3,9 +3,29 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-08-16, **V2-5 wide-eyed headline** session — the deferred landing
+**Last updated:** 2026-09-21, **nightly-failure fix** session — the `nightly` workflow had
+failed every night since V2-1 on 4 permanently-quarantined House rolls (voters outside the
+covered roster on the roll date). Fixed with an owner-ratified **accept-list** (D83):
+`data/quality/accepted-quarantine.yaml` makes KNOWN quarantines non-fatal while a NEW one
+still fails loudly. Wired into house + senate ingest; gates green (ruff, pytest 330, §8
+100%-branch, checks, verify-recompute). NOT a data fix — the 4 votes stay unpublished; whether
+to correct the roster so they ingest is a separate owner call, left open.
+- **NIGHTLY FIX (D83, 2026-09-21) — accept-list for known-quarantined rolls.** `nightly` ran
+  `uv run ingest house-votes`, which returns nonzero on ANY quarantine; 4 rolls (`h-118-1-0001`
+  M001200, `h-119-1-0001` G000578, `h-119-2-0130` + `h-119-2-0131` S001157) have been quarantined
+  as `UnknownMember` since V2-1 (`2cedc532`) and re-quarantine nightly (quarantine deletes the
+  votes file → `roll_is_final` False → re-fetch → re-fail). Committed data was byte-stable and
+  `ci.yml` green throughout — the only symptom was the recurring failure email. Owner chose the
+  accept-list (over: fix roster / investigate source / silence emails). `incremental.
+  accepted_quarantines()` loads the reviewed id→reason map; a listed id → `accepted` (printed
+  `note:`, run stays green), an unlisted id → `ms_failures` (still fatal). Both house + senate
+  `run()` wired (senate empty today, prevents the same future loop). Acceptance = a green
+  `workflow_dispatch` run of nightly.yml (quiet-night path: 4 rolls re-quarantine → note → no
+  data diff → exit 0).
+
+**PRIOR (2026-08-16) — V2-5 wide-eyed headline** session — the deferred landing
 headline is now BUILT and owner-ratified (factual, no H15): **"97% of bills introduced never
-got a floor vote" (D82).** Also this session: the D81 CI-red fix (§8 coverage, `675d9464`,
+got a floor vote" (D82).** Also that session: the D81 CI-red fix (§8 coverage, `675d9464`,
 CI-green run 31956907062). Prior: Nocturne complete (CP1–CP9); the D81 metric swap.
 - **V2-5 HEADLINE (D82, 2026-08-16) — owner-ratified, factual (no H15).** The long-deferred
   "wide-eyed" landing headline (H15 round two) turned out NOT to need a ratified threshold:

@@ -286,8 +286,10 @@ def run(argv: list[str] | None = None) -> int:
     # set is passed to expected_on() so only the Speaker (never a senator) and
     # seating-lag exceptions can apply, which is correct and harmless either way.
     terms = coverage.member_terms(MEMBERS_DIR, "senate")
+    accepted_ids = incremental.accepted_quarantines()  # owner-reviewed, non-fatal (§6.1)
     gaps: list[str] = []          # completeness / covered-member gaps (correctness)
-    ms_failures: list[str] = []   # per-row / tally validation failures (hard fail)
+    ms_failures: list[str] = []   # NEW/unexpected validation failures (hard fail)
+    accepted: list[str] = []      # quarantines on the owner's accept-list (not a failure)
     fetch_failures: list[str] = []
     n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
@@ -320,7 +322,7 @@ def run(argv: list[str] | None = None) -> int:
                     date = _parse_date(ET.fromstring(detail).findtext("vote_date") or "")
                 except ET.ParseError as exc:
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
-                    ms_failures.append(rc_id)
+                    (accepted if rc_id in accepted_ids else ms_failures).append(rc_id)
                     continue
                 roster = coverage.covered_on(terms, date)  # full roster, churn guard
                 try:
@@ -330,7 +332,7 @@ def run(argv: list[str] | None = None) -> int:
                 except (ValidationError, KeyError, ValueError, UnknownMember) as exc:
                     # ValueError covers UnknownVoteCast, TallyMismatch, and _parse_date.
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
-                    ms_failures.append(rc_id)
+                    (accepted if rc_id in accepted_ids else ms_failures).append(rc_id)
                     continue
                 expected = coverage.expected_on(terms, date, delegates=set())
                 missing = expected - {mv.member_id for mv in mvs}
@@ -366,6 +368,9 @@ def run(argv: list[str] | None = None) -> int:
     if ms_failures:
         print(f"FAIL: {len(ms_failures)} roll/tally validation failures (quarantined): "
               f"{ms_failures[:10]}")
+    if accepted:
+        print(f"note: {len(accepted)} known-quarantined roll(s) accepted, not a "
+              f"failure (data/quality/accepted-quarantine.yaml): {accepted[:10]}")
     if gaps:
         print(f"FAIL: {len(gaps)} covered-member/enumeration gap(s) -> data/quality/senate-gaps.md")
     return 1 if (fetch_failures or ms_failures or gaps) else 0

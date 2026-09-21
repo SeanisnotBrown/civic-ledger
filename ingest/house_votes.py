@@ -228,8 +228,10 @@ def run(argv: list[str] | None = None) -> int:
     # rather than a single set reused across a whole congress.
     terms = coverage.member_terms(MEMBERS_DIR, "house")
     delegates = coverage.delegate_bioguides(MEMBERS_DIR)  # D61: never a gap, always accepted
+    accepted_ids = incremental.accepted_quarantines()  # owner-reviewed, non-fatal (§6.1)
     gaps: list[str] = []          # rolls missing a covered member on that roll's date
-    ms_failures: list[str] = []   # per-row validation failures (hard fail, §6.1)
+    ms_failures: list[str] = []   # NEW/unexpected validation failures (hard fail, §6.1)
+    accepted: list[str] = []      # quarantines on the owner's accept-list (not a failure)
     fetch_failures: list[str] = []  # rolls whose fetch failed after retries
     n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
@@ -262,7 +264,9 @@ def run(argv: list[str] | None = None) -> int:
                     rc, mvs, absences = parse_rollcall(data, congress, session, roster)
                 except (ValidationError, KeyError, UnknownVoteCast, UnknownMember) as exc:
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
-                    ms_failures.append(rc_id)  # can't confirm rows → treat as a failure
+                    # Can't confirm rows → publish nothing. A NEW id fails the run;
+                    # an owner-accepted id (accept-list) stays green (§6.1).
+                    (accepted if rc_id in accepted_ids else ms_failures).append(rc_id)
                     continue
                 if rc.vote_class_rule != NON_POSITION_RULE:
                     # D61: gap-reporting subtracts delegates/Speaker/seating-lag —
@@ -302,6 +306,9 @@ def run(argv: list[str] | None = None) -> int:
     if ms_failures:
         print(f"FAIL: {len(ms_failures)} roll validation failures "
               f"(quarantined): {ms_failures[:10]}")
+    if accepted:
+        print(f"note: {len(accepted)} known-quarantined roll(s) accepted, not a "
+              f"failure (data/quality/accepted-quarantine.yaml): {accepted[:10]}")
     if gaps:
         print(f"FAIL: {len(gaps)} covered-member gap(s) -> data/quality/house-gaps.md")
     return 1 if (fetch_failures or ms_failures or gaps) else 0

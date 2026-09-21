@@ -209,6 +209,50 @@ def test_clerk_maps_aye_no_variant():
     assert clerk_house.parse_positions(xml, state="MS")["E000235"] == "yea"
 
 
+# --- accepted-quarantine accept-list (§6.1) -------------------------------
+
+
+def test_accepted_quarantines_missing_file_is_empty(tmp_path):
+    # No accept-list file → nothing is accepted (every quarantine stays fatal).
+    from ingest import incremental
+    assert incremental.accepted_quarantines(root=tmp_path) == {}
+
+
+def test_accepted_quarantines_loads_ids_and_reasons(tmp_path):
+    from ingest import incremental
+    qdir = tmp_path / "data" / "quality"
+    qdir.mkdir(parents=True)
+    (qdir / "accepted-quarantine.yaml").write_text(
+        'h-119-2-0130: "voter S001157 outside their roster term window"\n',
+        encoding="utf-8",
+    )
+    accepted = incremental.accepted_quarantines(root=tmp_path)
+    assert accepted == {"h-119-2-0130": "voter S001157 outside their roster term window"}
+
+
+def test_accept_list_partitions_known_from_new():
+    # The run() decision, unit-tested without network: a quarantined id on the
+    # accept-list is non-fatal; an unlisted id fails the run (preserves the alarm).
+    accepted_ids = {"h-119-2-0130"}
+    ms_failures: list[str] = []
+    accepted: list[str] = []
+    for rc_id in ("h-119-2-0130", "h-999-9-9999"):  # one known, one new
+        (accepted if rc_id in accepted_ids else ms_failures).append(rc_id)
+    assert accepted == ["h-119-2-0130"]      # known → not a failure
+    assert ms_failures == ["h-999-9-9999"]   # new → still fatal
+    assert bool(ms_failures) is True         # run() would return 1
+
+
+def test_committed_accept_list_matches_committed_quarantines():
+    # Guard: every id on the accept-list has a real quarantine record, and every
+    # committed quarantine is accounted for — so the list can't silently drift.
+    from ingest import incremental
+    accepted = incremental.accepted_quarantines()
+    qdir = repo_root() / "data" / "quality" / "quarantine"
+    on_disk = {p.stem for p in qdir.glob("*.json")}
+    assert set(accepted) == on_disk
+
+
 # --- deterministic export -------------------------------------------------
 
 

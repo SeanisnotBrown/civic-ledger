@@ -20,6 +20,27 @@ round-two was never required. **V2-5 ACCEPTANCE: MET / CLOSED — V2-6 is now un
   lowest-N% cut. It's outdated documentation only (nothing breaks); the spec sentence should
   be updated to match what shipped. Owner to amend or authorize the one-line edit.
 
+**⚠ NEXT SESSION — DO NOT auto-start V2-6.** The owner is reconsidering direction and is
+brainstorming adjustments with Fable. Two open threads he raised (2026-09-23), not yet decided:
+1. **Doctrine — relax the "no collecting data" stance.** Owner's position: collect only what
+   the product needs, never sell, never collect the unneeded. FINDING: the spec **already**
+   matches this — §0.4 Value #3 was amended 2026-08-13 to "collect the minimum… never sold…
+   deletion deletes." What still projects "we collect nothing" is the LIVE `/privacy` page
+   ("No account, no login. No cookies. No analytics… no per-visitor data of any kind"). That
+   page is currently TRUE (nothing is collected yet), so per Value #1 + the V2-7 gate it
+   **cannot** be rewritten to claim collection until collection actually ships. Offered options
+   (not chosen): (a) reframe `/privacy` tone now to be forward-compatible while staying true
+   today, or (b) leave it until V2-7 rewrites it atomically with accounts. AWAITING owner.
+2. **Homepage redesign.** Owner wants `/` to feel like an organization's homepage: a "what
+   this site is" identity, a cycling/animated stat element, and a clearer directory so users
+   know where to go ("UX is all over the place"). Three layout concepts drafted (directory-
+   first / rotating-hero-stat / two-column-org) — NOT chosen; owner reviewed the running site,
+   said it's "in better shape than I thought," and paused to brainstorm with Fable first.
+   Non-evaluative (layout only) → buildable under the standing restructure authorization once
+   he picks a direction.
+Also open (pre-existing): V2-6 (grade-over-time) is the spec's next increment but only has
+grade history since V2-4, so check how much real history exists before committing to it.
+
 **PRIOR:** 2026-09-21, **nightly-failure fix** session — the `nightly` workflow had
 failed every night since V2-1 on 4 permanently-quarantined House rolls (voters outside the
 covered roster on the roll date). Fixed with an owner-ratified **accept-list** (D83):

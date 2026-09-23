@@ -1,0 +1,10 @@
+Civic-Ledger
+
+A civic-data pipeline and site that ingests, curates, and publishes an
+accountability ledger on public officials/entities. Python project (uv/
+pyproject) with ingest, curation, data, and site stages. Evaluative outputs
+(grades, thresholds, wording) are owner-ratified before publishing — nothing
+judgmental ships unratified. Spec lives in IMPLEMENTATIONv2.md; progress in
+docs/PROGRESS.md.
+
+Stack: Python (uv), staged ingest -> curation -> data -> site.

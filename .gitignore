@@ -32,3 +32,6 @@ site/.lighthouseci/
 .coverage
 .coverage.*
 htmlcov/
+
+# dotnet-suggest CLI junk (unrelated to this project, created by the .NET SDK)
+system-commandline-sentinel-files/

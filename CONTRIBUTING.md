@@ -30,9 +30,11 @@ Concretely, a contribution **must not**:
    under the disclosure standard: a formula published on `/methods`, applied
    identically to every member and party, with inputs and denominator visible.
    The site still never asserts motive, intent, or character.
-3. Collect the minimum; whatever identifies a person's beliefs is unreadable
-   (client-side encrypted) or K-anonymous, never sold, and anonymous use
-   stays available forever.
+3. Collect only what the product needs, and the site may read what it
+   collects (amended 2026-09-23, SD-32); every stored table is listed on
+   `/privacy` before it exists; never sold; population trends only via
+   K-anonymous aggregates; deletion deletes; anonymous use stays available
+   forever.
 4. Ship partial value early.
 
 When they conflict, the earlier value wins. Full detail, including what

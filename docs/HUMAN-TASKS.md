@@ -26,6 +26,10 @@ the owner completes each task.
 | **H17** | Turnstile site + secret keys | V2-8 | ⬜ pending | Cloudflare dashboard → Turnstile → new widget (invisible mode) → `.env` / repo secrets `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET`. |
 | **H18** | Transactional email provider | V2-8 | ⬜ pending | Account signup/reset needs outbound email. Pick a provider (e.g. Resend/MailChannels free tier), create API key → secret `EMAIL_API_KEY`. Note: the provider sees recipient addresses; `/privacy` must name it (V2-7 text anticipates this). |
 | **H19** | Warrant-canary decision | V2-7 | ⬜ pending | Decide-item, plain terms in V2-7: the old canary promise ("we can't hand anything over because we hold nothing") dies once accounts exist. Options the builder will present: retire the canary idea, or reshape it ("we have received no demand as of {date}"). No canary was ever published, so retiring costs nothing visible. |
+| **H20** | Cloudflare Workers Paid upgrade ($5/mo) | V2-12 (email sending needs Paid); V2-11 only if per-bill pages push the build past 18,000 files | ⬜ pending | Dashboard → Workers & Pages → Plans → Workers Paid. Unlocks Email Sending (3,000 emails/month included, verified 2026-09-23), the 100,000-file static limit, and removes the D1 free-tier daily row caps. Decide when the builder brings V2-11 task-1 numbers. |
+| **H21** | Text-message alerts: spec amendment + provider | V2-13 (SMS) | ⬜ pending | Phone numbers are not yet a listed data class in §0.4.3 (SD-32 says "phone only after the owner ratifies it"). If wanted: ratify in plain terms, pick a provider (e.g. Twilio), complete its US sender registration (business identity + campaign vetting; timing/fees per provider), set `SMS_API_KEY` / sender id as secrets, and approve the consent + STOP wording. Email alerts (V2-12) do not wait on this. |
+| **H22** | Topic bundles (optional) | V2-11 bundles section | ⬜ pending | Only if plan decision 4(b) is chosen: author `data/config/topic-bundles.yaml` — a plain name ("Guns") → a list of verbatim CRS subject terms — dated, like statement curation. Otherwise the site shows official terms only. |
+| **H23** | Congress.gov key rate limit | V2-11 | ⬜ pending | Check the per-key hourly limit in the api.data.gov account for `CONGRESS_API_KEY`; the bill-activity ingest may need a raise (request via api.data.gov contact form). The builder reports the measured need at V2-11 task 1. |
 
 Legend: ⬜ pending · 🟨 in progress · ✅ done
 
@@ -48,6 +52,11 @@ The remaining human tasks are all **content/recurring or optional**, none blocki
 Open runtime-verification boxes (not blockers, observed on the next scheduled run): the
 INC-9 first-real-data nightly commit + deploy, the R-5 raw-cache hit, and the first MS
 nightly hash-gate no-op.
+
+**Current priority (owner, 2026-09-23, SD-32): V2-11 → V2-7 → V2-8 → V2-12 →
+V2-13** (`docs/plan-subscriptions-and-alerts.md`). **V2-11 is blocked by no
+human task** (H23 is a check the builder can report on). V2-12 needs H17, H18,
+H20; V2-13 SMS needs H21. H22 is optional.
 
 **v2 human tasks (H14–H19), added at v2 adoption:** none block **V2-0**
 (docs-only) except **H16**, whose click is this increment's own task-list

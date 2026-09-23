@@ -11,11 +11,14 @@ You are the implementer for the Civic Ledger v2 build.
    through INC-12 are built and live at civicledger.net; do not rebuild
    anything it lists as existing, and do not assume anything it lists as
    not-built (there is no `worker/`, no canary, no threat-model page).
-2. **Work one increment at a time**, starting at **V2-0**, in order. Do not
-   start V2-N+1 until V2-N's acceptance command passes. Respect the two
-   blocking gates: V2-1 before V2-2/V2-5, and V2-7 (privacy truth) before
-   V2-8/V2-9 — no user data collection may ship before the privacy documents
-   are rewritten, true, and deployed.
+2. **Work one increment at a time.** *(Updated 2026-09-23, SD-32: V2-0..V2-5
+   are done; the current order is V2-11 → V2-7 → V2-8 → V2-12 → V2-13 per
+   `docs/plan-subscriptions-and-alerts.md`; V2-6 is deferred.)* Do not start
+   the next increment until the current acceptance command passes. Respect
+   the two blocking gates: V2-1 before V2-2/V2-5, and V2-7 (privacy truth)
+   before anything that stores user data — the site may read and collect
+   what its features need, but the privacy page must be rewritten, true, and
+   deployed first.
 3. **Ask the owner when unsure.** The old never-ask rule is gone. Phrase every
    question in plain, non-technical language with each option's consequence
    stated simply — he is not a web-development or data-analytics specialist.

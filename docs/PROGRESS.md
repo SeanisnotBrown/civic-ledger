@@ -3,43 +3,47 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-23, **V2-5 CLOSE** session — owner ratified that V2-5 is
-COMPLETE. Every V2-5 piece is built, pushed, and CI-green: the IA restructure (D72), the
-full Nocturne design pass (CP1–CP9), the D81 metric swap (retired federal `party_unity` →
-`cross_aisle_support`), the owner-ratified factual headline "97% of bills introduced never
-got a floor vote" (D82), and the D83 nightly accept-list. **D83 acceptance MET** — the
-scheduled `nightly.yml` ran GREEN naturally on 2026-09-22 (run `35737604333`, quiet-night
-path), plus a green `workflow_dispatch` on 2026-09-21 (`35619113128`). The original V2-5
-blocker (an evaluative "lowest N%" wide-eyed headline needing H15 round two) was resolved a
-DIFFERENT way: D82 shipped a plain factual count that needed no ratification, so H15
-round-two was never required. **V2-5 ACCEPTANCE: MET / CLOSED — V2-6 is now unblocked**
-(next hard gate ahead: V2-7 privacy-truth before any V2-8/V2-9 data collection).
-- **⚠ OWNER TO-DO (spec doc-sync, not blocking):** `IMPLEMENTATIONv2.md` §7 V2-5 (lines
-  ~593-596) still *describes* the headline as "the lowest N% cut is a ratified threshold —
-  H15 round two." That text is now stale — the shipped headline is a factual count, not a
-  lowest-N% cut. It's outdated documentation only (nothing breaks); the spec sentence should
-  be updated to match what shipped. Owner to amend or authorize the one-line edit.
+**Last updated:** 2026-09-23 (evening), **SD-32 doctrine + priority** session — the owner
+asked for **profiles, topic subscriptions, bill tracking, and email/text alerts**, reviewed the
+plan, and ratified **SD-32: the site may read and collect the user data its features need**
+("change anything in the plans or other docs that stop the site from reading or collecting
+data"). Every doc that forbade reading/encryption-only storage was amended (spec §0.4.3, SD-28,
+§3, §5, §7 V2-7/V2-8, §8, §10, build order; CLAUDE/AGENTS/CONTRIBUTING/kickoff; full list in
+`docs/decisions.md` SD-32). **Priority is now V2-11 → V2-7 → V2-8 → V2-12 → V2-13** per
+`docs/plan-subscriptions-and-alerts.md`; **V2-6 deferred.** V2-5 remains CLOSED (owner-ratified
+earlier today, D82/D83 green). Docs-only session: no code, no data, nothing built. Gates re-run on the amended tree:
+`uv run checks` ALL PASSED, `uv run pytest` 330 passed. Committed + pushed as
+`SD-32: ...` (docs-only; not a V2-N acceptance).
+- **Left TRUE on purpose:** the live `/privacy` page still says nothing is collected. That is
+  true today; Value #1 (unamended) means it is rewritten in V2-7, atomically with the first
+  collecting feature — not before.
+- **Spec doc-sync still open (not blocking):** §7 V2-5's "lowest N%" headline sentence and the
+  metric table's "Party unity %" row are stale; owner has not yet authorized those two edits.
 
-**⚠ NEXT SESSION — DO NOT auto-start V2-6.** The owner is reconsidering direction and is
-brainstorming adjustments with Fable. Two open threads he raised (2026-09-23), not yet decided:
-1. **Doctrine — relax the "no collecting data" stance.** Owner's position: collect only what
-   the product needs, never sell, never collect the unneeded. FINDING: the spec **already**
-   matches this — §0.4 Value #3 was amended 2026-08-13 to "collect the minimum… never sold…
-   deletion deletes." What still projects "we collect nothing" is the LIVE `/privacy` page
-   ("No account, no login. No cookies. No analytics… no per-visitor data of any kind"). That
-   page is currently TRUE (nothing is collected yet), so per Value #1 + the V2-7 gate it
-   **cannot** be rewritten to claim collection until collection actually ships. Offered options
-   (not chosen): (a) reframe `/privacy` tone now to be forward-compatible while staying true
-   today, or (b) leave it until V2-7 rewrites it atomically with accounts. AWAITING owner.
-2. **Homepage redesign.** Owner wants `/` to feel like an organization's homepage: a "what
-   this site is" identity, a cycling/animated stat element, and a clearer directory so users
-   know where to go ("UX is all over the place"). Three layout concepts drafted (directory-
-   first / rotating-hero-stat / two-column-org) — NOT chosen; owner reviewed the running site,
-   said it's "in better shape than I thought," and paused to brainstorm with Fable first.
-   Non-evaluative (layout only) → buildable under the standing restructure authorization once
-   he picks a direction.
-Also open (pre-existing): V2-6 (grade-over-time) is the spec's next increment but only has
-grade history since V2-4, so check how much real history exists before committing to it.
+**▶ NEXT SESSION — START HERE: V2-11 task 1** (`docs/plan-subscriptions-and-alerts.md` §5).
+No owner input is needed to begin. Steps:
+1. Verify the Congress.gov `/bill` list (update-date filter/sort, page size) and
+   `/bill/{c}/{type}/{n}/actions` endpoints live through the existing cached client; confirm
+   the key's hourly limit (H23).
+2. Measure: bill universe for the 118th–119th; bills updated per day; projected built file
+   count for each option of plan decision 3 (site is at 13,093 files / 20,000 free limit).
+3. Put plan decisions 2, 3, 4, 6, 7 to the owner in ONE plain-language message with those
+   numbers. Then build V2-11 tasks 2–9 on his answers; commit `V2-11: <what>` per gate.
+V2-11 is zero-collection (static feeds/topics/timelines), so the V2-7 privacy gate does not
+apply to it; it applies to V2-8/V2-12/V2-13 (the site MAY store readable data — SD-32 — but
+`/privacy` must be true first).
+
+**Still open, lower priority:** homepage redesign (owner brainstorming; three layout
+concepts drafted, none chosen; buildable under the standing restructure authorization once he
+picks). Grade-over-time V2-6: only two commits of `data/grades/attendance.json` exist
+(2026-08-13, 2026-09-21) — deferred by SD-32 until history is worth charting.
+
+**PRIOR (2026-09-23, earlier): V2-5 CLOSE** — owner ratified V2-5 COMPLETE: IA restructure
+(D72), Nocturne (CP1–CP9), D81 metric swap, the factual headline "97% of bills introduced never
+got a floor vote" (D82), D83 nightly accept-list; nightly ran GREEN 2026-09-22 (run
+`35737604333`). The original "lowest N%" blocker was resolved by shipping a plain count (no H15
+round two). Doctrine thread 1 from that sitting (relax "no collecting") is now RESOLVED by
+SD-32; thread 2 (homepage) stays open above.
 
 **PRIOR:** 2026-09-21, **nightly-failure fix** session — the `nightly` workflow had
 failed every night since V2-1 on 4 permanently-quarantined House rolls (voters outside the

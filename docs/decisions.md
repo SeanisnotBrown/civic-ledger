@@ -1856,3 +1856,25 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   quarantine ids). Gates green: ruff, pytest 330, §8 100%-branch, checks, verify-recompute. **Not
   a data fix:** the four votes remain unpublished; whether to correct the roster (widen a term,
   add M001200) so they ingest is a separate owner call, left open.
+
+## SD-32 — Amendment 5: the site may read and collect what its features need (2026-09-23)
+
+- **SD-32 (2026-09-23, owner-ratified) — data-reading amendment + priority reorder.** The
+  owner asked for profiles, topic subscriptions, bill tracking, and email/text alerts, then
+  directed: *"change anything in the plans or other docs that stop the site from reading or
+  collecting data."* Applied the same day: `IMPLEMENTATIONv2.md` §0.4.3 (Value #3 reworded:
+  collect only what the product needs, never sell, deletion deletes — the site may **read**
+  what it stores), SD-2/SD-12/SD-22/SD-28 dispositions, §3 (worker scope + boundary), §5
+  (account model: readable `users` / `preferences` / `subscriptions` / `deliveries` /
+  `channels` / `profiles`; schema test = tables equal the `/privacy` storage list), §7 V2-7
+  (privacy page + threat model now say the data is readable and demand-producible), §7 V2-8
+  (client-side crypto + recovery code retired; email verification + reset by email), §8 test
+  families, §10 consequence paragraph (rewritten: a legal demand yields readable follows,
+  preferences, answers, addresses — the owner's informed trade), Appendix B INC-22, and the
+  end-of-spec build order. `CLAUDE.md`/`AGENTS.md`/`CONTRIBUTING.md`/`docs/kickoff-v2.md`
+  updated to match. **Untouched on purpose:** the LIVE `/privacy` page — it says nothing is
+  collected, which is TRUE today; Value #1 (unamended) forbids rewriting it until V2-7 ships the
+  truthful version alongside the first collecting feature. **Priority reorder (same decision):**
+  V2-11 (bill activity + topics + feeds, zero collection) → V2-7 → V2-8 → V2-12 (subscriptions
+  + email) → V2-13 (text / push); V2-6 deferred (only two grade-history commits exist). Plan
+  and open decisions 2–7: `docs/plan-subscriptions-and-alerts.md`. New human tasks H20–H23.

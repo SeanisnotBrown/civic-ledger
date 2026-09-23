@@ -9,8 +9,13 @@ Rules:
   evaluative number he hasn't ratified (§0.8).
 - Track state in docs/PROGRESS.md: current increment, acceptance status,
   blocked H-tasks. Update it before ending any session.
-- One increment at a time (V2-N). Do not start V2-N+1 until V2-N acceptance
-  passes, except increments marked ∥. Blocking gates: V2-1 before V2-2/V2-5;
-  V2-7 (privacy truth) before V2-8/V2-9 (any collection).
+- One increment at a time (V2-N). Do not start the next until the current
+  acceptance passes, except increments marked ∥. **Current priority (owner,
+  2026-09-23, SD-32): V2-11 → V2-7 → V2-8 → V2-12 → V2-13** per
+  docs/plan-subscriptions-and-alerts.md (read it after the spec); V2-6 is
+  deferred. Blocking gates: V2-1 before V2-2/V2-5; V2-7 (privacy page true)
+  before anything that stores user data (V2-8/V2-9/V2-12/V2-13). The site
+  MAY read and collect the user data its features need (SD-32); the gate
+  only orders the truthful /privacy rewrite ahead of the storage.
 - Commit at every passing acceptance criterion with message "V2-N: <what>".
 - Secrets come from .env — never hardcode, never commit.

@@ -121,7 +121,7 @@ exists.**
 
 ---
 
-## §0.4 — The four values, as amended 2026-08-13
+## §0.4 — The four values, as amended 2026-08-13 and 2026-09-23 (SD-32)
 
 In priority order when they conflict. **Value #1 is unchanged and is the
 anchor: it outranks #2, #3, and #4, and it is what makes the evaluative turn
@@ -148,18 +148,25 @@ defensible rather than reckless.**
    judgment under a disclosed uniform standard*, which is a different axis
    from partisan bias, and conflating them in writing is a liability with no
    upside.
-3. **Collect the minimum; what identifies belief is unreadable or
-   aggregated.** *(Replaces "never collect what a subpoena could use.")* The
-   site now collects: accounts (email + password), quiz answers and issue
+3. **Collect only what the product needs; never sell it; deletion
+   deletes.** *(Amended 2026-09-23, SD-32. Replaces the 2026-08-13 wording
+   "collect the minimum; what identifies belief is unreadable or
+   aggregated.")* The site may collect, store, and **read** the user data its
+   features need: accounts (email + password), what a user follows (bills,
+   topics, members), notification channels the user opts into (email; phone
+   only after the owner ratifies it), preferences, quiz answers and issue
    weights tied to an account, and aggregate site analytics including
-   state-of-origin. Conditions: anonymous use of the full public record stays
-   available forever; the belief payload (answers, weights) is encrypted on
-   the user's device before upload so the operator cannot read it (SD-28);
-   population trends come only from K-anonymous aggregates (K = 50);
-   analytics are aggregate and cookieless; data is never sold; deletion
-   deletes. **Every privacy statement on the site must be true before the
-   collection it describes ships** — that ordering is a blocking gate (V2-7),
-   because a false `/privacy` page is a Value #1 violation.
+   state-of-origin. Nothing in this document may forbid the site from
+   reading data it needs to deliver a feature the owner has scheduled.
+   Conditions that survive: anonymous use of the full public record stays
+   available forever; nothing is collected that no scheduled feature needs;
+   population trends published from user data come only from K-anonymous
+   aggregates (K = 50); analytics are aggregate and cookieless; data is never
+   sold or shared beyond the named service providers; deletion hard-deletes.
+   **Every privacy statement on the site must be true before the collection
+   it describes ships** — that ordering is a blocking gate (V2-7), because a
+   false `/privacy` page is a Value #1 violation. The gate orders work; it
+   does not forbid collection.
 4. **Ship partial value early.** Unchanged (owner reconfirmed 2026-08-13): a
    live, correct, incomplete site beats a complete unbuilt one.
 
@@ -205,7 +212,7 @@ finding). Resolution:
 | # | Was | Disposition |
 |---|---|---|
 | SD-1 | Symmetry per-member, party-mean secondary | **Amended.** Covered set becomes all serving federal members (V2-1); per-member equal depth still the rule; party-mean comparisons become first-class rendered output (R-vs-D averages), not just a check. |
-| SD-2 | One server component: counter-only aggregates Worker | **Amended.** The counter Worker (never built) survives as the *trends* path and is joined by the account/sync service (SD-28). "One server component" becomes "no server component reads plaintext belief data." |
+| SD-2 | One server component: counter-only aggregates Worker | **Amended.** The counter Worker (never built) survives as the *trends* path and is joined by the account service (SD-28, as amended by SD-32). "One server component" becomes "the only server code is `worker/`, and everything it stores is listed on `/privacy`." |
 | SD-3 | Stack: Python/uv/pydantic → SQLite → JSON → Astro → **Cloudflare Pages** | **Amended.** Deploy is Workers Static Assets via Workers Builds (builder D32). Rest of the stack carried; SQLite gains the committed-pipeline role in SD-29. |
 | SD-4 | Monorepo, single public repo | **Carried.** |
 | SD-5 | Federal depth: 118th + 119th | **Carried.** The pivot widens *who* is covered, not *when*. Older congresses remain unscheduled. |
@@ -215,7 +222,7 @@ finding). Resolution:
 | SD-9 | Pairing by bill id; short titles only via allowlist | **Carried.** |
 | SD-10 | Ballot builder via Census Geocoder + curated race file | **Carried (parked** with INC-21 in the backlog, Appendix B). |
 | SD-11 | Drift reminders via bare .ics | **Carried (parked).** |
-| SD-12 | Zero-knowledge sync deferred post-v1 | **Superseded by SD-28.** Its core design (client-derived key, ciphertext-only server, loss-of-passphrase = loss) survives *inside* the account architecture; the "no email" part is dropped by the owner's explicit choice of email+password accounts. |
+| SD-12 | Zero-knowledge sync deferred post-v1 | **Retired.** Superseded by SD-28 (2026-08-13), then its client-side-encryption core was retired by SD-32 (2026-09-23): the server stores readable user data. |
 | SD-13 | `CAP1.` portable quiz codes | **Carried (parked** with the quiz). |
 | SD-14 | Bill diff on USLM XML | **Carried (parked).** |
 | SD-15 | CBO link-through | **Carried.** |
@@ -230,16 +237,17 @@ finding). Resolution:
 | # | Decision | Rationale |
 |---|---|---|
 | SD-21 | **Amendment 1 adopted:** Value #2 replaced by the evaluative-label disclosure standard (§0.4.2) | Owner: "define what poor performance is then call poor performers, poor performers ONLY where I can back it with stats," same standard both parties, full formula transparency, no motive claims. |
-| SD-22 | **Amendment 2 adopted:** Value #3 replaced by collect-minimum/encrypt-belief (§0.4.3); privacy-docs-first is a blocking gate | Owner: will collect, won't sell; anonymous mode stays. A false privacy page would violate unamended Value #1, hence the gate. |
+| SD-22 | **Amendment 2 adopted:** Value #3 replaced by collect-minimum/encrypt-belief (§0.4.3); privacy-docs-first is a blocking gate | Owner: will collect, won't sell; anonymous mode stays. A false privacy page would violate unamended Value #1, hence the gate. **The encrypt-belief part is amended by SD-32 (2026-09-23).** |
 | SD-23 | **Amendment 3 adopted:** never-ask rule scrapped; ask in plain language (§0.1), especially on evaluative judgment | Owner's explicit instruction. |
 | SD-24 | **Amendment 4 adopted:** federal-first pivot; landing page becomes a drill-down stats dashboard; Federal + States tabs; state sections mirror the federal presentation | Owner: federal is "an all in one source that everyone in the country can view"; fastest reach. |
 | SD-25 | **Value #4 unchanged** (owner reconfirmed) | Prioritization tiebreaker; no conflict with the amendments. |
 | SD-26 | **Gate 1 = option (c):** per-category grades **plus one fixed site-published overall grade**, with an over-time trend; no reader re-weighting requirement | Owner's choice over (a) ranks-only, (b) category-only, (d) reader-adjustable overall. Retires SD-19. |
 | SD-27 | **Gate 2:** threshold authority = propose → ratify → commit (§0.8) | Keeps the unamended no-LLM rule intact: the owner authors every evaluative constant; the build applies it. |
-| SD-28 | **Gate 3:** accounts = email + password (Argon2id); belief payload encrypted client-side (key derived from password, plus a recovery code; server stores ciphertext only); public profile strictly opt-in and **outside the encryption guarantee — published means public**; deletion hard-deletes; trends only via K-anon (=50) counters; no IP retention, logging off | Owner chose "locked even from you" knowing forgotten-password = lost answers. Smallest discoverable surface compatible with accounts. |
+| SD-28 | **Gate 3 (as amended by SD-32, 2026-09-23):** accounts = email + password (Argon2id); user data (follows, preferences, quiz answers, weights) stored **readable** on the server; public profile strictly opt-in — published means public; deletion hard-deletes; trends only via K-anon (=50) counters; no IP retention, logging off | The 2026-08-13 choice was client-side encryption ("locked even from you"). Retired by SD-32: server-sent alerts require the server to read what a user follows, and the owner chose to let the site read and collect what its features need. Password reset no longer loses data. |
 | SD-29 | **Gate 4:** published data stays deterministic JSON in-repo (the inspectable contract); a gitignored SQLite `build.db` becomes the build accelerator; vote-record pages restructured to control page count | Numbers in V2-1. The JSON contract is the product's credibility; the caveat "chamber totals are not recomputable" dies with V2-1 — a stated credibility upgrade. |
 | SD-30 | **Gate 5:** Mississippi layer preserved as-is through the pivot; reskinned to mirror federal presentation and folded under the States tab in V2-10 | Fastest pivot; nothing live breaks; MS is touched once, at the end, against a finished federal template. |
 | SD-31 | **ADR renumbering** as described above | Ends the D19 collision without rewriting append-only history. |
+| SD-32 | **Amendment 5 (owner, 2026-09-23): the site may read and collect the user data its features need.** Value #3 reworded (§0.4.3); SD-28's client-side encryption requirement retired; every "no plaintext / cannot read / ciphertext-only" rule in this document is void. Surviving guardrails: collect nothing no scheduled feature needs; disclosed on `/privacy` before it ships (V2-7, Value #1); never sold; K-anon for published trends; hard delete. **Priority order amended:** V2-11 → V2-7 → V2-8 → V2-12 → V2-13 (`docs/plan-subscriptions-and-alerts.md`); V2-6 deferred. | Owner's request: profiles, topic subscriptions, bill tracking, email/text alerts. Alerts cannot be sent by a server that cannot read the subscription list. Owner directed: "change anything in the plans or other docs that stop the site from reading or collecting data." Consequence stated in §10. |
 
 ---
 
@@ -262,9 +270,10 @@ site/ (Astro 5 static, Tailwind, Preact islands for filterable lists)
    → Cloudflare Workers Static Assets, deployed by Workers Builds on push
 
 server code (V2-8+, the only server code):
-  worker/ — (a) auth + encrypted-blob sync (D1: users, blobs; zero plaintext
-  belief columns), (b) K-anon aggregate counters (v1 §10.2 design, built new),
-  (c) aggregate analytics counters (V2-9). No IP writes, logging off.
+  worker/ — (a) auth + user data (D1: users, subscriptions, preferences —
+  readable, SD-32), (b) alert delivery (V2-12: reads the published events
+  feed, sends email), (c) K-anon aggregate counters (v1 §10.2 design, built
+  new), (d) aggregate analytics counters (V2-9). No IP writes, logging off.
 ```
 
 Version pins: as locked in `uv.lock` / `site/package-lock.json` (recorded in
@@ -274,8 +283,9 @@ recorded there at the increment that adds them.
 Hard boundaries carried from v1: no homelab; all published data diffable in
 the public repo; no LLM in the publishing path (CI-enforced); symmetry checks
 can fail the build; K-anon threshold enforced in code; mobile-first; the
-client is open source. Amended boundary: "quiz scoring 100% client-side"
-becomes "**no server we operate ever receives plaintext belief data**."
+client is open source. Amended boundary (SD-22, then SD-32): "quiz scoring
+100% client-side" becomes "**the server stores only what a scheduled feature
+needs, and every stored table is listed on `/privacy` before it exists**."
 
 ---
 
@@ -330,13 +340,19 @@ unchanged.
   chart (V2-6) and *historical re-grading under a tweaked formula* (owner
   requirement) are possible: grades are always recomputable for any past date
   from retained metric history + any formula version.
-- **Account model** (V2-8, D1 tables — never exported to `data/`):
-  `users(id, email, pw_hash argon2id, created_at)`;
-  `blobs(user_id, ciphertext, cipher_version, updated_at)`;
+- **Account model** (V2-8/V2-12, D1 tables — never exported to `data/`;
+  readable, SD-32):
+  `users(id, email, email_verified_at, pw_hash argon2id, created_at)`;
+  `preferences(user_id, json, updated_at)` — quiz answers, issue weights,
+  settings;
+  `subscriptions(user_id, kind ∈ {bill, topic, member}, key, cadence, created_at)`;
+  `deliveries(user_id, event_key, sent_at)` — alert idempotency;
+  `channels(user_id, kind ∈ {email, phone, push}, address, verified_at)` —
+  phone only after H21;
   `profiles(user_id, published_json, updated_at)` — the opt-in public profile;
-  its content is user-chosen plaintext and **outside the encryption
-  guarantee**. No column anywhere may hold plaintext answers/weights; a
-  schema test asserts it (§8).
+  published means public. A schema test asserts that the set of tables and
+  columns equals the storage list stated on `/privacy` (§8, the V2-7 accuracy
+  test) — the guard is disclosure, not encryption.
 
 **Tier discipline, restated for v2:** Tier 1 = records. Tier 2 = per-metric
 outputs of `ingest/metrics.py` (docstring = methodology page, unchanged
@@ -614,20 +630,24 @@ tweak re-grades history honestly (`formula_version` on every point).
 insufficient for a chart, render the honest short series — never synthesize
 backfill.
 
-### V2-7 — Privacy truth gate (BLOCKING: nothing in V2-8/V2-9 ships first)
+### V2-7 — Privacy truth gate (BLOCKING: nothing that stores user data — V2-8/V2-9/V2-12/V2-13 — ships first)
 **Goal:** every privacy statement the site will make is written, true, and
 deployed **before the first byte of user data is collected**.
 **Tasks:**
 1. Rewrite `/privacy` (`site/src/pages/privacy.astro`): what is and isn't
-   collected today; what V2-8/V2-9 will collect, exactly; the encryption
-   model in plain language; the public-profile carve-out (**"anything you
-   choose to publish on your profile is public — encryption does not apply
-   to it"**); deletion semantics; the email provider's role (H18); the
-   K-anon rule; data never sold.
+   collected today; what V2-8/V2-9/V2-12/V2-13 will collect, exactly (the §5
+   table list, in plain words); that the operator can read it (SD-32); the
+   public-profile carve-out (**"anything you choose to publish on your
+   profile is public"**); deletion semantics; each service provider's role
+   (email provider H18; texting provider H21 if chosen) and what it sees; the
+   K-anon rule; data never sold; that anonymous use and the feeds (V2-11)
+   need no account.
 2. Author the threat-model page (new content, v1 §A2 outline as the skeleton,
-   rewritten for the account era): what a legal demand can and cannot yield —
-   it CAN yield the account table (emails, timestamps) and ciphertext; it
-   CANNOT yield readable answers, because the operator holds no key.
+   rewritten for the account era): what a legal demand can yield — **the
+   account table, what each account follows, its preferences and answers,
+   and its notification addresses, all readable** — stated plainly, with the
+   mitigations that remain (nothing stored beyond the listed tables, hard
+   delete, no IP logs, K-anon for anything published).
 3. **H19 canary decision** — put to the owner in plain terms (§1 H19); build
    whichever outcome he picks.
 4. `docs/data-contract.md` + `CONTRIBUTING.md` privacy language aligned.
@@ -637,25 +657,24 @@ storage list and K constant match code/config. **On failure:** the accuracy
 test failing means site text and system diverged — fix the text or the
 system, never the test.
 
-### V2-8 — Accounts + encrypted sync (SD-28; needs H17, H18)
-**Goal:** email+password accounts whose belief payload the operator cannot
-read.
-**Tasks:** `worker/` wrangler project + D1 schema per §5 (no plaintext belief
-columns — schema test); signup/login (Argon2id server-side for auth);
-client-side crypto: key derived from password (plus independently generated
-recovery code shown once), WebCrypto AES-GCM over the state blob;
-password change re-wraps client-side; reset via recovery code, else data loss
-(stated at creation — SD-12's honest lineage); opt-in public profile
-(explicit publish action, plaintext by design); hard delete; Turnstile on
-write endpoints; logging/logpush off with config committed; K-anon counter
+### V2-8 — Accounts + preference sync (SD-28 as amended by SD-32; needs H17, H18)
+**Goal:** email+password accounts (profiles) whose preferences the site stores
+and can read (SD-32), with the email verified before anything is sent to it.
+**Tasks:** `worker/` wrangler project + D1 schema per §5 (schema test: tables
+== the `/privacy` storage list); signup/login (Argon2id server-side); email
+verification (double opt-in) and password reset by email — no data loss on
+reset; `preferences` sync (readable JSON); opt-in public profile (explicit
+publish action); hard delete cascading every table; Turnstile on write
+endpoints; logging/logpush off with config committed; K-anon counter
 endpoints (v1 §10.2 design, built new) for any trend the site publishes.
-**Tests (new families):** Playwright network assertion that no request
-carries plaintext answers; D1 schema assertion; K-anon gate (49 → nothing
-renders, 50 → renders); deletion e2e.
+**Tests (new families):** Playwright network assertion that requests carry
+only the documented fields; D1 schema assertion against the `/privacy` list;
+K-anon gate (49 → nothing renders, 50 → renders); deletion e2e (every row
+gone).
 **Acceptance:** full python + `npm run build && npm run test:e2e` including
-the new specs against `wrangler dev`. **On failure:** any path found sending
-plaintext belief data is a Value-#3 breach — stop, fix, add the regression
-test, then continue.
+the new specs against `wrangler dev`. **On failure:** any stored field or
+table not listed on `/privacy` is a Value-#1 breach — stop, fix the page or
+the schema, add the regression test, then continue.
 
 ### V2-9 — Analytics (amended SD-17)
 **Goal:** aggregate, cookieless traffic + state-of-origin, to prioritize
@@ -681,6 +700,15 @@ MS distributions differ); `/ms` routes preserved or redirected under
 verify-recompute && npm run build && npm run test:links && npm run
 test:metrics-sections && npm run test:e2e && npm run test:lighthouse`.
 
+### V2-11 · V2-12 · V2-13 — Bill activity + topics + feeds · Subscriptions + email alerts · Text / push (ratified priority, SD-32, 2026-09-23)
+Full Goal/Tasks/Acceptance/On-failure text lives in
+`docs/plan-subscriptions-and-alerts.md` and is folded here once V2-11's API
+verification (its task 1) lands the measured numbers. **Order:** V2-11 (zero
+collection; needs no privacy gate) → V2-7 → V2-8 → V2-12 → V2-13. V2-6 is
+deferred until enough nightly grade history exists to chart. Decision 1 in
+that plan's §1 is ratified as SD-32 (the site reads what it stores); its
+decisions 2–7 are asked with real numbers at the end of V2-11 task 1.
+
 ---
 
 ## §8 — Testing requirements
@@ -697,8 +725,10 @@ Corrected from v1 (which claimed unenforced things):
 - The `correction:` convention and no-force-push are enforced by H16 branch
   protection plus CI, not by prose.
 - New v2 test families: §6.8 disclosure-guard tests; threshold-traceability;
-  grading-coverage symmetry; plaintext-never-sent network assertions; D1
-  schema assertions; K-anon render gate; built-file-count guard (V2-1).
+  grading-coverage symmetry; documented-fields-only network assertions and
+  the D1-schema-equals-`/privacy`-list assertion (SD-32); K-anon render gate;
+  built-file-count guard (V2-1); events recompute + feed validity (V2-11);
+  alert idempotency + unsubscribe (V2-12).
 
 ## §9 — CI/CD
 
@@ -713,25 +743,27 @@ Corrected from v1 (which claimed unenforced things):
 
 ## §10 — Privacy engineering v2 (SD-28; replaces v1 §10)
 
-**The consequence, stated once, plainly (owner: read this).** Once V2-8
-ships, the site operates a database that links email addresses to political
-positions. That database can be subpoenaed, and unlike before, there is now
-something to subpoena. The mitigations in this design are real but partial:
-answers and weights are encrypted on the user's device, so what a legal
-demand yields is account emails, timestamps, and unreadable ciphertext — not
-anyone's politics; the public profile is the exception, because what a user
-publishes is public; the email provider (H18) additionally sees account
-email addresses. Short retention, hard deletion, and storing nothing beyond
-the listed tables keep the surface minimal. This is the informed trade the
-owner accepted in ratifying SD-28.
+**The consequence, stated once, plainly (owner: read this — updated for
+SD-32, 2026-09-23).** Once V2-8 ships, the site operates a database that
+links email addresses (and, if V2-13 SMS is ratified, phone numbers) to what
+each person follows, their preferences, and their quiz answers — **all of it
+readable by the operator and producible under a legal demand.** The
+2026-08-13 design encrypted answers on the device so a demand yielded only
+ciphertext; the owner retired that on 2026-09-23 because server-sent alerts
+require the server to read the subscription list, and chose to let the site
+read and collect what its features need. What remains: nothing is stored
+beyond the tables listed in §5 and on `/privacy`; hard deletion; no IP
+columns and logging off; the email/texting providers see addresses and
+message text; anything published from this data passes the K-anon gate. This
+is the informed trade the owner accepted in ratifying SD-32.
 
 - **10.1 Client rules:** no cookies for the anonymous experience; no
   third-party CDNs; localStorage for local state with a visible erase button;
   the anonymous reader's browsing never touches the Worker.
-- **10.2 Server code:** the `worker/` project only. Auth + ciphertext blobs +
-  integer counters. No per-submission rows for aggregates, no IP columns
-  anywhere, logging off (config committed). Argon2id for password hashes.
-  Belief payload ciphertext-only per §5.
+- **10.2 Server code:** the `worker/` project only. Auth + the readable user
+  tables of §5 + integer counters + alert delivery. No per-submission rows
+  for aggregates, no IP columns anywhere, logging off (config committed).
+  Argon2id for password hashes. Every table listed on `/privacy` (SD-32).
 - **10.3 Publication path:** any server-derived figure the site renders
   (trends, analytics) passes the K-anon (=50) gate before export to
   `data/aggregates/`; below-threshold cells never leave D1. The
@@ -796,7 +828,7 @@ the backlog of record.
 | §7 INC-19 | Bill diff viewer | **Parked** (SD-14 carried) |
 | §7 INC-20 | "Nobody Told You" + glossary | **Parked** (glossary exists and stays the banned-words allowlist) |
 | §7 INC-21 | Ballot builder + share cards | **Parked** (SD-10 carried) |
-| §7 INC-22 | ZK sync stub | **Superseded** by SD-28/V2-8 (design substantially survives inside it) |
+| §7 INC-22 | ZK sync stub | **Retired** — superseded by SD-28/V2-8, whose encryption core was then retired by SD-32 (2026-09-23) |
 | §8 | Testing | **Amended** — coverage claim made real and scoped (V2-2 on) |
 | §9 | CI/CD | **Amended** — real workflow names; Workers Builds; H16 |
 | §10.1–10.4 | Privacy engineering | **Superseded** by v2 §10 (old text described a never-built system whose premises the owner amended away) |
@@ -838,7 +870,9 @@ the backlog of record.
 
 ---
 
-*End of specification. Build order: V2-0 → V2-10 sequentially except marked ∥.
-Blocking gates: V2-1 before V2-2/V2-5; V2-7 before V2-8/V2-9. Every stop
-point is a coherent public product. When unsure — especially about what
+*End of specification. Build order: V2-0 → V2-5 done; then (SD-32) V2-11 →
+V2-7 → V2-8 → V2-12 → V2-13, with V2-6, V2-9, V2-10 after. Blocking gates:
+V2-1 before V2-2/V2-5; V2-7 before anything that stores user data (V2-8,
+V2-9, V2-12, V2-13) — an ordering, not a prohibition. Every stop point is a
+coherent public product. When unsure — especially about what
 counts as good or poor performance — ask the owner, in plain language.*

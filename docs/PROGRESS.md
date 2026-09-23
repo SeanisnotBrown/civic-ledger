@@ -3,7 +3,24 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-21, **nightly-failure fix** session — the `nightly` workflow had
+**Last updated:** 2026-09-23, **V2-5 CLOSE** session — owner ratified that V2-5 is
+COMPLETE. Every V2-5 piece is built, pushed, and CI-green: the IA restructure (D72), the
+full Nocturne design pass (CP1–CP9), the D81 metric swap (retired federal `party_unity` →
+`cross_aisle_support`), the owner-ratified factual headline "97% of bills introduced never
+got a floor vote" (D82), and the D83 nightly accept-list. **D83 acceptance MET** — the
+scheduled `nightly.yml` ran GREEN naturally on 2026-09-22 (run `35737604333`, quiet-night
+path), plus a green `workflow_dispatch` on 2026-09-21 (`35619113128`). The original V2-5
+blocker (an evaluative "lowest N%" wide-eyed headline needing H15 round two) was resolved a
+DIFFERENT way: D82 shipped a plain factual count that needed no ratification, so H15
+round-two was never required. **V2-5 ACCEPTANCE: MET / CLOSED — V2-6 is now unblocked**
+(next hard gate ahead: V2-7 privacy-truth before any V2-8/V2-9 data collection).
+- **⚠ OWNER TO-DO (spec doc-sync, not blocking):** `IMPLEMENTATIONv2.md` §7 V2-5 (lines
+  ~593-596) still *describes* the headline as "the lowest N% cut is a ratified threshold —
+  H15 round two." That text is now stale — the shipped headline is a factual count, not a
+  lowest-N% cut. It's outdated documentation only (nothing breaks); the spec sentence should
+  be updated to match what shipped. Owner to amend or authorize the one-line edit.
+
+**PRIOR:** 2026-09-21, **nightly-failure fix** session — the `nightly` workflow had
 failed every night since V2-1 on 4 permanently-quarantined House rolls (voters outside the
 covered roster on the roll date). Fixed with an owner-ratified **accept-list** (D83):
 `data/quality/accepted-quarantine.yaml` makes KNOWN quarantines non-fatal while a NEW one

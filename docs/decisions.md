@@ -1913,3 +1913,31 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   (`35737604333`, 2026-09-22) and never caused a failure. Bumping those action majors is a
   separate change, deliberately not bundled, so this fix's acceptance run has one unambiguous
   failure mode.
+
+- **D85 (2026-09-24) — GitHub Actions bumped off the deprecated Node 20 runtime; `setup-uv` is
+  pinned to a commit SHA because it no longer publishes major tags.** Every run was printing
+  `Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run
+  on Node.js 24` (GitHub's 2025-09-19 changelog). It was never a failure — it printed on the
+  GREEN run `35737604333` too — but the forced-Node-24 grace period ends, so all **11** action
+  refs across all three workflows were bumped in one commit: `actions/checkout@v4 → @v7`,
+  `actions/setup-node@v4 → @v7`, `actions/cache@v4 → @v6`, `astral-sh/setup-uv@v5 →
+  @c18668ad3cf93ea998bef934396af7bb5c839dc7` (v10.2.0). Targets were read from each repo's
+  releases API, **not guessed**. **The non-obvious constraint — do not "fix" this back to a
+  major tag:** `setup-uv` v8.0.0 stopped publishing major and minor tags on purpose ("pinning to
+  major releases opens up users to supply chain attacks like what happened to tj-actions"), and
+  `repos/astral-sh/setup-uv/git/ref/tags/v10` returns **404**. `@v10` would not resolve, so the
+  full commit SHA with a trailing `# v10.2.0` comment is the only correct form. **Breaking
+  changes reviewed, none of which bite here:** checkout v5 moved to Node 24 and v7 blocks
+  checking out fork PRs for `pull_request_target`/`workflow_run` (neither event is used);
+  cache v5 needs Actions Runner ≥ 2.327.1 (hosted `ubuntu-latest` is current); setup-node v5
+  made package-manager caching automatic — the explicit `cache: npm` +
+  `cache-dependency-path: site/package-lock.json` still matter because the lockfile is in
+  `site/`, not the repo root, and both inputs are still declared in `setup-node@v7`'s
+  `action.yml` (verified); setup-uv v9 changed `prune-cache` to default `false` (larger caches,
+  no behavior change) and v10 disables auto-caching for `pull_request_target`/`workflow_run`/
+  `release` (none used). **Deliberately NOT bundled with D84** so that fix's acceptance run has
+  one unambiguous failure mode. **Acceptance:** a green `ci.yml` run on this push — immediate,
+  unlike D84's ~5h nightly. If ci goes red, this bump is the only variable: revert the commit
+  rather than debugging forward. The first `nightly` on the bumped actions is 2026-09-25; the
+  D84 acceptance run `36015043828` checked out `368dbf088` and predates this, so the two
+  acceptances stay independent.

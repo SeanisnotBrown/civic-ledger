@@ -3,8 +3,53 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-24, **nightly push-collision fix (D84)** session — the owner
-reported recurring `nightly: All jobs have failed` emails. **Root cause found and fixed; the
+**Last updated:** 2026-09-24, **CI repair session (D84 + D85)** — owner reported recurring
+`nightly: All jobs have failed` emails. Two separate causes found; both fixed and pushed; both
+acceptances were still in flight when the session ended.
+
+**▶▶ FIRST THING NEXT SESSION — check these two runs (one command):**
+`gh run list --workflow=nightly.yml --limit 3 && gh run list --workflow=ci.yml --limit 3`
+- **D84 acceptance — nightly run `36015043828`** (workflow_dispatch, on `368dbf088`, started
+  2026-09-24T14:44:59Z, expect ~5h → done by ~19:45Z). **PASS = it commits AND pushes a data
+  diff** (`data: nightly 2026-09-24`, sweeping up the lost 09-23 data too). That push step is
+  the exact thing that failed 09-21 and 09-23. FAIL = read the log's last 20 lines; if it is
+  still a push rejection the rebase loop did not work and D84 needs rethinking.
+- **D85 acceptance — ci run `36015693164`** (push, on `19cb27466`, started 14:50:14Z, minutes
+  not hours). PASS = green. **FAIL = revert `19cb27466`, do not debug forward** — the action
+  bump is the only variable in it.
+- The earlier ci run `36014530868` (D84's push) shows `cancelled`: superseded by the D85 push
+  moments later. Not a failure; the D85 run covers both commits.
+
+**What was wrong (both fixed):**
+1. **D84 — the nightly threw away green nights.** Last instruction was a bare `git push`; the
+   job runs 4–6h between checkout and push, so any commit landing on `master` in that window
+   made it non-fast-forward. Runs `35622111686` (09-21) and `35872806073` (09-23) both died
+   there **after every gate had passed** — 09-23 discarded commit `b7e65fbfb`, 258 files, two
+   new Senate rolls, `ALL CHECKS PASSED` + `verify-recompute: OK` on 3,503 roll calls. Fixed
+   with fetch + rebase + bounded 3-attempt retry, never `--force`. Commit `368dbf088`.
+2. **D85 — actions were on the deprecated Node 20 runtime.** The `Node.js 20 is deprecated`
+   line in the failure emails was NOT the cause (it prints on green runs too), but the grace
+   period ends, so all 11 refs across all 3 workflows were bumped. Commit `19cb27466`.
+   **DO NOT "fix" `astral-sh/setup-uv@<sha> # v10.2.0` back to `@v10`** — setup-uv stopped
+   publishing major tags at v8 on purpose and `@v10` 404s. See D85.
+
+**Also this session:** the scheduled run `36011225686` was cancelled (it checked out `master`
+at ~14:14Z, three minutes before the doc-sync push `6188ac17d` landed, so it was already doomed
+and predated the fix). No data is lost either way — ingest is incremental against the live
+record. **`.env` now exists on the build machine** with a working `CONGRESS_API_KEY` (verified
+live: HTTP 200, HR 1 / 119th, and the `/actions` sub-resource V2-11 needs is reachable — 59
+actions on that bill). **V2-11 is now unblocked and is still the next increment.**
+
+**Known gap, not a blocker:** `CachedResponse` (`ingest/cache.py`) exposes only
+`path/text/status/from_cache/ext` — no headers. H23 (the per-key hourly rate limit) is reported
+in `X-RateLimit-*` response headers, so V2-11 task 1 needs either header capture added to the
+cache layer or a one-off raw `httpx` probe outside it.
+
+**Failure history, disambiguated:** 09-18/19/20 (2-minute failures) = the D83 quarantine issue,
+FIXED. 09-21 + 09-23 (multi-hour failures) = the D84 push collision, FIXED. 09-22 green.
+
+**PRIOR (2026-09-24, same day — detail behind D84 above): nightly push-collision fix**
+session — the owner reported recurring `nightly: All jobs have failed` emails. **Root cause found and fixed; the
 Node 20 deprecation line in those emails is NOT the cause** (it is a runner warning that also
 appears on green runs). The job's last instruction was a bare `git push`; steps 1–5 run 4–6
 hours between checkout and that push, so any commit landing on `master` in that window makes
@@ -23,7 +68,7 @@ evaluative changed.
 - **Failure history, disambiguated:** 09-18/19/20 (2-minute failures) = the D83 quarantine
   issue, FIXED. 09-21 + 09-23 (multi-hour failures) = this push collision, D84. 09-22 was green.
 
-**PRIOR (2026-09-24, earlier): orientation + doc-sync** session — no code, no data, no
+**PRIOR (2026-09-24, earliest): orientation + doc-sync** session — no code, no data, no
 increment work. Read-only cross-check of this file against the tree; three stale annotations
 corrected (flagged `[corrected 2026-09-24]` below). Tree clean and in sync with
 `origin/master`; `uv run pytest` re-run **330 passed** (unchanged). **One new blocker found,

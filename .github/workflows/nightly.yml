@@ -139,5 +139,29 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A data/
           git commit -m "data: nightly $(date -u +%Y-%m-%d)"
-          git push
-          echo "nightly: committed and pushed the data diff."
+
+          # 7) PUSH-COLLISION GUARD (D84). Steps 1-5 above run for HOURS between
+          #    this job's checkout and this push (4h18m..5h52m observed). Any commit
+          #    landing on master inside that window makes a bare `git push`
+          #    non-fast-forward and throws away a fully-green night's data: that is
+          #    exactly how runs 35622111686 (2026-09-21) and 35872806073
+          #    (2026-09-23) died, both AFTER every gate had passed. Rebase our one
+          #    data commit onto the current tip and retry. NEVER --force: a rejected
+          #    push means someone else's work is on the remote, and the data commit
+          #    only ever touches data/, which nothing else writes, so the rebase is
+          #    a clean replay. A genuine conflict fails the job loudly (the runner is
+          #    ephemeral and the last good deploy stays live, same as today).
+          #    Code-vs-data skew (a formula change landing mid-run, making the rebased
+          #    data stale) is caught by ci.yml, which runs verify-recompute on push.
+          for attempt in 1 2 3; do
+            git fetch origin master
+            git rebase origin/master
+            if git push origin HEAD:master; then
+              echo "nightly: committed and pushed the data diff (attempt $attempt)."
+              exit 0
+            fi
+            echo "nightly: push rejected on attempt $attempt; refetching." >&2
+            sleep 15
+          done
+          echo "nightly: push failed after 3 attempts — data NOT published." >&2
+          exit 1

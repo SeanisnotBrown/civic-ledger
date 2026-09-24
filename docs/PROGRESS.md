@@ -3,7 +3,27 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-24, **orientation + doc-sync** session — no code, no data, no
+**Last updated:** 2026-09-24, **nightly push-collision fix (D84)** session — the owner
+reported recurring `nightly: All jobs have failed` emails. **Root cause found and fixed; the
+Node 20 deprecation line in those emails is NOT the cause** (it is a runner warning that also
+appears on green runs). The job's last instruction was a bare `git push`; steps 1–5 run 4–6
+hours between checkout and that push, so any commit landing on `master` in that window makes
+the push non-fast-forward. Runs `35622111686` (09-21) and `35872806073` (09-23) both died there
+**after every gate had passed** — 09-23 threw away commit `b7e65fbfb`, 258 files, two new Senate
+rolls, `ALL CHECKS PASSED` + `verify-recompute: OK`. Fixed with fetch + rebase + bounded
+3-attempt retry, never `--force` (D84, `docs/decisions.md`). Not a V2-N acceptance; nothing
+evaluative changed.
+- **ACCEPTANCE PENDING:** one green `nightly` run that commits and pushes a data diff. The fix
+  cannot be verified this session (a run takes ~5h). **Next session: check it.**
+- **Tonight's in-flight run `36011225686` will still fail** — it checked out `master` at
+  ~14:14Z, and the D82/doc-sync push `6188ac17d` landed at 14:17Z, three minutes later, so it
+  is already carrying a doomed push and predates the fix. Nothing to do about it; the fix only
+  takes effect on runs that start after it. No data is lost: ingest is incremental against the
+  live record, so the next green run re-collects 09-23 and 09-24 together.
+- **Failure history, disambiguated:** 09-18/19/20 (2-minute failures) = the D83 quarantine
+  issue, FIXED. 09-21 + 09-23 (multi-hour failures) = this push collision, D84. 09-22 was green.
+
+**PRIOR (2026-09-24, earlier): orientation + doc-sync** session — no code, no data, no
 increment work. Read-only cross-check of this file against the tree; three stale annotations
 corrected (flagged `[corrected 2026-09-24]` below). Tree clean and in sync with
 `origin/master`; `uv run pytest` re-run **330 passed** (unchanged). **One new blocker found,

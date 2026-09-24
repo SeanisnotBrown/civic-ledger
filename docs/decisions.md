@@ -1878,3 +1878,38 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   V2-11 (bill activity + topics + feeds, zero collection) → V2-7 → V2-8 → V2-12 (subscriptions
   + email) → V2-13 (text / push); V2-6 deferred (only two grade-history commits exist). Plan
   and open decisions 2–7: `docs/plan-subscriptions-and-alerts.md`. New human tasks H20–H23.
+
+- **D84 (2026-09-24) — the nightly rebases before it pushes; a mid-run commit no longer
+  destroys a green night.** The `nightly` job's last step was a bare `git push`
+  (`nightly.yml:142`). Steps 1–5 run for **hours** between the job's `actions/checkout` and
+  that push — 4h17m, 4h32m, 4h43m, 5h51m across the last four runs — so any commit landing on
+  `master` inside that window makes the push non-fast-forward and the job exits 1. Two runs
+  died exactly this way, both **after every gate had already passed**: `35622111686`
+  (2026-09-21, `non-fast-forward`) and `35872806073` (2026-09-23, `fetch first`). The 09-23 run
+  had produced commit `b7e65fbfb`, "data: nightly 2026-09-23", 258 files / 4,024 insertions
+  including two new Senate rolls (`s-119-2-0239`, `s-119-2-0240`) — `ALL CHECKS PASSED`,
+  `verify-recompute: OK` on 3,503 roll calls — and the whole thing was discarded at the last
+  instruction. **This is the failure `docs/plan-subscriptions-and-alerts.md` §2 V2-11 task 8
+  predicted in advance** ("the nightly runs 4–5 hours between its checkout and its push; a
+  second workflow committing to `master` in that window makes the nightly's push
+  non-fast-forward and fails a green night") and prescribed the mitigation for; the second
+  workflow it anticipated has not been built yet, but a human pushing docs does the same damage.
+  **Fix:** `git fetch origin master` + `git rebase origin/master` + `git push origin HEAD:master`
+  in a bounded 3-attempt loop. **`--force` is never used** — a rejection means somebody else's
+  work is on the remote. The rebase is a clean replay because the data commit touches only
+  `data/`, which nothing but this job writes; a genuine conflict fails the job loudly, leaving
+  the last good deploy live (§6.1), the same outcome as today. **Residual risk, accepted:** a
+  *code* change (metric formula, thresholds) landing mid-run leaves the rebased data computed
+  against the old code. `ci.yml` runs `verify-recompute` on every push, so that skew fails
+  visibly on the resulting commit rather than shipping silently. **Not a data fix and not a
+  V2-N acceptance:** no ingest logic, no threshold, nothing evaluative changes — §0.8 does not
+  apply. The 09-23 data is not permanently lost; the ingest is incremental against the live
+  record, so the next green run re-collects it. **Distinct from D83:** D83 fixed the 2-minute
+  quarantine failures (2026-09-18/19/20); D84 fixes the multi-hour push failures
+  (2026-09-21/23). **Acceptance:** one green `nightly` run that commits and pushes a data diff.
+  **Unrelated and NOT addressed here:** the `Node.js 20 is deprecated` line in the failure
+  emails is a GitHub runner warning about `actions/checkout@v4`, `actions/setup-node@v4`,
+  `actions/cache@v4` and `astral-sh/setup-uv@v5`. It is noise — it appears on green runs too
+  (`35737604333`, 2026-09-22) and never caused a failure. Bumping those action majors is a
+  separate change, deliberately not bundled, so this fix's acceptance run has one unambiguous
+  failure mode.

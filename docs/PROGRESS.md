@@ -3,7 +3,18 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-23 (evening), **SD-32 doctrine + priority** session — the owner
+**Last updated:** 2026-09-24, **orientation + doc-sync** session — no code, no data, no
+increment work. Read-only cross-check of this file against the tree; three stale annotations
+corrected (flagged `[corrected 2026-09-24]` below). Tree clean and in sync with
+`origin/master`; `uv run pytest` re-run **330 passed** (unchanged). **One new blocker found,
+recorded in START HERE below: there is no `.env` on the build machine**, so
+`CONGRESS_API_KEY` is unset locally and V2-11 task 1 cannot run until the owner supplies it
+(H1 is ✅ — the key exists as a GitHub repo secret, but GitHub cannot display it back;
+re-request at https://api.congress.gov/sign-up/ or take it from the api.data.gov account).
+No other finding: no hardcoded D82 counts exist in `site/src` (checked), so the live copy
+tracks `data/manifest.json` and has not drifted.
+
+**PRIOR (2026-09-23, evening): SD-32 doctrine + priority** session — the owner
 asked for **profiles, topic subscriptions, bill tracking, and email/text alerts**, reviewed the
 plan, and ratified **SD-32: the site may read and collect the user data its features need**
 ("change anything in the plans or other docs that stop the site from reading or collecting
@@ -21,12 +32,19 @@ earlier today, D82/D83 green). Docs-only session: no code, no data, nothing buil
   metric table's "Party unity %" row are stale; owner has not yet authorized those two edits.
 
 **▶ NEXT SESSION — START HERE: V2-11 task 1** (`docs/plan-subscriptions-and-alerts.md` §5).
-No owner input is needed to begin. Steps:
+**BLOCKED on one owner action** *[corrected 2026-09-24 — this line previously read "No owner
+input is needed to begin", which was wrong]*: step 1 makes live authenticated Congress.gov
+calls and there is **no `.env` on this machine**, so `CONGRESS_API_KEY` is unset (H1 is ✅ done
+— the key is a GitHub repo secret, unreadable after the fact). Unblock either way:
+`cp .env.example .env` + paste the key (source: https://api.congress.gov/sign-up/, free, by
+email; or the existing api.data.gov account), **or** run step 1's probe as a
+`workflow_dispatch` in CI where the secret already lives. Steps:
 1. Verify the Congress.gov `/bill` list (update-date filter/sort, page size) and
    `/bill/{c}/{type}/{n}/actions` endpoints live through the existing cached client; confirm
    the key's hourly limit (H23).
 2. Measure: bill universe for the 118th–119th; bills updated per day; projected built file
-   count for each option of plan decision 3 (site is at 13,093 files / 20,000 free limit).
+   count for each option of plan decision 3 (site was **13,093 files / 20,000** at the last
+   measured build, 2026-08-14 — re-measure with `npm run test:file-count` before projecting).
 3. Put plan decisions 2, 3, 4, 6, 7 to the owner in ONE plain-language message with those
    numbers. Then build V2-11 tasks 2–9 on his answers; commit `V2-11: <what>` per gate.
 V2-11 is zero-collection (static feeds/topics/timelines), so the V2-7 privacy gate does not
@@ -80,6 +98,14 @@ CI-green run 31956907062). Prior: Nocturne complete (CP1–CP9); the D81 metric 
   roll-call vote; **232 of the 375 enacted bills became law with NO roll call** (voice/UC), so
   the copy says "recorded floor votes," never "any consideration." A plain count (no cutoff, no
   grade, no member singled out) → §0.8 satisfied like the D81 swap; owner ratified the wording.
+  - *[annotated 2026-09-24] The five counts above are the values AS RATIFIED on 2026-08-16
+    and are kept verbatim as the record of what the owner approved. Nightlies have since
+    grown the dataset; `data/manifest.json` `counts.legislation` reads, today:
+    **38,303** sponsored bills, **1,038** with a roll call, **37,265**
+    (97.3%) without, **384** became law, **237** of those with no roll
+    call. **The ratified "97%" framing still holds** (97.29%) and no re-ratification is
+    due. Nothing in `site/src` hardcodes any of these numbers (grep-verified 2026-09-24) —
+    the dashboard and `/methods` read the manifest, so published copy has not drifted.*
   **Build:** `ingest/legislation_stats.py` (pure `compute(data_dir)`) → new recompute-gated
   `manifest.counts.legislation` block; `verify_recompute` **invariant 7** re-derives it byte-
   exact; dashboard flagship band (88px "97%", exact counts inline, methods link — non-clickable,

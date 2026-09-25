@@ -31,7 +31,6 @@
   "exceptions": {
     "B001328": "min_service",
     "G000582": "delegate",
-    "G000608": "min_service",
     "H001103": "delegate",
     "K000404": "delegate",
     "M001219": "delegate",
@@ -108,7 +107,7 @@
     "A000382": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.44
+      "value": 98.34
     },
     "A000383": {
       "grade": "A",
@@ -168,7 +167,7 @@
     "B001243": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 93.84
+      "value": 93.85
     },
     "B001248": {
       "grade": "B",
@@ -188,12 +187,12 @@
     "B001261": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 92.58
+      "value": 92.6
     },
     "B001267": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 94.59
+      "value": 94.6
     },
     "B001275": {
       "grade": "C",
@@ -233,7 +232,7 @@
     "B001288": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.41
+      "value": 95.42
     },
     "B001291": {
       "grade": "B",
@@ -288,12 +287,12 @@
     "B001303": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.97
+      "value": 97.98
     },
     "B001305": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.23
+      "value": 97.24
     },
     "B001306": {
       "grade": "A",
@@ -403,7 +402,7 @@
     "C000127": {
       "grade": "A",
       "label": "A — Strong attendance",
-      "value": 99.43
+      "value": 99.44
     },
     "C000141": {
       "grade": "B",
@@ -438,7 +437,7 @@
     "C001047": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.98
+      "value": 96.99
     },
     "C001051": {
       "grade": "D",
@@ -513,7 +512,7 @@
     "C001075": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 94.22
+      "value": 94.23
     },
     "C001078": {
       "grade": "D",
@@ -538,7 +537,7 @@
     "C001088": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 94.59
+      "value": 94.6
     },
     "C001090": {
       "grade": "B",
@@ -553,12 +552,12 @@
     "C001095": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.92
+      "value": 96.93
     },
     "C001096": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 93.21
+      "value": 93.22
     },
     "C001097": {
       "grade": "C",
@@ -568,7 +567,7 @@
     "C001098": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 93.4
+      "value": 93.41
     },
     "C001101": {
       "grade": "A",
@@ -603,7 +602,7 @@
     "C001114": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.85
+      "value": 95.86
     },
     "C001115": {
       "grade": "B",
@@ -743,7 +742,7 @@
     "D000563": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.35
+      "value": 95.36
     },
     "D000594": {
       "grade": "C",
@@ -773,7 +772,7 @@
     "D000618": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.91
+      "value": 95.92
     },
     "D000622": {
       "grade": "C",
@@ -998,7 +997,7 @@
     "F000479": {
       "grade": "F",
       "label": "F — Poor attendance",
-      "value": 87.18
+      "value": 87.2
     },
     "F000480": {
       "grade": "B",
@@ -1093,7 +1092,7 @@
     "G000574": {
       "grade": "F",
       "label": "F — Poor attendance",
-      "value": 84.44
+      "value": 84.46
     },
     "G000576": {
       "grade": "B",
@@ -1235,6 +1234,11 @@
       "label": "D — Weak attendance",
       "value": 93.88
     },
+    "G000608": {
+      "grade": "D",
+      "label": "D — Weak attendance",
+      "value": 90.0
+    },
     "H000273": {
       "grade": "B",
       "label": "B — Good attendance",
@@ -1243,7 +1247,7 @@
     "H000601": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 92.65
+      "value": 92.66
     },
     "H000874": {
       "grade": "C",
@@ -1308,7 +1312,7 @@
     "H001076": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.74
+      "value": 98.75
     },
     "H001077": {
       "grade": "C",
@@ -1318,7 +1322,7 @@
     "H001079": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.36
+      "value": 97.37
     },
     "H001081": {
       "grade": "B",
@@ -1343,7 +1347,7 @@
     "H001089": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 94.47
+      "value": 94.48
     },
     "H001090": {
       "grade": "B",
@@ -1443,7 +1447,7 @@
     "J000293": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.05
+      "value": 98.06
     },
     "J000294": {
       "grade": "A",
@@ -1513,7 +1517,7 @@
     "J000312": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.77
+      "value": 95.78
     },
     "K000009": {
       "grade": "B",
@@ -1538,7 +1542,7 @@
     "K000377": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.22
+      "value": 95.23
     },
     "K000380": {
       "grade": "C",
@@ -1593,7 +1597,7 @@
     "K000393": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.17
+      "value": 97.18
     },
     "K000394": {
       "grade": "D",
@@ -1703,7 +1707,7 @@
     "L000571": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.1
+      "value": 96.11
     },
     "L000575": {
       "grade": "A",
@@ -1713,7 +1717,7 @@
     "L000577": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.79
+      "value": 95.8
     },
     "L000578": {
       "grade": "D",
@@ -1818,7 +1822,7 @@
     "M000133": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.11
+      "value": 98.12
     },
     "M000194": {
       "grade": "D",
@@ -1838,7 +1842,7 @@
     "M000355": {
       "grade": "F",
       "label": "F — Poor attendance",
-      "value": 89.06
+      "value": 89.08
     },
     "M000639": {
       "grade": "F",
@@ -1858,12 +1862,12 @@
     "M000934": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 93.02
+      "value": 93.04
     },
     "M001111": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.04
+      "value": 96.05
     },
     "M001135": {
       "grade": "A",
@@ -1888,7 +1892,7 @@
     "M001153": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.1
+      "value": 96.11
     },
     "M001156": {
       "grade": "F",
@@ -1973,7 +1977,7 @@
     "M001198": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.79
+      "value": 96.8
     },
     "M001199": {
       "grade": "B",
@@ -2158,12 +2162,12 @@
     "M001242": {
       "grade": "A",
       "label": "A — Strong attendance",
-      "value": 99.44
+      "value": 99.45
     },
     "M001243": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.11
+      "value": 97.12
     },
     "M001244": {
       "grade": "B",
@@ -2288,7 +2292,7 @@
     "P000145": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.91
+      "value": 95.92
     },
     "P000197": {
       "grade": "D",
@@ -2298,7 +2302,7 @@
     "P000595": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.55
+      "value": 98.56
     },
     "P000597": {
       "grade": "C",
@@ -2313,7 +2317,7 @@
     "P000603": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 95.6
+      "value": 95.61
     },
     "P000604": {
       "grade": "F",
@@ -2433,7 +2437,7 @@
     "R000584": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 94.09
+      "value": 94.1
     },
     "R000595": {
       "grade": "F",
@@ -2453,7 +2457,7 @@
     "R000605": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.36
+      "value": 97.37
     },
     "R000606": {
       "grade": "B",
@@ -2461,9 +2465,9 @@
       "value": 98.84
     },
     "R000608": {
-      "grade": "B",
-      "label": "B — Good attendance",
-      "value": 98.99
+      "grade": "A",
+      "label": "A — Strong attendance",
+      "value": 99.0
     },
     "R000609": {
       "grade": "C",
@@ -2498,7 +2502,7 @@
     "R000618": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.05
+      "value": 98.06
     },
     "R000619": {
       "grade": "C",
@@ -2523,7 +2527,7 @@
     "S000033": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 91.83
+      "value": 91.84
     },
     "S000148": {
       "grade": "A",
@@ -2588,7 +2592,7 @@
     "S001150": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.46
+      "value": 96.47
     },
     "S001156": {
       "grade": "B",
@@ -2623,7 +2627,7 @@
     "S001181": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.04
+      "value": 96.05
     },
     "S001183": {
       "grade": "B",
@@ -2633,7 +2637,7 @@
     "S001184": {
       "grade": "F",
       "label": "F — Poor attendance",
-      "value": 88.69
+      "value": 88.71
     },
     "S001185": {
       "grade": "C",
@@ -2673,7 +2677,7 @@
     "S001194": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.55
+      "value": 98.56
     },
     "S001195": {
       "grade": "B",
@@ -2688,7 +2692,7 @@
     "S001198": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.35
+      "value": 96.36
     },
     "S001199": {
       "grade": "B",
@@ -2833,7 +2837,7 @@
     "S001232": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.33
+      "value": 97.34
     },
     "T000165": {
       "grade": "D",
@@ -2853,7 +2857,7 @@
     "T000278": {
       "grade": "D",
       "label": "D — Weak attendance",
-      "value": 93.21
+      "value": 93.22
     },
     "T000460": {
       "grade": "A",
@@ -2898,7 +2902,7 @@
     "T000476": {
       "grade": "F",
       "label": "F — Poor attendance",
-      "value": 88.5
+      "value": 88.46
     },
     "T000478": {
       "grade": "A",
@@ -3028,7 +3032,7 @@
     "W000437": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 97.17
+      "value": 97.18
     },
     "W000779": {
       "grade": "B",
@@ -3043,7 +3047,7 @@
     "W000790": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.67
+      "value": 96.68
     },
     "W000795": {
       "grade": "C",
@@ -3063,7 +3067,7 @@
     "W000800": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.04
+      "value": 96.05
     },
     "W000802": {
       "grade": "C",
@@ -3078,7 +3082,7 @@
     "W000805": {
       "grade": "C",
       "label": "C — Fair attendance",
-      "value": 96.48
+      "value": 96.49
     },
     "W000806": {
       "grade": "B",
@@ -3118,7 +3122,7 @@
     "W000817": {
       "grade": "B",
       "label": "B — Good attendance",
-      "value": 98.74
+      "value": 98.75
     },
     "W000821": {
       "grade": "A",
@@ -3166,9 +3170,9 @@
       "value": 99.53
     },
     "Y000064": {
-      "grade": "B",
-      "label": "B — Good attendance",
-      "value": 98.99
+      "grade": "A",
+      "label": "A — Strong attendance",
+      "value": 99.0
     },
     "Y000067": {
       "grade": "A",

@@ -3,11 +3,41 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-24, **CI repair session (D84 + D85)** — owner reported recurring
+**Last updated:** 2026-09-29, **D86 session — nightly cost fix.** Owner reported the GitHub
+Actions bill; both nightlies since 09-28 died in 5 s (*"job was not started because recent
+account payments have failed or your spending limit needs to be increased"*). The free
+2,000-minute private-repo allowance was exhausted: `uv run ingest legislation` re-fetched all
+639 members' lists every night — 3h35m of a 3h50m run — and only started running at all on
+09-21 when D83 fixed the 2-minute crash that had hidden it. **Owner decisions (2026-09-29):
+stay on free plans; option 1 = probe lifetime counts, re-page only changed members, weekly
+full refresh.** Built as **D86** (`docs/decisions.md`): `congress_gov.member_lifetime_counts()`
+(one `/member/{id}` call), `lifetime_counts` stored on each legislation record (schema
+regenerated), `legislation.should_refetch()` (pure), `uv run ingest legislation --full`, and
+`nightly.yml` passes `--full` on Sundays. Not evaluative, not a V2-N acceptance. Allowance
+resets **2026-10-01** (owner read it in Billing); nightly resumes on its own.
+
+**▶▶ FIRST THING NEXT SESSION — D86 acceptance:**
+`gh run list --workflow=nightly.yml --limit 4`
+- The **first** nightly on/after 10-01 re-pages everyone once (no record has counts yet):
+  expect ~4 h and a commit touching all 639 `data/legislation/*.json` (adds `lifetime_counts`).
+- The **next non-Sunday** nightly is the acceptance: **PASS = < 1 h and the log prints
+  `N re-fetched + M unchanged (kept) of 639 members`** with M in the hundreds. FAIL = read the
+  legislation lines; if every member re-fetched, the stored counts are not matching the live
+  probe (compare one member's `lifetime_counts` to `/member/{id}` by hand).
+- Sundays run `--full` (~4 h) by design. Budget: ≈ 900–1,400 min/month vs 2,000 free.
+
+**D84 + D85 acceptances: both PASSED** (checked 2026-09-29). Nightly green 09-24 (dispatch),
+09-25, 09-26, 09-27 with data pushed 09-24/25/26 (09-27 quiet); ci run `36016184179` green on
+the bumped actions (the `36015693164` run was superseded/cancelled, not failed).
+
+**V2-11 task 1 remains the next increment** (unchanged; `.env` has a working key). This
+session did not touch it.
+
+**PRIOR (2026-09-24): CI repair session (D84 + D85)** — owner reported recurring
 `nightly: All jobs have failed` emails. Two separate causes found; both fixed and pushed; both
 acceptances were still in flight when the session ended.
 
-**▶▶ FIRST THING NEXT SESSION — check these two runs (one command):**
+**Acceptance checks as they stood at that handoff (both since PASSED — see head):**
 `gh run list --workflow=nightly.yml --limit 3 && gh run list --workflow=ci.yml --limit 3`
 - **D84 acceptance — nightly run `36015043828`** (workflow_dispatch, on `368dbf088`, started
   2026-09-24T14:44:59Z, expect ~5h → done by ~19:45Z). **PASS = it commits AND pushes a data

@@ -152,6 +152,24 @@ def bill_cosponsor_ids(
 
 
 # --- Member legislation (INC-10) ------------------------------------------
+def member_lifetime_counts(bioguide: str) -> dict[str, int]:
+    """Lifetime sponsored/cosponsored item counts for a member, from ONE request to
+    `/member/{bioguide}` (D86). The detail response carries
+    `sponsoredLegislation.count` / `cosponsoredLegislation.count`, and each equals the
+    corresponding list endpoint's `pagination.count` (verified live 2026-09-29:
+    W000437 761/4,534 on both). The nightly uses it as a cheap change probe: an
+    unchanged pair means no new sponsorship or cosponsorship since the committed
+    record, so the multi-page list fetch (≈7 s per 250-item page) is skipped.
+    Returns {"sponsored": n, "cosponsored": n}. A missing block reads as 0 — the
+    caller then re-pages (a 0 never matches a committed non-zero), so a malformed
+    detail response degrades to the full fetch, never to a stale reuse."""
+    member = _get(f"member/{bioguide}").json().get("member") or {}
+    return {
+        "sponsored": int((member.get("sponsoredLegislation") or {}).get("count") or 0),
+        "cosponsored": int((member.get("cosponsoredLegislation") or {}).get("count") or 0),
+    }
+
+
 def member_legislation(
     bioguide: str, kind: str, congresses: list[int], *, force: bool = False
 ) -> list[dict]:

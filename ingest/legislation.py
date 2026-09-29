@@ -8,6 +8,15 @@ legislation metric from the public repo (the verify-recompute contract).
 
 `parse_items` is pure (raw API items -> list[LegItem]); `run()` fetches and exports.
 See `LegItem` for why no live latest-action field is stored (quiet-night diff-gate).
+
+Nightly cost (D86): a full fetch is ~3,500 list pages at ~7 s each — 3.5 of the
+nightly's 4 hours, and the whole reason the free GitHub Actions allowance ran out in
+2026-09. `run()` therefore probes each member's LIFETIME counts with ONE `/member/{id}`
+request and re-pages the lists only for members whose counts moved since the
+committed record (`should_refetch`, pure). `--full` forces the old every-member
+re-page; the workflow passes it once a week so the one thing the probe cannot see —
+an already-listed bill's latest action moving to "Became Public Law" with no new
+sponsorship by that member — is never more than 7 days stale.
 """
 
 from __future__ import annotations
@@ -69,6 +78,30 @@ def _prior_counts(path) -> tuple[Counter[int], Counter[int]]:
         Counter(it["congress"] for it in rec.get("cosponsored", [])),
     )
 
+def should_refetch(prior_counts: dict[str, int] | None, live_counts: dict[str, int]) -> bool:
+    """Pure (D86): re-page a member's lists unless the committed record carries
+    lifetime counts AND they equal the live detail-endpoint pair. A pre-D86 record
+    (None) or any difference — up OR down (a withdrawn cosponsorship lowers the
+    count) — means re-fetch. Equality is exact on both kinds; a malformed live probe
+    reads as 0 (see `congress_gov.member_lifetime_counts`), which cannot equal a real
+    committed non-zero, so probe failure degrades to a full fetch, never to reuse."""
+    if prior_counts is None:
+        return True
+    return (
+        prior_counts.get("sponsored") != live_counts.get("sponsored")
+        or prior_counts.get("cosponsored") != live_counts.get("cosponsored")
+    )
+
+
+def _prior_record(path) -> MemberLegislation | None:
+    """The previously-committed export at `path` as a model, or None if absent."""
+    import json
+
+    if not path.exists():
+        return None
+    return MemberLegislation.model_validate(json.loads(path.read_text(encoding="utf-8")))
+
+
 # Bill-type code -> congress.gov URL segment, for a human-checkable source_url.
 _URL_TYPE: dict[str, str] = {
     "hr": "house-bill", "s": "senate-bill",
@@ -129,7 +162,11 @@ def run(argv: list[str] | None = None) -> int:
     raises `TruncatedFetchError` on a premature-empty page, and `_count_regressions`
     fails the run if any congress that had records before now parses to zero (bills
     do not un-sponsor). A genuine served-congress zero — a member who served only
-    days of a congress, or a low-output leader — is a true fact and does NOT fail."""
+    days of a congress, or a low-output leader — is a true fact and does NOT fail.
+
+    D86: without `--full`, each member costs ONE detail request; the lists are
+    re-paged only when the lifetime counts moved (or the record predates D86). With
+    `--full` every member is re-paged (the weekly refresh; also the recovery path)."""
     import httpx
 
     from ingest import config
@@ -149,11 +186,23 @@ def run(argv: list[str] | None = None) -> int:
         for p in members_dir.glob("*.json")
     }
     member_ids = sorted(members)
+    full = "--full" in (argv or [])
 
     failures: list[str] = []
     exported = 0
+    reused = 0
     for mid in member_ids:
+        prior = _prior_record(leg_dir / f"{mid}.json")
         try:
+            live_counts = congress_gov.member_lifetime_counts(mid)
+            if (not full and prior is not None
+                    and not should_refetch(prior.lifetime_counts, live_counts)):
+                # Nothing sponsored/cosponsored since the committed record: keep it
+                # byte-identical (quiet-night diff-gate, D33) and skip the list pages.
+                reused += 1
+                print(f"  {mid}: unchanged ({live_counts['sponsored']}/"
+                      f"{live_counts['cosponsored']} lifetime) — committed record kept.")
+                continue
             congs = config.CONGRESSES
             sponsored_raw = congress_gov.member_legislation(mid, "sponsored-legislation", congs)
             cosponsored_raw = congress_gov.member_legislation(mid, "cosponsored-legislation", congs)
@@ -178,14 +227,16 @@ def run(argv: list[str] | None = None) -> int:
             sponsored=sponsored,
             cosponsored=cosponsored,
             source_url=f"https://api.congress.gov/v3/member/{mid}/sponsored-legislation",
+            lifetime_counts=live_counts,
         )
         export_member_legislation(rec)
         exported += 1
         print(f"  {mid}: {len(sponsored)} sponsored, {len(cosponsored)} cosponsored "
               f"(118–119); {sum(li.became_law for li in sponsored)} enacted.")
 
-    print(f"civic-ledger legislation: exported {exported}/{len(member_ids)} members "
-          f"to data/legislation/.")
+    mode = " [--full]" if full else ""
+    print(f"civic-ledger legislation: {exported} re-fetched + {reused} unchanged (kept) "
+          f"of {len(member_ids)} members -> data/legislation/{mode}.")
     if failures:
         print(f"FAIL: {len(failures)} issue(s): {failures[:10]}")
         return 1

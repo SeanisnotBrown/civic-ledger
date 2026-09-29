@@ -1941,3 +1941,40 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   rather than debugging forward. The first `nightly` on the bumped actions is 2026-09-25; the
   D84 acceptance run `36015043828` checked out `368dbf088` and predates this, so the two
   acceptances stay independent.
+
+- **D86 (2026-09-29) — nightly legislation ingest probes lifetime counts and re-pages only
+  members whose counts moved; a full re-page runs on Sundays.** Owner-chosen ("proceed with
+  option 1") after the free GitHub Actions allowance ran out on 2026-09-28 (both nightlies
+  since died in 5 s: *"The job was not started because recent account payments have failed or
+  your spending limit needs to be increased"*). **Where the minutes went:** `uv run ingest
+  legislation` — 3h35m of the 09-27 run's 3h50m (`14:45:36Z → 18:20:31Z`; everything else,
+  votes/bills/classify/build/checks, ~15 min). It re-fetched every one of 639 members' sponsored
+  + cosponsored lists every night: ~3,500 pages of 250 items, and a 250-item cosponsored page
+  takes ~7 s (measured live, W000437), so the 1 req/s throttle was not even the bottleneck. The
+  restored raw cache (R-5) never helped because its TTL is 20 h and the cadence is 24 h. **Why
+  it only showed up on 09-21:** before D83 the nightly crashed at step 2 (house-votes) after ~2
+  min every night from 09-01 to 09-20, so the legislation step never ran; fixing the crash
+  exposed the real cost. September: nightly ≈ 2,140 min + ci ≈ 127 min > the 2,000-minute
+  private-repo allowance (owner keeps the repo private, D59; stays on free plans — owner,
+  2026-09-29). **Fix:** `congress_gov.member_lifetime_counts()` — ONE `/member/{id}` request
+  whose `sponsoredLegislation.count` / `cosponsoredLegislation.count` equal the list endpoints'
+  `pagination.count` (verified live: 761 / 4,534 on both for W000437; ~0.6–0.9 s). Each
+  `data/legislation/{id}.json` now stores that pair as `lifetime_counts` (schema regenerated;
+  not a published metric — the metrics still read the covered-window `sponsored`/`cosponsored`
+  lists). `legislation.should_refetch()` (pure) re-pages a member iff the record predates D86
+  or either count differs — up OR down (a withdrawn cosponsorship lowers it). A malformed probe
+  reads as 0/0, which cannot equal a real committed pair, so probe failure degrades to the full
+  fetch, never to a stale reuse. An unchanged member's file is left byte-identical (D33
+  quiet-night gate). **Staleness bound, stated:** the probe cannot see an already-listed bill
+  whose latest action moves to "Became Public Law" with no new sponsorship by that member, so
+  `nightly.yml` passes `--full` on Sundays (`date -u +%u = 7`); enactment flags lag ≤ 7 days.
+  The **first** post-D86 night re-pages everyone once (no record carries counts yet) — one more
+  ~4 h run, then ~11 min for the probe (639 × ~1 s) plus the changed members. **Budget after:**
+  quiet night ~15–25 min, busy day 30–90 min, Sunday ~4 h → ≈ 900–1,400 min/month, inside the
+  2,000. **Not evaluative, not a V2-N acceptance:** no metric, threshold, or wording changes;
+  the same data lands, on a different schedule. **Rejected:** raising the cache TTL above 24 h
+  (the restored cache would then always be "fresh" and legislation would never refresh at
+  all); a self-hosted homelab runner (zero billed minutes, but an owner setup task — offered as
+  option 3, not chosen); public repo (unlimited minutes; D59 stands). **Acceptance:** the first
+  non-Sunday nightly after the first full post-D86 run completes in < 1 h and prints
+  `N re-fetched + M unchanged (kept) of 639 members`.

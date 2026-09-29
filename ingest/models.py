@@ -177,6 +177,14 @@ class MemberLegislation(_Strict):
     sponsored: list[LegItem]
     cosponsored: list[LegItem]
     source_url: str  # the sponsored-legislation endpoint (human-checkable)
+    # LIFETIME item counts as reported by `/member/{id}` at the time of the last full
+    # fetch (D86): {"sponsored": n, "cosponsored": n}. Not a published metric — the
+    # metrics read `sponsored`/`cosponsored` above, which are scoped to the covered
+    # Congresses. This is the nightly's change probe: an identical pair from a fresh
+    # one-request detail call means nothing was sponsored or cosponsored since this
+    # record was written, so the many-page list fetch is skipped and the committed
+    # items are kept. None on records written before D86 (forces one full fetch).
+    lifetime_counts: dict[str, int] | None = None
 
 
 # --- Metrics (INC-10; data/metrics.json) ----------------------------------

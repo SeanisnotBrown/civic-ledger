@@ -77,6 +77,21 @@
       "title": "Cosponsored",
       "type": "array"
     },
+    "lifetime_counts": {
+      "anyOf": [
+        {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Lifetime Counts"
+    },
     "member_id": {
       "title": "Member Id",
       "type": "string"

@@ -81,7 +81,19 @@ jobs:
           uv run ingest house-votes
           uv run ingest senate-votes
           uv run ingest bills
-          uv run ingest legislation
+
+          #    Legislation (D86): ONE /member/{id} request per member probes the
+          #    lifetime sponsored/cosponsored counts; only members whose counts moved
+          #    get their lists re-paged. A full re-page of all 639 members is ~3.5 h of
+          #    ~7 s pages and is what exhausted the free Actions minutes in 2026-09.
+          #    Sundays (date +%u = 7) pass --full so an already-listed bill whose latest
+          #    action moved to "Became Public Law" (invisible to the count probe) is
+          #    never more than 7 days stale.
+          if [ "$(date -u +%u)" = "7" ]; then
+            uv run ingest legislation --full
+          else
+            uv run ingest legislation
+          fi
 
           #    Mississippi state layer (INC-12/D55): hash-gated — one getDatasetList
           #    call; if the session's dataset_hash matches the committed manifest,
@@ -140,8 +152,9 @@ jobs:
           git add -A data/
           git commit -m "data: nightly $(date -u +%Y-%m-%d)"
 
-          # 7) PUSH-COLLISION GUARD (D84). Steps 1-5 above run for HOURS between
-          #    this job's checkout and this push (4h18m..5h52m observed). Any commit
+          # 7) PUSH-COLLISION GUARD (D84). Steps 1-5 above ran for HOURS between
+          #    this job's checkout and this push (4h18m..5h52m observed before D86;
+          #    ~15-45 min after, except the Sunday --full night). Any commit
           #    landing on master inside that window makes a bare `git push`
           #    non-fast-forward and throws away a fully-green night's data: that is
           #    exactly how runs 35622111686 (2026-09-21) and 35872806073

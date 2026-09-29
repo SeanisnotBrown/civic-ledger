@@ -25,6 +25,10 @@ resets **2026-10-01** (owner read it in Billing); nightly resumes on its own.
   legislation lines; if every member re-fetched, the stored counts are not matching the live
   probe (compare one member's `lifetime_counts` to `/member/{id}` by hand).
 - Sundays run `--full` (~4 h) by design. Budget: ≈ 900–1,400 min/month vs 2,000 free.
+- **CI has NOT yet validated D86 on GitHub** — the push's ci run `36616400293` (commit
+  `7fdb5289d`) died in seconds on the billing block, as expected. Local gates were green
+  (ruff, pytest 341, checks, verify-recompute). **After 10-01: `gh run rerun 36616400293`**
+  (or let the next push's ci cover it) and confirm green before trusting the nightly.
 
 **D84 + D85 acceptances: both PASSED** (checked 2026-09-29). Nightly green 09-24 (dispatch),
 09-25, 09-26, 09-27 with data pushed 09-24/25/26 (09-27 quiet); ci run `36016184179` green on

@@ -3,7 +3,7 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-30 (review remediation D87 landed, uncommitted; D86 state unchanged). **2026-09-29, D86 session — nightly cost fix.** Owner reported the GitHub
+**Last updated:** 2026-09-30 (D87 remediation committed + pushed as `64f34bbc5`; D86 state unchanged). **2026-09-29, D86 session — nightly cost fix.** Owner reported the GitHub
 Actions bill; both nightlies since 09-28 died in 5 s (*"job was not started because recent
 account payments have failed or your spending limit needs to be increased"*). The free
 2,000-minute private-repo allowance was exhausted: `uv run ingest legislation` re-fetched all
@@ -16,7 +16,8 @@ regenerated), `legislation.should_refetch()` (pure), `uv run ingest legislation 
 `nightly.yml` passes `--full` on Sundays. Not evaluative, not a V2-N acceptance. Allowance
 resets **2026-10-01** (owner read it in Billing); nightly resumes on its own.
 
-**2026-09-30 — code review + full remediation (D87). NOT COMMITTED — commit this first.**
+**2026-09-30 — code review + full remediation (D87). COMMITTED + PUSHED: `64f34bbc5`**
+(22 files, +1,096/−93; working tree clean, `master` in sync with `origin/master`).
 Audit written to `code-reviews/review-2026-09-30.md` (0 Critical, 1 High, 5 Medium, 5 Low;
 leave that file alone — the next review reads it as the baseline). **All 11 findings and the
 dead-code inventory are fixed**; see `docs/decisions.md` D87 for the full record. Not a V2-N
@@ -66,17 +67,23 @@ blind spot is documented either way and bounded to 7 days by the Sunday `--full`
   legislation lines; if every member re-fetched, the stored counts are not matching the live
   probe (compare one member's `lifetime_counts` to `/member/{id}` by hand).
 - Sundays run `--full` (~4 h) by design. Budget: ≈ 900–1,400 min/month vs 2,000 free.
-- **CI has NOT yet validated D86 on GitHub** — the push's ci run `36616400293` (commit
-  `7fdb5289d`) died in seconds on the billing block, as expected. Local gates were green
-  (ruff, pytest 341, checks, verify-recompute). **After 10-01: `gh run rerun 36616400293`**
-  (or let the next push's ci cover it) and confirm green before trusting the nightly.
+- **CI has validated NEITHER D86 nor D87 on GitHub — two runs are waiting on the reset:**
+  - `36743621950` (commit `64f34bbc5`, D87) — failed in **3 s**, both jobs, no log retrievable.
+  - `36616400293` (commit `7fdb5289d`, D86) — failed in 8 s, same shape.
+  Both died on the billing block before executing a single step, so neither says anything
+  about the code. Today's 15:56 nightly (`36740496981`) died the same way in 4 s.
+  **After 10-01: `gh run rerun 36743621950` first** (it contains D86 + D87 together, so one
+  green run covers both), then confirm green before trusting the nightly. Local gates were
+  green for both: ruff, pytest 363, `uv run checks`, `astro check`, `astro build`.
 
 **D84 + D85 acceptances: both PASSED** (checked 2026-09-29). Nightly green 09-24 (dispatch),
 09-25, 09-26, 09-27 with data pushed 09-24/25/26 (09-27 quiet); ci run `36016184179` green on
 the bumped actions (the `36015693164` run was superseded/cancelled, not failed).
 
-**V2-11 task 1 remains the next increment** (unchanged; `.env` has a working key). This
-session did not touch it.
+**V2-11 task 1 remains the next increment** (unchanged; `.env` has a working key). Neither
+the D86 nor the D87 session touched it. Priority is still V2-11 → V2-7 → V2-8 → V2-12 → V2-13,
+and note that **V2-7 (truthful /privacy) now has less to undo**: D87 deleted the three false
+claims, so V2-7 is a rewrite on a page that is currently silent rather than wrong.
 
 **PRIOR (2026-09-24): CI repair session (D84 + D85)** — owner reported recurring
 `nightly: All jobs have failed` emails. Two separate causes found; both fixed and pushed; both

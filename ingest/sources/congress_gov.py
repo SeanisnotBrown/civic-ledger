@@ -15,7 +15,7 @@ there per host.
 from __future__ import annotations
 
 from ingest import env
-from ingest.cache import CachedResponse, fetch
+from ingest.cache import DEFAULT_TTL_HOURS, CachedResponse, fetch
 
 BASE = "https://api.congress.gov/v3"
 SOURCE = "congress_gov"
@@ -90,12 +90,20 @@ def bill_detail(congress: int, bill_type: str, number: int) -> CachedResponse:
     return _get(f"bill/{congress}/{bill_type.lower()}/{number}")
 
 
-def bill_committees(congress: int, bill_type: str, number: int) -> CachedResponse:
+def bill_committees(
+    congress: int, bill_type: str, number: int, *, ttl_hours: float = DEFAULT_TTL_HOURS
+) -> CachedResponse:
     """A bill/resolution's committees + per-committee activities. INC-5 R-RULE
     reads this to tell a Rules-Committee-reported special rule (→ procedural) from
     a substantive resolution (→ passage): the House Rules Committee is systemCode
-    `hsru00` with a "Reported ..." activity."""
-    return _get(f"bill/{congress}/{bill_type.lower()}/{number}/committees")
+    `hsru00` with a "Reported ..." activity.
+
+    `ttl_hours` overrides the 20 h default. Unlike the legislation lists (where D86
+    REJECTED a >24 h TTL, because those lists must keep refreshing), this answer is
+    final once a roll exists: the Rules Committee reports a special rule BEFORE the
+    floor vote it governs, so "was this reported by hsru00" cannot change afterwards."""
+    return _get(f"bill/{congress}/{bill_type.lower()}/{number}/committees",
+                ttl_hours=ttl_hours)
 
 
 def bill_subjects(congress: int, bill_type: str, number: int, *, force: bool = False) -> list[str]:

@@ -125,6 +125,17 @@ def _quarantine(bill_id: str, error: str) -> None:
     )
 
 
+def _clear_quarantine(bill_id: str) -> None:
+    """Remove this bill's quarantine file once it has exported cleanly (D87). Same
+    reason as the roll-call version: a directory that only ever grows stops telling
+    the owner what is actually quarantined."""
+    from ingest.cache import repo_root
+
+    (repo_root() / "data" / "quality" / "quarantine" / f"bill-{bill_id}.json").unlink(
+        missing_ok=True
+    )
+
+
 def run(argv: list[str] | None = None) -> int:
     """Ingest every vote-referenced bill -> data/bills/*.json, INCLUDING the
     `/subjects` + `/cosponsors` sub-resources for every bill exported. Idempotent:
@@ -145,6 +156,7 @@ def run(argv: list[str] | None = None) -> int:
     fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
     force_all = bool(argv) and "--all" in argv
 
+    accepted_ids = incremental.accepted_quarantines()  # owner-reviewed, non-fatal (§6.1)
     bill_ids = referenced_bill_ids()
     total = len(bill_ids)
     # Incremental (§6.1): skip bills already exported, EXCEPT those referenced by a
@@ -156,6 +168,7 @@ def run(argv: list[str] | None = None) -> int:
     skipped = 0
     quarantined: list[str] = []
     fetch_failures: list[str] = []
+    accepted_missing: list[str] = []
 
     for bill_id in bill_ids:
         if not force_all and incremental.bill_is_skippable(bill_id, recent):
@@ -176,6 +189,14 @@ def run(argv: list[str] | None = None) -> int:
         except fetch_errors as exc:
             # A 404 surfaces as RetryableHTTPError only on 5xx/429; a real 404 is
             # an HTTPStatusError -> httpx.HTTPError. Either way, record + continue.
+            if (isinstance(exc, httpx.HTTPStatusError)
+                    and exc.response.status_code == 404
+                    and bill_id in accepted_ids):
+                # Owner-accepted permanent 404 (D87): a retry can never fix it, so
+                # it is a printed note, not a nightly failure. The bill still
+                # publishes nothing.
+                accepted_missing.append(bill_id)
+                continue
             fetch_failures.append(f"{bill_id}: {type(exc).__name__}")
             continue
         try:
@@ -185,6 +206,7 @@ def run(argv: list[str] | None = None) -> int:
             quarantined.append(bill_id)
             continue
         export_bill(bill)
+        _clear_quarantine(bill_id)
         exported += 1
 
     print(f"civic-ledger bills: {exported} fetched, {skipped} skipped (already "
@@ -195,6 +217,9 @@ def run(argv: list[str] | None = None) -> int:
         if frac > config.QUARANTINE_MAX_FRACTION:
             print(f"FAIL: quarantine {frac:.2%} exceeds {config.QUARANTINE_MAX_FRACTION:.0%}")
             return 1
+    if accepted_missing:
+        print(f"  {len(accepted_missing)} owner-accepted missing bill(s), not a failure "
+              f"(data/quality/accepted-quarantine.yaml): {accepted_missing[:10]}")
     # Persistent fetch failures fail the run (re-runnable); the quarantine gate
     # above is the §6.1 ceiling for genuinely-bad bills. One message (L-3).
     if fetch_failures:

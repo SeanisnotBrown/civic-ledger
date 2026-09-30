@@ -119,7 +119,12 @@ def _is_rules_reported(bill_id: str) -> bool:
     if not m:
         return False
     number, congress = int(m.group(1)), int(m.group(2))
-    data = congress_gov.bill_committees(congress, "hres", number).json()
+    # 30-day TTL: the 20 h default expires before the 24 h nightly cadence, so every
+    # one of these (up to 215) was re-fetched on every night the vote files changed —
+    # minutes of billed Actions time for an answer that is already final (D87).
+    data = congress_gov.bill_committees(
+        congress, "hres", number, ttl_hours=24 * 30
+    ).json()
     for c in data.get("committees", []):
         if c.get("systemCode") == "hsru00":
             if any("report" in (a.get("name") or "").lower() for a in c.get("activities", [])):

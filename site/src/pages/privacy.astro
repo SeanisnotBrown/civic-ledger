@@ -4,32 +4,27 @@ import Layout from "../components/Layout.astro";
 <Layout title="Privacy — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Privacy</h1>
   <p class="mt-2 max-w-prose text-neutral-700">
-    This site is built to collect as little as possible — the design goal is that
-    a legal demand could not produce information about you, because it was never
-    collected. This is a summary; the full threat model lands with the interactive
-    features that could otherwise gather data.
+    This site is built to collect as little as possible. This is a summary; the
+    full threat model lands with the interactive features that could otherwise
+    gather data.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What this site is</h2>
   <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
     <li>Static pages, built from a dataset the operator maintains. No account, no login.</li>
     <li>No cookies. No analytics. No third-party fonts, scripts, or CDNs.</li>
-    <li>Nothing you do here is sent to any server the operator runs.</li>
   </ul>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is stored</h2>
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
-    There is no per-visitor data of any kind — visiting this site leaves no
-    record anywhere. Every fact on a member, vote, or bill page links to the
-    original government record it came from, so you can check it yourself.
-    The dataset and source code are not currently published in a public
-    repository; a legal demand to the operator would produce only what that
-    private repository contains, none of it about site visitors.
+    Every fact on a member, vote, or bill page links to the original government
+    record it came from, so you can check it yourself. The dataset and source code
+    are not currently published in a public repository; a legal demand to the
+    operator would produce only what that private repository contains.
   </p>
 
   <p class="mt-8 text-xs text-neutral-500">
-    Interactive tools (added later) keep your results only in your own browser,
-    with a button to erase them. The full threat model will document every such
-    surface before it ships.
+    The full threat model will document every data-collecting surface before it
+    ships.
   </p>
 </Layout>

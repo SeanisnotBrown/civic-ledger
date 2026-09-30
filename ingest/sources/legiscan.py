@@ -26,6 +26,16 @@ BASE = "https://api.legiscan.com/"
 SOURCE = "legiscan"
 
 
+class LegiScanHTTPError(Exception):
+    """A non-2xx from LegiScan, carrying the op + status but NOT the request URL.
+
+    `httpx.HTTPStatusError`'s message is `"... for url '{response.url}'"`, and because
+    LegiScan requires the key as a query param that URL contains `key=<secret>`. Raising
+    our own type keeps the key out of tracebacks and out of any log the owner pastes when
+    asking for help — the same guarantee the module docstring makes for the cache.
+    """
+
+
 def available() -> bool:
     """True if a LegiScan key is configured (H2 done)."""
     return bool(env.get("LEGISCAN_API_KEY"))
@@ -69,7 +79,9 @@ def _get(op: str, ttl_hours: float | None = None, **params) -> dict:
         timeout=60,
         follow_redirects=True,
     )
-    resp.raise_for_status()
+    if resp.status_code >= 400:
+        # NOT raise_for_status(): its message embeds the URL, hence `key=<secret>`.
+        raise LegiScanHTTPError(f"LegiScan {op} returned HTTP {resp.status_code}")
     data_path.parent.mkdir(parents=True, exist_ok=True)
     data_path.write_text(resp.text, encoding="utf-8", newline="\n")
     meta_path.write_text(

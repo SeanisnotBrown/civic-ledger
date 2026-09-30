@@ -68,11 +68,13 @@ def roll_is_final(rc_id: str, cutoff: datetime, votes_dir: Path | None = None) -
 
 
 def accepted_quarantines(root: Path | None = None) -> dict[str, str]:
-    """Roll-call ids the owner has reviewed and accepted as un-ingestable (a voter
-    outside their roster term window, etc.), mapped to a factual reason. A quarantine
-    on one of these is NOT a nightly failure (§6.1): the roll still publishes nothing,
-    but the run stays green so the failure signal is reserved for NEW, unexpected
-    quarantines. Missing file → empty (nothing accepted). Pure given `root`."""
+    """Roll-call AND bill ids the owner has reviewed and accepted as un-ingestable (a
+    voter outside their roster term window, a bill Congress.gov never published, etc.),
+    mapped to a factual reason. A quarantine on one of these is NOT a nightly failure
+    (§6.1): the record still publishes nothing, but the run stays green so the failure
+    signal is reserved for NEW, unexpected quarantines. One flat file for both kinds —
+    roll ids and bill ids cannot collide (D87). Missing file → empty (nothing
+    accepted). Pure given `root`."""
     import yaml
     path = (root or repo_root()) / "data" / "quality" / "accepted-quarantine.yaml"
     if not path.exists():

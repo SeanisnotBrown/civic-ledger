@@ -1978,3 +1978,90 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   option 3, not chosen); public repo (unlimited minutes; D59 stands). **Acceptance:** the first
   non-Sunday nightly after the first full post-D86 run completes in < 1 h and prints
   `N re-fetched + M unchanged (kept) of 639 members`.
+
+- **D87 (2026-09-30) — surgical code-review remediation: MS sessions accumulate (career
+  numbers), five ingest hardening fixes, two owner rulings on published copy.**
+  A full external-stance audit (`code-reviews/review-2026-09-30.md`: 0 Critical, 1 High,
+  5 Medium, 5 Low) found one time bomb and a set of latent crash paths. All eleven
+  findings plus the dead-code inventory are fixed here. **Not a V2-N increment and not
+  evaluative:** no metric, threshold, formula, or grade wording changes, and no committed
+  record is rewritten (the only `data/` diff is a comment in `accepted-quarantine.yaml`).
+  **(1) Mississippi session rollover — the High.** `current_session()` follows the newest
+  regular session with no config change, but the export overwrote by member key and never
+  reconciled. When LegiScan publishes the 2027 session (typically January) the nightly
+  would have written it beside the 2026 data while `/methods` said "only the current
+  regular session is included". **Owner ruling (2026-09-30), asked in plain language and
+  answered: a Mississippi grade is a CAREER grade — numbers and trends must span a
+  legislator's whole career, not the newest session.** So the fix is NOT the delete the
+  review proposed (that would have reset every MS member to 2027-only): the partition
+  ACCUMULATES, matching the federal side, which already spans the 118th and 119th.
+  Accumulating is only safe if nothing is silently replaced, so: `merge_member` keeps a
+  continuing legislator's earlier terms (dedup on the whole term, start-sorted);
+  `_mark_departed` flips `serving` to false in place for members absent from the new
+  roster (they were frozen at `serving: true`, since `export_members` only writes the
+  members it is given); `merge_legislation` unions sponsored/cosponsored on `bill_id`
+  (legislation files are keyed by MEMBER, not session — the one place a rollover would
+  have silently LOWERED a published sponsorship number); the crosswalk keeps departed
+  members; `disk_counts()` recomputes the manifest `counts` from the committed partition
+  instead of from the one session just built; and the manifest gains `sessions[]`, every
+  session included, newest first. `/methods` coverage and the `/ms` roll-call tile now
+  name what the counts actually span (`msCoverageLabel`). Roll ids (`ms-h-<session>-<id>`)
+  and bill ids (`ms-hb1-<session>`) already carried the session, so nothing collides.
+  **Verified byte-identical on today's single-session data:** `disk_counts()` reproduces
+  the committed manifest's `counts` exactly, and a same-session re-export is byte-for-byte
+  stable (`test_single_session_export_is_unchanged_by_the_merge`); the only manifest
+  change on the next `ingest ms` is the added `sessions` key. `checks/ms.py`'s five
+  hardcoded 2249 sample rolls stay valid precisely because files accumulate.
+  **Owner tasks before January:** threshold review for career-span MS numbers
+  (§0.8 — the numbers' meaning widens even though no formula changes), and per-session
+  browsing / trend display, which is deferred to its own increment (the MS index still
+  lists every member file, departed ones included).
+  **(2) Ingest hardening.** `senate_votes` pre-parse caught only `ET.ParseError` while
+  `_parse_date` raises `ValueError`/`KeyError` — one odd date from senate.gov aborted the
+  whole run and skipped every later roll; now quarantined. `house_votes` read `startDate`
+  OUTSIDE its try (a missing key aborted; a null date raised `TypeError` inside
+  `coverage.covered_on`'s slice); moved in, `TypeError` caught. `legiscan._get` replaced
+  `raise_for_status()` with `LegiScanHTTPError`: LegiScan requires the key as a QUERY
+  param and httpx embeds the request URL in that message, so a 4xx/5xx printed
+  `key=<secret>` (GitHub masks its own secrets; a local run and a pasted log do not).
+  `accepted-quarantine.yaml` now accepts BILL ids too — one flat file, ids cannot collide
+  — so a bill Congress.gov never publishes is a printed note instead of a nightly failure
+  forever. Quarantine files are unlinked once the record exports cleanly, so the directory
+  describes what is actually quarantined. **Rejected:** caching 404s in `cache.fetch` —
+  the house-vote clerk fallback relies on a 404 raising.
+  **(3) Actions minutes.** `bill_committees` takes `ttl_hours`; `classify` passes 30 days.
+  The 20 h default expired before the 24 h nightly cadence, so up to 215 Rules-Committee
+  lookups were re-fetched every night the vote files changed. Unlike the legislation lists
+  (where D86 REJECTED a >24 h TTL, because those must keep refreshing), this answer is
+  final: Rules reports a special rule BEFORE the floor vote it governs. Saves ≥ ~4 min per
+  active night. `archive-links.yml` got nightly's fetch-rebase-retry loop (D84 shape).
+  **(4) Published copy — owner rulings.** *Privacy:* "visiting this site leaves no record
+  anywhere", "nothing you do here is sent to any server the operator runs", and the
+  "results stay in your own browser" promise are all false or about to be (Cloudflare
+  hosts the site and reports request counts; SD-32 lets features collect what they need).
+  **Owner (2026-09-30): strip it — the no-logging claim is impossible for what the project
+  needs to do, and the rest of the page is being rewritten in a later session.** Deleted,
+  not reworded: the three false claims are cut and the two paragraphs left grammatical by
+  deletion alone — no new privacy claim was written, and no Cloudflare copy added, because
+  that option was not chosen. V2-7 still
+  owns the full rewrite. *Absence explanations:* the Congressional Record search is scoped
+  to Mississippi, so 631 of 639 members can never have a stated reason. **Owner
+  (2026-09-30): say so plainly rather than widen the search** (widening multiplies the H9
+  review queue ~50×); one sentence added to `/methods` Sources.
+  **(5) Dead code.** Deleted `getVote`, `getMsVote`, and the `Manifest.covered_state` type
+  field (removed from the manifest at V2-1). KEPT: `models.py` `PageCapture`/`Candidate`/
+  `Provenance`/`QuizOption`/`QuizQuestion` and `config.K_ANON` (parked by §5 and Appendix
+  B). **Spec/code disagreement, recorded not fixed:** `banned_words.ALLOWLIST` allowlists
+  `site/src/content/glossary.md`, which does not exist — the spec (§CS, Appendix B)
+  describes the glossary as existing. Harmless today; the owner decides whether the
+  glossary page gets built or the allowlist entry goes.
+  **(6) Documented, not changed.** The D86 probe cannot see a same-day cosponsorship
+  add-plus-withdraw (the lifetime count is unchanged); bounded to 7 days by the Sunday
+  `--full` run, same as the enactment case. Whether `cosponsoredLegislation.count` moves
+  on a withdrawal is NOT confirmed live (header auth, no offline check) — stated as
+  unconfirmed in the module docstring rather than asserted.
+  **Acceptance:** `uv run pytest` 363 passed (was 341; +22 new across
+  `tests/test_ingest_hardening_d87.py` and `tests/test_ms_session_rollover_d87.py`),
+  `uv run ruff check .` clean, `uv run checks` ALL CHECKS PASSED (banned-words scanned the
+  two edited pages), `astro check` 0 errors, `astro build` 13,161 pages, `git status data/`
+  shows only the accept-list comment.

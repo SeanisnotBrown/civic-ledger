@@ -1,11 +1,18 @@
-# Accepted quarantines (§6.1) — roll-call votes the owner has REVIEWED and
-# accepted as un-ingestable under the current roster.
+# Accepted quarantines (§6.1) — roll-call votes AND bills the owner has REVIEWED
+# and accepted as un-ingestable.
 #
 # A quarantine (data/quality/quarantine/<id>.json) on one of these ids does NOT
-# fail the nightly run: the roll still publishes nothing (its stale export, if
-# any, is removed like any quarantine), but the run stays green. This reserves
+# fail the nightly run: the record still publishes nothing (for a ROLL, its stale
+# export is removed like any quarantine; an accepted bill 404 simply leaves
+# data/bills/<id>.json as it was), but the run stays green. This reserves
 # the "nightly failed" signal for NEW, unexpected quarantines — a fresh id here
 # still fails loudly so it gets attention.
+#
+# One flat file for both kinds: roll ids (`h-119-1-0001`) and bill ids
+# (`hr1234-119`) cannot collide. A bill id here also makes a permanent 404 from
+# Congress.gov a printed note instead of a nightly failure (D87) — without it, a
+# bill the vote record cites but Congress.gov never publishes turns every nightly
+# red forever with no way to acknowledge it short of editing code.
 #
 # Ratified 2026-09-21 by the owner (accept-list option). See docs/decisions.md D83.
 # Each entry: <rollcall_id>: "<factual reason>". Bioguide ids identify the voter

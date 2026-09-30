@@ -50,7 +50,7 @@ export interface Bill {
   cbo_estimates: CboRef[]; source_url: string;
 }
 export interface Manifest {
-  generated_at: string; commit: string; congresses: number[]; covered_state: string;
+  generated_at: string; commit: string; congresses: number[];
   counts: Record<string, unknown>;
 }
 // `digest` is the metric function's formula identity (R-3/D45); `schema_version`
@@ -128,9 +128,6 @@ export function getAllVotes(): VoteFile[] {
   if (_votes) return _votes;
   _votes = readDir("votes").map((f) => readJson<VoteFile>(`votes/${f}`));
   return _votes;
-}
-export function getVote(rollId: string): VoteFile | undefined {
-  return getAllVotes().find((v) => v.rollcall.id === rollId);
 }
 
 let _bills: Map<string, Bill> | null = null;
@@ -350,9 +347,6 @@ export function getAllMsVotes(): VoteFile[] {
   _msVotes = readMsDir("votes").map((f) => readMsJson<VoteFile>(`votes/${f}`));
   return _msVotes;
 }
-export function getMsVote(rollId: string): VoteFile | undefined {
-  return getAllMsVotes().find((v) => v.rollcall.id === rollId);
-}
 
 let _msBills: Map<string, Bill> | null = null;
 function msBillMap(): Map<string, Bill> {
@@ -390,9 +384,26 @@ export function getMsVotesForBill(billId: string): RollCall[] {
     .sort(byRecency);
 }
 
+export interface MsSessionRow {
+  session_id: number; session_name: string; year_start: number; year_end: number;
+}
 export interface MsManifest {
   jurisdiction: string; generated_at: string; session_id: number; session_name: string;
   dataset_hash: string; year_start: number; year_end: number; counts: Record<string, unknown>;
+  // Every session in the committed partition, newest first (D87). `counts` spans all of
+  // them, so anything labelling the counts must use this, not `session_name` alone.
+  // Absent on manifests written before D87 — callers fall back to the single session.
+  sessions?: MsSessionRow[];
+}
+
+/** Human label for the span `counts` actually covers: one session's name, or a year
+ *  range once the partition holds more than one (D87). */
+export function msCoverageLabel(m: MsManifest): string {
+  const rows = m.sessions ?? [];
+  if (rows.length <= 1) return m.session_name;
+  const first = Math.min(...rows.map((r) => r.year_start));
+  const last = Math.max(...rows.map((r) => r.year_end));
+  return `${first}–${last} regular sessions`;
 }
 let _msManifest: MsManifest | null = null;
 export function getMsManifest(): MsManifest {

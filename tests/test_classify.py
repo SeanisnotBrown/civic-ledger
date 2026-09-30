@@ -87,7 +87,7 @@ def test_is_rules_reported_reads_hsru00_activity(monkeypatch):
     other = {"committees": [{"systemCode": "hsju00", "name": "Judiciary",
                              "activities": [{"name": "Referred to"}]}]}
 
-    def fake(congress, bill_type, number):
+    def fake(congress, bill_type, number, *, ttl_hours=None):
         return _Resp(reported if number == 1009 else other)
 
     import ingest.sources.congress_gov as cg

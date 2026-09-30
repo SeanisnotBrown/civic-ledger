@@ -3,7 +3,7 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-29, **D86 session — nightly cost fix.** Owner reported the GitHub
+**Last updated:** 2026-09-30 (review remediation D87 landed, uncommitted; D86 state unchanged). **2026-09-29, D86 session — nightly cost fix.** Owner reported the GitHub
 Actions bill; both nightlies since 09-28 died in 5 s (*"job was not started because recent
 account payments have failed or your spending limit needs to be increased"*). The free
 2,000-minute private-repo allowance was exhausted: `uv run ingest legislation` re-fetched all
@@ -15,6 +15,47 @@ full refresh.** Built as **D86** (`docs/decisions.md`): `congress_gov.member_lif
 regenerated), `legislation.should_refetch()` (pure), `uv run ingest legislation --full`, and
 `nightly.yml` passes `--full` on Sundays. Not evaluative, not a V2-N acceptance. Allowance
 resets **2026-10-01** (owner read it in Billing); nightly resumes on its own.
+
+**2026-09-30 — code review + full remediation (D87). NOT COMMITTED — commit this first.**
+Audit written to `code-reviews/review-2026-09-30.md` (0 Critical, 1 High, 5 Medium, 5 Low;
+leave that file alone — the next review reads it as the baseline). **All 11 findings and the
+dead-code inventory are fixed**; see `docs/decisions.md` D87 for the full record. Not a V2-N
+increment and not evaluative: no metric, threshold, formula, or grade wording changed, and the
+only `data/` diff is a comment in `accepted-quarantine.yaml`.
+
+Gates all green locally: `pytest` **363 passed** (was 341), `ruff` clean, `uv run checks` ALL
+CHECKS PASSED, `astro check` 0 errors, `astro build` 13,161 pages.
+
+**Owner decisions taken 2026-09-30 (all three asked in plain language):**
+1. **Mississippi is a CAREER grade.** Owner: numbers and trends must span a legislator's whole
+   career, not just the newest session. So the High finding's proposed fix (delete the old
+   session on rollover) was REJECTED — deleting would have reset every MS member to 2027-only.
+   The partition now ACCUMULATES, matching the federal side (118th + 119th). `ingest ms` merges
+   terms, keeps earlier sponsorship, marks departed members `serving: false` in place, keeps
+   the crosswalk, counts the whole partition, and lists every session in the manifest.
+2. **Privacy page: strip the no-logging claims** (owner: "impossible for what I need to do…
+   getting stripped in a later session"). Removed, not reworded — no Cloudflare copy added,
+   since he did not pick that option. **V2-7 still owns the full rewrite.**
+3. **Absence explanations stay Mississippi-only** and `/methods` now says so plainly, rather
+   than widening the search (~50× the H9 review queue).
+
+**▶ OWNER TASKS this opens (both before January, when LegiScan publishes the 2027 session):**
+- **Threshold review for career-span MS numbers (§0.8).** No formula changed, but once two
+  sessions are on disk the numbers MEAN a career span. He ratifies whether
+  `data/config/thresholds.yaml` still reads right for that.
+- **Per-session browsing / trend display is DEFERRED to its own increment.** The MS index
+  still lists every member file, departed legislators included, with no year labels and no
+  trend view. That is the gap between "career numbers are correct" and "career trends are
+  visible", which is what he actually asked for.
+
+**Spec/code disagreement, recorded not fixed:** `banned_words.ALLOWLIST` allowlists
+`site/src/content/glossary.md`, which does not exist (spec §CS and Appendix B describe the
+glossary as existing). Harmless today. Owner decides: build the glossary page, or drop the
+allowlist entry.
+
+**Not confirmed, stated as unconfirmed:** whether Congress.gov's `cosponsoredLegislation.count`
+moves when a cosponsorship is withdrawn (needs one live `/member/{id}` call). The D86 probe's
+blind spot is documented either way and bounded to 7 days by the Sunday `--full` run.
 
 **▶▶ FIRST THING NEXT SESSION — D86 acceptance:**
 `gh run list --workflow=nightly.yml --limit 4`

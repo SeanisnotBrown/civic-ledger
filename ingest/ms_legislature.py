@@ -16,6 +16,22 @@ Discipline mirrors the federal ingests:
   * `party_totals` is FULLY computed here (LegiScan gives every position, so this is the
     whole chamber, not a covered delegation) — it feeds a future MS party-unity metric.
 
+SESSION ROLLOVER (D87). `current_session()` follows the newest regular session with no
+config change, and the export ACCUMULATES: when the 2027 session lands, the 2026 records
+stay on disk and every MS number spans both. That is deliberate — the owner ratified
+(2026-09-30) that a Mississippi grade is a CAREER grade, matching the federal side, which
+already spans the 118th and 119th Congresses. Accumulating only works if nothing is
+silently replaced, so the export merges rather than overwrites:
+  * a continuing legislator's member file KEEPS its earlier terms (`merge_member`);
+  * a legislator absent from the new roster is marked `serving: false` in place, instead
+    of being left frozen as still-serving;
+  * a member's legislation record KEEPS earlier sessions' sponsorship (`merge_legislation`);
+  * the crosswalk keeps departed members;
+  * the manifest counts what is ON DISK, not what this one session built, and lists every
+    session included.
+Roll ids (`ms-h-<session>-<id>`) and bill ids (`ms-hb1-<session>`) already carry the
+session, so nothing collides.
+
 Scope honesty (limitations page, phase 6): LegiScan SCRAPES the official billstatus
 record, so source_url cites LegiScan for roll calls (our actual data source) and the
 official billstatus link for bills where present; the phase-3 spot check verifies scrape
@@ -130,7 +146,7 @@ def parse_person(person: dict, year_start: int, year_end: int) -> Member:
         district=_district_ordinal(p.get("district")),
         chamber=chamber,
         jurisdiction="ms",
-        serving=True,  # the dataset roster is the current session — all serving
+        serving=True,  # in THIS session's roster; `_mark_departed` flips the rest (D87)
         terms=[Term(start=f"{year_start}-01-01", end=f"{year_end}-12-31",
                     party=party, chamber=chamber)],
     )
@@ -411,19 +427,134 @@ def fetch_dataset(state: str = config.COVERED_STATE,
     return session, people, bills, votes
 
 
-# --- export + manifest ----------------------------------------------------
+# --- multi-session merge (pure; D87) --------------------------------------
 
 
-def build_ms_manifest(session: dict, result: BuildResult, generated_at: str, commit: str) -> dict:
-    """The MS partition manifest (data/state/ms/manifest.json). generated_at/commit are
-    INJECTED (the one wall-clock, mirroring the federal manifest, D51)."""
+def merge_member(prior: dict | None, fresh: Member) -> Member:
+    """Fresh member record + the terms already on disk. Pure.
+
+    A continuing legislator appears in every session's roster, so without this the
+    2027 export would replace their file with a 2027-only term while their 2026 votes
+    still counted against them — a career number over a one-session term list. Terms
+    are deduped on the whole term and sorted by start, so a single-session re-export
+    is byte-identical to what is already committed."""
+    if prior is None:
+        return fresh
+    seen = {(t.start, t.end, t.party, t.chamber): t for t in fresh.terms}
+    for raw in prior.get("terms", []):
+        t = Term(**raw)
+        seen.setdefault((t.start, t.end, t.party, t.chamber), t)
+    return fresh.model_copy(
+        update={"terms": sorted(seen.values(), key=lambda t: (t.start, t.end))}
+    )
+
+
+def merge_legislation(prior: dict | None, fresh: MemberLegislation) -> MemberLegislation:
+    """Fresh sponsorship + what is already on disk, deduped on bill_id. Pure.
+
+    MS legislation files are keyed by member, not by session, so without this the 2027
+    export would drop every 2026 bill the member authored — silently lowering their
+    sponsored/cosponsored/enacted numbers. Bill ids carry the session, so the union is
+    unambiguous and a single-session re-export is byte-identical."""
+    if prior is None:
+        return fresh
+
+    def _union(fresh_items: list[LegItem], prior_raw: list[dict]) -> list[LegItem]:
+        by_id = {it.bill_id: it for it in fresh_items}
+        for raw in prior_raw:
+            by_id.setdefault(raw["bill_id"], LegItem(**raw))
+        return [by_id[k] for k in sorted(by_id)]
+
+    return fresh.model_copy(update={
+        "sponsored": _union(fresh.sponsored, prior.get("sponsored", [])),
+        "cosponsored": _union(fresh.cosponsored, prior.get("cosponsored", [])),
+    })
+
+
+def _read_json(path) -> dict | None:
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return None
+
+
+def _mark_departed(roster_ids: set[str]) -> list[str]:
+    """Flip `serving` to false on every committed MS member NOT in the new session's
+    roster, and return their ids. `export_members` only writes the members it is given,
+    so a legislator who left after a session would otherwise stay `serving: true`
+    forever. Rewrites only the files that actually change (quiet-night diff-gate)."""
+    changed: list[str] = []
+    if not MS_MEMBERS_DIR.exists():
+        return changed
+    for path in sorted(MS_MEMBERS_DIR.glob("*.json")):
+        rec = _read_json(path)
+        if rec is None or rec.get("id") in roster_ids or rec.get("serving") is False:
+            continue
+        rec["serving"] = False
+        path.write_text(_dumps(rec), encoding="utf-8", newline="\n")
+        changed.append(rec["id"])
+    return changed
+
+
+def disk_counts() -> dict:
+    """The manifest `counts` recomputed from what is ON DISK under data/state/ms/.
+
+    Was computed from the one session just built, which is the same thing while only
+    one session exists — and wrong the moment two do (the manifest would describe 2027
+    while the pages showed 2026 + 2027). Reads the committed partition only."""
+    members = sorted(MS_MEMBERS_DIR.glob("*.json")) if MS_MEMBERS_DIR.exists() else []
+    bills = sorted(MS_BILLS_DIR.glob("*.json")) if MS_BILLS_DIR.exists() else []
+    votes = sorted(MS_VOTES_DIR.glob("*.json")) if MS_VOTES_DIR.exists() else []
     by_chamber: dict[str, int] = {}
     by_class: dict[str, int] = {}
     member_votes = 0
-    for rc, mvs in result.rollcalls:
-        by_chamber[rc.chamber] = by_chamber.get(rc.chamber, 0) + 1
-        by_class[rc.vote_class] = by_class.get(rc.vote_class, 0) + 1
-        member_votes += len(mvs)
+    for path in votes:
+        rec = json.loads(path.read_text(encoding="utf-8"))
+        rc = rec["rollcall"]
+        by_chamber[rc["chamber"]] = by_chamber.get(rc["chamber"], 0) + 1
+        by_class[rc["vote_class"]] = by_class.get(rc["vote_class"], 0) + 1
+        member_votes += len(rec["member_votes"])
+    return {
+        "members": len(members),
+        "rollcalls": len(votes),
+        "rollcalls_by_chamber": dict(sorted(by_chamber.items())),
+        "rollcalls_by_vote_class": dict(sorted(by_class.items())),
+        "member_votes": member_votes,
+        "bills": len(bills),
+    }
+
+
+# --- export + manifest ----------------------------------------------------
+
+
+def _session_row(session: dict) -> dict:
+    return {
+        "session_id": int(session["session_id"]),
+        "session_name": session.get("session_name", ""),
+        "year_start": int(session["year_start"]),
+        "year_end": int(session["year_end"]),
+    }
+
+
+def merge_sessions(prior_manifest: dict | None, session: dict) -> list[dict]:
+    """Every session included in the committed partition, newest first (D87). Pure."""
+    rows = {r["session_id"]: r for r in (prior_manifest or {}).get("sessions", [])}
+    fresh = _session_row(session)
+    rows[fresh["session_id"]] = fresh
+    return sorted(rows.values(), key=lambda r: r["session_id"], reverse=True)
+
+
+def build_ms_manifest(session: dict, counts: dict, sessions: list[dict],
+                      generated_at: str, commit: str) -> dict:
+    """The MS partition manifest (data/state/ms/manifest.json). generated_at/commit are
+    INJECTED (the one wall-clock, mirroring the federal manifest, D51).
+
+    `session_id`/`dataset_hash` describe the CURRENT session — the nightly change gate
+    reads dataset_hash. `counts` describes the WHOLE committed partition and `sessions`
+    lists every session in it: once 2027 lands the partition spans both, and a manifest
+    that counted only the newest build would understate what the pages show (D87)."""
     return {
         "jurisdiction": "ms",
         "generated_at": generated_at,
@@ -433,47 +564,52 @@ def build_ms_manifest(session: dict, result: BuildResult, generated_at: str, com
         "dataset_hash": session["dataset_hash"],
         "year_start": int(session["year_start"]),
         "year_end": int(session["year_end"]),
-        "counts": {
-            "members": len(result.members),
-            "rollcalls": len(result.rollcalls),
-            "rollcalls_by_chamber": dict(sorted(by_chamber.items())),
-            "rollcalls_by_vote_class": dict(sorted(by_class.items())),
-            "member_votes": member_votes,
-            "bills": len(result.bills),
-        },
+        "sessions": sessions,
+        "counts": counts,
     }
 
 
-def _export(result: BuildResult, manifest: dict) -> None:
-    from ingest.export import (
-        MS_DIR,
-        MS_LEGISLATION_DIR,
-        MS_MANIFEST_PATH,
-        export_member_legislation,
-    )
+def _export_records(result: BuildResult) -> list[str]:
+    """Write this session's records, MERGING with what is already committed (D87), and
+    return the ids of members marked no-longer-serving. Byte-identical to a plain
+    overwrite while only one session exists (every merge dedups to the same record)."""
+    from ingest.export import MS_DIR, MS_LEGISLATION_DIR, export_member_legislation
 
-    export_members(result.members, MS_MEMBERS_DIR)
+    merged = [merge_member(_read_json(MS_MEMBERS_DIR / f"{m.id}.json"), m)
+              for m in result.members]
+    export_members(merged, MS_MEMBERS_DIR)
     for bill in result.bills:
         export_bill(bill, MS_BILLS_DIR)
     for rollcall, member_votes in result.rollcalls:
         export_rollcall(rollcall, member_votes, MS_VOTES_DIR)
     for leg in result.legislation:
-        export_member_legislation(leg, MS_LEGISLATION_DIR)
+        prior = _read_json(MS_LEGISLATION_DIR / f"{leg.member_id}.json")
+        export_member_legislation(merge_legislation(prior, leg), MS_LEGISLATION_DIR)
+
+    # The crosswalk is rebuilt from THIS session's roster, so a departed legislator
+    # would drop out of it while their vote records still name them.
     MS_DIR.mkdir(parents=True, exist_ok=True)
-    (MS_DIR / "crosswalk.json").write_text(_dumps(result.crosswalk), encoding="utf-8",
-                                           newline="\n")
+    crosswalk = {**(_read_json(MS_DIR / "crosswalk.json") or {}), **result.crosswalk}
+    (MS_DIR / "crosswalk.json").write_text(
+        _dumps(dict(sorted(crosswalk.items()))), encoding="utf-8", newline="\n")
+    return _mark_departed({m.id for m in result.members})
+
+
+def _export_manifest(manifest: dict) -> None:
+    from ingest.export import MS_MANIFEST_PATH
+
     MS_MANIFEST_PATH.write_text(_dumps(manifest), encoding="utf-8", newline="\n")
+
+
+def _ms_manifest_path():
+    from ingest.export import MS_MANIFEST_PATH
+
+    return MS_MANIFEST_PATH
 
 
 def _committed_dataset_hash() -> str | None:
     """The dataset_hash of the currently committed MS manifest, or None if none."""
-    from ingest.export import MS_MANIFEST_PATH
-    if not MS_MANIFEST_PATH.exists():
-        return None
-    try:
-        return json.loads(MS_MANIFEST_PATH.read_text(encoding="utf-8")).get("dataset_hash")
-    except json.JSONDecodeError:
-        return None
+    return (_read_json(_ms_manifest_path()) or {}).get("dataset_hash")
 
 
 def run(argv: list[str] | None = None) -> int:
@@ -504,6 +640,15 @@ def run(argv: list[str] | None = None) -> int:
               f"(dataset_hash {committed[:8]}) — nothing to do.")
         return 0
 
+    prior_manifest = _read_json(_ms_manifest_path())
+    prior_session = (prior_manifest or {}).get("session_id")
+    if prior_session is not None and int(prior_session) != int(session_row["session_id"]):
+        # Session rollover (D87). Nothing is deleted: MS numbers are CAREER numbers
+        # spanning every ingested session (owner, 2026-09-30), matching the federal
+        # side's 118th + 119th. The merges below are what make that safe.
+        print(f"ingest ms: session rollover {prior_session} -> "
+              f"{session_row['session_id']} — earlier sessions are KEPT (D87).")
+
     session, people, bills, votes = fetch_dataset(session=session_row)
     result = build_records(int(session["session_id"]), int(session["year_start"]),
                            int(session["year_end"]), people, bills, votes)
@@ -520,8 +665,15 @@ def run(argv: list[str] | None = None) -> int:
     now = datetime.now(UTC).replace(microsecond=0).isoformat().replace("+00:00", "Z")
     generated_at = os.environ.get("CIVIC_GENERATED_AT", now)
     commit = os.environ.get("CIVIC_COMMIT") or _git_head()
-    manifest = build_ms_manifest(session, result, generated_at, commit)
-    _export(result, manifest)
+    departed = _export_records(result)
+    # Counts AFTER the export: they describe the committed partition, not this build.
+    manifest = build_ms_manifest(session, disk_counts(),
+                                 merge_sessions(prior_manifest, session),
+                                 generated_at, commit)
+    _export_manifest(manifest)
+    if departed:
+        print(f"ingest ms: {len(departed)} member(s) no longer serving, marked in place: "
+              f"{departed[:10]}")
 
     # Tier-2 metrics recompute from the just-exported committed partition (INC-13).
     from ingest import ms_metrics

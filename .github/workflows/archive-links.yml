@@ -28,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # the rebase-retry loop below replays onto the current tip
       - name: Install uv
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
@@ -51,8 +53,26 @@ jobs:
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add data/quality/archive-status.json
             git commit -m "data: archive-link status $(date -u +%Y-%m-%d)"
-            git push
-            echo "archive-links: committed updated status report."
+
+            # Same guard as nightly.yml (D84): a bare `git push` loses the report if
+            # anything landed on master between checkout and push. Rebase our one
+            # data commit onto the current tip and retry. NEVER --force.
+            pushed=0
+            for attempt in 1 2 3; do
+              git fetch origin master
+              git rebase origin/master
+              if git push origin HEAD:master; then
+                echo "archive-links: committed updated status report (attempt $attempt)."
+                pushed=1
+                break
+              fi
+              echo "archive-links: push rejected on attempt $attempt; refetching." >&2
+              sleep 15
+            done
+            if [ "$pushed" -ne 1 ]; then
+              echo "archive-links: push failed after 3 attempts — report NOT published." >&2
+              exit 1
+            fi
           fi
 
           exit $verdict

@@ -14,9 +14,13 @@ nightly's 4 hours, and the whole reason the free GitHub Actions allowance ran ou
 2026-09. `run()` therefore probes each member's LIFETIME counts with ONE `/member/{id}`
 request and re-pages the lists only for members whose counts moved since the
 committed record (`should_refetch`, pure). `--full` forces the old every-member
-re-page; the workflow passes it once a week so the one thing the probe cannot see —
-an already-listed bill's latest action moving to "Became Public Law" with no new
-sponsorship by that member — is never more than 7 days stale.
+re-page; the workflow passes it once a week so the TWO things the probe cannot see are
+never more than 7 days stale: (1) an already-listed bill's latest action moving to
+"Became Public Law" with no new sponsorship by that member; (2) a member who gains one
+cosponsorship and drops another between two nightlies, leaving the lifetime count
+unchanged. Whether `cosponsoredLegislation.count` even moves on a withdrawal is NOT
+confirmed live (header auth, no offline check) — if it does not, case (2) collapses
+into the same 7-day bound.
 """
 
 from __future__ import annotations

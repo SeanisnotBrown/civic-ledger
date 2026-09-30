@@ -259,6 +259,17 @@ def _quarantine(rc_id: str, error: str) -> None:
             stale_abs.unlink()
 
 
+def _clear_quarantine(rc_id: str) -> None:
+    """Remove this roll's quarantine file once it has exported cleanly (D87). Without
+    this, data/quality/quarantine/ kept every id that ever failed, so it stopped
+    describing what is ACTUALLY quarantined — the owner-facing signal it exists to be."""
+    from ingest.cache import repo_root
+
+    (repo_root() / "data" / "quality" / "quarantine" / f"{rc_id}.json").unlink(
+        missing_ok=True
+    )
+
+
 def run(argv: list[str] | None = None) -> int:
     """Ingest every Senate roll call for the covered Congresses → data/votes/s-*
     + data/absences/. Idempotent/resumable (cached fetches). Fails (nonzero) on any
@@ -320,7 +331,10 @@ def run(argv: list[str] | None = None) -> int:
                     continue
                 try:
                     date = _parse_date(ET.fromstring(detail).findtext("vote_date") or "")
-                except ET.ParseError as exc:
+                except (ET.ParseError, ValueError, KeyError) as exc:
+                    # ValueError/KeyError: `_parse_date` on an unexpected format or an
+                    # unrecognised month name. Quarantine THIS roll — one odd date from
+                    # senate.gov must not abort the run and skip every later roll.
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
                     (accepted if rc_id in accepted_ids else ms_failures).append(rc_id)
                     continue
@@ -339,6 +353,7 @@ def run(argv: list[str] | None = None) -> int:
                 if missing:
                     gaps.append(f"{rc_id}: missing members {sorted(missing)}")
                 export_rollcall(rc, mvs)
+                _clear_quarantine(rc_id)
                 abs_dir = ABSENCES_DIR / congress_of(rc_id)  # V2-1: sharded by congress
                 for ab in absences:
                     # overwrite=False: never clobber an owner-approved reason (D35).

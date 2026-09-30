@@ -46,7 +46,8 @@ def test_run_classifies_and_resolves_rules(tmp_path, monkeypatch):
     _seed(votes, "h-119-1-0003", "Election of the Speaker", None, rule="non_position")  # skipped
     monkeypatch.setattr("ingest.cache.repo_root", lambda: tmp_path)
     from ingest.sources import congress_gov
-    monkeypatch.setattr(congress_gov, "bill_committees", lambda c, t, n: _Resp(_committees(True)))
+    monkeypatch.setattr(congress_gov, "bill_committees",
+                        lambda c, t, n, **kw: _Resp(_committees(True)))
 
     assert classify.run() == 0
 
@@ -77,7 +78,7 @@ def test_run_reports_committee_fetch_failure(tmp_path, monkeypatch):
     monkeypatch.setattr("ingest.cache.repo_root", lambda: tmp_path)
     from ingest.sources import congress_gov
 
-    def boom(c, t, n):
+    def boom(c, t, n, **kw):
         raise RetryableHTTPError("503 server error")
 
     monkeypatch.setattr(congress_gov, "bill_committees", boom)
@@ -88,9 +89,12 @@ def test_is_rules_reported_branches(monkeypatch):
     from ingest.sources import congress_gov
 
     assert classify._is_rules_reported("hr1-119") is False  # not an hres → no fetch at all
-    monkeypatch.setattr(congress_gov, "bill_committees", lambda c, t, n: _Resp(_committees(True)))
+    monkeypatch.setattr(congress_gov, "bill_committees",
+                        lambda c, t, n, **kw: _Resp(_committees(True)))
     assert classify._is_rules_reported("hres5-119") is True
-    monkeypatch.setattr(congress_gov, "bill_committees", lambda c, t, n: _Resp(_committees(False)))
+    monkeypatch.setattr(congress_gov, "bill_committees",
+                        lambda c, t, n, **kw: _Resp(_committees(False)))
     assert classify._is_rules_reported("hres5-119") is False  # hsru00 present but not reported
-    monkeypatch.setattr(congress_gov, "bill_committees", lambda c, t, n: _Resp({"committees": []}))
+    monkeypatch.setattr(congress_gov, "bill_committees",
+                        lambda c, t, n, **kw: _Resp({"committees": []}))
     assert classify._is_rules_reported("hres5-119") is False  # no Rules committee at all

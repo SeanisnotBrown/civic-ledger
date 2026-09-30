@@ -199,6 +199,17 @@ def _quarantine(rc_id: str, error: str) -> None:
             stale_abs.unlink()
 
 
+def _clear_quarantine(rc_id: str) -> None:
+    """Remove this roll's quarantine file once it has exported cleanly (D87). Without
+    this, data/quality/quarantine/ kept every id that ever failed, so it stopped
+    describing what is ACTUALLY quarantined — the owner-facing signal it exists to be."""
+    from ingest.cache import repo_root
+
+    (repo_root() / "data" / "quality" / "quarantine" / f"{rc_id}.json").unlink(
+        missing_ok=True
+    )
+
+
 def run(argv: list[str] | None = None) -> int:
     """Ingest every House roll call for the covered Congresses → data/votes/ +
     data/absences/. Idempotent: cached fetches are reused, so a crashed run
@@ -258,11 +269,16 @@ def run(argv: list[str] | None = None) -> int:
                     # (cached rolls are instant). Fails the run at the end.
                     fetch_failures.append(f"{rc_id}: {type(exc).__name__}")
                     continue
-                date = data["houseRollCallVoteMemberVotes"]["startDate"]
-                roster = coverage.covered_on(terms, date)  # full roster incl. delegates
                 try:
+                    # Inside the try: a response missing either key, or a null
+                    # `startDate` (TypeError on the `[:10]` slice in `covered_on`),
+                    # must quarantine THIS roll, not abort the run (same shape as
+                    # the Senate pre-parse guard).
+                    date = data["houseRollCallVoteMemberVotes"]["startDate"]
+                    roster = coverage.covered_on(terms, date)  # full roster incl. delegates
                     rc, mvs, absences = parse_rollcall(data, congress, session, roster)
-                except (ValidationError, KeyError, UnknownVoteCast, UnknownMember) as exc:
+                except (ValidationError, KeyError, TypeError,
+                        UnknownVoteCast, UnknownMember) as exc:
                     _quarantine(rc_id, f"{type(exc).__name__}: {exc}")
                     # Can't confirm rows → publish nothing. A NEW id fails the run;
                     # an owner-accepted id (accept-list) stays green (§6.1).
@@ -276,6 +292,7 @@ def run(argv: list[str] | None = None) -> int:
                     if missing:
                         gaps.append(f"{rc_id}: missing members {sorted(missing)}")
                 export_rollcall(rc, mvs)
+                _clear_quarantine(rc_id)
                 abs_dir = ABSENCES_DIR / congress_of(rc_id)  # V2-1: sharded by congress
                 for ab in absences:
                     # overwrite=False: never clobber an owner-approved reason (D35).

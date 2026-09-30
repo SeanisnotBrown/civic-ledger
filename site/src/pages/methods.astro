@@ -234,7 +234,11 @@ const n = (x: number) => x.toLocaleString("en-US");
     <li>House roll calls: api.congress.gov, cross-checked against clerk.house.gov XML.</li>
     <li>Senate roll calls: senate.gov LIS XML, cross-checked against the published tallies.</li>
     <li>Bills: api.congress.gov bill detail (title, sponsor, policy area, CBO links).</li>
-    <li>Absence explanations: the Congressional Record, owner-reviewed and verbatim.</li>
+    <li>
+      Absence explanations: the Congressional Record, owner-reviewed and verbatim. These
+      are currently collected for Mississippi's members of Congress only; for every other
+      member a missed vote reads "No explanation on record" whether or not one was filed.
+    </li>
   </ul>
 
   <h2 class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Vote categories</h2>
@@ -271,7 +275,13 @@ const n = (x: number) => x.toLocaleString("en-US");
       vote's official Yeas/Nays/Absent totals on every build. Individual roll calls link to
       their LegiScan vote page; bills link to the official Mississippi record where available.
     </li>
-    <li><strong class="font-medium text-text">Coverage.</strong> Only the current regular session is included; earlier sessions are not yet published.</li>
+    <li>
+      <strong class="font-medium text-text">Coverage.</strong> Every regular session this site
+      has ingested is included, and a legislator's Mississippi numbers cover all of them — the
+      same way their federal numbers cover every covered Congress, not just the current one.
+      Special sessions are not included. The session or sessions covered are named on the
+      Mississippi landing page.
+    </li>
     <li>
       <strong class="font-medium text-text">Recorded positions.</strong> The official record distinguishes Yea, Nay,
       and not-voting only. A "Not voting" row combines members recorded absent and present-but-

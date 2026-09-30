@@ -6,7 +6,7 @@
 // breakdowns are read straight from the committed manifest counts (no re-scan).
 import Layout from "../../components/Layout.astro";
 import SplitBar from "../../components/charts/SplitBar.astro";
-import { getMsMembers, getMsManifest } from "../../lib/data";
+import { getMsMembers, getMsManifest, msCoverageLabel } from "../../lib/data";
 import { VOTE_CLASS_LABEL } from "../../lib/display";
 import type { VoteClass } from "../../lib/data";
 
@@ -16,13 +16,15 @@ const senate = members.filter((m) => m.chamber === "senate").sort((a, b) => (a.d
 const manifest = getMsManifest();
 const counts = manifest.counts as Record<string, unknown>;
 const n = (x: number) => x.toLocaleString("en-US");
+// The counts span every ingested session, not just the newest (D87).
+const coverageLabel = msCoverageLabel(manifest);
 
 const byChamber = (counts.rollcalls_by_chamber ?? {}) as Record<string, number>;
 const byClass = (counts.rollcalls_by_vote_class ?? {}) as Record<string, number>;
 
 const tiles = [
   { kicker: "Legislators", value: Number(counts.members ?? members.length), note: "House and Senate" },
-  { kicker: "Roll calls", value: Number(counts.rollcalls ?? 0), note: `${manifest.session_name}` },
+  { kicker: "Roll calls", value: Number(counts.rollcalls ?? 0), note: coverageLabel },
   { kicker: "Bills voted", value: Number(counts.bills ?? 0), note: "measures with a recorded vote" },
   { kicker: "Individual votes", value: Number(counts.member_votes ?? 0), note: "recorded positions" },
 ];

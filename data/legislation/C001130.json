@@ -11,6 +11,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hconres119-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/119",
+      "title": "Celebrating the 65th anniversary of the establishment of the Peace Corps, and commending its volunteers and contributions to global peace, friendship, and development."
+    },
+    {
+      "became_law": false,
       "bill_id": "hconres13-118",
       "congress": 118,
       "enacted_action": null,
@@ -529,7 +538,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10527",
-      "title": "To protect the independence of the Smithsonian Institution, and for other purposes."
+      "title": "Smithsonian Integrity and Historical Independence Act of 2026"
     },
     {
       "became_law": false,
@@ -547,7 +556,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10585",
-      "title": "To amend the National and Community Service Act of 1990 to establish a Civilian Climate Corps to help communities respond to climate change and transition to a clean economy, and for other purposes."
+      "title": "Civilian Climate Corps for Jobs and Justice Act"
     },
     {
       "became_law": false,
@@ -556,7 +565,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10597",
-      "title": "To require group health plans and group or individual health insurance coverage to provide coverage for over-the-counter contraceptives."
+      "title": "Affordability is Access Act of 2026"
     },
     {
       "became_law": false,
@@ -565,7 +574,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10600",
-      "title": "To amend the Foreign Assistance Act of 1961 to authorize the use of Federal foreign assistance funds for comprehensive reproductive health care services, and for other purposes."
+      "title": "Abortion is Health Care Everywhere Act of 2026"
     },
     {
       "became_law": false,
@@ -1475,6 +1484,15 @@
       "introduced_date": "2025-04-07",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2046",
       "title": "To require congressional approval before the sale, disposal, declaration of excess or surplus, transfer, or conveyance of Federal property with historical significance, and for other purposes."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr2048-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2048",
+      "title": "Metastatic Breast Cancer Access to Care Act"
     },
     {
       "became_law": false,
@@ -9028,6 +9046,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1005,
+    "sponsored": 43
+  },
   "member_id": "C001130",
   "source_url": "https://api.congress.gov/v3/member/C001130/sponsored-legislation",
   "sponsored": [

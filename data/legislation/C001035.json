@@ -7193,6 +7193,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres914-118",
       "congress": 118,
       "enacted_action": null,
@@ -7220,12 +7229,48 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres923-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/923",
+      "title": "A resolution expressing support for the designation of October 4 through October 10, 2026, as \"National 4-H Week\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres924-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/924",
+      "title": "A resolution designating October 7, 2026, as \"Energy Efficiency Day\" in celebration of the economic and environmental benefits that have been driven by private sector innovation and Federal energy efficiency policies."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres926-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/926",
+      "title": "A resolution designating September 2026 as \"National Literacy Month\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres949-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/949",
+      "title": "A resolution designating October 12, 2026, as \"National Loggers Day\"."
     },
     {
       "became_law": false,
@@ -7237,6 +7282,10 @@
       "title": "A resolution supporting the goals of International Women's Day."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 6649,
+    "sponsored": 1208
+  },
   "member_id": "C001035",
   "source_url": "https://api.congress.gov/v3/member/C001035/sponsored-legislation",
   "sponsored": [
@@ -7367,10 +7416,10 @@
       "title": "Kay Hagan Tick Reauthorization Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-07-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"

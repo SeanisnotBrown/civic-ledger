@@ -452,6 +452,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10628-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10628",
+      "title": "To amend title XI of the Social Security Act to alter when biosimilar biological products are eligible for price negotiations under the Medicare program."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1078-119",
       "congress": 119,
       "enacted_action": null,
@@ -2699,6 +2708,15 @@
       "introduced_date": "2023-12-13",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4818",
       "title": "Treat and Reduce Obesity Act of 2023"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr4837-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4837",
+      "title": "Written Informed Consent Act"
     },
     {
       "became_law": false,
@@ -5041,6 +5059,10 @@
       "title": "Condemning rape and sexual violence committed by Hamas in its war against Israel."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 562,
+    "sponsored": 52
+  },
   "member_id": "Y000067",
   "source_url": "https://api.congress.gov/v3/member/Y000067/sponsored-legislation",
   "sponsored": [

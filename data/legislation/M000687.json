@@ -349,7 +349,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10527",
-      "title": "To protect the independence of the Smithsonian Institution, and for other purposes."
+      "title": "Smithsonian Integrity and Historical Independence Act of 2026"
     },
     {
       "became_law": false,
@@ -377,6 +377,15 @@
       "introduced_date": "2025-02-10",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1061",
       "title": "Protecting Sensitive Locations Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10624-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10624",
+      "title": "To prohibit the use of Federal funds to carry out Executive Order 14253."
     },
     {
       "became_law": false,
@@ -794,15 +803,6 @@
     },
     {
       "became_law": false,
-      "bill_id": "hr1522-119",
-      "congress": 119,
-      "enacted_action": null,
-      "introduced_date": "2025-05-08",
-      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1522",
-      "title": "Federal Retirement Fairness Act"
-    },
-    {
-      "became_law": false,
       "bill_id": "hr1526-118",
       "congress": 118,
       "enacted_action": null,
@@ -1043,6 +1043,15 @@
       "introduced_date": "2023-04-06",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1723",
       "title": "Abortion is Health Care Everywhere Act of 2023"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr1725-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2025-05-08",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1725",
+      "title": "Sgt. Isaac Woodard, Jr. and Sgt. Joseph H. Maddox GI Bill Restoration Act of 2025"
     },
     {
       "became_law": false,
@@ -5914,6 +5923,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2884,
+    "sponsored": 96
+  },
   "member_id": "M000687",
   "source_url": "https://api.congress.gov/v3/member/M000687/sponsored-legislation",
   "sponsored": [

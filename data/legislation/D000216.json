@@ -335,6 +335,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10597-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10597",
+      "title": "Affordability is Access Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1088-118",
       "congress": 118,
       "enacted_action": null,
@@ -3898,6 +3907,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 6531,
+    "sponsored": 644
+  },
   "member_id": "D000216",
   "source_url": "https://api.congress.gov/v3/member/D000216/sponsored-legislation",
   "sponsored": [

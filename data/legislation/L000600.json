@@ -2278,10 +2278,10 @@
       "title": "State Planning for Reliability and Affordability Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr3657-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-112.",
       "introduced_date": "2025-06-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3657",
       "title": "Hydropower Licensing Transparency Act"
@@ -6220,6 +6220,10 @@
       "title": "Condemning New York Governor Kathy Hochul for reducing funding for schools across New York State and prioritizing increased funding for migrants."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 691,
+    "sponsored": 84
+  },
   "member_id": "L000600",
   "source_url": "https://api.congress.gov/v3/member/L000600/sponsored-legislation",
   "sponsored": [
@@ -6257,7 +6261,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10522",
-      "title": "To prohibit the obligation or expenditure of Department of Health and Human Services funds for the use of live dogs and live cats in biomedical research, to strengthen accountability for Federal research expenditures, and for other purposes."
+      "title": "Companion Animal Protection Against Cruel Testing Act"
     },
     {
       "became_law": false,
@@ -6266,7 +6270,16 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10571",
-      "title": "To amend the Public Health Service Act with respect to State support for newborn screening, and for other purposes."
+      "title": "Surge to Save Newborns Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10628-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10628",
+      "title": "To amend title XI of the Social Security Act to alter when biosimilar biological products are eligible for price negotiations under the Medicare program."
     },
     {
       "became_law": false,

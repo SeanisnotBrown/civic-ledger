@@ -1064,15 +1064,6 @@
     },
     {
       "became_law": false,
-      "bill_id": "hr1879-118",
-      "congress": 118,
-      "enacted_action": null,
-      "introduced_date": "2023-03-29",
-      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1879",
-      "title": "To provide for a limitation on availability of funds for House of Representatives, Allowance for Compensation of Interns in House Standing, Special and Select Committee Offices for fiscal year 2024."
-    },
-    {
-      "became_law": false,
       "bill_id": "hr1880-118",
       "congress": 118,
       "enacted_action": null,
@@ -3599,6 +3590,15 @@
       "introduced_date": "2023-03-29",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2149",
       "title": "To provide for a limitation on availability of funds for Independent Agencies, Small Business Administration, Disaster Loan Program for fiscal year 2024."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr2150-118",
+      "congress": 118,
+      "enacted_action": null,
+      "introduced_date": "2023-03-29",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2150",
+      "title": "To provide for a limitation on availability of funds for Independent Agencies, United States Postal Service, Payment to the Postal Service Fund for fiscal year 2024."
     },
     {
       "became_law": false,
@@ -8651,6 +8651,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9827-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9827",
+      "title": "Wildfire Reduction Market Expansion Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9828-118",
       "congress": 118,
       "enacted_action": null,
@@ -9163,6 +9172,10 @@
       "title": "Denouncing dangerous and seditious rhetoric by Members of Congress and expressing condemnation of Senator Mark Kelly, Senator Elissa Slotkin, Representative Jason Crow, Representative Christopher Deluzio, Representative Maggie Goodlander, and Representative Chrissy Houlahan for attempting to sow disallegiance amongst members of the United States military and intelligence community and encouraging them to act against the Commander in Chief and President of the United States and violate the Uniform Code of Military Justice."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1019,
+    "sponsored": 54
+  },
   "member_id": "C001132",
   "source_url": "https://api.congress.gov/v3/member/C001132/sponsored-legislation",
   "sponsored": [

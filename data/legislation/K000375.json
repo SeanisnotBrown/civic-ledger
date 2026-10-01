@@ -2378,6 +2378,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr349-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/349",
+      "title": "Goldie’s Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3503-118",
       "congress": 118,
       "enacted_action": null,
@@ -3863,6 +3872,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr5293-118",
+      "congress": 118,
+      "enacted_action": null,
+      "introduced_date": "2023-11-02",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5293",
+      "title": "Youth Voting Rights Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr5294-118",
       "congress": 118,
       "enacted_action": null,
@@ -4394,15 +4412,6 @@
     },
     {
       "became_law": false,
-      "bill_id": "hr6076-118",
-      "congress": 118,
-      "enacted_action": null,
-      "introduced_date": "2023-11-02",
-      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6076",
-      "title": "Job Creation through Energy Efficient Manufacturing Act"
-    },
-    {
-      "became_law": false,
       "bill_id": "hr6087-118",
       "congress": 118,
       "enacted_action": null,
@@ -4544,6 +4553,15 @@
       "introduced_date": "2023-11-15",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6416",
       "title": "Russian War Crimes in Ukraine Tax Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr6423-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6423",
+      "title": "HELP Copays Act"
     },
     {
       "became_law": false,
@@ -6886,6 +6904,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2944,
+    "sponsored": 172
+  },
   "member_id": "K000375",
   "source_url": "https://api.congress.gov/v3/member/K000375/sponsored-legislation",
   "sponsored": [

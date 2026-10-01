@@ -1406,6 +1406,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr4731-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4731",
+      "title": "Resident Physician Shortage Reduction Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr4760-119",
       "congress": 119,
       "enacted_action": null,
@@ -2180,6 +2189,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr8730-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8730",
+      "title": "Connected Vehicle Security Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr880-119",
       "congress": 119,
       "enacted_action": null,
@@ -2944,6 +2962,10 @@
       "title": "Supporting the contributions of Catholic schools in the United States and celebrating the 50th annual \"National Catholic Schools Week\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1152,
+    "sponsored": 152
+  },
   "member_id": "H001072",
   "source_url": "https://api.congress.gov/v3/member/H001072/sponsored-legislation",
   "sponsored": [

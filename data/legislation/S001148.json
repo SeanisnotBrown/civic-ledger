@@ -596,6 +596,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr3105-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3105",
+      "title": "Promotion and Expansion of Private Employee Ownership Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3110-118",
       "congress": 118,
       "enacted_action": null,
@@ -2044,6 +2053,10 @@
       "title": "Supporting the recognition of January 9, 2026, as \"National Law Enforcement Appreciation Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2247,
+    "sponsored": 160
+  },
   "member_id": "S001148",
   "source_url": "https://api.congress.gov/v3/member/S001148/sponsored-legislation",
   "sponsored": [

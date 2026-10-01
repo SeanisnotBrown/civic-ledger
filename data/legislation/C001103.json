@@ -646,7 +646,25 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10556",
-      "title": "To amend title 38, United States Code, to prohibit the appointment or retention of Department of Veterans Affairs employees who knowingly committed fraud involving Federal funds."
+      "title": "VA Hiring Integrity Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10625-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10625",
+      "title": "To amend title XIX of the Social Security Act to require State Medicaid fraud control units to conduct annual audits."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10636-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10636",
+      "title": "Medicaid Fraud Prevention Act"
     },
     {
       "became_law": false,
@@ -5897,6 +5915,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9337-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9337",
+      "title": "Hydropower Licensing Affordability Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9340-119",
       "congress": 119,
       "enacted_action": null,
@@ -7300,6 +7327,10 @@
       "title": "Commending President Trump, his administration, and the brave men and women of the Armed Forces, Intelligence Community, and Justice Department for the remarkable success of \"Operation Absolute Resolve\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1949,
+    "sponsored": 213
+  },
   "member_id": "C001103",
   "source_url": "https://api.congress.gov/v3/member/C001103/sponsored-legislation",
   "sponsored": [

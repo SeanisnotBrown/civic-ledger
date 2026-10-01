@@ -2806,7 +2806,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5484",
-      "title": "A bill to amend the Energy Independence and Security Act of 2007 to prohibit the Secretary of Energy from enforcing energy efficiency standards applicable to manufactured housing, and for other purposes."
+      "title": "Affordable HOMES Act of 2026"
     },
     {
       "became_law": false,
@@ -3034,10 +3034,10 @@
       "title": "PHIT Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s790-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-117.",
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/790",
       "title": "A bill to redesignate the National Historic Trails Interpretive Center in Casper, Wyoming, as the \"Barbara L. Cubin National Historic Trails Interpretive Center\"."
@@ -5177,6 +5177,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres914-118",
       "congress": 118,
       "enacted_action": null,
@@ -5195,6 +5204,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres934-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/934",
+      "title": "A resolution designating October 10, 2026, as \"American Girls in Sports Day\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres97-118",
       "congress": 118,
       "enacted_action": null,
@@ -5203,6 +5221,10 @@
       "title": "A resolution expressing concern about economic and security conditions in Mexico and reaffirming the interest of the United States in mutually beneficial relations with Mexico based on shared interests on security, economic prosperity, and democratic values, and for other purposes."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2478,
+    "sponsored": 713
+  },
   "member_id": "B001261",
   "source_url": "https://api.congress.gov/v3/member/B001261/sponsored-legislation",
   "sponsored": [

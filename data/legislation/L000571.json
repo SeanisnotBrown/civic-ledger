@@ -4358,6 +4358,24 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5616-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5616",
+      "title": "A bill to amend the Internal Revenue Code of 1986 to reform the treatment of digital assets."
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5628-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5628",
+      "title": "A bill to amend the Consumer Financial Protection Act of 2010 to enhance rule-making requirements for the Bureau of Consumer Financial Protection, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "s567-119",
       "congress": 119,
       "enacted_action": null,
@@ -6770,6 +6788,24 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres912-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/912",
+      "title": "A resolution recognizing the 50th anniversary of the Hyde Amendment and its enduring legacy of saving the lives of more than 2,600,000 unborn children and respecting the conscience rights of the American people."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres914-118",
       "congress": 118,
       "enacted_action": null,
@@ -6794,8 +6830,21 @@
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres945-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/945",
+      "title": "A resolution designating November 7, 2026, as \"National Bison Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2278,
+    "sponsored": 249
+  },
   "member_id": "L000571",
   "source_url": "https://api.congress.gov/v3/member/L000571/sponsored-legislation",
   "sponsored": [
@@ -7386,6 +7435,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5663-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5663",
+      "title": "A bill to establish a program at the National Science Foundation to fund research awards to reproduce federally funded research."
+    },
+    {
+      "became_law": false,
       "bill_id": "s569-119",
       "congress": 119,
       "enacted_action": null,
@@ -7412,10 +7470,10 @@
       "title": "Sustainable Budget Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s790-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-117.",
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/790",
       "title": "A bill to redesignate the National Historic Trails Interpretive Center in Casper, Wyoming, as the \"Barbara L. Cubin National Historic Trails Interpretive Center\"."

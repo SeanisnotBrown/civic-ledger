@@ -2576,6 +2576,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5620-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5620",
+      "title": "A bill to amend title IV of the Elementary and Secondary Education Act of 1965 to establish the UNPLUGGED Schools Grant Program, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "s583-118",
       "congress": 118,
       "enacted_action": null,
@@ -4160,14 +4169,54 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres923-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/923",
+      "title": "A resolution expressing support for the designation of October 4 through October 10, 2026, as \"National 4-H Week\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres934-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/934",
+      "title": "A resolution designating October 10, 2026, as \"American Girls in Sports Day\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres946-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/946",
+      "title": "A resolution designating September 30, 2026, as \"National Veterans Suicide Prevention Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1973,
+    "sponsored": 581
+  },
   "member_id": "C001095",
   "source_url": "https://api.congress.gov/v3/member/C001095/sponsored-legislation",
   "sponsored": [

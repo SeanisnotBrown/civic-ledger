@@ -200,6 +200,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr2231-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2231",
+      "title": "Motorsports Fairness and Permanency Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr2382-119",
       "congress": 119,
       "enacted_action": null,
@@ -485,6 +494,15 @@
       "introduced_date": "2025-01-15",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/452",
       "title": "Miracle on Ice Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr4602-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4602",
+      "title": "Countering Threats and Attacks on Our Judges Act"
     },
     {
       "became_law": false,
@@ -784,6 +802,10 @@
       "title": "Honoring the life and legacy of Charles Charlie James Kirk."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 89,
+    "sponsored": 6
+  },
   "member_id": "K000405",
   "source_url": "https://api.congress.gov/v3/member/K000405/sponsored-legislation",
   "sponsored": [

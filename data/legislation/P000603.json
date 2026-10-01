@@ -1586,6 +1586,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
@@ -1594,6 +1603,10 @@
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1134,
+    "sponsored": 1114
+  },
   "member_id": "P000603",
   "source_url": "https://api.congress.gov/v3/member/P000603/sponsored-legislation",
   "sponsored": [
@@ -2235,6 +2248,15 @@
       "introduced_date": "2024-12-12",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/5512",
       "title": "FAIR Act of 2024"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5589-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5589",
+      "title": "A bill to prohibit United States foreign assistance to the Palestinian Authority and other Palestinian governing entities in the West Bank and Gaza unless certain conditions are met, and for other purposes."
     },
     {
       "became_law": false,

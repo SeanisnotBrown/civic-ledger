@@ -74,6 +74,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hjres63-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/63",
+      "title": "Redesignating the Robert E. Lee Memorial as the \"Arlington House National Historic Site\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hjres80-119",
       "congress": 119,
       "enacted_action": null,
@@ -196,7 +205,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10571",
-      "title": "To amend the Public Health Service Act with respect to State support for newborn screening, and for other purposes."
+      "title": "Surge to Save Newborns Act"
     },
     {
       "became_law": false,
@@ -205,7 +214,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10600",
-      "title": "To amend the Foreign Assistance Act of 1961 to authorize the use of Federal foreign assistance funds for comprehensive reproductive health care services, and for other purposes."
+      "title": "Abortion is Health Care Everywhere Act of 2026"
     },
     {
       "became_law": false,
@@ -6166,6 +6175,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1338,
+    "sponsored": 106
+  },
   "member_id": "S001216",
   "source_url": "https://api.congress.gov/v3/member/S001216/sponsored-legislation",
   "sponsored": [
@@ -6305,10 +6318,10 @@
       "title": "To amend the Agricultural Research, Extension, and Education Reform Act of 1998 to authorize the Secretary of Agriculture to waive the matching funds requirement under the specialty crop research initiative, and for other purposes."
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr3657-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-112.",
       "introduced_date": "2025-05-29",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3657",
       "title": "Hydropower Licensing Transparency Act"

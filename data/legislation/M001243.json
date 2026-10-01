@@ -182,6 +182,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s1253-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1253",
+      "title": "College Admissions Accountability Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "s1261-119",
       "congress": 119,
       "enacted_action": null,
@@ -422,6 +431,15 @@
       "introduced_date": "2026-08-06",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1551",
       "title": "No Subsidies for Gender Transition Procedures Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s1569-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1569",
+      "title": "Fairness in Higher Education Accreditation Act"
     },
     {
       "became_law": false,
@@ -991,10 +1009,10 @@
       "title": "National Net Interest is National Security Act of 2025"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-07-28",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"
@@ -1115,6 +1133,15 @@
       "introduced_date": "2025-11-10",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2690",
       "title": "Safer Truckers Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s2702-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2702",
+      "title": "Empower Parents to Protect their Kids Act of 2025"
     },
     {
       "became_law": false,
@@ -2545,7 +2572,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5463",
-      "title": "A bill to amend title 36, United States Code, to request the President to designate a month each year as National American History and Founders Month."
+      "title": "National American History and Founders Month Act"
     },
     {
       "became_law": false,
@@ -3338,8 +3365,39 @@
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/897",
       "title": "A resolution honoring the life, service, and legacy of the Honorable Jon Llewellyn Kyl, former Senator for the State of Arizona."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres912-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/912",
+      "title": "A resolution recognizing the 50th anniversary of the Hyde Amendment and its enduring legacy of saving the lives of more than 2,600,000 unborn children and respecting the conscience rights of the American people."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres934-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/934",
+      "title": "A resolution designating October 10, 2026, as \"American Girls in Sports Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 390,
+    "sponsored": 79
+  },
   "member_id": "M001243",
   "source_url": "https://api.congress.gov/v3/member/M001243/sponsored-legislation",
   "sponsored": [

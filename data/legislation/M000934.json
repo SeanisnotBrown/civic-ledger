@@ -4718,12 +4718,39 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres923-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/923",
+      "title": "A resolution expressing support for the designation of October 4 through October 10, 2026, as \"National 4-H Week\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres945-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/945",
+      "title": "A resolution designating November 7, 2026, as \"National Bison Day\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres946-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/946",
+      "title": "A resolution designating September 30, 2026, as \"National Veterans Suicide Prevention Day\"."
     },
     {
       "became_law": false,
@@ -4735,6 +4762,10 @@
       "title": "A resolution celebrating Black History Month."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 3856,
+    "sponsored": 790
+  },
   "member_id": "M000934",
   "source_url": "https://api.congress.gov/v3/member/M000934/sponsored-legislation",
   "sponsored": [
@@ -5979,6 +6010,15 @@
       "introduced_date": "2024-09-24",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/853",
       "title": "A resolution expressing support for recognizing September 20 as National Service Dog Day."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
     },
     {
       "became_law": false,

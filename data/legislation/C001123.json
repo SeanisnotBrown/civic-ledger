@@ -236,6 +236,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10622-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10622",
+      "title": "To amend the Small Business Act to require the Administrator to conduct compliance reviews for subcontracting plans, submit a report on subcontracting plans, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1065-119",
       "congress": 119,
       "enacted_action": null,
@@ -1700,6 +1709,15 @@
       "introduced_date": "2025-11-04",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/485",
       "title": "Muhammad Ali Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr4863-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4863",
+      "title": "Fairness for Khobar Act of 2025"
     },
     {
       "became_law": false,
@@ -3655,6 +3673,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1244,
+    "sponsored": 34
+  },
   "member_id": "C001123",
   "source_url": "https://api.congress.gov/v3/member/C001123/sponsored-legislation",
   "sponsored": [

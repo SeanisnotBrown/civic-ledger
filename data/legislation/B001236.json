@@ -1468,10 +1468,10 @@
       "title": "Veterans’ Compensation Cost-of-Living Adjustment Act of 2025"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-09-30",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"
@@ -2015,6 +2015,15 @@
       "introduced_date": "2023-11-27",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3290",
       "title": "Autonomy for Disabled Veterans Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s3296-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3296",
+      "title": "Improving Access to Workers’ Compensation for Injured Federal Workers Act of 2025"
     },
     {
       "became_law": false,
@@ -3076,7 +3085,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5484",
-      "title": "A bill to amend the Energy Independence and Security Act of 2007 to prohibit the Secretary of Energy from enforcing energy efficiency standards applicable to manufactured housing, and for other purposes."
+      "title": "Affordable HOMES Act of 2026"
     },
     {
       "became_law": false,
@@ -3122,6 +3131,15 @@
       "introduced_date": "2025-02-13",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/558",
       "title": "Antisemitism Awareness Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5591-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5591",
+      "title": "A bill to improve support for personnel of the Veterans Crisis Line and to clarify authorities relating to crisis response protocols, and for other purposes."
     },
     {
       "became_law": false,
@@ -5402,6 +5420,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres872-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/872",
+      "title": "A resolution celebrating the 65th anniversary of the establishment of the Peace Corps, and commending its volunteers and contributions to global peace, friendship, and development."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres881-118",
       "congress": 118,
       "enacted_action": null,
@@ -5465,14 +5492,45 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres945-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/945",
+      "title": "A resolution designating November 7, 2026, as \"National Bison Day\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres946-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/946",
+      "title": "A resolution designating September 30, 2026, as \"National Veterans Suicide Prevention Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 4257,
+    "sponsored": 408
+  },
   "member_id": "B001236",
   "source_url": "https://api.congress.gov/v3/member/B001236/sponsored-legislation",
   "sponsored": [
@@ -5681,7 +5739,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5464",
-      "title": "A bill to amend title 38, United States Code, to modify the report on the health of women veterans, and for other purposes."
+      "title": "VOICE for Women Veterans Act"
     },
     {
       "became_law": false,
@@ -5709,6 +5767,15 @@
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5526",
       "title": "Agricultural Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5588-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5588",
+      "title": "A bill to require the Secretary of the Army to issue a general ecological restoration permit under the Federal Water Pollution Control Act, and for other purposes."
     },
     {
       "became_law": false,
@@ -5871,6 +5938,15 @@
       "introduced_date": "2024-11-21",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/906",
       "title": "A resolution commending and congratulating the United States Team for winning the 2024 Solheim Cup."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres923-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/923",
+      "title": "A resolution expressing support for the designation of October 4 through October 10, 2026, as \"National 4-H Week\"."
     }
   ]
 }

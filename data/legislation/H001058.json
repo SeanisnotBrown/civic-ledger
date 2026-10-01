@@ -371,6 +371,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10639-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10639",
+      "title": "To designate the Great Lakes Commission as a Regional Great Lakes Partnership, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1065-119",
       "congress": 119,
       "enacted_action": null,
@@ -3880,6 +3889,10 @@
       "title": "Commending Taiwan for its history of democratic elections, and expressing support of Taiwan in the preservation of its democratic institutions."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1740,
+    "sponsored": 177
+  },
   "member_id": "H001058",
   "source_url": "https://api.congress.gov/v3/member/H001058/sponsored-legislation",
   "sponsored": [

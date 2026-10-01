@@ -1739,6 +1739,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr4602-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4602",
+      "title": "Countering Threats and Attacks on Our Judges Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr4620-119",
       "congress": 119,
       "enacted_action": null,
@@ -3421,6 +3430,10 @@
       "title": "Recognizing and expressing support for the Iranian people protesting for a free and democratic Iran."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 381,
+    "sponsored": 47
+  },
   "member_id": "L000597",
   "source_url": "https://api.congress.gov/v3/member/L000597/sponsored-legislation",
   "sponsored": [

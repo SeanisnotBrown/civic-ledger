@@ -56,6 +56,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10625-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10625",
+      "title": "To amend title XIX of the Social Security Act to require State Medicaid fraud control units to conduct annual audits."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1157-119",
       "congress": 119,
       "enacted_action": null,
@@ -1405,6 +1414,10 @@
       "title": "Condemning the Government of Iran's state-sponsored persecution of the Baha'i minority in Iran and the continued violation of the Universal Declaration of Human Rights and the International Covenant on Civil and Political Rights."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 157,
+    "sponsored": 36
+  },
   "member_id": "K000403",
   "source_url": "https://api.congress.gov/v3/member/K000403/sponsored-legislation",
   "sponsored": [

@@ -703,10 +703,10 @@
       "title": "CANADA Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-07-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"
@@ -2032,7 +2032,7 @@
       "enacted_action": null,
       "introduced_date": "2025-02-11",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/528",
-      "title": "GLRI Act of 2025"
+      "title": "GLRI Act of 2026"
     },
     {
       "became_law": false,
@@ -3503,12 +3503,30 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres928-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/928",
+      "title": "A resolution to authorize testimony, document production, and representation by the Senate Legal Counsel in the case of United States v. Terry."
     },
     {
       "became_law": false,
@@ -3529,6 +3547,10 @@
       "title": "A resolution celebrating Black History Month."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 8129,
+    "sponsored": 2456
+  },
   "member_id": "S000148",
   "source_url": "https://api.congress.gov/v3/member/S000148/sponsored-legislation",
   "sponsored": [
@@ -3791,7 +3813,16 @@
       "enacted_action": null,
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5461",
-      "title": "A bill to require a study to evaluate the feasibility of establishing a Strategic Fertilizer Reserve for the storage and management of fertilizer products and fertilizer product inputs, and for other purposes."
+      "title": "Strategic Fertilizer Reserve Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5619-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5619",
+      "title": "A bill to restore the allowance of the premium tax credit for lawfully present individuals, and for other purposes."
     },
     {
       "became_law": false,

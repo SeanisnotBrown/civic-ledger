@@ -6005,6 +6005,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9693-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9693",
+      "title": "Patients First Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr970-118",
       "congress": 118,
       "enacted_action": null,
@@ -6706,6 +6715,10 @@
       "title": "Commending President Trump, his administration, and the brave men and women of the Armed Forces, Intelligence Community, and Justice Department for the remarkable success of \"Operation Absolute Resolve\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1757,
+    "sponsored": 49
+  },
   "member_id": "R000609",
   "source_url": "https://api.congress.gov/v3/member/R000609/sponsored-legislation",
   "sponsored": [

@@ -182,6 +182,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10639-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10639",
+      "title": "To designate the Great Lakes Commission as a Regional Great Lakes Partnership, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1073-119",
       "congress": 119,
       "enacted_action": null,
@@ -2917,6 +2926,10 @@
       "title": "Supporting the contributions of Catholic schools in the United States and celebrating the 50th annual \"National Catholic Schools Week\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1852,
+    "sponsored": 141
+  },
   "member_id": "J000295",
   "source_url": "https://api.congress.gov/v3/member/J000295/sponsored-legislation",
   "sponsored": [

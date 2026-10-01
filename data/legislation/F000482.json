@@ -623,6 +623,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr4863-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4863",
+      "title": "Fairness for Khobar Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr4986-119",
       "congress": 119,
       "enacted_action": null,
@@ -1261,6 +1270,10 @@
       "title": "Supporting the recognition of January 9, 2026, as \"National Law Enforcement Appreciation Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 141,
+    "sponsored": 16
+  },
   "member_id": "F000482",
   "source_url": "https://api.congress.gov/v3/member/F000482/sponsored-legislation",
   "sponsored": [

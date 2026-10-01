@@ -412,7 +412,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10421",
-      "title": "To amend the Elementary and Secondary Education Act of 1965 to increase support for elementary and secondary education, and for other purposes."
+      "title": "Transforming Education for the Future Act"
     },
     {
       "became_law": false,
@@ -421,7 +421,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10582",
-      "title": "To amend the Internal Revenue Code of 1986 to provide a tax credit for American film and television productions, and for other purposes."
+      "title": "Motion Picture, Television, and Entertainment Revitalization Act"
     },
     {
       "became_law": true,
@@ -449,6 +449,15 @@
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10612",
       "title": "To provide for the basic needs of students at institutions of higher education."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10628-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10628",
+      "title": "To amend title XI of the Social Security Act to alter when biosimilar biological products are eligible for price negotiations under the Medicare program."
     },
     {
       "became_law": false,
@@ -7579,6 +7588,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 4891,
+    "sponsored": 252
+  },
   "member_id": "S001156",
   "source_url": "https://api.congress.gov/v3/member/S001156/sponsored-legislation",
   "sponsored": [

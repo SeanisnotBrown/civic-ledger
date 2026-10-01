@@ -1126,10 +1126,10 @@
       "title": "GUARD Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-07-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"
@@ -4133,6 +4133,24 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres912-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/912",
+      "title": "A resolution recognizing the 50th anniversary of the Hyde Amendment and its enduring legacy of saving the lives of more than 2,600,000 unborn children and respecting the conscience rights of the American people."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres914-118",
       "congress": 118,
       "enacted_action": null,
@@ -4159,6 +4177,10 @@
       "title": "A resolution congratulating the Washington University in St. Louis Bears women's soccer team for winning the 2024 NCAA Division III Women's Soccer Championship."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 976,
+    "sponsored": 349
+  },
   "member_id": "H001089",
   "source_url": "https://api.congress.gov/v3/member/H001089/sponsored-legislation",
   "sponsored": [
@@ -4844,7 +4866,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5418",
-      "title": "A bill to amend the Internal Revenue Code of 1986 to exclude data centers from the definition of qualified opportunity zone businesses."
+      "title": "No Tax Breaks for Data Centers Act"
     },
     {
       "became_law": false,

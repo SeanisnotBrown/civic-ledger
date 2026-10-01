@@ -110,6 +110,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10626-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10626",
+      "title": "To amend title XIX of the Social Security Act to increase the State share of the recovery of certain overpayments under the Medicaid program."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1063-119",
       "congress": 119,
       "enacted_action": null,
@@ -881,6 +890,15 @@
       "introduced_date": "2025-04-17",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2594",
       "title": "To establish a Water Risk and Resilience Organization to develop risk and resilience requirements for the water sector."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr2598-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2598",
+      "title": "IDEA Full Funding Act"
     },
     {
       "became_law": false,
@@ -2818,6 +2836,10 @@
       "title": "Expressing support for the designation of the week of October 20 to October 24, 2025, as \"Careers in Energy Week\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 315,
+    "sponsored": 23
+  },
   "member_id": "B001327",
   "source_url": "https://api.congress.gov/v3/member/B001327/sponsored-legislation",
   "sponsored": [

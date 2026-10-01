@@ -83,6 +83,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr116-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/116",
+      "title": "Stopping Border Surges Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1160-119",
       "congress": 119,
       "enacted_action": null,
@@ -1522,6 +1531,10 @@
       "title": "Commending President Trump, his administration, and the brave men and women of the Armed Forces, Intelligence Community, and Justice Department for the remarkable success of \"Operation Absolute Resolve\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 170,
+    "sponsored": 19
+  },
   "member_id": "O000177",
   "source_url": "https://api.congress.gov/v3/member/O000177/sponsored-legislation",
   "sponsored": [

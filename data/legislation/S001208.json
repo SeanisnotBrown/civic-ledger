@@ -4718,6 +4718,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s3466-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3466",
+      "title": "Honor Our Promise to Veterans Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "s3492-119",
       "congress": 119,
       "enacted_action": null,
@@ -5281,7 +5290,7 @@
       "enacted_action": null,
       "introduced_date": "2025-02-11",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/528",
-      "title": "GLRI Act of 2025"
+      "title": "GLRI Act of 2026"
     },
     {
       "became_law": false,
@@ -6074,8 +6083,21 @@
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/897",
       "title": "A resolution honoring the life, service, and legacy of the Honorable Jon Llewellyn Kyl, former Senator for the State of Arizona."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1592,
+    "sponsored": 227
+  },
   "member_id": "S001208",
   "source_url": "https://api.congress.gov/v3/member/S001208/sponsored-legislation",
   "sponsored": [

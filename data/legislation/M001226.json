@@ -2126,6 +2126,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr381-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/381",
+      "title": "LNG Public Interest Determination Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3850-118",
       "congress": 118,
       "enacted_action": null,
@@ -5356,6 +5365,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 596,
+    "sponsored": 35
+  },
   "member_id": "M001226",
   "source_url": "https://api.congress.gov/v3/member/M001226/sponsored-legislation",
   "sponsored": [

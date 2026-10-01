@@ -1,37 +1,37 @@
 {
-  "commit": "bdb57c4d5",
+  "commit": "0f8ab6121",
   "congresses": [
     118,
     119
   ],
   "counts": {
-    "absences": 35648,
-    "bills": 1038,
+    "absences": 35678,
+    "bills": 1040,
     "legislation": {
-      "became_law_without_rollcall": 237,
-      "sponsored_became_law": 384,
-      "sponsored_bills": 38569,
-      "sponsored_with_rollcall": 1038,
-      "sponsored_without_rollcall": 37531
+      "became_law_without_rollcall": 244,
+      "sponsored_became_law": 391,
+      "sponsored_bills": 38754,
+      "sponsored_with_rollcall": 1040,
+      "sponsored_without_rollcall": 37714
     },
-    "member_votes": 980967,
+    "member_votes": 982167,
     "members": 639,
     "non_position_rollcalls": 20,
-    "rollcalls": 3507,
+    "rollcalls": 3519,
     "rollcalls_by_chamber": {
       "house": 1913,
-      "senate": 1594
+      "senate": 1606
     },
     "rollcalls_by_vote_class": {
-      "amendment": 812,
-      "nomination": 450,
+      "amendment": 817,
+      "nomination": 451,
       "non_position": 20,
       "other": 4,
-      "passage": 911,
-      "procedural": 1296,
+      "passage": 912,
+      "procedural": 1301,
       "veto_override": 14
     },
     "statements": 0
   },
-  "generated_at": "2026-09-26T17:41:51Z"
+  "generated_at": "2026-10-01T19:39:09Z"
 }

@@ -232,7 +232,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10556",
-      "title": "To amend title 38, United States Code, to prohibit the appointment or retention of Department of Veterans Affairs employees who knowingly committed fraud involving Federal funds."
+      "title": "VA Hiring Integrity Act of 2026"
     },
     {
       "became_law": false,
@@ -241,7 +241,16 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10581",
-      "title": "To expand the boundaries of the Shenandoah Valley Battlefields National Historic District, to recognize and enhance the Shenandoah Valley Battlefields National Historic District partnership model, and for other purposes."
+      "title": "Shenandoah VALOR Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10626-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10626",
+      "title": "To amend title XIX of the Social Security Act to increase the State share of the recovery of certain overpayments under the Medicaid program."
     },
     {
       "became_law": false,
@@ -3890,6 +3899,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr7548-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7548",
+      "title": "SCAM Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr759-119",
       "congress": 119,
       "enacted_action": null,
@@ -5140,6 +5158,10 @@
       "title": "Recognizing and expressing support for the Iranian people protesting for a free and democratic Iran."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2891,
+    "sponsored": 212
+  },
   "member_id": "W000804",
   "source_url": "https://api.congress.gov/v3/member/W000804/sponsored-legislation",
   "sponsored": [

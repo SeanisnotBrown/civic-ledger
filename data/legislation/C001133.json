@@ -1082,6 +1082,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr2036-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2036",
+      "title": "Credit for Caring Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr2048-119",
       "congress": 119,
       "enacted_action": null,
@@ -6148,6 +6157,10 @@
       "title": "Supporting the recognition of January 9, 2026, as \"National Law Enforcement Appreciation Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 684,
+    "sponsored": 63
+  },
   "member_id": "C001133",
   "source_url": "https://api.congress.gov/v3/member/C001133/sponsored-legislation",
   "sponsored": [

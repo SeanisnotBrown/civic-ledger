@@ -604,10 +604,10 @@
       "title": "Improving Mental Health Access for Students Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr3657-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-112.",
       "introduced_date": "2025-06-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3657",
       "title": "Hydropower Licensing Transparency Act"
@@ -1360,6 +1360,10 @@
       "title": "A resolution observing the 1-year anniversary of the 2025 Southern California wildfires."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 151,
+    "sponsored": 8
+  },
   "member_id": "G000605",
   "source_url": "https://api.congress.gov/v3/member/G000605/sponsored-legislation",
   "sponsored": [

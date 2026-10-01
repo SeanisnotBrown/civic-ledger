@@ -119,6 +119,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10636-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10636",
+      "title": "Medicaid Fraud Prevention Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1086-119",
       "congress": 119,
       "enacted_action": null,
@@ -484,7 +493,7 @@
       "enacted_action": null,
       "introduced_date": "2025-05-05",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2332",
-      "title": "SHARE Act of 2025"
+      "title": "SHARE Act of 2026"
     },
     {
       "became_law": false,
@@ -1765,6 +1774,10 @@
       "title": "Supporting the recognition of January 9, 2026, as \"National Law Enforcement Appreciation Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 197,
+    "sponsored": 36
+  },
   "member_id": "T000490",
   "source_url": "https://api.congress.gov/v3/member/T000490/sponsored-legislation",
   "sponsored": [

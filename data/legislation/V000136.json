@@ -1474,7 +1474,7 @@
       "enacted_action": null,
       "introduced_date": "2025-05-13",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2332",
-      "title": "SHARE Act of 2025"
+      "title": "SHARE Act of 2026"
     },
     {
       "became_law": false,
@@ -5159,6 +5159,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9693-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9693",
+      "title": "Patients First Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9752-119",
       "congress": 119,
       "enacted_action": null,
@@ -5644,6 +5653,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 628,
+    "sponsored": 65
+  },
   "member_id": "V000136",
   "source_url": "https://api.congress.gov/v3/member/V000136/sponsored-legislation",
   "sponsored": [

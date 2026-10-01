@@ -367,7 +367,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10538",
-      "title": "To establish the Department of Artificial Intelligence and to provide for the regulation of advanced artificial intelligence systems, and for other purposes."
+      "title": "Ban Artificial Superintelligence Act of 2026"
     },
     {
       "became_law": false,
@@ -385,7 +385,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10557",
-      "title": "To restore protections for Social Security, Railroad retirement, and Black Lung benefits from administrative offset."
+      "title": "Protection of Social Security Benefits Restoration Act"
     },
     {
       "became_law": false,
@@ -548,15 +548,6 @@
       "introduced_date": "2025-06-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1408",
       "title": "Affordable Child Care Act"
-    },
-    {
-      "became_law": false,
-      "bill_id": "hr1410-119",
-      "congress": 119,
-      "enacted_action": null,
-      "introduced_date": "2025-11-12",
-      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1410",
-      "title": "9/11 Responder and Survivor Health Funding Correction Act of 2025"
     },
     {
       "became_law": false,
@@ -3359,6 +3350,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr669-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2025-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/669",
+      "title": "Restricting First Use of Nuclear Weapons Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr671-119",
       "congress": 119,
       "enacted_action": null,
@@ -4601,6 +4601,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1574-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1574",
+      "title": "Expressing support for the recognition of September 27, 2026, to October 3, 2026, as \"Asian American and Native American Pacific Islander-Serving Institutions Week\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres159-119",
       "congress": 119,
       "enacted_action": null,
@@ -5122,6 +5131,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 570,
+    "sponsored": 32
+  },
   "member_id": "A000381",
   "source_url": "https://api.congress.gov/v3/member/A000381/sponsored-legislation",
   "sponsored": [

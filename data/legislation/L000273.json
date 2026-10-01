@@ -1631,6 +1631,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr3115-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3115",
+      "title": "Assault Weapons Ban of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3183-118",
       "congress": 118,
       "enacted_action": null,
@@ -5086,6 +5095,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 879,
+    "sponsored": 103
+  },
   "member_id": "L000273",
   "source_url": "https://api.congress.gov/v3/member/L000273/sponsored-legislation",
   "sponsored": [

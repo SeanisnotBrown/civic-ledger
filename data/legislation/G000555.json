@@ -2350,10 +2350,10 @@
       "title": "Access to Infertility Treatment and Care Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-07-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"
@@ -4151,12 +4151,12 @@
     },
     {
       "became_law": false,
-      "bill_id": "s3469-118",
+      "bill_id": "s3477-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2023-12-12",
-      "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3469",
-      "title": "A bill to direct the Secretary of Agriculture to establish a grocery, farm, and food worker stabilization grant program."
+      "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3477",
+      "title": "PATH to College Act"
     },
     {
       "became_law": false,
@@ -6235,7 +6235,7 @@
       "enacted_action": null,
       "introduced_date": "2025-02-11",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/528",
-      "title": "GLRI Act of 2025"
+      "title": "GLRI Act of 2026"
     },
     {
       "became_law": false,
@@ -6397,7 +6397,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-22",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5456",
-      "title": "A bill to prohibit the Secretary of Education from garnishing social security payments from individuals in default on their Federal student loans."
+      "title": "Stop Social Security Garnishment Act of 2026"
     },
     {
       "became_law": false,
@@ -6527,6 +6527,33 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5601-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5601",
+      "title": "A bill to require the Secretary of Defense to establish reporting requirements and voluntary guidance for large artificial intelligence contractors."
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5619-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5619",
+      "title": "A bill to restore the allowance of the premium tax credit for lawfully present individuals, and for other purposes."
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5626-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5626",
+      "title": "A bill to amend the Higher Education Act of 1965 to change certain grant requirements for certain students with disabilities, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "s567-118",
       "congress": 118,
       "enacted_action": null,
@@ -6542,6 +6569,15 @@
       "introduced_date": "2025-06-02",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/567",
       "title": "First Rhode Island Regiment Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5675-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5675",
+      "title": "A bill to require that certain notifications and certifications relating to WIC be available to members of the Armed Forces undergoing a permanent change of station, and for other purposes."
     },
     {
       "became_law": false,
@@ -7235,6 +7271,15 @@
       "introduced_date": "2026-06-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/199",
       "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Health and Human Services relating to \"Restoring Flexibility in the Child Care and Development Fund (CCDF)\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sjres213-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/213",
+      "title": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by U.S. Immigration and Customs Enforcement of the Department of Homeland Security relating to \"Establishing a Fixed Time Period of Admission and an Extension of Stay Procedure for Nonimmigrant Academic Students, Exchange Visitors, and Representatives of Foreign Information Media\"."
     },
     {
       "became_law": false,
@@ -8381,6 +8426,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
@@ -8398,6 +8452,10 @@
       "title": "A resolution celebrating Black History Month."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 5296,
+    "sponsored": 922
+  },
   "member_id": "G000555",
   "source_url": "https://api.congress.gov/v3/member/G000555/sponsored-legislation",
   "sponsored": [
@@ -9434,7 +9492,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-23",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5483",
-      "title": "A bill to nullify the applicability of the Act of July 2, 1948, with respect to the territory of the Seneca Nation of Indians in New York, and for other purposes."
+      "title": "Seneca Nation Law Enforcement Efficiency Act"
     },
     {
       "became_law": false,
@@ -9480,6 +9538,15 @@
       "introduced_date": "2024-12-18",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/5591",
       "title": "Holcombe Rucker Park National Commemorative Site Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5594-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5594",
+      "title": "A bill to establish the Data Protection Agency, protect the privacy of individuals, and for other purposes."
     },
     {
       "became_law": false,

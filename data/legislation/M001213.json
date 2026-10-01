@@ -290,6 +290,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10334-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10334",
+      "title": "EFIN Verification Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10356-119",
       "congress": 119,
       "enacted_action": null,
@@ -3826,6 +3835,10 @@
       "title": "Expressing the sense of the House of Representatives that the United States should reduce and maintain the Federal unified budget deficit at or below 3 percent of gross domestic product."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 630,
+    "sponsored": 97
+  },
   "member_id": "M001213",
   "source_url": "https://api.congress.gov/v3/member/M001213/sponsored-legislation",
   "sponsored": [

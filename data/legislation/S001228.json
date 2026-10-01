@@ -763,7 +763,7 @@
       "enacted_action": null,
       "introduced_date": "2025-03-25",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2332",
-      "title": "SHARE Act of 2025"
+      "title": "SHARE Act of 2026"
     },
     {
       "became_law": false,
@@ -2360,6 +2360,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr7539-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7539",
+      "title": "SAFE Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr7540-119",
       "congress": 119,
       "enacted_action": null,
@@ -2564,6 +2573,15 @@
       "introduced_date": "2025-01-31",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/867",
       "title": "IGO Anti-Boycott Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr8730-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8730",
+      "title": "Connected Vehicle Security Act of 2026"
     },
     {
       "became_law": false,
@@ -3016,6 +3034,10 @@
       "title": "Commending President Trump, his administration, and the brave men and women of the Armed Forces, Intelligence Community, and Justice Department for the remarkable success of \"Operation Absolute Resolve\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 337,
+    "sponsored": 17
+  },
   "member_id": "S001228",
   "source_url": "https://api.congress.gov/v3/member/S001228/sponsored-legislation",
   "sponsored": [

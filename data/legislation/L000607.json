@@ -281,6 +281,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1661-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1661",
+      "title": "SAFE Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr17-119",
       "congress": 119,
       "enacted_action": null,
@@ -1729,6 +1738,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 193,
+    "sponsored": 17
+  },
   "member_id": "L000607",
   "source_url": "https://api.congress.gov/v3/member/L000607/sponsored-legislation",
   "sponsored": [

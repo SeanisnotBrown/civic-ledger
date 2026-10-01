@@ -407,12 +407,21 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10473-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10473",
+      "title": "Justice for Ukrainian Children Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10522-119",
       "congress": 119,
       "enacted_action": null,
       "introduced_date": "2026-09-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10522",
-      "title": "To prohibit the obligation or expenditure of Department of Health and Human Services funds for the use of live dogs and live cats in biomedical research, to strengthen accountability for Federal research expenditures, and for other purposes."
+      "title": "Companion Animal Protection Against Cruel Testing Act"
     },
     {
       "became_law": false,
@@ -430,7 +439,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10600",
-      "title": "To amend the Foreign Assistance Act of 1961 to authorize the use of Federal foreign assistance funds for comprehensive reproductive health care services, and for other purposes."
+      "title": "Abortion is Health Care Everywhere Act of 2026"
     },
     {
       "became_law": false,
@@ -2891,6 +2900,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr4768-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4768",
+      "title": "Health Care Fairness for Military Families Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr4769-119",
       "congress": 119,
       "enacted_action": null,
@@ -4853,6 +4871,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9473-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9473",
+      "title": "Defenders of Bataan and Corregidor Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9489-119",
       "congress": 119,
       "enacted_action": null,
@@ -4868,6 +4895,15 @@
       "introduced_date": "2024-09-27",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/953",
       "title": "Child Care for Every Community Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr9550-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9550",
+      "title": "Strategic Unmanned Systems Partnership Act"
     },
     {
       "became_law": false,
@@ -5968,6 +6004,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 1565,
+    "sponsored": 83
+  },
   "member_id": "E000299",
   "source_url": "https://api.congress.gov/v3/member/E000299/sponsored-legislation",
   "sponsored": [

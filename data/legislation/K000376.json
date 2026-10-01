@@ -3998,6 +3998,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr8000-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8000",
+      "title": "END 7-OH Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr801-119",
       "congress": 119,
       "enacted_action": null,
@@ -5311,6 +5320,10 @@
       "title": "Supporting the contributions of Catholic schools in the United States and celebrating the 50th annual \"National Catholic Schools Week\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2395,
+    "sponsored": 187
+  },
   "member_id": "K000376",
   "source_url": "https://api.congress.gov/v3/member/K000376/sponsored-legislation",
   "sponsored": [
@@ -5321,7 +5334,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10521",
-      "title": "To direct the Secretary of Health and Human Services to revise the regulations implementing the 5-star rating system under Medicare Advantage."
+      "title": "MA STARS Act"
     },
     {
       "became_law": false,

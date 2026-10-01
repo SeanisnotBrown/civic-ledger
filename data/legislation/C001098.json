@@ -290,6 +290,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s1255-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1255",
+      "title": "Cormorant Relief Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "s1266-118",
       "congress": 118,
       "enacted_action": null,
@@ -2396,6 +2405,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s3708-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3708",
+      "title": "MERICA Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "s3713-119",
       "congress": 119,
       "enacted_action": null,
@@ -3259,6 +3277,15 @@
       "title": "REG Act"
     },
     {
+      "became_law": false,
+      "bill_id": "s4968-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4968",
+      "title": "Mystic Alerts Act"
+    },
+    {
       "became_law": true,
       "bill_id": "s5-119",
       "congress": 119,
@@ -3557,6 +3584,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5573-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5573",
+      "title": "A bill to amend the Higher Education Act of 1965 to provide that educational programs classified as Theology and Religious Vocations or Philosophy and Religious Studies at educational institutions that qualify for the religious exemption under title IX of the Education Amendments of 1972 are not subject to ineligibility for title IV assistance based on low earning outcomes."
+    },
+    {
+      "became_law": false,
       "bill_id": "s5600-118",
       "congress": 118,
       "enacted_action": null,
@@ -3770,6 +3806,15 @@
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/706",
       "title": "American Victims of Terrorism Compensation Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s710-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/710",
+      "title": "Crypto ATM Fraud Prevention Act of 2025"
     },
     {
       "became_law": false,
@@ -5816,12 +5861,39 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres912-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/912",
+      "title": "A resolution recognizing the 50th anniversary of the Hyde Amendment and its enduring legacy of saving the lives of more than 2,600,000 unborn children and respecting the conscience rights of the American people."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres948-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/948",
+      "title": "A resolution commending and congratulating Texas A&M University for 150 years of service to the State of Texas and the United States."
     },
     {
       "became_law": false,
@@ -5833,6 +5905,10 @@
       "title": "A resolution expressing concern about economic and security conditions in Mexico and reaffirming the interest of the United States in mutually beneficial relations with Mexico based on shared interests on security, economic prosperity, and democratic values, and for other purposes."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2118,
+    "sponsored": 1149
+  },
   "member_id": "C001098",
   "source_url": "https://api.congress.gov/v3/member/C001098/sponsored-legislation",
   "sponsored": [
@@ -7889,10 +7965,10 @@
       "title": "Justice for Jocelyn Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s759-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-116.",
       "introduced_date": "2025-02-26",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/759",
       "title": "Modernizing Access to Our Public Oceans Act"

@@ -1820,6 +1820,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr2231-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2231",
+      "title": "Motorsports Fairness and Permanency Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr2245-119",
       "congress": 119,
       "enacted_action": null,
@@ -8263,6 +8272,10 @@
       "title": "Impeaching Kristi Lynn Arnold Noem, Secretary of Homeland Security, for high crimes and misdemeanors."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 2130,
+    "sponsored": 183
+  },
   "member_id": "P000614",
   "source_url": "https://api.congress.gov/v3/member/P000614/sponsored-legislation",
   "sponsored": [
@@ -8282,7 +8295,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10587",
-      "title": "To provide funding for the Low-Income Home Energy Assistance Program."
+      "title": "American Homes First Act"
     },
     {
       "became_law": false,
@@ -8291,7 +8304,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10588",
-      "title": "To change certain household income eligibility requirements for low-income home energy assistance in fiscal year 2027, and for other purposes."
+      "title": "LIHEAP Act"
     },
     {
       "became_law": false,
@@ -8300,7 +8313,7 @@
       "enacted_action": null,
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10589",
-      "title": "To amend the Internal Revenue Code of 1986 to provide a tax holiday for motor and aviation fuels."
+      "title": "Consumer Fuel Costs Relief Act"
     },
     {
       "became_law": true,

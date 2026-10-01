@@ -1981,10 +1981,10 @@
       "title": "WATCH Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "s2398-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-118.",
       "introduced_date": "2025-09-02",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2398",
       "title": "Kay Hagan Tick Reauthorization Act"
@@ -3953,6 +3953,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s3940-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3940",
+      "title": "Access to Fair Financing for Opportunity and Resilient Development Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "s3948-119",
       "congress": 119,
       "enacted_action": null,
@@ -4628,6 +4637,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s4545-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4545",
+      "title": "Scientific Integrity Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "s4551-119",
       "congress": 119,
       "enacted_action": null,
@@ -5182,7 +5200,7 @@
       "enacted_action": null,
       "introduced_date": "2025-02-11",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/528",
-      "title": "GLRI Act of 2025"
+      "title": "GLRI Act of 2026"
     },
     {
       "became_law": false,
@@ -5336,6 +5354,24 @@
       "introduced_date": "2025-02-13",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/558",
       "title": "Antisemitism Awareness Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5657-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5657",
+      "title": "A bill to amend the Higher Education Act of 1965 to require institutions of higher education to have an independent advocate for campus sexual assault prevention and response."
+    },
+    {
+      "became_law": false,
+      "bill_id": "s5660-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5660",
+      "title": "A bill to establish a grant program for institutions of higher education to implement patient-centered academic counseling services for student survivors of sexual assault and other violence."
     },
     {
       "became_law": false,
@@ -6056,6 +6092,15 @@
       "introduced_date": "2025-03-10",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-concurrent-resolution/9",
       "title": "A concurrent resolution expressing support for the recognition of March 10, 2025, as \"Abortion Provider Appreciation Day\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sjres220-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/220",
+      "title": "A joint resolution designating a \"Slavery Remembrance Day\" on August 20th, to serve as a reminder of the evils of slavery."
     },
     {
       "became_law": false,
@@ -7733,14 +7778,45 @@
     },
     {
       "became_law": false,
+      "bill_id": "sres913-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/913",
+      "title": "A resolution relating to the death of the Honorable Nancy Kassebaum, former United States Senator for the State of Kansas."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres920-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/920",
+      "title": "A resolution expressing concern about the growing problem of book banning, and the proliferation of threats to freedom of expression in the United States."
+    },
+    {
+      "became_law": false,
       "bill_id": "sres925-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres946-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-30",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/946",
+      "title": "A resolution designating September 30, 2026, as \"National Veterans Suicide Prevention Day\"."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 913,
+    "sponsored": 83
+  },
   "member_id": "F000479",
   "source_url": "https://api.congress.gov/v3/member/F000479/sponsored-legislation",
   "sponsored": [

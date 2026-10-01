@@ -1424,6 +1424,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr7453-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7453",
+      "title": "CLEAN Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr7513-118",
       "congress": 118,
       "enacted_action": null,
@@ -1703,6 +1712,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9298-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9298",
+      "title": "Stopping Harmful and Outrageous Torts Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9337-119",
       "congress": 119,
       "enacted_action": null,
@@ -1754,6 +1772,15 @@
       "introduced_date": "2025-02-05",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/978",
       "title": "Superior National Forest Restoration Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr987-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-09-28",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/987",
+      "title": "Fair Access to Banking Act"
     },
     {
       "became_law": false,
@@ -1918,6 +1945,10 @@
       "title": "Recognizing and expressing support for the Iranian people protesting for a free and democratic Iran."
     }
   ],
+  "lifetime_counts": {
+    "cosponsored": 216,
+    "sponsored": 41
+  },
   "member_id": "M001228",
   "source_url": "https://api.congress.gov/v3/member/M001228/sponsored-legislation",
   "sponsored": [

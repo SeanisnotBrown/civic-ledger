@@ -38,10 +38,32 @@ for (const f of listJson("votes")) {
   checked++;
 }
 
+// Bills: owner decision SD-33 3(c) — the dataset TRACKS every bill in the
+// covered Congresses (38,756), but only the ones that reached a recorded vote
+// get a page. So the INC-8 guarantee is restated, not relaxed: "every rendered
+// claim traces to a source_url" — a bill with no page renders no claim.
+//
+// The check is STRONGER than the one it replaces, because skipping absent pages
+// alone would let a bill that SHOULD have a page lose it silently. It asserts
+// the built set is EXACTLY the voted set, in both directions.
+const votedBillIds = new Set();
+for (const f of listJson("votes")) {
+  const rec = JSON.parse(fs.readFileSync(path.join(DATA, "votes", f), "utf-8"));
+  if (rec.rollcall.bill_id) votedBillIds.add(rec.rollcall.bill_id);
+}
+
+let pageless = 0;
 for (const f of listJson("bills")) {
   const b = JSON.parse(fs.readFileSync(path.join(DATA, "bills", f), "utf-8"));
   const html = readHtml("b", b.id);
-  if (html === null) { misses.push(`b/${b.id}: no page built`); continue; }
+  if (!votedBillIds.has(b.id)) {
+    // Tracked but never voted on: must NOT have a page (3(c)). Reachable
+    // through its source_url on congress.gov instead.
+    if (html !== null) misses.push(`b/${b.id}: page built for a bill with no recorded vote (SD-33 3(c))`);
+    else pageless++;
+    continue;
+  }
+  if (html === null) { misses.push(`b/${b.id}: no page built, but it HAS a recorded vote`); continue; }
   if (!htmlContains(html, b.source_url)) misses.push(`b/${b.id}: missing source_url ${b.source_url}`);
   checked++;
 }
@@ -73,4 +95,7 @@ if (misses.length) {
   for (const m of misses.slice(0, 40)) console.error(`  ${m}`);
   process.exit(1);
 }
-console.log(`source-link check OK — ${checked} vote+bill pages each cite their source_url.`);
+console.log(
+  `source-link check OK — ${checked} vote+bill pages each cite their source_url` +
+  (pageless ? `; ${pageless} tracked bill(s) with no recorded vote correctly have no page (SD-33 3(c)).` : ".")
+);

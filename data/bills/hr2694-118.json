@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-04-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr2694-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2023-04-18",
+  "number": 2694,
+  "policy_area": "Water Resources Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2694",
+  "sponsor_id": "S001148",
+  "subjects": [
+    "Dams and canals",
+    "Water resources funding",
+    "Water storage"
+  ],
+  "title_official": "To amend the Infrastructure Investment and Jobs Act to authorize the use of funds for certain additional Carey Act projects, and for other purposes.",
+  "type": "hr"
+}

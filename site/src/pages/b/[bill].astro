@@ -1,12 +1,12 @@
 ---
 import Layout from "../../components/Layout.astro";
 import Badge from "../../components/Badge.astro";
-import { getBills, getMember, getVotesForBill } from "../../lib/data";
+import { getPagedBills, getMember, getVotesForBill } from "../../lib/data";
 import type { Bill } from "../../lib/data";
 import { formatDate, billLabel, ordinal } from "../../lib/display";
 
 export function getStaticPaths() {
-  return getBills().map((b) => ({ params: { bill: b.id }, props: { bill: b } }));
+  return getPagedBills().map((b) => ({ params: { bill: b.id }, props: { bill: b } }));
 }
 
 interface Props { bill: Bill }

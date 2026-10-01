@@ -162,6 +162,13 @@ def test_reingest_reexports_enrichment_not_none(monkeypatch: pytest.MonkeyPatch)
     monkeypatch.setattr(congress_gov, "bill_detail", lambda *a, **k: _DetailResp())
     monkeypatch.setattr(congress_gov, "bill_subjects", lambda *a, **k: ["Taxation"])
     monkeypatch.setattr(congress_gov, "bill_cosponsor_ids", lambda *a, **k: ["A000001"])
+    # V2-11 task 4 added a /actions fetch to run(). Unstubbed it reaches the real
+    # client, which passes locally (a .env key exists) and fails in CI, which has
+    # none — so this stub is what keeps the test honest about not hitting the net.
+    monkeypatch.setattr(congress_gov, "bill_actions", lambda *a, **k: [
+        {"actionDate": "2025-01-03", "text": "Introduced in House.",
+         "type": "IntroReferral", "sourceSystem": {"name": "Library of Congress"}},
+    ])
 
     captured: list[Bill] = []
     import ingest.export as export_mod
@@ -172,6 +179,8 @@ def test_reingest_reexports_enrichment_not_none(monkeypatch: pytest.MonkeyPatch)
     assert len(captured) == 1
     assert captured[0].subjects == ["Taxation"]        # NOT None
     assert captured[0].cosponsor_ids == ["A000001"]    # NOT None
+    assert captured[0].actions is not None             # the same rule, for timelines
+    assert [a.text for a in captured[0].actions] == ["Introduced in House."]
 
 
 class _DetailResp:

@@ -143,6 +143,32 @@ function billMap(): Map<string, Bill> {
 export function getBills(): Bill[] {
   return [...billMap().values()].sort((a, b) => a.id.localeCompare(b.id));
 }
+
+let _votedBillIds: Set<string> | null = null;
+/** Bill ids that reached a recorded vote. Built once: the naive form calls
+ *  getVotesForBill() per bill, which is a full scan of every roll call each
+ *  time — fine over 1,038 bills, O(bills x votes) over 38,756. */
+export function votedBillIds(): Set<string> {
+  if (_votedBillIds) return _votedBillIds;
+  _votedBillIds = new Set();
+  for (const v of getAllVotes()) {
+    if (v.rollcall.bill_id) _votedBillIds.add(v.rollcall.bill_id);
+  }
+  return _votedBillIds;
+}
+
+/** The bills that GET A PAGE — owner decision SD-33 3(c): the dataset tracks
+ *  every bill in the covered Congresses (38,756), but only the ones that
+ *  reached a recorded vote get a /b/ page. Everything else is reachable
+ *  through its source_url on congress.gov.
+ *
+ *  This filter must stay AHEAD of the activity backfill: getStaticPaths used
+ *  to map over every file in data/bills/, which was the same set as the voted
+ *  set until the backfill started adding unvoted bills. */
+export function getPagedBills(): Bill[] {
+  const voted = votedBillIds();
+  return getBills().filter((b) => voted.has(b.id));
+}
 export function getBill(id: string): Bill | undefined {
   return billMap().get(id);
 }

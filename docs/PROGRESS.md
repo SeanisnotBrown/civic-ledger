@@ -3,7 +3,7 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-01 (V2-11 tasks 1-4 done — D88/D89/D90 + SD-33; CI green. **Next: the backfill** — read the pre-backfill checklist below before starting it).
+**Last updated:** 2026-10-01 (V2-11 tasks 1-4 + 4b done — D88/D89/D90 + SD-33; CI green. **Next: the backfill** — read the pre-backfill checklist below before starting it).
 
 **2026-10-01 — CI UNBLOCKED AND GREEN.** `gh run rerun 36743621950` on the reset allowance:
 **success**, `python` 3m15s + `site-and-checks` 21m15s. That one run validates **D86 and D87
@@ -112,6 +112,11 @@ constraints are enforced in code, not comments: a bill already held costs **ONE*
 (merged, never refetched whole), and `--congress N` **refuses to run in CI** with the
 arithmetic in the refusal. `--since` defaults to **30 h**, not 24, so a late nightly cannot
 open a gap. Live-verified end to end.
+**CI WENT RED on this commit (D94)** — `test_reingest_reexports_enrichment_not_none`
+hit the live API because task 4's new `/actions` call was unstubbed, and the local
+`.env` key made it PASS here. Fixed, plus `tests/conftest.py` now hides `.env` from
+every test so CI's failure mode is reproduced locally. **Standing rule: a green local
+pytest is not evidence CI is green. Watch the run after pushing a new network call.**
 **Gates (measured):** `uv run pytest` **452 passed** (416 + 36 new), `uv run checks` **ALL CHECKS PASSED**, ruff clean, `data/` untouched.
 
 **Two bugs fixed during the task:**
@@ -130,10 +135,14 @@ open a gap. Live-verified end to end.
 1. ✅ **Rate-limit window is HOURLY** — confirmed 2026-10-01 (27 used after hundreds of
    calls that day). D88 had left this open. It mattered: a DAILY window would have made the
    backfill ~8 days **and starved the nightly**, which shares the key.
-2. ⚠ **The site build loads EVERY bill into memory** (`site/src/lib/data.ts:133-141`).
-   Decision 3(c) caps PAGES, not the loader. 38,756 bills project to ~0.10-0.18 GB on disk,
-   several times that parsed. Not changed; **watch the first full build** rather than
-   assuming it survives. Fix if needed: load lazily or index by id.
+2. ✅ **Downstream VERIFIED against real unvoted bills (D92).** A 300-bill chunk of 118
+   was ingested and the whole pipeline run against it before pushing any data. Found and
+   fixed two things nothing else would have: `/b/[bill]` built a page per FILE (would have
+   published ~38,756 pages against 3(c)), and `check-source-links.mjs` asserted every bill
+   record has a page. Now green: build 13,161 pages, **1,038 bill pages = exactly the voted
+   set**, 43 tracked-but-unvoted bills correctly pageless.
+   Still watched, not fixed: the loader holds every bill in memory
+   (`site/src/lib/data.ts`) — fine at 1,081, unproven at 38,756. Build was 77 s here.
 3. ⚠ **Banned-words scans `data/bills/` and action text is VERBATIM** (uneditable).
    Measured 0 hits across 520 real actions — the list is partisan-framing vocabulary absent
    from clerk prose. If one ever hits over 38,756 bills it is an **owner allowlist decision**,
@@ -142,14 +151,49 @@ open a gap. Live-verified end to end.
    (~4 h, D86 re-paging) and it now writes `data/bills/` too. Otherwise commit in batches
    with `git pull --rebase` between them — the D84 rebase loop protects the nightly's push,
    not a local one.
-5. **Resume costs ~5 h.** The raw-cache TTL is 20 h, so resuming a backfill that has run
-   longer refetches `/actions` for everything already done (~19k requests). Acceptable once;
-   `--skip-existing` is the cheap fix if it bites.
+5. ✅ **Resume is free, and it is the DEFAULT (D91).** Was ~5 h (the 20 h cache TTL meant
+   a resume refetched ~19k `/actions`). Now 1.787 s and zero requests, measured. A backfill
+   skips finished bills unless you pass `--refresh-all`; the `--since` delta path never
+   skips, by design, or the nightly would stop refreshing the timelines it exists for.
 
-**The backfill itself:** `uv run ingest bill-activity --congress 118` then `--congress 119`.
-At least ~43 h total, locally, machine awake. It is resumable (disk cache + per-bill export),
-so an interruption costs at most the resume above. **Never in CI** — 2,590 Actions minutes
-is more than a whole month's free allowance (H24).
+**THE BACKFILL — run it in chunks, it is interruption-proof (D91).** The laptop goes home
+at the end of the day, so **a backfill now RESUMES BY DEFAULT**: it skips every finished
+bill before any network call. **Measured: 1.787 s and zero requests** over already-held
+bills. A chunked run costs the same as a continuous one, plus the re-enumeration below.
+
+Each working session, three commands:
+```
+git pull --rebase                                   # take the nightly's commit first
+uv run ingest bill-activity --congress 118          # resumes; Ctrl+C whenever, it is safe
+git add data/ && git commit -m "data: bill timelines (118)" && git push
+```
+Then the same with `--congress 119`. Do 118 first — it is a closed Congress, so nothing
+drifts under the run. The startup line prints exactly how much is left and the ETA.
+
+- **`git add data/`, not `data/bills/`.** A run can also write `data/quarantine/`; leaving
+  that dirty makes the next morning's `git pull --rebase` refuse.
+- **If `pull --rebase` refuses because the tree is dirty**, you stopped a chunk without
+  committing. Commit first, then pull.
+- **Ctrl+C is safe at any moment.** Each bill is exported as it finishes, and a file torn
+  by a kill mid-write is re-ingested next run rather than counted as done.
+- **`--refresh-all`** is the opt-out that re-does finished bills. You will not want it.
+
+**Gates for 4b/4c (measured):** `uv run pytest` **460 passed**, `uv run checks`
+**ALL CHECKS PASSED**, `verify-recompute` OK (3,507 roll calls), `npm run build` 13,161
+pages in 77 s, `npm run test:links` OK — all run with 43 real unvoted bills on disk.
+
+**Measured rates (2026-10-01, not estimated):** 3.91 s/bill (23 bills in 90 s) — so the
+~42-43 h total holds. Congress 118 = 19,315 bills, 119 = 19,441. Each resume re-enumerates
+the Congress first: **~78 pages, ~7 min**, because the 250-record list pages take ~4.5 s
+each (API latency, not our 1 req/s throttle). That is the per-chunk overhead; it is why a
+few long chunks beat many short ones. **Never in CI** — 2,590 Actions minutes is more than
+a whole month's free allowance (H24).
+
+**The nightly STAYS ENABLED** (this reverses the D90 note). It fires 09:15 UTC / 04:15 CDT,
+when the laptop is shut and no chunk is running, so the collision never happens; `git pull
+--rebase` before each chunk covers the rest. Disabling it was sized for a 2-day continuous
+run — a chunked run may span two weeks, and two weeks with no fresh votes, metrics or
+grades is not acceptable.
 
 **Then tasks 5-7:** events projection + the Astro endpoint (5/5b), topics index (6), and the
 site work — Actions timeline, `/topics/`, Atom feeds (7). Remember pageless bills must link

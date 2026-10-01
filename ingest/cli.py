@@ -105,6 +105,8 @@ def main(argv: list[str] | None = None) -> int:
     print("  bill-activity V2-11 action timelines across all covered bills")
     print("                  --since H (nightly delta, default 30) | --congress N "
           "(backfill, LOCAL ONLY)")
+    print("                  --skip-existing: resume a part-done backfill for free "
+          "(--congress only)")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
     print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")

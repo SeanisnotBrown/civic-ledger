@@ -2317,3 +2317,107 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   **Acceptance (measured, not estimated):** `uv run pytest` **452 passed in 868.67s**
   (416 before task 4 + 36 new), `uv run checks` **ALL CHECKS PASSED**, ruff clean, and
   `git status data/` clean after the run.
+
+- **D91 (2026-10-01) — V2-11 task 4b: `--skip-existing`, because the backfill runs on a
+  laptop that goes home at the end of the day.**
+  The owner cannot run a 43-hour job unattended; it will be interrupted a dozen or more
+  times. D90 priced a resume at ~5 h (~19k requests) because the raw-cache TTL is 20 h, so
+  every already-finished bill gets its `/actions` refetched. That makes a chunked backfill
+  cost several times a continuous one, which is the wrong incentive — it pushes toward
+  leaving a laptop running rather than toward a correct resume.
+  `--skip-existing` (backfill only) prescans `data/bills/` once via `bills_with_actions()`
+  and skips any bill whose record already holds a timeline, BEFORE any network call.
+  **Measured live: a resume over already-held bills took 1.787 s and made zero requests.**
+  A chunked backfill now costs the same as a continuous one plus ~2-3 min of re-enumeration
+  per resume (the bill list refetches when its cache entry expires).
+  **Three details that matter:**
+  (a) **D27 sentinel.** `actions == []` means collected-and-this-bill-has-none, which is
+  DONE; only `None`/absent means not collected. Skipping on truthiness would re-fetch every
+  action-less bill forever.
+  (b) **Refused on the `--since` delta path** (exit 2, with the reason). There it would skip
+  every bill we already hold — silently turning the nightly into a no-op for exactly the
+  timelines it exists to refresh. Opt-in only; the default path is unchanged and
+  regression-tested (`test_without_the_flag_a_held_bill_is_still_refreshed`).
+  (c) **Torn writes self-heal.** `ingest/export.py:126` writes bills with a plain
+  `write_text`, not a temp-and-rename, so a kill mid-write can truncate one file. The write
+  window is microseconds against ~4 s per bill, but across a dozen shutdowns it is worth
+  handling: `bills_with_actions()` leaves an unparseable file out of the done-set and
+  `load_existing_bill` already returns None for one, so it is re-ingested rather than
+  skipped as finished. Making `export_bill` atomic is the better fix and is NOT done here —
+  it touches every exporter and belongs in its own change.
+  **Consequence for D90's plan: the nightly stays ENABLED.** D90 assumed a ~2-day
+  continuous run and proposed disabling it. A chunked backfill may span two weeks, and two
+  weeks without fresh votes, metrics and grades is not acceptable. The nightly fires at
+  09:15 UTC (04:15 CDT) when the laptop is shut and no backfill is running, so the conflict
+  it was meant to avoid does not arise; `git pull --rebase` before each chunk covers the
+  rest. 7 tests. Mechanical, non-evaluative (§0.1(d)).
+
+- **D92 (2026-10-01) — V2-11 task 4c: only voted bills get a page, landed BEFORE the data.**
+  `site/src/pages/b/[bill].astro` built its `getStaticPaths` from `getBills()` — one page per
+  file in `data/bills/`. That was correct only because `data/bills/` has always held exactly
+  the bills that reached a roll call. The activity backfill breaks that premise: the first
+  pushed chunk would publish pages for unvoted bills, against owner decision SD-33 3(c),
+  and the build would grow toward 38,756 pages. **The filter has to precede the data**, so
+  it is pulled out of task 7 and landed here.
+  New in `site/src/lib/data.ts`: `votedBillIds()` (one pass over the roll calls, memoised)
+  and `getPagedBills()` (bills in that set). The page template now maps over the latter.
+  `votedBillIds` is a prebuilt Set rather than a `getVotesForBill()` call per bill — the
+  latter rescans every roll call each time, which is O(bills x votes) and fine over 1,038
+  bills but not over 38,756.
+  **Link safety:** every `/b/` href in the site comes from a roll call's `bill_id`
+  (`VoteRow.astro:25`, `StatementCard.astro:40`, `v/[roll].astro:81`), i.e. from a bill that
+  by construction has a vote and therefore still has a page. Pageless bills are reachable
+  through `source_url` on congress.gov, which is the task-7 rule.
+  **Why this was nearly missed:** task 4's live test and the 5-bill check were both reverted
+  before any downstream consumer ran, so nothing had ever seen `data/bills/` containing an
+  unvoted bill. Caught in review before the first push, not after.
+
+- **D93 (2026-10-01) — measured throughput for the backfill, replacing the D88 estimate.**
+  The ~43 h figure assumed 4 requests/bill at the 1 req/s throttle. Both halves checked
+  against a live run of `--congress 118`:
+  **(a) Per-bill: 3.91 s (23 bills in 90 s).** The estimate holds; ~42-43 h for 38,756 bills.
+  **(b) Enumeration is NOT at the throttle floor.** The 250-record list pages take ~4.5 s
+  each — API latency, not our limiter (`_HOST_MIN_INTERVAL` is 1.0 s). A Congress is ~78
+  pages, so **each resume pays ~7 min to re-enumerate** before it can skip anything. An
+  interim measurement of 0.18 req/s looked alarming and was this, not a throttle problem.
+  Practical consequence, written into PROGRESS: a few long chunks beat many short ones.
+  **(c) Real counts:** Congress 118 = 19,315 bills, 119 = 19,441 (`pagination.count`).
+
+- **D92 addendum (2026-10-01) — `npm run test:links` failed on the 43 unvoted bills, and the
+  fix made it stricter rather than looser.** With the page filter in place the build was
+  green (13,161 pages, **1,038 bill pages — exactly the voted set**, with 43 unvoted bills
+  on disk), but `scripts/check-source-links.mjs` failed with 43 misses. Its contract was
+  "every bill record in `data/bills/` has a page citing its `source_url`" — the INC-8
+  acceptance, true only while that folder held exactly the voted set.
+  The INC-8 guarantee is *"every rendered claim traces to a source_url"*, and a bill with
+  no page renders no claim, so the restatement is faithful. **But simply skipping absent
+  pages would have weakened it**: a bill that SHOULD have a page could then lose it in
+  silence. The check now asserts the built set is EXACTLY the voted set, both directions —
+  a voted bill missing its page fails, and an unvoted bill that HAS a page fails as a 3(c)
+  violation. Green: 7,175 pages cite their source_url, 43 correctly pageless.
+  **This is why the 300-bill chunk was run before pushing anything.** The build passing is
+  not evidence the pipeline accepts unvoted bills; the check that encodes the old premise
+  was the thing that broke, and nothing but real data of the new shape would have found it.
+
+- **D94 (2026-10-01) — the task-4 commit went red in CI, and the real fix is that local
+  tests are now credential-blind.**
+  `V2-11: task 4` (d259f7180) was pushed on a local `452 passed` and CI failed:
+  `tests/test_bills.py::test_reingest_reexports_enrichment_not_none` —
+  `RuntimeError: required credential 'CONGRESS_API_KEY' is missing or empty`.
+  **Cause.** Task 4 added a `/actions` fetch to `bills.run()`. That test stubs
+  `bill_detail`, `bill_subjects` and `bill_cosponsor_ids`, but of course not the call that
+  did not exist when it was written. Unstubbed, it reached the real client. **Locally the
+  developer `.env` holds a real key, so the test quietly made a LIVE API CALL and passed.**
+  CI has no key, so it raised. The local gate reported green over red master.
+  **Immediate fix:** stub `bill_actions` in that test, and assert the timeline survives the
+  re-export too — it is the same D35 anti-clobber rule the test exists to defend.
+  **Structural fix (the point of this entry): `tests/conftest.py` now hides `.env` and
+  every credential environment variable from every test** (autouse fixture; patches
+  `ingest.env._dotenv_values` to `dict` and deletes the seven credential names). An
+  unstubbed credentialed call now raises here exactly as it does in CI — when the test is
+  written, not after the push. A test that genuinely wants a credential sets it with
+  `monkeypatch.setenv`.
+  **Standing lesson, alongside the task-2 one** (synthetic tests written from the same
+  assumption as the code cannot catch a wrong assumption): **a green local pytest is not
+  evidence CI is green, because `.env` exists here and not there.** Watch the CI run after
+  a push that adds a network call; do not declare the increment done on local gates alone.

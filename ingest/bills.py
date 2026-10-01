@@ -44,6 +44,32 @@ def parse_bill_id(bill_id: str) -> tuple[str, int, int]:
     return btype, number, congress
 
 
+# A backfilled bill we do not hold costs 4 requests (detail + subjects +
+# cosponsors + actions) at the 1 req/s per-host ceiling — the ~43 h figure in
+# D88/SD-33 over 38,756 bills. Used only to print a resume ETA.
+SECONDS_PER_BILL = 4.0
+
+
+def bills_with_actions() -> set[str]:
+    """Bill ids whose committed record already HAS a timeline — the resume set
+    for `--skip-existing`.
+
+    D27 sentinel: `[]` means "collected, and this bill has no actions", which is
+    DONE; only `None`/absent means "not collected". Read with plain `json` rather
+    than `Bill(**...)` because this runs over up to 38,756 files and only one
+    field is needed. A torn file (killed mid-`write_text`, see `export_bill`)
+    fails to parse and is simply left out of the set, so the next run re-ingests
+    it instead of skipping a truncated record."""
+    out: set[str] = set()
+    for path in _bills_dir().glob("*.json"):
+        try:
+            if json.loads(path.read_text(encoding="utf-8")).get("actions") is not None:
+                out.add(path.stem)
+        except (ValueError, OSError):
+            continue
+    return out
+
+
 def known_rollcall_ids() -> set[str]:
     """Every `RollCall.id` this dataset holds, read once from `data/votes/**`.
 
@@ -406,14 +432,28 @@ def _in_ci() -> bool:
 
 def _parse_activity_args(argv: list[str]) -> dict:
     """`--congress N` (enumerate that Congress whole) | `--since HOURS` (default
-    30) | `--limit N` | `--allow-ci`. Raises ValueError on anything else so a
-    typo'd flag can never silently become a 43-hour run."""
-    opts = {"congress": None, "since": 30.0, "limit": None, "allow_ci": False}
+    30) | `--limit N` | `--allow-ci` | `--refresh-all`. Raises ValueError on
+    anything else so a typo'd flag can never silently become a 43-hour run.
+
+    **A backfill RESUMES by default** (`skip_existing` True whenever `--congress`
+    is given): it fills in what is missing and never re-does a finished bill.
+    That is both the semantics you want from a backfill and the safe default for
+    a run that will be interrupted a dozen times — the flag has to be remembered
+    on every single resume, and forgetting it once costs ~5 h of refetching
+    (D91). `--refresh-all` opts out. `--skip-existing` is still accepted as a
+    no-op alias, because it is what the first draft of the docs said to type."""
+    opts = {
+        "congress": None, "since": 30.0, "limit": None,
+        "allow_ci": False, "refresh_all": False,
+    }
     i = 0
     while i < len(argv):
         a = argv[i]
-        if a == "--allow-ci":
-            opts["allow_ci"] = True
+        if a == "--skip-existing":  # now the default for a backfill; kept as a no-op
+            i += 1
+            continue
+        if a in ("--allow-ci", "--refresh-all"):
+            opts[a[2:].replace("-", "_")] = True
             i += 1
             continue
         if a in ("--congress", "--since", "--limit"):
@@ -434,6 +474,15 @@ def _parse_activity_args(argv: list[str]) -> dict:
         )
     if opts["since"] <= 0:
         raise ValueError("--since must be positive")
+    if opts["refresh_all"] and opts["congress"] is None:
+        raise ValueError(
+            "--refresh-all is a backfill flag and needs --congress N; the --since "
+            "delta path already refreshes every bill in its window."
+        )
+    # Resume unless told otherwise. Never on the delta path: there, skipping bills
+    # we already hold would silently stop refreshing the timelines the nightly
+    # exists to refresh.
+    opts["skip_existing"] = opts["congress"] is not None and not opts["refresh_all"]
     return opts
 
 
@@ -525,8 +574,18 @@ def run_activity(argv: list[str] | None = None) -> int:
     total = len(items)
     print(f"civic-ledger bill-activity: {total} bill(s) {scope}.")
 
+    done_ids: set[str] = bills_with_actions() if opts["skip_existing"] else set()
+    if opts["skip_existing"]:
+        held = sum(1 for it in items if bill_id_from_list_item(it) in done_ids)
+        left = total - held
+        print(
+            f"  resume: {held}/{total} already have timelines, {left} to go "
+            f"(~{left * SECONDS_PER_BILL / 3600:.1f} h at 1 request/second)."
+        )
+
     new_bills = 0
     refreshed = 0
+    skipped = 0
     quarantined: list[str] = []
     fetch_failures: list[str] = []
 
@@ -540,6 +599,10 @@ def run_activity(argv: list[str] | None = None) -> int:
         except BadBillId as exc:
             _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
             quarantined.append(bill_id)
+            continue
+
+        if bill_id in done_ids:  # --skip-existing: zero requests, see bills_with_actions
+            skipped += 1
             continue
 
         existing = load_existing_bill(bill_id)
@@ -572,11 +635,13 @@ def run_activity(argv: list[str] | None = None) -> int:
         else:
             refreshed += 1
         if n % 500 == 0:
-            print(f"  ... {n}/{total} ({new_bills} new, {refreshed} refreshed)")
+            print(f"  ... {n}/{total} ({new_bills} new, {refreshed} refreshed, "
+                  f"{skipped} already held)")
 
     print(
-        f"bill-activity: {new_bills} new + {refreshed} refreshed of {total} "
-        f"({len(quarantined)} quarantined, {len(fetch_failures)} fetch failures)."
+        f"bill-activity: {new_bills} new + {refreshed} refreshed + {skipped} "
+        f"already held of {total} ({len(quarantined)} quarantined, "
+        f"{len(fetch_failures)} fetch failures)."
     )
     if quarantined:
         frac = len(quarantined) / total if total else 0.0

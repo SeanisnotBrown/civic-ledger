@@ -168,7 +168,10 @@ def test_load_existing_bill_is_none_when_corrupt(tmp_path, monkeypatch):
 def test_activity_args_defaults_to_a_30_hour_window():
     # 30 h, not 24: a late or retried nightly must not open a gap between runs.
     opts = bills._parse_activity_args([])
-    assert opts == {"congress": None, "since": 30.0, "limit": None, "allow_ci": False}
+    assert opts == {
+        "congress": None, "since": 30.0, "limit": None,
+        "allow_ci": False, "refresh_all": False, "skip_existing": False,
+    }
 
 
 def test_activity_args_parses_each_flag():
@@ -331,3 +334,109 @@ def test_delta_ignores_bills_outside_the_covered_congresses(monkeypatch, tmp_pat
     assert bills.run_activity(["--since", "24"]) == 0
     assert all("-117" not in c for c in calls)
     assert any("-119" in c for c in calls)
+
+
+# --- V2-11 task 4b: --skip-existing, the resume flag ------------------------
+# The backfill is >= ~43 h and the owner's laptop goes home at the end of the
+# day, so it WILL be interrupted a dozen times. Without this flag each resume
+# refetches /actions for everything already finished (~19k requests, ~5 h),
+# because the raw-cache TTL is 20 h. With it, a resume costs zero requests for
+# finished work. These tests are the guarantee that stays true.
+
+
+def test_a_backfill_resumes_by_DEFAULT():
+    """The flag has to be remembered on every one of a dozen resumes, and
+    forgetting it once costs ~5 h of refetching. So resuming is the default and
+    re-doing finished work is what you have to ask for (D91)."""
+    assert bills._parse_activity_args(["--congress", "119"])["skip_existing"] is True
+    assert bills._parse_activity_args(
+        ["--congress", "119", "--refresh-all"]
+    )["skip_existing"] is False
+
+
+def test_the_delta_path_never_skips_held_bills():
+    """On `--since` skipping would silently stop refreshing the timelines the
+    nightly delta exists to refresh."""
+    assert bills._parse_activity_args(["--since", "30"])["skip_existing"] is False
+    assert bills._parse_activity_args([])["skip_existing"] is False
+    with pytest.raises(ValueError, match="needs --congress"):
+        bills._parse_activity_args(["--since", "30", "--refresh-all"])
+
+
+def test_skip_existing_survives_as_a_no_op_alias():
+    """It is what the first draft of the docs told the owner to type."""
+    assert bills._parse_activity_args(
+        ["--congress", "119", "--skip-existing"]
+    )["skip_existing"] is True
+    with_alias = bills._parse_activity_args(["--since", "30", "--skip-existing"])
+    assert with_alias == bills._parse_activity_args(["--since", "30"])
+
+
+def test_bills_with_actions_honours_the_D27_sentinel(monkeypatch, tmp_path):
+    """`[]` is COLLECTED-and-empty (done); `None`/absent is NOT COLLECTED."""
+    bdir = tmp_path / "data" / "bills"
+    bdir.mkdir(parents=True, exist_ok=True)
+    monkeypatch.setattr("ingest.cache.repo_root", lambda: tmp_path)
+    for bid, actions in (
+        ("hr1-119", [_action().model_dump()]),
+        ("hr2-119", []),      # collected, this bill genuinely has none -> DONE
+        ("hr3-119", None),    # not collected yet -> NOT done
+    ):
+        (bdir / f"{bid}.json").write_text(
+            json.dumps(_bill(bill_id=bid, actions=actions).model_dump()),
+            encoding="utf-8",
+        )
+    assert bills.bills_with_actions() == {"hr1-119", "hr2-119"}
+
+
+def test_a_torn_file_is_re_ingested_not_skipped(monkeypatch, tmp_path):
+    """`export_bill` uses a plain `write_text`, so killing the run mid-write can
+    truncate one file. It must never read as 'done'."""
+    bdir = tmp_path / "data" / "bills"
+    bdir.mkdir(parents=True, exist_ok=True)
+    monkeypatch.setattr("ingest.cache.repo_root", lambda: tmp_path)
+    good = json.dumps(_bill(actions=[_action().model_dump()]).model_dump())
+    (bdir / "hr1-119.json").write_text(good, encoding="utf-8")
+    (bdir / "hr2-119.json").write_text(good[: len(good) // 2], encoding="utf-8")
+    assert bills.bills_with_actions() == {"hr1-119"}
+
+
+def test_resuming_a_finished_bill_costs_ZERO_requests(monkeypatch, tmp_path):
+    """The whole point of the flag. One held-with-actions bill, one not held."""
+    bdir = tmp_path / "data" / "bills"
+    bdir.mkdir(parents=True, exist_ok=True)
+    (bdir / "hr1-119.json").write_text(
+        json.dumps(_bill(actions=[_action().model_dump()]).model_dump()),
+        encoding="utf-8",
+    )
+    calls = _wire(monkeypatch, tmp_path, [_item(1), _item(2)])
+    assert bills.run_activity(["--congress", "119", "--skip-existing"]) == 0
+    assert not [c for c in calls if c.endswith("hr1-119")], \
+        f"hr1 was already done and must cost nothing, got {calls}"
+    assert "actions:hr2-119" in calls  # the unfinished one still gets ingested
+
+
+def test_refresh_all_re_does_a_held_bill(monkeypatch, tmp_path):
+    """The opt-out still works: `--refresh-all` ignores the done-set."""
+    bdir = tmp_path / "data" / "bills"
+    bdir.mkdir(parents=True, exist_ok=True)
+    (bdir / "hr1-119.json").write_text(
+        json.dumps(_bill(actions=[_action().model_dump()]).model_dump()),
+        encoding="utf-8",
+    )
+    calls = _wire(monkeypatch, tmp_path, [_item(1)])
+    assert bills.run_activity(["--congress", "119", "--refresh-all"]) == 0
+    assert calls == ["actions:hr1-119"]
+
+
+def test_skip_existing_is_idempotent_over_repeated_resumes(monkeypatch, tmp_path):
+    """Run, interrupt, run again, run again: the second and third runs do no
+    network work at all. This is what makes a 14-day chunked backfill free."""
+    calls = _wire(monkeypatch, tmp_path, [_item(1), _item(2)])
+    assert bills.run_activity(["--congress", "119", "--skip-existing"]) == 0
+    first = len(calls)
+    assert first > 0
+    for _ in range(2):
+        calls.clear()
+        assert bills.run_activity(["--congress", "119", "--skip-existing"]) == 0
+        assert calls == [], f"a resume must cost nothing, got {calls}"

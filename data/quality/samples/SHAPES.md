@@ -169,8 +169,29 @@ Action object fields (union over 324 real actions across 4 bills):
 > must be covered by a unit test against a synthetic payload; it cannot be
 > confirmed live until a bill exceeds 250 actions.
 
+> **IDENTITY REQUIRES THE WHOLE ROW. There is no action id, and
+> (`actionDate`, `actionTime`, `actionCode`, `text`) is NOT unique.** On
+> `hr2670-118`, five rows read "Forwarded by Subcommittee to Full Committee by
+> Voice Vote ." on 2023-06-13 with code `H23000`, and six read "Subcommittee
+> Consideration and Mark-up Session Held." with code `H22000` -- each a different
+> subcommittee, **discriminated only by `committees`**. A parser that keys on that
+> four-field tuple collapses 234 real actions to 225 (measured, task 2). Any
+> dedupe must hash the entire row, and the result must be checked against
+> `pagination.count` -- fewer unique rows than the government claims is an
+> incomplete timeline, not a clean one.
+
 **`/bill` list surface:**
 - Page ceiling is **250**. `limit=251` silently **clamps to 250** — it does not error.
+- **No deep-offset ceiling** (measured task 2): `offset=19300` on `/bill/118`
+  (count 19,315) still serves rows, and `offset >= count` returns an empty page
+  rather than an error — so a count-bounded loop enumerates a whole Congress and
+  terminates cleanly. Sort composes with a deep offset.
+- **`sort=updateDate asc` also works** (literal space), but **descending is the
+  direction a crawl must use.** A bill touched mid-crawl gets a new `updateDate`
+  and jumps to position 0, shifting the pages behind it down, so a descending crawl
+  RE-READS a row it already has. Ascending moves the touched bill to the end and
+  shifts everything after it up, which SKIPS a row at the cursor. Duplicates are
+  free to dedupe; skips are silent undercounts.
 - `fromDateTime` / `toDateTime` (ISO `YYYY-MM-DDTHH:MM:SSZ`) **work** and compose
   with the `/bill/{congress}` path form.
 - > **DEVIATION (D88): `sort=updateDate+desc` is SILENTLY IGNORED.** The `+`

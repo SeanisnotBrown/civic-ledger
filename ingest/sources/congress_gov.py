@@ -14,6 +14,9 @@ there per host.
 
 from __future__ import annotations
 
+import json
+from datetime import UTC, datetime
+
 from ingest import env
 from ingest.cache import DEFAULT_TTL_HOURS, CachedResponse, fetch
 
@@ -157,6 +160,203 @@ def bill_cosponsor_ids(
         if offset >= int(page.get("pagination", {}).get("count", 0)):
             break
     return sorted(ids)
+
+
+# --- Bill actions + bill enumeration (V2-11 task 2; shapes from D88) ------
+PAGE_LIMIT = 250
+"""Hard page ceiling on every Congress.gov list endpoint. `limit=251` does NOT
+error - it silently clamps to 250 (D88), so the paginators below bound
+themselves on `pagination.count` and never on the length of a returned page."""
+
+UPDATE_SORT = "updateDate desc"
+"""The ONLY sort form that works, and the direction a crawl must use.
+
+Two separate traps, both measured live (D88):
+  * **`updateDate+desc` is silently ignored.** The documented `+` is transmitted
+    as a literal `%2B`; the API discards the whole sort and returns the identical
+    page as a deliberate `sort=BOGUSVALUE` control. The literal space (encoded
+    `%20`) is what works. Never reintroduce the `+`.
+  * **Descending is the safe crawl direction.** A bill updated mid-crawl gets a
+    new `updateDate` and jumps to position 0, shifting the pages behind it DOWN
+    - so an in-flight crawl re-reads an item it already has (idempotent, free)
+    rather than stepping over one it has not. Ascending moves a touched bill to
+    the END and shifts everything after it UP, which SKIPS an item at the cursor.
+    Skips are silent undercounts (value #1); duplicates are not."""
+
+
+def _iso_z(when: datetime) -> str:
+    """Congress.gov's `fromDateTime`/`toDateTime` format: `YYYY-MM-DDTHH:MM:SSZ`.
+    Naive input is read as UTC; aware input is converted. Sub-second precision is
+    dropped - the API rejects it."""
+    if when.tzinfo is None:
+        when = when.replace(tzinfo=UTC)
+    return when.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def bill_actions(
+    congress: int, bill_type: str, number: int, *, force: bool = False
+) -> list[dict]:
+    """A bill's full official action timeline, via the paginated
+    `/bill/{c}/{type}/{number}/actions` sub-resource (V2-11 task 2).
+
+    Returns the raw action dicts in the order the API gives them (newest first),
+    NOT reordered, reworded, or classified - 0.5 forbids summarising anything that
+    publishes as fact, and `text` is the published string. Deduplication is on the
+    WHOLE row and nothing narrower: several genuinely distinct actions can share a
+    date, text and action code and differ only in `committees` (see the loop).
+    `[]` means the government lists no actions, which is distinct from the
+    `Bill.actions is None` "not yet collected" sentinel (D27).
+
+    Field shape is recorded as SHAPES.md section 9 and sampled in
+    `data/quality/samples/congress_bill_actions_hr2670_118.json`. Note that
+    `actionTime`, `actionCode`, `committees` and `calendarNumber` are all
+    OPTIONAL (D88: `actionTime` was present on only 142/234 actions of the
+    largest timeline found), so no caller may assume them.
+
+    **The paginated branch is UNEXERCISED against the live API.** The largest
+    action list D88 could find is 234 (`hr2670-118`, NDAA FY24), under the 250
+    ceiling, so `pagination.next` has never actually been returned here. The loop
+    is written and unit-tested against a synthetic payload rather than left out;
+    it cannot be confirmed live until some bill exceeds 250 actions.
+
+    Truncation guard (D64, same contract as `member_legislation`): the loop breaks
+    on `offset >= count` before it can page past the end, so an empty page while
+    `offset < count` is never legitimate - it is a premature/corrupt 200 that
+    would publish a bill as having fewer actions than it has. `count` is read once
+    from page 0; a later corrupt page's own metadata is not trusted."""
+    actions: list[dict] = []
+    seen: set[str] = set()
+    offset = 0
+    count: int | None = None
+    while True:
+        page = _get(
+            f"bill/{congress}/{bill_type.lower()}/{number}/actions",
+            {"limit": str(PAGE_LIMIT), "offset": str(offset)},
+            force=force,
+        ).json()
+        if count is None:
+            count = int(page.get("pagination", {}).get("count", 0))
+        batch = page.get("actions") or []
+        if not batch:
+            if offset < count:
+                raise TruncatedFetchError(
+                    f"{bill_type.lower()}{number}-{congress} actions: empty page at "
+                    f"offset {offset} < count {count} (truncated fetch - would "
+                    f"publish an incomplete timeline)"
+                )
+            break
+        for a in batch:
+            # Dedupe on the WHOLE row, never a chosen subset of fields. A narrower
+            # key silently drops real actions: hr2670-118 has five rows reading
+            # "Forwarded by Subcommittee to Full Committee by Voice Vote ." on
+            # 2023-06-13 with the same actionCode, distinguished ONLY by which
+            # subcommittee is in `committees` (and six more of a second such set).
+            # Keying on (date, time, code, text) collapsed 234 real actions to 225
+            # -- a false undercount, exactly what value #1 forbids.
+            fingerprint = json.dumps(a, sort_keys=True, separators=(",", ":"))
+            if fingerprint not in seen:
+                seen.add(fingerprint)
+                actions.append(a)
+        offset += PAGE_LIMIT
+        if offset >= count:
+            break
+    # Dedupe-undercount guard. Whole-row dedupe is lossless on every timeline
+    # measured (234/234 on hr2670-118), but two byte-identical rows that are BOTH
+    # real would collapse to one and nothing else would notice. Comparing against
+    # page 0's `count` closes that: fewer unique rows than the government claims is
+    # an incomplete timeline, which is the same false-undercount the D64 guard above
+    # exists to refuse. Only `<` -- a mid-crawl append raises the LIVE count while
+    # `count` stays at page 0's value, so a re-serve lands at `len == count` and does
+    # not trip this. Task 4 quarantines the bill rather than committing short.
+    if len(actions) < count:
+        raise TruncatedFetchError(
+            f"{bill_type.lower()}{number}-{congress} actions: {len(actions)} unique "
+            f"rows < count {count} (dedupe collapsed real actions, or the API "
+            f"over-reported its own count)"
+        )
+    return actions
+
+
+def bills_updated_since(
+    from_dt: datetime | None = None,
+    to_dt: datetime | None = None,
+    *,
+    congress: int | None = None,
+    force: bool = False,
+) -> list[dict]:
+    """Enumerate bills from the `/bill` list endpoint, newest-updated first.
+
+    Two callers, one function (V2-11 task 2):
+      * **The nightly delta** passes a window - `from_dt`/`to_dt` become
+        `fromDateTime`/`toDateTime`, which D88 verified are honored (435 bills in
+        a probed 24 h, 1,954 over 7 d, against 430,715 unfiltered) and compose
+        with the `/bill/{congress}` path form.
+      * **The one-time backfill** passes `congress=` and no window, enumerating
+        that Congress whole (118th = 19,315, 119th = 19,441 as of 2026-10-01).
+        D88 follow-up confirmed there is NO deep-offset ceiling: offset 19,300
+        still serves rows and offset >= count returns an empty page, so the
+        count-bounded loop terminates cleanly.
+
+    Returns the raw list items. Each already carries `congress`, `type`, `number`,
+    `title`, `introducedDate`, `latestAction`, `updateDate` and the detail `url`,
+    so an enumeration pass costs no per-bill request on its own.
+
+    **This function must never drive a full backfill inside CI.** The enumeration
+    itself is cheap (156 pages), but the per-bill detail/subjects/cosponsors/
+    actions work its output feeds is at least ~43 h, about 2,590 GitHub Actions
+    minutes for all 38,756 bills - more than an entire month's free allowance
+    (SD-33, H24). The backfill runs locally and is committed.
+
+    Truncation guard as `bill_actions`. Safe under concurrent updates in one
+    direction only - see `UPDATE_SORT`."""
+    path = f"bill/{congress}" if congress is not None else "bill"
+    window: dict[str, str] = {}
+    if from_dt is not None:
+        window["fromDateTime"] = _iso_z(from_dt)
+    if to_dt is not None:
+        window["toDateTime"] = _iso_z(to_dt)
+
+    bills: list[dict] = []
+    seen: set[tuple] = set()
+    offset = 0
+    count: int | None = None
+    while True:
+        page = _get(
+            path,
+            {
+                "limit": str(PAGE_LIMIT),
+                "offset": str(offset),
+                "sort": UPDATE_SORT,
+                **window,
+            },
+            force=force,
+        ).json()
+        if count is None:
+            count = int(page.get("pagination", {}).get("count", 0))
+        batch = page.get("bills") or []
+        if not batch:
+            if offset < count:
+                raise TruncatedFetchError(
+                    f"bill list ({path}, window={window or 'none'}): empty page at "
+                    f"offset {offset} < count {count} (truncated fetch - would "
+                    f"silently drop bills from the ingest)"
+                )
+            break
+        for b in batch:
+            # A descending crawl re-serves rows when a bill is updated mid-crawl
+            # (see UPDATE_SORT); dedupe on identity so that costs nothing.
+            ident = (
+                b.get("congress"),
+                (b.get("type") or "").lower(),
+                str(b.get("number")),
+            )
+            if ident not in seen:
+                seen.add(ident)
+                bills.append(b)
+        offset += PAGE_LIMIT
+        if offset >= count:
+            break
+    return bills
 
 
 # --- Member legislation (INC-10) ------------------------------------------

@@ -2176,3 +2176,30 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   Not evaluative: no metric, threshold, grade boundary or published number is involved, so
   §0.8 does not apply. These are scope and cost choices, ratified because the plan reserved
   them for the owner.
+
+- **D88 addendum (2026-10-01, written during V2-11 task 2) — three more measured facts,
+  two of which change how a parser must be written.** Recorded here because they were
+  found after D88 was committed and the log is append-only. All three are also in
+  SHAPES.md section 9, which is the contract the parser is written against.
+  **(a) Actions have no id, and (date, time, code, text) is NOT unique.** `hr2670-118`
+  carries five rows reading "Forwarded by Subcommittee to Full Committee by Voice Vote ."
+  on 2023-06-13 under code `H23000`, and six reading "Subcommittee Consideration and
+  Mark-up Session Held." under `H22000` — each a different subcommittee, discriminated
+  **only** by the `committees` field. The first cut of `bill_actions()` keyed its dedupe
+  on that four-field tuple and silently returned **225 of 234** real actions. Caught by a
+  live smoke test, not by the unit suite, which was synthetic and shared the wrong
+  assumption. Fixed two ways: dedupe hashes the whole row, **and** the function now raises
+  `TruncatedFetchError` if the unique-row count comes in under `pagination.count`, so a
+  future collapse fails loudly instead of publishing a short timeline. Both are regression-
+  tested (`tests/test_bill_activity_v2_11.py`).
+  **(b) There is no deep-offset ceiling.** `offset=19300` on `/bill/118` (count 19,315)
+  still serves rows; `offset >= count` returns an empty page rather than an error; sort
+  composes with a deep offset. A count-bounded loop can therefore enumerate a whole
+  Congress — the backfill path needs no cursor or date-slicing workaround.
+  **(c) `sort=updateDate asc` works too, but DESCENDING is the direction a crawl must
+  use.** A bill updated mid-crawl jumps to position 0 and shifts the pages behind it down,
+  so a descending crawl re-reads a row it already has (idempotent, deduped for free).
+  Ascending moves the touched bill to the end and shifts everything after it up, which
+  **skips** a row at the cursor. Duplicates are recoverable; skips are silent undercounts
+  (value #1). `UPDATE_SORT` is a module constant with a test asserting its exact value, so
+  neither the direction nor the `+`/space trap can regress unnoticed.

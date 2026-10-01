@@ -68,7 +68,32 @@ with D88's numbers; recorded in `IMPLEMENTATIONv2.md` §2, `docs/decisions.md`, 
 - **Workers Paid NOT forced by V2-11** (build stays under the 20,000-file free limit at 13,161);
   the $5/mo upgrade moves to V2-12, where email sending needs it anyway.
 
-**▶▶ NEXT SESSION STARTS HERE — V2-11 task 2, under two hard cost constraints from D88.**
+**2026-10-01 — V2-11 TASK 2 DONE.** `bill_actions()` and `bills_updated_since()` are in
+`ingest/sources/congress_gov.py`, with `PAGE_LIMIT` and `UPDATE_SORT` as tested constants.
+23 new tests (`tests/test_bill_activity_v2_11.py`), suite **363 → 386**. Live smoke-tested:
+234 actions on the NDAA, 26 on hjres104-119, ~420 bills in a 24 h window, genuinely
+descending, no duplicates.
+
+**One real bug, caught by the live smoke test and NOT by the unit suite** (the suite was
+synthetic and shared the wrong assumption): actions have **no id**, and
+`(actionDate, actionTime, actionCode, text)` is **not unique** — `hr2670-118` has five rows
+differing only by which subcommittee is in `committees`. The first dedupe silently returned
+**225 of 234** real actions. Fixed twice over: the dedupe hashes the whole row, **and** the
+function raises if unique rows come in under `pagination.count`, so a future collapse fails
+loudly instead of publishing a short timeline. Both regression-tested. Recorded as the
+**D88 addendum** and in SHAPES.md §9. **The lesson generalises: synthetic tests written
+from the same assumption as the code cannot catch a wrong assumption — every later V2-11
+task needs one live smoke check before it is called done.**
+
+Also measured in task 2 (D88 addendum (b), (c)): **no deep-offset ceiling** (offset 19,300
+serves; `offset >= count` returns empty, not an error), so a count-bounded loop enumerates a
+whole Congress with no cursor workaround; and **descending is the only safe crawl direction**
+— ascending skips rows at the cursor when a bill is touched mid-crawl, descending merely
+re-reads them.
+
+**▶▶ NEXT SESSION STARTS HERE — V2-11 task 3** (`BillAction` model + `Bill.actions:
+list[BillAction] | None`, the D27 not-collected sentinel), then task 4 (ingest). **The two
+hard cost constraints from D88 still bind and are what task 4 must be built around:**
 These are build constraints, not preferences, and getting either wrong overruns the free
 GitHub Actions allowance:
 1. **The one-time 38,756-bill backfill runs LOCALLY and is committed. Never in CI.** It is

@@ -2255,3 +2255,65 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   tightening, which added 6 more), `uv run checks` ALL CHECKS PASSED, schema regenerated and
   byte-stable. No `data/bills/*.json` file changes yet — the timeline lands when task 4
   re-exports.
+
+- **D90 (2026-10-01) — V2-11 task 4: the bill-activity ingest, plus the pre-backfill
+  checks that had to happen before a 43-hour run could responsibly start.**
+  `ingest/bills.py`: `run()` now fetches `/actions` for every bill it exports (one extra
+  request per exported bill, under the same never-revert rule as subjects/cosponsors), and a
+  new `run_activity()` backs `uv run ingest bill-activity`. Helpers: `known_rollcall_ids()`,
+  `bill_id_from_list_item()`, `load_existing_bill()`, `merge_activity()`. 36 tests
+  (`tests/test_bill_activity_ingest_v2_11.py`). Mechanical, non-evaluative (§0.1(d)).
+  **The command implements SD-33's two cost constraints as code, not comments.**
+  `--congress N` enumerates a Congress whole and **refuses to run in CI** (exit 2 with the
+  arithmetic in the message); `--allow-ci` overrides and exists only for the self-hosted
+  runner H24 documents. `--since HOURS` (default **30**, not 24, so a late or retried nightly
+  cannot open a gap) is the delta path and is deliberately NOT blocked in CI. A bill already
+  held costs **ONE** request — its `/actions`, merged by `merge_activity` — and only a
+  genuinely new bill pays the full four. That is the difference between ~5-7 min/night and
+  ~19-29, i.e. between fitting the free allowance and not. Both are regression-tested; if
+  `test_a_bill_we_already_hold_costs_ONE_request` goes red the nightly no longer fits.
+  **Bug found and fixed mid-task: the new tests wrote into the REAL `data/bills/`.**
+  `ingest/export.py` binds `BILLS_DIR = DATA_DIR / "bills"` at import time and `export_bill`
+  takes it as a DEFAULT ARGUMENT, so both bind before any test runs — monkeypatching
+  `ingest.cache.repo_root` redirects `load_existing_bill` but NOT the write. Two real files
+  were modified (`hr1-119.json` overwritten, `hr2-119.json` created) and reverted from git.
+  `run_activity` now resolves `out_dir = _bills_dir()` per run and passes it explicitly.
+  **Generalised hazard for any future test: `export.*_DIR` and the default arguments built
+  from them are import-time constants; patching `repo_root` does not move them.**
+  **Pre-backfill checks (the reason this entry is longer than the code warrants):**
+  **(1) The rate-limit window is HOURLY — confirmed, and D88 left it open.** After several
+  hundred calls earlier the same day, a fresh call read `x-ratelimit-remaining: 19973`
+  (27 used). So the ~43 h backfill estimate holds and the backfill cannot starve the
+  nightly, which shares the key. Had it been daily, the backfill would have been ~8 days
+  **and** would have exhausted the key out from under the nightly.
+  **(2) The site build loads EVERY bill into memory.** `site/src/lib/data.ts:133-141`
+  builds a `Map` over all of `data/bills/`. Measured: 1,038 bills = 1.7 MB (mean 1,619 B);
+  with timelines, 38,756 bills project to **~0.10-0.18 GB on disk**, several times that
+  parsed. Decision 3(c) caps the PAGE count, not the loader. Not a blocker and not changed
+  here — flagged so the first full build is watched rather than assumed, and so the fix
+  (load lazily, or index by id) is a known follow-up rather than a surprise.
+  **(3) Banned-words scans `data/bills/`, and action text is verbatim.** `SCAN_DIRS`
+  includes `data` and `data/bills/` is not excluded, so 38,756 bills of clerk prose go
+  through §A3 — text that CANNOT be edited to pass. Measured: **0 hits across 520 real
+  action texts**; the list is partisan-framing vocabulary ("hypocrisy", "flip-flop",
+  "contradicts") that does not occur in procedural language. Residual risk over 38,756
+  bills is low but not zero; if one ever hits, the fix is an allowlist decision for the
+  owner, never an edit to government text.
+  **(4) Resume cost, stated not solved.** The raw-cache TTL is 20 h, so resuming a backfill
+  that has run longer refetches `/actions` for everything already done (~19k requests, ~5 h).
+  Acceptable for a one-time run; `--skip-existing` is the cheap fix if it bites.
+  **(5) Ordering against the nightly.** Tonight is the first post-reset nightly (~4 h, D86
+  re-paging) and it now writes `data/bills/` too. The backfill starts AFTER that commit
+  lands, or commits in batches with `git pull --rebase` between them — the D84 rebase loop
+  protects the nightly's push, not a local one.
+  **Also fixed:** `run()`'s `fetch_errors` tuple did not include `TruncatedFetchError`.
+  Since `bill_actions()` raises it both on a short page and on its dedupe-undercount guard,
+  one bad `/actions` response would have aborted the entire nightly `ingest bills` instead
+  of recording a re-runnable per-bill failure. Both tuples now match.
+  **Live-verified** (the task-2 rule): a real `--since 6 --limit 3` run ingested 3 new bills
+  with full timelines, a re-run reported them as refreshed, and `merge_activity` over a real
+  committed record preserved subjects, cosponsors, title, sponsor and CBO refs while
+  updating `latest_action`. Test artifacts were reverted; `data/` is unchanged by this commit.
+  **Acceptance (measured, not estimated):** `uv run pytest` **452 passed in 868.67s**
+  (416 before task 4 + 36 new), `uv run checks` **ALL CHECKS PASSED**, ruff clean, and
+  `git status data/` clean after the run.

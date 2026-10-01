@@ -3,7 +3,7 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-01 (V2-11 task 1 done — D88; CI green at last).
+**Last updated:** 2026-10-01 (V2-11 tasks 1-4 done — D88/D89/D90 + SD-33; CI green. **Next: the backfill** — read the pre-backfill checklist below before starting it).
 
 **2026-10-01 — CI UNBLOCKED AND GREEN.** `gh run rerun 36743621950` on the reset allowance:
 **success**, `python` 3m15s + `site-and-checks` 21m15s. That one run validates **D86 and D87
@@ -106,16 +106,54 @@ table in SHAPES.md §9. Three judgement calls recorded in D89:
 - **`rollcall_id` resolves against what this dataset HOLDS**, defaulting to resolving
   nothing. 40/58 hit; all 18 misses were 117th/116th, outside the covered window.
 
-**▶▶ NEXT SESSION STARTS HERE — V2-11 task 4 (the ingest), then the backfill.**
-Three things task 4 must get right, all already known:
-1. **Build the known-roll-call set ONCE** and pass it to every `parse_actions()` call.
-   It is a ~3,500-file glob over `data/votes/**`; rebuilding it per bill would do that
-   38,756 times.
-2. **Never revert an enriched field to the None sentinel** — the same anti-clobber rule
-   `ingest/bills.py` already documents for `subjects`/`cosponsor_ids` (D35 shape). A bill
-   re-exported without its actions fetched must keep the actions it has.
-3. **Smoke-test against live data before calling it done.** Tasks 2 and 3 both had a wrong
-   premise that every synthetic test agreed with; only a real call caught task 2's. **The two hard cost constraints from D88
+**2026-10-01 — V2-11 TASK 4 DONE (D90).** `uv run ingest bill-activity` exists;
+`ingest bills` now fetches `/actions` for every bill it exports. 36 tests. SD-33's two cost
+constraints are enforced in code, not comments: a bill already held costs **ONE** request
+(merged, never refetched whole), and `--congress N` **refuses to run in CI** with the
+arithmetic in the refusal. `--since` defaults to **30 h**, not 24, so a late nightly cannot
+open a gap. Live-verified end to end.
+**Gates (measured):** `uv run pytest` **452 passed** (416 + 36 new), `uv run checks` **ALL CHECKS PASSED**, ruff clean, `data/` untouched.
+
+**Two bugs fixed during the task:**
+- **The new tests wrote into the REAL `data/bills/`** (two files modified, both reverted).
+  `export.BILLS_DIR` is an import-time constant AND `export_bill`'s default argument, so
+  patching `ingest.cache.repo_root` moved the reads but not the writes. `run_activity` now
+  resolves `out_dir` per run. **Hazard for any future test: `export.*_DIR` and the defaults
+  built from them do not follow a patched `repo_root`.**
+- **`run()`'s `fetch_errors` tuple lacked `TruncatedFetchError`.** `bill_actions()` raises it
+  on a short page and on its dedupe-undercount guard, so one bad `/actions` response would
+  have aborted the whole nightly instead of recording a retryable per-bill failure.
+
+**▶▶ NEXT SESSION STARTS HERE — run the backfill, then tasks 5-7.**
+
+**Before starting the backfill (checks 1-3 are DONE, 4-5 are the actual gate):**
+1. ✅ **Rate-limit window is HOURLY** — confirmed 2026-10-01 (27 used after hundreds of
+   calls that day). D88 had left this open. It mattered: a DAILY window would have made the
+   backfill ~8 days **and starved the nightly**, which shares the key.
+2. ⚠ **The site build loads EVERY bill into memory** (`site/src/lib/data.ts:133-141`).
+   Decision 3(c) caps PAGES, not the loader. 38,756 bills project to ~0.10-0.18 GB on disk,
+   several times that parsed. Not changed; **watch the first full build** rather than
+   assuming it survives. Fix if needed: load lazily or index by id.
+3. ⚠ **Banned-words scans `data/bills/` and action text is VERBATIM** (uneditable).
+   Measured 0 hits across 520 real actions — the list is partisan-framing vocabulary absent
+   from clerk prose. If one ever hits over 38,756 bills it is an **owner allowlist decision**,
+   never an edit to government text.
+4. **▶ START ONLY AFTER TONIGHT'S NIGHTLY COMMITS.** Tonight is the first post-reset run
+   (~4 h, D86 re-paging) and it now writes `data/bills/` too. Otherwise commit in batches
+   with `git pull --rebase` between them — the D84 rebase loop protects the nightly's push,
+   not a local one.
+5. **Resume costs ~5 h.** The raw-cache TTL is 20 h, so resuming a backfill that has run
+   longer refetches `/actions` for everything already done (~19k requests). Acceptable once;
+   `--skip-existing` is the cheap fix if it bites.
+
+**The backfill itself:** `uv run ingest bill-activity --congress 118` then `--congress 119`.
+At least ~43 h total, locally, machine awake. It is resumable (disk cache + per-bill export),
+so an interruption costs at most the resume above. **Never in CI** — 2,590 Actions minutes
+is more than a whole month's free allowance (H24).
+
+**Then tasks 5-7:** events projection + the Astro endpoint (5/5b), topics index (6), and the
+site work — Actions timeline, `/topics/`, Atom feeds (7). Remember pageless bills must link
+to congress.gov, never to a `/b/` URL that does not exist, or `npm run test:links` fails. **The two hard cost constraints from D88
 still bind and are exactly what task 4 must be built around:**
 These are build constraints, not preferences, and getting either wrong overruns the free
 GitHub Actions allowance:

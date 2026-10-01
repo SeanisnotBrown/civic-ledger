@@ -68,6 +68,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import bills
 
         return bills.run(args[1:])
+    if args and args[0] == "bill-activity":
+        from ingest import bills
+
+        return bills.run_activity(args[1:])
     if args and args[0] == "classify":
         from ingest import classify
 
@@ -98,6 +102,9 @@ def main(argv: list[str] | None = None) -> int:
     print("  house-votes   INC-3 House roll calls -> data/votes/ + data/absences/")
     print("  senate-votes  INC-4 Senate roll calls -> data/votes/ + data/absences/")
     print("  bills         INC-8 bills -> data/bills/ (--all: subjects/cosponsors backfill)")
+    print("  bill-activity V2-11 action timelines across all covered bills")
+    print("                  --since H (nightly delta, default 30) | --congress N "
+          "(backfill, LOCAL ONLY)")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
     print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")

@@ -44,6 +44,80 @@ def parse_bill_id(bill_id: str) -> tuple[str, int, int]:
     return btype, number, congress
 
 
+def known_rollcall_ids() -> set[str]:
+    """Every `RollCall.id` this dataset holds, read once from `data/votes/**`.
+
+    Built ONCE per run and threaded through every `parse_actions()` call. It is a
+    ~3,500-file scan; rebuilding it per bill would repeat that 38,756 times during
+    the backfill. The filename IS the id (`export_rollcall` writes
+    `{rollcall.id}.json`), so no file is opened."""
+    from ingest.cache import repo_root
+
+    votes_dir = repo_root() / "data" / "votes"
+    return {p.stem for p in votes_dir.rglob("*.json")}
+
+
+def bill_id_from_list_item(item: dict) -> str | None:
+    """`{"type": "HR", "number": "1379", "congress": 119}` -> `"hr1379-119"`, the
+    canonical id shape `parse_bill_id` round-trips. None if the item is malformed
+    (the caller quarantines rather than inventing an id)."""
+    try:
+        btype = str(item["type"]).lower().strip()
+        number = int(str(item["number"]).strip())
+        congress = int(item["congress"])
+    except (KeyError, TypeError, ValueError):
+        return None
+    if not btype:
+        return None
+    return f"{btype}{number}-{congress}"
+
+
+def _bills_dir():
+    from ingest.cache import repo_root
+
+    return repo_root() / "data" / "bills"
+
+
+def load_existing_bill(bill_id: str) -> Bill | None:
+    """The committed record for a bill, or None if we do not hold it yet.
+    A malformed committed file reads as None so the caller re-fetches it whole
+    rather than merging into a broken record."""
+    path = _bills_dir() / f"{bill_id}.json"
+    if not path.exists():
+        return None
+    try:
+        return Bill(**json.loads(path.read_text(encoding="utf-8")))
+    except (ValidationError, ValueError, KeyError):
+        return None
+
+
+def merge_activity(
+    existing: Bill, *, actions: list[BillAction], list_item: dict
+) -> Bill:
+    """Fold a fresh action timeline into a bill we already hold, WITHOUT refetching
+    its detail/subjects/cosponsors (SD-33 cost constraint 2).
+
+    Anti-clobber (the D35 shape, same rule `run()` documents for subjects): fields
+    not being refreshed are carried through untouched, so a bill that already has
+    enriched subjects can never be written back with the `None` "not collected"
+    sentinel just because this cheaper path did not fetch them.
+
+    `latest_action` / `latest_action_date` ARE refreshed, from the list item the
+    enumeration already returned (no extra request). The list item is the same
+    `latestAction` block the detail endpoint serves. If it is absent or malformed
+    the committed values are kept rather than blanked."""
+    latest = list_item.get("latestAction") or {}
+    text = latest.get("text")
+    date = latest.get("actionDate")
+    return existing.model_copy(
+        update={
+            "actions": actions,
+            "latest_action": text if text else existing.latest_action,
+            "latest_action_date": date if date else existing.latest_action_date,
+        }
+    )
+
+
 def rollcall_id_for(recorded_vote: dict) -> str | None:
     """Build the canonical `RollCall.id` a `recordedVotes` entry points at, or
     None if the entry is malformed. Pure; existence is the caller's business.
@@ -118,13 +192,14 @@ def parse_bill(
     *,
     subjects: list[str] | None,
     cosponsor_ids: list[str] | None,
+    actions: list[BillAction] | None = None,
 ) -> Bill:
     """Parse a `/bill/{c}/{type}/{number}` response into a `Bill`. Raises on
     malformed data so the caller quarantines the whole bill (§6.1).
 
-    `subjects` / `cosponsor_ids` come from the paginated sub-resources (fetched by
-    the caller); passing `None` records "not collected" (D27), a real list (incl.
-    `[]`) records the collected value. Pure: no fetching happens here."""
+    `subjects` / `cosponsor_ids` / `actions` come from the paginated sub-resources
+    (fetched by the caller); passing `None` records "not collected" (D27), a real
+    list (incl. `[]`) records the collected value. Pure: no fetching happens here."""
     btype, number, congress = parse_bill_id(bill_id)
     bill = detail_json["bill"]
 
@@ -159,6 +234,7 @@ def parse_bill(
         subjects=subjects,  # fetched sub-resource (INC-10); None only if uncollected
         sponsor_id=sponsor_id,
         cosponsor_ids=cosponsor_ids,  # fetched sub-resource (INC-10)
+        actions=actions,  # fetched sub-resource (V2-11); None only if uncollected
         latest_action=latest["text"],
         latest_action_date=latest["actionDate"],
         cbo_estimates=cbo,
@@ -214,7 +290,12 @@ def run(argv: list[str] | None = None) -> int:
 
     `ingest bills --all` forces past the skip-if-final gate — the one-time backfill
     that enriches the already-exported bills; without it the nightly touches only
-    new/recent bills (whose enrichment refreshes on every re-export, never reverts)."""
+    new/recent bills (whose enrichment refreshes on every re-export, never reverts).
+
+    V2-11: `/actions` joins subjects and cosponsors as a per-bill sub-resource,
+    fetched for every bill this pipeline exports under the same never-revert rule.
+    That is one extra request per exported bill. This command still covers only the
+    ~1,000 vote-referenced bills; the 38,756-bill universe is `ingest bill-activity`."""
     import httpx
 
     from ingest import config, incremental
@@ -222,7 +303,12 @@ def run(argv: list[str] | None = None) -> int:
     from ingest.export import export_bill
     from ingest.sources import congress_gov
 
-    fetch_errors = (RetryableHTTPError, httpx.HTTPError, OSError)
+    # TruncatedFetchError joins the tuple with V2-11: `bill_actions()` raises it on a
+    # short page AND on its dedupe-undercount guard. Either must record a per-bill
+    # fetch failure (re-runnable) like any other, never abort the whole nightly.
+    fetch_errors = (
+        RetryableHTTPError, httpx.HTTPError, OSError, congress_gov.TruncatedFetchError
+    )
     force_all = bool(argv) and "--all" in argv
 
     accepted_ids = incremental.accepted_quarantines()  # owner-reviewed, non-fatal (§6.1)
@@ -233,6 +319,7 @@ def run(argv: list[str] | None = None) -> int:
     # overrides the skip so the sub-resource backfill reaches every bill once.
     cutoff = incremental.final_cutoff()
     recent = incremental.recent_bill_ids(cutoff)
+    known_rolls = known_rollcall_ids()  # once per run, not once per bill
     exported = 0
     skipped = 0
     quarantined: list[str] = []
@@ -255,6 +342,7 @@ def run(argv: list[str] | None = None) -> int:
             # module docstring) — never left as the None "uncollected" sentinel.
             subjects = congress_gov.bill_subjects(congress, btype, number)
             cosponsor_ids = congress_gov.bill_cosponsor_ids(congress, btype, number)
+            raw_actions = congress_gov.bill_actions(congress, btype, number)
         except fetch_errors as exc:
             # A 404 surfaces as RetryableHTTPError only on 5xx/429; a real 404 is
             # an HTTPStatusError -> httpx.HTTPError. Either way, record + continue.
@@ -269,7 +357,12 @@ def run(argv: list[str] | None = None) -> int:
             fetch_failures.append(f"{bill_id}: {type(exc).__name__}")
             continue
         try:
-            bill = parse_bill(data, bill_id, subjects=subjects, cosponsor_ids=cosponsor_ids)
+            bill = parse_bill(
+                data, bill_id,
+                subjects=subjects,
+                cosponsor_ids=cosponsor_ids,
+                actions=parse_actions(raw_actions, known_rollcall_ids=known_rolls),
+            )
         except (ValidationError, KeyError, BadBillId) as exc:
             _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
             quarantined.append(bill_id)
@@ -291,6 +384,206 @@ def run(argv: list[str] | None = None) -> int:
               f"(data/quality/accepted-quarantine.yaml): {accepted_missing[:10]}")
     # Persistent fetch failures fail the run (re-runnable); the quarantine gate
     # above is the §6.1 ceiling for genuinely-bad bills. One message (L-3).
+    if fetch_failures:
+        print(f"FAIL: {len(fetch_failures)} bill(s) failed to fetch (re-run to retry): "
+              f"{fetch_failures[:10]}")
+        return 1
+    return 0
+
+
+# --- V2-11: bill activity across the whole covered universe ---------------
+
+
+class CiRefusal(Exception):
+    """A full-Congress backfill was started inside CI. See `run_activity`."""
+
+
+def _in_ci() -> bool:
+    import os
+
+    return bool(os.environ.get("CI") or os.environ.get("GITHUB_ACTIONS"))
+
+
+def _parse_activity_args(argv: list[str]) -> dict:
+    """`--congress N` (enumerate that Congress whole) | `--since HOURS` (default
+    30) | `--limit N` | `--allow-ci`. Raises ValueError on anything else so a
+    typo'd flag can never silently become a 43-hour run."""
+    opts = {"congress": None, "since": 30.0, "limit": None, "allow_ci": False}
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a == "--allow-ci":
+            opts["allow_ci"] = True
+            i += 1
+            continue
+        if a in ("--congress", "--since", "--limit"):
+            if i + 1 >= len(argv):
+                raise ValueError(f"{a} needs a value")
+            raw = argv[i + 1]
+            try:
+                opts[a[2:]] = float(raw) if a == "--since" else int(raw)
+            except ValueError:
+                raise ValueError(f"{a} needs a number, got {raw!r}") from None
+            i += 2
+            continue
+        raise ValueError(f"unknown argument {a!r}")
+    if opts["congress"] is not None and opts["congress"] not in config_congresses():
+        raise ValueError(
+            f"--congress {opts['congress']} is outside the covered set "
+            f"{config_congresses()}"
+        )
+    if opts["since"] <= 0:
+        raise ValueError("--since must be positive")
+    return opts
+
+
+def config_congresses() -> list[int]:
+    from ingest import config
+
+    return list(config.CONGRESSES)
+
+
+def run_activity(argv: list[str] | None = None) -> int:
+    """V2-11 task 4 — ingest bill ACTIVITY across the full covered universe
+    (38,756 bills), not just the ~1,000 that reached a roll call.
+
+    Two modes, both enumerating through `congress_gov.bills_updated_since`:
+
+    * **`--congress N`: the one-time backfill.** Enumerates that Congress whole
+      and ingests every bill it has not got. **REFUSES TO RUN IN CI.** At 4
+      requests per new bill and the 1 req/s ceiling this is >= ~43 h, about 2,590
+      GitHub Actions minutes -- more than an entire month's 2,000-minute free
+      allowance (SD-33, D88, H24). It runs locally and the result is committed.
+      `--allow-ci` overrides, and exists for exactly one case: a self-hosted
+      runner, where minutes are not billed (the escape hatch H24 documents).
+    * **`--since HOURS` (default 30): the nightly delta.** Enumerates bills whose
+      `updateDate` moved in the window. 30 h rather than 24 so a late or retried
+      nightly cannot open a gap between runs; re-seeing a bill is idempotent.
+
+    **The cost rule that shapes this command (SD-33 constraint 2):** a bill we
+    ALREADY HOLD costs ONE request -- its `/actions` -- and is merged into the
+    committed record by `merge_activity`, which carries every other field through
+    untouched. Only a genuinely NEW bill pays the full four (detail + subjects +
+    cosponsors + actions). Refetching everything for every updated bill would be
+    ~19-29 min/night (~560-870/month) and would not fit beside the D86 nightly;
+    actions-only is ~5-7 min/night (~150-210/month), which does.
+
+    Idempotent and resumable: every fetch is cached and every bill is exported as
+    it is finished, so an interrupted 43-hour backfill resumes where it stopped.
+    Malformed bills are quarantined under the existing §6.1 ceiling."""
+    import httpx
+
+    from ingest import config
+    from ingest.cache import RetryableHTTPError
+    from ingest.export import export_bill
+    from ingest.sources import congress_gov
+
+    try:
+        opts = _parse_activity_args(list(argv or []))
+    except ValueError as exc:
+        print(f"FAIL: {exc}")
+        return 2
+
+    backfill = opts["congress"] is not None
+    if backfill and _in_ci() and not opts["allow_ci"]:
+        print(
+            "FAIL: a full-Congress backfill must not run in CI.\n"
+            "  At 1 request/second this is >= ~43 h (~2,590 Actions minutes) for all\n"
+            "  38,756 bills -- more than a whole month's 2,000-minute free allowance\n"
+            "  (SD-33, H24). Run it locally and commit the result.\n"
+            "  --allow-ci overrides, and is meant only for a self-hosted runner."
+        )
+        return 2
+
+    fetch_errors = (
+        RetryableHTTPError, httpx.HTTPError, OSError, congress_gov.TruncatedFetchError
+    )
+    known_rolls = known_rollcall_ids()  # once per run, not once per bill
+    # Resolved per run, not bound at import: `export.BILLS_DIR` is a module-level
+    # constant baked in at import time, so a test (or any caller) that redirects
+    # the repo root would otherwise still write into the real data/bills.
+    out_dir = _bills_dir()
+
+    if backfill:
+        scope = f"congress {opts['congress']} (whole)"
+        items = congress_gov.bills_updated_since(congress=opts["congress"])
+    else:
+        from datetime import UTC, datetime, timedelta
+
+        now = datetime.now(UTC).replace(microsecond=0)
+        since = now - timedelta(hours=opts["since"])
+        scope = f"updated in the last {opts['since']:g} h"
+        items = [
+            it
+            for it in congress_gov.bills_updated_since(since, now)
+            if it.get("congress") in set(config.CONGRESSES)
+        ]
+
+    if opts["limit"] is not None:
+        items = items[: opts["limit"]]
+
+    total = len(items)
+    print(f"civic-ledger bill-activity: {total} bill(s) {scope}.")
+
+    new_bills = 0
+    refreshed = 0
+    quarantined: list[str] = []
+    fetch_failures: list[str] = []
+
+    for n, item in enumerate(items, 1):
+        bill_id = bill_id_from_list_item(item)
+        if bill_id is None:
+            quarantined.append(repr(item)[:80])
+            continue
+        try:
+            btype, number, congress = parse_bill_id(bill_id)
+        except BadBillId as exc:
+            _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
+            quarantined.append(bill_id)
+            continue
+
+        existing = load_existing_bill(bill_id)
+        try:
+            raw_actions = congress_gov.bill_actions(congress, btype, number)
+            actions = parse_actions(raw_actions, known_rollcall_ids=known_rolls)
+            if existing is not None:
+                # SD-33 constraint 2: one request for a bill we already hold.
+                bill = merge_activity(existing, actions=actions, list_item=item)
+            else:
+                data = congress_gov.bill_detail(congress, btype, number).json()
+                bill = parse_bill(
+                    data, bill_id,
+                    subjects=congress_gov.bill_subjects(congress, btype, number),
+                    cosponsor_ids=congress_gov.bill_cosponsor_ids(congress, btype, number),
+                    actions=actions,
+                )
+        except fetch_errors as exc:
+            fetch_failures.append(f"{bill_id}: {type(exc).__name__}")
+            continue
+        except (ValidationError, KeyError, BadBillId) as exc:
+            _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
+            quarantined.append(bill_id)
+            continue
+
+        export_bill(bill, out_dir=out_dir)
+        _clear_quarantine(bill_id)
+        if existing is None:
+            new_bills += 1
+        else:
+            refreshed += 1
+        if n % 500 == 0:
+            print(f"  ... {n}/{total} ({new_bills} new, {refreshed} refreshed)")
+
+    print(
+        f"bill-activity: {new_bills} new + {refreshed} refreshed of {total} "
+        f"({len(quarantined)} quarantined, {len(fetch_failures)} fetch failures)."
+    )
+    if quarantined:
+        frac = len(quarantined) / total if total else 0.0
+        print(f"  {len(quarantined)} quarantined ({frac:.2%}): {quarantined[:10]}")
+        if frac > config.QUARANTINE_MAX_FRACTION:
+            print(f"FAIL: quarantine {frac:.2%} exceeds {config.QUARANTINE_MAX_FRACTION:.0%}")
+            return 1
     if fetch_failures:
         print(f"FAIL: {len(fetch_failures)} bill(s) failed to fetch (re-run to retry): "
               f"{fetch_failures[:10]}")

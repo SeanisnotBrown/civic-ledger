@@ -1,6 +1,6 @@
 # Plan — profiles, topic subscriptions, bill tracking, and alerts
 
-**Status:** RATIFIED PRIORITY (owner, 2026-09-23, SD-32). Nothing here is built
+**Status:** RATIFIED PRIORITY (owner, 2026-09-23, SD-32). **Decisions 2, 3, 4, 6 and 7 are now ANSWERED too (owner, 2026-10-01, SD-33), asked with D88's measured numbers: coverage = 3(c) track all 38,756 / pages only for the 1,038 voted; topics = 4(a) official terms only; cadence = daily digest; channel = email first; Workers Paid deferred to V2-12. Every decision in §1 below is now settled — read the §1 options as the record of what was chosen and why, not as open questions.** Nothing here is built
 yet. Decision 1 below is settled: the site may read and collect the user data
 its features need; `IMPLEMENTATIONv2.md` §0.4.3, SD-28, §3, §5, §7 V2-7/V2-8,
 §8, §10 and its build order were amended the same day. Build order is
@@ -76,7 +76,7 @@ index built from the government's own subject vocabulary; per-bill, per-topic,
 and per-member Atom feeds so anyone can "live track" without an account; and a
 committed, recomputable `data/events/` record of what changed. Ships under the
 current `/privacy` page unchanged (static, nothing collected).
-**Depends on:** decisions 3, 4, 6.
+**Depends on:** decisions 3, 4, 6 — **all answered 2026-10-01 (SD-33): 3(c), 4(a), daily.** **Binding cost constraint from D88, not a preference:** the one-time 38,756-bill backfill is ≥ ~43 h ≈ 2,590 Actions minutes and **must run locally and be committed, never in CI**; and the nightly delta must fetch `/actions` only for bills already known (full detail+subjects+cosponsors only for genuinely new ones), because a full refetch of every updated bill is ~19–29 min/night and does not fit beside the D86 nightly inside the 2,000-minute free allowance.
 **Tasks:**
 1. **Verify the API surface first (one session, one authenticated call each):**
    the `/bill` list endpoint's update-date filtering/sorting parameters and page

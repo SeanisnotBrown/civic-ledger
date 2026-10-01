@@ -55,12 +55,32 @@ bills already known (the full 4 calls only for genuinely new ones) costs **~5–
 ≈ 150–210 min/month**, which does fit. These three numbers are what owner
 decisions 3 and 6 must now be asked against.
 
-**▶▶ NEXT SESSION STARTS HERE — ask the owner plan decisions 2, 3, 4, 6, 7** from
-`docs/plan-subscriptions-and-alerts.md` §1, in plain language, carrying D88's numbers. Do not
-start V2-11 task 2 before 3/4/6 are answered: decision 3 determines whether the ingest covers
-1,038 bills or 38,756, which is the difference between 17 minutes and 43 hours of fetching.
-Tasks 2 and 3 (`bill_actions()`, the `BillAction` model) are decision-independent if something
-must proceed, but the questions go out first.
+**2026-10-01 — OWNER ANSWERED ALL FIVE OPEN V2-11 DECISIONS (SD-33).** Asked in plain language
+with D88's numbers; recorded in `IMPLEMENTATIONv2.md` §2, `docs/decisions.md`, and the plan doc.
+- **Coverage = 3(c):** track all **38,756** bills for alerts/topics/feeds; `/b/` pages only for
+  the **1,038** that reach a recorded vote. Pageless bills link to congress.gov, never to a
+  `/b/` URL that does not exist (or `npm run test:links` fails).
+- **Topics = 4(a):** official vocabulary only — 31 policy areas + 872 CRS terms, verbatim.
+  No owner bundles this release; **H22 stays optional, not a blocker.**
+- **Cadence = daily digest** on the existing nightly. No second intra-day workflow.
+- **Channel = email first** → **H17, H18, H20 are the V2-12 blockers.** Text/push phase 2;
+  **H21 untouched — phone numbers still not a permitted data class.**
+- **Workers Paid NOT forced by V2-11** (build stays under the 20,000-file free limit at 13,161);
+  the $5/mo upgrade moves to V2-12, where email sending needs it anyway.
+
+**▶▶ NEXT SESSION STARTS HERE — V2-11 task 2, under two hard cost constraints from D88.**
+These are build constraints, not preferences, and getting either wrong overruns the free
+GitHub Actions allowance:
+1. **The one-time 38,756-bill backfill runs LOCALLY and is committed. Never in CI.** It is
+   ≥ ~43 h ≈ 2,590 Actions minutes — more than a whole month's 2,000-minute allowance (H24).
+2. **The nightly delta fetches `/actions` only for bills already known**, with the full
+   detail+subjects+cosponsors set only for genuinely new bills. ~5–7 min/night. A full refetch
+   of every updated bill is ~19–29 min/night and **does not fit** beside the D86 nightly.
+
+Build order within V2-11 is unchanged from the plan: task 2 (`bill_actions()` +
+`bills_updated_since()`) → task 3 (`BillAction` model) → 4 (ingest) → 5/5b (events + the Astro
+endpoint) → 6 (topics index) → 7 (site: Actions timeline, `/topics/`, Atom feeds). Write the
+`/actions` paginated branch against a synthetic payload — D88 could not exercise it live.
 
 **PRIOR (2026-09-30):** D87 remediation committed + pushed as `64f34bbc5`; D86 state unchanged. **2026-09-29, D86 session — nightly cost fix.** Owner reported the GitHub
 Actions bill; both nightlies since 09-28 died in 5 s (*"job was not started because recent

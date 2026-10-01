@@ -2138,3 +2138,41 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   These three numbers are what owner decisions 3 and 6 are asked against; they are reported,
   not acted on. No ingest code is written in this entry — task 1 is measurement only, and
   the plan gates tasks 4 onward on decisions 3, 4 and 6.
+
+## SD-33 — V2-11 shape ratified: coverage, topics, cadence, channel (2026-10-01)
+
+- **SD-33 (2026-10-01, owner-ratified) — the four open V2-11 decisions, answered.** Asked in
+  plain language at the end of V2-11 task 1 as `docs/plan-subscriptions-and-alerts.md` §1
+  requires, carrying D88's measured numbers rather than estimates. Canonical home is
+  `IMPLEMENTATIONv2.md` §2; this is the dated append-only record (SD-31).
+  **Decision 3 — coverage = (c).** All **38,756** bills in the covered Congresses are tracked
+  for alerts, topics and feeds; only the bills that reach a recorded vote (**1,038** today)
+  get a `/b/` page. Per the plan's own warning, a topic row or feed entry for a pageless bill
+  links to that bill's `source_url` on congress.gov and **never** to a `/b/` URL that does not
+  exist, or `npm run test:links` fails.
+  **Decision 4 — topics = (a).** Official government vocabulary only: the 31 policy areas and
+  872 CRS subject terms, verbatim, with mechanical slugs. No owner-authored bundles in this
+  release. **H22 stays optional and is not a blocker**; bundles can be added later as a
+  disclosed, dated editorial artifact without changing anything else.
+  **Decision 6 — cadence = daily digest**, carried by the existing `nightly.yml`. No second
+  intra-day workflow, so no new GitHub Actions minutes beyond the ingest itself. Per-
+  subscription "faster" remains addable later.
+  **Decision 2 — channel = email first.** This makes **H17** (Turnstile), **H18** (email
+  provider) and **H20** (Workers Paid) the V2-12 blockers. Text and browser push are phase 2;
+  **H21 is untouched and phone numbers remain a data class the spec does not permit.**
+  **Decision 7 — Workers Paid is NOT forced by V2-11.** Only the 1,038 voted bills get pages,
+  so the build stays under the Workers Free 20,000-file limit (it is at 13,161 today). The
+  $5/mo upgrade is deferred to **V2-12**, where Email Sending requires it regardless.
+  **What decided decision 3 was the backfill cost, not the API.** At the 1 req/s ceiling a
+  full 38,756-bill fetch is **at least ~43 h ≈ 2,590 GitHub Actions minutes** — more than one
+  entire month's 2,000-minute free allowance (H24). **It therefore runs locally once and is
+  committed; it must never run in CI.** The steady state must likewise be actions-only for
+  bills already known (~5-7 min/night, ~150-210 min/month) rather than a full refetch of every
+  updated bill (~19-29 min/night, ~560-870 min/month), which does not fit beside the D86
+  nightly's existing ~900-1,400. **This is a build constraint on tasks 4 and 5, not a
+  preference.** Option (a) (voted bills only) was rejected because a bill invisible until its
+  first recorded vote defeats the owner's stated request; pages for all 38,756 were rejected
+  as unwanted pages plus a forced plan upgrade.
+  Not evaluative: no metric, threshold, grade boundary or published number is involved, so
+  §0.8 does not apply. These are scope and cost choices, ratified because the plan reserved
+  them for the owner.

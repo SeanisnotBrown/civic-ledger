@@ -115,8 +115,12 @@ open a gap. Live-verified end to end.
 **CI WENT RED on this commit (D94)** — `test_reingest_reexports_enrichment_not_none`
 hit the live API because task 4's new `/actions` call was unstubbed, and the local
 `.env` key made it PASS here. Fixed, plus `tests/conftest.py` now hides `.env` from
-every test so CI's failure mode is reproduced locally. **Standing rule: a green local
-pytest is not evidence CI is green. Watch the run after pushing a new network call.**
+every test so CI's failure mode is reproduced locally. **Standing rule: a bare `uv run pytest` is NOT evidence CI is green** — the local
+machine has a `.env` key CI lacks, and lacks the `CI`/`GITHUB_ACTIONS` CI has (both
+bit, in both directions, on consecutive pushes). Run what CI runs before pushing:
+```
+CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics \n  --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify \n  --cov=ingest.legislation_stats --cov-branch --cov-fail-under=100
+```
 **Gates (measured):** `uv run pytest` **452 passed** (416 + 36 new), `uv run checks` **ALL CHECKS PASSED**, ruff clean, `data/` untouched.
 
 **Two bugs fixed during the task:**

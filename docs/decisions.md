@@ -2421,3 +2421,22 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   assumption as the code cannot catch a wrong assumption): **a green local pytest is not
   evidence CI is green, because `.env` exists here and not there.** Watch the CI run after
   a push that adds a network call; do not declare the increment done on local gates alone.
+
+- **D94 addendum (2026-10-01) — CI went red a SECOND time, same class, mirror image.**
+  The D94 commit still failed: `test_resuming_a_finished_bill_costs_ZERO_requests`,
+  `test_refresh_all_re_does_a_held_bill` and `test_skip_existing_is_idempotent_over_repeated_resumes`
+  all returned 2 instead of 0. Cause: they exercise `--congress`, and D90's own guard
+  **refuses a full-Congress backfill when `CI`/`GITHUB_ACTIONS` is set**. Neither is set on
+  a developer machine, so all three passed locally and failed on the runner.
+  Exactly the D94 shape with the sign flipped: the first was a variable CI LACKS (the API
+  key), this is one CI HAS. Both are "the test asserts something about an environment it
+  never actually ran in".
+  **Fix:** the autouse fixture now also clears `CI` and `GITHUB_ACTIONS`, so every test
+  starts from a known not-CI baseline; the refusal tests set the variable themselves and
+  are unaffected. Renamed `_same_environment_as_ci` — the fixture's job is that the two
+  environments agree, not credentials specifically.
+  **What should have happened, and is now the rule:** CI is reproducible locally. Before
+  pushing, run what CI runs —
+  `CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=... --cov-fail-under=100` —
+  rather than a bare `uv run pytest` and a hope. Two red pushes in a row were two chances
+  to run one command.

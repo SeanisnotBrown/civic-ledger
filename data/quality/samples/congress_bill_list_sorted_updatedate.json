@@ -1,0 +1,89 @@
+{
+  "bills": [
+    {
+      "congress": 119,
+      "introducedDate": "2025-09-19",
+      "latestAction": {
+        "actionDate": "2026-09-16",
+        "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 628."
+      },
+      "number": "5517",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "title": "Northern Border Security Enhancement and Review Act",
+      "type": "HR",
+      "updateDate": "2026-10-01",
+      "updateDateIncludingText": "2026-10-01",
+      "url": "https://api.congress.gov/v3/bill/119/hr/5517?format=json"
+    },
+    {
+      "congress": 119,
+      "introducedDate": "2026-07-09",
+      "latestAction": {
+        "actionDate": "2026-09-16",
+        "text": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works."
+      },
+      "number": "9615",
+      "originChamber": "House",
+      "originChamberCode": "H",
+      "title": "BRACE Act",
+      "type": "HR",
+      "updateDate": "2026-10-01",
+      "updateDateIncludingText": "2026-10-01",
+      "url": "https://api.congress.gov/v3/bill/119/hr/9615?format=json"
+    },
+    {
+      "congress": 119,
+      "introducedDate": "2025-03-05",
+      "latestAction": {
+        "actionDate": "2026-08-10",
+        "actionTime": "11:10:26",
+        "text": "Held at the desk."
+      },
+      "number": "850",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "title": "Northern Border Security Enhancement and Review Act",
+      "type": "S",
+      "updateDate": "2026-10-01",
+      "updateDateIncludingText": "2026-10-01",
+      "url": "https://api.congress.gov/v3/bill/119/s/850?format=json"
+    },
+    {
+      "congress": 119,
+      "introducedDate": "2025-09-08",
+      "latestAction": {
+        "actionDate": "2026-09-22",
+        "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 674."
+      },
+      "number": "2735",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "title": "Shingle Springs Band of Miwok Indians Land Transfer Act of 2025",
+      "type": "S",
+      "updateDate": "2026-10-01",
+      "updateDateIncludingText": "2026-10-01",
+      "url": "https://api.congress.gov/v3/bill/119/s/2735?format=json"
+    },
+    {
+      "congress": 119,
+      "introducedDate": "2025-01-23",
+      "latestAction": {
+        "actionDate": "2026-09-14",
+        "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 553."
+      },
+      "number": "236",
+      "originChamber": "Senate",
+      "originChamberCode": "S",
+      "title": "A bill to amend the Act of August 9, 1955 (commonly known as the \"Long-Term Leasing Act\"), to authorize leases of up to 99 years for land in the Mashpee Wampanoag Tribe Reservation and land held in trust for the Wampanoag Tribe of Gay Head (Aquinnah), and for other purposes.",
+      "type": "S",
+      "updateDate": "2026-10-01",
+      "updateDateIncludingText": "2026-10-01",
+      "url": "https://api.congress.gov/v3/bill/119/s/236?format=json"
+    }
+  ],
+  "pagination": {
+    "count": 430715,
+    "next": "https://api.congress.gov/v3/bill?sort=updateDate desc&offset=5&limit=5&format=json"
+  }
+}

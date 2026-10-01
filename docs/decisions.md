@@ -2065,3 +2065,76 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   `uv run ruff check .` clean, `uv run checks` ALL CHECKS PASSED (banned-words scanned the
   two edited pages), `astro check` 0 errors, `astro build` 13,161 pages, `git status data/`
   shows only the accept-list comment.
+
+- **D88 (2026-10-01) — V2-11 task 1: the bill API surface, measured live, not assumed.**
+  The plan (`docs/plan-subscriptions-and-alerts.md` §2 V2-11 task 1) requires one
+  authenticated call per unknown before the ingest is sized: the `/bill` list endpoint's
+  update-date filtering/sorting and page size, the `/actions` sub-resource shape and
+  pagination, and the per-key rate limit. All probed 2026-10-01 against the live API with
+  `CONGRESS_API_KEY`. Two samples committed under `data/quality/samples/`
+  (`congress_bill_actions_hr2670_118.json`, `congress_bill_list_sorted_updatedate.json`);
+  field shapes recorded as **SHAPES.md §9**, which is the contract the parser gets written
+  against. Non-evaluative: no metric, threshold, grade or published number is involved.
+  **(1) Corpus size — the plan's "roughly 15,000-20,000 per Congress" is confirmed at the
+  top of its range.** `pagination.count` on `/bill/{congress}`: **118th = 19,315**,
+  **119th = 19,441**, **38,756 covered bills** against the 1,038 that reach a roll call
+  today (2.7%). The unscoped `/bill` count is 430,715 (all congresses on file).
+  **(2) The update window works.** `fromDateTime` / `toDateTime` (ISO `...Z`) are honored
+  and compose with the `/bill/{congress}` path form. Discriminating check, per the method
+  the plan demands: the filtered count must differ from the unfiltered one or the parameter
+  was ignored. **24 h = 435 bills** vs 430,715 unfiltered; **7 d = 1,954**. Scoped to the
+  covered Congresses the same 24 h window gives **118th = 16, 119th = 411 (427 total)**.
+  **(3) DEVIATION — `sort=updateDate+desc` is silently ignored.** The documented `+` form
+  is transmitted as a literal `%2B` and the API discards the whole sort: `updateDate+desc`,
+  `updateDate+asc` and a deliberate `sort=BOGUSVALUE` control all return the **identical**
+  page (first row `2025-04-07` on a day when bills were updated `2026-10-01`). The working
+  form is **`sort=updateDate desc`** — a literal space, encoded `%20` — which returns
+  genuinely newest-first. Caught only because the probe compared against a bogus-value
+  control rather than reading the first page and declaring success. Recorded in SHAPES.md
+  §9 as a deviation so no later parser reintroduces the `+`.
+  **(4) Page ceiling is 250 and `limit=251` clamps rather than errors** — a silent
+  truncation of exactly the kind `TruncatedFetchError` (D64) exists to catch, so the
+  paginator must trust `pagination.count`, never the returned length.
+  **(5) `/actions` shape.** Top-level `{"actions": [...], "pagination": {...}}`. Fields over
+  324 real actions across four bills: `actionDate` (always), `text` (verbatim, stored as-is
+  per §0.5), `type`, and the **optional** `actionTime` (142/234 on NDAA FY24, 9/64, 10/26 —
+  nullable, never sort on it alone), `actionCode`, `committees`, `calendarNumber`, plus
+  `recordedVotes` — `{chamber, congress, date, rollNumber, sessionNumber, url}`, which is
+  the join to an existing `RollCall.id`. **Pagination is UNEXERCISED and stated as such:**
+  the largest action list found is **234** (`hr2670-118`, NDAA FY24; also probed hr3684-117
+  = 101, hr748-116 = 49, s2226-118 = 46), all under the 250 ceiling, so `pagination.next`
+  never appeared on `/actions`. The paginated branch still gets written and gets a unit test
+  against a synthetic payload; it cannot be confirmed live until a bill exceeds 250 actions.
+  **(6) Rate limit — H23 answered.** Response headers carry `x-ratelimit-limit: 20000` /
+  `x-ratelimit-remaining`; **no header states the reset window**, so the window is NOT
+  confirmed and is not asserted here. Note the direction of the risk: a LONGER window makes
+  the cap tighter, not looser — `ingest/cache.py` throttles `api.congress.gov` to 1 req/s
+  = 3,600/hour, so a daily window would be exhausted after ~5.6 hours of continuous fetching.
+  - **The nightly never binds on either reading.** A normal night is ~1,740 requests and a
+    Sunday `--full` ~14,400, both under 20,000 on any window of 4 hours or more.
+  - **The one-time backfill does depend on the window:** ~155,000 requests is ~43 h if the
+    window is hourly, but closer to 8 days if it is daily. `cache.py` already honors
+    `Retry-After` on a 429 (line ~139), so it throttles rather than crashes either way.
+  - Cheap confirmation whenever convenient: make one call ~1 h after a burst and read
+    `x-ratelimit-remaining`; back near 20,000 means hourly. Not done here — only 14 minutes
+    had elapsed when this was written.
+  **No rate-limit raise is needed; H23 closes.** The binding constraint on a normal night is
+  wall-clock, not the key.
+  **(7) Sizing, from the measured numbers.** `ingest/bills.py` spends 3 requests per bill
+  today (`bill_detail`, `bill_subjects`, `bill_cosponsor_ids`); `/actions` makes it 4.
+  - Full backfill of all 38,756 covered bills: 155,024 requests + 156 list pages at 1 req/s
+    = **at least ~43 hours** — a FLOOR, not an estimate: the throttle sets it, and D86
+    measured a single 250-item page taking ~7 s, so the real figure is higher. That is
+    **≥ ~2,590 GitHub Actions minutes — more than one entire month's 2,000-minute free
+    allowance** (H24). **It cannot run in CI.** It can run locally over a sitting or two and
+    be committed, which costs zero billed minutes.
+  - Steady state, full refetch of every updated bill. The daily figure is a RANGE, not the
+    single Thursday sample: 435 in the probed 24 h, but 1,954 over 7 d ≈ 280/day, so
+    **280-435 bills/day x 4 = ~19-29 min/night = ~560-870 min/month**. The D86 nightly
+    already uses ~900-1,400 (H24), so **this does not fit the free allowance at either end.**
+  - Steady state, actions-only for bills already known, with the full 4 calls only for
+    genuinely new ones: **~5-7 min/night = ~150-210 min/month**, which does fit inside the
+    existing headroom.
+  These three numbers are what owner decisions 3 and 6 are asked against; they are reported,
+  not acted on. No ingest code is written in this entry — task 1 is measurement only, and
+  the plan gates tasks 4 onward on decisions 3, 4 and 6.

@@ -3,7 +3,66 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-09-30 (D87 remediation committed + pushed as `64f34bbc5`; D86 state unchanged). **2026-09-29, D86 session — nightly cost fix.** Owner reported the GitHub
+**Last updated:** 2026-10-01 (V2-11 task 1 done — D88; CI green at last).
+
+**2026-10-01 — CI UNBLOCKED AND GREEN.** `gh run rerun 36743621950` on the reset allowance:
+**success**, `python` 3m15s + `site-and-checks` 21m15s. That one run validates **D86 and D87
+together** on GitHub — both had only ever passed locally, because every run since 09-28 died
+on the billing block in under 8 s. The October allowance works. **Non-blocking annotation on
+both jobs: `ubuntu-latest` migrates to Ubuntu 26 on 2026-10-19.** Nothing breaks today; worth
+a pin or a test run before then. Not yet actioned.
+
+**D86 is still only HALF accepted.** CI green proves the code compiles and the suites pass; it
+says nothing about the re-paging behaviour. The behavioural acceptance is unchanged and still
+needs two nightlies: the first run on/after 10-01 re-pages all 639 members once (~4 h, commits
+`lifetime_counts` onto every `data/legislation/*.json`), and **the next non-Sunday run is the
+test — PASS = < 1 h and the log prints `N re-fetched + M unchanged (kept) of 639 members`
+with M in the hundreds.** Check with `gh run list --workflow=nightly.yml --limit 4`.
+
+**2026-10-01 — V2-11 TASK 1 COMPLETE (D88). Measurement only; no ingest code written.**
+The plan gates tasks 4 onward on owner decisions 3, 4 and 6, so the build stops here until he
+answers. Probed live against `CONGRESS_API_KEY`; two samples committed; field shapes recorded
+as **SHAPES.md §9**, which is the contract the parser gets written against.
+
+What was measured:
+- **38,756 covered bills** (118th = 19,315, 119th = 19,441) against the **1,038** that reach a
+  roll call today — the plan's "15,000–20,000 per Congress" confirmed at the top of its range.
+- **The update window works:** `fromDateTime`/`toDateTime` give **435 bills in 24 h** (427 of
+  them in the covered Congresses) vs 430,715 unfiltered, and compose with `/bill/{congress}`.
+- **DEVIATION — the documented `sort=updateDate+desc` is silently ignored.** It returns the
+  identical page as a deliberate `sort=BOGUSVALUE` control. **The working form is
+  `sort=updateDate desc`** (literal space). Caught only by running the bogus-value control.
+- `/actions` shape fully recorded; `actionTime` is optional (142/234 on the NDAA), and
+  `recordedVotes` carries the join to `RollCall.id`. **Pagination is UNEXERCISED** — the
+  largest action list found is 234, under the 250 ceiling. Written and unit-tested against a
+  synthetic payload; not confirmable live until some bill exceeds 250 actions.
+- `limit=251` **clamps to 250 silently** rather than erroring — trust `pagination.count`.
+- **H23 CLOSED.** `x-ratelimit-limit: 20000`, window not stated in any header and therefore
+  not asserted. At the 1 req/s throttle the **nightly never binds** either way (~1,740 calls a
+  normal night, ~14,400 on a Sunday `--full`). A daily window would only pinch the one-time
+  backfill, which `cache.py` throttles through on `Retry-After` rather than crashing on.
+  No raise to request.
+
+**▶ THE NUMBER THAT CHANGES THE PLAN — this is a budget problem, not an API problem:**
+at 4 requests per bill and 1 req/s, a **full backfill of all 38,756 bills is at least ~43
+hours ≈ 2,590 GitHub Actions minutes — more than one entire month's 2,000-minute free
+allowance** (H24); that is a floor set by the throttle, not an estimate. **It cannot run in
+CI.** It can run locally over a sitting or two and be committed, at zero billed minutes. And
+in steady state, refetching every updated bill costs **~19–29 min/night ≈ 560–870 min/month**
+(280–435 bills/day: 1,954 over the probed week, 435 in the probed day), which **does not fit**
+at either end alongside the D86 nightly's existing ~900–1,400. Fetching only `/actions` for
+bills already known (the full 4 calls only for genuinely new ones) costs **~5–7 min/night
+≈ 150–210 min/month**, which does fit. These three numbers are what owner
+decisions 3 and 6 must now be asked against.
+
+**▶▶ NEXT SESSION STARTS HERE — ask the owner plan decisions 2, 3, 4, 6, 7** from
+`docs/plan-subscriptions-and-alerts.md` §1, in plain language, carrying D88's numbers. Do not
+start V2-11 task 2 before 3/4/6 are answered: decision 3 determines whether the ingest covers
+1,038 bills or 38,756, which is the difference between 17 minutes and 43 hours of fetching.
+Tasks 2 and 3 (`bill_actions()`, the `BillAction` model) are decision-independent if something
+must proceed, but the questions go out first.
+
+**PRIOR (2026-09-30):** D87 remediation committed + pushed as `64f34bbc5`; D86 state unchanged. **2026-09-29, D86 session — nightly cost fix.** Owner reported the GitHub
 Actions bill; both nightlies since 09-28 died in 5 s (*"job was not started because recent
 account payments have failed or your spending limit needs to be increased"*). The free
 2,000-minute private-repo allowance was exhausted: `uv run ingest legislation` re-fetched all
@@ -58,7 +117,7 @@ allowlist entry.
 moves when a cosponsorship is withdrawn (needs one live `/member/{id}` call). The D86 probe's
 blind spot is documented either way and bounded to 7 days by the Sunday `--full` run.
 
-**▶▶ FIRST THING NEXT SESSION — D86 acceptance:**
+**D86 acceptance (as recorded 2026-09-30; the CI half is now DONE — see head):**
 `gh run list --workflow=nightly.yml --limit 4`
 - The **first** nightly on/after 10-01 re-pages everyone once (no record has counts yet):
   expect ~4 h and a commit touching all 639 `data/legislation/*.json` (adds `lifetime_counts`).
@@ -67,7 +126,7 @@ blind spot is documented either way and bounded to 7 days by the Sunday `--full`
   legislation lines; if every member re-fetched, the stored counts are not matching the live
   probe (compare one member's `lifetime_counts` to `/member/{id}` by hand).
 - Sundays run `--full` (~4 h) by design. Budget: ≈ 900–1,400 min/month vs 2,000 free.
-- **CI has validated NEITHER D86 nor D87 on GitHub — two runs are waiting on the reset:**
+- **(SUPERSEDED 2026-10-01: `36743621950` was rerun and passed — see head.) As of 09-30, CI had validated neither D86 nor D87; two runs were waiting on the reset:**
   - `36743621950` (commit `64f34bbc5`, D87) — failed in **3 s**, both jobs, no log retrievable.
   - `36616400293` (commit `7fdb5289d`, D86) — failed in 8 s, same shape.
   Both died on the billing block before executing a single step, so neither says anything

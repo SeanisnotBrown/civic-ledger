@@ -141,6 +141,51 @@ for §5 `Member.ids`, chamber, and term/party history (the Congress.gov member
 
 ---
 
+## 9. Congress.gov — bill `/actions` sub-resource + `/bill` list surface (V2-11 task 1, probed 2026-10-01)
+Samples: `congress_bill_actions_hr2670_118.json`, `congress_bill_list_sorted_updatedate.json`
+Endpoints: **`GET /v3/bill/{congress}/{type}/{number}/actions`**, **`GET /v3/bill[/{congress}]`**
+
+`{"actions": [ { ... } ], "pagination": {"count": N, "next": url|absent}}`
+
+Action object fields (union over 324 real actions across 4 bills):
+- `actionDate` — `"YYYY-MM-DD"`. **Always present.**
+- `actionTime` — `"HH:MM:SS"`. **Optional** — present on 142/234 (NDAA FY24),
+  9/64, 10/26. Absent on most Library-of-Congress-sourced rows. Model it
+  nullable; never sort on it alone.
+- `text` — the verbatim action sentence. Stored as-is (section 0.5, no summarising).
+- `type` — e.g. `"President"`, `"Floor"`, `"Committee"`, `"IntroReferral"`.
+- `actionCode` — e.g. `"E40000"`. **Optional** (absent on some chamber rows).
+- `sourceSystem` — `{"code": int, "name": str}`, e.g. `9` / `"Library of Congress"`.
+- `committees` — **optional** list, present only on committee actions.
+- `calendarNumber` — **optional**, seen only on NDAA FY24.
+- `recordedVotes` — **optional** list. Shape:
+  `{"chamber": "House"|"Senate", "congress": int, "date": ISO8601Z,
+    "rollNumber": int, "sessionNumber": int, "url": clerk/senate XML url}`.
+  This is the join to an existing `RollCall.id` (plan task 3).
+
+> **PAGINATION UNEXERCISED.** The largest action list found is **234**
+> (`hr2670-118`, NDAA FY24) — under the 250 page ceiling, so `pagination.next`
+> was never returned on `/actions`. The paginated path must still be written and
+> must be covered by a unit test against a synthetic payload; it cannot be
+> confirmed live until a bill exceeds 250 actions.
+
+**`/bill` list surface:**
+- Page ceiling is **250**. `limit=251` silently **clamps to 250** — it does not error.
+- `fromDateTime` / `toDateTime` (ISO `YYYY-MM-DDTHH:MM:SSZ`) **work** and compose
+  with the `/bill/{congress}` path form.
+- > **DEVIATION (D88): `sort=updateDate+desc` is SILENTLY IGNORED.** The `+`
+  > is transmitted as a literal `%2B`, which the API discards along with the whole
+  > sort, returning the identical page as `sort=BOGUSVALUE`. **The working form is
+  > `sort=updateDate desc`** (a literal space, encoded `%20`). Verified by three-way
+  > comparison: `updateDate+desc`, `updateDate+asc` and `BOGUSVALUE` all return the
+  > same bytes; `updateDate desc` returns genuinely newest-first. Any code that
+  > passes the documented `+` form is sorting by nothing.
+- Rate limit headers: `x-ratelimit-limit: 20000`, `x-ratelimit-remaining`.
+  The reset window is **not** stated in any header (see D88 — it does not bind,
+  because the local 1 req/s ceiling caps us at 3,600/h regardless).
+
+---
+
 ## Federal source reachability (INC-1 acceptance)
 | Source | Status | Sample |
 |---|---|---|

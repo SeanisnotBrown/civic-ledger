@@ -1,5 +1,86 @@
 {
   "$defs": {
+    "BillAction": {
+      "additionalProperties": false,
+      "description": "One step in a bill's official action timeline (V2-11 task 3).\n\nEvery field is the government's own, stored verbatim: `text` is the published\nsentence and is never summarised, reworded or classified (0.5). Nullability\nbelow is MEASURED, not assumed -- 520 real actions across six bills spanning\nfour Congresses (task 3 survey, recorded in the D88 addendum):\n\n  actionDate    520/520   -> `date`, required\n  sourceSystem  520/520   -> `source_system`, required\n  text          520/520   -> `text`, required\n  type          520/520   -> `type`, required\n  actionCode    337/520   -> `action_code`, optional\n  actionTime    227/520   -> `time`, optional  (44% -- never a sort key)\n  committees     97/520   -> `committees`, optional\n  recordedVotes  58/520   -> `rollcall_id`, optional\n\n`source_system` stores the NAME only. The Senate's block is `{\"name\":\n\"Senate\"}` with no `code` at all, while House/LoC blocks carry one, so a\nstored code would be nullable for a whole chamber and carry no information\nthe name does not.\n\n`type` is a plain string, not a Literal. Eight values appear in the survey\n(Floor, ResolvingDifferences, Committee, IntroReferral, President, BecameLaw,\nCalendars, NotUsed) and the set is the government's to extend; pinning it\nwould quarantine a bill for the crime of a new action type.\n\n`committees` is NOT decoration and is not droppable: it is the only thing\ndistinguishing several otherwise byte-identical actions. hr2670-118 has five\nrows reading \"Forwarded by Subcommittee to Full Committee by Voice Vote .\" on\none day under one action code, differing only in which subcommittee acted.\nWithout this field the rendered timeline repeats a line five times with no\nexplanation, and the dedupe that produced it looks like a bug (D88 addendum).\n\n`rollcall_id` is set ONLY when the action's `recordedVotes` entry resolves to\na roll call this dataset actually holds -- otherwise null. In the survey 40 of\n58 resolved; the 18 misses were all 117th/116th Congress, real votes outside\nthe covered window. Emitting an id for those would render a link to a `/v/`\npage that does not exist.",
+      "properties": {
+        "action_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Action Code"
+        },
+        "committees": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Committees"
+        },
+        "date": {
+          "title": "Date",
+          "type": "string"
+        },
+        "rollcall_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rollcall Id"
+        },
+        "source_system": {
+          "title": "Source System",
+          "type": "string"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "time": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Time"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "date",
+        "text",
+        "type",
+        "source_system"
+      ],
+      "title": "BillAction",
+      "type": "object"
+    },
     "CboRef": {
       "additionalProperties": false,
       "description": "Link-through only (§5): a CBO cost estimate lives at cbo.gov.",
@@ -28,6 +109,21 @@
   },
   "additionalProperties": false,
   "properties": {
+    "actions": {
+      "anyOf": [
+        {
+          "items": {
+            "$ref": "#/$defs/BillAction"
+          },
+          "type": "array"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Actions"
+    },
     "cbo_estimates": {
       "items": {
         "$ref": "#/$defs/CboRef"

@@ -87,10 +87,80 @@ class Bill(_Strict):
     subjects: list[str] | None = None  # government-assigned legislative subject terms
     sponsor_id: str | None
     cosponsor_ids: list[str] | None = None
+    # Full official action timeline (V2-11). Same D27 sentinel as subjects /
+    # cosponsor_ids: None = NOT YET COLLECTED, [] = collected and the government
+    # lists none. `latest_action` below stays as it is -- it is the one-line
+    # summary the pre-V2-11 pipeline already publishes, and the timeline does not
+    # replace it.
+    actions: list[BillAction] | None = None
     latest_action: str
     latest_action_date: str
     cbo_estimates: list[CboRef]
     source_url: str
+
+
+class BillAction(_Strict):
+    """One step in a bill's official action timeline (V2-11 task 3).
+
+    Every field is the government's own, stored verbatim: `text` is the published
+    sentence and is never summarised, reworded or classified (0.5). Nullability
+    below is MEASURED, not assumed -- 520 real actions across six bills spanning
+    four Congresses (task 3 survey, recorded in the D88 addendum):
+
+      actionDate    520/520   -> `date`, required
+      sourceSystem  520/520   -> `source_system`, required
+      text          520/520   -> `text`, required
+      type          520/520   -> `type`, required
+      actionCode    337/520   -> `action_code`, optional
+      actionTime    227/520   -> `time`, optional  (44% -- never a sort key)
+      committees     97/520   -> `committees`, optional
+      recordedVotes  58/520   -> `rollcall_id`, optional
+
+    `source_system` stores the NAME only. The Senate's block is `{"name":
+    "Senate"}` with no `code` at all, while House/LoC blocks carry one, so a
+    stored code would be nullable for a whole chamber and carry no information
+    the name does not.
+
+    `type` is a plain string, not a Literal. Eight values appear in the survey
+    (Floor, ResolvingDifferences, Committee, IntroReferral, President, BecameLaw,
+    Calendars, NotUsed) and the set is the government's to extend; pinning it
+    would quarantine a bill for the crime of a new action type.
+
+    `committees` is NOT decoration and is not droppable: it is the only thing
+    distinguishing several otherwise byte-identical actions. hr2670-118 has five
+    rows reading "Forwarded by Subcommittee to Full Committee by Voice Vote ." on
+    one day under one action code, differing only in which subcommittee acted.
+    Without this field the rendered timeline repeats a line five times with no
+    explanation, and the dedupe that produced it looks like a bug (D88 addendum).
+
+    `rollcall_id` is set ONLY when the action's `recordedVotes` entry resolves to
+    a roll call this dataset actually holds -- otherwise null. In the survey 40 of
+    58 resolved; the 18 misses were all 117th/116th Congress, real votes outside
+    the covered window. Emitting an id for those would render a link to a `/v/`
+    page that does not exist."""
+
+    date: str
+    time: str | None = None
+    text: str  # verbatim; never summarised or classified (0.5)
+    type: str
+    action_code: str | None = None
+    source_system: str
+    committees: list[str] | None = None
+    rollcall_id: str | None = None
+
+    @field_validator("date")
+    @classmethod
+    def _iso_date(cls, v: str) -> str:
+        # EXTENDED form only: YYYY-MM-DD, zero-padded, hyphen-separated. Bare
+        # `_date.fromisoformat` is not enough -- on 3.11+ it also accepts the
+        # basic form `20230613` and week dates `2023-W24-2`, both of which parse
+        # to a real date and then sort WRONG, because the timeline is ordered by
+        # string comparison on this field. A mixed-format timeline would silently
+        # render out of order rather than fail (value #1: fail loudly instead).
+        if len(v) != 10 or v[4] != "-" or v[7] != "-":
+            raise ValueError(f"date must be YYYY-MM-DD, got {v!r}")
+        _date.fromisoformat(v)  # raises -> quarantine (6.1)
+        return v
 
 
 class RollCall(_Strict):

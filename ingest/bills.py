@@ -25,7 +25,8 @@ import re
 
 from pydantic import ValidationError
 
-from ingest.models import Bill, CboRef
+from ingest.house_votes import rollcall_id
+from ingest.models import Bill, BillAction, CboRef
 
 # "hr1-119" / "hconres108-119" / "sjres5-118" -> (type, number, congress).
 _BILL_ID_RE = re.compile(r"^([a-z]+)(\d+)-(\d+)$")
@@ -41,6 +42,74 @@ def parse_bill_id(bill_id: str) -> tuple[str, int, int]:
         raise BadBillId(f"unparseable bill_id {bill_id!r}")
     btype, number, congress = m.group(1), int(m.group(2)), int(m.group(3))
     return btype, number, congress
+
+
+def rollcall_id_for(recorded_vote: dict) -> str | None:
+    """Build the canonical `RollCall.id` a `recordedVotes` entry points at, or
+    None if the entry is malformed. Pure; existence is the caller's business.
+
+    Mirrors `house_votes.rollcall_id` exactly -- the same zero-padded
+    `{h|s}-{congress}-{session}-{roll:04d}` shape -- because a near-miss here
+    would produce a link to a page that does not exist."""
+    try:
+        chamber = "house" if recorded_vote["chamber"] == "House" else "senate"
+        return rollcall_id(
+            chamber,
+            int(recorded_vote["congress"]),
+            int(recorded_vote["sessionNumber"]),
+            int(recorded_vote["rollNumber"]),
+        )
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def parse_actions(
+    raw_actions: list[dict], *, known_rollcall_ids: set[str] | None = None
+) -> list[BillAction]:
+    """Raw `/actions` rows -> `BillAction`s, in the order given (newest first).
+    Pure: no fetching, no wall-clock, no reordering.
+
+    `known_rollcall_ids` is the set of roll calls this dataset actually holds. An
+    action's `recordedVotes` resolves to a `rollcall_id` only on a hit; a real
+    vote outside the covered Congresses resolves to None rather than a link to a
+    `/v/` page that was never built (40 of 58 resolved in the task-3 survey; all
+    18 misses were 117th/116th). Passing None means "resolve nothing" -- the
+    conservative default, never "assume everything exists".
+
+    Text is passed through verbatim except for `html.unescape`, the same lossless
+    entity decode `parse_bill` applies to titles: Congress.gov delivers `&amp;`
+    and `&#039;` encoded, and storing the raw entity would double-escape when the
+    site renders it as text. That is a normalization to the true string, not a
+    paraphrase (0.5)."""
+    known = known_rollcall_ids or set()
+    out: list[BillAction] = []
+    for a in raw_actions:
+        rc_id = None
+        for rv in a.get("recordedVotes") or []:
+            candidate = rollcall_id_for(rv)
+            if candidate and candidate in known:
+                rc_id = candidate
+                break
+
+        committees = [
+            html.unescape(c["name"])
+            for c in (a.get("committees") or [])
+            if c.get("name")
+        ] or None
+
+        out.append(
+            BillAction(
+                date=a["actionDate"],
+                time=a.get("actionTime") or None,
+                text=html.unescape(a["text"]),
+                type=a["type"],
+                action_code=a.get("actionCode") or None,
+                source_system=(a.get("sourceSystem") or {})["name"],
+                committees=committees,
+                rollcall_id=rc_id,
+            )
+        )
+    return out
 
 
 def parse_bill(

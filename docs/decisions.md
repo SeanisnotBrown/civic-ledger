@@ -2203,3 +2203,55 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   **skips** a row at the cursor. Duplicates are recoverable; skips are silent undercounts
   (value #1). `UPDATE_SORT` is a module constant with a test asserting its exact value, so
   neither the direction nor the `+`/space trap can regress unnoticed.
+
+- **D89 (2026-10-01) — V2-11 task 3: the `BillAction` schema, with one field the plan
+  did not list and one it did not constrain.** `ingest/models.py` gains `BillAction`;
+  `Bill.actions: list[BillAction] | None = None` joins `subjects` and `cosponsor_ids`
+  under the same D27 sentinel (None = not collected, [] = collected and none exist).
+  `ingest/bills.py` gains the pure `parse_actions()` and `rollcall_id_for()`. 24 tests
+  (`tests/test_bill_actions_model_v2_11.py`); `data/schema/bill.schema.json` regenerated.
+  Mechanical and non-evaluative (§0.1(d)): no metric, threshold or published number.
+  **Nullability was measured before it was written, not inferred from the plan.** 520 real
+  actions across six bills and four Congresses: `actionDate`/`sourceSystem`/`text`/`type`
+  present on all 520; `actionCode` 337; `actionTime` 227 (44%); `committees` 97;
+  `recordedVotes` 58. Table in SHAPES.md §9. The task-2 bug is why this survey happened at
+  all — an assumed shape cost nine real actions there, so no field here is typed from the
+  plan's prose.
+  **(1) `committees` ADDED to the plan's field list.** The plan specifies
+  `BillAction(date, time|None, text, type, action_code|None, source_system, rollcall_id|None)`.
+  That set cannot represent hr2670-118 honestly: five of its actions share a date, text and
+  action code and differ **only** in which subcommittee acted. Without `committees` the
+  rendered timeline repeats one line five times with no explanation, and the whole-row
+  dedupe that (correctly) kept them looks like a bug. Stored verbatim, names only.
+  **(2) `type` is `str`, not a `Literal`.** Eight values appear in the survey and the set
+  belongs to the government. A Literal would quarantine an entire bill the first time
+  Congress coins a ninth action type — a brittleness with no upside.
+  **(3) `source_system` stores the name, not the code.** The Senate's block is
+  `{"name": "Senate"}` with no `code` field at all (183 of 520 rows), so a stored code would
+  be null for a whole chamber while carrying nothing the name does not.
+  **(4) `rollcall_id` is resolved against what this dataset HOLDS, not against what exists.**
+  `parse_actions(raw, known_rollcall_ids=...)` sets the id only on a hit; the default is to
+  resolve nothing, because "I was not told what exists" must never degrade to "assume it all
+  exists". Measured: 40 of 58 resolved, and all 18 misses were 117th/116th Congress — real
+  votes outside the covered window, where an emitted id would be a link to a `/v/` page that
+  was never built. `rollcall_id_for()` mirrors `house_votes.rollcall_id` exactly, zero padding
+  included, and is tested against it.
+  **Verified live, per the task-2 rule that synthetic tests cannot catch a wrong premise:**
+  `parse_actions` over the real NDAA timeline returns 234 of 234 rows, links 18 roll calls,
+  and keeps all seven subcommittee-forwarding rows distinct.
+  **(5) `date` is tightened past the house `fromisoformat` convention, deliberately.** The
+  timeline is ordered by STRING comparison on this field, and bare `_date.fromisoformat`
+  accepts the ISO basic form `20230613` and week dates `2023-W24-2` on Python 3.11+ (both
+  verified live on 3.12.13). Both parse to a real date and then sort wrong, so a mixed-format
+  timeline would render silently out of order rather than fail. `BillAction.date` therefore
+  requires the extended `YYYY-MM-DD` form explicitly. **Found, not fixed, elsewhere:**
+  `Statement.date` (models.py ~line 498) has the same gap and its own comment says ordering is
+  exactly what it is protecting. Not changed here — different increment, and there are zero
+  committed statements today. The owner or a later increment decides.
+  **(6) `committees` stores names only.** The raw rows also carry `systemCode` (e.g. `hsas35`),
+  the stable join key if per-committee pages ever exist; not stored today because nothing reads
+  it, and it is one line to add when something does.
+  **Acceptance:** ruff clean, pytest **416 passed** (386 + 30 new: 24 written before the date
+  tightening, which added 6 more), `uv run checks` ALL CHECKS PASSED, schema regenerated and
+  byte-stable. No `data/bills/*.json` file changes yet — the timeline lands when task 4
+  re-exports.

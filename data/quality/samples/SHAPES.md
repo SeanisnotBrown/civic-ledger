@@ -169,6 +169,39 @@ Action object fields (union over 324 real actions across 4 bills):
 > must be covered by a unit test against a synthetic payload; it cannot be
 > confirmed live until a bill exceeds 250 actions.
 
+**Field presence, measured over 520 real actions** (hr2670-118, hr2882-118,
+hjres104-119, hr3684-117, hr748-116, s2226-118 — four Congresses; task 3 survey).
+This is what the `BillAction` schema's required/optional split is derived from:
+
+| field | present | schema |
+|---|---|---|
+| `actionDate` | 520/520 | `date` — required |
+| `sourceSystem` | 520/520 | `source_system` — required |
+| `text` | 520/520 | `text` — required, verbatim |
+| `type` | 520/520 | `type` — required, **plain string, not a Literal** |
+| `actionCode` | 337/520 (65%) | `action_code` — optional |
+| `actionTime` | 227/520 (44%) | `time` — optional, **never a sort key** |
+| `committees` | 97/520 (19%) | `committees` — optional, **identity-bearing** |
+| `recordedVotes` | 58/520 (11%) | `rollcall_id` — optional |
+
+> **`sourceSystem` has no `code` on Senate rows.** The four variants seen are
+> `{"code": 2, "name": "House floor actions"}` (240), **`{"name": "Senate"}` with
+> no code at all** (183), `{"code": 9, "name": "Library of Congress"}` (62), and
+> `{"code": 1, "name": "House committee actions"}` (35). The schema stores the
+> NAME only — a stored code would be null for an entire chamber.
+
+> **`type` is an open set.** Eight values in the survey: `Floor` (321),
+> `ResolvingDifferences` (70), `Committee` (68), `IntroReferral` (20),
+> `President` (15), `BecameLaw` (10), `Calendars` (9), `NotUsed` (7). It is the
+> government's set to extend, so it is typed `str`; a Literal would quarantine a
+> whole bill for the crime of a new action type.
+
+> **`recordedVotes` resolves to a roll call only ~69% of the time, by design.**
+> 40 of 58 entries matched a `RollCall.id` this dataset holds; **all 18 misses
+> were 117th or 116th Congress** — real votes outside the covered window. The
+> parser emits `rollcall_id: null` for those rather than a link to a `/v/` page
+> that was never built.
+
 > **IDENTITY REQUIRES THE WHOLE ROW. There is no action id, and
 > (`actionDate`, `actionTime`, `actionCode`, `text`) is NOT unique.** On
 > `hr2670-118`, five rows read "Forwarded by Subcommittee to Full Committee by

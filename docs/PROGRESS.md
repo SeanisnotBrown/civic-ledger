@@ -91,9 +91,32 @@ whole Congress with no cursor workaround; and **descending is the only safe craw
 — ascending skips rows at the cursor when a bill is touched mid-crawl, descending merely
 re-reads them.
 
-**▶▶ NEXT SESSION STARTS HERE — V2-11 task 3** (`BillAction` model + `Bill.actions:
-list[BillAction] | None`, the D27 not-collected sentinel), then task 4 (ingest). **The two
-hard cost constraints from D88 still bind and are what task 4 must be built around:**
+**2026-10-01 — V2-11 TASK 3 DONE (D89).** `BillAction` in `ingest/models.py`;
+`Bill.actions: list[BillAction] | None` under the D27 sentinel; pure `parse_actions()` and
+`rollcall_id_for()` in `ingest/bills.py`; **30 tests, suite 386 → 416**; `bill.schema.json` regenerated. Live-
+verified on the real NDAA timeline (234/234 rows, 18 roll-call links, all seven subcommittee
+rows distinct) per the task-2 rule.
+
+**Nullability was MEASURED first** — 520 real actions across six bills and four Congresses,
+table in SHAPES.md §9. Three judgement calls recorded in D89:
+- **`committees` added to the plan's field list.** Without it the five hr2670-118 rows that
+  differ only by subcommittee render as one line repeated five times.
+- **`type` is `str`, not a Literal** — the value set is the government's to extend.
+- **`source_system` stores the name, not the code** — Senate rows have no `code` at all.
+- **`rollcall_id` resolves against what this dataset HOLDS**, defaulting to resolving
+  nothing. 40/58 hit; all 18 misses were 117th/116th, outside the covered window.
+
+**▶▶ NEXT SESSION STARTS HERE — V2-11 task 4 (the ingest), then the backfill.**
+Three things task 4 must get right, all already known:
+1. **Build the known-roll-call set ONCE** and pass it to every `parse_actions()` call.
+   It is a ~3,500-file glob over `data/votes/**`; rebuilding it per bill would do that
+   38,756 times.
+2. **Never revert an enriched field to the None sentinel** — the same anti-clobber rule
+   `ingest/bills.py` already documents for `subjects`/`cosponsor_ids` (D35 shape). A bill
+   re-exported without its actions fetched must keep the actions it has.
+3. **Smoke-test against live data before calling it done.** Tasks 2 and 3 both had a wrong
+   premise that every synthetic test agreed with; only a real call caught task 2's. **The two hard cost constraints from D88
+still bind and are exactly what task 4 must be built around:**
 These are build constraints, not preferences, and getting either wrong overruns the free
 GitHub Actions allowance:
 1. **The one-time 38,756-bill backfill runs LOCALLY and is committed. Never in CI.** It is

@@ -3,7 +3,7 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-01 (V2-11 tasks 1-4 + 4b done — D88/D89/D90 + SD-33; CI green. **Next: the backfill** — read the pre-backfill checklist below before starting it).
+**Last updated:** 2026-10-01 (V2-11 tasks **1-4 + 4b + 4c done**, D88-D94 + SD-33. **CI fully green on 019da1727** — both jobs, after two red pushes that day. Working tree clean, nothing unpushed. **The backfill has STARTED: 43 of 19,315 bills done for Congress 118**, 119 untouched. **Next session: continue the backfill or start task 5 — they do not block each other.**)
 
 **2026-10-01 — CI UNBLOCKED AND GREEN.** `gh run rerun 36743621950` on the reset allowance:
 **success**, `python` 3m15s + `site-and-checks` 21m15s. That one run validates **D86 and D87
@@ -112,16 +112,25 @@ constraints are enforced in code, not comments: a bill already held costs **ONE*
 (merged, never refetched whole), and `--congress N` **refuses to run in CI** with the
 arithmetic in the refusal. `--since` defaults to **30 h**, not 24, so a late nightly cannot
 open a gap. Live-verified end to end.
-**CI WENT RED on this commit (D94)** — `test_reingest_reexports_enrichment_not_none`
-hit the live API because task 4's new `/actions` call was unstubbed, and the local
-`.env` key made it PASS here. Fixed, plus `tests/conftest.py` now hides `.env` from
-every test so CI's failure mode is reproduced locally. **Standing rule: a bare `uv run pytest` is NOT evidence CI is green** — the local
-machine has a `.env` key CI lacks, and lacks the `CI`/`GITHUB_ACTIONS` CI has (both
-bit, in both directions, on consecutive pushes). Run what CI runs before pushing:
-```
-CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics \n  --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify \n  --cov=ingest.legislation_stats --cov-branch --cov-fail-under=100
-```
-**Gates (measured):** `uv run pytest` **452 passed** (416 + 36 new), `uv run checks` **ALL CHECKS PASSED**, ruff clean, `data/` untouched.
+**This commit went RED in CI, and so did the next one. Both are FIXED — master is green
+(D94 + addendum).** Two failures, same class, opposite signs:
+- **A variable CI LACKS.** Task 4's new `/actions` call was unstubbed in
+  `test_reingest_reexports_enrichment_not_none`. The local `.env` key made it reach the
+  LIVE API and pass; CI has no key, so it raised.
+- **A variable CI HAS.** Three new resume tests exercise `--congress`, which D90's own
+  guard refuses when `CI`/`GITHUB_ACTIONS` is set. Not set locally, so they passed here
+  and returned exit 2 there.
+
+Both were a test asserting something about an environment it never ran in.
+`tests/conftest.py` now hides the credentials AND clears `CI`/`GITHUB_ACTIONS`, so every
+test starts from the environment CI actually provides.
+
+**⚠ STANDING RULE — a bare `uv run pytest` is NOT evidence CI is green.** CI is
+reproducible locally; two red pushes were two chances to run this. Before pushing:
+
+    CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics       --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify       --cov=ingest.legislation_stats --cov-branch --cov-fail-under=100
+
+**Gates for task 4 (measured):** 452 passed, ALL CHECKS PASSED, ruff clean.
 
 **Two bugs fixed during the task:**
 - **The new tests wrote into the REAL `data/bills/`** (two files modified, both reverted).
@@ -133,7 +142,15 @@ CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics \n  --cov=inge
   on a short page and on its dedupe-undercount guard, so one bad `/actions` response would
   have aborted the whole nightly instead of recording a retryable per-bill failure.
 
-**▶▶ NEXT SESSION STARTS HERE — run the backfill, then tasks 5-7.**
+**▶▶ NEXT SESSION STARTS HERE.** Two independent tracks — pick either, they do not block
+each other:
+- **(a) Continue the backfill.** `git pull --rebase`, then
+  `uv run ingest bill-activity --congress 118`. **43 of 19,315 done**; Congress 119
+  (19,441) not started. Resumes by itself, Ctrl+C safe, prints what is left.
+- **(b) Start task 5.** Events, topics and the site work can all be built against the
+  1,081 bills already on disk and behave identically at 38,756. If a session is better
+  spent on visible progress than on babysitting an ingest, do this one — the backfill
+  can fill in on any later day.
 
 **Before starting the backfill (checks 1-3 are DONE, 4-5 are the actual gate):**
 1. ✅ **Rate-limit window is HOURLY** — confirmed 2026-10-01 (27 used after hundreds of
@@ -151,10 +168,14 @@ CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics \n  --cov=inge
    Measured 0 hits across 520 real actions — the list is partisan-framing vocabulary absent
    from clerk prose. If one ever hits over 38,756 bills it is an **owner allowlist decision**,
    never an edit to government text.
-4. **▶ START ONLY AFTER TONIGHT'S NIGHTLY COMMITS.** Tonight is the first post-reset run
-   (~4 h, D86 re-paging) and it now writes `data/bills/` too. Otherwise commit in batches
-   with `git pull --rebase` between them — the D84 rebase loop protects the nightly's push,
-   not a local one.
+4. ✅ **The nightly has landed** (`c14198c21 data: nightly 2026-10-01`) and the backfill
+   now runs alongside it. It fires 09:15 UTC / 04:15 CDT daily and **stays ENABLED** — D91
+   reversed D90's plan to disable it, because a chunked backfill may span two weeks and
+   that is too long without fresh votes, metrics and grades.
+   **It WILL conflict on `data/manifest.json` if it pushes mid-chunk** — it did on
+   2026-10-01. That file is DERIVED: take either side, then `uv run export` to regenerate.
+   Never hand-merge it. `test_committed_manifest_matches_regeneration` checks the COUNTS;
+   the `commit`/`generated_at` fields are injected and are allowed to lag.
 5. ✅ **Resume is free, and it is the DEFAULT (D91).** Was ~5 h (the 20 h cache TTL meant
    a resume refetched ~19k `/actions`). Now 1.787 s and zero requests, measured. A backfill
    skips finished bills unless you pass `--refresh-all`; the `--since` delta path never
@@ -185,6 +206,7 @@ drifts under the run. The startup line prints exactly how much is left and the E
 **Gates for 4b/4c (measured):** `uv run pytest` **460 passed**, `uv run checks`
 **ALL CHECKS PASSED**, `verify-recompute` OK (3,507 roll calls), `npm run build` 13,161
 pages in 77 s, `npm run test:links` OK — all run with 43 real unvoted bills on disk.
+**CI: both jobs green on `019da1727`** (the authoritative gate; see the standing rule above about local pytest).
 
 **Measured rates (2026-10-01, not estimated):** 3.91 s/bill (23 bills in 90 s) — so the
 ~42-43 h total holds. Congress 118 = 19,315 bills, 119 = 19,441. Each resume re-enumerates

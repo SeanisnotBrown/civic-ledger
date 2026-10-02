@@ -2583,3 +2583,17 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   never arises. Locally the fix is the resume design paying for itself: kill the backfill,
   run the gates on a quiesced dataset, relaunch. **This is why the chunk loop commits only
   after the run is stopped**, and it is now stated in PROGRESS.md.
+
+- **D96 addendum (2026-10-02) — CI went red on RUFF, and it is the D94 lesson a third time.**
+  `V2-11: task 6` (006a5d481) was pushed on local gates that were all green, and the `python`
+  job failed at the **Ruff** step: two E501 lines (111 and 110 chars) in
+  `tests/test_topics_v2_11.py`, both parametrize rows holding long official CRS terms.
+  **Cause: I ran `uv run ruff check ingest/`. CI runs `uv run ruff check .`** — so the new
+  test file was never linted. Same shape as D94 (a test asserting something about an
+  environment it never ran in) with the variable being the *command* rather than the
+  environment: **a narrower local command is not evidence that the wider CI command passes.**
+  Fixed by wrapping both rows; `uv run ruff check .` now clean.
+  **The standing pre-push rule therefore has two commands, not one** — the pytest line
+  already recorded under D94, and `uv run ruff check .` with the dot. Checking a directory
+  you happen to have edited is exactly how a new file in a *different* directory slips
+  through.

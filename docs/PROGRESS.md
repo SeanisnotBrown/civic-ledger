@@ -3,12 +3,99 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-02 (V2-11 tasks **1-6 + 5b done**, D88-D95 + SD-33. Backfill at
-**73 of 19,315** bills for Congress 118; 119 untouched. **The interruption safety the owner
-asked about is now MEASURED and HARDENED (D95a)** — a real run was hard-killed and resumed
-clean in 0.56 s with zero requests, and every write on the backfill path is now atomic.
-**Next session: continue the backfill (see the three commands below) or start task 6
-(topics index) — they do not block each other.**)
+**Last updated:** 2026-10-02, end of session (V2-11 tasks **1-6 + 5b done**, D88-D96).
+**Next increment task: V2-11 task 7 (the site work).**
+
+## ▶▶ READ THIS FIRST — the three live facts
+
+**1. A BACKFILL IS RUNNING ON THIS MACHINE RIGHT NOW and was deliberately left running.**
+`uv run ingest bill-activity --congress 118`, detached, logging to `backfill-118.log`
+(gitignored). It writes **only** `data/bills/`. The owner's instruction at session end was
+explicitly "do not stop the process that is pulling data".
+- **Progress is read off DISK, never the log** (Python buffers stdout when redirected, so
+  the log sits empty for long stretches while the run is working fine):
+  `grep -l '"actions"' data/bills/*.json | wc -l` — **461 at session end**, target 19,315
+  for Congress 118. At the measured 3.9 s/bill that is ~21 h for 118, ~43 h with 119.
+- **Is it still alive?** `tasklist | grep -i python` — it is the ~80 MB one.
+  **If it is gone, that is FINE**: resume is the default and costs 0.56 s / zero requests.
+
+**2. THERE IS UNCOMMITTED BILL DATA, on purpose.** `git status --short -- data/bills` was
+non-empty at session end (~72 files and climbing). It was NOT committed because **the
+derived artifacts cannot be verified while the run is writing** (see the operational rule
+below). Nothing is at risk — the files are on disk and resume reads disk, not git.
+**To commit it, stop the run first, then use the four-command loop further down.**
+
+**3. CI STATE: the last push (`006a5d481`, task 6) went RED on Ruff and the FIX IS
+COMMITTED but its CI result is not yet known.** The failure was two over-long lines in
+`tests/test_topics_v2_11.py` — a lint error only, no logic involved (D96 addendum). Check
+`gh run list --limit 3` first thing. The commit before it (`c4b6d21d3`) was fully green,
+so nothing earlier is in doubt.
+
+## Where the build actually stands
+
+**V2-11 tasks 1-6 and 5b are DONE** (D88-D96). What exists and is verified:
+- **Ingest:** `bill_actions()`, `bills_updated_since()`, the `BillAction` model,
+  `uv run ingest bill-activity` with free resume, and **atomic writes on every write the
+  backfill makes** (D95a — measured against a real `taskkill /F`).
+- **Projections, both pure and both re-derived by `verify-recompute`:**
+  `data/events/{YYYY-MM}.json` (**invariant 8**, D95b) and `data/topics/index.json`
+  (**invariant 9**, D96). Nightly steps 3e and 3f. Both in the CI 100%-branch gate.
+- **Served:** `/events/{month}.json` and `/events/latest.json` emit the month files
+  verbatim (task 5b).
+
+**NEXT: V2-11 task 7 — the site work.** Nothing blocks on the backfill; task 7 builds
+against whatever bills are on disk and behaves identically at 38,756. Four pieces:
+1. `/b/[bill]` gains an **Actions** timeline (date, verbatim text, source link; roll-call
+   actions link to `/v/`).
+2. `/topics/` index + `/topics/[slug]/` pages (bills in the topic, most recent action
+   first) — build them off `data/topics/index.json`, which already carries slug, verbatim
+   name and full bill membership.
+3. **Atom feeds:** `/b/[bill]/feed.xml`, `/topics/[slug]/feed.xml`,
+   `/m/[member]/feed.xml` (a NEW route beside the paginated `/m/[member]/[page]/`), and
+   `/feed.xml` for all floor activity. Feed `updated` = latest action date, never a build
+   wall-clock (determinism).
+4. A "Track this bill" affordance that is, this increment, the feed link plus a copy
+   button, JS-off friendly.
+**Hard constraint carried from SD-33 3(c):** a topic page or feed entry for a bill with no
+`/b/` page must link to its `source_url` on congress.gov. `npm run test:links` fails on the
+first violation — it is already passing with **345** such bills, so this is live, not
+theoretical. Events rows carry `has_page` precisely so a consumer need not re-derive it.
+
+**Then task 8:** fold `uv run ingest bill-activity --since` into `nightly.yml` (the SD-33
+daily-digest cadence). **Only `ingest events` and `ingest topics` are wired in so far — the
+delta FETCH is not.** Then V2-7 (privacy page true) before anything that stores user data.
+
+## ⚠ OPERATIONAL RULE — invariants 8 and 9 cannot be verified while a backfill runs
+
+Both re-derive from `data/bills/`, so a concurrent backfill adds bills between the
+regeneration and the check. Observed exactly that this session: `events 2024-03 committed
+218,068 vs recompute 229,022 bytes`. **It is not a bug and not a data problem.** CI never
+sees it (no concurrent writer). Locally: **stop the run → regenerate → verify → commit →
+relaunch.** Resume costs 0.56 s, so this is cheap, and it is why the chunk loop commits only
+after the run is stopped.
+
+## Two measured numbers the owner will have to decide on (neither is urgent)
+
+Both were built as the plan specifies, with the number recorded rather than scope quietly
+changed. The backfill is days from finishing, so there is time.
+1. **The events feed projects to ~200 MB** (~190,000 events, ~4 MB per month file) because
+   the plan puts `subjects` on every row — measured 4.86 actions/bill and 544 bytes of
+   subjects per bill, max 17,202 (D95). A V2-12 Worker polling `/events/latest.json` hourly
+   pulls that each time.
+2. **`data/topics/index.json` projects to ~10.7 MB, rewritten WHOLE every nightly**
+   (16.0 subjects/bill mean, max 620 → ~620,000 bill-id references) — so the repo grows
+   ~10 MB per nightly that touches topics (D96). Cleanest fix when it binds is sharding to
+   `data/topics/{slug}.json`, which also matches the one-file-per-record convention the rest
+   of `data/` already uses.
+**Neither affects alerts:** the V2-12 Worker needs neither file's membership, because every
+event row already carries `policy_area` and `subjects`.
+
+## One thing to tell the owner in plain language
+
+**The "872 CRS subject terms" he ratified in SD-33 was a snapshot, not a limit.** 877 were
+already on disk at 1,385 bills — about 1% into the backfill — and the number will keep
+climbing as more bills land. That is the government's vocabulary growing, not a data error.
+Nothing in the code asserts a total, and a test pins that.
 
 **2026-10-02 — V2-11 TASK 6 DONE (D96). The topic index exists.**
 `ingest/topics.py` + `uv run ingest topics` build `data/topics/index.json` from
@@ -248,6 +335,14 @@ open a gap. Live-verified end to end.
 Both were a test asserting something about an environment it never ran in.
 `tests/conftest.py` now hides the credentials AND clears `CI`/`GITHUB_ACTIONS`, so every
 test starts from the environment CI actually provides.
+
+**⚠ STANDING RULE #2 (D96 addendum) — lint with the DOT.** CI runs `uv run ruff check .`;
+`uv run ruff check ingest/` is not the same command and will not see a new file under
+`tests/`. That is exactly how the task-6 push went red on two over-long lines after every
+local gate passed. Both pre-push commands, together:
+
+    uv run ruff check .
+    CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov-branch --cov-fail-under=100
 
 **⚠ STANDING RULE — a bare `uv run pytest` is NOT evidence CI is green.** CI is
 reproducible locally; two red pushes were two chances to run this. Before pushing:

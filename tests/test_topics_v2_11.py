@@ -56,8 +56,14 @@ def _dataset(tmp_path: Path, bills: list[dict]) -> Path:
         ("Agriculture and Food", "agriculture-and-food"),
         ("Veterans' pensions", "veterans-pensions"),
         ("Labor, employment", "labor-employment"),
-        ("Centers for Disease Control and Prevention (CDC)", "centers-for-disease-control-and-prevention-cdc"),
-        ("Alcoholic beverages and traffic safety (DUI/DWI)", "alcoholic-beverages-and-traffic-safety-dui-dwi"),
+        (
+            "Centers for Disease Control and Prevention (CDC)",
+            "centers-for-disease-control-and-prevention-cdc",
+        ),
+        (
+            "Alcoholic beverages and traffic safety (DUI/DWI)",
+            "alcoholic-beverages-and-traffic-safety-dui-dwi",
+        ),
         ("  padded  ", "padded"),
     ],
 )

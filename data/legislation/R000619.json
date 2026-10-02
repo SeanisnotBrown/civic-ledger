@@ -308,12 +308,30 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10616-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10616",
+      "title": "Public Access to HHS Health Data Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10621-119",
       "congress": 119,
       "enacted_action": null,
       "introduced_date": "2026-09-28",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10621",
-      "title": "To amend title XIX of the Social Security Act to increase the State share of recovery under laws relating to false or fraudulent claims under the Medicaid program."
+      "title": "Medicaid Fraud Fighting and Taxpayer Protection Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10716-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10716",
+      "title": "To amend title XI of the Social Security Act to clarify the authority of the Inspector General of the Department of Health and Human Services to exclude certain entities from participation in Federal health care programs."
     },
     {
       "became_law": false,
@@ -3422,8 +3440,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 380,
-    "sponsored": 22
+    "cosponsored": 382,
+    "sponsored": 23
   },
   "member_id": "R000619",
   "source_url": "https://api.congress.gov/v3/member/R000619/sponsored-legislation",
@@ -3607,6 +3625,15 @@
       "introduced_date": "2026-04-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1217",
       "title": "Expressing support for the citizens of the United Kingdom as they continue to face assaults on their rights to free speech and freedom of expression."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1604-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1604",
+      "title": "Urging the people of the United States to observe the month of October 2026 as Italian and Italian American Heritage Month."
     },
     {
       "became_law": false,

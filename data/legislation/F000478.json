@@ -2468,6 +2468,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr6130-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6130",
+      "title": "ASAP Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr6138-118",
       "congress": 118,
       "enacted_action": null,
@@ -3863,12 +3872,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 429,
-    "sponsored": 32
+    "cosponsored": 430,
+    "sponsored": 33
   },
   "member_id": "F000478",
   "source_url": "https://api.congress.gov/v3/member/F000478/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10668-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10668",
+      "title": "To amend the Internal Revenue Code of 1986 to authorize the President to temporarily suspend the gas tax during certain national emergencies."
+    },
     {
       "became_law": false,
       "bill_id": "hr1379-119",

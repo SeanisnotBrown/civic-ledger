@@ -2163,7 +2163,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 1765,
-    "sponsored": 267
+    "sponsored": 268
   },
   "member_id": "F000450",
   "source_url": "https://api.congress.gov/v3/member/F000450/sponsored-legislation",
@@ -2229,7 +2229,16 @@
       "enacted_action": null,
       "introduced_date": "2026-09-28",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10619",
-      "title": "To establish a direct spending safeguard limitation on any direct spending program without a specific level of authorized spending, and for other purposes."
+      "title": "Spending Safeguard Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10667-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10667",
+      "title": "To amend the Robert T. Stafford Disaster Relief and Emergency Assistance Act to provide for certain procedures following the declaration of a major disaster, and for other purposes."
     },
     {
       "became_law": false,

@@ -2046,11 +2046,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 227,
-    "sponsored": 18
+    "sponsored": 19
   },
   "member_id": "S001229",
   "source_url": "https://api.congress.gov/v3/member/S001229/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10705-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10705",
+      "title": "To amend the Communications Act of 1934 to establish prohibitions with respect to SIM boxes, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr1501-119",

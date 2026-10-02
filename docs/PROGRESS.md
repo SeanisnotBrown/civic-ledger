@@ -170,8 +170,31 @@ bill". Committed as `8e65c8fbf` (code) + `3d6c09414` (ADR); **not pushed at sess
   `test:links` OK over 23,032 topic rows + 48,306 feed entries; **60/60 e2e**;
   `astro check` 0 errors; `ruff check .` clean. Largest feed 53 KB, largest topic page
   184 KB. All 2,588 feeds parse as valid Atom.
-- **Local pytest is RED with 3 failures, all three the running backfill** — see live
-  fact 3 at the top. Zero Python and zero `data/` changed in this session.
+- **`/topics` was ORPHANED on the first pass** and that is why `/federal` now links to it.
+  Nothing on the homepage or the members explorer pointed at the topic tree, so a reader
+  could only reach it from a bill page's policy-area link and then the breadcrumb. Caught
+  by grepping the built output for `href="/topics"` — 908 hits, every one of them a topic
+  page's own breadcrumb. Worth repeating as a habit: a new section is not shipped until
+  something a reader already visits links to it.
+- **Local pytest is RED with 4 failures, all four the running backfill** — see live
+  fact 3 at the top. The fourth is `test_manifest_double_build_byte_identical`, which is
+  the cleanest possible demonstration of the interference: two exports seconds apart
+  disagree on the bill count because the backfill wrote more bills between them.
+  **Coverage still reports 100.00%** on all seven gated modules. Zero Python and zero
+  `data/` changed in this session.
+- **One e2e flake observed once:** `380px layout: /privacy` failed in one full-suite run
+  and passed on its own and in two subsequent full runs. The spec's own comment documents
+  a font-load/screenshot race on this check. Not investigated further; noted so the next
+  session does not treat a single occurrence as a regression.
+
+**Two Windows operational notes from this session, both likely to recur:**
+- **`npm run build` failed twice with `EPERM ... dist\m`** while emptying `dist/` —
+  something (indexer, Defender, or a just-finished preview server) holds handles on
+  freshly written files, and `rm -rf dist` reported "Device or resource busy" on
+  individual files. **Just retry; the third attempt succeeded.** It is not a code fault.
+- **A bare `python ... <<'HEREDOC'` through the Bash tool choked repeatedly** on large
+  mixed-quote TypeScript/Astro content (`unexpected EOF while looking for matching`).
+  Writing those files with the editor tool instead worked first time.
 
 **2026-10-02 — V2-11 TASK 6 DONE (D96). The topic index exists.**
 `ingest/topics.py` + `uv run ingest topics` build `data/topics/index.json` from

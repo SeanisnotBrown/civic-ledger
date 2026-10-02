@@ -69,6 +69,16 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
     attendance — they cannot vote on final passage, so their record is not comparable.
   </p>
 
+  {/* V2-11 task 7: the entry point to the topic tree and the activity feed. Without a
+     link from here the /topics index is reachable only from a topic page's own
+     breadcrumb, i.e. orphaned — a reader would have to find a bill first. */}
+  <p class="mt-3 text-[14px] text-neutral-600">
+    Following legislation rather than members?
+    <a href="/topics" class="text-accent-300 underline underline-offset-2">Browse bills by topic</a>
+    — the government's own policy areas and subject terms, each with a feed — or take the
+    <a href="/feed.xml" class="text-accent-300 underline underline-offset-2">feed of all legislative activity</a>.
+  </p>
+
   <MemberBrowser client:idle total={members.length} columns={columns.map((c) => ({ key: c.key, short: c.short }))} />
 
   <div class="mt-4 overflow-x-auto rounded-lg border border-line bg-surface">

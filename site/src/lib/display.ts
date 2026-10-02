@@ -69,3 +69,20 @@ export function ordinal(n: number): string {
   const v = n % 100;
   return n + (s[(v - 20) % 10] ?? s[v] ?? s[0]);
 }
+
+/** An action's published text, for rendering.
+ *
+ *  The parameter type is deliberately looser than `BillAction.text` (a required
+ *  `string`), and the fallback is deliberately not an empty string.
+ *  `ingest/models.py` records `text` as present on 520/520 sampled actions and
+ *  therefore required — but the activity backfill has since QUARANTINED a real bill,
+ *  `s4869-118`, with `KeyError: 'text'`: congress.gov served an action row without
+ *  one. Today the quarantine keeps that bill off the site entirely. When the ingest is
+ *  fixed to tolerate it (and it will be — the government's record is the government's
+ *  to shape), the field becomes nullable and anything doing string interpolation or
+ *  XML-escaping on it would throw at build time. So the guard goes in before the data
+ *  change arrives, and it SAYS what happened rather than rendering a blank line, which
+ *  would imply an action with no content (Value #1). */
+export function actionText(action: { text?: string | null }): string {
+  return action.text ?? "(no action text on the official record)";
+}

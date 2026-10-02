@@ -5,7 +5,7 @@ import {
   getPagedBills, getMember, getVotesForBill, getTopicByName, getTopicPath,
 } from "../../lib/data";
 import type { Bill } from "../../lib/data";
-import { formatDate, billLabel, ordinal } from "../../lib/display";
+import { formatDate, billLabel, ordinal, actionText } from "../../lib/display";
 
 export function getStaticPaths() {
   return getPagedBills().map((b) => ({ params: { bill: b.id }, props: { bill: b } }));
@@ -134,7 +134,7 @@ const subjectTopics = (bill.subjects ?? []).map((name) => ({
                 <span class="text-xs text-neutral-400">{a.type}</span>
                 {a.action_code && <span class="text-xs text-neutral-400">code {a.action_code}</span>}
               </div>
-              <p class="mt-0.5 text-neutral-700">{a.text}</p>
+              <p class="mt-0.5 text-neutral-700">{actionText(a)}</p>
               {a.committees && a.committees.length > 0 && (
                 <p class="mt-0.5 text-xs text-neutral-500">{a.committees.join(" · ")}</p>
               )}

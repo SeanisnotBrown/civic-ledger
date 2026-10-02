@@ -23,7 +23,7 @@
 import { createHash } from "node:crypto";
 
 import type { ActionRef } from "./data";
-import { billLabel } from "./display";
+import { actionText, billLabel } from "./display";
 
 /** The five XML metacharacters. Attribute and text content both use this. */
 export function xmlEscape(s: string): string {
@@ -163,11 +163,11 @@ export function atomResponse(body: string): Response {
 export function actionEntries(refs: ActionRef[], base: URL, voted: Set<string>): AtomEntry[] {
   return refs.map((r) => ({
     id: entryId(r.bill.id, r.action as unknown as Record<string, unknown>),
-    title: `${billLabel(r.bill.id)} — ${r.action.text}`,
+    title: `${billLabel(r.bill.id)} — ${actionText(r.action)}`,
     updated: r.action.date,
     link: voted.has(r.bill.id)
       ? new URL(`/b/${r.bill.id}`, base).href
       : r.bill.source_url,
-    content: r.action.text,
+    content: actionText(r.action),
   }));
 }

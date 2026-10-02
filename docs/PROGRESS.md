@@ -187,6 +187,24 @@ bill". Committed as `8e65c8fbf` (code) + `3d6c09414` (ADR); **not pushed at sess
   a font-load/screenshot race on this check. Not investigated further; noted so the next
   session does not treat a single occurrence as a regression.
 
+**▶ A HAZARD THE QUARANTINE FILE EXPOSED, now guarded on the site side.**
+`s4869-118` was quarantined with `KeyError: 'text'` — congress.gov served an action row
+with no `text`. `ingest/models.py` records `text` as present on 520/520 sampled actions
+and therefore **required**, and that measurement is now contradicted by real data. Today
+the quarantine keeps the bill off the site entirely, so nothing is broken. **But whoever
+fixes the ingest to tolerate it will make the field nullable, and at that moment any
+string interpolation or XML-escaping of it throws at build time.** The site is already
+guarded: `actionText()` in `site/src/lib/display.ts` is used by the timeline and by both
+feed fields, and it renders "(no action text on the official record)" rather than a blank
+line, because a blank line would publish an action with no content. **The ingest-side fix
+is still owed** and the model docstring's "520/520 -> required" should be corrected when
+it lands.
+
+**`uv run checks`: ALL CHECKS PASSED** — banned-words and no-LLM over the new page copy
+included, which is the check that matters for prose this session added ("word for word",
+"no account", "this site did not write it or choose it"). It does not read bill counts,
+so the backfill does not disturb it.
+
 **Two Windows operational notes from this session, both likely to recur:**
 - **`npm run build` failed twice with `EPERM ... dist\m`** while emptying `dist/` —
   something (indexer, Defender, or a just-finished preview server) holds handles on

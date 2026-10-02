@@ -3,9 +3,11 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-02, end of session (V2-11 tasks **1-6 + 5b done**, D88-D96).
-**CI GREEN on `3f0499118`.** Backfill still running; `data/bills/` uncommitted on purpose.
-**Next increment task: V2-11 task 7 (the site work).**
+**Last updated:** 2026-10-02, afternoon session (V2-11 tasks **1-7 + 5b done**, D88-D97).
+**CI was GREEN on `4b0f731c9`** (run 36960519658, both jobs); task 7 is committed at
+`8e65c8fbf` + `3d6c09414` and **not yet pushed** — see the gate results below before you
+push. Backfill still running; `data/bills/` uncommitted on purpose.
+**Next increment task: V2-11 task 8 (fold `ingest bill-activity --since` into the nightly).**
 
 ## ▶▶ READ THIS FIRST — the three live facts
 
@@ -15,19 +17,37 @@ Single source of truth for: current increment, acceptance status, blocked H-task
 explicitly "do not stop the process that is pulling data".
 - **Progress is read off DISK, never the log** (Python buffers stdout when redirected, so
   the log sits empty for long stretches while the run is working fine):
-  `grep -l '"actions"' data/bills/*.json | wc -l` — **461 at session end**, target 19,315
-  for Congress 118. At the measured 3.9 s/bill that is ~21 h for 118, ~43 h with 119.
+  `grep -l '"actions"' data/bills/*.json | wc -l` — **9,883 at the end of the 2026-10-02
+  afternoon session** (it was 461 the session before), target 19,315 for Congress 118.
+  Measured rate over that stretch: ~8,500 bills in ~10.5 h ≈ **4.4 s/bill**, so Congress
+  118 finishes roughly **21:00 on 2026-10-02** if it stays up, and 119 is another ~24 h.
 - **Is it still alive?** `tasklist | grep -i python` — it is the ~80 MB one.
   **If it is gone, that is FINE**: resume is the default and costs 0.56 s / zero requests.
 
 **2. THERE IS UNCOMMITTED BILL DATA, on purpose.** `git status --short -- data/bills` was
-non-empty at session end (~72 files and climbing). It was NOT committed because **the
+non-empty at session end (~9,500 files and climbing).
+**▶ NEW, and it is NOT a bill file:** the backfill also wrote
+`data/quality/quarantine/bill-s4869-118.json` (`KeyError: 'text'` — one congress.gov
+action row with no `text` field, out of ~9,900). It is untracked, so the earlier claim
+that the run writes "only `data/bills/`" is wrong. **Whoever commits the data must also
+commit that file AND add `bill-s4869-118` to the committed accept list**, or
+`test_committed_accept_list_matches_committed_quarantines` goes red in CI. Expect a few
+more of these by the time 118 finishes. It was NOT committed because **the
 derived artifacts cannot be verified while the run is writing** (see the operational rule
 below). Nothing is at risk — the files are on disk and resume reads disk, not git.
 **To commit it, stop the run first, then use the four-command loop further down.**
 
-**3. CI STATE: GREEN. `master` is clean at `3f0499118`, run `36959402541`, BOTH jobs
-success.** Nothing is outstanding and nothing needs chasing on arrival.
+**3. CI STATE: last GREEN run was `36960519658` on `4b0f731c9`, BOTH jobs success.**
+`master` now carries **two unpushed task-7 commits** (`8e65c8fbf` code, `3d6c09414` ADR).
+They touch `site/` and `docs/` ONLY — zero Python, zero `data/` — so the python job's
+inputs are unchanged from the last green run. **The local pytest run is RED with 3
+failures and all three are the running backfill**, not the new code:
+`test_committed_manifest_matches_regeneration` (committed manifest says 1,385 bills, disk
+now has 10,481), `test_verify_recompute_entrypoint_green` (invariants 8/9 — the documented
+interference below), and `test_committed_accept_list_matches_committed_quarantines` (the
+new untracked `data/quality/quarantine/bill-s4869-118.json`). **CI checks out committed
+data only and sees none of the three.** Verify by re-reading this section rather than
+re-running the suite and re-deriving it.
 For the record of how it got there: the task-6 push (`006a5d481`) went red at the Ruff
 step on two over-long lines in `tests/test_topics_v2_11.py` — lint only, no logic — because
 `ruff check ingest/` was run locally where CI runs `ruff check .` (D96 addendum). The fix
@@ -46,27 +66,49 @@ fix push superseding it under the concurrency group, not a second failure.
 - **Served:** `/events/{month}.json` and `/events/latest.json` emit the month files
   verbatim (task 5b).
 
-**NEXT: V2-11 task 7 — the site work.** Nothing blocks on the backfill; task 7 builds
-against whatever bills are on disk and behaves identically at 38,756. Four pieces:
-1. `/b/[bill]` gains an **Actions** timeline (date, verbatim text, source link; roll-call
-   actions link to `/v/`).
-2. `/topics/` index + `/topics/[slug]/` pages (bills in the topic, most recent action
-   first) — build them off `data/topics/index.json`, which already carries slug, verbatim
-   name and full bill membership.
-3. **Atom feeds:** `/b/[bill]/feed.xml`, `/topics/[slug]/feed.xml`,
-   `/m/[member]/feed.xml` (a NEW route beside the paginated `/m/[member]/[page]/`), and
-   `/feed.xml` for all floor activity. Feed `updated` = latest action date, never a build
-   wall-clock (determinism).
-4. A "Track this bill" affordance that is, this increment, the feed link plus a copy
-   button, JS-off friendly.
-**Hard constraint carried from SD-33 3(c):** a topic page or feed entry for a bill with no
-`/b/` page must link to its `source_url` on congress.gov. `npm run test:links` fails on the
-first violation — it is already passing with **345** such bills, so this is live, not
-theoretical. Events rows carry `has_page` precisely so a consumer need not re-derive it.
+**V2-11 TASK 7 IS DONE** (D97, commits `8e65c8fbf` + `3d6c09414`). What is live:
+1. `/b/{bill}` has an **Action timeline** — every official action verbatim, newest first,
+   with committees, action code, `source_system`, and a `/v/` link where the action
+   resolves to a held roll call. Plus **"Track this bill"**: the feed link and a
+   selectable address, with the copy button revealed by script so JS-off gets no dead
+   control.
+2. **`/topics/`** index + a page per official term — **but the URLs are namespaced by
+   vocabulary**: `/topics/policy-area/{slug}/` and `/topics/subject/{slug}/`, NOT the flat
+   `/topics/{slug}/` the plan sketched. Reason in D97(a), and it is not cosmetic: a
+   committed test pins that "Health" can be both a policy area and a subject term, so a
+   flat namespace would be the vocabulary merge `ingest/topics.py` exists to prevent.
+3. **Atom feeds**: `/feed.xml`, `/b/{bill}/feed.xml`,
+   `/topics/{policy-area|subject}/{slug}/feed.xml`, and the new `/m/{member}/feed.xml`.
+   `updated` comes from record dates everywhere — no build clock, pinned by an e2e test,
+   because a build-clock stamp re-notifies every subscriber on every rebuild.
+4. **`npm run test:links` now actually enforces the SD-33 3(c) rule on these surfaces.**
+   It previously only checked `/b/` page presence, so the plan's claim was aspirational.
+   Extended to every topic row (via `data-bill-id`) and every feed entry, both
+   directions, and **verified by tampering with a built page**.
 
-**Then task 8:** fold `uv run ingest bill-activity --since` into `nightly.yml` (the SD-33
-daily-digest cadence). **Only `ingest events` and `ingest topics` are wired in so far — the
-delta FETCH is not.** Then V2-7 (privacy page true) before anything that stores user data.
+**Gates at task-7 acceptance:** `npm run build` 14,168 pages; `test:file-count`
+**16,793 of 20,000** (warn 18,000 — 3,207 headroom, and the subject vocabulary is still
+growing, so this is the number H14/H20 gets decided against); `test:links` OK over 23,032
+topic rows + 48,306 feed entries; **60/60 Playwright e2e** including a11y + 380px on the
+three new URLs and Atom validity on all five feed shapes; `astro check` 0 errors;
+`uv run ruff check .` clean. Largest feed 53 KB, largest topic page 184 KB, topics index
+260 KB; all 2,588 feeds parse as valid Atom.
+
+**Two caps the owner may want to revisit (D97(b), neither urgent):** a feed carries 50
+entries and a topic page lists 200 bills, both stated plainly on the page ("Showing the
+200 with the most recent action, of 11,432"). Uncapped they break the 25 MiB-per-file
+limit and the 20,000-file ceiling respectively. **Full browsable topic membership means
+pagination, which needs H20 (Workers Paid).**
+
+**▶ Playwright's browser had to be installed locally** (`npx playwright install chromium`,
+114 MB) — a fresh machine has the package but not the binary, and every e2e test fails
+with "Executable doesn't exist" until it is there.
+
+**NEXT — task 8 (the last piece of V2-11):** fold `uv run ingest bill-activity --since`
+into `nightly.yml` (the SD-33 daily-digest cadence). **Only `ingest events` and
+`ingest topics` are wired in so far — the delta FETCH is not.** Task 7 needs nothing
+further from it: the site builds against whatever is on disk and behaves identically at
+38,756. Then V2-7 (privacy page true) before anything that stores user data.
 
 ## ⚠ OPERATIONAL RULE — invariants 8 and 9 cannot be verified while a backfill runs
 
@@ -99,6 +141,37 @@ event row already carries `policy_area` and `subjects`.
 already on disk at 1,385 bills — about 1% into the backfill — and the number will keep
 climbing as more bills land. That is the government's vocabulary growing, not a data error.
 Nothing in the code asserts a total, and a test pins that.
+
+**2026-10-02 (afternoon) — V2-11 TASK 7 DONE (D97). The activity data has a site.**
+Bill action timelines, the `/topics/` tree, four shapes of Atom feed, and "Track this
+bill". Committed as `8e65c8fbf` (code) + `3d6c09414` (ADR); **not pushed at session end.**
+- **The plan's flat `/topics/{slug}/` was NOT built.** Namespaced by vocabulary instead
+  (`/topics/policy-area/…`, `/topics/subject/…`) because
+  `test_policy_areas_and_subjects_are_separate_vocabularies` pins that "Health" is valid
+  as BOTH a policy area and a subject term, so one flat namespace is exactly the merge
+  D96 forbade. The spec preamble (code beats document) settles it; `getTopicPath()` owns
+  the prefix for all six linking surfaces. Full reasoning in D97(a).
+- **Feed entry ids are byte-equal to `ingest.events.event_id`** — the TypeScript mirror
+  was checked against the committed `data/events/` projection on **3,169 real actions,
+  zero mismatches**. One government action therefore has one identity in both the feed
+  and the V2-12 alert path.
+- **Two bugs the build caught, both worth knowing:** (1) `actions` is *absent*, not
+  `null`, on an uncollected bill — the exporter omits `None` fields — so `actions ===
+  null` was false for `undefined` and `hconres108-119` took the build down on
+  `.length`; the TS type is `actions?: BillAction[] | null` and readers use `?? null`.
+  (2) Stored action order is **already newest-first**; the first version reversed it and
+  rendered every timeline backwards. There is deliberately no local re-sort — `date`
+  alone cannot order same-day actions and `actionTime` is on only 44% of rows.
+- **`npm run test:links` was not enforcing what the plan said it enforced.** It only
+  checked `/b/` page presence; a topic page or feed entry linking a pageless bill to
+  `/b/` would have shipped. Now walks every topic page (via `data-bill-id`, both
+  directions) and every built feed. Negative-tested by tampering with a built page.
+- **Gates:** build 14,168 pages; **file-count 16,793 of 20,000** (warn 18,000);
+  `test:links` OK over 23,032 topic rows + 48,306 feed entries; **60/60 e2e**;
+  `astro check` 0 errors; `ruff check .` clean. Largest feed 53 KB, largest topic page
+  184 KB. All 2,588 feeds parse as valid Atom.
+- **Local pytest is RED with 3 failures, all three the running backfill** — see live
+  fact 3 at the top. Zero Python and zero `data/` changed in this session.
 
 **2026-10-02 — V2-11 TASK 6 DONE (D96). The topic index exists.**
 `ingest/topics.py` + `uv run ingest topics` build `data/topics/index.json` from

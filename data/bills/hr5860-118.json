@@ -1,4 +1,252 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-15.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-15.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": "s-118-1-0247",
+      "source_system": "Senate",
+      "text": "Received in the Senate, read twice, considered, read the third time, and passed, under the order of 9/30/23, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 88 - 9. Record Vote Number: 247. (consideration: CR S4887-4888)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": "s-118-1-0247",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Received in the Senate, read twice, considered, read the third time, and passed, under the order of 9/30/23, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 88 - 9. Record Vote Number: 247.(consideration: CR S4887-4888)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "14:46:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": "h-118-1-0513",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 335 - 91 (Roll no. 513). (text: CR H4915-4923)",
+      "time": "14:46:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": "h-118-1-0513",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 335 - 91 (Roll no. 513). (text: CR H4915-4923)",
+      "time": "14:46:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Diaz-Balart asked unanimous consent that the text of H.R. 5860 be modified by the amendment placed at the desk. Agreed to without objection.",
+      "time": "14:21:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "ORDER OF PROCEDURE - Mr. Diaz-Balart asked unanimous consent for an additional 10 minutes of debate on each side of the aisle. Agreed to without objection.",
+      "time": "14:09:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House resumed debate on H.R. 5860. (consideration: CR H4927-4933)",
+      "time": "13:08:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 5860.",
+      "time": "11:25:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR  H4915-4926)",
+      "time": "11:25:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Granger moved to suspend the rules and pass the bill. H.R. 5860 \"Making continuing appropriations for fiscal year 2024, and for other purposes.\"",
+      "time": "11:25:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Granger moved to suspend the rules and pass the bill, as amended.",
+      "time": "11:25:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committees on the Budget, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committees on the Budget, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committees on the Budget, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-10-04T20:00:00Z",

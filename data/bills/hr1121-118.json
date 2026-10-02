@@ -1,4 +1,384 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2024-03-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "16:46:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": "h-118-2-0093",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 229 - 188 (Roll no. 93). (text: CR H1255)",
+      "time": "16:46:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": "h-118-2-0093",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 229 - 188 (Roll no. 93). (text: CR H1255)",
+      "time": "16:46:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-03-20",
+      "rollcall_id": "h-118-2-0092",
+      "source_system": "House floor actions",
+      "text": "On motion to recommit Failed by the Yeas and Nays: 202 - 213 (Roll no. 92).",
+      "time": "16:39:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "16:00:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Levin moved to recommit to the Committee on Natural Resources. (text: CR H1270)",
+      "time": "16:00:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H1270-1272)",
+      "time": "16:00:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to clause 1(c) of rule XIX, the House resumed consideration of H.R. 1121.",
+      "time": "15:59:58",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - The Chair announced that pursuant to clause 1(c) of rule XIX, further proceedings on H.R. 1121 are postponed.",
+      "time": "14:59:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "14:59:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.R. 1121.",
+      "time": "14:20:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 1023, H.R. 1121, H.R. 6009, H. Con. Res. 86, H. Res. 987 and H.R. 7023. The resolution provides for consideration H.R. 1023, H.R. 1121, H.R. 6009, H. Con. Res. 86, and H. Res. 987 under a closed rule, and H.R. 7023 under a structured rule, each with one hour of general debate. The rule provides for one motion to recommit each on H.R. 1023, H.R. 1121, H.R. 6009, and H.R. 7023.",
+      "time": "14:19:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1085. (consideration: CR H1255-1264)",
+      "time": "14:19:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2024-03-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1085 Reported to House. Rule provides for consideration of H.R. 1023, H.R. 1121, H.R. 6009, H. Con. Res. 86, H. Res. 98and H.R. 7023. The resolution provides for consideration H.R. 1023, H.R. 1121, H.R. 6009, H. Con. Res. 86, and H. Res. 987 under a closed rule, and H.R. 7023 under a structured rule, each with one hour of general debate. The rule provides for one motion to recommit each on H.R. 1023, H.R. 1121, H.R. 6009, and H.R. 7023.",
+      "time": "20:07:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 305.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Natural Resources. H. Rept. 118-19, Part II.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Natural Resources. H. Rept. 118-19, Part II.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-11-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 21 - 17.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-11-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-11-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee on Energy and Mineral Resources Discharged",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "committees": [
+        "Energy and Mineral Resources Subcommittee"
+      ],
+      "date": "2023-09-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 118-19, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 118-19, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy and Mineral Resources Subcommittee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy and Mineral Resources.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 29 - 19.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by the Yeas and Nays: 16 - 11 .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2024-01-25T16:43:00Z",

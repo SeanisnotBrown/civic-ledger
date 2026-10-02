@@ -1,4 +1,276 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-40.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-40.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": "s-118-2-0067",
+      "source_system": "Senate",
+      "text": "Passed Senate, under the order of 2/29/2024, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 77 - 13. Record Vote Number: 67.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": "s-118-2-0067",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate, under the order of 2/29/2024, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 77 - 13. Record Vote Number: 67.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-02-29",
+      "rollcall_id": "s-118-2-0066",
+      "source_system": "Senate",
+      "text": "Motion by Senator Cruz to commit to Senate Committee on Appropriations with instructions rejected in Senate by Yea-Nay Vote. 32 - 58. Record Vote Number: 66. (text: CR S1071)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-02-29",
+      "rollcall_id": "s-118-2-0065",
+      "source_system": "Senate",
+      "text": "Motion by Senator Lee to commit to Senate Committee on Appropriations with instructions rejected in Senate by Yea-Nay Vote. 12 - 77. Record Vote Number: 65. (text: CR S1070)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-02-29",
+      "rollcall_id": "s-118-2-0064",
+      "source_system": "Senate",
+      "text": "Motion by Senator Marshall to commit to Senate Committee on Appropriations with instructions rejected in Senate by Yea-Nay Vote. 14 - 76. Record Vote Number: 64. (text: CR S1069)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S1068-1072)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "14:08:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": "h-118-2-0058",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 320 - 99 (Roll no. 58). (text: CR H759-760)",
+      "time": "14:08:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": "h-118-2-0058",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 320 - 99 (Roll no. 58). (text: CR H759-760)",
+      "time": "14:08:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H764-765)",
+      "time": "14:00:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "time": "13:30:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 7463.",
+      "time": "12:54:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H759-764)",
+      "time": "12:54:43",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2024-02-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Granger moved to suspend the rules and pass the bill.",
+      "time": "12:54:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2024-02-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-02-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2024-02-29T16:27:00Z",

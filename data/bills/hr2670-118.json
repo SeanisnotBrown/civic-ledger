@@ -1,4 +1,2428 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2023-12-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-31.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2023-12-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-31.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2023-12-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2023-12-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "H42831",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motions to reconsider laid on the table Agreed to without objection.",
+      "time": "10:45:31",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H42510",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": "h-118-1-0723",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and agree to the conference report Agreed to by the Yeas and Nays: (2/3 required): 310 - 118 (Roll no. 723).",
+      "time": "10:45:30",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "21000",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": "h-118-1-0723",
+      "source_system": "Library of Congress",
+      "text": "Conference report agreed to in House: On motion to suspend the rules and agree to the conference report Agreed to by the Yeas and Nays: (2/3 required): 310 - 118 (Roll no. 723).",
+      "time": "10:45:30",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with 40 minutes of debate on the motion to suspend the rules and agree to the conference report accompanying H.R. 2670.",
+      "time": "09:18:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H40200",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Rogers (AL) moved to suspend the rules and agree to the conference report, H. Rept. 118-301. (consideration: CR H6961-6962)",
+      "time": "09:18:02",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": "s-118-1-0343",
+      "source_system": "Senate",
+      "text": "Senate agreed to conference report by Yea-Nay Vote. 87 - 13. Record Vote Number: 343.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "23000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": "s-118-1-0343",
+      "source_system": "Library of Congress",
+      "text": "Conference report agreed to in Senate: Senate agreed to conference report by Yea-Nay Vote. 87 - 13. Record Vote Number: 343.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": "s-118-1-0342",
+      "source_system": "Senate",
+      "text": "Motion to waive the Rule XXVII point of order re: section 7902 with respect to the measure (conference report to accompany H.R. 2670) agreed to in Senate by Yea-Nay Vote. 65 - 35. Record Vote Number: 342.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Point of order that section 7902 of the conference report to accompany H.R. 2670 violates Rule XXVIII raised in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Conference report considered in Senate.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to recommit the conference report to accompany H.R. 2670 to the committee on conference with instructions fell when cloture was invoked on the conference report to accompany H.R. 2670.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-12",
+      "rollcall_id": "s-118-1-0341",
+      "source_system": "Senate",
+      "text": "Cloture on the conference report to accompany H.R. 2670 invoked in Senate by Yea-Nay Vote. 85 - 15. Record Vote Number: 341.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-12",
+      "rollcall_id": "s-118-1-0340",
+      "source_system": "Senate",
+      "text": "Motion to table the motion to recommit the conference report to accompany H.R. 2670 to the committee on conference with instructions rejected in Senate by Yea-Nay Vote. 26 - 73. Record Vote Number: 340.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Conference report considered in Senate. (consideration: CR S5912-5915)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to recommit the conference report to accompany H.R. 2670 to the committee on conference with instructions made in Senate. (text: CR S5838)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the conference report to accompany H.R. 2670 presented in Senate. (CR S5838)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Conference report considered in Senate. (consideration: CR S5838-5839)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": "s-118-1-0334",
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of the conference report to accompany H.R. 2670, agreed to in Senate by Yea-Nay Vote. 82 - 15. Record Vote Number: 334.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Conference papers: Senate report and manager's statement and official papers held at the desk in Senate.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Conferees agreed to file conference report.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H25200",
+      "committees": null,
+      "date": "2023-12-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Conference report H. Rept. 118-301 filed. (text of conference report: CR H6213-6718)",
+      "time": "21:54:20",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Conference held.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate appointed conferees. Reed; Shaheen; Gillibrand; Blumenthal; Hirono; Kaine; King; Warren; Peters; Manchin; Duckworth; Rosen; Kelly; Wicker; Fischer; Cotton; Rounds; Ernst; Sullivan; Cramer; Scott FL; Tuberville; Mullin; Budd; Schmitt.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Reed (for Senator Manchin) to instruct Senate conferees (Nuclear Fuel) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Reed (for Senator Manchin) to instruct Senate conferees made in Senate. (consideration: CR S5531; text: CR S5531)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Braun) to instruct Senate conferees (Chief Management Officer) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Braun) to instruct Senate conferees made in Senate. (consideration: CR S5531; text: CR S5531)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Hagerty) to instruct Senate conferees (Biotechnology) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Hagerty) to instruct Senate conferees made in Senate. (consideration: CR S5531; text: CR S5531)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Ernst) to instruct Senate conferees (National Security Council) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Ernst) to instruct Senate conferees made in Senate. (consideration: CR S5531; text: CR S5531)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Moran) to instruct Senate conferees (Commissary) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Moran) to instruct Senate conferees made in Senate. (consideration: CR S5531; text: CR S5531)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Cramer) to instruct Senate conferees (Air Force Capability) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Cramer) to instruct Senate conferees made in Senate. (consideration: CR S5531; text: CR S5531)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lummis to instruct Senate conferees (Crypto) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lummis to instruct Senate conferees made in Senate. (consideration: CR S5530-5531; text: CR S5530)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Lankford) to instruct Senate conferees (Israel) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Lankford) to instruct Senate conferees made in Senate. (consideration: CR S5530; text: CR S5530)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Blackburn) to instruct Senate conferees (Transfer of Funds) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Blackburn) to instruct Senate conferees made in Senate. (consideration: CR S5530; text: CR S5530)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Reed (for Senator Hickenlooper) to instruct Senate conferees (Space Command) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Reed (for Senator Hickenlooper) to instruct Senate conferees made in Senate. (consideration: CR S5530; text: CR S5530)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Rubio) to instruct Senate conferees (Hamas Visas) rejected in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Wicker (for Senator Rubio) to instruct Senate conferees made in Senate. (consideration: CR S5530; text: CR S5530)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Reed (for Senator Klobuchar) to instruct Senate conferees (Afghan refugees) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Reed (for Senator Klobuchar) to instruct Senate conferees made in Senate. (consideration: CR S5530; text: CR S5530)",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate insists on its amendment to H.R. 2670, agrees to a conference with the House, and authorizes the Presiding Officer to appoint conferees.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": "s-118-1-0313",
+      "source_system": "Senate",
+      "text": "Motion to insist on the amendment of the Senate to H.R. 2670, agree to the request for conference, and authorize the Presiding Officer to appoint conferees agreed to by Yea-Nay Vote. 90 - 8. Record Vote Number: 313.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S5527, S5529-5531)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "MODIFICATION TO CONFEREES - The Chair appoints the following conferees on H.R. 2670 in lieu of their appointments on September 19, 2023: From the Committee on Financial Services, for consideration of subtitle J of title X of Division A, secs. 1085 and 1086, title LXVIII of Division E, Division I, and Division J of the Senate amendment, and modifications committed to conference: Mr. McHenry, Mr. Luetkemeyer, and Ms. Waters. Agreed to without objection.",
+      "time": "23:32:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on House action received in Senate and at desk: House requests a conference.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H41610",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": "h-118-1-0400",
+      "source_system": "House floor actions",
+      "text": "On motion that the House instruct conferees Failed by the Yeas and Nays: 205 - 214 (Roll no. 400).",
+      "time": "14:20:43",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": "h-118-1-0400",
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: On motion that the House instruct conferees Failed by the Yeas and Nays: 205 - 214 (Roll no. 400).",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Houlahan motion to instruct conferees on H.R. 2670, the Chair put the question on the motion and by voice vote announced that the noes had prevailed. Ms. Houlahan demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced. (consideration: CR H4426)",
+      "time": "13:15:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H41400",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered without objection.",
+      "time": "13:15:50",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on the Houlahan motion to instruct conferees on H.R. 2670. The instructions contained in the motion seek to require the managers on the part of the House to disagree to section 716 of the House bill.",
+      "time": "12:20:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H40150",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Houlahan moved that the House instruct conferees. (consideration: CR H4419-4425)",
+      "time": "12:20:24",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Veterans' Affairs for consideration of secs. 571, 572, 579, 1118, 1413, 1733, and 1885 of the House bill, and secs. 1084, 1090B, 1521, 1833, 1852, 6071, 6077, and 11020 of the Senate amendment, and modifications committed to conference: Bost, Luttrell, and Takano.",
+      "time": "15:47:00",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Transportation and Infrastructure for consideration of secs. 315, 707, 723, 866, 1602, 1608, 1804, 1854, 3501, 3511-13, 3515, 3531, and 3533 of the House bill, and secs. 314, 1083, 1090D, 1399N, 1606, 1644, 2814, title XXXV of division C, secs. 6079, 6226, 8141, and division H of the Senate amendment, and modifications committed to conference: Graves (MO), Webster (FL), and Larsen (WA).",
+      "time": "15:46:43",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Small Business for consideration of secs. 223, 853, 881, 882, 884, and 886 of the House bill, and secs. 141, 823, 831, 841-45, 849-52, and 5841 of the Senate amendment, and modifications committed to conference: Molinaro, Alford, and Velazquez.",
+      "time": "15:46:21",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Science, Space, and Technology for consideration of secs. 886, 1608, 1875, and 1879 of the House bill, and secs. 308, 845, 1090E, 1090G, 3144, 5204, and title X of division M of the Senate amendment, and modifications committed to conference: Garcia, Mike, Collins, and Lofgren.",
+      "time": "15:46:00",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Oversight and Accountability for consideration of secs. 364, 834, 891, 899C, 921, 922, 1047, 1101-10, 1116-18, 1122, 1221, 1222, 1521, 1523, 1805, and 1880 of the House bill, and secs. 537, 867, subtitle H of title X of division A, secs. 1201-03, 1206-09, 1211-13, 1215, 1512, 11133, 6101, 6202, 6203, 6607, sec. 6831 of division E, 8141, 9005, 11331-33, and secs. 601, 603, 605, 703, 704, 715-18, 802, and 1001 of division M, and secs. 11001 and 11002 of division L of the Senate amendment and modifications committed to conference: Grothman, Perry, and Raskin.",
+      "time": "15:45:40",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Natural Resources for consideration of secs. 261, 510, 1853, 1865, 2843, 2844, 2847, and 3515 of the House bill, and secs. 312, 1041, 1090G, 2805, 6711, 11002 of division J, division K, and sec. 11341 of the Senate amendment and modifications committed to conference: Carl, Hageman, and Grijalva.",
+      "time": "15:45:20",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on the Judiciary for consideration of secs. 542, 822, 1049, 1689, and 3116 of the House bill, and secs. 1041, 1090H, subtitles I and K of title X of division A, subtitle I of title XIII of division A, secs. 6031, 6075, 6082, 6084, subtitle H of title LX of division E, secs. 6813, 6816, 6821, 6831 of division E, secs. 9007, 9011, 9012, 9014, and title LXXI of the Senate amendment and modifications committed to conference: Issa, Lee (FL), and Nadler.",
+      "time": "15:45:00",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Foreign Affairs for consideration of secs. 217, 1009, 1080K, 1210, 1211, 1213, 1214, 1216, 1220, 1220A, 1220C, 1220G, 1220K, 1220L, 1221-24, 1234, 1245, 1250, 1310L, 1505, and 1883 of the House bill, and secs. 212, 1085, 1302, 1397, 1399B, 1399D, 1399E, 1399F, 1399I, 1399J, 1399K, 1399L, subtitles H-K of title XIII of division A, secs. 1634, 6031, 6242, 6293, division F, and secs. 11104 and 11105 of the Senate amendment and modifications committed to conference: McCaul, McCormick, and Meeks.",
+      "time": "15:44:43",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Financial Services for consideration of subtitle J of Title X of Division A, secs. 1085 and 1086, title LXVIII of Division E, Division I, and Division J of the Senate amendment, and modifications committed to conference: McHenry, Luetkemeyer, and Waters.",
+      "time": "15:44:21",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Energy and Commerce for consideration of secs. 224, 749, and 3121 of the House bill, and secs. 314, 712 of division A, 1087, 1088, 1090A, 1090G, 1099II, 3122-24, 3143, 3144, 6074, 8141, and sec. 11009 of division J of the Senate amendment and modifications committed to conference: Carter (GA), Pfluger, and Pallone.",
+      "time": "15:44:00",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Education and the Workforce for consideration of secs. 636, 651-55, 658-61, 1041, and 1042 of the House bill and secs. 303, 563, 592, 593, 1079, 1090K, 1099JJ, 1726, and 3142 of the Senate amendment and modifications committed to conference: Foxx, Owens, and Scott (VA).",
+      "time": "15:43:40",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Permanent Select Committee on Intelligence for consideration of matters within the jurisdiction of that committee under clause 11 of rule X: Turner, Wenstrup, and Himes.",
+      "time": "15:43:20",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41800",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker appointed conferees - from the Committee on Armed Services for consideration of the House bill and the Senate amendment, and modifications committed to conference: Rogers of Alabama, Wilson of South Carolina, Lamborn, Wittman, Austin Scott of Georgia, Stefanik, DesJarlais, Kelly of Mississippi, Gallagher, Gaetz, Bacon, Banks, Bergman, Waltz, Johnson of Louisiana, McClain, Jackson of Texas, Fallon, Gimenez, Mace, Greene of Georgia, Smith of Washington, Courtney, Garamendi, Norcross, Gallego, Moulton, Carbajal, Khanna, Keating, Kim of New Jersey, Houlahan, Slotkin, Sherrill, and Escobar.",
+      "time": "15:43:00",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41931",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "15:04:13",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41610",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": "h-118-1-0396",
+      "source_system": "House floor actions",
+      "text": "On motion to close portions of the conference Agreed to by the Yeas and Nays: 401 - 19 (Roll no. 396).",
+      "time": "15:04:11",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": "h-118-1-0396",
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: On motion to close portions of the conference Agreed to by the Yeas and Nays: 401 - 19 (Roll no. 396).",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": "H40150",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Rogers (AL) moved that the House close portions of the conference.",
+      "time": "14:58:02",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "14:57:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H41610",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": "h-118-1-0395",
+      "source_system": "House floor actions",
+      "text": "On motion that the House disagree to the Senate amendment, and request a conference Agreed to by the Yeas and Nays: 393 - 27 (Roll no. 395).",
+      "time": "14:57:22",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": "h-118-1-0395",
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: On motion that the House disagree to the Senate amendment, and request a conference Agreed to by the Yeas and Nays: 393 - 27 (Roll no. 395).",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered without objection.",
+      "time": "14:27:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on the motion to disagree to the Senate amendment and request a conference.",
+      "time": "14:27:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H40150",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Rogers (AL) moved that the House disagree to the Senate amendment, and request a conference. (consideration: CR H4401-4403)",
+      "time": "14:26:44",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-08-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "See also S. 2226.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate struck all after the Enacting Clause and substituted the language of S. 2226, as amended.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S3730-3731)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate, read twice.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38900",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Clerk was authorized to correct section numbers, punctuation, and cross references, and to make other necessary technical and conforming corrections in the engrossment of H.R. 2670.",
+      "time": "11:00:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "10:59:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": "h-118-1-0328",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 219 - 210 (Roll no. 328).",
+      "time": "10:59:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": "h-118-1-0328",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 219 - 210 (Roll no. 328).",
+      "time": "10:59:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": "h-118-1-0327",
+      "source_system": "House floor actions",
+      "text": "On motion to recommit Failed by the Yeas and Nays: 210 - 217 (Roll no. 327).",
+      "time": "10:53:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "10:46:58",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Houlahan moved to recommit to the Committee on Armed Services. (text: CR H3599)",
+      "time": "10:46:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House adopted the amendments en gross as agreed to by the Committee of the Whole House on the state of the Union.",
+      "time": "10:45:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "10:45:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 2670.",
+      "time": "10:44:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 30 minutes of debate on the Rogers (AL) amendment en bloc.",
+      "time": "09:46:43",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Davidson amendment No. 66.",
+      "time": "09:42:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Roy amendment No. 64, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Mr. Smith (WA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "09:41:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Roy amendment No. 64.",
+      "time": "09:30:08",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Banks amendment No. 63, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Strickland demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "09:29:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Banks amendment No. 63.",
+      "time": "09:16:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "time": "09:15:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H3581-3600)",
+      "time": "09:14:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 2670 as unfinished business.",
+      "time": "23:24:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "time": "23:23:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Rogers (AL) moved that the committee rise.",
+      "time": "23:22:45",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to clause 6(h) of rule XVIII, the Committee of the Whole resumed its sitting.",
+      "time": "22:42:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to clause 6(h) of rule XVIII, the votes of the Delegates and Resident Commissioner were decisive on the previous vote and a separate vote in the House was required.",
+      "time": "22:37:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to clause 6(h) of rule XVIII, the Committee rose.",
+      "time": "22:37:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At conclusion of debate on the Burlison amendment No. 62, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Mr. Smith (WA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "22:01:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Burlison amendment No. 62.",
+      "time": "21:49:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Issa amendment No. 61.",
+      "time": "21:36:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Perry amendment No. 59.",
+      "time": "21:25:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Perry amendment No. 58.",
+      "time": "21:12:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Perry amendment No. 56, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Smith (WA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "21:11:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Perry amendment No. 56.",
+      "time": "20:59:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Biggs amendment No. 55, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Ryan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "20:58:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Biggs amendment No. 55.",
+      "time": "20:50:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Gaetz amendment No. 52, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mrs. McClellan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "20:49:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Gaetz amendment No. 52.",
+      "time": "20:35:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Davidson amendment No. 51, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Ryan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "20:34:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee proceeded with 10 minutes of debate on the Davidson amendment No. 51.",
+      "time": "20:22:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Davidson amendment No. 50, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Ryan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "20:21:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee fof the Whole proceeded with 10 minutes of debate on the Davidson amendment No. 50.",
+      "time": "20:10:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Hageman amendment No. 49, the Chair put the question on agreeing to the amendment and by voice vote announced the ayes had prevaled. Mr. Ryan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "20:09:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Hageman amendment No. 49.",
+      "time": "20:01:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Greene (GA) amendment No. 48, the Chair put the question on agreeing to the amendment and by voice vote announced the ayes had prevailed. Mr. Quigley demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "19:59:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Greene (GA) amendment No. 48.",
+      "time": "19:47:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Good (VA) amendment No. 47, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Smith (WA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "19:46:26",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Good (VA) amendment No. 47.",
+      "time": "19:35:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provision of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Alford amendment No. 46.",
+      "time": "19:26:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Davidson amendment No. 45.",
+      "time": "19:19:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Waltz amendment No. 41, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Smith (WA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "19:18:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Waltz amendment No. 41.",
+      "time": "19:06:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Davidson amendmment No. 40.",
+      "time": "18:55:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 35, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Houlahan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "18:54:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 35.",
+      "time": "18:43:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Norman amendment No. 34, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Houlahan demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "18:42:26",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Norman amendment No. 34.",
+      "time": "18:32:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Norman amendment No. 33, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Tokuda demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "18:31:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Norman amendment No. 33.",
+      "time": "18:18:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Crane amendment No. 32, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Mrs. Beatty demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "18:18:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Crane amendment No. 32.",
+      "time": "18:06:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Roy amendment No. 31, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Roy demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:59:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Roy amendment No. 31.",
+      "time": "16:48:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Roy amendment No. 30, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Roy demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:48:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Roy amendment No. 30.",
+      "time": "16:35:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Tlaib amendment No. 28, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Ms. Tlaib demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:35:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Tlaib amendment No. 28.",
+      "time": "16:24:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Blumenauer amendment No. 27, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Blumenauer demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:24:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Blumenauer amendment No. 27.",
+      "time": "16:14:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ogles amendment No. 25, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Ogles demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:14:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Ogles amendment No. 25.",
+      "time": "16:03:07",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Davidson amendment No. 24, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Davidson demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:02:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Davidson amendment No. 24.",
+      "time": "15:51:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Greene (GA) amendment No. 23, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Ms. Greene (GA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "15:49:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Greene (GA) amendment No. 23.",
+      "time": "15:37:31",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Gaetz amendment No. 22, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Gaetz demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "15:36:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Gaetz amendment No. 22.",
+      "time": "15:26:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Greene (GA) amendment No. 21, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Gaetz demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "15:24:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Greene (GA) amendment No. 21.",
+      "time": "15:12:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At conclusion of debate on the Norman (SC) amendment No. 20, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Mr. Smith (WA) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "15:11:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Norman (SC) amendment No. 20.",
+      "time": "15:00:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At conclusion of debate on the Rosendale amendment No. 10, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Jacobs demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "14:58:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Rosendale amendment No. 10.",
+      "time": "14:46:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At conclusion of debate on the Jackson (TX) amendment No. 5, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Sherrill demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "14:44:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Jackson (TX) amendment No. 5.",
+      "time": "14:32:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 583, the Committee of the Whole proceeded with 10 minutes of debate on the Luna amendment No. 1.",
+      "time": "14:25:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable Mike Bost to act as Chairman of the Committee.",
+      "time": "14:23:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 583 and Rule XVIII.",
+      "time": "14:23:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 2670. The resolution provides for further consideration of H. R. 2670 under a structured rule. The resolution makes in order only those further amendments printed in House Report 118-142. One motion to recommit provided.",
+      "time": "14:23:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 583. (consideration: H3504-3571)",
+      "time": "14:23:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 2670 as unfinished business.",
+      "time": "14:19:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "UNFINISHED BUSINESS - The Chair announced that the unfinished business is the question on agreeing to the Rogers (AL) en bloc amendment No. 5, which had been debated earlier and on which further proceedings had been postponed.",
+      "time": "14:11:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "time": "14:10:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H3502-3504)",
+      "time": "14:09:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 583 passed House.",
+      "time": "14:09:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 583 Reported to House. Rule provides for consideration of H.R. 2670. The resolution provides for further consideration of H. R. 2670 under a structured rule. The resolution makes in order only those further amendments printed in House Report 118-142. One motion to recommit provided.",
+      "time": "09:07:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 2670 as unfinished business.",
+      "time": "15:50:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "time": "15:49:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Rogers (AL) moved that the committee rise.",
+      "time": "15:49:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Rogers (AL) amendment en bloc No. 5, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Rogers (AL) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "15:48:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 582, the Committee of the Whole proceeded with 40 minutes of debate on the Rogers (AL) amendment en bloc No. 5.",
+      "time": "15:33:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 582, the Committee of the Whole proceeded with 40 minutes of debate on Rogers (AL) amendment en bloc No. 4.",
+      "time": "15:31:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 582, the Committee of the Whole proceeded with 40 minutes of debate on Rogers (AL) amendment en bloc No. 3.",
+      "time": "15:27:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 582, the Committee of the Whole proceeded with 40 minutes of debate on Rogers (AL) amendment en bloc No. 2.",
+      "time": "15:23:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 582, the Committee of the Whole proceeded with 40 minutes of debate on Rogers (AL) amendment en bloc No. 1.",
+      "time": "15:20:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 2670.",
+      "time": "14:15:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable Lance Gooden to act as Chairman of the Committee.",
+      "time": "14:15:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 582 and Rule XVIII.",
+      "time": "14:15:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 2670 with 1 hour of general debate. The resolution provides for consideration of H.R. 2670 under a structured rule with one hour of general debate. The resolution provides that the amendment in the nature of a substitute consisting of the text of Rules Committee Print 118-10, modified by the amendment printed in Part A of the Rules Committee report, shall be considered as adopted.",
+      "time": "14:15:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 582. (consideration: CR H3231-3474; text: CR H3243-3427)",
+      "time": "14:15:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 582 passed House.",
+      "time": "14:13:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 582 Reported to House. Rule provides for consideration of H.R. 2670 with 1 hour of general debate. The resolution provides for consideration of H.R. 2670 under a structured rule with one hour of general debate. The resolution provides that the amendment in the nature of a substitute consisting of the text of Rules Committee Print 118-10, modified by the amendment printed in Part A of the Rules Committee report, shall be considered as adopted.",
+      "time": "10:02:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 97.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Armed Services. H. Rept. 118-125.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Armed Services. H. Rept. 118-125.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 58 - 1.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Readiness Subcommittee"
+      ],
+      "date": "2023-06-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Readiness Subcommittee"
+      ],
+      "date": "2023-06-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Cyber, Information Technologies, and Innovation Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Cyber, Information Technologies, and Innovation Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Seapower and Projection Forces Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Seapower and Projection Forces Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Military Personnel Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Military Personnel Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Tactical Air and Land Forces Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Tactical Air and Land Forces Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Intelligence and Special Operations Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Intelligence and Special Operations Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Strategic Forces Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee (Amended) by Voice Vote .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Strategic Forces Subcommittee"
+      ],
+      "date": "2023-06-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Tactical Air and Land Forces Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Tactical Air and Land Forces.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Strategic Forces Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Strategic Forces.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Seapower and Projection Forces Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Seapower and Projection Forces.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Readiness Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Readiness.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Military Personnel Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Military Personnel.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Intelligence and Special Operations Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Intelligence and Special Operations.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Cyber, Information Technologies, and Innovation Subcommittee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Cyber, Information Technologies, and Innovation.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-04-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-06-28T17:34:00Z",

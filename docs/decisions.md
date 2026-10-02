@@ -2597,3 +2597,93 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   already recorded under D94, and `uv run ruff check .` with the dot. Checking a directory
   you happen to have edited is exactly how a new file in a *different* directory slips
   through.
+
+- **D97 (2026-10-02) — V2-11 task 7: the site surface for bill activity, topics and feeds.
+  Five mechanical choices, each one recorded because each one deviates from, or adds a
+  constraint to, the plan text.**
+
+  **(a) Topic URLs are namespaced by vocabulary, not flat.** The plan says
+  `/topics/[slug]/`. Built as `/topics/policy-area/{slug}/` and `/topics/subject/{slug}/`
+  instead. Reason, and it is primary-source rather than taste: `ingest/topics.py` keeps the
+  two official vocabularies apart *on purpose* (D96), and
+  `test_policy_areas_and_subjects_are_separate_vocabularies` asserts that a bill with
+  `policy_area="Health"` and `subjects=["Health"]` yields BOTH a policy area and a subject
+  term named "Health" — valid output, pinned by a committed test. A flat `/topics/{slug}/`
+  is that merge at the URL layer: one page that silently means both, which is the exact
+  thing the module's docstring forbids. The alternative was a cross-vocabulary slug guard
+  that fails the run, and it was rejected because it would reverse a deliberate, tested
+  design in order to protect a URL shape — and would hard-stop a nightly the first time the
+  government applied a subject term equal to a policy-area name. Zero such collisions exist
+  in the 908 terms on disk, so this is insurance, not a fix. The spec preamble settles the
+  conflict: *where this document and the code disagree, the code is authoritative*. One
+  helper, `getTopicPath()` in `site/src/lib/data.ts`, owns the prefix rule for all six
+  surfaces that link a topic — the same reasoning as reading `slug` from the committed
+  index rather than re-deriving it.
+
+  **(b) Feeds are capped at 50 entries (`FEED_LIMIT`), topic pages at 200 rows.** Not a
+  preference — a file-size and file-count constraint. Uncapped, `/feed.xml` spans ~190,000
+  actions at the full 38,756-bill dataset and would run past the 25 MiB-per-file Workers
+  Static Assets limit `npm run test:file-count` already checks. Paginating topic pages
+  instead of capping them would add ~3,100 built files (620,000 bill-id references / 200),
+  which does not fit under the 20,000-file Workers Free ceiling. 50 is the Atom convention
+  for a recent-items feed; 200 matches `PAGE_SIZE` on the member vote record. The page always
+  states the true total above the truncated list, so nothing is hidden: *"Showing the 200
+  with the most recent action, of 11,432."* **If the owner wants full topic membership
+  browsable, that is pagination and it needs H20 (Workers Paid).**
+
+  **(c) Bill feeds exist only for bills that have a page.** 38,756 bill feeds would blow the
+  free file ceiling by themselves. A reader following a bill with no recorded vote follows it
+  on congress.gov, which is where its page is — consistent with SD-33 3(c) rather than a new
+  rule.
+
+  **(d) Feed entry ids reuse `ingest.events.event_id`'s rule, and this was VERIFIED, not
+  assumed.** `entryId()` in `site/src/lib/atom.ts` is sha256 over the whole action row
+  canonically serialised (sorted keys, no whitespace), first 12 hex, prefixed `{bill_id}--
+  {date}--`. Checked against the committed `data/events/` projection on **3,169 real actions:
+  zero mismatches.** So one government action has ONE identity whether a reader meets it in a
+  feed or the V2-12 Worker meets it in `data/events`. An index-based id was rejected outright:
+  prepending an action would shift every id below it and re-deliver the whole feed to every
+  subscriber. The two implementations can still drift if either hash rule is edited; both are
+  documented as mirrors and `event_id` is inside the 100%-branch coverage gate.
+
+  **(e) Per-action source links are section-level, not per row.** The plan says each action
+  renders with a "source link". Congress.gov publishes no per-action URL — the bill's
+  `source_url` is the record — so repeating one identical link on every one of a bill's 234
+  rows carries no information. Each row instead shows its `source_system` (the government's
+  own provenance field: "House floor actions", "Senate", "Library of Congress") and links to
+  `/v/{roll}` when the action resolves to a held roll call; the section carries the official
+  record link once. No URL is constructed that is not in the data.
+
+  **▶ `actions` is ABSENT, not null, on a bill the backfill has not reached.** The
+  deterministic exporter omits a `None` field rather than writing `"actions": null`, so the
+  TypeScript type is `actions?: BillAction[] | null` and every reader normalises with `??
+  null`. This cost a build: the first version checked `actions === null`, which is false for
+  `undefined`, and `hconres108-119` took the build down on `.length` of undefined. **Absent
+  and null both mean NOT COLLECTED; `[]` means collected and the government lists none.** The
+  three render differently on purpose — an empty timeline for an uncollected bill publishes
+  "this bill has had no actions", which is false framing (Value #1).
+
+  **▶ Actions render in STORED order, which is already newest-first.** The `/actions`
+  sub-resource returns newest-first and `bill_actions()` preserves it verbatim. The first
+  version reversed the array, on the assumption the government ordered oldest-first, and
+  rendered every timeline backwards. There is also no local re-sort: `date` alone cannot
+  order the dozen actions a busy bill collects in one day, and `actionTime` is present on
+  only 44% of rows, so any sort this layer applied would shuffle same-day sequences.
+
+  **▶ `npm run test:links` now enforces the SD-33 3(c) rule on the new surfaces, which is
+  what the plan always claimed it did.** It did not: the script only checked `/b/` page
+  presence, so a topic page or feed entry linking `/b/{id}` for a pageless bill would have
+  shipped. Extended to walk every `dist/topics/**/index.html` and every built `feed.xml`.
+  Topic rows carry `data-bill-id` precisely so the check runs in BOTH directions per row — a
+  bill with a page must link to it, one without must cite its `source_url` — rather than only
+  spotting a wrong link. **Verified by tampering with a built page**: it fails and names the
+  bill. Now passing over 23,032 topic rows and 48,306 bill-bearing feed entries.
+
+  **Measured at task-7 acceptance** (the D95/D96 habit of recording the number rather than
+  quietly changing scope): **16,793 built files** of the 20,000 ceiling, 3,207 of headroom,
+  warn line 18,000 — and the subject vocabulary is still growing with the backfill, so this
+  is the number H14/H20 will be decided against. Largest feed **53 KB**, largest topic page
+  **184 KB**, topics index **260 KB**; all 2,588 feeds parse as valid Atom with the required
+  elements. `<updated>` is derived from record dates everywhere, so two consecutive fetches
+  are byte-identical — pinned by an e2e test, because a build-clock stamp would re-notify
+  every subscriber on every rebuild.

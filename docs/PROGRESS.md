@@ -3,16 +3,20 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-01 (V2-11 tasks **1-5 + 5b done**, D88-D95 + SD-33. Backfill at
+**Last updated:** 2026-10-02 (V2-11 tasks **1-5 + 5b done, CI GREEN on `c4b6d21d3`**, D88-D95 + SD-33. Backfill at
 **73 of 19,315** bills for Congress 118; 119 untouched. **The interruption safety the owner
 asked about is now MEASURED and HARDENED (D95a)** — a real run was hard-killed and resumed
 clean in 0.56 s with zero requests, and every write on the backfill path is now atomic.
 **Next session: continue the backfill (see the three commands below) or start task 6
 (topics index) — they do not block each other.**)
 
-**2026-10-01 — PUSHED as `0924fc214` (code) + `afaae3808` (data). CI run `36952028397`
-was queued at the end of the session and its result is NOT yet known — check it first
-next session: `gh run list --limit 3`.** Local evidence before the push: the full suite
+**2026-10-02 — PUSHED and CI IS GREEN.** `0924fc214` (code) + `afaae3808` (data) +
+`c4b6d21d3` (this doc). **Run `36952060305` on `c4b6d21d3`: success, BOTH jobs**
+(`python` + `site-and-checks`). That run covers all three commits, so D95 is validated on
+GitHub and not only locally — the standing rule from D94 is satisfied.
+Note for the log: run `36952028397` on `0924fc214` shows **cancelled**, which was NOT a
+failure — the PROGRESS push 25 s later superseded it under the workflow's concurrency
+group. Local evidence before the push: the full suite
 **502 passed, 0 failed** under `CI=true GITHUB_ACTIONS=true`, run in two halves
 (286 + 216) because the machine had ~1.2 GB free and a single 13-minute run kept being
 killed by the memory watchdog. **Every test ran, in the CI environment** — the split was

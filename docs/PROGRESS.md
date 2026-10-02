@@ -10,6 +10,25 @@ clean in 0.56 s with zero requests, and every write on the backfill path is now 
 **Next session: continue the backfill (see the three commands below) or start task 6
 (topics index) — they do not block each other.**)
 
+**▶▶ 2026-10-02 — A BACKFILL RUN IS IN FLIGHT ON THIS MACHINE (owner said "just start it").**
+`uv run ingest bill-activity --congress 118` launched detached at ~01:50 UTC, full Congress
+(no `--limit`), logging to `backfill-118.log` (gitignored). **Nothing is committed by the
+run itself** — it only writes `data/bills/`.
+
+**If you are a cold session reading this, do these two checks first:**
+1. **Is it still running?** `tasklist | grep -i python` — the backfill is the ~80 MB one.
+   If it is gone (laptop shut, run finished, or it was killed) that is FINE and expected:
+   resume is the default and costs 0.56 s / zero requests (D95a).
+2. **Is there uncommitted data?** `git status --short -- data/` — if yes, commit it with
+   the FOUR-command loop below (the `uv run ingest events && uv run export` line is not
+   optional; without it the push goes red on invariant 8 and the manifest counts).
+
+Progress is read off disk, not the log (Python buffers stdout when redirected, so
+`backfill-118.log` can sit empty for a long time while the run is working fine):
+`grep -l '"actions"' data/bills/*.json | wc -l` — was **73** at launch, **240** a few
+minutes in. Target for Congress 118 is **19,315**; at the measured 3.9 s/bill that is
+~21 h for 118 alone, ~43 h with 119.
+
 **2026-10-02 — PUSHED and CI IS GREEN.** `0924fc214` (code) + `afaae3808` (data) +
 `c4b6d21d3` (this doc). **Run `36952060305` on `c4b6d21d3`: success, BOTH jobs**
 (`python` + `site-and-checks`). That run covers all three commits, so D95 is validated on

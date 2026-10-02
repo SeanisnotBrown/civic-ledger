@@ -10,6 +10,16 @@ clean in 0.56 s with zero requests, and every write on the backfill path is now 
 **Next session: continue the backfill (see the three commands below) or start task 6
 (topics index) — they do not block each other.**)
 
+**2026-10-01 — PUSHED as `0924fc214` (code) + `afaae3808` (data). CI run `36952028397`
+was queued at the end of the session and its result is NOT yet known — check it first
+next session: `gh run list --limit 3`.** Local evidence before the push: the full suite
+**502 passed, 0 failed** under `CI=true GITHUB_ACTIONS=true`, run in two halves
+(286 + 216) because the machine had ~1.2 GB free and a single 13-minute run kept being
+killed by the memory watchdog. **Every test ran, in the CI environment** — the split was
+for memory, not coverage. The coverage gate ran separately: **100% branch on all six
+modules including the new `ingest.events`** (164 tests). Coverage is monotonic in tests,
+so 100% on that subset implies 100% on the whole suite.
+
 **2026-10-01 — D95a: THE BACKFILL IS INTERRUPTION-PROOF, and it was MEASURED, not asserted.**
 The owner asked whether the machine can be shut down mid-backfill. Answer: yes, at any
 moment, and here is the evidence rather than the claim.

@@ -8,7 +8,16 @@ Rules:
   good/poor performance, thresholds, grade wording). Never publish an
   evaluative number he hasn't ratified (§0.8).
 - Track state in docs/PROGRESS.md: current increment, acceptance status,
-  blocked H-tasks. Update it before ending any session.
+  blocked H-tasks. Update it before ending any session. **Read its
+  "READ THIS FIRST — the three live facts" section at the top BEFORE touching
+  anything**: it says whether a long-running local ingest is currently writing
+  `data/`, whether uncommitted data in the tree is deliberate, and what the last
+  CI run did. A dirty `git status` in this repo is often a RUNNING PROCESS, not
+  abandoned work — do not clean it up or commit it without reading that section.
+- Before pushing, run BOTH gates (each has drawn blood — D94, D96 addendum):
+  `uv run ruff check .` (with the dot — a directory you edited is not enough) and
+  the full pytest line with `CI=true GITHUB_ACTIONS=true` that PROGRESS.md
+  records. A green local `uv run pytest` is not evidence CI is green.
 - One increment at a time (V2-N). Do not start the next until the current
   acceptance passes, except increments marked ∥. **Current priority (owner,
   2026-09-23, SD-32): V2-11 → V2-7 → V2-8 → V2-12 → V2-13** per

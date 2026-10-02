@@ -4,6 +4,7 @@ State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
 **Last updated:** 2026-10-02, end of session (V2-11 tasks **1-6 + 5b done**, D88-D96).
+**CI GREEN on `3f0499118`.** Backfill still running; `data/bills/` uncommitted on purpose.
 **Next increment task: V2-11 task 7 (the site work).**
 
 ## ▶▶ READ THIS FIRST — the three live facts
@@ -25,11 +26,13 @@ derived artifacts cannot be verified while the run is writing** (see the operati
 below). Nothing is at risk — the files are on disk and resume reads disk, not git.
 **To commit it, stop the run first, then use the four-command loop further down.**
 
-**3. CI STATE: the last push (`006a5d481`, task 6) went RED on Ruff and the FIX IS
-COMMITTED but its CI result is not yet known.** The failure was two over-long lines in
-`tests/test_topics_v2_11.py` — a lint error only, no logic involved (D96 addendum). Check
-`gh run list --limit 3` first thing. The commit before it (`c4b6d21d3`) was fully green,
-so nothing earlier is in doubt.
+**3. CI STATE: GREEN. `master` is clean at `3f0499118`, run `36959402541`, BOTH jobs
+success.** Nothing is outstanding and nothing needs chasing on arrival.
+For the record of how it got there: the task-6 push (`006a5d481`) went red at the Ruff
+step on two over-long lines in `tests/test_topics_v2_11.py` — lint only, no logic — because
+`ruff check ingest/` was run locally where CI runs `ruff check .` (D96 addendum). The fix
+is `3f0499118` and it is green. The task-6 run itself shows **cancelled**, which was the
+fix push superseding it under the concurrency group, not a second failure.
 
 ## Where the build actually stands
 

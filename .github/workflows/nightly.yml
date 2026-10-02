@@ -137,6 +137,11 @@ jobs:
           #     very next push. Pure projection: no network, no clock, ~0 Actions minutes.
           uv run ingest events
 
+          # 3f) The topic index (V2-11 task 6) is DERIVED from data/bills — same
+          #     reasoning and the same non-optionality as 3e: a stale index fails
+          #     verify-recompute invariant 9 on the next push. Offline, no clock.
+          uv run ingest topics
+
           # 4) Real change? (manifest isn't regenerated yet, so it can't false-trigger.)
           if [ -z "$(git status --porcelain data/)" ]; then
             echo "No data change tonight — running checks for upstream drift, then exiting."

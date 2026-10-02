@@ -500,6 +500,54 @@ class EventsFile(_Strict):
     events: list[BillEvent]
 
 
+# --- Topics (V2-11 task 6) ------------------------------------------------
+# The official government vocabulary, nothing else. SD-33 decision 4(a): the 31
+# policy areas and the CRS legislative subject terms, VERBATIM, with no
+# owner-authored bundles this release (H22 stays optional). Nothing here is
+# evaluative, so §0.8 does not apply -- a topic is a label the government already
+# put on a bill, not a judgement we made about it.
+
+
+class TopicEntry(_Strict):
+    """One topic: the official term, its mechanical slug, and the bills under it.
+
+    `name` is the government's string EXACTLY as published -- commas, apostrophes,
+    capitalisation and all ("Veterans' pensions", "Labor, employment"). It is what
+    renders. `slug` is derived from it by one mechanical rule and exists only to be
+    a URL; it is never shown to a reader and never edited by hand.
+
+    `bill_ids` is the full membership, not a sample, and is sorted so the file is
+    byte-stable. It is what lets a subscription on a topic resolve to bills without
+    the subscriber's client reading all 38,756 bill records."""
+
+    slug: str  # mechanical: lowercase, non-alphanumeric runs -> "-", trimmed
+    name: str  # the official term, verbatim (0.5: never reworded)
+    bill_count: int  # == len(bill_ids)
+    bill_ids: list[str]  # sorted
+
+
+class TopicsFile(_Strict):
+    """data/topics/index.json -- the whole topic vocabulary in one file.
+
+    Two separate vocabularies, deliberately NOT merged: `policy_areas` is the
+    government's single coarse classification (exactly one per bill, 31 of them),
+    and `subjects` is the much larger CRS legislative-subject list (many per bill).
+    Merging them would make "Health" the policy area indistinguishable from "Health"
+    the subject term, which are different claims about a bill.
+
+    `counts` is derived from the lists, so there is no wall-clock anywhere and a
+    quiet re-run re-exports byte-identically (verify-recompute invariant 9).
+
+    **No number here is a cap.** SD-33 was ratified against a measured snapshot of
+    31 policy areas and 872 CRS terms; 877 distinct terms were already on disk
+    partway through the V2-11 backfill. The vocabulary is the government's to
+    extend, so nothing in this file or its builder asserts a total."""
+
+    policy_areas: list[TopicEntry]  # sorted by slug
+    subjects: list[TopicEntry]  # sorted by slug
+    counts: dict[str, int]  # {"policy_areas": N, "subjects": M, "bills": B}
+
+
 # --- Grades (V2-4, Tier 3) ------------------------------------------------
 # The FIRST evaluative output (SD-26). Computed ONLY in ingest/scoring.py from the
 # owner-ratified data/config/thresholds.yaml (§0.8) — every label here appears

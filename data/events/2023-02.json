@@ -1,6 +1,537 @@
 {
-  "count": 3,
+  "count": 79,
   "events": [
+    {
+      "action_code": "H22000",
+      "bill_id": "hr1121-118",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-02-28",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-28--7fdcf62738dd",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr1121-118",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-02-28",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-28--d849ede96b42",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by the Yeas and Nays: 16 - 11 .",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1244-118",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-02-28",
+      "has_page": false,
+      "id": "hr1244-118--2023-02-28--0df11d3d203b",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1244",
+      "subjects": [
+        "Congressional tributes",
+        "Museums, exhibitions, cultural centers",
+        "Racial and ethnic relations",
+        "Smithsonian Institution",
+        "U.S. history",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committees on House Administration, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr1244-118",
+      "committees": null,
+      "date": "2023-02-28",
+      "has_page": false,
+      "id": "hr1244-118--2023-02-28--1272db2a6bbe",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1244",
+      "subjects": [
+        "Congressional tributes",
+        "Museums, exhibitions, cultural centers",
+        "Racial and ethnic relations",
+        "Smithsonian Institution",
+        "U.S. history",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1244-118",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2023-02-28",
+      "has_page": false,
+      "id": "hr1244-118--2023-02-28--4f8f4461fef9",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1244",
+      "subjects": [
+        "Congressional tributes",
+        "Museums, exhibitions, cultural centers",
+        "Racial and ethnic relations",
+        "Smithsonian Institution",
+        "U.S. history",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committees on House Administration, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr1244-118",
+      "committees": null,
+      "date": "2023-02-28",
+      "has_page": false,
+      "id": "hr1244-118--2023-02-28--8a16bde11905",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1244",
+      "subjects": [
+        "Congressional tributes",
+        "Museums, exhibitions, cultural centers",
+        "Racial and ethnic relations",
+        "Smithsonian Institution",
+        "U.S. history",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1244-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-28",
+      "has_page": false,
+      "id": "hr1244-118--2023-02-28--d990cd5a69d0",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1244",
+      "subjects": [
+        "Congressional tributes",
+        "Museums, exhibitions, cultural centers",
+        "Racial and ethnic relations",
+        "Smithsonian Institution",
+        "U.S. history",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committees on House Administration, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1167-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--0086655fb117",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Education and the Workforce, Financial Services, the Judiciary, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1167-118",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--02820d0f08fa",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Education and the Workforce, Financial Services, the Judiciary, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1167-118",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--301235eb7610",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Education and the Workforce, Financial Services, the Judiciary, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1167-118",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--99a49b65ed91",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Education and the Workforce, Financial Services, the Judiciary, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr1167-118",
+      "committees": null,
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--c77eabce1327",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr1167-118",
+      "committees": null,
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--f5801efef194",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1167-118",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1167-118--2023-02-24--fc2c089ebfe8",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1167",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Education and the Workforce, Financial Services, the Judiciary, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr1194-118",
+      "committees": null,
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1194-118--2023-02-24--c77eabce1327",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1194",
+      "subjects": [
+        "Budget process",
+        "Government information and archives",
+        "Presidents and presidential powers, Vice Presidents"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1194-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1194-118--2023-02-24--f1aee7ab1d1d",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1194",
+      "subjects": [
+        "Budget process",
+        "Government information and archives",
+        "Presidents and presidential powers, Vice Presidents"
+      ],
+      "text": "Referred to the House Committee on the Budget.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr1194-118",
+      "committees": null,
+      "date": "2023-02-24",
+      "has_page": false,
+      "id": "hr1194-118--2023-02-24--f5801efef194",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1194",
+      "subjects": [
+        "Budget process",
+        "Government information and archives",
+        "Presidents and presidential powers, Vice Presidents"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1121-118",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-02-21",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-21--20566661b019",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr1121-118",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-21--96a5696f3688",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1121-118",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-02-21",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-21--b8ab30554921",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr1121-118",
+      "committees": null,
+      "date": "2023-02-21",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-21--cc4fcdead793",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr1121-118",
+      "committees": null,
+      "date": "2023-02-21",
+      "has_page": true,
+      "id": "hr1121-118--2023-02-21--f899e57ed047",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1121",
+      "subjects": [
+        "Congressional-executive branch relations",
+        "Mining",
+        "Oil and gas",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr560-118",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "has_page": false,
+      "id": "hr560-118--2023-02-21--527ba037515e",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/560",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Foreign labor",
+        "Immigration status and procedures",
+        "Northern Mariana Islands"
+      ],
+      "text": "Referred to the Subcommittee on Indian and Insular Affairs .",
+      "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr1069-118",
+      "committees": null,
+      "date": "2023-02-17",
+      "has_page": false,
+      "id": "hr1069-118--2023-02-17--712f7d472aeb",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1069",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Energy efficiency and conservation",
+        "Government information and archives",
+        "Government studies and investigations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr1069-118",
+      "committees": null,
+      "date": "2023-02-17",
+      "has_page": false,
+      "id": "hr1069-118--2023-02-17--75780e4cb93f",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1069",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Energy efficiency and conservation",
+        "Government information and archives",
+        "Government studies and investigations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1069-118",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-02-17",
+      "has_page": false,
+      "id": "hr1069-118--2023-02-17--c75325fba9f4",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1069",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Energy efficiency and conservation",
+        "Government information and archives",
+        "Government studies and investigations"
+      ],
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "type": "IntroReferral"
+    },
     {
       "action_code": "H11100",
       "bill_id": "hr1094-118",
@@ -52,6 +583,1080 @@
         "School administration"
       ],
       "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr833-118",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-02-17",
+      "has_page": false,
+      "id": "hr833-118--2023-02-17--f5a04e47e304",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/833",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr1050-118",
+      "committees": null,
+      "date": "2023-02-14",
+      "has_page": false,
+      "id": "hr1050-118--2023-02-14--03470a902522",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1050",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr1050-118",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-02-14",
+      "has_page": false,
+      "id": "hr1050-118--2023-02-14--238db7b13ecb",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1050",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr1050-118",
+      "committees": null,
+      "date": "2023-02-14",
+      "has_page": false,
+      "id": "hr1050-118--2023-02-14--348d7b73d71f",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1050",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr626-118",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-02-10",
+      "has_page": false,
+      "id": "hr626-118--2023-02-10--0b45460e5459",
+      "policy_area": "Emergency Management",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/626",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr731-118",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2023-02-10",
+      "has_page": false,
+      "id": "hr731-118--2023-02-10--6ffeeebf055c",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/731",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr982-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-10",
+      "has_page": false,
+      "id": "hr982-118--2023-02-10--71afd02c65f4",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/982",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Census and government statistics",
+        "Child health",
+        "Congressional oversight",
+        "Correctional facilities and imprisonment",
+        "Department of Justice",
+        "Detention of persons",
+        "Employment and training programs",
+        "Family planning and birth control",
+        "Family services",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Health information and medical records",
+        "Health promotion and preventive care",
+        "Law enforcement administration and funding",
+        "Mental health",
+        "Nutrition and diet",
+        "Sex and reproductive health",
+        "State and local government operations",
+        "Women's health"
+      ],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr982-118",
+      "committees": null,
+      "date": "2023-02-10",
+      "has_page": false,
+      "id": "hr982-118--2023-02-10--8a2ee0879170",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/982",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Census and government statistics",
+        "Child health",
+        "Congressional oversight",
+        "Correctional facilities and imprisonment",
+        "Department of Justice",
+        "Detention of persons",
+        "Employment and training programs",
+        "Family planning and birth control",
+        "Family services",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Health information and medical records",
+        "Health promotion and preventive care",
+        "Law enforcement administration and funding",
+        "Mental health",
+        "Nutrition and diet",
+        "Sex and reproductive health",
+        "State and local government operations",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr982-118",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-10",
+      "has_page": false,
+      "id": "hr982-118--2023-02-10--a3643956fcd1",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/982",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Census and government statistics",
+        "Child health",
+        "Congressional oversight",
+        "Correctional facilities and imprisonment",
+        "Department of Justice",
+        "Detention of persons",
+        "Employment and training programs",
+        "Family planning and birth control",
+        "Family services",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Health information and medical records",
+        "Health promotion and preventive care",
+        "Law enforcement administration and funding",
+        "Mental health",
+        "Nutrition and diet",
+        "Sex and reproductive health",
+        "State and local government operations",
+        "Women's health"
+      ],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr982-118",
+      "committees": null,
+      "date": "2023-02-10",
+      "has_page": false,
+      "id": "hr982-118--2023-02-10--e7bda666ed4d",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/982",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Census and government statistics",
+        "Child health",
+        "Congressional oversight",
+        "Correctional facilities and imprisonment",
+        "Department of Justice",
+        "Detention of persons",
+        "Employment and training programs",
+        "Family planning and birth control",
+        "Family services",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Health information and medical records",
+        "Health promotion and preventive care",
+        "Law enforcement administration and funding",
+        "Mental health",
+        "Nutrition and diet",
+        "Sex and reproductive health",
+        "State and local government operations",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr890-118",
+      "committees": null,
+      "date": "2023-02-09",
+      "has_page": false,
+      "id": "hr890-118--2023-02-09--16b39525ea60",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/890",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Government information and archives"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr890-118",
+      "committees": null,
+      "date": "2023-02-09",
+      "has_page": false,
+      "id": "hr890-118--2023-02-09--c3f96549e779",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/890",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Government information and archives"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr890-118",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-02-09",
+      "has_page": false,
+      "id": "hr890-118--2023-02-09--f1101ee24c98",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/890",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Government information and archives"
+      ],
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr502-118",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2023-02-08",
+      "has_page": false,
+      "id": "hr502-118--2023-02-08--51e8fd4d6b7f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/502",
+      "subjects": [
+        "Administrative remedies",
+        "Veterans' education, employment, rehabilitation"
+      ],
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr626-118",
+      "committees": [
+        "Emergency Management and Technology Subcommittee"
+      ],
+      "date": "2023-02-08",
+      "has_page": false,
+      "id": "hr626-118--2023-02-08--a342dee91316",
+      "policy_area": "Emergency Management",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/626",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Emergency Management and Technology.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr857-118",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr857-118--2023-02-07--092d04a00d3b",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/857",
+      "subjects": [],
+      "text": "Referred to the Committee on Oversight and Accountability, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr857-118",
+      "committees": null,
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr857-118--2023-02-07--28b78308f88d",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/857",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr857-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr857-118--2023-02-07--9633922d2b7c",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/857",
+      "subjects": [],
+      "text": "Referred to the Committee on Oversight and Accountability, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr857-118",
+      "committees": null,
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr857-118--2023-02-07--f0e26995d5d4",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/857",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr858-118",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr858-118--2023-02-07--092d04a00d3b",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/858",
+      "subjects": [],
+      "text": "Referred to the Committee on Oversight and Accountability, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr858-118",
+      "committees": null,
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr858-118--2023-02-07--28b78308f88d",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/858",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr858-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr858-118--2023-02-07--9633922d2b7c",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/858",
+      "subjects": [],
+      "text": "Referred to the Committee on Oversight and Accountability, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr858-118",
+      "committees": null,
+      "date": "2023-02-07",
+      "has_page": false,
+      "id": "hr858-118--2023-02-07--f0e26995d5d4",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/858",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr833-118",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-02-06",
+      "has_page": false,
+      "id": "hr833-118--2023-02-06--0b18d442185d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/833",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr833-118",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-02-06",
+      "has_page": false,
+      "id": "hr833-118--2023-02-06--396492eb7235",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/833",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr833-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-06",
+      "has_page": false,
+      "id": "hr833-118--2023-02-06--40c931467fbf",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/833",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, and the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr833-118",
+      "committees": null,
+      "date": "2023-02-06",
+      "has_page": false,
+      "id": "hr833-118--2023-02-06--4a103b4bb707",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/833",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr833-118",
+      "committees": null,
+      "date": "2023-02-06",
+      "has_page": false,
+      "id": "hr833-118--2023-02-06--4f3ab8d6d327",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/833",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "bill_id": "hr710-118",
+      "committees": null,
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr710-118--2023-02-02--ffd11c5b0b16",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/710",
+      "subjects": [
+        "Advisory bodies",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional operations and organization",
+        "Government information and archives",
+        "Government studies and investigations",
+        "House of Representatives",
+        "Legislative rules and procedure",
+        "Presidents and presidential powers, Vice Presidents",
+        "Senate"
+      ],
+      "text": "Sponsor introductory remarks on measure. (CR E91)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr766-118",
+      "committees": null,
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr766-118--2023-02-02--3981ca1e8417",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/766",
+      "subjects": [
+        "Accounting and auditing",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional oversight",
+        "Health care costs and insurance",
+        "Health programs administration and funding",
+        "Health promotion and preventive care"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr766-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr766-118--2023-02-02--9f3fb79344a8",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/766",
+      "subjects": [
+        "Accounting and auditing",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional oversight",
+        "Health care costs and insurance",
+        "Health programs administration and funding",
+        "Health promotion and preventive care"
+      ],
+      "text": "Referred to the House Committee on the Budget.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr766-118",
+      "committees": null,
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr766-118--2023-02-02--a564237bd602",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/766",
+      "subjects": [
+        "Accounting and auditing",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional oversight",
+        "Health care costs and insurance",
+        "Health programs administration and funding",
+        "Health promotion and preventive care"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr807-118",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr807-118--2023-02-02--1b6add3c1f97",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/807",
+      "subjects": [
+        "Currency",
+        "Service animals",
+        "Social work, volunteer service, charitable organizations"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr807-118",
+      "committees": null,
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr807-118--2023-02-02--3981ca1e8417",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/807",
+      "subjects": [
+        "Currency",
+        "Service animals",
+        "Social work, volunteer service, charitable organizations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr807-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr807-118--2023-02-02--7072488f1a5c",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/807",
+      "subjects": [
+        "Currency",
+        "Service animals",
+        "Social work, volunteer service, charitable organizations"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr807-118",
+      "committees": null,
+      "date": "2023-02-02",
+      "has_page": false,
+      "id": "hr807-118--2023-02-02--a564237bd602",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/807",
+      "subjects": [
+        "Currency",
+        "Service animals",
+        "Social work, volunteer service, charitable organizations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr626-118",
+      "committees": [
+        "Economic Development, Public Buildings, and Emergency Management Subcommittee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr626-118--2023-02-01--be396bab0543",
+      "policy_area": "Emergency Management",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/626",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Economic Development, Public Buildings, and Emergency Management.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr710-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr710-118--2023-02-01--16b60a13989d",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/710",
+      "subjects": [
+        "Advisory bodies",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional operations and organization",
+        "Government information and archives",
+        "Government studies and investigations",
+        "House of Representatives",
+        "Legislative rules and procedure",
+        "Presidents and presidential powers, Vice Presidents",
+        "Senate"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr710-118",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr710-118--2023-02-01--63e09d68cd8a",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/710",
+      "subjects": [
+        "Advisory bodies",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional operations and organization",
+        "Government information and archives",
+        "Government studies and investigations",
+        "House of Representatives",
+        "Legislative rules and procedure",
+        "Presidents and presidential powers, Vice Presidents",
+        "Senate"
+      ],
+      "text": "Referred to the Committee on the Budget, and in addition to the Committee on Rules, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr710-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr710-118--2023-02-01--71d462721a8b",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/710",
+      "subjects": [
+        "Advisory bodies",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional operations and organization",
+        "Government information and archives",
+        "Government studies and investigations",
+        "House of Representatives",
+        "Legislative rules and procedure",
+        "Presidents and presidential powers, Vice Presidents",
+        "Senate"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr710-118",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr710-118--2023-02-01--9465e67baf0f",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/710",
+      "subjects": [
+        "Advisory bodies",
+        "Budget deficits and national debt",
+        "Budget process",
+        "Congressional operations and organization",
+        "Government information and archives",
+        "Government studies and investigations",
+        "House of Representatives",
+        "Legislative rules and procedure",
+        "Presidents and presidential powers, Vice Presidents",
+        "Senate"
+      ],
+      "text": "Referred to the Committee on the Budget, and in addition to the Committee on Rules, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr731-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr731-118--2023-02-01--16b60a13989d",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/731",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr731-118",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr731-118--2023-02-01--437112bcc4c8",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/731",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Education and the Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr731-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr731-118--2023-02-01--71d462721a8b",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/731",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr731-118",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr731-118--2023-02-01--a3e41abeef79",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/731",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Education and the Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr733-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr733-118--2023-02-01--16b60a13989d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/733",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr733-118",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr733-118--2023-02-01--49c0e8a1d7e2",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/733",
+      "subjects": [],
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr733-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "hr733-118--2023-02-01--71d462721a8b",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/733",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s220-118",
+      "committees": null,
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "s220-118--2023-02-01--97c0a2be1418",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/220",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s220-118",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-02-01",
+      "has_page": false,
+      "id": "s220-118--2023-02-01--feebe78577d0",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/220",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Competition and antitrust",
+        "Congressional oversight",
+        "Contracts and agency",
+        "Department of Labor",
+        "Employment discrimination and employee rights",
+        "Federal Trade Commission (FTC)",
+        "State and local government operations",
+        "Trade secrets and economic espionage"
+      ],
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions. (Sponsor introductory remarks on measure: CR S207-208)",
       "type": "IntroReferral"
     }
   ],

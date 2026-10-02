@@ -2526,3 +2526,60 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
     and take seconds. **The lesson that generalises: adding a derived, verified artifact
     changes the hand-written commit ritual for everything upstream of it, and the ritual
     lives in a doc that no test reads.**
+
+- **D96 (2026-10-02) — V2-11 task 6: the topic index, and two measured size numbers the
+  owner will have to decide on.**
+  `ingest/topics.py` (pure, no clock, no network) + `uv run ingest topics` build
+  `data/topics/index.json` from `data/bills/**`. SD-33 decision 4(a) held exactly: official
+  government vocabulary only, stored verbatim, **no owner-authored bundles** (H22 stays
+  optional). Nothing here is evaluative, so §0.8 does not apply — a topic is a label the
+  government already put on a bill, not a judgement we made. `verify-recompute` gains
+  **invariant 9** (the index re-derives byte-for-byte from data/bills); wired into
+  `nightly.yml` as step 3f beside events' 3e, and `ingest.topics` joins the CI 100%-branch
+  coverage gate (measured 100%, 54 statements, 33 tests).
+
+  **Three design calls:**
+  - **The two vocabularies are kept APART**, not merged into one topic list. A bill has
+    exactly one `policy_area` (31 exist) and many CRS `subjects` (877 on disk). "Health" the
+    policy area and "Health" the subject term are different claims about a bill, and one
+    merged topic page would silently mean both.
+  - **A slug collision FAILS the run** (`SlugCollision`), rather than appending a counter or
+    picking a winner. One URL cannot stand for two official terms: whichever way it
+    resolved, a topic page would list bills the government did not put under the topic the
+    reader asked for. The message names both terms, because the fix is a decision about the
+    slug rule, not a silent disambiguation. The rule itself is total — lowercase, every run
+    of non-alphanumerics to one hyphen — because the official terms are full of punctuation
+    a URL cannot carry (`Veterans' pensions`, `Alcoholic beverages and traffic safety
+    (DUI/DWI)`). No collision exists in the 908 terms on disk.
+  - **Entries sort by SLUG, never by bill count.** A count-ordered file would rewrite
+    wholesale every time any bill gained a subject.
+
+  **▶ NO NUMBER IN HERE IS A CAP, and that is now enforced by a test.** SD-33 was ratified
+  against a measured snapshot of "31 policy areas and 872 CRS terms". **877 distinct subject
+  terms were already on disk at 1,385 bills** — a third of a percent of the way through the
+  backfill. The CRS list is the government's to extend, so neither the module nor the
+  manifest asserts a total; `test_nothing_asserts_a_vocabulary_SIZE` pins that. The owner
+  should know the 872 he was quoted will drift upward, and that this is the vocabulary
+  growing, not a data error.
+
+  **▶ MEASURED: this file projects to ~10.7 MB, rewritten WHOLE on every nightly.**
+  Built as the plan specifies (one `index.json` carrying each topic's bill ids) and the
+  number recorded rather than scope quietly changed — the same treatment D95 gave the events
+  feed. Measured on real data: **16.0 subjects per bill (mean), median 5, max 620**, giving
+  **627 KB at 1,362 bills → ~620,000 bill-id references ≈ 10.7 MB at 38,756**. Two distinct
+  costs: the file itself, and that any bill change rewrites all of it, so the repo grows by
+  ~10 MB per nightly commit that touches topics. **Options when it binds** (none chosen,
+  none urgent — the backfill is days from done): shard to `data/topics/{slug}.json` so only
+  changed topics rewrite (and which matches the one-file-per-record convention the rest of
+  `data/` already uses); or keep one index of counts only and let the site derive membership
+  from the bills it already loads at build time. **The V2-12 Worker does not need this file
+  at all** — every event row already carries `policy_area` and `subjects` (D95) — so this is
+  a site-build and repo-size question, not an alerts question.
+
+  **Operational note worth more than it looks: invariants 8 and 9 cannot be verified while
+  a backfill is running.** Both re-derive from `data/bills/`, and a concurrent backfill adds
+  bills between the regeneration and the check — observed exactly that (`events 2024-03
+  committed 218,068 vs recompute 229,022 bytes`). In CI there is no concurrent writer so it
+  never arises. Locally the fix is the resume design paying for itself: kill the backfill,
+  run the gates on a quiesced dataset, relaunch. **This is why the chunk loop commits only
+  after the run is stopped**, and it is now stated in PROGRESS.md.

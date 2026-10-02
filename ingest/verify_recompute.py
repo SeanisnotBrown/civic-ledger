@@ -45,6 +45,12 @@ longer true.) What this script checks, over 100% of roll calls:
    (an unstable sort, a wall-clock, a dict iteration order). No-op until
    data/events/ exists.
 
+9. **Topics re-derive** (V2-11 task 6) — `data/topics/index.json` re-derives
+   byte-for-byte from data/bills alone. Catches the same three classes invariant 8
+   does: a stale index after bills moved, a hand-edit of an official government
+   term (which 0.5 forbids), and any non-determinism in the projection. No-op until
+   data/topics/ exists.
+
 Exit 0 = every invariant holds for every roll; nonzero lists the failures. It is
 also exercised as a pytest test so §8's "recompute-and-match script as a test" holds.
 """
@@ -278,6 +284,33 @@ def check_events() -> list[str]:
     return failures
 
 
+def check_topics() -> list[str]:
+    """(9) The topic index re-derives byte-for-byte from the bills (V2-11 task 6).
+
+    Same shape as `check_events`: compare committed BYTES against a fresh
+    `topics.compute()` put through the exporter's own `_dumps`, so a reordering or a
+    changed separator fails as loudly as changed content. A topic page is built from
+    this file, so an index that drifts from data/bills publishes a topic whose bill
+    list is not what the government actually tagged."""
+    from ingest import topics
+    from ingest.export import _dumps
+
+    data = repo_root() / "data"
+    path = data / "topics" / "index.json"
+    if not path.exists():
+        return []
+    recomputed = topics.compute(data)
+    if recomputed is None:
+        return ["topics — index.json is committed but there are no bills to derive it from"]
+    want = _dumps(recomputed.model_dump())
+    got = path.read_text(encoding="utf-8")
+    if got != want:
+        return [
+            f"topics — committed bytes != recompute ({len(got)} vs {len(want)} bytes)"
+        ]
+    return []
+
+
 def main(argv: list[str] | None = None) -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not votes_dir.exists() or not any(votes_dir.glob("*.json")):
@@ -289,6 +322,7 @@ def main(argv: list[str] | None = None) -> int:
         + check_grades()
         + check_legislation_stats()
         + check_events()
+        + check_topics()
     )
     n_rolls = sum(1 for _ in votes_dir.glob("*.json"))
     if failures:
@@ -313,6 +347,8 @@ def main(argv: list[str] | None = None) -> int:
     n_events = _count("events")
     if n_events:
         derived.append(f"{n_events} month(s) of the activity feed")
+    if (repo_root() / "data" / "topics" / "index.json").exists():
+        derived.append("the topic index")
     tail = f"; {' and '.join(derived)} recompute exactly." if derived else "."
     print(
         f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "

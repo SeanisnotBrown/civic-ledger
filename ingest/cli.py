@@ -76,6 +76,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import events
 
         return events.run(args[1:])
+    if args and args[0] == "topics":
+        from ingest import topics
+
+        return topics.run(args[1:])
     if args and args[0] == "classify":
         from ingest import classify
 
@@ -112,6 +116,7 @@ def main(argv: list[str] | None = None) -> int:
     print("                  --skip-existing: resume a part-done backfill for free "
           "(--congress only)")
     print("  events        V2-11 project bill actions -> data/events/{YYYY-MM}.json")
+    print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")
     print("  metrics       INC-10 Tier-2 metrics -> data/metrics.json (after ingest+legislation)")

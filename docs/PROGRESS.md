@@ -3,12 +3,45 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-02 (V2-11 tasks **1-5 + 5b done, CI GREEN on `c4b6d21d3`**, D88-D95 + SD-33. Backfill at
+**Last updated:** 2026-10-02 (V2-11 tasks **1-6 + 5b done**, D88-D95 + SD-33. Backfill at
 **73 of 19,315** bills for Congress 118; 119 untouched. **The interruption safety the owner
 asked about is now MEASURED and HARDENED (D95a)** — a real run was hard-killed and resumed
 clean in 0.56 s with zero requests, and every write on the backfill path is now atomic.
 **Next session: continue the backfill (see the three commands below) or start task 6
 (topics index) — they do not block each other.**)
+
+**2026-10-02 — V2-11 TASK 6 DONE (D96). The topic index exists.**
+`ingest/topics.py` + `uv run ingest topics` build `data/topics/index.json` from
+`data/bills/**` — pure, no clock, no network. **31 policy areas + 877 CRS subject terms
+over 1,385 bills.** SD-33 4(a) held exactly: official vocabulary only, verbatim, no owner
+bundles (H22 still optional). `verify-recompute` gains **invariant 9**; nightly step 3f;
+`ingest.topics` added to the CI coverage gate (100%, 33 tests).
+- **A slug collision FAILS the run** rather than appending a counter — one URL cannot stand
+  for two official terms. No collision exists in the 908 terms on disk.
+- **▶ The "872 CRS terms" in SD-33 is a SNAPSHOT, not a cap.** 877 were on disk at 1,385
+  bills, i.e. 1% into the backfill. The government extends the CRS list; a test pins that
+  nothing asserts a total. Expect the number to keep climbing — that is the vocabulary
+  growing, not a data error.
+- **▶ MEASURED: the index projects to ~10.7 MB and is rewritten WHOLE every nightly**
+  (16.0 subjects/bill mean, median 5, max 620 → ~620,000 bill-id references at 38,756
+  bills). Built as the plan specifies and the number recorded, same as D95 did for events.
+  Not urgent — the backfill is days from done. Options when it binds: shard to
+  `data/topics/{slug}.json` (which matches the one-file-per-record convention the rest of
+  `data/` uses, and means only changed topics rewrite), or keep counts only and let the
+  site derive membership from bills it already loads. **The V2-12 Worker does not need this
+  file at all** — events already carry `policy_area` and `subjects`.
+- **Gates: 535 passed / 0 failed** under `CI=true GITHUB_ACTIONS=true` (two halves,
+  291 + 244, for memory); `uv run checks` ALL CHECKS PASSED; `verify-recompute` OK through
+  invariant 9; `npm run build` 13,259 pages / 48 s; `test:links` OK (345 pageless bills
+  correctly linking to congress.gov); `test:file-count` 13,296 of 20,000; `astro check`
+  0 errors.
+
+**⚠ OPERATIONAL RULE LEARNED THE HARD WAY (D96): invariants 8 and 9 CANNOT be verified
+while a backfill is running.** Both re-derive from `data/bills/`, and a concurrent backfill
+adds bills between the regeneration and the check — observed exactly that (`events 2024-03
+committed 218,068 vs recompute 229,022 bytes`). CI never sees it (no concurrent writer).
+Locally: **stop the run, regenerate, verify, commit, relaunch.** Resume costs 0.56 s, so
+this is cheap. It is why the chunk loop commits only after the run is stopped.
 
 **▶▶ 2026-10-02 — A BACKFILL RUN IS IN FLIGHT ON THIS MACHINE (owner said "just start it").**
 `uv run ingest bill-activity --congress 118` launched detached at ~01:50 UTC, full Congress
@@ -286,13 +319,13 @@ Each working session, three commands:
 ```
 git pull --rebase                                   # take the nightly's commit first
 uv run ingest bill-activity --congress 118          # resumes; kill it whenever, it is safe
-uv run ingest events && uv run export               # <- NOT optional, see below
+uv run ingest events && uv run ingest topics && uv run export   # <- NOT optional
 git add data/ && git commit -m "data: bill timelines (118)" && git push
 ```
 
 **▶ The third line is new as of D95 and a chunk push WILL go red without it.** Two
 committed artifacts are derived from `data/bills/` and are checked on every push:
-`data/events/` (verify-recompute **invariant 8**) and `data/manifest.json`'s counts
+`data/events/` (**invariant 8**), `data/topics/index.json` (**invariant 9**) and `data/manifest.json`'s counts
 (`test_committed_manifest_matches_regeneration`). Commit fresh timelines without
 regenerating both and CI fails on your own push — the next nightly would heal it, but the
 red run in between is exactly the D94 lesson. Both commands are offline and take seconds.

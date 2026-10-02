@@ -39,6 +39,7 @@ from ingest.models import (
     RankingsFile,
     RollCall,
     Statement,
+    TopicsFile,
 )
 
 DATA_DIR = repo_root() / "data"
@@ -54,6 +55,7 @@ METRICS_PATH = DATA_DIR / "metrics.json"
 RANKINGS_DIR = DATA_DIR / "rankings"
 GRADES_DIR = DATA_DIR / "grades"
 EVENTS_DIR = DATA_DIR / "events"
+TOPICS_DIR = DATA_DIR / "topics"
 
 # State-jurisdiction partition (INC-12/D51). MS data lives under data/state/ms/ so the
 # federal checks — which glob data/{members,votes,bills}/*.json NON-recursively — never
@@ -224,6 +226,14 @@ def export_events(
     return sorted(written)
 
 
+def export_topics(index: TopicsFile, out_dir: Path = TOPICS_DIR) -> Path:
+    """Write data/topics/index.json (V2-11 task 6). Deterministic (`_dumps`, no
+    wall-clock) and re-derivable from data/bills alone — `verify-recompute`
+    invariant 9. Atomic, like every other write the V2-11 work added."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    return atomic_write_text(out_dir / "index.json", _dumps(index.model_dump()))
+
+
 def export_statement(statement: Statement, out_dir: Path = STATEMENTS_DIR) -> Path:
     """Write one deterministic JSON file per curated statement:
     data/statements/{id}.json. Statements are OWNER-curated (H8) via the Flask
@@ -250,6 +260,7 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("grades", GradesFile),
     ("statement", Statement),
     ("events", EventsFile),
+    ("topics", TopicsFile),
 )
 
 
@@ -285,6 +296,12 @@ def _count_dataset() -> dict[str, object]:
     event_files = sorted(EVENTS_DIR.glob("*.json")) if EVENTS_DIR.exists() else []
     event_total = sum(
         json.loads(p.read_text(encoding="utf-8"))["count"] for p in event_files
+    )
+    topics_path = TOPICS_DIR / "index.json"
+    topic_counts = (
+        json.loads(topics_path.read_text(encoding="utf-8"))["counts"]
+        if topics_path.exists()
+        else {}
     )
 
     by_chamber: dict[str, int] = {}
@@ -325,6 +342,10 @@ def _count_dataset() -> dict[str, object]:
             # counts as a file, so the event total is what actually moves.
             "events": event_total,
             "event_months": len(event_files),
+            # V2-11 task 6: the size of the official topic vocabulary the dataset
+            # actually holds. NOT a cap — SD-33's "31 + 872" was a snapshot, and the
+            # government extends the CRS list.
+            "topics": topic_counts,
             "statements": len(statements),
             # V2-5 dashboard headline: the introduced-bill universe (bills our members
             # sponsored) vs how many ever got a recorded roll-call vote. Factual counts

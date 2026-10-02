@@ -33,13 +33,14 @@ jobs:
         # (Not in pytest addopts on purpose — a plain/subset `uv run pytest` stays
         # usable.) V2-4 (D68) adds scoring.py + classify.py to the metrics+rankings set;
         # V2-5 adds legislation_stats.py (the dashboard-headline source); V2-11 (D95)
-        # adds events.py, the projection behind the published activity feed — pure,
-        # re-derived by verify-recompute invariant 8, and read by the V2-12 Worker.
+        # adds events.py and topics.py, the two projections behind the published feed and
+        # the topic pages — both pure and both re-derived by verify-recompute
+        # (invariants 8 and 9).
         run: >
           uv run pytest -q
           --cov=ingest.metrics --cov=ingest.rankings
           --cov=ingest.scoring --cov=ingest.classify
-          --cov=ingest.legislation_stats --cov=ingest.events
+          --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics
           --cov-branch --cov-fail-under=100 --cov-report=term-missing
       - name: Verify-recompute (recompute-and-match over the dataset)
         run: uv run verify-recompute

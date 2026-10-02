@@ -1,0 +1,69 @@
+{
+  "$defs": {
+    "TopicEntry": {
+      "additionalProperties": false,
+      "description": "One topic: the official term, its mechanical slug, and the bills under it.\n\n`name` is the government's string EXACTLY as published -- commas, apostrophes,\ncapitalisation and all (\"Veterans' pensions\", \"Labor, employment\"). It is what\nrenders. `slug` is derived from it by one mechanical rule and exists only to be\na URL; it is never shown to a reader and never edited by hand.\n\n`bill_ids` is the full membership, not a sample, and is sorted so the file is\nbyte-stable. It is what lets a subscription on a topic resolve to bills without\nthe subscriber's client reading all 38,756 bill records.",
+      "properties": {
+        "bill_count": {
+          "title": "Bill Count",
+          "type": "integer"
+        },
+        "bill_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Bill Ids",
+          "type": "array"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "slug": {
+          "title": "Slug",
+          "type": "string"
+        }
+      },
+      "required": [
+        "slug",
+        "name",
+        "bill_count",
+        "bill_ids"
+      ],
+      "title": "TopicEntry",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "data/topics/index.json -- the whole topic vocabulary in one file.\n\nTwo separate vocabularies, deliberately NOT merged: `policy_areas` is the\ngovernment's single coarse classification (exactly one per bill, 31 of them),\nand `subjects` is the much larger CRS legislative-subject list (many per bill).\nMerging them would make \"Health\" the policy area indistinguishable from \"Health\"\nthe subject term, which are different claims about a bill.\n\n`counts` is derived from the lists, so there is no wall-clock anywhere and a\nquiet re-run re-exports byte-identically (verify-recompute invariant 9).\n\n**No number here is a cap.** SD-33 was ratified against a measured snapshot of\n31 policy areas and 872 CRS terms; 877 distinct terms were already on disk\npartway through the V2-11 backfill. The vocabulary is the government's to\nextend, so nothing in this file or its builder asserts a total.",
+  "properties": {
+    "counts": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Counts",
+      "type": "object"
+    },
+    "policy_areas": {
+      "items": {
+        "$ref": "#/$defs/TopicEntry"
+      },
+      "title": "Policy Areas",
+      "type": "array"
+    },
+    "subjects": {
+      "items": {
+        "$ref": "#/$defs/TopicEntry"
+      },
+      "title": "Subjects",
+      "type": "array"
+    }
+  },
+  "required": [
+    "policy_areas",
+    "subjects",
+    "counts"
+  ],
+  "title": "TopicsFile",
+  "type": "object"
+}

@@ -3,7 +3,65 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-01 (V2-11 tasks **1-4 + 4b + 4c done**, D88-D94 + SD-33. **CI fully green on 019da1727** — both jobs, after two red pushes that day. Working tree clean, nothing unpushed. **The backfill has STARTED: 43 of 19,315 bills done for Congress 118**, 119 untouched. **Next session: continue the backfill or start task 5 — they do not block each other.**)
+**Last updated:** 2026-10-01 (V2-11 tasks **1-5 + 5b done**, D88-D95 + SD-33. Backfill at
+**73 of 19,315** bills for Congress 118; 119 untouched. **The interruption safety the owner
+asked about is now MEASURED and HARDENED (D95a)** — a real run was hard-killed and resumed
+clean in 0.56 s with zero requests, and every write on the backfill path is now atomic.
+**Next session: continue the backfill (see the three commands below) or start task 6
+(topics index) — they do not block each other.**)
+
+**2026-10-01 — D95a: THE BACKFILL IS INTERRUPTION-PROOF, and it was MEASURED, not asserted.**
+The owner asked whether the machine can be shut down mid-backfill. Answer: yes, at any
+moment, and here is the evidence rather than the claim.
+- **A real run was hard-killed.** `uv run ingest bill-activity --congress 118 --limit 140`
+  was started and `taskkill /F` fired while it was writing bills — the closest available
+  simulation of the machine going down, and harsher than Ctrl+C. Audit afterwards: **0
+  unparseable bill files, 0 unparseable cache bodies, 0 orphaned cache entries**, 30 fresh
+  timelines intact.
+- **The resume was timed.** `--congress 118 --limit 73` → **0.56 s, zero requests**, all 73
+  finished bills counted as held. Resume is the DEFAULT (D91); there is no flag to remember.
+- **Every write on that path is now ATOMIC** (`cache.atomic_write_text`: write to a temp
+  sibling → `flush` → `fsync` → `os.replace`). Used by `export_bill`, both writes inside
+  `cache.fetch`, and the quarantine writer. Ctrl+C and an orderly shutdown were already
+  safe; the case that was NOT was a true power loss, where NTFS can journal a rename
+  without the data blocks and leave a **zero-length cached body under a sidecar that still
+  reads FRESH** — which `fetch` would then serve from cache for up to the 20 h TTL, killing
+  every resume on that bill with a `JSONDecodeError` that `run_activity` does not catch.
+  7 tests, one of them pinning the write ORDER inside `fetch` (body before sidecar).
+
+**2026-10-01 — V2-11 TASK 5 + 5b DONE (D95b). The activity feed exists and is served.**
+`ingest/events.py` (pure, no clock, no network) + `uv run ingest events` project
+`data/bills/**` into `data/events/{YYYY-MM}.json`. **355 events across 22 month files**
+from the 73 bills backfilled so far; byte-stable across runs (hash-verified).
+- **`verify-recompute` invariant 8** re-derives every committed month file from
+  data/bills + data/votes. Green on real data (3,519 roll calls, 22 month files).
+- **Wired into `nightly.yml` as step 3e**, before the diff-gate. **Not optional:**
+  `ingest bills` refreshes each exported bill's timeline every run (D90), so a stale
+  `data/events/` would fail invariant 8 on the very next push.
+- **5b: `site/src/pages/events/[month].json.ts` + `latest.json.ts`** serve each month file
+  **verbatim** (the bytes invariant 8 guarantees, not a re-serialisation). Verified
+  byte-identical to disk out of `dist/`.
+- `ingest.events` added to the CI 100%-branch coverage gate (measured 100%, 57 statements).
+- **Gates: 35 events tests + 7 atomic-write tests; `uv run checks` ALL CHECKS PASSED;
+  `verify-recompute` OK; `npm run build` 13,259 pages in 50 s; `test:links` OK;
+  `test:file-count` 13,293 files (limit 20,000); `astro check` 0 errors.**
+
+**▶ `/events/latest.json` reads 2024-12 right now, and that is correct.** It serves the
+newest month that HAS events, deliberately not the current calendar month — a build-time
+`new Date()` would put a wall-clock in a built artifact (§6.3), and on the 1st of a month
+the URL would serve an empty document while yesterday's floor votes sat in the previous
+file. The backfill is walking Congress 118 (closed) **descending**, so the newest month it
+has reached so far is 2024-12. It becomes current once Congress 119 data lands.
+
+**▶ MEASURED SIZE RISK on this path — recorded, not fixed, and it needs a call before V2-12.**
+Measured on real data: **4.86 actions/bill** (mean over 73, median 3, max 18) and **544
+bytes of `subjects` JSON per bill** (mean over the 1,044 that have them, **max 17,202**).
+The plan asks for `subjects` on every event row, so at full backfill this projects to
+roughly **190,000 events ≈ 200 MB over ~48 month files, ~4 MB per month file** — and a
+V2-12 Worker polling `/events/latest.json` hourly would pull that every time. Built as
+specified and the number recorded rather than scope quietly changed (D95). Options when it
+binds: a subjects-free "slim" feed, a per-day shard, or let the consumer join against the
+task-6 topics index. Mechanical, not an owner decision.
 
 **2026-10-01 — CI UNBLOCKED AND GREEN.** `gh run rerun 36743621950` on the reset allowance:
 **success**, `python` 3m15s + `site-and-checks` 21m15s. That one run validates **D86 and D87
@@ -145,12 +203,17 @@ reproducible locally; two red pushes were two chances to run this. Before pushin
 **▶▶ NEXT SESSION STARTS HERE.** Two independent tracks — pick either, they do not block
 each other:
 - **(a) Continue the backfill.** `git pull --rebase`, then
-  `uv run ingest bill-activity --congress 118`. **43 of 19,315 done**; Congress 119
-  (19,441) not started. Resumes by itself, Ctrl+C safe, prints what is left.
-- **(b) Start task 5.** Events, topics and the site work can all be built against the
-  1,081 bills already on disk and behave identically at 38,756. If a session is better
-  spent on visible progress than on babysitting an ingest, do this one — the backfill
-  can fill in on any later day.
+  `uv run ingest bill-activity --congress 118`. **73 of 19,315 done**; Congress 119
+  (19,441) not started. Resumes by itself, safe to kill at any moment (D95a), prints
+  what is left. Run it in your OWN terminal window, not inside a Claude session, so it
+  outlives the session.
+- **(b) Start task 6 (topics index).** `data/topics/index.json` — every policy area and
+  CRS subject term with its bill count and bill ids, official vocabulary only (SD-33 4a:
+  31 policy areas + 872 CRS terms, verbatim, no owner bundles this release). Buildable
+  against the bills already on disk; behaves identically at 38,756. Then task 7 (site:
+  Actions timeline on `/b/`, `/topics/`, Atom feeds), then task 8 (fold
+  `ingest bill-activity --since` into the nightly — the daily digest cadence SD-33 chose;
+  only `ingest events` is wired in so far, not the delta fetch).
 
 **Before starting the backfill (checks 1-3 are DONE, 4-5 are the actual gate):**
 1. ✅ **Rate-limit window is HOURLY** — confirmed 2026-10-01 (27 used after hundreds of
@@ -189,9 +252,17 @@ bills. A chunked run costs the same as a continuous one, plus the re-enumeration
 Each working session, three commands:
 ```
 git pull --rebase                                   # take the nightly's commit first
-uv run ingest bill-activity --congress 118          # resumes; Ctrl+C whenever, it is safe
+uv run ingest bill-activity --congress 118          # resumes; kill it whenever, it is safe
+uv run ingest events && uv run export               # <- NOT optional, see below
 git add data/ && git commit -m "data: bill timelines (118)" && git push
 ```
+
+**▶ The third line is new as of D95 and a chunk push WILL go red without it.** Two
+committed artifacts are derived from `data/bills/` and are checked on every push:
+`data/events/` (verify-recompute **invariant 8**) and `data/manifest.json`'s counts
+(`test_committed_manifest_matches_regeneration`). Commit fresh timelines without
+regenerating both and CI fails on your own push — the next nightly would heal it, but the
+red run in between is exactly the D94 lesson. Both commands are offline and take seconds.
 Then the same with `--congress 119`. Do 118 first — it is a closed Congress, so nothing
 drifts under the run. The startup line prints exactly how much is left and the ETA.
 

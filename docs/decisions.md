@@ -2440,3 +2440,89 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   `CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=... --cov-fail-under=100` —
   rather than a bare `uv run pytest` and a hope. Two red pushes in a row were two chances
   to run one command.
+
+- **D95 (2026-10-01) — the backfill's writes are ATOMIC, and V2-11 task 5 (events) is built.**
+  Two things in one session, because the first is the precondition for running the second
+  alongside a ~43-hour ingest that gets interrupted every time the laptop is shut.
+
+  **(a) Atomic writes (`cache.atomic_write_text`).** `write + flush + fsync + os.replace`,
+  used by `export_bill`, both writes in `cache.fetch`, and `bills._quarantine` — every write
+  on the backfill path. Replaces plain `Path.write_text`, which truncates the target and
+  then writes, so a kill between the two syscalls leaves a half-written file.
+  **Measured first, not assumed.** A real `--congress 118 --limit 140` run was hard-killed
+  mid-flight (`taskkill /F`, the closest available simulation of the machine going down) and
+  the audit found **zero torn bill files, zero unparseable cache bodies, zero orphaned cache
+  entries**, and a resume that counted all 73 finished bills in **0.56 s with zero requests**.
+  So Ctrl+C and an orderly shutdown were already safe: `export_bill`'s output is re-ingested
+  when it fails to parse (`bills_with_actions`), and `cache.fetch` writes the `.meta` sidecar
+  only AFTER a complete body, so a torn body is simply ignored.
+  **The case that was NOT safe is a power loss.** NTFS journals the rename but not the data
+  blocks, so a cached body can come back zero-length under a sidecar that still reads FRESH
+  — and `_fresh` would then serve that truncated body from cache for up to the 20 h TTL.
+  `json.JSONDecodeError` is not in `run_activity`'s `fetch_errors`, so the whole run would
+  die on it, every resume, until the TTL expired. The `fsync` before the rename is what
+  closes that; the rename is what closes the torn-file case for good rather than relying on
+  the reader to notice. 7 tests (`tests/test_atomic_writes_v2_11.py`), including one that
+  pins the WRITE ORDER inside `cache.fetch` — body before sidecar — because atomicity alone
+  does not save us if that ever flips.
+
+  **(b) V2-11 task 5 — `ingest/events.py`, `data/events/{YYYY-MM}.json`, invariant 8.**
+  Pure projection, no clock, no network; `uv run ingest events`. 355 events across 22 month
+  files from the 73 bills backfilled so far, byte-stable across runs (verified by hash),
+  and `verify-recompute` **invariant 8** re-derives every committed month file from
+  data/bills + data/votes. Wired into `nightly.yml` as step 3e, before the diff-gate —
+  **not optional**: `ingest bills` refreshes each exported bill's timeline every run (D90),
+  so a stale `data/events/` would fail invariant 8 on the very next push. Task **5b** is
+  done in the same breath (`site/src/pages/events/[month].json.ts` + `latest.json.ts`),
+  serving each month file **verbatim** — the bytes invariant 8 guarantees, not a
+  re-serialisation of them.
+
+  **Three judgement calls, all on the side of not losing information:**
+  - **The event id hashes the WHOLE action row, not just its text.** The plan said "one row
+    per (bill_id, action date, action text hash)". That collapses real actions: hr2670-118
+    carries five differing only in `committees`, and a text-only hash would publish one
+    event where the government recorded five — the exact bug D88 fixed in `bill_actions()`
+    (225 of 234 returned). Widening a hash cannot collapse anything; narrowing it can.
+    `committees` and `rollcall_id` are carried on the event for the same D89 reason.
+  - **`has_page` is carried on every row** (SD-33 3(c)). The V2-12 Worker and the V2-13 push
+    client cannot reach `data/votes/`, so they cannot re-derive which bills got a `/b/` page,
+    and a wrong guess publishes a link to a page that was never built. It duplicates
+    `votedBillIds()` in `site/src/lib/data.ts` deliberately, with a test naming the other
+    side.
+  - **`/events/latest.json` = the newest month that HAS events, not the current calendar
+    month.** A build-time `new Date()` would put a wall-clock in a built artifact (§6.3), and
+    on the 1st of a month the URL would serve an empty document while yesterday's floor votes
+    sat in the previous file. **Consequence to know:** while the backfill walks Congress 118
+    (closed) descending, `latest.json` reads 2024-12, not today. It becomes current once 119
+    data lands. A missing feed 404s rather than serving `{}` — "no activity" and "not
+    published yet" are different facts.
+
+  **▶ MEASURED SIZE RISK, recorded rather than fixed (needs a decision before V2-12).**
+  At full backfill this projection is big, and the dominant term is the one the plan asked
+  for. Measured on real data: **4.86 actions/bill** (mean over the 73 backfilled bills,
+  median 3, max 18) and **544 bytes of `subjects` JSON per bill** (mean over the 1,044 bills
+  that have them; **max 17,202**). Denormalising `subjects` onto every event row therefore
+  projects to roughly **190,000 events ≈ 200 MB across ~48 month files, ~4 MB per month
+  file** at 38,756 bills. A V2-12 Worker polling `/events/latest.json` hourly would pull
+  that every time. Built as the plan specifies (the spec asks for subjects on the row) and
+  the number recorded instead of quietly changing scope; the options when it binds are a
+  subjects-free "slim" variant of the feed, a per-day shard, or a topic index the consumer
+  joins against (task 6 builds one anyway). **Not an owner decision yet — it is mechanical
+  — but it is the next real constraint on this path.**
+
+- **D95 addendum (2026-10-01) — two gaps caught at review, both fixed before the commit.**
+  - **`BillEvent` now carries `action_code` and `source_system`.** Every other field inside
+    the id's hash was already visible on the row; these two were not, so a consumer could see
+    two events it had no way to tell apart. Not hypothetical: **hr10547-118 has two real
+    actions on 2024-12-20** both reading "Introduced in House", both `committees: null`, both
+    from the Library of Congress, **differing only in `action_code` ("Intro-H" vs "1000")**.
+    The same argument D89 used to carry `committees`. The ids do not change (the hash was
+    always over the whole row) — only what the row shows.
+  - **The documented chunk loop in PROGRESS.md grew a third command.** `data/events/`
+    (invariant 8) and `data/manifest.json`'s counts are both derived from `data/bills/` and
+    both checked on push, so committing a chunk of fresh timelines without
+    `uv run ingest events && uv run export` turns the owner's OWN push red. The next nightly
+    would heal it; the red run in between is the D94 lesson again. Both commands are offline
+    and take seconds. **The lesson that generalises: adding a derived, verified artifact
+    changes the hand-written commit ritual for everything upstream of it, and the ritual
+    lives in a doc that no test reads.**

@@ -1,0 +1,53 @@
+{
+  "count": 3,
+  "events": [
+    {
+      "action_code": "1000",
+      "bill_id": "hr6621-118",
+      "committees": null,
+      "date": "2023-12-06",
+      "has_page": false,
+      "id": "hr6621-118--2023-12-06--35c6121c2598",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6621",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6621-118",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-12-06",
+      "has_page": false,
+      "id": "hr6621-118--2023-12-06--6e4cafa34964",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6621",
+      "subjects": [],
+      "text": "Referred to the House Committee on Agriculture.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr6621-118",
+      "committees": null,
+      "date": "2023-12-06",
+      "has_page": false,
+      "id": "hr6621-118--2023-12-06--a4c0178485d8",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6621",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    }
+  ],
+  "month": "2023-12"
+}

@@ -438,6 +438,68 @@ class RankingsFile(_Strict):
     chambers: dict[str, ChamberRanking]  # "house" / "senate"
 
 
+# --- Events (V2-11 task 5) ------------------------------------------------
+# The ONLY machine-readable feed the V2-12 alert Worker and the V2-13 push client
+# read. Projected from data/bills/** by `ingest/events.py`; nothing here is
+# collected, scored or worded by us -- every text field is the government's own.
+
+
+class BillEvent(_Strict):
+    """One official action on one bill, flattened for the monthly event feed.
+
+    This is a PROJECTION, not a new source: `date`, `text`, `type`, `committees`
+    and `rollcall_id` are copied verbatim off the bill's `BillAction`, and
+    `policy_area`, `subjects` and `source_url` are denormalised off the bill so a
+    consumer can filter a month's activity by topic without loading 38,756 bill
+    files. `text` is never summarised or reworded (0.5).
+
+    `id` hashes the WHOLE action row, not just its text. The plan said "one row
+    per (bill_id, action date, action text hash)", which would silently collapse
+    real distinct actions: hr2670-118 carries five actions reading "Forwarded by
+    Subcommittee to Full Committee by Voice Vote ." on one date under one action
+    code, differing only in `committees` (D88 addendum -- a narrower hash is
+    exactly the bug that made `bill_actions()` return 225 of 234 actions). The
+    id keeps the legible `{bill_id}--{date}--` prefix and widens the hash.
+
+    `has_page` mirrors `votedBillIds()` in `site/src/lib/data.ts` -- SD-33 3(c):
+    only a bill that reached a recorded vote gets a `/b/` page. A consumer links
+    to `/b/{bill_id}` when this is true and to `source_url` on congress.gov when
+    it is false. It is carried here rather than re-derived because the Worker and
+    the push client have no access to data/votes/, and a wrong guess publishes a
+    link to a page that does not exist (`npm run test:links` fails on the first)."""
+
+    id: str  # f"{bill_id}--{date}--{sha256(action row)[:12]}"
+    bill_id: str
+    date: str  # the action's date, YYYY-MM-DD; the month file it lands in
+    text: str  # verbatim official action text (0.5: never summarised)
+    type: str  # the government's action type, verbatim (e.g. "Floor", "Committee")
+    # `action_code` and `source_system` are carried for the SAME reason D89 carries
+    # `committees`: they are in the id's hash, so without them a consumer sees two
+    # events it has no way to tell apart. Measured, not hypothetical -- hr10547-118
+    # has two real actions on 2024-12-20 both reading "Introduced in House" with
+    # `committees: null`, differing only in `action_code` ("Intro-H" vs "1000").
+    # Every field inside the hash is now visible on the row.
+    action_code: str | None = None
+    source_system: str  # the NAME ("House", "Senate", "Library of Congress")
+    committees: list[str] | None = None  # the only thing distinguishing some rows
+    rollcall_id: str | None = None  # set only when it resolves to a roll we HOLD
+    policy_area: str | None = None  # denormalised off the bill
+    subjects: list[str] | None = None  # denormalised off the bill, verbatim CRS terms
+    source_url: str  # the bill's congress.gov URL -- the link for a pageless bill
+    has_page: bool  # whether /b/{bill_id} exists (SD-33 3(c))
+
+
+class EventsFile(_Strict):
+    """data/events/{YYYY-MM}.json -- every official action dated in that month.
+
+    No wall-clock anywhere: `month` and `count` are both derived from the rows, so
+    a quiet run re-exports byte-identically (verify-recompute invariant 8)."""
+
+    month: str  # YYYY-MM
+    count: int  # == len(events); a cheap integrity check for a feed consumer
+    events: list[BillEvent]
+
+
 # --- Grades (V2-4, Tier 3) ------------------------------------------------
 # The FIRST evaluative output (SD-26). Computed ONLY in ingest/scoring.py from the
 # owner-ratified data/config/thresholds.yaml (§0.8) — every label here appears

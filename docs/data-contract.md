@@ -221,6 +221,38 @@ Tier-3 module, §6.8).
   `min_eligible` eligible rolls), `no_record` (null attendance). §6.5 grading-coverage:
   every covered member is in `members` ∪ `exceptions` — silent drop = fail.
 
+## `data/events/{YYYY-MM}.json` — the official-activity feed (V2-11)
+
+Schema: `data/schema/events.schema.json` (model `EventsFile`), one file per calendar
+month of ACTION dates. A pure projection of `data/bills/**` by `ingest/events.py`
+(`uv run ingest events`): no network, no clock, nothing builder-authored — every text
+field is the government's own, copied verbatim (0.5 forbids summarising anything that
+publishes as fact). **Recomputable**: re-derives byte-for-byte from `data/bills` +
+`data/votes` alone (`verify-recompute` **invariant 8**).
+
+**These are the only machine-readable URLs the site publishes**, served verbatim at
+`/events/{YYYY-MM}.json` and `/events/latest.json` — the newest month that HAS events,
+not the current calendar month (a build-time clock would break §6.3, and on the 1st of a
+month the URL would read empty while yesterday's votes sat in the previous file). The
+V2-12 alert Worker and the V2-13 push client read these and nothing else.
+
+Events are **newest action first**, tie-broken by `bill_id` then `id` so the order never
+depends on filesystem iteration. A month file is never deleted once written: invariant 8
+reports a stale one rather than a published feed URL vanishing silently.
+
+| Field | Type | Notes |
+|---|---|---|
+| `month` / `count` | string / int | `YYYY-MM`; `count == len(events)`. Both derived from the rows — no wall-clock. |
+| `id` | string | `{bill_id}--{date}--{sha256(whole action row)[:12]}`. Hashes the WHOLE row, not just the text: five hr2670-118 actions share a date, a text and a code and differ only in `committees`, and a text-only hash would publish one event for five (D88/D95). Stable across runs and field order, so a consumer can use it as a de-duplication key. |
+| `bill_id` / `date` | string | The bill, and the action's own date (which month file it lands in — not the bill's date). |
+| `text` / `type` | string | Verbatim official action text and the government's own action type. Never reworded or classified. |
+| `action_code` / `source_system` | string \| null / string | Carried for the same reason as `committees`: both are inside the `id` hash, so without them a consumer sees two events it cannot tell apart. hr10547-118 really has two actions on 2024-12-20 both reading "Introduced in House" differing only in `action_code` ("Intro-H" vs "1000"). `source_system` is the NAME only (the Senate's block carries no code at all — D89). |
+| `committees` | list \| null | The only thing distinguishing some otherwise identical rows (D89). |
+| `rollcall_id` | string \| null | Set only when the action's recorded vote resolves to a roll call this dataset HOLDS — otherwise null, so no link to a `/v/` page that does not exist. |
+| `policy_area` / `subjects` | string \| null / list \| null | Denormalised off the bill, government-assigned, verbatim (D5 — never invented). Lets a consumer filter a month by topic without loading 38,756 bill files. |
+| `source_url` | string | The bill's congress.gov URL — the link for a bill with no page. |
+| `has_page` | bool | Whether `/b/{bill_id}` exists (SD-33 3(c): only bills that reached a recorded vote get one). Carried here because the Worker and the push client cannot reach `data/votes/` to re-derive it, and a wrong guess publishes a link to a page that was never built. Mirrors `votedBillIds()` in `site/src/lib/data.ts`. |
+
 ## `data/statements/{id}.json` — one per curated statement (INC-11)
 
 Schema: `data/schema/statement.schema.json` (model `Statement`). OWNER-curated

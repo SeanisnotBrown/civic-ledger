@@ -128,6 +128,15 @@ jobs:
           #     committed config; no owner ratification happens here (that is H15).
           uv run ingest grades
 
+          # 3e) The activity feed (V2-11 task 5) is DERIVED from data/bills + data/votes
+          #     — regenerate it here, after everything that can move a bill and still
+          #     before the diff-gate, so a new official action reaches the gate and gets
+          #     committed. This is NOT optional: `ingest bills` refreshes each exported
+          #     bill's /actions timeline every run (D90), so skipping this step would
+          #     leave data/events/ stale and fail verify-recompute invariant 8 on the
+          #     very next push. Pure projection: no network, no clock, ~0 Actions minutes.
+          uv run ingest events
+
           # 4) Real change? (manifest isn't regenerated yet, so it can't false-trigger.)
           if [ -z "$(git status --porcelain data/)" ]; then
             echo "No data change tonight — running checks for upstream drift, then exiting."

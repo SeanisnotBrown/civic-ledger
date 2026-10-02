@@ -1,0 +1,53 @@
+{
+  "count": 3,
+  "events": [
+    {
+      "action_code": "1000",
+      "bill_id": "hr9181-118",
+      "committees": null,
+      "date": "2024-07-26",
+      "has_page": false,
+      "id": "hr9181-118--2024-07-26--03335576b8fd",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9181",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9181-118",
+      "committees": null,
+      "date": "2024-07-26",
+      "has_page": false,
+      "id": "hr9181-118--2024-07-26--53bb8b7ecbbc",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9181",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9181-118",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-07-26",
+      "has_page": false,
+      "id": "hr9181-118--2024-07-26--6ea19d8a75ef",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9181",
+      "subjects": [],
+      "text": "Referred to the House Committee on Financial Services.",
+      "type": "IntroReferral"
+    }
+  ],
+  "month": "2024-07"
+}

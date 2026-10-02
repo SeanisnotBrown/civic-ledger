@@ -63,6 +63,46 @@ _HTTP_TIMEOUT = httpx.Timeout(30.0, connect=15.0)
 _USER_AGENT = "civic-ledger/0.0 (+https://github.com/SeanisnotBrown/civic-ledger)"
 
 
+def atomic_write_text(path: Path, text: str) -> Path:
+    """Write `text` to `path` so that a kill or a power loss can never leave a
+    PARTIAL file behind — the reader sees either the old bytes or the new ones.
+
+    Why this exists (V2-11): the one-time 38,756-bill backfill runs for ~43 hours
+    on a laptop that gets shut, so it is interrupted a dozen times by design. A
+    plain `Path.write_text` is two syscalls on a truncated file, and a kill
+    between them leaves a half-written record on disk. Two places that matters:
+
+    * `export_bill` — a torn bill record is survivable (`bills_with_actions`
+      cannot parse it, so the next run re-ingests it) but it costs a refetch and
+      shows up as a corrupt file in `git status` until then.
+    * `cache.fetch` — a torn CACHED body is worse, and is the one case that is
+      not self-healing. The `.meta` sidecar is only written after a complete body
+      write, so a Ctrl+C or an orderly shutdown always leaves meta absent and the
+      torn body ignored. A true power loss is different: NTFS journals the
+      metadata but not the data blocks, so the body can come back zero-length
+      under a sidecar that still reads FRESH. That body then parses as a
+      JSONDecodeError for the remaining TTL (up to 20 h) on every resume, and it
+      is not in `run_activity`'s `fetch_errors`, so the whole run dies on it.
+
+    `write + flush + fsync + os.replace` closes both. `os.replace` is atomic on
+    NTFS as well as POSIX, and the fsync is what makes the *contents* durable
+    before the rename publishes them — without it the rename can survive a power
+    cut that the data did not. The temp file is a sibling (same volume, or
+    `os.replace` would not be atomic) and is cleaned up if the write fails."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    try:
+        with open(tmp, "w", encoding="utf-8", newline="\n") as fh:
+            fh.write(text)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        tmp.unlink(missing_ok=True)
+        raise
+    return path
+
+
 class RetryableHTTPError(Exception):
     """Raised on 429/5xx so tenacity retries; 4xx (except 429) do not retry."""
 
@@ -177,8 +217,9 @@ def fetch(
     if resp.status_code not in accept_status:
         resp.raise_for_status()  # non-accepted (e.g. 404) → HTTPStatusError to caller
 
-    data_path.parent.mkdir(parents=True, exist_ok=True)
-    data_path.write_text(resp.text, encoding="utf-8", newline="\n")
+    # Atomic (see `atomic_write_text`): an interrupted backfill must never leave a
+    # truncated body that a still-fresh `.meta` would then serve from cache.
+    atomic_write_text(data_path, resp.text)
     meta = {
         "url": url,  # NOTE: never contains a credential (header-auth only)
         "params": params or {},
@@ -186,7 +227,9 @@ def fetch(
         "status": resp.status_code,
         "ext": ext,
     }
-    meta_path.write_text(json.dumps(meta, indent=2, sort_keys=True), encoding="utf-8", newline="\n")
+    # Written AFTER the body, and atomically: the sidecar is the commit record for
+    # this cache entry, so it must not exist until the body it describes is whole.
+    atomic_write_text(meta_path, json.dumps(meta, indent=2, sort_keys=True))
 
     return CachedResponse(
         path=data_path, text=resp.text, status=resp.status_code, from_cache=False, ext=ext

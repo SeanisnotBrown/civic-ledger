@@ -25,10 +25,11 @@ from pathlib import Path
 
 from pydantic import BaseModel
 
-from ingest.cache import repo_root
+from ingest.cache import atomic_write_text, repo_root
 from ingest.models import (
     Absence,
     Bill,
+    EventsFile,
     GradesFile,
     Member,
     MemberLegislation,
@@ -52,6 +53,7 @@ MANIFEST_PATH = DATA_DIR / "manifest.json"
 METRICS_PATH = DATA_DIR / "metrics.json"
 RANKINGS_DIR = DATA_DIR / "rankings"
 GRADES_DIR = DATA_DIR / "grades"
+EVENTS_DIR = DATA_DIR / "events"
 
 # State-jurisdiction partition (INC-12/D51). MS data lives under data/state/ms/ so the
 # federal checks — which glob data/{members,votes,bills}/*.json NON-recursively — never
@@ -123,8 +125,10 @@ def export_bill(bill: Bill, out_dir: Path = BILLS_DIR) -> Path:
     exist now so the export contract is complete for every Tier-1 file type."""
     out_dir.mkdir(parents=True, exist_ok=True)
     path = out_dir / f"{bill.id}.json"
-    path.write_text(_dumps(bill.model_dump()), encoding="utf-8", newline="\n")
-    return path
+    # Atomic: the V2-11 backfill writes one of these per bill across a ~43-hour run
+    # that is interrupted by design, so a kill must not leave a half-written record
+    # (`cache.atomic_write_text` carries the full reasoning).
+    return atomic_write_text(path, _dumps(bill.model_dump()))
 
 
 def export_absence(
@@ -197,6 +201,29 @@ def export_grades(
     return sorted(written)
 
 
+def export_events(
+    months: dict[str, EventsFile], out_dir: Path = EVENTS_DIR
+) -> list[Path]:
+    """Write data/events/{YYYY-MM}.json for each month of bill activity (V2-11
+    task 5). Deterministic (`_dumps`, no wall-clock) and re-derivable from
+    data/bills/ + data/votes/ alone — `verify-recompute` invariant 8.
+
+    Atomic per file (see `cache.atomic_write_text`): the projection is re-run at
+    the end of every nightly and, during the V2-11 backfill, between chunks of a
+    run that is killed by design, so a half-written month file must never be
+    servable at `/events/{month}.json`.
+
+    Stale months are NOT deleted. A month file can only lose its last event if the
+    government withdraws an action, and silently deleting a published feed URL is
+    worse than reporting it: invariant 8 fails on the leftover, which is the loud
+    failure §0 asks for."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    written: list[Path] = []
+    for month, ef in months.items():
+        written.append(atomic_write_text(out_dir / f"{month}.json", _dumps(ef.model_dump())))
+    return sorted(written)
+
+
 def export_statement(statement: Statement, out_dir: Path = STATEMENTS_DIR) -> Path:
     """Write one deterministic JSON file per curated statement:
     data/statements/{id}.json. Statements are OWNER-curated (H8) via the Flask
@@ -222,6 +249,7 @@ _SCHEMAS: tuple[tuple[str, type[BaseModel]], ...] = (
     ("rankings", RankingsFile),
     ("grades", GradesFile),
     ("statement", Statement),
+    ("events", EventsFile),
 )
 
 
@@ -254,6 +282,10 @@ def _count_dataset() -> dict[str, object]:
     # `_title_allowlist.yaml`, any future `_*.json`) are excluded, so the manifest count
     # is records-on-disk. Dead-archive ones are still real records → counted here.
     statements = statements_io.statement_files(DATA_DIR)
+    event_files = sorted(EVENTS_DIR.glob("*.json")) if EVENTS_DIR.exists() else []
+    event_total = sum(
+        json.loads(p.read_text(encoding="utf-8"))["count"] for p in event_files
+    )
 
     by_chamber: dict[str, int] = {}
     by_class: dict[str, int] = {}
@@ -288,6 +320,11 @@ def _count_dataset() -> dict[str, object]:
             "member_votes": member_vote_total,
             "absences": len(absences),
             "bills": len(bills),
+            # V2-11 task 5: the projected activity feed. Two numbers because one
+            # alone hides a regression — a month file that loses every row still
+            # counts as a file, so the event total is what actually moves.
+            "events": event_total,
+            "event_months": len(event_files),
             "statements": len(statements),
             # V2-5 dashboard headline: the introduced-bill universe (bills our members
             # sponsored) vs how many ever got a recorded roll-call vote. Factual counts

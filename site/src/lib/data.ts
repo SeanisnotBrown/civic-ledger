@@ -173,6 +173,47 @@ export function getBill(id: string): Bill | undefined {
   return billMap().get(id);
 }
 
+// --- Events (V2-11 task 5b) ----------------------------------------------
+// data/events/{YYYY-MM}.json, served verbatim by src/pages/events/[month].json.ts.
+// These are the ONLY machine-readable URLs the V2-12 alert Worker and the V2-13
+// push client read, so the endpoint must not reshape, filter or re-sort what the
+// Python projection wrote — `verify-recompute` invariant 8 guarantees the bytes on
+// disk, and anything this layer changed would be outside that guarantee.
+
+export interface BillEvent {
+  id: string; bill_id: string; date: string; text: string; type: string;
+  action_code: string | null; source_system: string;
+  committees: string[] | null; rollcall_id: string | null;
+  policy_area: string | null; subjects: string[] | null;
+  source_url: string;
+  // SD-33 3(c): whether /b/{bill_id} exists. A consumer links to the page when
+  // true and to source_url on congress.gov when false — never to a /b/ URL that
+  // was never built, or `npm run test:links` fails on the first one.
+  has_page: boolean;
+}
+export interface EventsFile { month: string; count: number; events: BillEvent[]; }
+
+/** Every month that has an events file, oldest first ("2026-03"). */
+export function getEventMonths(): string[] {
+  return readDir("events").map((f) => f.replace(/\.json$/, ""));
+}
+
+export function getEventsFile(month: string): EventsFile {
+  return readJson<EventsFile>(`events/${month}.json`);
+}
+
+/** The month `/events/latest.json` serves.
+ *
+ *  The NEWEST month that actually has events — deliberately not "the current
+ *  calendar month". A build-time `new Date()` would put a wall-clock in a built
+ *  artifact (§6.3 determinism), and in the first days of a quiet month it would
+ *  serve an empty file while real activity sat in the previous one. Undefined
+ *  only before the first events file exists. */
+export function latestEventMonth(): string | undefined {
+  const months = getEventMonths();
+  return months.length ? months[months.length - 1] : undefined;
+}
+
 let _absences: Map<string, Absence> | null = null;
 function absenceMap(): Map<string, Absence> {
   if (_absences) return _absences;

@@ -1,0 +1,146 @@
+{
+  "$defs": {
+    "BillEvent": {
+      "additionalProperties": false,
+      "description": "One official action on one bill, flattened for the monthly event feed.\n\nThis is a PROJECTION, not a new source: `date`, `text`, `type`, `committees`\nand `rollcall_id` are copied verbatim off the bill's `BillAction`, and\n`policy_area`, `subjects` and `source_url` are denormalised off the bill so a\nconsumer can filter a month's activity by topic without loading 38,756 bill\nfiles. `text` is never summarised or reworded (0.5).\n\n`id` hashes the WHOLE action row, not just its text. The plan said \"one row\nper (bill_id, action date, action text hash)\", which would silently collapse\nreal distinct actions: hr2670-118 carries five actions reading \"Forwarded by\nSubcommittee to Full Committee by Voice Vote .\" on one date under one action\ncode, differing only in `committees` (D88 addendum -- a narrower hash is\nexactly the bug that made `bill_actions()` return 225 of 234 actions). The\nid keeps the legible `{bill_id}--{date}--` prefix and widens the hash.\n\n`has_page` mirrors `votedBillIds()` in `site/src/lib/data.ts` -- SD-33 3(c):\nonly a bill that reached a recorded vote gets a `/b/` page. A consumer links\nto `/b/{bill_id}` when this is true and to `source_url` on congress.gov when\nit is false. It is carried here rather than re-derived because the Worker and\nthe push client have no access to data/votes/, and a wrong guess publishes a\nlink to a page that does not exist (`npm run test:links` fails on the first).",
+      "properties": {
+        "action_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Action Code"
+        },
+        "bill_id": {
+          "title": "Bill Id",
+          "type": "string"
+        },
+        "committees": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Committees"
+        },
+        "date": {
+          "title": "Date",
+          "type": "string"
+        },
+        "has_page": {
+          "title": "Has Page",
+          "type": "boolean"
+        },
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "policy_area": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Policy Area"
+        },
+        "rollcall_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rollcall Id"
+        },
+        "source_system": {
+          "title": "Source System",
+          "type": "string"
+        },
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "subjects": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Subjects"
+        },
+        "text": {
+          "title": "Text",
+          "type": "string"
+        },
+        "type": {
+          "title": "Type",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "bill_id",
+        "date",
+        "text",
+        "type",
+        "source_system",
+        "source_url",
+        "has_page"
+      ],
+      "title": "BillEvent",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "data/events/{YYYY-MM}.json -- every official action dated in that month.\n\nNo wall-clock anywhere: `month` and `count` are both derived from the rows, so\na quiet run re-exports byte-identically (verify-recompute invariant 8).",
+  "properties": {
+    "count": {
+      "title": "Count",
+      "type": "integer"
+    },
+    "events": {
+      "items": {
+        "$ref": "#/$defs/BillEvent"
+      },
+      "title": "Events",
+      "type": "array"
+    },
+    "month": {
+      "title": "Month",
+      "type": "string"
+    }
+  },
+  "required": [
+    "month",
+    "count",
+    "events"
+  ],
+  "title": "EventsFile",
+  "type": "object"
+}

@@ -286,13 +286,15 @@ def referenced_bill_ids() -> list[str]:
 
 
 def _quarantine(bill_id: str, error: str) -> None:
-    from ingest.cache import repo_root
+    from ingest.cache import atomic_write_text, repo_root
 
     qdir = repo_root() / "data" / "quality" / "quarantine"
-    qdir.mkdir(parents=True, exist_ok=True)
-    (qdir / f"bill-{bill_id}.json").write_text(
+    # Atomic, for the same reason export_bill is: the backfill writes these during a
+    # ~43-hour run that is killed by design, and a torn quarantine file would make
+    # `uv run checks` fail on a parse error rather than report the quarantine.
+    atomic_write_text(
+        qdir / f"bill-{bill_id}.json",
         json.dumps({"bill_id": bill_id, "error": error}, indent=2, sort_keys=True),
-        encoding="utf-8", newline="\n",
     )
 
 

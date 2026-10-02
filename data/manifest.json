@@ -1,12 +1,14 @@
 {
-  "commit": "2ad035585",
+  "commit": "a8cfd8fa1",
   "congresses": [
     118,
     119
   ],
   "counts": {
     "absences": 35678,
-    "bills": 1083,
+    "bills": 1103,
+    "event_months": 22,
+    "events": 355,
     "legislation": {
       "became_law_without_rollcall": 244,
       "sponsored_became_law": 391,
@@ -33,5 +35,5 @@
     },
     "statements": 0
   },
-  "generated_at": "2026-10-01T20:10:16Z"
+  "generated_at": "2026-10-02T01:06:05Z"
 }

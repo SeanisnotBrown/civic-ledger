@@ -35,6 +35,16 @@ longer true.) What this script checks, over 100% of roll calls:
    data/config/thresholds.yaml. A grade that cannot be re-derived from the public
    repo may not ship. No-op until data/grades/ exists.
 
+8. **Events re-derive** (V2-11 task 5) — every data/events/{YYYY-MM}.json
+   re-derives byte-for-byte from data/bills/ + data/votes/ alone. These files are
+   the only machine-readable URLs the V2-12 alert Worker and the V2-13 push client
+   read, so a feed that cannot be re-derived from the published dataset may not
+   ship. Catches three distinct things: a stale month file left behind after the
+   events that produced it changed, a hand-edit of government action text (which
+   0.5 forbids outright), and any accidental non-determinism in the projection
+   (an unstable sort, a wall-clock, a dict iteration order). No-op until
+   data/events/ exists.
+
 Exit 0 = every invariant holds for every roll; nonzero lists the failures. It is
 also exercised as a pytest test so §8's "recompute-and-match script as a test" holds.
 """
@@ -229,13 +239,56 @@ def check_legislation_stats() -> list[str]:
     return []
 
 
+def check_events() -> list[str]:
+    """(8) The activity feed re-derives byte-for-byte from bills + votes (V2-11).
+
+    Compares the committed bytes against a fresh `events.compute()` put through the
+    same `_dumps` the exporter uses, so this fails on a reordering or a changed
+    separator as well as on changed content. Both directions are checked: a month
+    file on disk that the projection no longer produces is a failure, not a
+    curiosity — `export_events` deliberately never deletes one (a published feed
+    URL vanishing silently is worse than a loud mismatch)."""
+    from ingest import events
+    from ingest.export import _dumps
+
+    data = repo_root() / "data"
+    events_dir = data / "events"
+    if not events_dir.exists():
+        return []
+    recomputed = events.compute(data)
+    committed = {p.stem: p for p in sorted(events_dir.glob("*.json"))}
+    failures: list[str] = []
+    for month in sorted(set(committed) | set(recomputed)):
+        if month not in committed:
+            failures.append(f"events {month} — recomputed but no committed file")
+            continue
+        if month not in recomputed:
+            failures.append(
+                f"events {month} — committed file no longer re-derives from "
+                f"data/bills (stale month, or an edited action)"
+            )
+            continue
+        want = _dumps(recomputed[month].model_dump())
+        got = committed[month].read_text(encoding="utf-8")
+        if got != want:
+            failures.append(
+                f"events {month} — committed bytes != recompute "
+                f"({len(got)} vs {len(want)} bytes)"
+            )
+    return failures
+
+
 def main(argv: list[str] | None = None) -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not votes_dir.exists() or not any(votes_dir.glob("*.json")):
         print("verify-recompute: no roll-call data yet (no-op).")
         return 0
     failures = (
-        check_dataset() + check_rankings() + check_grades() + check_legislation_stats()
+        check_dataset()
+        + check_rankings()
+        + check_grades()
+        + check_legislation_stats()
+        + check_events()
     )
     n_rolls = sum(1 for _ in votes_dir.glob("*.json"))
     if failures:
@@ -257,6 +310,9 @@ def main(argv: list[str] | None = None) -> int:
         derived.append(f"{n_grades} grade file(s)")
     if _count("legislation"):
         derived.append("the legislation-universe headline")
+    n_events = _count("events")
+    if n_events:
+        derived.append(f"{n_events} month(s) of the activity feed")
     tail = f"; {' and '.join(derived)} recompute exactly." if derived else "."
     print(
         f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "

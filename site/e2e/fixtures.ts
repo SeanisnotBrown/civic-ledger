@@ -88,9 +88,61 @@ export function compareDelegatePair(): { delegate: string; graded: string } {
   return { delegate: firstDelegateId(), graded: compareIds().a };
 }
 
+// --- V2-11 task 7: activity, topics, feeds --------------------------------
+
+/** Every bill id that reached a recorded vote, i.e. every bill with a /b/ page
+ *  (SD-33 3(c)). One pass over the committed votes. */
+function votedBillIds(): Set<string> {
+  const dir = path.join(DATA, "votes");
+  const out = new Set<string>();
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json"))) {
+    const v = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+    if (v.rollcall.bill_id) out.add(v.rollcall.bill_id);
+  }
+  return out;
+}
+
+/**
+ * A bill that has BOTH a /b/ page and a collected action timeline — the only kind
+ * that exercises the rendered timeline and a non-empty bill feed.
+ *
+ * Returns null when the dataset has none. That is a real state, not a broken
+ * fixture: `actions` is the D27 "not collected" sentinel until the one-time activity
+ * backfill reaches a bill, so a fresh checkout can legitimately have zero. Specs skip
+ * rather than fail on null — a fixture that threw would turn "the backfill has not run
+ * here" into a red build.
+ */
+export function billWithActions(): string | null {
+  const voted = votedBillIds();
+  const dir = path.join(DATA, "bills");
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()) {
+    const b = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+    if (b.actions && b.actions.length > 0 && voted.has(b.id)) return b.id;
+  }
+  return null;
+}
+
+/** One page per official vocabulary, each with bills on it. The two are separate URL
+ *  namespaces (ADR D97), so both shapes need covering. */
+export function topicPaths(): { policyArea: string; subject: string } {
+  const idx = JSON.parse(
+    fs.readFileSync(path.join(DATA, "topics", "index.json"), "utf-8"));
+  const pick = (list: any[]) =>
+    [...list].sort((a, b) => b.bill_count - a.bill_count || a.slug.localeCompare(b.slug))[0];
+  return {
+    policyArea: `/topics/policy-area/${pick(idx.policy_areas).slug}`,
+    subject: `/topics/subject/${pick(idx.subjects).slug}`,
+  };
+}
+
+const topics = topicPaths();
+
 export const PAGES: string[] = [
   "/",
   "/federal", // V2-5: the filterable federal-members browser (Preact island)
+  "/topics", // V2-11: the topic index (both official vocabularies)
+  topics.policyArea, // V2-11: the largest policy area
+  topics.subject, // V2-11: the largest subject term
   "/compare", // V2-5: the compare view (bare — the picker + prompt, JS-rendered)
   "/states", // V2-5: the States tab
   `/m/${firstMemberId()}/1`,

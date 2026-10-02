@@ -1,7 +1,9 @@
 ---
 import Layout from "../../components/Layout.astro";
 import Badge from "../../components/Badge.astro";
-import { getPagedBills, getMember, getVotesForBill } from "../../lib/data";
+import {
+  getPagedBills, getMember, getVotesForBill, getTopicByName, getTopicPath,
+} from "../../lib/data";
 import type { Bill } from "../../lib/data";
 import { formatDate, billLabel, ordinal } from "../../lib/display";
 
@@ -13,6 +15,28 @@ interface Props { bill: Bill }
 const { bill } = Astro.props as Props;
 const sponsor = bill.sponsor_id ? getMember(bill.sponsor_id) : undefined;
 const rolls = getVotesForBill(bill.id);
+
+// V2-11 task 7. Rendered in STORED ORDER, which is already newest-first: the
+// /actions sub-resource returns newest-first and `bill_actions()` preserves the
+// government's order verbatim rather than re-sorting it (no re-sort here either —
+// `date` alone cannot order several actions that share a day, and `time` is present
+// on only 44% of rows, so any local sort would shuffle same-day sequences).
+// `actions` is ABSENT or null when the timeline has not been collected yet, which
+// renders differently from an empty list (see Bill.actions) — normalised to null here
+// so the three cases are one check each below.
+const actions = bill.actions ?? null;
+
+// Absolute, because the point of the affordance is a URL a reader pastes into a feed
+// client that is not this page. `Astro.site` is the canonical origin from astro.config.
+const feedUrl = new URL(`/b/${bill.id}/feed.xml`, Astro.site).href;
+
+// Topic links come from the committed index by NAME (getTopicByName), never from a
+// slug re-derived here. A term the index does not carry yet renders as plain text.
+const policyTopic = bill.policy_area ? getTopicByName(bill.policy_area, "policy_area") : undefined;
+const subjectTopics = (bill.subjects ?? []).map((name) => ({
+  name,
+  topic: getTopicByName(name, "subject"),
+}));
 ---
 <Layout title={`${billLabel(bill.id)} — Civic Ledger`}>
   <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / Bill</nav>
@@ -26,7 +50,14 @@ const rolls = getVotesForBill(bill.id);
 
   <dl class="mt-4 space-y-1 text-sm text-neutral-700">
     {bill.policy_area && (
-      <div class="flex gap-2"><dt class="text-neutral-500">Policy area:</dt><dd>{bill.policy_area}</dd></div>
+      <div class="flex gap-2">
+        <dt class="text-neutral-500">Policy area:</dt>
+        <dd>
+          {policyTopic
+            ? <a href={getTopicPath(policyTopic)} class="underline hover:text-neutral-900">{bill.policy_area}</a>
+            : bill.policy_area}
+        </dd>
+      </div>
     )}
     {sponsor && (
       <div class="flex gap-2">
@@ -38,6 +69,20 @@ const rolls = getVotesForBill(bill.id);
       <dt class="text-neutral-500">Latest action:</dt>
       <dd>{bill.latest_action} <span class="text-neutral-400">({formatDate(bill.latest_action_date)})</span></dd>
     </div>
+    {subjectTopics.length > 0 && (
+      <div class="flex gap-2">
+        <dt class="text-neutral-500">Subjects:</dt>
+        <dd class="flex flex-wrap gap-x-1.5 gap-y-1">
+          {subjectTopics.map((s, i) => (
+            <span>
+              {s.topic
+                ? <a href={getTopicPath(s.topic)} class="underline hover:text-neutral-900">{s.name}</a>
+                : s.name}{i < subjectTopics.length - 1 ? "," : ""}
+            </span>
+          ))}
+        </dd>
+      </div>
+    )}
   </dl>
 
   <div class="mt-3 text-sm">
@@ -59,6 +104,109 @@ const rolls = getVotesForBill(bill.id);
       </ul>
     </section>
   )}
+
+  <section class="mt-8">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      Action timeline
+    </h2>
+    {actions === null ? (
+      <p class="mt-1 text-sm text-neutral-600">
+        The official action timeline for this bill has not been collected yet. The full
+        record is on
+        <a href={bill.source_url} rel="nofollow" class="underline hover:text-neutral-800">congress.gov</a>.
+      </p>
+    ) : actions.length === 0 ? (
+      <p class="mt-1 text-sm text-neutral-600">
+        No actions appear on the official record for this bill.
+      </p>
+    ) : (
+      <>
+        <p class="mt-1 text-xs text-neutral-500">
+          {actions.length === 1 ? "1 action" : `${actions.length} actions`}, most recent
+          first. Each line is the text published by the chamber or the Library of
+          Congress, shown word for word.
+        </p>
+        <ol class="mt-2 divide-y divide-neutral-100">
+          {actions.map((a) => (
+            <li class="py-2 text-sm">
+              <div class="flex flex-wrap items-baseline gap-x-2">
+                <span class="tabular-nums text-neutral-500">{formatDate(a.date)}</span>
+                <span class="text-xs text-neutral-400">{a.type}</span>
+                {a.action_code && <span class="text-xs text-neutral-400">code {a.action_code}</span>}
+              </div>
+              <p class="mt-0.5 text-neutral-700">{a.text}</p>
+              {a.committees && a.committees.length > 0 && (
+                <p class="mt-0.5 text-xs text-neutral-500">{a.committees.join(" · ")}</p>
+              )}
+              <p class="mt-0.5 text-xs text-neutral-400">
+                Source: {a.source_system}
+                {a.rollcall_id && (
+                  <>
+                    {" · "}
+                    <a href={`/v/${a.rollcall_id}`} class="underline hover:text-neutral-700">
+                      recorded vote
+                    </a>
+                  </>
+                )}
+              </p>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-2 text-xs text-neutral-500">
+          Every action above is published by the government; this page adds nothing to it.
+          The full record, including anything added since the last data update, is on
+          <a href={bill.source_url} rel="nofollow" class="underline hover:text-neutral-700">congress.gov</a>.
+        </p>
+      </>
+    )}
+  </section>
+
+  <section class="mt-8">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      Track this bill
+    </h2>
+    <p class="mt-1 text-sm text-neutral-600">
+      This bill has a feed. Paste the address into any feed reader to get each new
+      official action as it is published. No account, and nothing about you is recorded.
+    </p>
+    <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
+      <a href={`/b/${bill.id}/feed.xml`} class="underline hover:text-neutral-800">Open the feed</a>
+      <label class="sr-only" for="feed-url">Feed address for this bill</label>
+      <input
+        id="feed-url"
+        type="text"
+        readonly
+        value={feedUrl}
+        data-feed-url
+        class="min-w-0 flex-1 rounded border border-neutral-700 bg-transparent px-2 py-1 font-mono text-xs text-neutral-400"
+      />
+      <button
+        type="button"
+        data-copy-feed
+        hidden
+        class="rounded border border-neutral-700 px-2 py-1 text-xs text-neutral-300 hover:text-neutral-100"
+      >Copy</button>
+    </div>
+  </section>
+
+  <script is:inline>
+    // Progressive enhancement only. The button starts hidden and is revealed here, so
+    // with JavaScript off the reader still gets a working link and a selectable
+    // address rather than a button that does nothing.
+    (function () {
+      var btn = document.querySelector("[data-copy-feed]");
+      var input = document.querySelector("[data-feed-url]");
+      if (!btn || !input || !navigator.clipboard) return;
+      btn.hidden = false;
+      btn.addEventListener("click", function () {
+        navigator.clipboard.writeText(input.value).then(function () {
+          var was = btn.textContent;
+          btn.textContent = "Copied";
+          setTimeout(function () { btn.textContent = was; }, 1500);
+        });
+      });
+    })();
+  </script>
 
   <section class="mt-8">
     <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">

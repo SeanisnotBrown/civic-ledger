@@ -1,0 +1,88 @@
+---
+// V2-11 task 7 — the topic index.
+//
+// SD-33 4(a): the vocabulary is the GOVERNMENT'S, verbatim. The 31 CRS policy areas
+// and the CRS legislative subject terms, exactly as congress.gov assigns them. The
+// site invents no topic, merges none, and rewords none — so "Firearms and explosives"
+// appears under that name and there is no "Gun rights" entry, because the government
+// does not publish one. Owner-authored bundles are a separate, dated, disclosed
+// mechanism (H22) and are deliberately not built here.
+//
+// Both lists render in the committed file's own slug order: it is already
+// deterministic, and sorting by display name here would make the page's bytes depend
+// on the build machine's collation.
+import Layout from "../../components/Layout.astro";
+import { getTopicsIndex, getTopicsOf, getTopicPath } from "../../lib/data";
+
+const idx = getTopicsIndex();
+// Read through getTopicsOf/getTopicPath rather than building "/topics/" + slug here:
+// the two vocabularies are separate URL namespaces (ADR D97) and one helper owns that
+// rule for every surface that links a topic.
+const policyAreas = getTopicsOf("policy_area");
+const subjects = getTopicsOf("subject");
+const n = (x: number) => x.toLocaleString("en-US");
+---
+<Layout
+  title="Topics — Civic Ledger"
+  description="Every policy area and legislative subject term the government assigns to bills in the covered Congresses."
+>
+  <nav class="text-xs text-neutral-500"><a href="/federal" class="underline">Federal</a> / Topics</nav>
+  <h1 class="mt-1 text-xl font-semibold tracking-tight">Topics</h1>
+  <p class="mt-2 max-w-[70ch] text-sm text-neutral-600">
+    These are the government's own classifications, shown word for word. The Congressional
+    Research Service assigns each bill one <strong class="font-medium">policy area</strong> and
+    any number of <strong class="font-medium">legislative subject terms</strong>; this site
+    adds nothing to that list and renames nothing in it. Every topic has a feed, so you can
+    follow one without an account.
+  </p>
+  <p class="mt-2 text-xs text-neutral-500">
+    {n(idx.counts.policy_areas)} policy areas and {n(idx.counts.subjects)} subject terms
+    across {n(idx.counts.bills)} bills with a classification on record. The number of terms
+    grows as the government applies new ones — it is not a fixed list.
+  </p>
+
+  {policyAreas.length === 0 ? (
+    <p class="mt-8 text-sm text-neutral-600">
+      No topics have been built yet for this dataset.
+    </p>
+  ) : (
+    <>
+      <section class="mt-8">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+          Policy areas
+        </h2>
+        <p class="mt-1 text-xs text-neutral-500">One per bill, assigned by the CRS.</p>
+        <ul class="mt-2 grid gap-x-8 gap-y-1 sm:grid-cols-2">
+          {policyAreas.map((t) => (
+            <li class="flex items-baseline justify-between gap-3 border-b border-neutral-100 py-1 text-sm">
+              <a href={getTopicPath(t)} class="underline hover:text-neutral-900">{t.name}</a>
+              <span class="shrink-0 tabular-nums text-xs text-neutral-500">{n(t.bill_count)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section class="mt-10">
+        <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+          Legislative subject terms
+        </h2>
+        <p class="mt-1 text-xs text-neutral-500">
+          Any number per bill. {n(idx.counts.subjects)} terms appear on the bills collected
+          so far.
+        </p>
+        <ul class="mt-2 grid gap-x-8 gap-y-1 sm:grid-cols-2">
+          {subjects.map((t) => (
+            <li class="flex items-baseline justify-between gap-3 border-b border-neutral-100 py-1 text-sm">
+              <a href={getTopicPath(t)} class="underline hover:text-neutral-900">{t.name}</a>
+              <span class="shrink-0 tabular-nums text-xs text-neutral-500">{n(t.bill_count)}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
+  )}
+
+  <p class="mt-10 text-xs text-neutral-400">
+    <a href="/feed.xml" class="underline hover:text-neutral-300">Feed of all floor activity</a>
+  </p>
+</Layout>

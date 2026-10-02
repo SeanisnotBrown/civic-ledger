@@ -42,11 +42,34 @@ export interface Absence {
   declared_position: "yea" | "nay" | null;
 }
 export interface CboRef { url: string; title: string; date: string; }
+
+// V2-11: one step in a bill's official action timeline. Mirrors ingest/models.py
+// BillAction exactly, including which fields are nullable (that list is MEASURED over
+// 520 real actions, see the model's docstring). `text` is the government's own
+// published sentence, stored and rendered VERBATIM — never summarised or reworded
+// (§0.5). `committees` is not decoration: it is the only thing distinguishing several
+// otherwise byte-identical rows on one day (hr2670-118 has five). `rollcall_id` is set
+// only when the action's recorded vote resolves to a roll call this dataset holds.
+export interface BillAction {
+  date: string; time: string | null; text: string; type: string;
+  action_code: string | null; source_system: string;
+  committees: string[] | null; rollcall_id: string | null;
+}
+
 export interface Bill {
   id: string; jurisdiction: Jurisdiction; congress: number | null; type: string;
   number: number; title_official: string;
   policy_area: string | null; subjects: string[] | null; sponsor_id: string | null;
-  cosponsor_ids: string[] | null; latest_action: string; latest_action_date: string;
+  cosponsor_ids: string[] | null;
+  // NOT COLLECTED is the D27 `null` sentinel — and note the field is OPTIONAL here,
+  // because the deterministic exporter omits a None field entirely rather than writing
+  // `"actions": null`, so on a bill the activity backfill has not reached the key is
+  // simply absent. Absent and null mean the same thing; both are distinct from `[]`,
+  // which means collected and the government lists none. Rendering an empty timeline
+  // for either of the first two would publish "this bill has had no actions", which is
+  // false framing (Value #1) — so the cases get different copy wherever they surface.
+  actions?: BillAction[] | null;
+  latest_action: string; latest_action_date: string;
   cbo_estimates: CboRef[]; source_url: string;
 }
 export interface Manifest {
@@ -171,6 +194,188 @@ export function getPagedBills(): Bill[] {
 }
 export function getBill(id: string): Bill | undefined {
   return billMap().get(id);
+}
+
+// --- Topics (V2-11 tasks 6-7) --------------------------------------------
+// data/topics/index.json, built by `uv run ingest topics` from data/bills/**.
+// SD-33 4(a): the vocabulary is the GOVERNMENT'S — the 31 CRS policy areas and the
+// CRS legislative subject terms, verbatim. The site invents no label and rewords
+// none. `slug` is the only thing the pipeline adds, it is mechanical, and it is read
+// from this file rather than re-derived here: two slug rules that drift by one
+// character produce links to pages that do not exist.
+
+export type TopicVocabulary = "policy_area" | "subject";
+
+export interface TopicEntry {
+  slug: string; name: string; bill_count: number; bill_ids: string[];
+}
+export interface TopicsIndex {
+  counts: { bills: number; policy_areas: number; subjects: number };
+  policy_areas: TopicEntry[];
+  subjects: TopicEntry[];
+}
+/** A topic plus which official vocabulary it came from — the site states that
+ *  provenance next to the term, because "Health" the policy area and a subject term
+ *  are different government classifications and conflating them would misdescribe
+ *  both. */
+export type Topic = TopicEntry & { vocabulary: TopicVocabulary };
+
+let _topicsIndex: TopicsIndex | null = null;
+export function getTopicsIndex(): TopicsIndex {
+  if (_topicsIndex) return _topicsIndex;
+  try {
+    _topicsIndex = readJson<TopicsIndex>("topics/index.json");
+  } catch {
+    // Absent on a checkout that never ran `ingest topics` — no topics, no pages.
+    _topicsIndex = { counts: { bills: 0, policy_areas: 0, subjects: 0 }, policy_areas: [], subjects: [] };
+  }
+  return _topicsIndex;
+}
+
+/** Every topic across both vocabularies, policy areas first then subjects, each
+ *  already slug-sorted by the Python projection. One flat list because `/topics/
+ *  [slug]/` is one URL namespace. */
+let _topics: Topic[] | null = null;
+export function getTopics(): Topic[] {
+  if (_topics) return _topics;
+  const idx = getTopicsIndex();
+  _topics = [
+    ...idx.policy_areas.map((t) => ({ ...t, vocabulary: "policy_area" as const })),
+    ...idx.subjects.map((t) => ({ ...t, vocabulary: "subject" as const })),
+  ];
+  return _topics;
+}
+
+/** The URL prefix for each official vocabulary, and the reason the two are separate
+ *  URL namespaces at all.
+ *
+ *  `ingest/topics.py` keeps policy areas and subject terms apart ON PURPOSE, and
+ *  `test_policy_areas_and_subjects_are_separate_vocabularies` pins it: "Health" the
+ *  policy area and "Health" the subject term are different government claims about a
+ *  bill, and both are valid output at once. A single flat `/topics/{slug}/` namespace
+ *  would be exactly the merge that module's docstring forbids — one page silently
+ *  meaning both — so the vocabulary is part of the path. (The V2-11 plan text says
+ *  `/topics/[slug]/`; it was written before this separation was committed code, and
+ *  the spec preamble makes the code authoritative. ADR D97.)
+ */
+export const TOPIC_PATH_SEGMENT: Record<TopicVocabulary, string> = {
+  policy_area: "policy-area",
+  subject: "subject",
+};
+
+/** The canonical path of a topic page. Every surface that links a topic goes through
+ *  this — six files would otherwise each carry their own copy of the prefix rule. */
+export function getTopicPath(topic: Topic): string {
+  return `/topics/${TOPIC_PATH_SEGMENT[topic.vocabulary]}/${topic.slug}`;
+}
+
+/** Only the topics of one vocabulary — each vocabulary has its own route file, so a
+ *  mistyped segment fails the build instead of quietly becoming a third namespace. */
+export function getTopicsOf(vocabulary: TopicVocabulary): Topic[] {
+  return getTopics().filter((t) => t.vocabulary === vocabulary);
+}
+
+let _topicBySlug: Map<string, Topic> | null = null;
+export function getTopic(slug: string): Topic | undefined {
+  if (!_topicBySlug) _topicBySlug = new Map(getTopics().map((t) => [t.slug, t]));
+  return _topicBySlug.get(slug);
+}
+
+/** The topic for an official term as it appears on a bill (`policy_area`, or one of
+ *  `subjects`). Looked up BY NAME in the committed index so the slug in a link is
+ *  always the same string the page was built at — a second slug rule in TypeScript
+ *  that drifted by one character would link to pages that do not exist. A term absent
+ *  from the index (the index is regenerated by `ingest topics`, which can lag a bill
+ *  write) returns undefined, and callers then render the term as plain text rather
+ *  than a dead link. */
+let _topicByName: Map<string, Topic> | null = null;
+export function getTopicByName(name: string, vocabulary: TopicVocabulary): Topic | undefined {
+  if (!_topicByName) {
+    _topicByName = new Map(getTopics().map((t) => [`${t.vocabulary} ${t.name}`, t]));
+  }
+  return _topicByName.get(`${vocabulary} ${name}`);
+}
+
+/** A topic's bills as records, most recent official action first.
+ *
+ *  Sorted on `latest_action_date` (not on `actions`, which is null for every bill the
+ *  activity backfill has not reached — see Bill.actions) with a bill-id tie-break so
+ *  the page is byte-stable. Ids with no bill file are dropped: the index is projected
+ *  from data/bills/, so that can only happen mid-regeneration, and a missing record
+ *  must not take the build down. */
+export function getTopicBills(topic: Topic): Bill[] {
+  const bills: Bill[] = [];
+  for (const id of topic.bill_ids) {
+    const b = getBill(id);
+    if (b) bills.push(b);
+  }
+  bills.sort((a, b) =>
+    a.latest_action_date !== b.latest_action_date
+      ? (a.latest_action_date < b.latest_action_date ? 1 : -1)
+      : a.id.localeCompare(b.id),
+  );
+  return bills;
+}
+
+// --- Action streams for the feeds (V2-11 task 7) -------------------------
+
+/** One action together with the bill it belongs to — what a feed entry is made of. */
+export interface ActionRef { bill: Bill; action: BillAction; index: number }
+
+/**
+ * The most recent `limit` actions across `bills`, newest first.
+ *
+ * Ordering is `date` descending, then bill id, then the action's position in its
+ * bill's stored array. That last key matters and is not arbitrary: the government
+ * returns a bill's actions newest-first and the pipeline preserves that order
+ * verbatim, so position ascending IS newest-first within a day — and `date` alone
+ * cannot order the dozen actions a busy bill can collect on one day (`time` is
+ * present on under half of all rows, so it is unusable as a sort key). Bill id in
+ * the middle keeps the result byte-stable across runs.
+ *
+ * Bills whose `actions` is null (not collected yet) contribute nothing, which is
+ * correct: a feed must not imply a bill has had no activity when the truth is that
+ * this dataset has not looked yet.
+ */
+export function recentActions(bills: Bill[], limit: number): ActionRef[] {
+  const refs: ActionRef[] = [];
+  for (const bill of bills) {
+    if (!bill.actions) continue;
+    for (let i = 0; i < bill.actions.length; i++) {
+      refs.push({ bill, action: bill.actions[i], index: i });
+    }
+  }
+  refs.sort((a, b) => {
+    if (a.action.date !== b.action.date) return a.action.date < b.action.date ? 1 : -1;
+    if (a.bill.id !== b.bill.id) return a.bill.id < b.bill.id ? -1 : 1;
+    return a.index - b.index;
+  });
+  return refs.slice(0, limit);
+}
+
+/** Bills a member sponsored, most recent action first. Memoized as one index: the
+ *  naive form scans every bill once per member, which is ~38,756 x ~541 at full
+ *  scale. */
+let _billsBySponsor: Map<string, Bill[]> | null = null;
+export function getBillsBySponsor(memberId: string): Bill[] {
+  if (!_billsBySponsor) {
+    const index = new Map<string, Bill[]>();
+    for (const b of getBills()) {
+      if (!b.sponsor_id) continue;
+      let list = index.get(b.sponsor_id);
+      if (!list) { list = []; index.set(b.sponsor_id, list); }
+      list.push(b);
+    }
+    for (const list of index.values()) {
+      list.sort((a, b) =>
+        a.latest_action_date !== b.latest_action_date
+          ? (a.latest_action_date < b.latest_action_date ? 1 : -1)
+          : a.id.localeCompare(b.id),
+      );
+    }
+    _billsBySponsor = index;
+  }
+  return _billsBySponsor.get(memberId) ?? [];
 }
 
 // --- Events (V2-11 task 5b) ----------------------------------------------

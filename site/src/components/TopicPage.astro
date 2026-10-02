@@ -1,0 +1,122 @@
+---
+// V2-11 task 7 — the body of a topic page, shared by both vocabulary routes
+// (/topics/policy-area/{slug} and /topics/subject/{slug}).
+//
+// One template, because the two pages differ only in which official vocabulary the
+// term came from. Two copies would be two places for the SD-33 3(c) link rule to drift.
+//
+// The heading is the government's term VERBATIM (SD-33 4(a)); `slug` is read from
+// data/topics/index.json, never re-derived here.
+//
+// SD-33 3(c) — the link rule `npm run test:links` enforces: the dataset tracks every
+// bill in the covered Congresses, but only a bill that reached a recorded vote gets a
+// /b/ page. A bill without one links to its own source_url on congress.gov. Linking it
+// to a /b/ URL that was never built is the failure this rule exists to prevent.
+import Layout from "./Layout.astro";
+import { getTopicBills, getTopicPath, votedBillIds } from "../lib/data";
+import type { Topic, Bill } from "../lib/data";
+import { formatDate, billLabel } from "../lib/display";
+
+// The most recent N bills render; the count above the list always states the true
+// total. Capped because membership grows without bound as the activity backfill lands
+// (measured: 397 bills on the largest term at 1,385 bills collected, projecting to
+// ~11,000 at the full 38,756), and paginating instead would add ~3,100 built files,
+// which does not fit under the 20,000-file Workers Free ceiling (H14/H20). 200 matches
+// PAGE_SIZE on the member vote record. Mechanical choice — ADR D97.
+const LIST_LIMIT = 200;
+
+interface Props { topic: Topic }
+const { topic } = Astro.props as Props;
+
+const allBills: Bill[] = getTopicBills(topic);
+const bills = allBills.slice(0, LIST_LIMIT);
+const voted = votedBillIds();
+const basePath = getTopicPath(topic);
+
+const VOCAB_LABEL: Record<Topic["vocabulary"], string> = {
+  policy_area: "Policy area",
+  subject: "Legislative subject term",
+};
+const VOCAB_NOTE: Record<Topic["vocabulary"], string> = {
+  policy_area:
+    "A policy area is the single top-level classification the Congressional Research Service assigns to a bill.",
+  subject:
+    "A legislative subject term is one of any number the Congressional Research Service assigns to a bill.",
+};
+const n = (x: number) => x.toLocaleString("en-US");
+---
+<Layout
+  title={`${topic.name} — Topics — Civic Ledger`}
+  description={`Bills the government classified under "${topic.name}".`}
+>
+  <nav class="text-xs text-neutral-500">
+    <a href="/federal" class="underline">Federal</a> /
+    <a href="/topics" class="underline">Topics</a> / {VOCAB_LABEL[topic.vocabulary]}
+  </nav>
+  <p class="mt-1 text-sm font-medium text-neutral-500">{VOCAB_LABEL[topic.vocabulary]}</p>
+  <h1 class="mt-1 text-xl font-semibold tracking-tight">{topic.name}</h1>
+  <p class="mt-2 max-w-[70ch] text-sm text-neutral-600">
+    {VOCAB_NOTE[topic.vocabulary]} The term is the government&apos;s own wording, shown word
+    for word; this site did not write it or choose it.
+  </p>
+
+  <p class="mt-4 text-sm text-neutral-700">
+    {n(topic.bill_count)} {topic.bill_count === 1 ? "bill" : "bills"} carry this term in the
+    covered Congresses.
+  </p>
+
+  <p class="mt-3 text-sm">
+    <a href={`${basePath}/feed.xml`} class="underline hover:text-neutral-800">
+      Follow this topic by feed
+    </a>
+    <span class="text-neutral-500"> — new official actions on these bills, no account needed.</span>
+  </p>
+
+  <section class="mt-8">
+    <h2 class="text-sm font-semibold uppercase tracking-wide text-neutral-500">
+      Bills, most recent action first
+    </h2>
+    {allBills.length > bills.length && (
+      <p class="mt-1 text-xs text-neutral-500">
+        Showing the {n(bills.length)} with the most recent action, of {n(allBills.length)}.
+      </p>
+    )}
+    {bills.length === 0 ? (
+      <p class="mt-1 text-sm text-neutral-600">No bills are on record under this term yet.</p>
+    ) : (
+      <ul class="mt-2 divide-y divide-neutral-100">
+        {bills.map((b) => (
+          /* data-bill-id is not decoration: `npm run test:links` reads it to check the
+             SD-33 3(c) link rule on every rendered row — a bill with a page must link
+             to its page, one without must cite its own congress.gov record. Without a
+             machine-readable id per row the check can only spot a wrong link, not a
+             missing source link. */
+          <li class="py-2 text-sm" data-bill-id={b.id}>
+            <div class="flex flex-wrap items-baseline gap-x-2">
+              {voted.has(b.id) ? (
+                <a href={`/b/${b.id}`} class="font-medium underline hover:text-neutral-900">
+                  {billLabel(b.id)}
+                </a>
+              ) : (
+                <a href={b.source_url} rel="nofollow" class="font-medium underline hover:text-neutral-900">
+                  {billLabel(b.id)}
+                </a>
+              )}
+              <span class="text-xs text-neutral-500">{formatDate(b.latest_action_date)}</span>
+              {!voted.has(b.id) && (
+                <span class="text-xs text-neutral-400">on congress.gov — no recorded vote yet</span>
+              )}
+            </div>
+            <p class="mt-0.5 text-neutral-700">{b.title_official}</p>
+            <p class="mt-0.5 text-xs text-neutral-500">{b.latest_action}</p>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+
+  <p class="mt-8 text-xs text-neutral-400">
+    A bill gets a page here once it reaches a recorded vote; until then its official record
+    on congress.gov is the link. Every bill in the covered Congresses is tracked either way.
+  </p>
+</Layout>

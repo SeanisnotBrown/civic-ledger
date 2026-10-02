@@ -1,0 +1,15 @@
+---
+// V2-11 task 7 — one page per CRS policy area. Body in components/TopicPage.astro;
+// the two vocabularies get their own route file so a mistyped path segment fails the
+// build instead of quietly becoming a third namespace (ADR D97).
+import TopicPage from "../../../components/TopicPage.astro";
+import { getTopicsOf } from "../../../lib/data";
+import type { Topic } from "../../../lib/data";
+
+export function getStaticPaths() {
+  return getTopicsOf("policy_area").map((t) => ({ params: { slug: t.slug }, props: { topic: t } }));
+}
+
+const { topic } = Astro.props as { topic: Topic };
+---
+<TopicPage topic={topic} />

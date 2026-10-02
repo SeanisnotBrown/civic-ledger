@@ -32,7 +32,7 @@ const path = Astro.url.pathname;
 const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
   { href: "/", label: "Home", match: (p) => p === "/" },
   { href: "/federal", label: "Federal",
-    match: (p) => ["/federal", "/m/", "/v/", "/b/", "/compare", "/pairing"].some((x) => p === x || p.startsWith(x)) },
+    match: (p) => ["/federal", "/m/", "/v/", "/b/", "/topics", "/compare", "/pairing"].some((x) => p === x || p.startsWith(x)) },
   { href: "/states", label: "States", match: (p) => p.startsWith("/states") || p.startsWith("/ms") },
   { href: "/methods", label: "Methodology", match: (p) => p.startsWith("/methods") },
 ];
@@ -45,6 +45,7 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description ?? "A non-partisan public ledger of the legislative record."} />
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="alternate" type="application/atom+xml" title="Civic Ledger — legislative activity" href="/feed.xml" />
     <title>{title}</title>
   </head>
   <body class="min-h-screen bg-bg text-text antialiased">

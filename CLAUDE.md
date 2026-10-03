@@ -9,10 +9,12 @@ Rules:
   evaluative number he hasn't ratified (§0.8).
 - Track state in docs/PROGRESS.md: current increment, acceptance status,
   blocked H-tasks. Update it before ending any session. **Read its
-  "READ THIS FIRST — the three live facts" section at the top BEFORE touching
-  anything**: it says whether a long-running local ingest is currently writing
-  `data/`, whether uncommitted data in the tree is deliberate, and what the last
-  CI run did. A dirty `git status` in this repo is often a RUNNING PROCESS, not
+  "TASK 0" section and then "READ THIS FIRST — the three live facts" at the top
+  BEFORE touching anything** — TASK 0 is the owner's standing instruction for
+  what this session does first, and it is usually about the long-running local
+  data pull; the live-facts section says whether a long-running local ingest is
+  currently writing `data/`, whether uncommitted data in the tree is deliberate,
+  and what the last CI run did. A dirty `git status` in this repo is often a RUNNING PROCESS, not
   abandoned work — do not clean it up or commit it without reading that section.
 - Before pushing, run BOTH gates (each has drawn blood — D94, D96 addendum):
   `uv run ruff check .` (with the dot — a directory you edited is not enough) and

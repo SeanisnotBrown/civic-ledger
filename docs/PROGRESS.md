@@ -3,11 +3,44 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-02, afternoon session (V2-11 tasks **1-7 + 5b done**, D88-D97).
-**CI was GREEN on `4b0f731c9`** (run 36960519658, both jobs); task 7 is committed at
-`8e65c8fbf` + `3d6c09414` and **not yet pushed** — see the gate results below before you
-push. Backfill still running; `data/bills/` uncommitted on purpose.
-**Next increment task: V2-11 task 8 (fold `ingest bill-activity --since` into the nightly).**
+**Last updated:** 2026-10-02, 20:30 CDT, end of session (V2-11 tasks **1-7 + 5b done**,
+D88-D97). Task 7 is committed and **pushed** (five commits, `8e65c8fbf`..`06150265c`).
+**Next increment task: V2-11 task 8 (fold `ingest bill-activity --since` into the nightly)
+— but do task 0 below FIRST.**
+
+## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (owner's instruction, 2026-10-02)
+
+**Check the backfill.** The owner left it running deliberately and asked that the next
+session prioritise checking on it. It was at **18,796 of 19,315** bills for Congress 118
+at 20:31 CDT, with roughly **519 to go, ~40 minutes** — so **it has almost certainly
+FINISHED by the time you read this.**
+
+Three commands, in this order:
+
+    grep -l '"actions"' data/bills/*.json | wc -l     # 19,315 means Congress 118 is done
+    tasklist | grep -i python                          # the ~75 MB one is the backfill
+    ls data/quality/quarantine/ | grep '^bill-'        # 1 at session end (bill-s4869-118)
+
+Then take the branch that matches:
+
+- **Finished (count at ~19,315, process gone)** → **commit the data.** This is the
+  highest-value thing available and it has been waiting a day. Use the four-command loop
+  further down, and do not skip `uv run ingest events && uv run ingest topics &&
+  uv run export` — without it the push goes red on invariant 8, invariant 9 and the
+  manifest counts. **Also commit every file in `data/quality/quarantine/` and add each
+  bill id to the committed accept list** (see live fact 2) or
+  `test_committed_accept_list_matches_committed_quarantines` goes red.
+  **Committing the data is what makes task 7 visible**: the deployed site currently
+  renders timelines for only the 44 committed bills that have both a page and actions,
+  out of ~1,000 that will have them once this lands.
+- **Still running** → leave it alone (the owner's standing instruction is "do not stop the
+  process that is pulling data") and work on task 8, which touches `.github/workflows/`
+  and `ingest/`, not `data/`. Commit the data when it finishes.
+- **Died partway** → that is FINE and expected. Resume is the default and costs 0.56 s
+  with zero API requests (D95a): just relaunch the same command.
+
+**Congress 119 has NOT been started.** It is a separate `--congress 119` run of roughly
+24 h. Ask the owner before launching it — it is his machine and his API quota.
 
 ## ▶▶ READ THIS FIRST — the three live facts
 
@@ -17,19 +50,21 @@ push. Backfill still running; `data/bills/` uncommitted on purpose.
 explicitly "do not stop the process that is pulling data".
 - **Progress is read off DISK, never the log** (Python buffers stdout when redirected, so
   the log sits empty for long stretches while the run is working fine):
-  `grep -l '"actions"' data/bills/*.json | wc -l` — **9,883 at the end of the 2026-10-02
-  afternoon session** (it was 461 the session before), target 19,315 for Congress 118.
-  Measured rate over that stretch: ~8,500 bills in ~10.5 h ≈ **4.4 s/bill**, so Congress
-  118 finishes roughly **21:00 on 2026-10-02** if it stays up, and 119 is another ~24 h.
+  `grep -l '"actions"' data/bills/*.json | wc -l` — **18,796 at 20:31 CDT on 2026-10-02**
+  (461 two sessions ago, 9,883 that afternoon), target **19,315** for Congress 118.
+  Sustained rate over 22 h: **~4.5 s/bill**. Congress 118 was ~40 minutes from done at
+  session end. **Congress 119 is a separate run and has not been started.**
 - **Is it still alive?** `tasklist | grep -i python` — it is the ~80 MB one.
   **If it is gone, that is FINE**: resume is the default and costs 0.56 s / zero requests.
 
-**2. THERE IS UNCOMMITTED BILL DATA, on purpose.** `git status --short -- data/bills` was
-non-empty at session end (~9,500 files and climbing).
+**2. THERE IS UNCOMMITTED BILL DATA, on purpose.** `git status --short -- data` was
+**18,408 files** at session end. This is the single biggest piece of pending work in the
+repo and task 0 above is how you clear it.
 **▶ NEW, and it is NOT a bill file:** the backfill also wrote
 `data/quality/quarantine/bill-s4869-118.json` (`KeyError: 'text'` — one congress.gov
-action row with no `text` field, out of ~9,900). It is untracked, so the earlier claim
-that the run writes "only `data/bills/`" is wrong. **Whoever commits the data must also
+action row with no `text` field). It is untracked, so the earlier claim that the run
+writes "only `data/bills/`" is wrong. **Still exactly ONE at 18,796 bills** — the failure
+rate did not grow as expected, so re-check the directory rather than assuming a handful. **Whoever commits the data must also
 commit that file AND add `bill-s4869-118` to the committed accept list**, or
 `test_committed_accept_list_matches_committed_quarantines` goes red in CI. Expect a few
 more of these by the time 118 finishes. It was NOT committed because **the
@@ -37,10 +72,13 @@ derived artifacts cannot be verified while the run is writing** (see the operati
 below). Nothing is at risk — the files are on disk and resume reads disk, not git.
 **To commit it, stop the run first, then use the four-command loop further down.**
 
-**3. CI STATE: last GREEN run was `36960519658` on `4b0f731c9`, BOTH jobs success.**
-`master` now carries **two unpushed task-7 commits** (`8e65c8fbf` code, `3d6c09414` ADR).
-They touch `site/` and `docs/` ONLY — zero Python, zero `data/` — so the python job's
-inputs are unchanged from the last green run. **The local pytest run is RED with 3
+**3. CI STATE: the five task-7 commits were PUSHED at the end of this session** —
+`8e65c8fbf`, `3d6c09414`, `54204419e`, `ed89527ce`, `06150265c`. **Check that run before
+anything else in CI terms** (`gh run list -L 3`); the last known-green run before them was
+`36960519658` on `4b0f731c9`. They touch `site/` and `docs/` ONLY — zero Python, zero
+`data/` — so the python job's inputs are unchanged from that green run, and `uv run
+checks`, `uv run ruff check .`, the build, links, file-count and 60/60 e2e were all green
+locally before the push. **The local pytest run is RED with 3
 failures and all three are the running backfill**, not the new code:
 `test_committed_manifest_matches_regeneration` (committed manifest says 1,385 bills, disk
 now has 10,481), `test_verify_recompute_entrypoint_green` (invariants 8/9 — the documented

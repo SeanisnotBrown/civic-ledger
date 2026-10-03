@@ -551,12 +551,21 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10636-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10636",
+      "title": "Medicaid Fraud Prevention Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10637-119",
       "congress": 119,
       "enacted_action": null,
       "introduced_date": "2026-09-28",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10637",
-      "title": "To require States to submit a report regarding the role of voter vouchers in registrations to vote in elections for Federal office, and for other purposes."
+      "title": "Voter Vouching Transparency Act"
     },
     {
       "became_law": false,
@@ -6176,7 +6185,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 751,
+    "cosponsored": 752,
     "sponsored": 67
   },
   "member_id": "F000475",

@@ -1776,7 +1776,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 197,
-    "sponsored": 36
+    "sponsored": 37
   },
   "member_id": "T000490",
   "source_url": "https://api.congress.gov/v3/member/T000490/sponsored-legislation",
@@ -1798,6 +1798,15 @@
       "introduced_date": "2026-09-17",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10507",
       "title": "Justice for Veterans and Victims of Terrorism Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10716-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10716",
+      "title": "To amend title XI of the Social Security Act to clarify the authority of the Inspector General of the Department of Health and Human Services to exclude certain entities from participation in Federal health care programs."
     },
     {
       "became_law": false,

@@ -3791,6 +3791,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1603-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1603",
+      "title": "Expressing concern about the growing problem of book banning and the proliferation of threats to freedom of expression in the United States."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres166-119",
       "congress": 119,
       "enacted_action": null,
@@ -4088,12 +4097,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 454,
-    "sponsored": 29
+    "cosponsored": 455,
+    "sponsored": 30
   },
   "member_id": "M001232",
   "source_url": "https://api.congress.gov/v3/member/M001232/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10684-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-01",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10684",
+      "title": "To amend the Energy Policy Act of 2005 to support the research and development of bioenergy and renewable chemicals at the Department of Energy, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr2947-119",

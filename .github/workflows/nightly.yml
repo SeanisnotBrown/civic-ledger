@@ -82,6 +82,56 @@ jobs:
           uv run ingest senate-votes
           uv run ingest bills
 
+          # 1b) BILL-ACTIVITY DELTA (V2-11 task 8). SD-33 decision 6 = a DAILY DIGEST
+          #    carried by this nightly; there is deliberately no second intra-day
+          #    workflow, so this one call is the whole steady-state refresh for the
+          #    ~38,756 covered bills that `ingest bills` never sees (it only walks the
+          #    ~1,000 that reached a roll call). Enumerates bills whose updateDate moved
+          #    in the window and fetches ONLY /actions for a bill we already hold
+          #    (merge_activity carries every other field through); the full four requests
+          #    are paid only by a genuinely new bill. That is SD-33 cost constraint 2 and
+          #    the difference between ~5-7 min/night and ~19-29 (D88 (7)).
+          #
+          #    WHY 30 h, stated explicitly rather than left to the code default: the cron
+          #    is 24 h, so 30 h carries ~6 h of slack for a late start, a retried run or a
+          #    workflow_dispatch rehearsal, and re-seeing a bill is idempotent (D90). 48 h
+          #    was considered and REJECTED on cost: D88 measured 280-435 covered bills
+          #    updated per day, so 30 h is ~350-545 bills (~6-9 min/night, ~180-270
+          #    min/month) on top of the D86 nightly's ~900-1,400, and doubling the window
+          #    would put the month against the 2,000-minute free allowance (H24).
+          #
+          #    WHY HERE, after `ingest bills` and before `ingest legislation`:
+          #      * after bills, so a newly-voted bill exists before the delta refreshes it,
+          #        and so the /actions responses `ingest bills` just fetched for the voted
+          #        bills are served from the raw cache (zero extra requests for them);
+          #      * before legislation, so the Sunday `--full` re-page (~3.5 h) does not
+          #        shift this step's wall-clock from night to night - consecutive runs of
+          #        this step stay ~24 h apart, which is what makes a 30 h window a real
+          #        guarantee rather than an average;
+          #      * before steps 3e/3f, which PROJECT data/bills into data/events and
+          #        data/topics (verify-recompute invariants 8 and 9).
+          #
+          #    FAILURE SIGNAL (D87's lesson, and the accepted-quarantine.yaml header):
+          #    a handful of transient per-bill fetch failures does NOT fail this run.
+          #    `run_activity` prints them and returns 0 while they stay under
+          #    config.ACTIVITY_FETCH_FAILURE ceilings; a systemic failure (a dead key, a
+          #    bad window, the quarantine ceiling) still returns nonzero and `set -e`
+          #    stops the night here. A failed bill simply keeps the record it already has
+          #    - nothing false publishes, and the projections below re-derive from disk.
+          #
+          #    RAMP-UP, for whoever reads the first week's logs: the ~5-7 min/night figure
+          #    assumes we already HOLD the updated bills. Congress 119 has not been
+          #    backfilled, so most of the ~411 119th-Congress bills in a nightly window
+          #    are genuinely new and pay the full four requests (~20-30 min/night) until
+          #    the active set is held. That decays on its own; the local `--congress 119`
+          #    backfill is what ends it outright, at zero Actions minutes.
+          #
+          #    OPERATIONAL NOTE: with ~427 covered bills updated per day, data/bills will
+          #    change almost every night, so the step-2 classify gate fires nightly and
+          #    the step-4 "quiet night" branch is now rare. A commit and a Workers Builds
+          #    deploy per day IS the SD-33 cadence, not a regression.
+          uv run ingest bill-activity --since 30
+
           #    Legislation (D86): ONE /member/{id} request per member probes the
           #    lifetime sponsored/cosponsored counts; only members whose counts moved
           #    get their lists re-paged. A full re-page of all 639 members is ~3.5 h of

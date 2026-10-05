@@ -77,7 +77,15 @@ def event_id(bill_id: str, action: dict) -> str:
     hr2670-118 five actions share a date, a text and an action code and differ
     only in `committees`, and a narrower hash published one event where the
     government recorded five. Widening it cannot collapse anything; narrowing it
-    can. `sort_keys` is what makes the id stable across runs and field order."""
+    can. `sort_keys` is what makes the id stable across runs and field order.
+
+    Making `BillAction.text` nullable (2026-10-05) does NOT disturb any existing
+    id: the hash is taken over the action row AS STORED, and no stored row
+    changes -- a row that has text keeps the same bytes. Only the rows that were
+    previously unstorable (the bill was quarantined) gain an id, so no subscriber
+    is re-notified. `ingest.export._dumps` writes `"text": null` rather than
+    dropping the key, and `canonicalJson` in `site/src/lib/atom.ts` serialises
+    `null` identically, so `entryId()` stays byte-equal to this function."""
     payload = json.dumps(action, sort_keys=True, ensure_ascii=False, separators=(",", ":"))
     digest = hashlib.sha256(payload.encode("utf-8")).hexdigest()[:12]
     return f"{bill_id}--{action['date']}--{digest}"
@@ -94,7 +102,13 @@ def events_for_bill(bill: dict, *, has_page: bool) -> list[BillEvent]:
             id=event_id(bill["id"], action),
             bill_id=bill["id"],
             date=action["date"],
-            text=action["text"],
+            # `.get`, not `[...]`: `BillAction.text` is nullable (congress.gov
+            # omits the key on rare rows -- 1 bill in 19,125 on Congress 118), and
+            # a bill exported before that change could also predate the key
+            # entirely. Absent and null both project to null, which is what
+            # `BillEvent.text` documents. Deliberately not an `if`: this module is
+            # inside the 100%-branch coverage gate and `.get` adds no branch.
+            text=action.get("text"),
             type=action["type"],
             action_code=action.get("action_code"),
             source_system=action["source_system"],

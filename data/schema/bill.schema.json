@@ -2,7 +2,7 @@
   "$defs": {
     "BillAction": {
       "additionalProperties": false,
-      "description": "One step in a bill's official action timeline (V2-11 task 3).\n\nEvery field is the government's own, stored verbatim: `text` is the published\nsentence and is never summarised, reworded or classified (0.5). Nullability\nbelow is MEASURED, not assumed -- 520 real actions across six bills spanning\nfour Congresses (task 3 survey, recorded in the D88 addendum):\n\n  actionDate    520/520   -> `date`, required\n  sourceSystem  520/520   -> `source_system`, required\n  text          520/520   -> `text`, required\n  type          520/520   -> `type`, required\n  actionCode    337/520   -> `action_code`, optional\n  actionTime    227/520   -> `time`, optional  (44% -- never a sort key)\n  committees     97/520   -> `committees`, optional\n  recordedVotes  58/520   -> `rollcall_id`, optional\n\n`source_system` stores the NAME only. The Senate's block is `{\"name\":\n\"Senate\"}` with no `code` at all, while House/LoC blocks carry one, so a\nstored code would be nullable for a whole chamber and carry no information\nthe name does not.\n\n`type` is a plain string, not a Literal. Eight values appear in the survey\n(Floor, ResolvingDifferences, Committee, IntroReferral, President, BecameLaw,\nCalendars, NotUsed) and the set is the government's to extend; pinning it\nwould quarantine a bill for the crime of a new action type.\n\n`committees` is NOT decoration and is not droppable: it is the only thing\ndistinguishing several otherwise byte-identical actions. hr2670-118 has five\nrows reading \"Forwarded by Subcommittee to Full Committee by Voice Vote .\" on\none day under one action code, differing only in which subcommittee acted.\nWithout this field the rendered timeline repeats a line five times with no\nexplanation, and the dedupe that produced it looks like a bug (D88 addendum).\n\n`rollcall_id` is set ONLY when the action's `recordedVotes` entry resolves to\na roll call this dataset actually holds -- otherwise null. In the survey 40 of\n58 resolved; the 18 misses were all 117th/116th Congress, real votes outside\nthe covered window. Emitting an id for those would render a link to a `/v/`\npage that does not exist.",
+      "description": "One step in a bill's official action timeline (V2-11 task 3).\n\nEvery field is the government's own, stored verbatim: `text` is the published\nsentence and is never summarised, reworded or classified (0.5). Nullability\nbelow is MEASURED, not assumed -- 520 real actions across six bills spanning\nfour Congresses (task 3 survey, recorded in the D88 addendum):\n\n  actionDate    520/520   -> `date`, required\n  sourceSystem  520/520   -> `source_system`, required\n  text          520/520   -> `text`, OPTIONAL -- see the correction below\n  type          520/520   -> `type`, required\n  actionCode    337/520   -> `action_code`, optional\n  actionTime    227/520   -> `time`, optional  (44% -- never a sort key)\n  committees     97/520   -> `committees`, optional\n  recordedVotes  58/520   -> `rollcall_id`, optional\n\n**CORRECTION (2026-10-05): the 520/520 reading of `text` was a SAMPLING\nARTEFACT and `text` is NOT required.** The task-3 survey's six bills all\nhappened to carry it; the full-Congress backfill then hit a row that does\nnot. s4869-118's `/actions` payload (cached at\n`data/raw/congress_gov/97050f2fb96e4fb9.json`) has three rows, and the\nLibrary of Congress `Intro-S` row dated 2024-07-30 has **no `text` key at\nall** -- not empty, absent. Under the old required field that was a\n`KeyError: 'text'` in `parse_actions` and it quarantined the whole bill\n(`data/quality/quarantine/bill-s4869-118.json`), publishing nothing for a\nreal bill. Measured rate: **1 bill in 19,125** for Congress 118 -- rare,\nreal, and the government's to repeat. Keeping the field required traded one\nmissing sentence for an entire missing bill, which is the worse falsehood.\n\n**`None` is the ONLY absent-text representation; `\"\"` must never be stored.**\n`parse_actions` normalises an empty or missing `text` to `None` for a reason\nthat is load-bearing on the site: `actionText()` in `site/src/lib/display.ts`\nsubstitutes \"(no action text on the official record)\" with `??`, which\ncatches `null`/`undefined` and does NOT catch `\"\"`. An empty string would\nsail through the guard and render a blank timeline line -- publishing an\naction with no content, a Value #1 false framing. A sentinel STRING in the\ndata is equally wrong: every text field here is the government's own (0.5),\nso our wording belongs in the site's copy, never in the record.\n\n`source_system` stores the NAME only. The Senate's block is `{\"name\":\n\"Senate\"}` with no `code` at all, while House/LoC blocks carry one, so a\nstored code would be nullable for a whole chamber and carry no information\nthe name does not.\n\n`type` is a plain string, not a Literal. Eight values appear in the survey\n(Floor, ResolvingDifferences, Committee, IntroReferral, President, BecameLaw,\nCalendars, NotUsed) and the set is the government's to extend; pinning it\nwould quarantine a bill for the crime of a new action type.\n\n`committees` is NOT decoration and is not droppable: it is the only thing\ndistinguishing several otherwise byte-identical actions. hr2670-118 has five\nrows reading \"Forwarded by Subcommittee to Full Committee by Voice Vote .\" on\none day under one action code, differing only in which subcommittee acted.\nWithout this field the rendered timeline repeats a line five times with no\nexplanation, and the dedupe that produced it looks like a bug (D88 addendum).\n\n`rollcall_id` is set ONLY when the action's `recordedVotes` entry resolves to\na roll call this dataset actually holds -- otherwise null. In the survey 40 of\n58 resolved; the 18 misses were all 117th/116th Congress, real votes outside\nthe covered window. Emitting an id for those would render a link to a `/v/`\npage that does not exist.",
       "properties": {
         "action_code": {
           "anyOf": [
@@ -52,8 +52,16 @@
           "type": "string"
         },
         "text": {
-          "title": "Text",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
         },
         "time": {
           "anyOf": [
@@ -74,7 +82,6 @@
       },
       "required": [
         "date",
-        "text",
         "type",
         "source_system"
       ],

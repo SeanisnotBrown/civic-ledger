@@ -35,6 +35,24 @@ SYMMETRY_SPECIFICITY_MAX_POINT_GAP: float = 10.0
 # CI fails if quarantined records exceed this fraction of a run.
 QUARANTINE_MAX_FRACTION: float = 0.02
 
+# V2-11 task 8 — how many TRANSIENT per-bill fetch failures the nightly
+# bill-activity DELTA may absorb before the run is called failed. The §6.1
+# "nightly failure = last deploy stays live" alarm is reserved for new and
+# unexpected problems (the accepted-quarantine.yaml header states that rule;
+# D87 is what happens when it is not honored), and a bill that failed to fetch
+# keeps the record it already has — nothing false publishes, the projections
+# still re-derive, and the next run retries it. A SYSTEMIC failure (a dead API
+# key, a bad window) blows through both ceilings and still fails loudly.
+# Measured basis: the one-time 19,125-bill backfill ended with 16 transient
+# failures (15 TruncatedFetchError, 1 ConnectTimeout) = 0.08%, so a ~400-bill
+# night expects ~0.3. The fraction is QUARANTINE_MAX_FRACTION's value on
+# purpose (~25x the observed rate); the floor keeps one blip on a thin night
+# (20 bills updated) from turning the night red. The ceiling applies to the
+# `--since` delta ONLY: a local `--congress` backfill keeps failing nonzero so
+# the owner re-runs it.
+ACTIVITY_FETCH_FAILURE_MAX_FRACTION: float = 0.02
+ACTIVITY_FETCH_FAILURE_MIN_TOLERATED: int = 2
+
 # --- vote_class (§A1) -----------------------------------------------------
 # Acceptance ceiling for the `other` class (INC-5).
 MAX_OTHER_RATE: float = 0.05

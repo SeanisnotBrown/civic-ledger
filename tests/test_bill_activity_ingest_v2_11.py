@@ -20,10 +20,12 @@ from __future__ import annotations
 
 import json
 
+import httpx
 import pytest
 
 from ingest import bills
 from ingest.models import Bill, BillAction
+from ingest.sources import congress_gov
 
 
 # --- fixtures ----------------------------------------------------------------
@@ -440,3 +442,85 @@ def test_skip_existing_is_idempotent_over_repeated_resumes(monkeypatch, tmp_path
         calls.clear()
         assert bills.run_activity(["--congress", "119", "--skip-existing"]) == 0
         assert calls == [], f"a resume must cost nothing, got {calls}"
+
+
+# --- V2-11 task 8: the nightly delta's FAILURE SIGNAL -----------------------
+# `nightly.yml` runs this step under `set -e`, so a nonzero exit discards the
+# whole night - votes, metrics, grades, projections and the deploy - and leaves
+# the previous deploy live (§6.1). The delta touches ~38,756 bills where
+# `ingest bills` touches ~1,000, so the per-night chance of one transient blip
+# is ~38x higher. The one-time backfill measured the real rate: 16 transient
+# failures over 19,125 bills (15 TruncatedFetchError, 1 ConnectTimeout) = 0.08%.
+# §6.1 and the accepted-quarantine.yaml header both reserve the "nightly failed"
+# alarm for NEW, unexpected problems (D87 is the entry for what happens when
+# that is not honored), so a few of these print and stay green while a SYSTEMIC
+# failure still fails loudly.
+def _wire_with_failures(monkeypatch, tmp_path, items, failing_ids):
+    """`_wire`, then make `bill_actions` raise for the named bill ids."""
+    calls = _wire(monkeypatch, tmp_path, items)
+    failing = set(failing_ids)
+
+    def flaky_actions(c, t, n, **kw):
+        bill_id = f"{t.lower()}{n}-{c}"
+        if bill_id in failing:
+            # The two modes the backfill actually hit.
+            if sorted(failing).index(bill_id) % 2:
+                raise httpx.ConnectTimeout("connect timeout")
+            raise congress_gov.TruncatedFetchError(f"{bill_id} actions: short page")
+        calls.append(f"actions:{t}{n}-{c}")
+        return []
+
+    monkeypatch.setattr("ingest.sources.congress_gov.bill_actions", flaky_actions)
+    return calls
+
+
+def test_a_transient_fetch_failure_does_not_fail_the_nightly_delta(
+    monkeypatch, tmp_path, capsys
+):
+    items = [_item(i) for i in range(1, 11)]
+    calls = _wire_with_failures(monkeypatch, tmp_path, items, {"hr4-119"})
+    assert bills.run_activity(["--since", "30"]) == 0
+    out = capsys.readouterr().out
+    assert "not a failure" in out and "FAIL:" not in out
+    # The nine good bills still landed; the failed one was left exactly as it was
+    # (export_bill is never reached), so nothing false publishes and the
+    # data/events + data/topics projections still re-derive from disk.
+    exported = {p.stem for p in (tmp_path / "data" / "bills").glob("*.json")}
+    assert exported == {f"hr{i}-119" for i in range(1, 11)} - {"hr4-119"}
+    assert "actions:hr4-119" not in calls
+
+
+def test_a_systemic_fetch_failure_still_fails_the_delta(monkeypatch, tmp_path, capsys):
+    items = [_item(i) for i in range(1, 11)]
+    failing = {f"hr{i}-119" for i in range(1, 6)}  # 5 of 10 - a dead key, not a blip
+    _wire_with_failures(monkeypatch, tmp_path, items, failing)
+    assert bills.run_activity(["--since", "30"]) == 1
+    assert "FAIL: 5 bill(s) failed to fetch" in capsys.readouterr().out
+
+
+def test_the_tolerated_count_scales_with_the_window(monkeypatch, tmp_path):
+    """Floor on a thin night, fraction on a fat one: a 20-bill night tolerates
+    the 2-failure floor, a 500-bill night tolerates 2% = 10. Without the floor
+    one blip on a quiet night would turn the night red; without the fraction a
+    500-failure night would pass."""
+    thin = [_item(i) for i in range(1, 21)]
+    _wire_with_failures(monkeypatch, tmp_path, thin, {"hr1-119", "hr2-119"})
+    assert bills.run_activity(["--since", "30"]) == 0
+    _wire_with_failures(monkeypatch, tmp_path, thin, {"hr1-119", "hr2-119", "hr3-119"})
+    assert bills.run_activity(["--since", "30"]) == 1
+
+    fat = [_item(i) for i in range(1, 501)]
+    _wire_with_failures(monkeypatch, tmp_path, fat, {f"hr{i}-119" for i in range(1, 11)})
+    assert bills.run_activity(["--since", "30"]) == 0
+    _wire_with_failures(monkeypatch, tmp_path, fat, {f"hr{i}-119" for i in range(1, 12)})
+    assert bills.run_activity(["--since", "30"]) == 1
+
+
+def test_the_backfill_still_fails_on_any_fetch_failure(monkeypatch, tmp_path, capsys):
+    """The tolerance is the NIGHTLY's, not the backfill's: `--congress` is a
+    local, re-runnable command and a missed bill there is a hole in the one-time
+    record the owner is sitting through, so he gets told (D90)."""
+    items = [_item(i) for i in range(1, 11)]
+    _wire_with_failures(monkeypatch, tmp_path, items, {"hr4-119"})
+    assert bills.run_activity(["--congress", "119"]) == 1
+    assert "FAIL: 1 bill(s) failed to fetch" in capsys.readouterr().out

@@ -95,8 +95,16 @@
           "title": "Subjects"
         },
         "text": {
-          "title": "Text",
-          "type": "string"
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Text"
         },
         "type": {
           "title": "Type",
@@ -107,7 +115,6 @@
         "id",
         "bill_id",
         "date",
-        "text",
         "type",
         "source_system",
         "source_url",

@@ -6,9 +6,21 @@ four Congresses were surveyed before the model was written (D88 addendum).
 `actionCode` on 337, `actionTime` on 227, `committees` on 97, `recordedVotes` on
 58. The tests below pin each of those decisions so a later "tidy-up" cannot
 quietly make a required field optional or vice versa.
+
+**`text` is the one the survey got wrong, and real data — not a tidy-up — is why
+it is now optional (2026-10-05).** Congress 118's full backfill hit s4869-118,
+whose Library of Congress `Intro-S` row (2024-07-30) carries no `text` key at
+all. The required field raised `KeyError: 'text'` and quarantined the whole
+bill, so a missing sentence cost a missing bill — 1 in 19,125. The tests below
+now pin the opposite direction for this one field: a row without `text` must
+parse, must store `None`, and must NEVER store `""` (the site's `actionText()`
+guard is nullish `??`, which an empty string slips past, rendering a blank
+timeline line — an action with no content, a Value #1 false framing).
 """
 
 from __future__ import annotations
+
+import json
 
 import pytest
 from pydantic import ValidationError
@@ -30,10 +42,13 @@ def _raw(
 ):
     a = {
         "actionDate": date,
-        "text": text,
         "type": type_,
         "sourceSystem": {"name": source},
     }
+    # `text=None` means "the key is ABSENT", which is what congress.gov actually
+    # served on s4869-118 — not a present-but-null value.
+    if text is not None:
+        a["text"] = text
     if time is not None:
         a["actionTime"] = time
     if code is not None:
@@ -68,8 +83,13 @@ def test_required_fields_are_the_ones_always_present():
     assert a.rollcall_id is None
 
 
-@pytest.mark.parametrize("missing", ["date", "text", "type", "source_system"])
+@pytest.mark.parametrize("missing", ["date", "type", "source_system"])
 def test_measured_required_fields_cannot_be_omitted(missing):
+    """`text` is deliberately NOT in this list any more — see the module
+    docstring. These three were present on all 520 surveyed actions and on every
+    action the Congress-118 backfill parsed (its only `text`-shaped failure was
+    s4869-118); nothing orders a timeline, names its chamber or labels its stage
+    without them."""
     kwargs = {
         "date": "2023-06-13",
         "text": "Introduced in House",
@@ -79,6 +99,34 @@ def test_measured_required_fields_cannot_be_omitted(missing):
     del kwargs[missing]
     with pytest.raises(ValidationError):
         BillAction(**kwargs)
+
+
+def test_text_is_optional_and_defaults_to_none():
+    """The s4869-118 correction at the schema layer. `None` is the published
+    representation of "the official record carries no sentence for this action";
+    the action itself is still real and fully identified by its other fields."""
+    a = BillAction(
+        date="2024-07-30", type="IntroReferral", action_code="Intro-S",
+        source_system="Library of Congress",
+    )
+    assert a.text is None
+    assert (a.date, a.type, a.action_code) == ("2024-07-30", "IntroReferral", "Intro-S")
+
+
+def test_text_null_round_trips_through_the_export_serialization():
+    """`ingest.export._dumps` must write `"text": null`, not drop the key. Two
+    things depend on it: `ingest.events.event_id` and `entryId()` in
+    `site/src/lib/atom.ts` hash the stored row, and JSON.stringify OMITS an
+    `undefined` while Python keeps a `None` — so a dropped key would split the
+    two ids and re-notify every subscriber on that bill."""
+    from ingest.export import _dumps
+
+    a = BillAction(
+        date="2024-07-30", type="IntroReferral", source_system="Library of Congress"
+    )
+    dumped = _dumps(a.model_dump())
+    assert '"text": null' in dumped
+    assert json.loads(dumped)["text"] is None
 
 
 def test_unknown_field_is_rejected():
@@ -247,10 +295,66 @@ def test_parse_actions_survives_a_malformed_recorded_vote():
 
 
 def test_parse_actions_raises_on_a_missing_required_field():
-    # A malformed action must quarantine the bill (§6.1), not publish a partial
-    # timeline with a blank step.
+    # A malformed action must still quarantine the bill (§6.1). `sourceSystem` is
+    # the omission under test and it is omitted EXPLICITLY — `text` used to be
+    # missing from this row too, which made the test ambiguous once `text` became
+    # optional. An action with no chamber of origin is not publishable.
     with pytest.raises((ValidationError, KeyError)):
-        parse_actions([{"actionDate": "2023-06-13", "type": "Floor"}])
+        parse_actions([{"actionDate": "2023-06-13", "text": "x", "type": "Floor"}])
+
+
+# --- the s4869-118 correction: a row congress.gov served with no `text` -------
+def test_parse_actions_tolerates_a_row_with_no_text_key():
+    """The exact shape that quarantined s4869-118, replayed from the cached
+    payload (`data/raw/congress_gov/97050f2fb96e4fb9.json`): a Library of
+    Congress `Intro-S` row with `actionDate`, `actionCode`, `sourceSystem` and
+    `type` and NO `text` key. It must parse, not raise — the old required field
+    turned one missing sentence into one missing bill."""
+    raw = [{
+        "actionCode": "Intro-S",
+        "actionDate": "2024-07-30",
+        "sourceSystem": {"code": 9, "name": "Library of Congress"},
+        "type": "IntroReferral",
+    }]
+    got = parse_actions(raw)
+    assert len(got) == 1
+    a = got[0]
+    assert a.text is None
+    # Everything the government DID publish about the action survives, so the
+    # timeline still shows a dated, coded, attributed step.
+    assert (a.date, a.type, a.action_code, a.source_system) == (
+        "2024-07-30", "IntroReferral", "Intro-S", "Library of Congress"
+    )
+
+
+def test_parse_actions_stores_none_not_empty_string_for_absent_text():
+    """`""` is forbidden, and this is the test that keeps it forbidden. The site's
+    `actionText()` substitutes its "(no action text on the official record)" copy
+    with a nullish `??`; an empty string is not nullish, so it would slip through
+    and render a blank line — publishing an action with no content (Value #1).
+    Both an absent key and an empty string must normalise to `None`."""
+    assert parse_actions([_raw(text=None)])[0].text is None
+    assert parse_actions([_raw(text="")])[0].text is None
+
+
+def test_parse_actions_keeps_the_rest_of_a_timeline_when_one_row_has_no_text():
+    """s4869-118's real payload is three rows, only the middle one missing text.
+    All three must publish: dropping the row would undercount the official
+    timeline, which is the same false-zero D88 fought over `committees`."""
+    raw = [
+        _raw(date="2024-08-01", text="Read twice and referred to the Committee."),
+        _raw(date="2024-07-30", text=None, code="Intro-S"),
+        _raw(date="2024-07-30", text="Introduced in Senate."),
+    ]
+    got = parse_actions(raw)
+    assert [a.text for a in got] == [
+        "Read twice and referred to the Committee.", None, "Introduced in Senate."
+    ]
+
+
+def test_parse_actions_still_unescapes_when_text_is_present():
+    # The nullable guard must not have cost the lossless entity decode.
+    assert parse_actions([_raw(text="A &amp; B")])[0].text == "A & B"
 
 
 def test_parse_actions_empty_input_is_empty_output():

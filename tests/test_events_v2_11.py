@@ -176,6 +176,58 @@ def test_the_id_is_prefixed_for_a_human_reading_the_feed(tmp_path: Path) -> None
     assert len(got.rsplit("--", 1)[1]) == 12
 
 
+# --- the s4869-118 correction: an action the record carries no text for -------
+def test_an_action_with_null_text_projects_to_an_event_with_null_text(
+    tmp_path: Path,
+) -> None:
+    """`BillAction.text` became nullable on 2026-10-05 (congress.gov omits the key
+    on rare rows — 1 bill in 19,125 on Congress 118). The event must still be
+    PUBLISHED: a dated, typed, attributed official action with no sentence is real,
+    and dropping it would undercount the government's own timeline. The site's
+    `actionText()` supplies the reader-facing copy; the data stays `null`."""
+    data = _dataset(tmp_path, [_bill(actions=[
+        _action(date="2024-07-30", text=None, action_code="Intro-S",
+                source_system="Library of Congress"),
+    ])])
+    out = events.compute(data)["2024-07"]
+    assert out.count == 1
+    e = out.events[0]
+    assert e.text is None
+    assert (e.date, e.type, e.action_code, e.source_system) == (
+        "2024-07-30", "IntroReferral", "Intro-S", "Library of Congress"
+    )
+    assert e.id.startswith("hr1-119--2024-07-30--")
+
+
+def test_an_action_exported_without_a_text_key_at_all_still_projects(
+    tmp_path: Path,
+) -> None:
+    """`events_for_bill` reads `text` with `.get`, so a stored row that predates
+    the field — or any future exporter that drops nulls — projects to `null`
+    instead of raising `KeyError` mid-projection and failing the whole nightly."""
+    row = _action()
+    del row["text"]
+    e = events.compute(_dataset(tmp_path, [_bill(actions=[row])]))["2026-03"].events[0]
+    assert e.text is None
+
+
+def test_making_text_nullable_did_not_change_any_existing_event_id(
+    tmp_path: Path,
+) -> None:
+    """The re-notification guard. `event_id` hashes the row AS STORED, so a row
+    that HAS text must still hash to exactly what it hashed to before the change —
+    feed entry ids are byte-equal to this function across the committed dataset, so
+    any drift here re-delivers every entry to every subscriber. The digest below is
+    pinned as a literal on purpose: a value computed in the test would move with
+    the code it is supposed to be guarding."""
+    row = _action(date="2026-03-04", text="Introduced in House.", action_code="Intro-H")
+    assert events.event_id("hr1-119", row) == "hr1-119--2026-03-04--0293a8b449f0"
+    # And a null-text row is a DIFFERENT id, not a collision with the above.
+    assert events.event_id("hr1-119", _action(text=None)) != events.event_id(
+        "hr1-119", row
+    )
+
+
 # --- has_page (SD-33 3c) -----------------------------------------------------
 def test_has_page_is_true_only_for_a_bill_that_reached_a_vote(tmp_path: Path) -> None:
     data = _dataset(

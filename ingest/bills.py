@@ -180,7 +180,16 @@ def parse_actions(
     entity decode `parse_bill` applies to titles: Congress.gov delivers `&amp;`
     and `&#039;` encoded, and storing the raw entity would double-escape when the
     site renders it as text. That is a normalization to the true string, not a
-    paraphrase (0.5)."""
+    paraphrase (0.5).
+
+    **A row with NO `text` yields `text=None` rather than quarantining the bill.**
+    The task-3 survey's 520/520 reading was a sampling artefact: s4869-118's
+    Library of Congress `Intro-S` row (2024-07-30) has no `text` key at all, and
+    under the old required field it raised `KeyError: 'text'` and kept an entire
+    real bill off the site -- 1 bill in 19,125 on Congress 118. One missing
+    government sentence is a smaller falsehood than a missing government bill.
+    See `BillAction`'s docstring for why the absent value is `None` and never
+    `""`."""
     known = known_rollcall_ids or set()
     out: list[BillAction] = []
     for a in raw_actions:
@@ -197,11 +206,17 @@ def parse_actions(
             if c.get("name")
         ] or None
 
+        # Same `or None` normalization as `actionTime` above, and here it is
+        # load-bearing rather than tidy: it guarantees `""` can never reach disk,
+        # which is exactly what makes the site's nullish `??` guard in
+        # `actionText()` sufficient (an empty string would slip past it and render
+        # a blank timeline line). `html.unescape` is only applied to a real string.
+        raw_text = a.get("text") or None
         out.append(
             BillAction(
                 date=a["actionDate"],
                 time=a.get("actionTime") or None,
-                text=html.unescape(a["text"]),
+                text=None if raw_text is None else html.unescape(raw_text),
                 type=a["type"],
                 action_code=a.get("actionCode") or None,
                 source_system=(a.get("sourceSystem") or {})["name"],
@@ -521,7 +536,16 @@ def run_activity(argv: list[str] | None = None) -> int:
 
     Idempotent and resumable: every fetch is cached and every bill is exported as
     it is finished, so an interrupted 43-hour backfill resumes where it stopped.
-    Malformed bills are quarantined under the existing §6.1 ceiling."""
+    Malformed bills are quarantined under the existing §6.1 ceiling.
+
+    **Failure signal (V2-11 task 8).** On the `--since` delta a few TRANSIENT
+    per-bill fetch failures are printed and the run still returns 0, while they
+    stay under `config.ACTIVITY_FETCH_FAILURE_MIN_TOLERATED` /
+    `..._MAX_FRACTION`: `set -e` in the nightly would otherwise discard a whole
+    green night over one timeout on one of ~38,756 bills, and §6.1 reserves the
+    "nightly failed" alarm for new/unexpected problems. The quarantine ceiling
+    and a systemic fetch failure still return 1, and the `--congress` backfill
+    returns 1 on any fetch failure because it is local and re-runnable."""
     import httpx
 
     from ingest import config
@@ -652,6 +676,27 @@ def run_activity(argv: list[str] | None = None) -> int:
             print(f"FAIL: quarantine {frac:.2%} exceeds {config.QUARANTINE_MAX_FRACTION:.0%}")
             return 1
     if fetch_failures:
+        # V2-11 task 8 — on the NIGHTLY DELTA a handful of transient per-bill
+        # failures must not fail the run. `set -e` in nightly.yml aborts the whole
+        # night at this step, so one ConnectTimeout out of ~400 bills would throw
+        # away the night's votes, metrics, grades and deploy for a bill that simply
+        # keeps the record it already has (export_bill is never reached, so nothing
+        # false is published and invariants 8/9 still re-derive from disk). The
+        # alarm stays reserved for new/unexpected problems per §6.1 and the
+        # accepted-quarantine.yaml header; a systemic failure exceeds the ceilings
+        # below and still returns 1. The BACKFILL keeps failing nonzero: it is a
+        # local, re-runnable command and the owner wants to see it (D90).
+        frac = len(fetch_failures) / total if total else 0.0
+        tolerated = max(
+            config.ACTIVITY_FETCH_FAILURE_MIN_TOLERATED,
+            int(config.ACTIVITY_FETCH_FAILURE_MAX_FRACTION * total),
+        )
+        if not backfill and len(fetch_failures) <= tolerated:
+            print(f"  {len(fetch_failures)} transient fetch failure(s) ({frac:.2%}), "
+                  f"at or under the ceiling of {tolerated}, not a failure "
+                  f"(config.ACTIVITY_FETCH_FAILURE_*); retried on the next run: "
+                  f"{fetch_failures[:10]}")
+            return 0
         print(f"FAIL: {len(fetch_failures)} bill(s) failed to fetch (re-run to retry): "
               f"{fetch_failures[:10]}")
         return 1

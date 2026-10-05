@@ -109,12 +109,35 @@ class BillAction(_Strict):
 
       actionDate    520/520   -> `date`, required
       sourceSystem  520/520   -> `source_system`, required
-      text          520/520   -> `text`, required
+      text          520/520   -> `text`, OPTIONAL -- see the correction below
       type          520/520   -> `type`, required
       actionCode    337/520   -> `action_code`, optional
       actionTime    227/520   -> `time`, optional  (44% -- never a sort key)
       committees     97/520   -> `committees`, optional
       recordedVotes  58/520   -> `rollcall_id`, optional
+
+    **CORRECTION (2026-10-05): the 520/520 reading of `text` was a SAMPLING
+    ARTEFACT and `text` is NOT required.** The task-3 survey's six bills all
+    happened to carry it; the full-Congress backfill then hit a row that does
+    not. s4869-118's `/actions` payload (cached at
+    `data/raw/congress_gov/97050f2fb96e4fb9.json`) has three rows, and the
+    Library of Congress `Intro-S` row dated 2024-07-30 has **no `text` key at
+    all** -- not empty, absent. Under the old required field that was a
+    `KeyError: 'text'` in `parse_actions` and it quarantined the whole bill
+    (`data/quality/quarantine/bill-s4869-118.json`), publishing nothing for a
+    real bill. Measured rate: **1 bill in 19,125** for Congress 118 -- rare,
+    real, and the government's to repeat. Keeping the field required traded one
+    missing sentence for an entire missing bill, which is the worse falsehood.
+
+    **`None` is the ONLY absent-text representation; `""` must never be stored.**
+    `parse_actions` normalises an empty or missing `text` to `None` for a reason
+    that is load-bearing on the site: `actionText()` in `site/src/lib/display.ts`
+    substitutes "(no action text on the official record)" with `??`, which
+    catches `null`/`undefined` and does NOT catch `""`. An empty string would
+    sail through the guard and render a blank timeline line -- publishing an
+    action with no content, a Value #1 false framing. A sentinel STRING in the
+    data is equally wrong: every text field here is the government's own (0.5),
+    so our wording belongs in the site's copy, never in the record.
 
     `source_system` stores the NAME only. The Senate's block is `{"name":
     "Senate"}` with no `code` at all, while House/LoC blocks carry one, so a
@@ -141,7 +164,9 @@ class BillAction(_Strict):
 
     date: str
     time: str | None = None
-    text: str  # verbatim; never summarised or classified (0.5)
+    # verbatim; never summarised or classified (0.5). Nullable since 2026-10-05 --
+    # congress.gov omits the key on rare rows (see the CORRECTION above). Never "".
+    text: str | None = None
     type: str
     action_code: str | None = None
     source_system: str
@@ -471,7 +496,14 @@ class BillEvent(_Strict):
     id: str  # f"{bill_id}--{date}--{sha256(action row)[:12]}"
     bill_id: str
     date: str  # the action's date, YYYY-MM-DD; the month file it lands in
-    text: str  # verbatim official action text (0.5: never summarised)
+    # Verbatim official action text (0.5: never summarised). NULLABLE, mirroring
+    # `BillAction.text`: congress.gov omits the key on rare rows (1 bill in 19,125
+    # on Congress 118 -- see the CORRECTION in BillAction's docstring). A consumer
+    # must treat `null` as "the official record carries no sentence for this
+    # action", NOT as "no action" -- the action itself is real and its date, type,
+    # action code and source system are all here. `""` is never stored, so a
+    # nullish check is sufficient and an emptiness check is not needed.
+    text: str | None = None
     type: str  # the government's action type, verbatim (e.g. "Floor", "Committee")
     # `action_code` and `source_system` are carried for the SAME reason D89 carries
     # `committees`: they are in the id's hash, so without them a consumer sees two

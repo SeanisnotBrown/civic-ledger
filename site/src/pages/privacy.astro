@@ -4,27 +4,44 @@ import Layout from "../components/Layout.astro";
 <Layout title="Privacy — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Privacy</h1>
   <p class="mt-2 max-w-prose text-neutral-700">
-    This site is built to collect as little as possible. This is a summary; the
-    full threat model lands with the interactive features that could otherwise
-    gather data.
+    What happens to you when you read this site. This page is rewritten before
+    any feature that stores your data ships, and it describes only what is true
+    today — not what we would like to be true.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What this site is</h2>
   <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
     <li>Static pages, built from a dataset the operator maintains. No account, no login.</li>
-    <li>No cookies. No analytics. No third-party fonts, scripts, or CDNs.</li>
+    <li>
+      The site is delivered by Cloudflare. Like any company that delivers a
+      website, Cloudflare receives the requests your browser makes and can
+      count them. That is a record of your reading, and it is outside the
+      operator's control.
+    </li>
   </ul>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">The one promise</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Your data is never sold. That is the whole of it, and it is deliberately
+    the only promise on this page. Features planned for this site need to keep
+    a record of what you follow, so a pledge not to collect anything would be
+    one we could not keep — and a promise that cannot be kept is worse than no
+    promise. This one holds whatever gets built, because selling your data
+    would be a decision by the operator rather than something the software
+    could do on its own.
+  </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is stored</h2>
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
     Every fact on a member, vote, or bill page links to the original government
-    record it came from, so you can check it yourself. The dataset and source code
-    are not currently published in a public repository; a legal demand to the
-    operator would produce only what that private repository contains.
+    record it came from, so you can check it yourself. The dataset and source
+    code are kept in a repository that is not currently public.
   </p>
 
-  <p class="mt-8 text-xs text-neutral-500">
-    The full threat model will document every data-collecting surface before it
-    ships.
+  <p class="mt-8 max-w-prose text-sm text-neutral-700">
+    The <a href="/threat-model" class="underline hover:text-neutral-900">threat model</a>
+    is the long version of this page: what someone could learn about you, what
+    a legal demand would produce, and — stated plainly — what is no longer
+    promised.
   </p>
 </Layout>

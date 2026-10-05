@@ -1,0 +1,115 @@
+---
+import Layout from "../components/Layout.astro";
+---
+<Layout title="Threat model — Civic Ledger">
+  <h1 class="text-2xl font-semibold tracking-tight">Threat model</h1>
+  <p class="mt-2 max-w-prose text-neutral-700">
+    What someone could learn about you from this site, who that someone could
+    be, and what is actually promised. Written before accounts exist, so that
+    the description comes first and the collection second.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Today, with no accounts</h2>
+  <ul class="mt-2 max-w-prose list-disc space-y-2 pl-5 text-sm text-neutral-700">
+    <li>
+      There is no account system yet, so nothing you do here creates a record
+      about you on the operator's side.
+    </li>
+    <li>
+      The site is delivered by Cloudflare, which receives the requests your
+      browser makes. That is a record of what you read, held by a company the
+      operator does not control. Every website has a host and this is what
+      having one means.
+    </li>
+    <li>
+      This site's own code stores nothing in your browser — no cookies, no
+      saved data. That is a statement about today's code, not a promise about
+      future code, and it does not cover anything Cloudflare may set.
+    </li>
+    <li>
+      On the members explorer, what you type into the search box is copied
+      into the page address as you type. It is not sent anywhere by itself,
+      but it travels with the address — so it is in your history, and in any
+      link you bookmark or share. The same is true of the member comparison
+      page, whose address carries the members you chose.
+    </li>
+  </ul>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">When accounts ship</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Accounts are planned, not built. When they arrive, the site will hold
+    these things about you, and <strong>the operator can read all of them</strong>:
+  </p>
+  <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
+    <li>Who you are: your email address, whether it has been confirmed, a scrambled form of your password, and when you signed up.</li>
+    <li>What you follow: which bills, topics and members, and how often you want to hear about them.</li>
+    <li>Your settings and your answers to anything the site asks you.</li>
+    <li>Which alerts have already gone to you, so the same one is not sent twice.</li>
+    <li>Where to reach you: your email address, and a phone number only if that is ever added.</li>
+    <li>A public profile, only if you choose to make one. Published means public.</li>
+  </ul>
+  <p class="mt-2 max-w-prose text-sm text-neutral-700">
+    An earlier design for this site scrambled your answers on your own device,
+    so that even the operator could not read them. That was given up on
+    2026-09-23, for a plain reason: a server that cannot read your list of
+    followed bills cannot send you alerts about them. Alerts were the point,
+    so the scrambling went.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What a legal demand would produce</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Once accounts exist: everything in the list above, in readable form. Your
+    email address, what you follow, your settings and answers, and where you
+    get notified. Not scrambled, not partial. Anyone who can compel the
+    operator to hand over data gets the real thing.
+  </p>
+  <p class="mt-2 max-w-prose text-sm text-neutral-700">
+    Separately, and outside the operator's reach: whoever delivers the site
+    and whoever sends the email hold their own records, and can be compelled
+    on their own.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is not promised</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    This section exists because the site used to promise these things and the
+    promises could not be kept. As of 2026-10-05 the operator does
+    <strong>not</strong> promise that requests go unlogged, that no network
+    address of yours is stored, that no cookie is ever set, or that storage
+    stays limited to the list above. Features this site is being built toward
+    need to keep a record of what you follow. A promise that cannot survive
+    the next feature is worth less than an accurate description, so you are
+    getting the description.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is promised</h2>
+  <ul class="mt-2 max-w-prose list-disc space-y-2 pl-5 text-sm text-neutral-700">
+    <li>
+      <strong>Your data is never sold.</strong> This is the one standing
+      promise. It holds whatever gets built, because selling your data would
+      be a decision by the operator rather than something the software could
+      do on its own.
+    </li>
+    <li>
+      <strong>Deletion is real deletion.</strong> When accounts exist, asking
+      for your account to be deleted removes its rows, rather than flagging
+      them as hidden.
+    </li>
+    <li>
+      <strong>Nothing published can single you out.</strong> Any figure this
+      site publishes that is derived from reader data has to cover at least
+      50 people. Below that, the number is not published at all.
+    </li>
+  </ul>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Found something wrong here?</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    This page is a factual claim like any other on the site, and it can be
+    wrong. The <a href="/corrections" class="underline hover:text-neutral-900">corrections page</a>
+    explains how to report it and how fixes are recorded.
+  </p>
+
+  <p class="mt-8 text-xs text-neutral-500">
+    Last reviewed 2026-10-05. The sections describing accounts will be
+    rewritten as each feature actually ships, before it collects anything.
+  </p>
+</Layout>

@@ -158,11 +158,17 @@ defensible rather than reckless.**
    weights tied to an account, and aggregate site analytics including
    state-of-origin. Nothing in this document may forbid the site from
    reading data it needs to deliver a feature the owner has scheduled.
-   Conditions that survive: anonymous use of the full public record stays
-   available forever; nothing is collected that no scheduled feature needs;
-   population trends published from user data come only from K-anonymous
-   aggregates (K = 50); analytics are aggregate and cookieless; data is never
-   sold or shared beyond the named service providers; deletion hard-deletes.
+   Conditions that survive — **narrowed by SD-34 (2026-10-05)**: anonymous use
+   of the full public record stays available forever; population trends
+   published from user data come only from K-anonymous aggregates (K = 50);
+   **data is never sold** — the one standing promise, and the only privacy
+   claim the owner stated himself; shared no further than the named service
+   providers; deletion hard-deletes.
+   **SD-34 withdrew two of the conditions that used to sit in this list:**
+   "nothing is collected that no scheduled feature needs" and "analytics are
+   aggregate and cookieless". The project may now collect ahead of a
+   scheduled need, and may set cookies. Do not reinstate either as a value
+   without a dated decision — and do not write either onto the site.
    **Every privacy statement on the site must be true before the collection
    it describes ships** — that ordering is a blocking gate (V2-7), because a
    false `/privacy` page is a Value #1 violation. The gate orders work; it
@@ -647,8 +653,16 @@ deployed **before the first byte of user data is collected**.
    rewritten for the account era): what a legal demand can yield — **the
    account table, what each account follows, its preferences and answers,
    and its notification addresses, all readable** — stated plainly, with the
-   mitigations that remain (nothing stored beyond the listed tables, hard
-   delete, no IP logs, K-anon for anything published).
+   mitigations that remain. **▶ AMENDED BY SD-34 (2026-10-05): two of the four
+   mitigations this task originally named are withdrawn.** "Nothing stored
+   beyond the listed tables" and "no IP logs" are gone — the project may log
+   and may store beyond §5. The page must NOT claim either. What remains to
+   state: **hard delete**, **K-anon for anything published**, and **the one
+   standing promise, that the data is never sold** (§10). Also state the
+   host's position plainly, as `/privacy` now does: Cloudflare receives the
+   reader's requests and that is outside the operator's control. A page that
+   lists a withdrawn guarantee is exactly the Value #1 failure this whole
+   increment exists to prevent.
 3. **H19 canary decision** — put to the owner in plain terms (§1 H19); build
    whichever outcome he picks.
 4. `docs/data-contract.md` + `CONTRIBUTING.md` privacy language aligned.
@@ -752,19 +766,53 @@ readable by the operator and producible under a legal demand.** The
 2026-08-13 design encrypted answers on the device so a demand yielded only
 ciphertext; the owner retired that on 2026-09-23 because server-sent alerts
 require the server to read the subscription list, and chose to let the site
-read and collect what its features need. What remains: nothing is stored
-beyond the tables listed in §5 and on `/privacy`; hard deletion; no IP
-columns and logging off; the email/texting providers see addresses and
-message text; anything published from this data passes the K-anon gate. This
-is the informed trade the owner accepted in ratifying SD-32.
+read and collect what its features need.
 
-- **10.1 Client rules:** no cookies for the anonymous experience; no
-  third-party CDNs; localStorage for local state with a visible erase button;
-  the anonymous reader's browsing never touches the Worker.
+**▶ SD-34 (2026-10-05) WITHDRAWS THE REST OF THE GUARANTEES.** SD-32 had kept
+a remainder — "nothing is stored beyond the tables listed in §5 and on
+`/privacy`; hard deletion; no IP columns and logging off" — and the owner has
+now withdrawn it, in his words: *"what this is going to evolve to, I am going
+to have to track this info. My only promise is to never sell this data."* So
+the project MAY log requests, keep IP columns, set cookies for the anonymous
+reader, hold per-submission rows behind aggregates, let the anonymous
+reader's browsing reach the Worker, and store beyond the §5 tables. **Nothing
+in this section forbids tracking any more.** The email/texting providers see
+addresses and message text.
+
+**THE ONE STANDING PROMISE: the data is never sold.** This is the only
+privacy claim in this project stated by the owner himself rather than
+inserted by a builder, and per §0.8 it is the only one publishable without
+further ratification. It must appear on `/privacy`. Note what makes it
+different in kind from the claims it replaces: selling data is an act of the
+operator, so the promise cannot be falsified by the host, the stack, or a
+feature shipped later — which is exactly why every withdrawn claim was
+indefensible and this one is not.
+
+**Three things SD-34 did NOT withdraw, and a future session must not read it
+as withdrawing** (the owner spoke about promises to readers, not about
+engineering safety): **Argon2id** password hashing; the **K-anon (=50) render
+gate** on published aggregates, which keeps a *published* figure from
+re-identifying an individual and is therefore a Value #1 accuracy control as
+much as a privacy one; and **hard deletion on request**, a user-facing right
+he was not asked about and did not revoke. Removing any of those needs its
+own dated decision.
+
+- **10.1 Client rules:** no third-party CDNs; localStorage for local state
+  with a visible erase button; `data/` is read at BUILD time only and is
+  never fetched at runtime — that one is an architecture fact (the repo is
+  private, so the loader cannot read it from a browser) and it survives
+  SD-34 as architecture while no longer being offered as a privacy
+  guarantee. `site/src/lib/data.ts` and `site/src/pages/events/[month].json.ts`
+  both cite this clause, so do not delete it without updating them.
+  (SD-34 withdrew "no cookies for the anonymous experience" and "the
+  anonymous reader's browsing never touches the Worker".)
 - **10.2 Server code:** the `worker/` project only. Auth + the readable user
-  tables of §5 + integer counters + alert delivery. No per-submission rows
-  for aggregates, no IP columns anywhere, logging off (config committed).
-  Argon2id for password hashes. Every table listed on `/privacy` (SD-32).
+  tables of §5 + integer counters + alert delivery. Argon2id for password
+  hashes. (SD-34 withdrew "no per-submission rows for aggregates", "no IP
+  columns anywhere", "logging off", and the requirement that every stored
+  table be listed on `/privacy`. `/privacy` must still be accurate about what
+  is stored — V2-7 and the §10.4 accuracy test are unchanged — but the page
+  is now a description, not a guarantee.)
 - **10.3 Publication path:** any server-derived figure the site renders
   (trends, analytics) passes the K-anon (=50) gate before export to
   `data/aggregates/`; below-threshold cells never leave D1. The

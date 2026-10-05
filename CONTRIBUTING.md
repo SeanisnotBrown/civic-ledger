@@ -30,11 +30,18 @@ Concretely, a contribution **must not**:
    under the disclosure standard: a formula published on `/methods`, applied
    identically to every member and party, with inputs and denominator visible.
    The site still never asserts motive, intent, or character.
-3. Collect only what the product needs, and the site may read what it
-   collects (amended 2026-09-23, SD-32); every stored table is listed on
-   `/privacy` before it exists; never sold; population trends only via
+3. The site may collect, store and read the user data its features need
+   (amended 2026-09-23, SD-32; narrowed again 2026-10-05, SD-34). **Data is
+   never sold — that is the one standing promise**, and the only privacy
+   claim the owner authored rather than a builder. Also surviving: every
+   stored table is described on `/privacy` before it exists (the disclosure
+   is a Value #1 duty, not a storage limit); population trends only via
    K-anonymous aggregates; deletion deletes; anonymous use stays available
-   forever.
+   forever. **SD-34 withdrew the no-tracking guarantees** — no request
+   logging, no IP columns, no cookies, and "collect only what a scheduled
+   feature needs" are gone. Do not write any of them onto the site or back
+   into this list; `/privacy` describes what happens, it does not promise
+   what will not.
 4. Ship partial value early.
 
 When they conflict, the earlier value wins. Full detail, including what

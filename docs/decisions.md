@@ -2806,3 +2806,63 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   and the nightly will now tolerate them silently every night. Raised as an H-task rather
   than patched here: the cause is in `congress_gov.py`'s fetch, most likely a response-size
   or pagination case, and it needs its own measurement.
+
+- **SD-34 (2026-10-05, OWNER DECISION) — the no-tracking guarantees are withdrawn. The one
+  standing promise to a reader is that their data is never sold.**
+  Asked to choose between (a) deleting only the *public claims* that the site does not track,
+  keeping "no IP columns, logging off, no cookies" as internal build rules, and (b) dropping
+  those build rules as well, the owner chose **(b)**, in his words: *"only cause what this is
+  going to evolve to, I am going to have to track this info. My only promise is to never sell
+  this data."*
+
+  This **reverses the remainder clause of SD-32** (2026-09-23), which had kept "nothing is
+  stored beyond the tables listed in §5 and on `/privacy`; hard deletion; no IP columns and
+  logging off" as what survived the decision to let the site collect what its features need.
+  A ratified decision needs a dated decision to reverse it, which is what this entry is;
+  it was written and committed **before** §10 of the specification was edited.
+
+  **What is withdrawn as a constraint** — the project MAY now do each of these, and §10 no
+  longer forbids them: request logging; IP address columns; cookies for the anonymous
+  reader; per-submission rows behind aggregates; the anonymous reader's browsing reaching
+  the Worker; and storage beyond the tables enumerated in §5.
+
+  **What survives, and why these are not reader promises.** The owner said his *only promise*
+  is never to sell. That is a statement about what the site tells a reader, not an
+  instruction to delete engineering safety, so the following stay and a future session must
+  not read SD-34 as removing them: **Argon2id** for password hashes (a security control, not
+  a privacy claim); the **K-anon (=50) render gate** on published aggregates (it protects a
+  *published* figure from re-identifying an individual, which is a Value #1 accuracy
+  concern as much as a privacy one); and **hard deletion on request** (a user-facing right
+  the owner was not asked about and did not revoke). **If the owner intends any of those
+  three withdrawn as well, that needs its own dated entry** — they were deliberately not
+  swept in here.
+
+  **The never-sell promise is now a ratified commitment and must appear on `/privacy`.** It
+  is the first privacy claim in this project's history that the owner stated himself rather
+  than a builder inserting it, and per §0.8 it is the only one publishable without a further
+  ratification. It is also the only claim in this family that the architecture cannot
+  falsify on its own: selling data is an act of the operator, not an emergent property of
+  the host or the stack.
+
+  **Why the old claims were never defensible.** The promises being withdrawn were builder
+  prose, not owner decisions, and the git record is unambiguous: "built to collect as little
+  as possible" and "a legal demand to the operator would produce only what that private
+  repository contains" arrived in `3eb3d409b` (INC-9) and `64f34bbc5` (a D87 review batch),
+  neither carrying an SD number. The second was **already false** when written — gitignored
+  material (`data/raw/`, `build.db`, `backfill-*.log`, `.env`) has always lived outside that
+  repository. By contrast "no IP columns and logging off" entered the spec in `25823e510`,
+  the SD-32 commit itself, which is why reversing it required asking rather than inferring.
+  On 2026-09-30 the owner had already ruled that the "no record anywhere" family be
+  **stripped, not reworded**, because the no-logging claim is impossible for what the project
+  needs to do; a builder session nevertheless wrote "No account, and nothing about you is
+  recorded." onto every bill page on 2026-10-02, and it was removed on the owner's word on
+  2026-10-05. SD-34 is the same judgement applied to the specification instead of the copy.
+
+  **Consequence for V2-7, recorded so the next session does not re-litigate it.** `/privacy`
+  no longer describes a site that avoids collection. It describes what is true: static
+  pages, no account today, a host (Cloudflare) that receives the reader's requests, and one
+  promise — the data is not sold. The claim-by-claim audit in
+  `docs/draft-v2-7-privacy-claims.md` predates this decision: its rows asserting "no
+  cookies", "no analytics" and "no third-party scripts" as claims worth making are now
+  **moot as claims** (they may still be true today, but the page does not promise them), and
+  its Q1 is answered — name Cloudflare plainly. Its Q3, Q4, Q5 and Q6 still stand.

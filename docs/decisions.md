@@ -2866,3 +2866,90 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   cookies", "no analytics" and "no third-party scripts" as claims worth making are now
   **moot as claims** (they may still be true today, but the page does not promise them), and
   its Q1 is answered — name Cloudflare plainly. Its Q3, Q4, Q5 and Q6 still stand.
+- **D100 (2026-10-05) — the 15 unfetchable Congress 118 bills were our edit, not the API's
+  truncation: `bill_actions` no longer de-duplicates rows inside a page.**
+  D88 addendum (a) fixed a real bug — a narrow `(date, time, code, text)` dedupe key
+  collapsed hr2670-118's 234 actions to 225 — with two changes: whole-row dedupe, **and** a
+  guard raising `TruncatedFetchError` when the surviving unique-row count came in under
+  `pagination.count`. The guard rested on an unstated premise: that two byte-identical
+  action rows are never both legitimate API output. That premise is false, and the cost was
+  measured: **15 of the 19,118 enumerated Congress 118 bills (0.078%) failed every pass,
+  and 12 of those had no record on disk at all** — no page, not a stale timeline.
+
+  **Mechanism, established from the committed cache with zero API requests.** All 15 fail
+  identically: page 0 serves exactly `pagination.count` rows, `pagination.next` is absent,
+  and the rows contain a byte-for-byte repeat, so whole-row dedupe left `unique < count` and
+  the post-loop guard raised. The empty-page (D64) guard never fired on any of them. Across
+  the whole enumeration — 19,118 bills, **87,307 action rows**, 78 cached list pages, all
+  of them — there are **0 genuinely short pages** and **15 bills with a byte-identical
+  repeat**, and those two sets coincide exactly. Largest `count` is still **234**, so the
+  paginated branch has still never run live.
+  Failing set, complete: `hr1516-118`, `hr6855-118`, `hr6856-118`, `hr6860-118`,
+  `hr6872-118`, `hr6878-118`, `hr9748-118`, `hres1617-118`, `hres1618-118`, `hres1626-118`,
+  `hres1627-118`, `hres712-118`, `hres941-118`, `s4072-118`, `s467-118`. Three held a stale
+  timeline (`hr1516-118`, `hres712-118`, `s4072-118`); the other twelve had no bill file.
+  D99 named ten of these; `s3459-118`, listed in the same run log, was a `ConnectTimeout`,
+  genuinely transient, and has no repeated row — it is not one of the fifteen.
+
+  **The repeats are in the government's record, confirmed off a second host.** govinfo's
+  BILLSTATUS bulk XML (`www.govinfo.gov/bulkdata/BILLSTATUS/118/...`, no key, not an
+  api.congress.gov request) carries the same repeats: hr9748-118 has 22 `<item>` actions of
+  which "Referred to the Subcommittee on Emergency Management and Technology." appears
+  **four times**; hr1516-118 42 rows / 41 distinct; s467-118 27 / 25 (two separate pairs);
+  hres712-118 17 / 16; s4072-118 9 / 8. The API's `count` is its own number and is
+  self-consistent on all 15 (rows served == count), and the repeats it serves are present in
+  BILLSTATUS, which can carry **more** — hres1617-118's XML has 11 items where the API
+  serves and counts 9, i.e. the API visibly consolidates. Either way nothing was truncated:
+  **we** were editing the record, against §0.5.
+
+  **The mechanical choice.** Row identity stays the whole row. Dedupe now applies only to a
+  copy already held **from an earlier page**: within a page a fingerprint survives up to
+  that page's own multiplicity, and the running tally is then raised to the largest any
+  single page claimed. A whole re-served page is still free (the D88 (c) descending-crawl
+  property), a page's own repeats all survive, and `len(actions) < count` now means exactly
+  what D64 means by truncation. **Alternative considered and rejected:** keep the dedupe and
+  compare the *raw rows received* against `count`. It fixes the same 15, but it deletes one
+  of any two byte-identical rows forever and throws away D88 (a)'s protection —
+  s4072-118's two "Motion to proceed to measure considered in Senate." rows on 2024-04-15
+  are plausibly two real floor actions, and that option would publish one with nothing
+  noticing.
+
+  **Which failure this risks, stated plainly.** The new blind spot is a page short by k rows
+  *and* padded by k byte-identical duplicates, which nets to `count` and is accepted.
+  Observed frequency over 87,307 rows: **0**. The old guard caught that compound case only
+  by rejecting all 15 real cases, i.e. publishing nothing for 12 real bills. A certain,
+  measured loss was traded for a zero-instance coincident double fault — the same trade D98
+  made in tolerating a missing field rather than accepting a quarantine, and for the same
+  reason: the missing bill is the larger falsehood.
+
+  **Verified end to end, not asserted.** Replayed against the 15 cached live responses with
+  `CIVIC_CACHE_TTL_HOURS=99999` (zero API requests): all 15 return exactly
+  `pagination.count` rows, and the controls are unmoved — hr2670-118 234, s3459-118 2. The
+  repeats also survive every layer below the fetch, checked rather than assumed:
+  `parse_actions` → `merge_activity` → the `Bill` model → `events_for_bill` all preserve the
+  full count on all 15 (`events.compute` accumulates into lists, not a dict keyed by id).
+  `uv run ruff check .` clean; `tests/test_bill_activity_v2_11.py` 25 passed. The D88 (a)
+  undercount test is **replaced** — its payload must now return 250 rather than raise — by
+  `…keeps_byte_identical_rows_the_api_serves`,
+  `…keeps_a_within_page_repeat_once_across_a_re_serve`, and a direct short-single-page test
+  for the post-loop guard, which the deleted test was the only cover for.
+  Not evaluative: no metric, threshold, grade boundary or published number (§0.8).
+
+  **Consequences and follow-ups.** (1) Those 15 bill pages will show the repeated row —
+  hr9748-118 four identical referral lines, `b/[bill].astro:125` reading "22 actions". That
+  is the API's `count` and the BILLSTATUS record, so it is faithful, and it will read as a
+  bug to a reader. Whether the SITE should collapse adjacent identical rows at display time
+  (never on disk) is an owner question, deliberately not decided here.
+  (2) `events.event_id` hashes the row as stored, so a repeated pair gets the same event id
+  — measured: 1 duplicate id each on hr1516-118, hres712-118, s4072-118. No pre-existing id
+  changes and the recompute stays byte-deterministic (the tied events are identical), but
+  `site/src/lib/atom.ts` will emit entries sharing an `atom:id`; whether that is
+  Atom-conformant and how a reader treats it was **not** verified and is part of the same
+  owner question. The now-inaccurate "unique per action" comment in `events.py` is corrected
+  in place. (3) `data/quality/samples/SHAPES.md` §9 should record the repeat as a measured
+  shape, and a `congress_bill_actions_hr9748_118.json` sample is the right regression
+  artefact — both live under `data/` and are left for whoever commits. (4) Congress 119's
+  running backfill imported the pre-fix module and will fail the same way on its duplicated
+  bills; a resume after this lands costs ~0 requests (D95a). (5) `hr593-118` also has
+  `actions: null` but is absent from the 118 enumeration and has no cached actions page — it
+  arrived by the roll-call path and is not part of this set.

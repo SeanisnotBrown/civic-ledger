@@ -346,9 +346,10 @@ def run(argv: list[str] | None = None) -> int:
     from ingest.export import export_bill
     from ingest.sources import congress_gov
 
-    # TruncatedFetchError joins the tuple with V2-11: `bill_actions()` raises it on a
-    # short page AND on its dedupe-undercount guard. Either must record a per-bill
-    # fetch failure (re-runnable) like any other, never abort the whole nightly.
+    # TruncatedFetchError joins the tuple with V2-11: `bill_actions()` raises it when
+    # the timeline it holds is shorter than the government's own `pagination.count`,
+    # either from an empty page mid-crawl or from a short final total. That must
+    # record a per-bill fetch failure (re-runnable), never abort the whole nightly.
     fetch_errors = (
         RetryableHTTPError, httpx.HTTPError, OSError, congress_gov.TruncatedFetchError
     )

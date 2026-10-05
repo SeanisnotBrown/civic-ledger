@@ -125,9 +125,19 @@ def events_for_bill(bill: dict, *, has_page: bool) -> list[BillEvent]:
 
 def _sort_key(event: BillEvent) -> tuple:
     """Newest action first, then a total order that does not depend on the
-    filesystem: `id` is unique per action and already contains bill and date, so
-    it alone breaks every tie. Without a total order a quiet re-run could reorder
-    two same-day actions and invariant 8 would fail for no real reason."""
+    filesystem: `id` already contains bill and date and distinguishes every action
+    that differs in any field, so it alone breaks every tie. Without a total order
+    a quiet re-run could reorder two same-day actions and invariant 8 would fail
+    for no real reason.
+
+    `id` is NOT unique per EVENT, and that is deliberate as of D100: 15 Congress 118
+    bills carry a byte-for-byte repeat of an action row (hr9748-118 four copies of
+    one), `bill_actions` now keeps every copy the government's list has, and
+    byte-identical rows necessarily hash alike. The sort stays total in effect — the
+    tied events are identical, so the output bytes are still deterministic. The
+    consequence worth knowing is downstream: a feed reader may collapse entries that
+    share an `atom:id`, so such a group can show as one entry. Open question for the
+    owner, recorded in D100, not settled here."""
     return (_desc(event.date), event.bill_id, event.id)
 
 

@@ -15,6 +15,7 @@ there per host.
 from __future__ import annotations
 
 import json
+from collections import Counter
 from datetime import UTC, datetime
 
 from ingest import env
@@ -25,9 +26,14 @@ SOURCE = "congress_gov"
 
 
 class TruncatedFetchError(Exception):
-    """A paginated fetch returned an empty page before reaching its official
-    `pagination.count` — a premature/corrupt 200 that would silently undercount
-    (value #1: never publish a false zero). Raised by `member_legislation` (D64)."""
+    """A paginated fetch ended up holding fewer rows than its official
+    `pagination.count` — normally an empty page served before the end, a
+    premature/corrupt 200 that would silently undercount (value #1: never publish a
+    false zero). Raised by `member_legislation` (D64), `bills_updated_since`, and
+    `bill_actions` (D88 addendum (a)).
+
+    It is NOT raised for a row the government's own list repeats: `bill_actions`
+    keeps byte-identical repeats, because the record contains them (D100)."""
 
 
 def _headers() -> dict[str, str]:
@@ -200,10 +206,11 @@ def bill_actions(
     `/bill/{c}/{type}/{number}/actions` sub-resource (V2-11 task 2).
 
     Returns the raw action dicts in the order the API gives them (newest first),
-    NOT reordered, reworded, or classified - 0.5 forbids summarising anything that
-    publishes as fact, and `text` is the published string. Deduplication is on the
-    WHOLE row and nothing narrower: several genuinely distinct actions can share a
-    date, text and action code and differ only in `committees` (see the loop).
+    NOT reordered, reworded, reclassified, or de-duplicated - 0.5 forbids editing
+    anything that publishes as fact, and `text` is the published string. Every row
+    a page serves is kept, including two that are byte-identical: the government's
+    own record contains those (D100). Dedupe applies ONLY to a row re-served by a
+    LATER page, which is a transport artefact rather than a record (see the loop).
     `[]` means the government lists no actions, which is distinct from the
     `Bill.actions is None` "not yet collected" sentinel (D27).
 
@@ -223,9 +230,13 @@ def bill_actions(
     on `offset >= count` before it can page past the end, so an empty page while
     `offset < count` is never legitimate - it is a premature/corrupt 200 that
     would publish a bill as having fewer actions than it has. `count` is read once
-    from page 0; a later corrupt page's own metadata is not trusted."""
+    from page 0; a later corrupt page's own metadata is not trusted. The companion
+    post-loop guard refuses a timeline that ends up holding fewer rows than page 0's
+    `count`, for the same reason."""
     actions: list[dict] = []
-    seen: set[str] = set()
+    # fingerprint -> how many copies of that row we already hold, so a page that
+    # re-serves rows is idempotent WITHOUT collapsing a page's own repeats.
+    kept: Counter[str] = Counter()
     offset = 0
     count: int | None = None
     while True:
@@ -245,34 +256,47 @@ def bill_actions(
                     f"publish an incomplete timeline)"
                 )
             break
+        on_page: Counter[str] = Counter()
         for a in batch:
-            # Dedupe on the WHOLE row, never a chosen subset of fields. A narrower
-            # key silently drops real actions: hr2670-118 has five rows reading
-            # "Forwarded by Subcommittee to Full Committee by Voice Vote ." on
-            # 2023-06-13 with the same actionCode, distinguished ONLY by which
+            # A row's identity is the WHOLE row, never a chosen subset of fields. A
+            # narrower key silently drops real actions: hr2670-118 has five rows
+            # reading "Forwarded by Subcommittee to Full Committee by Voice Vote ."
+            # on 2023-06-13 with the same actionCode, distinguished ONLY by which
             # subcommittee is in `committees` (and six more of a second such set).
             # Keying on (date, time, code, text) collapsed 234 real actions to 225
             # -- a false undercount, exactly what value #1 forbids.
+            #
+            # Byte-identical repeats WITHIN a page are kept, all of them. They are
+            # the government's own record, not our artefact: hr9748-118's BILLSTATUS
+            # XML on govinfo carries "Referred to the Subcommittee on Emergency
+            # Management and Technology." four times, and the API serves four rows
+            # and counts four (D100). Collapsing them to one lost 15 Congress 118
+            # bills to the post-loop guard below -- 12 of which then had no record
+            # on disk at all, not merely a stale timeline.
             fingerprint = json.dumps(a, sort_keys=True, separators=(",", ":"))
-            if fingerprint not in seen:
-                seen.add(fingerprint)
+            on_page[fingerprint] += 1
+            # Drop only a copy already held from an EARLIER page: a descending crawl
+            # can re-serve a row when the list shifts mid-crawl (see UPDATE_SORT),
+            # and that copy is a transport artefact. The final multiplicity is the
+            # largest any single page claimed, so a whole re-served page is free.
+            if on_page[fingerprint] > kept[fingerprint]:
                 actions.append(a)
+        for fingerprint, n in on_page.items():
+            kept[fingerprint] = max(kept[fingerprint], n)
         offset += PAGE_LIMIT
         if offset >= count:
             break
-    # Dedupe-undercount guard. Whole-row dedupe is lossless on every timeline
-    # measured (234/234 on hr2670-118), but two byte-identical rows that are BOTH
-    # real would collapse to one and nothing else would notice. Comparing against
-    # page 0's `count` closes that: fewer unique rows than the government claims is
-    # an incomplete timeline, which is the same false-undercount the D64 guard above
-    # exists to refuse. Only `<` -- a mid-crawl append raises the LIVE count while
-    # `count` stays at page 0's value, so a re-serve lands at `len == count` and does
-    # not trip this. Task 4 quarantines the bill rather than committing short.
+    # Short-timeline guard, the companion to the empty-page one above. Holding fewer
+    # rows than page 0's `count` means the government lists actions we did not get,
+    # which is the same false undercount the D64 guard exists to refuse. Only `<` --
+    # a mid-crawl append raises the LIVE count while `count` stays at page 0's value,
+    # and a cross-page re-serve lands at `len == count`, so neither trips this.
+    # Task 4 quarantines the bill rather than committing short.
     if len(actions) < count:
         raise TruncatedFetchError(
-            f"{bill_type.lower()}{number}-{congress} actions: {len(actions)} unique "
-            f"rows < count {count} (dedupe collapsed real actions, or the API "
-            f"over-reported its own count)"
+            f"{bill_type.lower()}{number}-{congress} actions: {len(actions)} rows "
+            f"< count {count} (the government lists actions this fetch did not "
+            f"return - would publish an incomplete timeline)"
         )
     return actions
 

@@ -154,11 +154,17 @@ def test_bill_actions_dedupes_a_row_reserved_across_pages(monkeypatch):
     assert sum(1 for a in got if a["text"] == "Introduced.") == 1
 
 
-def test_bill_actions_raises_when_dedupe_would_undercount(monkeypatch):
-    """The dedupe-undercount guard. Whole-row dedupe is lossless on every
-    timeline measured, but if it ever DID collapse two real rows the result
-    would be a short timeline published as complete. Fewer unique rows than the
-    government's own count must raise, not return quietly."""
+def test_bill_actions_keeps_byte_identical_rows_the_api_serves(monkeypatch):
+    """REGRESSION, D100. This payload used to RAISE, and that cost 15 bills.
+
+    The old loop collapsed byte-identical rows inside a single page and then
+    compared the surviving count against `pagination.count`, so any bill whose
+    record repeats a row failed deterministically. Measured over the complete
+    Congress 118 enumeration: 15 of 19,118 bills do repeat one (hr9748-118 four
+    times), every one of them with `len(rows) == count` and no `next` page — so
+    nothing was truncated. govinfo's authoritative BILLSTATUS XML carries the
+    same repeats, i.e. they are the government's record, not our artefact.
+    All rows served must survive, verbatim and in order."""
     dup = _action("2024-01-01", "Introduced.", code="H11100")
     pages = {
         0: {
@@ -167,8 +173,46 @@ def test_bill_actions_raises_when_dedupe_would_undercount(monkeypatch):
         }
     }
     monkeypatch.setattr(congress_gov, "_get", _pager(pages))
-    with pytest.raises(TruncatedFetchError, match="249 unique rows < count 250"):
-        congress_gov.bill_actions(118, "hr", 1)
+    got = congress_gov.bill_actions(118, "hr", 1)
+    assert len(got) == 250, "a page's own repeats are the record, not a dedupe target"
+    assert sum(1 for a in got if a["text"] == "Introduced.") == 2
+
+
+def test_bill_actions_keeps_a_within_page_repeat_once_across_a_re_serve(monkeypatch):
+    """The two rules together: a page's repeats survive, a LATER page's re-serve
+    of those same rows does not. Final multiplicity is the largest any single
+    page claimed — two here, never one and never four."""
+    dup = _action("2024-01-01", "Referred to the Subcommittee on Health.", code="H11000")
+    pages = {
+        0: {
+            "actions": [_action("2024-02-01", f"a{i}") for i in range(248)] + [dup, dup],
+            "pagination": {"count": 300},
+        },
+        250: {
+            "actions": [dup, dup] + [_action("2024-03-01", f"b{i}") for i in range(50)],
+            "pagination": {"count": 300},
+        },
+    }
+    monkeypatch.setattr(congress_gov, "_get", _pager(pages))
+    got = congress_gov.bill_actions(118, "hr", 1)
+    assert len(got) == 300  # 302 rows served, the repeated pair served twice
+    assert sum(1 for a in got if a["text"].startswith("Referred to")) == 2
+
+
+def test_bill_actions_raises_when_a_single_page_is_short_of_its_own_count(monkeypatch):
+    """The post-loop guard, which survives D100 unchanged in meaning: holding
+    fewer rows than the government's own `count` is an incomplete timeline and
+    must raise rather than publish short. No `next`, no empty page — the
+    empty-page guard below cannot see this one."""
+    pages = {
+        0: {
+            "actions": [_action("2024-01-01", f"a{i}") for i in range(21)],
+            "pagination": {"count": 22},
+        }
+    }
+    monkeypatch.setattr(congress_gov, "_get", _pager(pages))
+    with pytest.raises(TruncatedFetchError, match="21 rows < count 22"):
+        congress_gov.bill_actions(118, "hr", 9748)
 
 
 def test_bill_actions_distinguishes_rows_differing_only_by_time(monkeypatch):

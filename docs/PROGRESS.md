@@ -3,100 +3,139 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-05, end of session. **V2-11 IS COMPLETE — tasks 1-8 + 5b done**
-(D88-D99). The Congress 118 backfill finished and is committed. Three commits this
-session plus a docs commit; see "NEXT" for the one thing that is still open.
-**Next increment: V2-7 (privacy page true), and read the ⚠ below before you write a word
-of it.**
+**Last updated:** 2026-10-05, end of session. **V2-11 is COMPLETE** (tasks 1-8 + 5b,
+D88-D100). **V2-7 is 3 of 4 tasks done** — `/privacy` and the new `/threat-model` are
+written and truthful, H19 is closed. **Congress 118 is fully backfilled and committed;
+Congress 119 is PARTLY backfilled and committed, and the owner stopped it deliberately to
+shut the machine down.** Ten commits this session, all pushed.
 
-## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (2026-10-05)
+## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (owner's instruction, 2026-10-05)
 
-**Check whether the Congress 119 backfill is running, and check CI.**
+**RESTART THE CONGRESS 119 DATA PULL.** The owner stopped it himself at the end of the last
+session because he was shutting the laptop down, and asked that the next session start it
+again. **He has already approved this run — do not ask.**
 
-    tasklist | grep -i python                          # a ~60-80 MB one is a backfill
-    grep -l '"actions"' data/bills/*.json | wc -l      # 19,804 means only 118 is done
-    gh run list -L 3                                   # the push from 2026-10-05
-    git status --short -- data | wc -l                 # 0 means no ingest is mid-flight
+One command, detached, from the repo root:
 
-Then take the branch that matches:
+    nohup uv run ingest bill-activity --congress 119 > backfill-119.log 2>&1 &
 
-- **A backfill is running** → leave it alone (the owner's standing instruction is "do not
-  stop the process that is pulling data") and work on V2-7, which touches `site/` and
-  `docs/`, not `data/`. Commit the data when it finishes, with the four-command loop
-  further down.
-- **Nothing is running and `git status -- data` is clean** → Congress 119 has not been
-  started or has finished. **The owner approved launching 119 on 2026-10-05**, so if the
-  count is still ~19,804 you may launch it: `uv run ingest bill-activity --congress 119`,
-  detached, logging to a gitignored `backfill-*.log`. It is ~24 h and ~19,441 bills.
-- **Dirty `data/` with no process** → a run died. That is FINE: resume is the default and
-  costs 0.56 s with zero API requests (D95a). Relaunch the same command, or just commit
-  what is on disk with the four-command loop.
+Then confirm it is alive (do all three — the log is useless for this):
+
+    tasklist | grep -i python                                  # the 60-90 MB one is it
+    grep -l '"actions"' data/bills/*-119.json | wc -l           # 611 at last session's end
+    ls -l --time-style=full-iso $(ls -t data/bills/*-119.json | head -1)   # should be seconds old
+
+**What to expect.** Resume is the DEFAULT (D91/D95a) — it skips every bill that already has
+a timeline before making any network call, at **zero API requests**. The run re-enumerates
+Congress 119 first, which costs **~78 list pages / ~7 minutes** and prints nothing to the
+log while it does, so **the log sits at 0 bytes and the disk count does not move for the
+first ~7 minutes. That is normal.** Python buffers stdout when redirected; **read progress
+off disk, never off the log.** Roughly **18,800 bills still to fetch at ~4.5 s each ≈ 23 h.**
+
+**It is safe to kill at any moment** — `taskkill` from PowerShell (`Stop-Process -Id <pid>
+-Force`; in Git Bash `/F` gets mangled into a path, use PowerShell or `//F`). Every write on
+this path is atomic (D95a, measured against a real hard kill), and a resume costs 0.56 s and
+zero requests. **Commit whatever is on disk with the four-command loop further down** —
+and do not skip `uv run ingest events && uv run ingest topics && uv run export`, or the push
+goes red on invariants 8 and 9 and the manifest counts.
+
+**▶ The 119 bills fetched last session were fetched by the PRE-D100 code.** D100 fixed a
+guard that wrongly rejected any bill whose action list contains a byte-identical repeat
+(see live fact 3). The already-running process had imported the old module, so some 119
+bills may have been skipped as "fetch failures" that the fixed code will now take. A plain
+resume picks them up; nothing extra to do. If the restarted run reports fetch failures,
+**do not assume they are transient** — check whether they are duplicate-row cases first.
 
 ## ▶▶ READ THIS FIRST — the three live facts
 
-**1. NOTHING IS WRITING `data/` AS OF SESSION END, and Congress 118 IS COMPLETE.**
-The backfill the previous two sessions left running finished at 20:54 CDT on 2026-10-02.
-Final enumeration: **19,118 bills for Congress 118**; 19,102 hold timelines. `data/bills/`
-holds **19,804** files total: Congress 118 complete (19,296 files, 19,292 with timelines)
-plus **508 Congress 119 files of which only 5 have timelines** — those 508 arrived via the
-roll-call path, not a backfill, so **119 is untouched for activity purposes.**
-**The "19,315" target recorded in earlier sessions is WRONG** — it predated a real
-enumeration, and the API's own count is 19,118. **Congress 119 has NOT been backfilled**
-and the owner approved starting it; see TASK 0.
+**1. NOTHING IS RUNNING. The tree is clean and everything is pushed.** The owner stopped the
+Congress 119 backfill deliberately at 2026-10-05 ~16:40 CDT to shut the machine down. The
+derived artifacts were regenerated and `verify-recompute` run with no concurrent writer, as
+the D96 operational rule requires, **so the local test suite is honest again** — it is not
+in the "3 failures, all the backfill" state earlier sessions describe.
+- **Congress 118: COMPLETE.** 19,118 enumerated, 19,296 files, 19,292 with timelines.
+- **Congress 119: PARTIAL.** 1,109 files, **611 with timelines**, of ~19,441. ~18,800 to go,
+  ~23 h. Restart per TASK 0.
+- **`backfill-119.log` is 0 bytes** and that is not a failure — the kill landed before
+  Python flushed its buffer. The disk count is the record.
 
-**2. THE DATA IS COMMITTED. `git status -- data` is CLEAN.** This reverses the single
-biggest standing item in this file. Three commits:
-- `c68614ca4` — 18,904 files, the Congress 118 timelines.
-- `5755126f3` — V2-11 task 8 + the nullable-`text` fix (D98, D99).
-- `a9c177360` — the regenerated activity feed, topic index, schemas and manifest.
-**`verify-recompute` is GREEN on the full corpus** — 3,519 roll calls, 31 month files of
-the activity feed and the topic index all recompute exactly (invariants 8 and 9). This was
-impossible to run for three days while the backfill wrote; it is now verified.
+**2. ZERO quarantines were produced by the 119 run.** `data/quality/quarantine/` holds only
+the four long-standing roll-call entries (`h-118-1-0001`, `h-119-1-0001`, `h-119-2-0130`,
+`h-119-2-0131`) and the accept list matches them exactly. **`bill-s4869-118` is GONE from
+both** — D98 made `BillAction.text` nullable, the bill now ingests with 3 actions (one with
+`"text": null`), and its accept-list entry was removed in the same commit because
+`test_committed_accept_list_matches_committed_quarantines` is bidirectional.
 
-**3. ⚠ 15 BILLS CANNOT BE FETCHED, AND IT IS NOT TRANSIENT.** `TruncatedFetchError` is
-**deterministic** for `s467-118`, `hr1516-118`, `hres1617-118`, `hres1627-118`,
-`hres1626-118`, `hres1618-118`, `hres712-118`, `s4072-118`, `hr9748-118`, `hr6872-118`
-and five more. **Three full passes returned 16, then 15, then 15 failures with the same
-ids recurring.** The run's own "re-run to retry" message is misleading — do not spend a
-session retrying, it will not clear them. They keep whatever record they had: stale, not
-false. The cause is in `congress_gov.py`'s fetch, most likely a response-size or
-pagination case. **Raised as an H-task; it needs its own measurement.** Note that D99's
-nightly tolerance will now absorb these silently every night, which is the right call for
-a valid night's data and the wrong outcome for these 15 bills.
+**3. ⚠ THE "15 UNFETCHABLE BILLS" WERE OUR BUG AND IT IS FIXED (D100). Earlier guidance in
+this file was wrong and has been deleted.** `bill_actions` de-duplicated action rows WITHIN
+a page and compared the survivors against `pagination.count`; congress.gov legitimately
+repeats some rows byte-for-byte, so the guard raised `TruncatedFetchError` on valid
+responses. **Nothing was ever truncated.** Measured from cache with zero API requests:
+across 19,118 bills and 87,307 action rows there are **0 genuinely short pages** and exactly
+**15 bills carrying a byte-identical repeat**, and the two sets coincide. Confirmed against
+govinfo BILLSTATUS bulk XML on a second host — hr9748-118 really does carry the same
+referral line four times. Twelve of the fifteen had **no record on disk at all**. Fixed:
+dedupe now applies only to a copy already held from an EARLIER page.
+**Do not spend a session retrying fetch failures as if they were network flakes** —
+check for duplicate rows first.
 
-## ⚠ BEFORE YOU WRITE V2-7: A FALSE CLAIM IS LIVE ON THE SITE RIGHT NOW
+## ⚠ TWO OWNER QUESTIONS ARE OPEN, and both have a recommendation waiting
 
-`site/src/pages/b/[bill].astro:170` renders **"No account, and nothing about you is
-recorded."** on every bill page. It sits outside the actions conditional, so it is on all
-of them. It was written 2026-10-02 as part of task 7 — **after** the owner's 2026-09-30
-ruling (`docs/decisions.md:2038-2045`) that this exact claim family be **stripped, not
-reworded**, because "the no-logging claim is impossible for what the project needs to do".
-Feed polling makes it worse, not better: a feed reader produces a recurring request
-pattern the host sees. The same wording is in two code comments —
-`site/src/lib/topicFeed.ts:5` and `site/src/pages/b/[bill]/feed.xml.ts:2`.
+**1. H18 — which company sends the email.** Blocks the rest of `/privacy` and all of V2-8.
+**Recommendation already put to the owner: Cloudflare Email Sending.** Three reasons: the
+$5/mo Workers Paid plan (H20) is required for V2-12 anyway so it is not an extra cost; one
+company instead of two sees reader email addresses, which also shortens the honest privacy
+page; same dashboard. The caveat he was given: 3,000 emails/month included, which a daily
+digest exhausts at roughly 100 subscribers. He had not answered when the session ended.
 
-**It was NOT removed this session: the owner was asked and had not answered by session
-end.** Published prose making a claim about reader data is his call (§0.8), and his
-standing ruling says strip rather than reword. **Ask him, then strip it.**
+**2. The duplicated action rows now render.** D100 means those 15 bills publish their
+repeats — hr9748-118 shows four identical referral lines and `b/[bill].astro:125` reads
+"22 actions". It is faithful to `pagination.count` and to BILLSTATUS, and it will read as a
+bug. **Recommendation put to the owner: render the row ONCE with a line saying "The
+official record lists this action 4 times."** — literally true, asserts nothing about why,
+keeps the count honest, display-layer only, never changing what is on disk. Silently
+collapsing would be editing the government's record (§0.5). Paired with it, the feeds should
+emit one entry per distinct id: repeated rows hash identically, so `site/src/lib/atom.ts`
+currently emits entries sharing an `atom:id` (measured: 1 duplicate each on hr1516-118,
+hres712-118, s4072-118). He had not answered when the session ended.
 
-**A full V2-7 claim-by-claim audit already exists: `docs/draft-v2-7-privacy-claims.md`.**
-Read it before writing any privacy copy. It carries 15 `VERIFIED TODAY` claims with
-file:line evidence, 10 `PLANNED — not yet true`, 5 `NEEDS OWNER DECISION`, two existing
-claims to REMOVE and one to REWORD, and six ranked owner questions. Its headline findings:
-- `/privacy` itself already claims a legal demand "would produce **only** what that private
-  repository contains" (`privacy.astro:22-24`). Gitignored material already exists outside
-  the repo (`data/raw/`, `build.db`, `.env`). Low harm today — none of it is reader data —
-  but it is a factual claim and it is not accurate, and at V2-8 the D1 database makes it
-  decisively false.
-- **"No third-party scripts" breaks at V2-8, not V2-9** — Turnstile (H17) is a third-party
-  script and lands one increment earlier than the analytics everyone expects to break it.
-- `MemberBrowser.tsx:137-144` mirrors the reader's **typed search text** into the page
-  address via `replaceState`, and `/compare?m=…` carries the compared member set to the
-  host. Unflattering, deliberately not smoothed.
-- **Q1 (how to describe Cloudflare as host) blocks the whole page.** The 15 verified claims
-  can be written on that answer alone, and that today-true page is worth shipping on its
-  own. The forward-looking half is blocked on Q3 (which email company, H18) and Q5 (which
-  table list is canonical — the spec names six, the plan's V2-12 adds a seventh).
+## Where V2-7 stands (the current increment)
+
+**3 of 4 tasks done, and the remaining one is blocked on H18 above.**
+- **Task 1 — `/privacy` rewritten, partly.** The today-true half is live and honest.
+  **Removed:** "built to collect as little as possible", "No cookies. No analytics. No
+  third-party fonts, scripts, or CDNs", and "a legal demand to the operator would produce
+  only what that private repository contains" — which was **already false**, since
+  `data/raw/`, `build.db`, `backfill-*.log` and `.env` have always lived outside that repo.
+  **Added** the owner's chosen plain sentence naming Cloudflare, and the one standing
+  promise. **Still owed, blocked on H18:** the forward-looking half — the §5 table list in
+  plain words, the public-profile carve-out, deletion semantics, and naming the email
+  provider.
+- **Task 2 — `/threat-model` is NEW and done.** What is true today, what accounts will
+  hold, what a legal demand produces, then an explicit **"what is not promised"** section
+  naming the withdrawn guarantees, and **"what is promised"**: never sold, hard delete,
+  K-anon. It also discloses, verified rather than assumed, that `MemberBrowser.tsx:144`
+  copies typed search text into the page address and that `/compare` carries the chosen
+  members. Linked from `/privacy` and the footer — the `/topics` orphan (D97) is why that
+  is a step and not an afterthought.
+- **Task 3 — H19 canary: CLOSED. Retired, not reshaped (SD-35, owner).** Nothing to build.
+- **Task 4 — done.** Spec §0.4.3 and `CONTRIBUTING.md` Value #3 both still promised things
+  SD-34 withdrew; both now record the withdrawal with a do-not-reinstate note.
+- **Acceptance still owed:** the drift-proof accuracy test (stated storage list and K
+  constant match code/config). It cannot be fully written until V2-8 creates the D1 schema
+  there is nothing yet to compare against.
+
+**▶ SD-34 (2026-10-05) IS THE BIGGEST CHANGE THIS SESSION AND IT CHANGES WHAT YOU MAY
+WRITE.** The owner withdrew the no-tracking guarantees: *"what this is going to evolve to, I
+am going to have to track this info. My only promise is to never sell this data."* The
+project MAY now log requests, keep IP columns, set cookies, hold per-submission rows, let
+the anonymous reader's browsing reach the Worker, and store beyond the §5 tables. **Never
+write any of those guarantees onto the site or back into the values.** Three things SD-34
+did NOT withdraw, flagged in the ADR and the spec so nobody sweeps them away: **Argon2id**,
+the **K-anon (=50) render gate**, and **hard deletion on request**. Each needs its own dated
+decision to remove. `docs/draft-v2-7-privacy-claims.md` is the full claim-by-claim audit —
+read it before writing privacy copy, but note its "no cookies"/"no analytics"/"no
+third-party scripts" rows are now **moot as claims**, and its Q1 and Q6 are answered.
 
 ## Where the build actually stands
 

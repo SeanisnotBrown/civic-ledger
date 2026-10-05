@@ -663,8 +663,15 @@ deployed **before the first byte of user data is collected**.
    reader's requests and that is outside the operator's control. A page that
    lists a withdrawn guarantee is exactly the Value #1 failure this whole
    increment exists to prevent.
-3. **H19 canary decision** — put to the owner in plain terms (§1 H19); build
-   whichever outcome he picks.
+3. **H19 canary decision — DONE (SD-35, owner, 2026-10-05): RETIRED.** Asked
+   in plain terms whether to retire the warrant-canary idea or reshape it to
+   "we have received no demand as of {date}", the owner said retire it. So
+   there is no canary page, no canary line, and **nothing to build**. No
+   canary was ever published, so retiring costs nothing visible. Do not
+   reintroduce one without a dated decision — and note why the reshaped
+   version was not free: "no demand as of {date}" is a claim that must be
+   re-verified and re-dated on every deploy or it silently becomes a lie, and
+   a stale canary is worse than none.
 4. `docs/data-contract.md` + `CONTRIBUTING.md` privacy language aligned.
 **Acceptance:** `npm run build && npm run test:links` + a new accuracy test
 (grep-style, per v1 §10.4's idea): the deployed privacy page's stated
@@ -819,7 +826,8 @@ own dated decision.
   worker↔ingest K constant equality test becomes real at V2-8 (making
   `config.py`'s docstring true at last).
 - **10.4 Pages:** `/privacy` + threat-model page per V2-7, with the
-  drift-proof accuracy test. Canary per H19 outcome.
+  drift-proof accuracy test. **No canary** — retired by the owner, SD-35
+  (2026-10-05); H19 is closed and nothing is built for it.
 
 ---
 

@@ -2953,3 +2953,33 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   bills; a resume after this lands costs ~0 requests (D95a). (5) `hr593-118` also has
   `actions: null` but is absent from the 118 enumeration and has no cached actions page — it
   arrived by the roll-call path and is not part of this set.
+
+- **SD-35 (2026-10-05, OWNER DECISION) — H19 closed: the warrant canary is RETIRED, not
+  reshaped. Nothing is built for it.**
+  Asked in plain terms whether to retire the canary idea or reshape it to "we have received
+  no demand as of {date}", the owner said: *"Retire it."* H19 is closed and V2-7 task 3 has
+  no build output.
+
+  **Why retiring is genuinely free here, and reshaping was not.** No canary was ever
+  published — H12 was never done and `site/src/content/canary.md` has never existed (§1) —
+  so nothing visible changes and no reader loses a signal they had. The reshaped version
+  looked cheap and is not: *"no demand received as of {date}"* is a dated factual claim that
+  must be re-verified by a human and re-stamped on **every deploy**, and this site deploys
+  nightly. A canary that silently keeps its old date because a nightly rebuilt it
+  unattended is worse than no canary — it tells a reader "still safe" on the strength of
+  nobody having checked. Automating the stamp would make it a build-clock artefact, which
+  §6.3 forbids for exactly this reason, and the same trap the Atom `<updated>` fields were
+  designed around in D97.
+
+  **What made the original canary idea die anyway.** The 2026-08-13 form was "we can't hand
+  anything over because we hold nothing." SD-28 and then SD-32 made that false — once
+  accounts exist the operator holds, and can read, the account table, what each account
+  follows, its preferences and answers, and its notification addresses. SD-34 then withdrew
+  the remaining no-logging guarantees. A canary is a promise about what you *cannot*
+  disclose; this project no longer makes that kind of promise about reader data, and its one
+  standing promise (never sold) is not a canary-shaped claim.
+
+  **Consequence for `/threat-model`:** the page was authored before this decision and is
+  deliberately silent on canaries, which is now the correct and final state rather than a
+  placeholder. `docs/draft-v2-7-privacy-claims.md` Q6 is answered. Not evaluative under
+  §0.8 — no metric, threshold or published number.

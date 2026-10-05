@@ -1,5 +1,5 @@
 {
-  "count": 244,
+  "count": 252,
   "events": [
     {
       "action_code": "H11000",
@@ -1969,6 +1969,85 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9832",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9849-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9849-119--2026-07-22--16ff8c772ac0",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9849",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9849-119",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9849-119--2026-07-22--2d1f4b94654f",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9849",
+      "subjects": [],
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9849-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9849-119--2026-07-22--8287552a576e",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9849",
+      "subjects": [],
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "bill_id": "hr9849-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9849-119--2026-07-22--b1c98bb4fee8",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9849",
+      "subjects": [],
+      "text": "Sponsor introductory remarks on measure. (CR E729)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9849-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9849-119--2026-07-22--e04cf77d6611",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9849",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -4655,6 +4734,53 @@
         "Strategic materials and reserves"
       ],
       "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9633-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9633-119--2026-07-09--19bcd9467992",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9633",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9633-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9633-119--2026-07-09--d498ff48a1c8",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9633",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9633-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9633-119--2026-07-09--e28bd4d2b318",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9633",
+      "subjects": [],
+      "text": "Introduced in House",
       "type": "IntroReferral"
     },
     {

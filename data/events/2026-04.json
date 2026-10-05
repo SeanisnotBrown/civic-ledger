@@ -1,5 +1,5 @@
 {
-  "count": 52,
+  "count": 58,
   "events": [
     {
       "action_code": null,
@@ -178,6 +178,104 @@
         "Sex offenses"
       ],
       "text": "Received in the Senate.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8540-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-04-28",
+      "has_page": false,
+      "id": "hr8540-119--2026-04-28--2fc49c96c628",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8540",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, Oversight and Government Reform, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8540-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-04-28",
+      "has_page": false,
+      "id": "hr8540-119--2026-04-28--7972b5b4208b",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8540",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, Oversight and Government Reform, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8540-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-04-28",
+      "has_page": false,
+      "id": "hr8540-119--2026-04-28--94473f000925",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8540",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, Oversight and Government Reform, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr8540-119",
+      "committees": null,
+      "date": "2026-04-28",
+      "has_page": false,
+      "id": "hr8540-119--2026-04-28--bc0278a072b3",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8540",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8540-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-04-28",
+      "has_page": false,
+      "id": "hr8540-119--2026-04-28--d4c40778d7a5",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8540",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, Oversight and Government Reform, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr8540-119",
+      "committees": null,
+      "date": "2026-04-28",
+      "has_page": false,
+      "id": "hr8540-119--2026-04-28--dab38c531eb9",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8540",
+      "subjects": [],
+      "text": "Introduced in House",
       "type": "IntroReferral"
     },
     {

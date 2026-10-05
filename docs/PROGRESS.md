@@ -37,7 +37,9 @@ Then take the branch that matches:
 **1. NOTHING IS WRITING `data/` AS OF SESSION END, and Congress 118 IS COMPLETE.**
 The backfill the previous two sessions left running finished at 20:54 CDT on 2026-10-02.
 Final enumeration: **19,118 bills for Congress 118**; 19,102 hold timelines. `data/bills/`
-holds **19,804** files total (118 complete + 508 pre-existing 119 bills with activity).
+holds **19,804** files total: Congress 118 complete (19,296 files, 19,292 with timelines)
+plus **508 Congress 119 files of which only 5 have timelines** — those 508 arrived via the
+roll-call path, not a backfill, so **119 is untouched for activity purposes.**
 **The "19,315" target recorded in earlier sessions is WRONG** — it predated a real
 enumeration, and the API's own count is 19,118. **Congress 119 has NOT been backfilled**
 and the owner approved starting it; see TASK 0.

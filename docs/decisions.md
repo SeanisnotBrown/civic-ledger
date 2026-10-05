@@ -2983,3 +2983,69 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   deliberately silent on canaries, which is now the correct and final state rather than a
   placeholder. `docs/draft-v2-7-privacy-claims.md` Q6 is answered. Not evaluative under
   §0.8 — no metric, threshold or published number.
+
+- **SD-36 (2026-10-05, OWNER DECISION) — H18 answered: Cloudflare Email Sending is the
+  email provider.**
+  Asked in plain language which company should actually send digests and alerts, the owner
+  chose **Cloudflare Email Sending** over a dedicated transactional provider (Resend /
+  Postmark). **H18 is DECIDED, not finished: the provider choice is settled, and a human still owes the account step** — enable Email Sending on the Cloudflare account and create the binding/secret the Worker reads. `docs/HUMAN-TASKS.md` records both halves.
+
+  **Why it was put as a privacy question and not an infrastructure one.** The provider is
+  the company that holds every reader's email address, so `/privacy` cannot be truthful
+  until it can name one (§0.4.3). This is why H18 blocked the forward-looking half of V2-7
+  and all of V2-8, not merely the send path.
+
+  **What the owner was told, unchanged here so a future session can audit the choice:**
+  one company instead of two sees reader email addresses, which makes the privacy page
+  shorter and more honest; the $5/mo Workers Paid plan (H20) is required for V2-12 anyway,
+  so it adds no new cost; same dashboard. **The caveat he accepted: 3,000 emails/month are
+  included, which a daily digest exhausts at roughly 100 subscribers.** That is a capacity
+  decision deferred to the day it binds, not a hidden cost — record the subscriber count
+  against it when V2-12 ships.
+
+  **Consequences, each owed before or with V2-8:**
+  - `/privacy` §5-table half may now be written: it names Cloudflare as both the deliverer
+    of the site and the sender of email, which is one company to disclose rather than two.
+  - `/threat-model`'s existing line *"whoever delivers the site and whoever sends the email
+    hold their own records, and can be compelled on their own"* stays true and becomes a
+    statement about **one** company. It does not need rewriting, only narrowing when the
+    name is added.
+  - H20 (Workers Paid) is now load-bearing for V2-8 as well as V2-12.
+  Not evaluative under §0.8 — no metric, threshold or published number.
+
+- **SD-37 (2026-10-05, OWNER DECISION) — a byte-identical repeated action renders ONCE with
+  a line stating how many times the official record lists it; the feeds emit one entry per
+  distinct action.**
+  D100 established that congress.gov legitimately repeats some action rows byte-for-byte
+  (`hr9748-118` really does carry the same referral line four times, confirmed against
+  govinfo BILLSTATUS bulk XML on a second host), that nothing was ever truncated, and that
+  exactly **15 bills** across 19,118 carry such a repeat. Fixing the ingest guard made those
+  repeats publishable, which forced the display question.
+
+  Asked to choose between (a) rendering every repeat exactly as the record does, (b)
+  rendering it once with a line saying how many times the record lists it, and (c)
+  collapsing the repeats silently, the owner chose **(b)**.
+
+  **Why (c) was advised against and (b) recommended.** Silently collapsing is editing the
+  government's record, which §0.5 forbids, and it would put the rendered action count at
+  odds with `pagination.count` and with BILLSTATUS. (a) is the most faithful and needs no
+  code, but reads as a bug and looks like padding. (b) is literally true, asserts nothing
+  about *why* the record repeats, keeps the count honest, and is **display-layer only** —
+  nothing on disk changes, so `data/bills/*.json` continues to hold every row exactly as
+  published and `verify-recompute` is untouched.
+
+  **Required wording shape:** *"The official record lists this action 4 times."* It states
+  what the record does, not what we think it means. Do not phrase it as an error, a
+  duplicate, or a correction — no claim about the government's intent is ratified here.
+
+  **Paired feed change, ratified in the same question.** Repeated rows hash identically, so
+  `site/src/lib/atom.ts` currently emits feed entries sharing an `atom:id` (measured: one
+  duplicate each on `hr1516-118`, `hres712-118`, `s4072-118`). The feeds must emit **one
+  entry per distinct action id**. Harmless at today's zero subscribers; it becomes a real
+  double-alert the moment V2-12 ships, and `ingest.events.event_id` is the identity the
+  alert path keys on (D97), so the duplicate would survive into deliveries.
+
+  **Scope guard for whoever implements it:** the action count on `/b/[bill]` must keep
+  counting what the record lists (22 on `hr9748-118`), not the de-duplicated render count.
+  The number and the note are both true only if they disagree.
+  Not evaluative under §0.8 — no metric, threshold or published number.

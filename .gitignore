@@ -39,3 +39,6 @@ system-commandline-sentinel-files/
 # Local backfill run logs (V2-11). The run itself is local-only by design (H24);
 # its log is a transcript of this machine, not part of the dataset.
 backfill-*.log
+
+# Session wrap-up gate output (local, regenerated every /wrapup run)
+wrap.log

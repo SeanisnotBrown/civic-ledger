@@ -1,0 +1,91 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-07-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000230",
+    "D000530",
+    "D000631",
+    "E000296",
+    "E000299",
+    "F000466",
+    "G000589",
+    "K000397",
+    "K000399",
+    "L000397",
+    "M000194",
+    "M000317",
+    "M001199",
+    "N000026",
+    "N000147",
+    "N000191",
+    "N000193",
+    "P000599",
+    "P000616",
+    "R000610",
+    "S001214",
+    "T000487",
+    "W000826"
+  ],
+  "id": "hr4757-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-07-21",
+  "number": 4757,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4757",
+  "sponsor_id": "T000468",
+  "subjects": [
+    "Animal protection and human-animal relationships",
+    "National Institutes of Health (NIH)",
+    "Research administration and funding",
+    "Research and development"
+  ],
+  "title_official": "CARGO Act of 2023",
+  "type": "hr"
+}

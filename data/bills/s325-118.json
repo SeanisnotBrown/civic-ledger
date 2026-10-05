@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001230",
+    "B001267",
+    "B001277",
+    "B001288",
+    "C000141",
+    "C000174",
+    "C001070",
+    "C001113",
+    "D000563",
+    "D000622",
+    "F000062",
+    "F000479",
+    "H000273",
+    "H001042",
+    "H001046",
+    "K000367",
+    "L000570",
+    "M000133",
+    "M001111",
+    "M001176",
+    "P000595",
+    "S000033",
+    "S000770",
+    "S001181",
+    "S001194",
+    "S001203",
+    "V000128",
+    "W000779",
+    "W000800"
+  ],
+  "id": "s325-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-02-09",
+  "number": 325,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/325",
+  "sponsor_id": "M001169",
+  "subjects": [
+    "Employee performance",
+    "Government ethics and transparency, public corruption",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Judges",
+    "Supreme Court"
+  ],
+  "title_official": "Supreme Court Ethics Act",
+  "type": "s"
+}

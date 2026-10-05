@@ -1,0 +1,45 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-05-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-05-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000570",
+    "M001183",
+    "W000437",
+    "W000802"
+  ],
+  "id": "s4349-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+  "latest_action_date": "2024-05-15",
+  "number": 4349,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/4349",
+  "sponsor_id": "M001198",
+  "subjects": [],
+  "title_official": "A bill to require private health plans to provide for secure electronic transmission of prior authorization requests for prescription drugs.",
+  "type": "s"
+}

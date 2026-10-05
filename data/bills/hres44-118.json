@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-01-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "T000165",
+    "W000815",
+    "W000823"
+  ],
+  "id": "hres44-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-01-17",
+  "number": 44,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/44",
+  "sponsor_id": "S001214",
+  "subjects": [],
+  "title_official": "Maintaining North Korea's seizure of the vessel USS Pueblo and its detention of the crew were in violation of international law and seeking the return of the USS Pueblo to the United States.",
+  "type": "hres"
+}

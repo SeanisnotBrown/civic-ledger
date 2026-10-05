@@ -1,0 +1,81 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Water, Wildlife and Fisheries Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Water, Wildlife, and Fisheries.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000668",
+    "J000304",
+    "S001212",
+    "V000129"
+  ],
+  "id": "hr518-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Water, Wildlife, and Fisheries.",
+  "latest_action_date": "2023-02-21",
+  "number": 518,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/518",
+  "sponsor_id": "M001177",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Department of the Interior",
+    "Endangered and threatened species",
+    "Environmental assessment, monitoring, research",
+    "Government ethics and transparency, public corruption",
+    "Government information and archives",
+    "Judicial review and appeals",
+    "Public participation and lobbying",
+    "Public-private cooperation",
+    "State and local government operations",
+    "Wildlife conservation and habitat protection"
+  ],
+  "title_official": "Endangered Species Transparency and Reasonableness Act of 2023",
+  "type": "hr"
+}

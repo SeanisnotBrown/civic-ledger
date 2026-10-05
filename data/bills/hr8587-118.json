@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-05-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-05-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-05-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "C001120",
+    "D000230",
+    "D000632",
+    "G000583",
+    "L000600",
+    "M000317",
+    "S001212",
+    "S001221",
+    "T000478",
+    "W000814"
+  ],
+  "id": "hr8587-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-05-31",
+  "number": 8587,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8587",
+  "sponsor_id": "L000599",
+  "subjects": [],
+  "title_official": "Paula Bohovesky and Joan D’Alessandro Act",
+  "type": "hr"
+}

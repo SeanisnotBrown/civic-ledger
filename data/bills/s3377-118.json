@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-11-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance. (Sponsor introductory remarks on measure: CR S5694-5695)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "W000790"
+  ],
+  "id": "s3377-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance. (Sponsor introductory remarks on measure: CR S5694-5695)",
+  "latest_action_date": "2023-11-30",
+  "number": 3377,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3377",
+  "sponsor_id": "P000145",
+  "subjects": [
+    "Aviation and airports",
+    "Employment and training programs",
+    "Minority and disadvantaged businesses",
+    "Public contracts and procurement",
+    "Public-private cooperation",
+    "Roads and highways",
+    "Small business",
+    "State and local government operations"
+  ],
+  "title_official": "Disadvantaged Business Enterprise Supportive Services Expansion Act",
+  "type": "s"
+}

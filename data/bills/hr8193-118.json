@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Water Resources and Environment Subcommittee"
+      ],
+      "date": "2024-05-02",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Water Resources and Environment.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "C001114",
+    "D000617",
+    "F000466",
+    "H001068",
+    "L000397",
+    "L000551",
+    "N000147",
+    "P000597",
+    "S001216"
+  ],
+  "id": "hr8193-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Water Resources and Environment.",
+  "latest_action_date": "2024-05-02",
+  "number": 8193,
+  "policy_area": "Water Resources Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8193",
+  "sponsor_id": "P000619",
+  "subjects": [],
+  "title_official": "Bristol Bay Protection Act",
+  "type": "hr"
+}

@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "E000295"
+  ],
+  "id": "s1021-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+  "latest_action_date": "2023-03-29",
+  "number": 1021,
+  "policy_area": "Foreign Trade and International Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1021",
+  "sponsor_id": "B001310",
+  "subjects": [
+    "Competitiveness, trade promotion, trade deficits",
+    "Congressional oversight",
+    "Debt collection",
+    "Government lending and loan guarantees",
+    "Tax administration and collection, taxpayers"
+  ],
+  "title_official": "A bill to prohibit the Export-Import Bank of the United States from providing financing to persons with seriously delinquent tax debt.",
+  "type": "s"
+}

@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Health, Education, Labor, and Pensions. (text: CR S1098-1099)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000563"
+  ],
+  "id": "sres143-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Health, Education, Labor, and Pensions. (text: CR S1098-1099)",
+  "latest_action_date": "2023-03-30",
+  "number": 143,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/143",
+  "sponsor_id": "C000174",
+  "subjects": [],
+  "title_official": "A resolution expressing support for the designation of the week of April 3 through April 7, 2023, as National Assistant Principals Week.",
+  "type": "sres"
+}

@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Counterterrorism and Intelligence Subcommittee"
+      ],
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Counterterrorism, Law Enforcement, and Intelligence.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Homeland Security.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001039",
+    "D000628",
+    "D000632",
+    "E000235",
+    "G000591",
+    "G000593",
+    "G000597",
+    "H001077",
+    "K000399",
+    "L000599",
+    "M001157",
+    "P000599",
+    "S001213",
+    "W000806",
+    "W000828"
+  ],
+  "id": "hr7566-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Border Security and Enforcement.",
+  "latest_action_date": "2024-03-06",
+  "number": 7566,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7566",
+  "sponsor_id": "L000603",
+  "subjects": [],
+  "title_official": "CARTEL Act of 2024",
+  "type": "hr"
+}

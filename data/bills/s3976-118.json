@@ -1,0 +1,45 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2024-03-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-03-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001070",
+    "F000479",
+    "W000800",
+    "W000802"
+  ],
+  "id": "s3976-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2024-03-19",
+  "number": 3976,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3976",
+  "sponsor_id": "B001230",
+  "subjects": [],
+  "title_official": "Tax Relief for Victims of Crimes, Scams, and Disasters Act",
+  "type": "s"
+}

@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Oversight Subcommittee"
+      ],
+      "date": "2023-09-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Oversight.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000376",
+    "C001112",
+    "C001133",
+    "F000466",
+    "G000582",
+    "G000583",
+    "H001095",
+    "L000599",
+    "L000600",
+    "M000194",
+    "M000312",
+    "M001216",
+    "P000610",
+    "R000600",
+    "S001177",
+    "S001220",
+    "T000487",
+    "W000822"
+  ],
+  "id": "hr3251-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Oversight.",
+  "latest_action_date": "2023-09-12",
+  "number": 3251,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3251",
+  "sponsor_id": "M001219",
+  "subjects": [
+    "American Samoa",
+    "Cultural exchanges and relations",
+    "Guam",
+    "Northern Mariana Islands",
+    "Puerto Rico",
+    "U.S. Capitol",
+    "U.S. territories and protectorates",
+    "Virgin Islands"
+  ],
+  "title_official": "Equality in the Halls of Congress Act",
+  "type": "hr"
+}

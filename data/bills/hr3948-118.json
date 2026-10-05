@@ -1,0 +1,79 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-07-05",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-06-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001055",
+    "O000173",
+    "R000600",
+    "S000344",
+    "S001177",
+    "T000487",
+    "W000809"
+  ],
+  "id": "hr3948-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-07-05",
+  "number": 3948,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3948",
+  "sponsor_id": "B001287",
+  "subjects": [
+    "Congressional oversight",
+    "Health personnel",
+    "Marshall Islands",
+    "Micronesia",
+    "Palau",
+    "U.S. territories and protectorates",
+    "Veterans' medical care",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "Care for COFA Veterans Act",
+  "type": "hr"
+}

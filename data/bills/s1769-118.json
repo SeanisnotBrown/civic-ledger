@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-05-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "S001198"
+  ],
+  "id": "s1769-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-05-31",
+  "number": 1769,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1769",
+  "sponsor_id": "C000174",
+  "subjects": [
+    "Child health",
+    "Congressional oversight",
+    "Drug, alcohol, tobacco use",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Health care coverage and access",
+    "Health information and medical records",
+    "Health programs administration and funding",
+    "Intergovernmental relations",
+    "Mental health",
+    "Poverty and welfare assistance"
+  ],
+  "title_official": "KIDS Health Act of 2023",
+  "type": "s"
+}

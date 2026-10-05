@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-11-03",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001143",
+    "R000617",
+    "T000469"
+  ],
+  "id": "hres823-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+  "latest_action_date": "2023-11-03",
+  "number": 823,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/823",
+  "sponsor_id": "B001278",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Community life and organization",
+    "Congressional tributes",
+    "Energy assistance for the poor and aged"
+  ],
+  "title_official": "Supporting the goals and ideals of \"Weatherization Day\".",
+  "type": "hres"
+}

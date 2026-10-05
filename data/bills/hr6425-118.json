@@ -1,0 +1,82 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Armed Services, and Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Armed Services, and Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Armed Services, and Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000230",
+    "G000583",
+    "H001085",
+    "K000389",
+    "L000598",
+    "N000193",
+    "W000815"
+  ],
+  "id": "hr6425-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Armed Services, and Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+  "latest_action_date": "2023-11-15",
+  "number": 6425,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6425",
+  "sponsor_id": "G000579",
+  "subjects": [],
+  "title_official": "To direct the Secretary of Defense to establish a working group to develop and coordinate an artificial intelligence initiative among the Five Eyes countries, and for other purposes.",
+  "type": "hr"
+}

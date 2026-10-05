@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-06-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Voice Vote. (consideration: CR S2011; text: CR S2009-2010)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-06-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Voice Vote. (consideration: CR S2011; text: CR S2009-2010)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "C001035",
+    "C001088",
+    "C001095",
+    "D000563",
+    "K000367",
+    "M001153",
+    "M001176",
+    "M001198"
+  ],
+  "id": "sres239-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Voice Vote. (consideration: CR S2011; text: CR S2009-2010)",
+  "latest_action_date": "2023-06-07",
+  "number": 239,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/239",
+  "sponsor_id": "W000802",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Health promotion and preventive care",
+    "Medical research",
+    "Neurological disorders"
+  ],
+  "title_official": "A resolution designating May 2023 as \"ALS Awareness Month\".",
+  "type": "sres"
+}

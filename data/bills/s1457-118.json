@@ -1,0 +1,116 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 151.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Reported by Senator Menendez with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Reported by Senator Menendez with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-05-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-08-10T20:04:00Z",
+      "title": "S. 1457, Taiwan Tax Agreement Act of 2023",
+      "url": "https://www.cbo.gov/publication/59473"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001088",
+    "D000622",
+    "G000359",
+    "H000601",
+    "K000384",
+    "M001153",
+    "M001176",
+    "R000584",
+    "R000595",
+    "R000615",
+    "R000618",
+    "S001181",
+    "S001198",
+    "S001217",
+    "V000128",
+    "W000437"
+  ],
+  "id": "s1457-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 151.",
+  "latest_action_date": "2023-07-25",
+  "number": 1457,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1457",
+  "sponsor_id": "M000639",
+  "subjects": [
+    "Asia",
+    "Congressional oversight",
+    "International law and treaties",
+    "Taiwan",
+    "Tax administration and collection, taxpayers",
+    "Taxation of foreign income"
+  ],
+  "title_official": "Taiwan Tax Agreement Act of 2023",
+  "type": "s"
+}

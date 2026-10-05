@@ -1,0 +1,93 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-10-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "C001066",
+    "C001091",
+    "C001130",
+    "C001134",
+    "I000056",
+    "J000298",
+    "L000593",
+    "M000312",
+    "M001160",
+    "R000606",
+    "S001208",
+    "S001215",
+    "W000822"
+  ],
+  "id": "hr5834-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-10-06",
+  "number": 5834,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5834",
+  "sponsor_id": "D000216",
+  "subjects": [
+    "Cancer",
+    "Congressional oversight",
+    "Digital media",
+    "Government information and archives",
+    "Health care coverage and access",
+    "Health personnel",
+    "Health programs administration and funding",
+    "Health promotion and preventive care",
+    "Medical education",
+    "Medical tests and diagnostic methods",
+    "Minority health",
+    "Public contracts and procurement",
+    "Sex and reproductive health",
+    "Sexually transmitted diseases",
+    "Women's health"
+  ],
+  "title_official": "Johanna’s Law Reauthorization Act",
+  "type": "hr"
+}

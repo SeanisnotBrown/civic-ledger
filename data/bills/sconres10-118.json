@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Budget. (text: CR S1753)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "C001035",
+    "D000618",
+    "E000295",
+    "K000377",
+    "K000383"
+  ],
+  "id": "sconres10-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Budget. (text: CR S1753)",
+  "latest_action_date": "2023-05-18",
+  "number": 10,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-concurrent-resolution/10",
+  "sponsor_id": "S001191",
+  "subjects": [],
+  "title_official": "Fiscal State of the Nation Resolution",
+  "type": "sconres"
+}

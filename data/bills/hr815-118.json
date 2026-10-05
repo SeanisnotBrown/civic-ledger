@@ -1,4 +1,708 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2024-04-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-50.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-04-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-50.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2024-04-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-04-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2024-04-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2024-04-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": "s-118-2-0154",
+      "source_system": "Senate",
+      "text": "Senate agreed to the House amendment to the Senate amendment to H.R. 815 by Yea-Nay Vote. 79 - 18. Record Vote Number: 154.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "20500",
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": "s-118-2-0154",
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- Senate actions: Senate agreed to the House amendment to the Senate amendment to H.R. 815 by Yea-Nay Vote. 79 - 18. Record Vote Number: 154.",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": "s-118-2-0153",
+      "source_system": "Senate",
+      "text": "Motion to waive all applicable budgetary discipline with respect to the measure (the motion to concur in the House amendment to the Senate amendment) agreed to in Senate by Yea-Nay Vote. 75 - 20. Record Vote Number: 153. (CR S2991)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Point of order by Senator Lee pursuant to section 314(e) of the Congressional Budget Act of 1974 against the measure raised in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to refer to Senate Committee on Appropriations with instructions to report back forthwith with the following amendment (SA 1844) fell when cloture was invoked on the motion to concur in the House amendment to the Senate amendment to H.R. 815 in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": "s-118-2-0152",
+      "source_system": "Senate",
+      "text": "Cloture on the motion to concur in the House amendment to the Senate amendment to H.R. 815 invoked in Senate by Yea-Nay Vote. 80 - 19. Record Vote Number: 152. (CR S2960-2961)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": "s-118-2-0151",
+      "source_system": "Senate",
+      "text": "Motion to table the motion to refer the House message to accompany H.R. 815 to the Committee on Appropriations with instructions to report back forthwith with the following amendment (SA 1844) rejected in Senate by Yea-Nay Vote. 48 - 50. Record Vote Number: 151.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to refer to Senate Committee on Appropriations the House message to accompany H.R. 815 with instructions to report back forthwith with the following amendment (SA 1844) made in Senate. (CR S2944)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to concur in the House amendment to the Senate amendment to H.R. 815 with an amendment (SA 1842) made in Senate. (CR S2944)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to concur in the House amendment to the Senate amendment to H.R. 815 presented in Senate. (CR S2943-2944)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to concur in the House amendment to the Senate amendment to H.R. 815. (CR S2943)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S2943-2992)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on House action received in Senate and at desk: House amendment to Senate amendment.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H41931",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "14:03:06",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41610",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the House agree with an amendment to the Senate amendment Agreed to without objection.",
+      "time": "14:03:05",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: On motion that the House agree with an amendment to the Senate amendment Agreed to without objection.",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": "H40110",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to the provisions of H. Res. 1160, the House took from the Speaker's table the bill H.R. 815 with the Senate amendment, and agreed to the Senate amendment with the amendment described in section 6.",
+      "time": "14:03:04",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to H. Res. 1160, the Senate amendment to H.R. 815 is considered as agreed to with the amendment described in section 6 of H. Res. 1160.",
+      "time": "14:03:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-13",
+      "rollcall_id": "s-118-2-0048",
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Yea-Nay Vote. 70 - 29. Record Vote Number: 48.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-02-13",
+      "rollcall_id": "s-118-2-0048",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Yea-Nay Vote. 70 - 29. Record Vote Number: 48.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-12",
+      "rollcall_id": "s-118-2-0047",
+      "source_system": "Senate",
+      "text": "Cloture invoked in Senate by Yea-Nay Vote. 66 - 33. Record Vote Number: 47. (CR S907)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-12",
+      "rollcall_id": "s-118-2-0045",
+      "source_system": "Senate",
+      "text": "Motion to waive all applicable budgetary discipline with respect to the measure agreed to in Senate by Yea-Nay Vote. 66 - 33. Record Vote Number: 45. (CR S906-907)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate. (consideration: CR S859-953)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to commit to Senate Committee on Veterans' Affairs with instructions to report forthwith with the following Senate amendment (SA 1581) fell when cloture was invoked on amendment SA 1388 in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-11",
+      "rollcall_id": "s-118-2-0043",
+      "source_system": "Senate",
+      "text": "Motion to table the motion by Senator Schumer to commit the bill (H.R. 815) to Senate Committee on Veterans' Affairs with instructions to report back forthwith with amendment SA 1581 rejected in Senate by Yea-Nay Vote. 40 - 53. Record Vote Number: 43.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate. (consideration: CR S838-856)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate. (consideration: CR S805-831)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the measure presented in Senate. (CR S594)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to commit to Senate Committee on Veterans' Affairs with instructions to report back forthwith with the following amendment (SA 1581) made in Senate. (text: CR S593)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by motion. (consideration: CR S593-594)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to reconsider the vote by which the second cloture motion on the motion to proceed to H.R. 815 was not invoked (Record Vote No. 332) rendered moot in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-09",
+      "rollcall_id": "s-118-2-0042",
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure agreed to in Senate by Yea-Nay Vote. 64 - 19. Record Vote Number: 42.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S565)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-08",
+      "rollcall_id": "s-118-2-0041",
+      "source_system": "Senate",
+      "text": "Upon reconsideration, third cloture motion on the motion to proceed to the measure invoked in Senate by Yea-Nay Vote. 67 - 32. Record Vote Number: 41.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-07",
+      "rollcall_id": "s-118-2-0039",
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to reconsider the vote by which the third cloture motion on the motion to proceed to the measure was not invoked (Record Vote No. 39) was agreed to in Senate by Yea-Nay Vote. 58 - 41. Record Vote Number: 40.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-07",
+      "rollcall_id": "s-118-2-0039",
+      "source_system": "Senate",
+      "text": "Third cloture motion on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 49 - 50. Record Vote Number: 39.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S427)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Third cloture motion on the motion to proceed to the measure presented in Senate. (CR S354)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S354)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S5831)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to reconsider the vote by which the second cloture motion on the motion to proceed to H.R. 815 was not invoked (Record Vote No. 332) entered in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-06",
+      "rollcall_id": "s-118-1-0332",
+      "source_system": "Senate",
+      "text": "Second cloture motion on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 49 - 51. Record Vote Number: 332. (CR S5793)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S5767)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Second cloture motion on the motion to proceed to the measure presented in Senate. (CR S5709)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S5709)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Under the order of 11/13/2023, cloture motion on the motion to proceed withdrawn by unanimous consent in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to proceed to the measure presented in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 30.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the first time. Placed on Senate Legislative Calendar under Read the First Time.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:29:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1126)",
+      "time": "17:29:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1126)",
+      "time": "17:29:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 815.",
+      "time": "17:18:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H1126-1127)",
+      "time": "17:18:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Bost moved to suspend the rules and pass the bill, as amended.",
+      "time": "17:18:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2024-02-07T15:28:00Z",

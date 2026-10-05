@@ -1,4 +1,286 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 293.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate. Read the first time. Placed on Senate Legislative Calendar under Read the First Time.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:36:07",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": "h-118-1-0718",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 330 - 99 (Roll no. 718).",
+      "time": "17:36:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": "h-118-1-0718",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 330 - 99 (Roll no. 718).",
+      "time": "17:36:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H6921)",
+      "time": "17:01:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H.R. 1147, the Chair put the question on passage and by voice vote, announced that the ayes had prevailed. Ms. Foxx demanded the yeas and nays and the chair postponed further proceedings until a time to be announced.",
+      "time": "15:15:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House adopted the amendments en gross as agreed to by the Committee of the Whole House on the state of the Union.",
+      "time": "15:14:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "15:14:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 1147.",
+      "time": "15:13:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 922, the Committee of the Whole proceeded with 10 minutes of debate on the Tiffany amendment No. 3.",
+      "time": "15:05:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 922, the Committee of the Whole proceeded with 10 minutes of debate on the Mills amendment No. 2.",
+      "time": "14:57:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 922, the Committee of the Whole proceeded with 10 minutes of debate on the Luna amendment No. 1.",
+      "time": "14:52:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 1147.",
+      "time": "13:56:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable Scott DesJarlais to act as Chairman of the Committee.",
+      "time": "13:56:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 922 and Rule XVIII.",
+      "time": "13:56:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 1147 and H.R. 357. The resolution provides for consideration of H.R. 1147 under a structured rule with one hour of general debate and H.R. 357 under a closed rule with one hour of general debate. The resolution provides for a motion to recommit on both measures. It also provides that on any legislative day of the second session of the 118th Congress before January 9, 2024, the Speaker may dispense with organizational and legislative business and that the Journal of the proceedings of the previous day shall be considered as approved if applicable.",
+      "time": "13:55:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 922. (consideration: CR H6889-6907; text of amendment in the nature of a substitute: CR H6903)",
+      "time": "13:55:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2023-12-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 922 Reported to House. Rule provides for consideration of H.R. 1147 and H.R. 357. The resolution provides for consideration of H.R. 1147 under a structured rule with one hour of general debate and H.R. 357 under a closed rule with one hour of general debate. The resolution provides for a motion to recommit on both measures. It also provides that on any legislative day of the second session of the 118th Congress before January 9, 2024, the Speaker may dispense with organizational and legislative business and that the Journal of the proceedings of the previous day shall be considered as approved if applicable.",
+      "time": "20:11:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 103.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Education and the Workforce. H. Rept. 118-131.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Education and the Workforce. H. Rept. 118-131.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-06-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 13.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-06-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-06-13T20:54:00Z",

@@ -1,0 +1,66 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001261",
+    "B001305",
+    "B001310",
+    "C001035",
+    "C001095",
+    "C001096",
+    "D000618",
+    "E000295",
+    "G000386",
+    "H001061",
+    "L000571",
+    "M000355",
+    "M001198",
+    "R000595",
+    "T000278"
+  ],
+  "id": "s378-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-02-09",
+  "number": 378,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/378",
+  "sponsor_id": "S001198",
+  "subjects": [
+    "Administrative remedies",
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Government information and archives",
+    "Legal fees and court costs",
+    "Military facilities and property",
+    "North Carolina",
+    "Veterans' pensions and compensation",
+    "Water quality"
+  ],
+  "title_official": "Protect Camp Lejeune VETS Act",
+  "type": "s"
+}

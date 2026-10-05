@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S6029; text: CR S6024)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001310",
+    "T000476",
+    "V000137",
+    "Y000064"
+  ],
+  "id": "sres513-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S6029; text: CR S6024)",
+  "latest_action_date": "2023-12-18",
+  "number": 513,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/513",
+  "sponsor_id": "B001305",
+  "subjects": [
+    "Aviation and airports",
+    "Commemorative events and holidays"
+  ],
+  "title_official": "A resolution recognizing December 17 as \"Wright Brothers Day\" and commemorating the 120th anniversary of the first powered flight.",
+  "type": "sres"
+}

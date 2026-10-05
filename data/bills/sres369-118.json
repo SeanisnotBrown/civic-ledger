@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-09-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S4676; text: CR S4686-4687)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-09-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-09-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001288",
+    "C000174",
+    "F000062",
+    "H001079",
+    "L000575",
+    "P000145",
+    "R000595",
+    "S000770",
+    "W000790",
+    "W000817",
+    "Y000064"
+  ],
+  "id": "sres369-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S4676; text: CR S4686-4687)",
+  "latest_action_date": "2023-09-26",
+  "number": 369,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/369",
+  "sponsor_id": "S001184",
+  "subjects": [
+    "Blood and blood diseases",
+    "Commemorative events and holidays",
+    "Health promotion and preventive care",
+    "Hereditary and development disorders",
+    "Minority health"
+  ],
+  "title_official": "A resolution expressing support for the designation of September 2023 as \"Sickle Cell Disease Awareness Month\" in order to educate communities across the United States about sickle cell disease and the need for research, early detection methods, effective treatments, and preventative care programs with respect to complications from sickle cell disease and conditions related to sickle cell disease.",
+  "type": "sres"
+}

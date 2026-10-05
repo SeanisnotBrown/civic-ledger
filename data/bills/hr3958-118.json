@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Aviation Subcommittee"
+      ],
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Aviation.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-06-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000032",
+    "S001211"
+  ],
+  "id": "hr3958-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Aviation.",
+  "latest_action_date": "2023-06-12",
+  "number": 3958,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3958",
+  "sponsor_id": "D000632",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Aviation and airports",
+    "Congressional oversight",
+    "Department of Transportation",
+    "Environmental assessment, monitoring, research",
+    "Transportation safety and security"
+  ],
+  "title_official": "To direct the Administrator of the Federal Aviation Administration to publish guidance and implementation procedures for unmanned aircraft systems with respect to environmental reviews, and for other purposes.",
+  "type": "hr"
+}

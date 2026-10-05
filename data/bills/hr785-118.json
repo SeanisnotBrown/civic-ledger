@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000376",
+    "C001080",
+    "C001131",
+    "D000399",
+    "E000297",
+    "G000553",
+    "G000583",
+    "G000586",
+    "M001143",
+    "N000147",
+    "P000618",
+    "T000481",
+    "V000131"
+  ],
+  "id": "hr785-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2023-02-02",
+  "number": 785,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/785",
+  "sponsor_id": "G000587",
+  "subjects": [],
+  "title_official": "To amend the Fair Labor Standards Act of 1938 to require paid rest breaks for certain construction employees, and for other purposes.",
+  "type": "hr"
+}

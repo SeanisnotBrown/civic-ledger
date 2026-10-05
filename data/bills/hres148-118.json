@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001072",
+    "G000551",
+    "G000599",
+    "N000147",
+    "O000172",
+    "S001177",
+    "T000468",
+    "V000130"
+  ],
+  "id": "hres148-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Oversight and Accountability.",
+  "latest_action_date": "2023-02-21",
+  "number": 148,
+  "policy_area": "Arts, Culture, Religion",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/148",
+  "sponsor_id": "M001188",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Foreign language and bilingual programs",
+    "Historical and cultural resources",
+    "Language arts"
+  ],
+  "title_official": "Supporting the goals and ideals of International Mother Language Day in bringing attention to the importance of preserving linguistic and cultural heritage through education.",
+  "type": "hres"
+}

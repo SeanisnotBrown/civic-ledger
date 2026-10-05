@@ -1,0 +1,131 @@
+{
+  "actions": [
+    {
+      "action_code": "H12420",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the House Calendar, Calendar No. 15.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Foreign Affairs. H. Rept. 118-44.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Foreign Affairs. H. Rept. 118-44.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 22 - 20.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000596"
+  ],
+  "id": "hres300-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the House Calendar, Calendar No. 15.",
+  "latest_action_date": "2023-05-02",
+  "number": 300,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/300",
+  "sponsor_id": "G000578",
+  "subjects": [
+    "Conflicts and wars",
+    "Congressional-executive branch relations",
+    "Department of Defense",
+    "Europe",
+    "Government information and archives",
+    "Military assistance, sales, and agreements",
+    "Military operations and strategy",
+    "Ukraine"
+  ],
+  "title_official": "Requesting the President and directing the Secretary of Defense to transmit, respectively, to the House of Representatives copies of all documents indicating any plans for current or future military assistance to Ukraine and documents indicating whether any United States Armed Forces, including special operations forces, are currently deployed in Ukraine.",
+  "type": "hres"
+}

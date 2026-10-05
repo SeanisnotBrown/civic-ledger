@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000148",
+    "B000574",
+    "C001066",
+    "C001072",
+    "C001110",
+    "C001121",
+    "D000631",
+    "G000599",
+    "H001081",
+    "J000032",
+    "J000288",
+    "K000385",
+    "K000402",
+    "L000582",
+    "N000147",
+    "R000606",
+    "S001156",
+    "S001193",
+    "S001208",
+    "S001218",
+    "T000483",
+    "V000081"
+  ],
+  "id": "hr2897-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-04-26",
+  "number": 2897,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2897",
+  "sponsor_id": "N000191",
+  "subjects": [],
+  "title_official": "End Gun Violence Act of 2023",
+  "type": "hr"
+}

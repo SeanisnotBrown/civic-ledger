@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2023-02-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001070",
+    "C001096",
+    "F000062",
+    "H001046",
+    "M001190"
+  ],
+  "id": "s429-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Energy and Natural Resources.",
+  "latest_action_date": "2023-02-15",
+  "number": 429,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/429",
+  "sponsor_id": "L000570",
+  "subjects": [
+    "Air quality",
+    "Alternative and renewable resources",
+    "Climate change and greenhouse gases",
+    "Electric power generation and transmission",
+    "Environmental assessment, monitoring, research",
+    "Research and development",
+    "Water storage",
+    "Water use and supply"
+  ],
+  "title_official": "Abandoned Well Remediation Research and Development Act",
+  "type": "s"
+}

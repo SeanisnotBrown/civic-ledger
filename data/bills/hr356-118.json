@@ -1,0 +1,88 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy and Mineral Resources Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy and Mineral Resources.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-01-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "E000235",
+    "F000450",
+    "F000469",
+    "G000577",
+    "G000591",
+    "J000299",
+    "J000304",
+    "L000564",
+    "L000595",
+    "M001177",
+    "M001212",
+    "R000103",
+    "R000575",
+    "S001212",
+    "T000478",
+    "V000134",
+    "W000814"
+  ],
+  "id": "hr356-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy and Mineral Resources.",
+  "latest_action_date": "2023-02-21",
+  "number": 356,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/356",
+  "sponsor_id": "C001054",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Alaska",
+    "Gulf of Mexico",
+    "Marine and coastal resources, fisheries",
+    "Mining",
+    "Oil and gas",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
+  "title_official": "Unleashing American Energy Act",
+  "type": "hr"
+}

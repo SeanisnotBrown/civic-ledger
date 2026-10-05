@@ -1,0 +1,102 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S6638-6639; text: 9/25/2024 CR S6450-6451)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001288",
+    "C000174",
+    "H001079",
+    "L000575",
+    "P000145",
+    "R000595",
+    "S000770",
+    "W000790",
+    "W000817",
+    "Y000064"
+  ],
+  "id": "sres861-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S6638-6639; text: 9/25/2024 CR S6450-6451)",
+  "latest_action_date": "2024-11-19",
+  "number": 861,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/861",
+  "sponsor_id": "S001184",
+  "subjects": [
+    "Blood and blood diseases",
+    "Commemorative events and holidays",
+    "Health promotion and preventive care",
+    "Hereditary and development disorders",
+    "Minority health"
+  ],
+  "title_official": "A resolution expressing support for the designation of September 2024 as \"Sickle Cell Disease Awareness Month\" in order to educate communities across the United States about sickle cell disease and the need for research, early detection methods, effective treatments, and preventative care programs with respect to complications from sickle cell disease and conditions related to sickle cell disease.",
+  "type": "sres"
+}

@@ -1,0 +1,170 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-04-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 27.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-04-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Energy and Commerce. H. Rept. 118-41.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-04-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Energy and Commerce. H. Rept. 118-41.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-24",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 46 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-24",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Communications and Technology Subcommittee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee (Amended) by the Yeas and Nays: 26 - 0 .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Communications and Technology Subcommittee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Communications and Technology Subcommittee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Communications and Technology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-04-20T15:09:00Z",
+      "title": "H.R. 675, Secure Space Act of 2023",
+      "url": "https://www.cbo.gov/publication/59092"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001159"
+  ],
+  "id": "hr675-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 27.",
+  "latest_action_date": "2023-04-25",
+  "number": 675,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/675",
+  "sponsor_id": "P000034",
+  "subjects": [
+    "Broadcasting, cable, digital technologies",
+    "Internet, web applications, social media",
+    "Licensing and registrations",
+    "Spacecraft and satellites",
+    "Telephone and wireless communication"
+  ],
+  "title_official": "Secure Space Act of 2023",
+  "type": "hr"
+}

@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H000273",
+    "P000595"
+  ],
+  "id": "s953-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+  "latest_action_date": "2023-03-23",
+  "number": 953,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/953",
+  "sponsor_id": "B001243",
+  "subjects": [
+    "Congressional oversight",
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Rural conditions and development"
+  ],
+  "title_official": "Rural Health Innovation Act of 2023",
+  "type": "s"
+}

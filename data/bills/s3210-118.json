@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2023-11-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Appropriations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "L000571",
+    "S001217",
+    "V000137"
+  ],
+  "id": "s3210-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Appropriations.",
+  "latest_action_date": "2023-11-02",
+  "number": 3210,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3210",
+  "sponsor_id": "M001198",
+  "subjects": [
+    "Appropriations",
+    "Arab-Israeli relations",
+    "Conflicts and wars",
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Defense spending",
+    "Department of Defense",
+    "Department of State",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Executive agency funding and structure",
+    "Foreign aid and international relief",
+    "Internal Revenue Service (IRS)",
+    "Israel",
+    "Military assistance, sales, and agreements",
+    "Military education and training",
+    "Military procurement, research, weapons development",
+    "Research and development"
+  ],
+  "title_official": "Israel Security Supplemental Appropriations Act, 2024",
+  "type": "s"
+}

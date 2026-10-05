@@ -1,0 +1,91 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Voice Vote. (consideration: CR S7171; text: 11/19/2024 CR S6635-6636)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H000273"
+  ],
+  "id": "sres895-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Voice Vote. (consideration: CR S7171; text: 11/19/2024 CR S6635-6636)",
+  "latest_action_date": "2024-12-18",
+  "number": 895,
+  "policy_area": "Civil Rights and Liberties, Minority Issues",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/895",
+  "sponsor_id": "B001267",
+  "subjects": [
+    "Colorado",
+    "Congressional tributes",
+    "Hate crimes",
+    "Sex, gender, sexual orientation discrimination"
+  ],
+  "title_official": "A resolution recognizing the second commemoration of the anti-LGBTQ+ attack that occurred on November 19-20, 2022, at Club Q, an LGBTQ+ bar in Colorado Springs, Colorado.",
+  "type": "sres"
+}

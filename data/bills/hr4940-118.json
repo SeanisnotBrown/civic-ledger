@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "General Farm Commodities, Risk Management, and Credit Subcommittee"
+      ],
+      "date": "2023-08-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001303",
+    "H001052",
+    "H001077",
+    "H001090",
+    "L000598",
+    "P000619",
+    "T000487",
+    "V000133"
+  ],
+  "id": "hr4940-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+  "latest_action_date": "2023-08-28",
+  "number": 4940,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4940",
+  "sponsor_id": "P000597",
+  "subjects": [
+    "Agricultural prices, subsidies, credit",
+    "Credit and credit markets",
+    "Marine and coastal resources, fisheries"
+  ],
+  "title_official": "Fishing Industry Credit Enhancement Act of 2023",
+  "type": "hr"
+}

@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s990-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Armed Services.",
+  "latest_action_date": "2023-03-27",
+  "number": 990,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/990",
+  "sponsor_id": "D000618",
+  "subjects": [
+    "Aviation and airports",
+    "Congressional oversight",
+    "Government studies and investigations",
+    "Homeland security",
+    "Intelligence activities, surveillance, classified information",
+    "Military operations and strategy",
+    "Spacecraft and satellites"
+  ],
+  "title_official": "A bill to require the Commander of the North American Aerospace Defense Command to conduct a gap analysis of the capabilities of the North American Aerospace Defense Command.",
+  "type": "s"
+}

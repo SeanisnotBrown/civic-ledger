@@ -1,4 +1,56 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": "s-118-1-0002",
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Yea-Nay Vote. 94 - 0. Record Vote Number: 2. (text: 1/25/2023 CR S103)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": "s-118-1-0002",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Yea-Nay Vote. 94 - 0. Record Vote Number: 2.(text: 1/25/2023 CR S103)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S108, S115-116)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate and ordered held at desk.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 118,
   "cosponsor_ids": [

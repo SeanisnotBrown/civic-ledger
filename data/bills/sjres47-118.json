@@ -1,0 +1,77 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001305",
+    "B001319",
+    "C000880",
+    "C001047",
+    "C001056",
+    "C001095",
+    "C001098",
+    "D000618",
+    "E000295",
+    "F000463",
+    "G000359",
+    "H000601",
+    "H001061",
+    "H001079",
+    "H001089",
+    "K000393",
+    "L000577",
+    "M000355",
+    "M001190",
+    "M001198",
+    "R000584",
+    "R000595",
+    "R000618",
+    "S001227",
+    "T000250",
+    "T000278",
+    "T000476",
+    "V000137"
+  ],
+  "id": "sjres47-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-10-30",
+  "number": 47,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/47",
+  "sponsor_id": "B001243",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Cardiovascular and respiratory health",
+    "Congressional oversight",
+    "Correctional facilities and imprisonment",
+    "Department of Justice",
+    "Detention of persons",
+    "Infectious and parasitic diseases"
+  ],
+  "title_official": "A joint resolution providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Justice relating to \"Office of the Attorney General; Home Confinement Under the Coronavirus Aid, Relief, and Economic Security (CARES) Act\".",
+  "type": "sjres"
+}

@@ -1,0 +1,43 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "K000393"
+  ],
+  "id": "s982-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-27",
+  "number": 982,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/982",
+  "sponsor_id": "M001198",
+  "subjects": [],
+  "title_official": "A bill to establish an FBI hotline to receive tips about persons trying to engage in certain activities in the United States on behalf of the Government of China or the Chinese Communist Party, and to criminalize the performance of the functions of a law enforcement agency in the United States on behalf of the Government of China or the Chinese Communist Party.",
+  "type": "s"
+}

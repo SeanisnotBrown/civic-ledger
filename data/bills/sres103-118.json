@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S748)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035",
+    "C001047",
+    "E000295",
+    "F000062",
+    "S001181",
+    "W000817"
+  ],
+  "id": "sres103-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S748)",
+  "latest_action_date": "2023-03-09",
+  "number": 103,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/103",
+  "sponsor_id": "D000622",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Social work, volunteer service, charitable organizations",
+    "Women's education"
+  ],
+  "title_official": "A resolution recognizing Girl Scouts of the United States of America on its 111th birthday and celebrating its legacy of providing girls with a safe, inclusive space where they can explore their world, build meaningful relationships, and have access to experiences that prepare them for a life of leadership.",
+  "type": "sres"
+}

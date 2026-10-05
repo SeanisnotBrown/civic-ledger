@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-04-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001310",
+    "C001047",
+    "C001075",
+    "M001153",
+    "V000137",
+    "W000800",
+    "W000802",
+    "W000817"
+  ],
+  "id": "s1165-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-04-17",
+  "number": 1165,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1165",
+  "sponsor_id": "B001230",
+  "subjects": [
+    "Community life and organization",
+    "Congressional oversight",
+    "Correctional facilities and imprisonment",
+    "Drug, alcohol, tobacco use",
+    "Government studies and investigations",
+    "Health care coverage and access",
+    "Health facilities and institutions",
+    "Licensing and registrations",
+    "Medicaid",
+    "Medicare",
+    "Mental health",
+    "State and local government operations"
+  ],
+  "title_official": "Reentry Act of 2023",
+  "type": "s"
+}

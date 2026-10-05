@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-06-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-06-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000632"
+  ],
+  "id": "hr4339-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-06-29",
+  "number": 4339,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4339",
+  "sponsor_id": "L000599",
+  "subjects": [
+    "Intergovernmental relations",
+    "Medicaid",
+    "State and local finance"
+  ],
+  "title_official": "Preserving Local Medicaid Access Act of 2023",
+  "type": "hr"
+}

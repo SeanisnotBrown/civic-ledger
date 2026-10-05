@@ -1,0 +1,110 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Aviation Subcommittee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Aviation.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001300",
+    "C001072",
+    "E000297",
+    "G000585",
+    "I000058",
+    "J000298",
+    "L000582",
+    "M001160",
+    "N000002",
+    "S001150",
+    "S001159",
+    "T000468",
+    "T000487",
+    "W000788"
+  ],
+  "id": "hr4598-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Aviation.",
+  "latest_action_date": "2023-07-14",
+  "number": 4598,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4598",
+  "sponsor_id": "A000371",
+  "subjects": [
+    "Aviation and airports",
+    "Employment and training programs",
+    "Minority and disadvantaged businesses",
+    "Public contracts and procurement",
+    "Public-private cooperation",
+    "Roads and highways",
+    "Small business",
+    "State and local government operations"
+  ],
+  "title_official": "Disadvantaged Business Enterprise Supportive Services Expansion Act",
+  "type": "hr"
+}

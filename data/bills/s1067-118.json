@@ -1,0 +1,95 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 107.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Health, Education, Labor, and Pensions. Reported by Senator Sanders with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Health, Education, Labor, and Pensions. Reported by Senator Sanders with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Health, Education, Labor, and Pensions. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001267",
+    "B001310",
+    "C001035",
+    "R000595"
+  ],
+  "id": "s1067-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 107.",
+  "latest_action_date": "2023-06-22",
+  "number": 1067,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1067",
+  "sponsor_id": "S001181",
+  "subjects": [
+    "Drug safety, medical device, and laboratory regulation",
+    "Prescription drugs"
+  ],
+  "title_official": "Ensuring Timely Access to Generics Act of 2023",
+  "type": "s"
+}

@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Oversight and Investigations Subcommittee"
+      ],
+      "date": "2024-05-03",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Oversight and Investigations.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001133",
+    "D000230",
+    "E000246",
+    "M001212",
+    "P000614"
+  ],
+  "id": "hr7971-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Oversight and Investigations.",
+  "latest_action_date": "2024-05-03",
+  "number": 7971,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7971",
+  "sponsor_id": "V000135",
+  "subjects": [
+    "Administrative remedies",
+    "Debt collection",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "To amend title 38, United States Code, to direct the Secretary of Veterans Affairs to provide timely equitable relief to an individual who suffers a loss based on an administrative error by the Secretary, and for other purposes.",
+  "type": "hr"
+}

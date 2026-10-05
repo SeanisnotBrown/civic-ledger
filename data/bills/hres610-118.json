@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-10-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "NOTIFICATION OF INTENT TO OFFER RESOLUTION - Ms. Balint notified the House of her intent to offer a privileged resolution pursuant to clause 2(a)(1) of rule IX. The Chair announced that a determination will be made at the time designated for consideration of the resolution.",
+      "time": "16:28:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ethics Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ethics.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres610-118",
+  "jurisdiction": "us",
+  "latest_action": "NOTIFICATION OF INTENT TO OFFER RESOLUTION - Ms. Balint notified the House of her intent to offer a privileged resolution pursuant to clause 2(a)(1) of rule IX. The Chair announced that a determination will be made at the time designated for consideration of the resolution.",
+  "latest_action_date": "2023-10-26",
+  "number": 610,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/610",
+  "sponsor_id": "B001318",
+  "subjects": [
+    "Georgia",
+    "Government ethics and transparency, public corruption",
+    "House of Representatives",
+    "Members of Congress"
+  ],
+  "title_official": "Censuring Representative Marjorie Taylor Greene.",
+  "type": "hres"
+}

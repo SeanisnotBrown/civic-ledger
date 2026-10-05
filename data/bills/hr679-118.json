@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Conservation, Research, and Biotechnology Subcommittee"
+      ],
+      "date": "2023-02-23",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "B001285",
+    "B001301",
+    "C001039",
+    "C001059",
+    "C001112",
+    "D000617",
+    "F000466",
+    "G000600",
+    "H001058",
+    "H001090",
+    "K000381",
+    "K000389",
+    "L000551",
+    "L000560",
+    "L000599",
+    "M001159",
+    "M001194",
+    "M001221",
+    "N000189",
+    "P000597",
+    "R000579",
+    "S001196",
+    "S001208",
+    "T000460",
+    "T000469",
+    "T000472"
+  ],
+  "id": "hr679-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+  "latest_action_date": "2023-02-23",
+  "number": 679,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/679",
+  "sponsor_id": "S001216",
+  "subjects": [],
+  "title_official": "To amend the Agricultural Research, Extension, and Education Reform Act of 1998 to authorize the Secretary of Agriculture to waive the matching funds requirement under the specialty crop research initiative, and for other purposes.",
+  "type": "hr"
+}

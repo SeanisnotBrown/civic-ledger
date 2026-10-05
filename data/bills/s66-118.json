@@ -1,0 +1,105 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 282.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cantwell with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cantwell with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-04-17T20:37:00Z",
+      "title": "S. 66, NOTAM Improvement Act of 2023",
+      "url": "https://www.cbo.gov/publication/59070"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001047",
+    "M000934"
+  ],
+  "id": "s66-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 282.",
+  "latest_action_date": "2023-12-13",
+  "number": 66,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/66",
+  "sponsor_id": "K000367",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Aviation and airports",
+    "Congressional oversight",
+    "Department of Transportation",
+    "Executive agency funding and structure",
+    "Government studies and investigations",
+    "Transportation employees",
+    "Transportation safety and security"
+  ],
+  "title_official": "NOTAM Improvement Act of 2023",
+  "type": "s"
+}

@@ -1,0 +1,171 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2024-12-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "17:26:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2024-12-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "17:19:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-03",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Unanimous Consent. (text of amendment in the nature of a substitute: CR S6759)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "The committee substitute withdrawn by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S6758-6759)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-09-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 492.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-09-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-214.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-09-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-214.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-05-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-05-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-05-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-07-16T16:26:00Z",
+      "title": "S. 4305, DHS Better Ballistic Body Armor Act",
+      "url": "https://www.cbo.gov/publication/60526"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001319",
+    "O000174",
+    "R000605"
+  ],
+  "id": "s4305-118",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2024-12-03",
+  "number": 4305,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/4305",
+  "sponsor_id": "P000595",
+  "subjects": [
+    "Congressional oversight",
+    "Government information and archives",
+    "Military procurement, research, weapons development",
+    "Sex, gender, sexual orientation discrimination"
+  ],
+  "title_official": "DHS Better Ballistic Body Armor Act",
+  "type": "s"
+}

@@ -1,0 +1,123 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2024-04-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "10:10:47",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2024-04-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "09:32:45",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S2928; text: CR S2928)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-01-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000386"
+  ],
+  "id": "s3687-118",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2024-04-26",
+  "number": 3687,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3687",
+  "sponsor_id": "O000174",
+  "subjects": [
+    "Congressional oversight",
+    "Crime prevention",
+    "Crime victims",
+    "Crimes against children",
+    "Human trafficking",
+    "Smuggling and trafficking"
+  ],
+  "title_official": "Preventing Child Trafficking Act of 2024",
+  "type": "s"
+}

@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000555"
+  ],
+  "id": "s2360-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+  "latest_action_date": "2023-07-18",
+  "number": 2360,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2360",
+  "sponsor_id": "C001070",
+  "subjects": [
+    "Aging",
+    "Food assistance and relief",
+    "Food supply, safety, and labeling",
+    "Nutrition and diet"
+  ],
+  "title_official": "TEAM Act",
+  "type": "s"
+}

@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Commerce, Science, and Transportation. (text: CR S2240-2241)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "F000062",
+    "F000479",
+    "K000383",
+    "L000570",
+    "M000133",
+    "M001176",
+    "S000033",
+    "S001203",
+    "V000128",
+    "W000779"
+  ],
+  "id": "sres274-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Commerce, Science, and Transportation. (text: CR S2240-2241)",
+  "latest_action_date": "2023-06-22",
+  "number": 274,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/274",
+  "sponsor_id": "B001277",
+  "subjects": [
+    "Accidents",
+    "Roads and highways",
+    "Transportation safety and security"
+  ],
+  "title_official": "A resolution expressing the sense of the Senate to reduce traffic fatalities to zero by 2050.",
+  "type": "sres"
+}

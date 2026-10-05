@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2478; text: 2/28/2024 CR S1046)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2478; text: 2/28/2024 CR S1046)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-03-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-02-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035",
+    "C001047",
+    "K000367",
+    "K000377",
+    "K000383",
+    "M001198",
+    "R000122",
+    "S000770",
+    "S001191",
+    "S001203",
+    "W000805"
+  ],
+  "id": "sres567-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2478; text: 2/28/2024 CR S1046)",
+  "latest_action_date": "2024-03-20",
+  "number": 567,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/567",
+  "sponsor_id": "K000384",
+  "subjects": [
+    "Health personnel",
+    "Health promotion and preventive care",
+    "Mental health"
+  ],
+  "title_official": "A resolution recognizing the seriousness of widespread health care worker burnout in the United States and the need to strengthen health workforce well-being, and expressing support for the designation of March 18, 2024, as the inaugural \"Health Workforce Well-Being Day of Awareness\".",
+  "type": "sres"
+}

@@ -1,0 +1,103 @@
+{
+  "actions": [
+    {
+      "action_code": "H21000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2024-03-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-09-01",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-08-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000369",
+    "A000380",
+    "B001318",
+    "C001072",
+    "C001078",
+    "C001125",
+    "G000551",
+    "G000583",
+    "J000309",
+    "K000385",
+    "L000397",
+    "L000560",
+    "L000593",
+    "M000312",
+    "M001219",
+    "N000147",
+    "P000608",
+    "S001177",
+    "T000468",
+    "T000481",
+    "T000483",
+    "T000487"
+  ],
+  "id": "hr5247-118",
+  "jurisdiction": "us",
+  "latest_action": "Subcommittee Hearings Held",
+  "latest_action_date": "2024-03-21",
+  "number": 5247,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5247",
+  "sponsor_id": "C001090",
+  "subjects": [
+    "Department of Veterans Affairs",
+    "Government employee pay, benefits, personnel management",
+    "Health personnel",
+    "Mental health",
+    "Veterans' medical care"
+  ],
+  "title_official": "Expedited Hiring for VA Trained Psychiatrists Act of 2023",
+  "type": "hr"
+}

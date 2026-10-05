@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000372",
+    "B000490",
+    "B001295",
+    "B001298",
+    "C001059",
+    "C001087",
+    "C001118",
+    "D000615",
+    "D000624",
+    "F000478",
+    "L000599",
+    "M000194",
+    "M001194",
+    "N000189",
+    "N000190",
+    "S001212",
+    "T000467",
+    "V000129",
+    "V000131",
+    "W000812",
+    "W000821",
+    "Z000018"
+  ],
+  "id": "hres358-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2023-05-02",
+  "number": 358,
+  "policy_area": "Animals",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/358",
+  "sponsor_id": "S001189",
+  "subjects": [],
+  "title_official": "Commemorating the 50th anniversary of the establishment of the National Wild Turkey Federation and recognizing its significant contributions to scientific wildlife management, research, and habitat conservation, as well as promoting and protecting the long-honored outdoor traditions of the United States.",
+  "type": "hres"
+}

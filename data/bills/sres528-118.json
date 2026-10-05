@@ -1,0 +1,98 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-01-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (text: 1/18/2024 CR S188)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (text: 1/18/2024 CR S188)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent. (consideration: CR S225-226)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.(consideration: CR S225-226)",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "B001320",
+    "C000880",
+    "D000563",
+    "G000386",
+    "H001042"
+  ],
+  "id": "sres528-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (text: 1/18/2024 CR S188)",
+  "latest_action_date": "2024-01-23",
+  "number": 528,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/528",
+  "sponsor_id": "K000367",
+  "subjects": [
+    "Assault and harassment offenses",
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Crime victims",
+    "Criminal investigation, prosecution, interrogation",
+    "Law enforcement officers"
+  ],
+  "title_official": "A resolution raising awareness and encouraging the prevention of stalking by designating January 2024 as \"National Stalking Awareness Month\".",
+  "type": "sres"
+}

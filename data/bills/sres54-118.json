@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Health, Education, Labor, and Pensions. (text: CR S331)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000622",
+    "P000145",
+    "T000464"
+  ],
+  "id": "sres54-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Health, Education, Labor, and Pensions. (text: CR S331)",
+  "latest_action_date": "2023-02-09",
+  "number": 54,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/54",
+  "sponsor_id": "B001288",
+  "subjects": [],
+  "title_official": "A resolution expressing support for the designation of March 2023 as \"Music in Our Schools Month\".",
+  "type": "sres"
+}

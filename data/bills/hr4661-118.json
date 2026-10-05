@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001219",
+    "S001221",
+    "T000487",
+    "V000136"
+  ],
+  "id": "hr4661-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Small Business.",
+  "latest_action_date": "2023-07-14",
+  "number": 4661,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4661",
+  "sponsor_id": "T000488",
+  "subjects": [],
+  "title_official": "One Stop Shop for Small Business Licensing Act of 2023",
+  "type": "hr"
+}

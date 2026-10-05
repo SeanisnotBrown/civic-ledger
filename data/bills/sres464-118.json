@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Star Print ordered on resolution.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S5550)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001277",
+    "B001288",
+    "B001320",
+    "F000479",
+    "M000133",
+    "M001176",
+    "P000145",
+    "S001194",
+    "W000779",
+    "W000800",
+    "W000817"
+  ],
+  "id": "sres464-118",
+  "jurisdiction": "us",
+  "latest_action": "Star Print ordered on resolution.",
+  "latest_action_date": "2023-12-04",
+  "number": 464,
+  "policy_area": "Civil Rights and Liberties, Minority Issues",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/464",
+  "sponsor_id": "H001042",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Crime victims",
+    "Hate crimes",
+    "Sex, gender, sexual orientation discrimination",
+    "Violent crime"
+  ],
+  "title_official": "A resolution supporting the goals and principles of Transgender Day of Remembrance by recognizing the epidemic of violence toward transgender people and memorializing the lives lost this year.",
+  "type": "sres"
+}

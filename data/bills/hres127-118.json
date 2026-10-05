@@ -1,0 +1,80 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy and Mineral Resources Subcommittee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy and Mineral Resources.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-02-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Education and the Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-02-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Education and the Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001295",
+    "C001118",
+    "D000032",
+    "N000189",
+    "S001214"
+  ],
+  "id": "hres127-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy and Mineral Resources.",
+  "latest_action_date": "2023-03-22",
+  "number": 127,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/127",
+  "sponsor_id": "M001212",
+  "subjects": [],
+  "title_official": "Expressing the sense of the House of Representatives that the United States should support the safe and responsible development of its energy resources via drilling, in an effort to maintain a robust energy supply chain which promotes national security, safeguards against energy scarcity, and reduces energy poverty for all Americans.",
+  "type": "hres"
+}

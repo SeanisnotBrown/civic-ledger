@@ -1,0 +1,109 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-07-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000375",
+    "A000377",
+    "B000825",
+    "B001302",
+    "B001316",
+    "B001317",
+    "C001115",
+    "C001129",
+    "D000032",
+    "D000626",
+    "G000565",
+    "G000578",
+    "G000595",
+    "G000596",
+    "H001086",
+    "H001096",
+    "K000401",
+    "L000596",
+    "M001194",
+    "M001211",
+    "M001212",
+    "M001218",
+    "O000175",
+    "P000599",
+    "R000609",
+    "R000614",
+    "S000168",
+    "S000929",
+    "S001212"
+  ],
+  "id": "hr4726-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-07-21",
+  "number": 4726,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4726",
+  "sponsor_id": "M001184",
+  "subjects": [
+    "Immigration status and procedures",
+    "Immunology and vaccination",
+    "Infectious and parasitic diseases",
+    "Visas and passports"
+  ],
+  "title_official": "To terminate the COVID-19 vaccination requirement for aliens, and for other purposes.",
+  "type": "hr"
+}

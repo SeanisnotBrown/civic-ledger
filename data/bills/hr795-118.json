@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000376",
+    "A000377",
+    "C001119",
+    "C001121",
+    "C001134",
+    "C001135",
+    "D000631",
+    "D000632",
+    "F000466",
+    "F000477",
+    "G000583",
+    "G000597",
+    "G000600",
+    "H001090",
+    "J000308",
+    "L000598",
+    "L000599",
+    "M001135",
+    "M001227",
+    "N000189",
+    "N000191",
+    "N000194",
+    "P000614",
+    "P000616",
+    "S000522",
+    "S001216",
+    "S001226",
+    "T000478",
+    "T000483",
+    "W000828"
+  ],
+  "id": "hr795-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-02-02",
+  "number": 795,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/795",
+  "sponsor_id": "J000295",
+  "subjects": [
+    "Drug trafficking and controlled substances",
+    "Employment and training programs",
+    "First responders and emergency personnel"
+  ],
+  "title_official": "Protecting First Responders from Secondary Exposure Act of 2023",
+  "type": "hr"
+}

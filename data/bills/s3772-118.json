@@ -1,0 +1,102 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 406.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Small Business and Entrepreneurship Committee"
+      ],
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Small Business and Entrepreneurship. Reported by Senator Shaheen without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Small Business and Entrepreneurship Committee"
+      ],
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Small Business and Entrepreneurship. Reported by Senator Shaheen without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Small Business and Entrepreneurship Committee"
+      ],
+      "date": "2024-05-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Small Business and Entrepreneurship. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Small Business and Entrepreneurship Committee"
+      ],
+      "date": "2024-02-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Small Business and Entrepreneurship.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-02-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-07-03T16:36:00Z",
+      "title": "S. 3772, Simplifying Subcontracting Act",
+      "url": "https://www.cbo.gov/publication/60495"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001305",
+    "C000880",
+    "H000273",
+    "K000393",
+    "R000595",
+    "Y000064"
+  ],
+  "id": "s3772-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 406.",
+  "latest_action_date": "2024-05-23",
+  "number": 3772,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3772",
+  "sponsor_id": "R000584",
+  "subjects": [
+    "Contracts and agency",
+    "Public contracts and procurement"
+  ],
+  "title_official": "Simplifying Subcontracting Act",
+  "type": "s"
+}

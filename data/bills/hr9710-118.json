@@ -1,0 +1,87 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2024-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-12-18T20:58:00Z",
+      "title": "H.R. 9710, Small Modular Reactor Demonstration Act of 2024",
+      "url": "https://www.cbo.gov/publication/61126"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000055",
+    "R000305"
+  ],
+  "id": "hr9710-118",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported (Amended) by Voice Vote.",
+  "latest_action_date": "2024-09-25",
+  "number": 9710,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9710",
+  "sponsor_id": "S001220",
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Electric power generation and transmission",
+    "Nuclear power"
+  ],
+  "title_official": "Small Modular Reactor Demonstration Act of 2024",
+  "type": "hr"
+}

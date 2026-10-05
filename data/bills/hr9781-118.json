@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "D000096",
+    "O000173"
+  ],
+  "id": "hr9781-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2024-09-24",
+  "number": 9781,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9781",
+  "sponsor_id": "C001080",
+  "subjects": [],
+  "title_official": "Providing Real Opportunities for Growth to Rising Entrepreneurs for Sustained Success (PROGRESS) Act",
+  "type": "hr"
+}

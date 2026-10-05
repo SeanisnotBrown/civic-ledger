@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000530",
+    "V000131"
+  ],
+  "id": "hr861-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on House Administration.",
+  "latest_action_date": "2023-02-07",
+  "number": 861,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/861",
+  "sponsor_id": "L000560",
+  "subjects": [
+    "Congressional elections",
+    "Elections, voting, political campaign regulation",
+    "Government information and archives",
+    "State and local government operations",
+    "Voting rights"
+  ],
+  "title_official": "America Votes Act of 2023",
+  "type": "hr"
+}

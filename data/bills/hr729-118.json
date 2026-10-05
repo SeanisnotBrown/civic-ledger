@@ -1,0 +1,89 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Federal Lands.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR E81-82)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "C001067",
+    "G000551",
+    "G000553",
+    "H001068",
+    "J000309",
+    "M000312"
+  ],
+  "id": "hr729-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Federal Lands.",
+  "latest_action_date": "2023-02-21",
+  "number": 729,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/729",
+  "sponsor_id": "N000147",
+  "subjects": [
+    "Art, artists, authorship",
+    "District of Columbia",
+    "Monuments and memorials",
+    "Museums, exhibitions, cultural centers",
+    "Parks, recreation areas, trails",
+    "Presidents and presidential powers, Vice Presidents",
+    "Racial and ethnic relations",
+    "U.S. history"
+  ],
+  "title_official": "Emancipation Statue Removal Act",
+  "type": "hr"
+}

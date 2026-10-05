@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Star Print ordered on the resolution.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Rules and Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "B001310",
+    "H000601",
+    "K000393",
+    "L000577",
+    "S001227"
+  ],
+  "id": "sres622-118",
+  "jurisdiction": "us",
+  "latest_action": "Star Print ordered on the resolution.",
+  "latest_action_date": "2024-04-08",
+  "number": 622,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/622",
+  "sponsor_id": "C001098",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Congressional committees",
+    "Congressional oversight",
+    "Government ethics and transparency, public corruption",
+    "Government studies and investigations",
+    "Legislative rules and procedure"
+  ],
+  "title_official": "A resolution providing for the issuance of a summons, providing for the appointment of a committee to receive and to report evidence, and establishing related procedures concerning the articles of impeachment against Alejandro Nicholas Mayorkas.",
+  "type": "sres"
+}

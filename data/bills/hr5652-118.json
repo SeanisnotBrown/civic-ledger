@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-09-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001134",
+    "D000230",
+    "G000600",
+    "K000381",
+    "M001194",
+    "S001159",
+    "S001216",
+    "Z000018"
+  ],
+  "id": "hr5652-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-09-22",
+  "number": 5652,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5652",
+  "sponsor_id": "N000189",
+  "subjects": [
+    "Drug therapy",
+    "Drug, alcohol, tobacco use",
+    "Education programs funding",
+    "Elementary and secondary education",
+    "Health programs administration and funding",
+    "School administration"
+  ],
+  "title_official": "Stop Overdose in Schools Act",
+  "type": "hr"
+}

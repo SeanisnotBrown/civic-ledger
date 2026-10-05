@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-08-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-08-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-08-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001134",
+    "D000629",
+    "E000294",
+    "F000470",
+    "H001058",
+    "H001072"
+  ],
+  "id": "hr9278-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2024-08-02",
+  "number": 9278,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9278",
+  "sponsor_id": "N000193",
+  "subjects": [],
+  "title_official": "To amend section 5336 of title 31, United States Code, to provide existing small businesses with an additional year to file beneficial ownership information, and for other purposes.",
+  "type": "hr"
+}

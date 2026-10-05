@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S2465)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "V000128",
+    "W000802"
+  ],
+  "id": "sres296-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S2465)",
+  "latest_action_date": "2023-07-13",
+  "number": 296,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/296",
+  "sponsor_id": "M001176",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Marine pollution",
+    "Soil pollution",
+    "Solid waste and recycling"
+  ],
+  "title_official": "A resolution designating July 2023 as \"Plastic Pollution Action Month\".",
+  "type": "sres"
+}

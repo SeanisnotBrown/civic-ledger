@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-07-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001300",
+    "D000594",
+    "G000583",
+    "H001091",
+    "J000295",
+    "M001221",
+    "U000040"
+  ],
+  "id": "hr5066-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-07-28",
+  "number": 5066,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5066",
+  "sponsor_id": "W000788",
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Alaska Natives and Hawaiians",
+    "Cardiovascular and respiratory health",
+    "Congressional oversight",
+    "Digital media",
+    "Disability and health-based discrimination",
+    "Drug, alcohol, tobacco use",
+    "Educational technology and distance education",
+    "Emergency medical services and trauma care",
+    "Food assistance and relief",
+    "Government studies and investigations",
+    "Health care coverage and access",
+    "Health care quality",
+    "Health information and medical records",
+    "Health programs administration and funding",
+    "Health technology, devices, supplies",
+    "Indian social and development programs",
+    "Infectious and parasitic diseases",
+    "Internet, web applications, social media",
+    "Medicaid",
+    "Medical education",
+    "Medical tests and diagnostic methods",
+    "Mental health",
+    "Minority health",
+    "Poverty and welfare assistance",
+    "Racial and ethnic relations",
+    "Right of privacy",
+    "Technology assessment",
+    "Women's health"
+  ],
+  "title_official": "Tech to Save Moms Act",
+  "type": "hr"
+}

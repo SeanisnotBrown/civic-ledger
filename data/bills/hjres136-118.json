@@ -1,4 +1,172 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2024-09-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Environment and Public Works.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "11:09:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": "h-118-2-0438",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 215 - 191 (Roll no. 438). (text: CR H5531)",
+      "time": "11:09:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": "h-118-2-0438",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 215 - 191 (Roll no. 438). (text: CR H5531)",
+      "time": "11:09:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H5540-5541)",
+      "time": "11:03:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H.J. Res. 136, the Chair put the question on passage of the joint resolution and by voice vote announced that the ayes had prevailed. Mr. Pallone demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
+      "time": "10:32:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "10:31:45",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.J. Res. 136.",
+      "time": "09:21:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 3724, H.R. 4790, H.R. 5179, H.R. 5339, H.R. 5717, H.R. 7909 and H.J. Res. 136. The resolution provides for consideration of H.R. 3724 and H.R. 5717 under a structured rule and H.R. 4790, H.R. 5179, H.R. 5339, H.R. 7909, and H.J. Res. 136 under a closed rule. The resolution provides for one hour of general debate and one motion to recommit on each measure.",
+      "time": "09:20:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1455. (consideration: CR H5531-5538)",
+      "time": "09:20:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2024-09-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 1455 passed House.",
+      "time": "14:05:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2024-09-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1455 Reported to House. Rule provides for consideration of H.R. 3724, H.R. 4790, H.R. 5179, H.R. 5339, H.R. 5717, H.R. 7909 and H.J. Res. 136. The resolution provides for consideration of H.R. 3724 and H.R. 5717 under a structured rule and H.R. 4790, H.R. 5179, H.R. 5339, H.R. 7909, and H.J. Res. 136 under a closed rule. The resolution provides for one hour of general debate and one motion to recommit on each measure.",
+      "time": "21:40:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2024-05-03",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Environment, Manufacturing, and Critical Materials.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 118,
   "cosponsor_ids": [

@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Economic Policy Subcommittee"
+      ],
+      "date": "2024-04-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Banking, Housing, and Urban Affairs Subcommittee on Economic Policy. Hearings held. With printed Hearing: S.Hrg. 118-552.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310"
+  ],
+  "id": "s1331-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Banking, Housing, and Urban Affairs Subcommittee on Economic Policy. Hearings held. With printed Hearing: S.Hrg. 118-552.",
+  "latest_action_date": "2024-04-10",
+  "number": 1331,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1331",
+  "sponsor_id": "M000639",
+  "subjects": [
+    "Government lending and loan guarantees",
+    "Higher education",
+    "Student aid and college costs"
+  ],
+  "title_official": "PSLF Payment Completion Fairness Act",
+  "type": "s"
+}

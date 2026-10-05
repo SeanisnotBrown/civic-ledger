@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "B001261",
+    "B001305",
+    "B001319",
+    "C000880",
+    "C001047",
+    "C001056",
+    "C001096",
+    "D000618",
+    "E000295",
+    "F000463",
+    "H000601",
+    "H001061",
+    "L000571",
+    "L000577",
+    "M001190",
+    "M001198",
+    "R000584",
+    "R000618",
+    "T000250",
+    "T000476",
+    "W000437",
+    "Y000064"
+  ],
+  "id": "sjres13-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-02-09",
+  "number": 13,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/13",
+  "sponsor_id": "H001079",
+  "subjects": [
+    "Budget deficits and national debt",
+    "Budget process",
+    "Constitution and constitutional amendments",
+    "Income tax rates",
+    "Legislative rules and procedure"
+  ],
+  "title_official": "A joint resolution proposing an amendment to the Constitution of the United States relative to balancing the budget.",
+  "type": "sjres"
+}

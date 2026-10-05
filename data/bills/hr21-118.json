@@ -1,4 +1,1550 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2023-01-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38900",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Clerk was authorized to correct section numbers, punctuation, and cross references, and to make other necessary technical and conforming corrections in the engrossment of H.R. 21.",
+      "time": "12:44:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "12:44:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": "h-118-1-0093",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 221 - 205 (Roll no. 93).",
+      "time": "12:44:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": "h-118-1-0093",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 221 - 205 (Roll no. 93).",
+      "time": "12:44:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House adopted the amendments en gross as agreed to by the Committee of the Whole House on the state of the Union.",
+      "time": "12:37:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "12:37:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 21.",
+      "time": "12:36:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Pallone amendment No. 95 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "10:17:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Nickel amendment No. 77, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Nickel demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "10:16:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Nickel amendment No. 77 under the five-minute rule.",
+      "time": "10:11:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Lieu amendment No. 62 under the five-minute rule.",
+      "time": "10:06:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Lieu amendment No. 61, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Lieu demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "10:06:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Lieu amendment No. 61 under the five-minute rule.",
+      "time": "10:01:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Sherman amendment No. 88 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "09:54:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Sherman amendment No. 88 under the five-minute rule.",
+      "time": "09:45:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Greene (GA) amendment No. 147 under the five-minute rule.",
+      "time": "09:34:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Jackson (NC) amendment No. 46, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Pallone demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "09:33:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Jackson (NC) amendment No. 46 under the five-minute rule.",
+      "time": "09:26:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Grijalva amendment No. 145, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Grijalva demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "09:25:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Grijalva amendment No. 145 under the five-minute rule.",
+      "time": "09:20:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "time": "09:17:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H435-471)",
+      "time": "09:17:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 21 as unfinished business.",
+      "time": "21:34:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the Committee rise Agreed to by voice vote.",
+      "time": "21:34:47",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Armstrong moved that the Committee rise.",
+      "time": "21:34:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Tlaib amendment No. 14 under the five-minute rule.",
+      "time": "21:31:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Tlaib amendment No. 13 under the five-minute rule. Pending the reservation of a point of order.",
+      "time": "21:27:43",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Bowman amendment No. 92, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Bowman demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "21:26:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Bowman amendment No. 92 under the five-minute rule.",
+      "time": "21:24:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Perez amendment No. 79, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Perez demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "21:22:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Perez amendment No. 79 under the five-minute rule.",
+      "time": "21:20:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Plaskett amendment No. 43, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Plaskett demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "21:18:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Plaskett amendment No. 43 under the five-minute rule.",
+      "time": "21:13:08",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Barragan amendment No. 24, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Barragan demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "21:11:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Barragan amendment No. 24 under the five-minute rule.",
+      "time": "21:09:58",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Castro (TX) amendment No. 4, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Castro (TX) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "21:08:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Castro (TX) amendment No. 4 under the five-minute rule.",
+      "time": "21:05:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Takano amendment No. 82 under the five-minute rule. Pending the reservation of a point of order.",
+      "time": "20:57:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Takano amendment No. 81, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Takano demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:56:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Takano amendment No. 81 under the five-minute rule.",
+      "time": "20:54:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Takano amendment No. 80 under the five-minute rule.",
+      "time": "20:51:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Quigley amendment No. 125 under the five-minute rule. Pending the reservation of a point of order.",
+      "time": "20:44:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Cicilline amendment No. 135, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Armstrong demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:42:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Cicilline amendment No. 135 under the five-minute rule. Pending the reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "20:39:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Vasquez amendment No. 64, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Vasquez demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:38:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Vasquez amendment No. 64 under the five-minute rule.",
+      "time": "20:35:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Vasquez amendment No. 63, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Vasquez demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:34:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Vasquez amendment No. 63 under the five-minute rule.",
+      "time": "20:31:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Porter amendment No. 45, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Porter demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:30:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Porter amendment No. 45 under the five-minute rule.",
+      "time": "20:26:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Lee (NV) amendment No. 25, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mrs. Lee (NV) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:25:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Lee (NV) amendment No. 25 under the five-minute rule.",
+      "time": "20:20:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Scholten amendment No. 60, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Weber (TX) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:18:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Scholten amendment No. 60 under the five-minute rule.",
+      "time": "20:15:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Manning amendment No. 27, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Manning demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:13:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Manning amendment No. 27 under the five-minute rule.",
+      "time": "20:10:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Schneider amendment No. 131, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Schneider demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:10:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Schneider amendment No. 131 under the five-minute rule.",
+      "time": "20:07:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Wasserman Schultz amendment No. 75, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Wasserman Schultz demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:06:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Wasserman Schultz amendment No. 75 under the five-minute rule.",
+      "time": "20:03:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Casten amendment No. 68, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Casten demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "20:02:08",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Casten amendment No. 68 under the five-minute rule.",
+      "time": "19:59:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Casten amendment No. 67, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Casten demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:58:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Casten amendment No. 67 under the five-minute rule.",
+      "time": "19:54:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Casten amendment No. 66, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Weber (TX) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:53:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Casten amendment No. 66 under the five-minute rule.",
+      "time": "19:48:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ross amendment No. 70, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Ross demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:47:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Ross amendment No. 70 under the five-minute rule.",
+      "time": "19:43:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Jackson Lee amendment No. 36, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Jackson Lee demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:42:47",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Jackson Lee amendment No. 36 under the five-minute rule.",
+      "time": "19:37:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Jackson Lee amendment No. 35, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Jackson Lee demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:36:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Jackson Lee amendment No. 35 under the five-minute rule.",
+      "time": "19:30:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ocasio-Cortez amendment No. 73, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Ocasio-Cortez demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:29:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Ocasio-Cortez amendment No. 73 under the five-minute rule.",
+      "time": "19:25:31",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ocasio-Cortez amendment No. 72, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Ocasio-Cortez demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:24:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Ocasio-Cortez amendment No. 72 under the five-minute rule.",
+      "time": "19:19:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Ocasio-Cortez amendment No. 74, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Ocasio-Cortez demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:18:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Ocasio-Cortez amendment No. 74 under the five-minute rule.",
+      "time": "19:16:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Goldman (NY) amendment No. 16 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "19:09:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Magaziner amendment No. 58, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Magaziner demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:08:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Magaziner amendment No. 58 under the five-minute rule.",
+      "time": "19:05:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Magaziner amendment No. 59, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Magaziner demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "19:04:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Magaziner amendment No. 59 under the five-minute rule.",
+      "time": "18:59:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Payne amendment No. 76, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Payne demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "18:58:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Payne amendment No. 76 under the five-minute rule.",
+      "time": "18:54:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Lee (CA) amendment No. 84, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Lee (CA) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "18:53:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Lee (CA) amendment No. 84 under the five-minute rule.",
+      "time": "18:47:58",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Robert Garcia (CA) amendment No.53, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Carter (GA) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:58:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Robert Garcia (CA) amendment No. 53 under the five-minute rule, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "16:55:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Cohen amendment No. 129, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Cohen demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:54:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Cohen amendment No. 129 under the five-minute rule, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "16:50:26",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Gottheimer amendment No. 86, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Carter (GA) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:49:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Gottheimer amendment No. 86 under the five-minute rule, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "16:45:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Gottheimer amendment No. 85, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Gottheimer demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:45:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Gottheimer amendment No. 85 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "16:41:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Torres (CA) amendment No. 50, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mrs. Torres (CA) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:41:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Torres (CA) amendment No. 50 under the five-minute rule, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "16:36:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the DeGette amendment No. 89, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. DeGette demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:34:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the DeGette amendment No. 89 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "16:27:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Thompson (CA) amendment No. 23 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "16:22:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Grijalva amendment No. 57, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Grijalva demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:20:47",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Grijalva amendment No. 57 under the five-minute rule.",
+      "time": "16:18:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Grijalva amendment No. 56, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Grijalva demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:17:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Grijalva amendment No. 56 under the five-minute rule.",
+      "time": "16:15:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Grijalva amendment No. 55, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Grijalva demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:14:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Grijalva amendment No. 55 under the five-minute rule.",
+      "time": "16:11:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Grijalva amendment No. 55, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Levin demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "16:10:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Levin amendment No. 21 under the five-minute rule, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "16:07:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Barr amendment No. 48 under the five-minute rule, pending the reservation of a point of order.",
+      "time": "15:59:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the DelBene amendment No. 7, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. DelBene demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:58:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the DelBene amendment No. 7 under the five-minute rule.",
+      "time": "15:52:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTONED PROCEEDINGS - At the conclusion of debate on the Levin amendment No. 18, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Levin demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:51:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Levin amendment No. 18 under the five-minute rule.",
+      "time": "15:47:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Panetta amendment No. 26, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Panetta demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:46:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Panetta amendment No. 26 under the five-minute rule.",
+      "time": "15:42:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Huffman amendment No. 65, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Huffman demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:41:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Huffman amendment No. 15 under the five-minute rule, pending the reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "15:37:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Huffman amendment No. 15, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Huffman demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:36:08",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Huffman amendment No. 15 under the five-minute rule, pending the reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "15:32:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Tlaib amendment No. 11, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Tlaib demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:31:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Tlaib amendment No. 11 under the five-minute rule.",
+      "time": "15:29:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Perry amendment No. 41 under the five-minute rule.",
+      "time": "15:22:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Tlaib amendment No. 10 under the five-minute rule, pending a reservation of a point of order.",
+      "time": "15:19:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Boebert amendment No. 137 under the five-minute rule.",
+      "time": "15:11:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Spanberger amendment No. 29, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Spanberger demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:11:07",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Spanberger amendment No. 29 under the five-minute rule.",
+      "time": "15:06:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 33, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Pallone demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "15:05:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Boebert amendment No. 33 under the five-minute rule.",
+      "time": "14:56:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Soto amendment No. 44, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Soto demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "14:56:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Soto amendment No. 44 under the five-minute rule.",
+      "time": "14:52:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Boebert amendment No. 32 under the five-minute rule.",
+      "time": "14:47:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Cleaver amendment No. 9 under the five-minute rule.",
+      "time": "14:43:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Clyde amendment No. 91 under the five-minute rule.",
+      "time": "14:40:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Cleaver amendment No. 8 under the five-minute rule.",
+      "time": "14:37:45",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the LaLota amendment No. 143 under the five-minute rule, pending a reservation of a point of order, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "14:34:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Blunt Rochester amendment No. 71, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Blunt Rochester demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "14:33:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Blunt Rochester amendment No. 71 under the five-minute rule.",
+      "time": "14:30:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Greene (GA) amendment No. 2, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Pallone demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "14:29:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Greene (GA) amendment No. 2 under the five-minute rule, pending a reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "14:19:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Castor (FL) amendment No. 3, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Ms. Castor (FL) demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "14:18:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Castor (FL) amendment No. 3 under the five-minute rule, pending the reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "14:12:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Mace amendment No. 133, the Chair put the question on adoption of the amendment and by voice vote, announced that the ayes had prevailed. Mr. Pallone demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "14:10:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Mace amendment No. 133 under the five-minute rule, pending the reservation of a point of order. Subsequently, the point of order was withdrawn.",
+      "time": "14:06:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Pallone amendment No. 104, the Chair put the question on adoption of the amendment and by voice vote, announced that the noes had prevailed. Mr. Pallone demanded a recorded vote and the Chair postponed further proceedings on the question of adoption of the amendment until a time to be announced.",
+      "time": "14:05:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Pallone amendment No. 104 under the five-minute rule, pending the reservation of a point of order. Subsequently the point of order was withdrawn.",
+      "time": "14:01:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 5, the Committee of the Whole proceeded with debate on the Gaetz amendment No. 1 under the five-minute rule.",
+      "time": "13:53:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 21.",
+      "time": "12:30:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable David Rouzer to act as Chairman of the Committee.",
+      "time": "12:29:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 5 and Rule XVIII.",
+      "time": "12:29:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 5. (consideration: CR H351-421; text: CR H361-362)",
+      "time": "12:29:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-01-24T14:22:00Z",

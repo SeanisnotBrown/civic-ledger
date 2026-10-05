@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2023-03-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "L000577"
+  ],
+  "id": "s658-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+  "latest_action_date": "2023-03-06",
+  "number": 658,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/658",
+  "sponsor_id": "B001288",
+  "subjects": [
+    "Agricultural conservation and pollution",
+    "Agricultural prices, subsidies, credit",
+    "Congressional oversight",
+    "Land use and conservation",
+    "Water quality",
+    "Wildlife conservation and habitat protection"
+  ],
+  "title_official": "EQIP Improvement Act of 2023",
+  "type": "s"
+}

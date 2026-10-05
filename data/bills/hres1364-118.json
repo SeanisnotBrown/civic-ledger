@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2024-07-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000601"
+  ],
+  "id": "hres1364-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Rules.",
+  "latest_action_date": "2024-07-18",
+  "number": 1364,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1364",
+  "sponsor_id": "S001209",
+  "subjects": [],
+  "title_official": "Providing for the consideration of the bill (H.R. 82) to amend title II of the Social Security Act to repeal the Government pension offset and windfall elimination provisions.",
+  "type": "hres"
+}

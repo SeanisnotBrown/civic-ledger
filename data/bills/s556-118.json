@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "D000618",
+    "L000575",
+    "L000577"
+  ],
+  "id": "s556-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Armed Services.",
+  "latest_action_date": "2023-02-28",
+  "number": 556,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/556",
+  "sponsor_id": "C001095",
+  "subjects": [
+    "Constitution and constitutional amendments",
+    "Higher education",
+    "Military education and training",
+    "Military personnel and dependents",
+    "Racial and ethnic relations",
+    "Teaching, teachers, curricula",
+    "U.S. history"
+  ],
+  "title_official": "Combating Racist Training in the Military Act of 2023",
+  "type": "s"
+}

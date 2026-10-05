@@ -1,4 +1,188 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "19:04:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": "h-118-1-0203",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 351 - 58 (Roll no. 203). (text: CR H2144-2145)",
+      "time": "19:04:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": "h-118-1-0203",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 351 - 58 (Roll no. 203). (text: CR H2144-2145)",
+      "time": "19:04:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H2151-2152)",
+      "time": "18:31:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "time": "17:59:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 676.",
+      "time": "17:47:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H2144-2147)",
+      "time": "17:47:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Miller (OH) moved to suspend the rules and pass the bill.",
+      "time": "17:46:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 32.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Science, Space, and Technology. H. Rept. 118-48.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Science, Space, and Technology. H. Rept. 118-48.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 35 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-05-12T20:05:00Z",

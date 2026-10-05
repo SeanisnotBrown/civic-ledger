@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2024-03-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-03-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-03-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000597",
+    "L000599"
+  ],
+  "id": "hres1107-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2024-03-26",
+  "number": 1107,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1107",
+  "sponsor_id": "D000632",
+  "subjects": [],
+  "title_official": "Expressing the sense of Congress that Israel must be in full support of any negotiation or agreement relating to the Israeli-Hamas conflict, including a two-state solution or similar long-term plan relating to Israel and Palestinians for it to move forward.",
+  "type": "hres"
+}

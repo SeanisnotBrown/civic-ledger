@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-11-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001153",
+    "W000802"
+  ],
+  "id": "s3258-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-11-08",
+  "number": 3258,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3258",
+  "sponsor_id": "C001088",
+  "subjects": [
+    "Congressional oversight",
+    "Government information and archives",
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Medical research",
+    "Medicare",
+    "Neurological disorders",
+    "Research administration and funding"
+  ],
+  "title_official": "ALS Better Care Act",
+  "type": "s"
+}

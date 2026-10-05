@@ -1,0 +1,110 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2328-2329; text: 06/22/2023 CR S2246-2247)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.(consideration: CR S2328-2329; text: 06/22/2023 CR S2246-2247)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Agriculture, Nutrition, and Forestry discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Agriculture, Nutrition, and Forestry discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Agriculture, Nutrition, and Forestry.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001310",
+    "C000880",
+    "C001035",
+    "C001056",
+    "G000386",
+    "H001076",
+    "H001079",
+    "K000367",
+    "K000383",
+    "L000570",
+    "M001169",
+    "M001198",
+    "R000584",
+    "S001181",
+    "S001203",
+    "W000800"
+  ],
+  "id": "sres284-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2328-2329; text: 06/22/2023 CR S2246-2247)",
+  "latest_action_date": "2023-07-11",
+  "number": 284,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/284",
+  "sponsor_id": "G000555",
+  "subjects": [
+    "Agricultural conservation and pollution",
+    "Commemorative events and holidays",
+    "Economic performance and conditions",
+    "Farmland",
+    "Food industry and services",
+    "Livestock",
+    "Nutrition and diet"
+  ],
+  "title_official": "A resolution expressing support for the designation of June 2023 as \"National Dairy Month\" to recognize the important role dairy plays in a healthy diet and the exceptional work of dairy producers in being stewards of the land and livestock.",
+  "type": "sres"
+}

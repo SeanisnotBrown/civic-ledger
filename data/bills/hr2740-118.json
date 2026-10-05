@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr2740-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Agriculture.",
+  "latest_action_date": "2023-04-20",
+  "number": 2740,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2740",
+  "sponsor_id": "E000299",
+  "subjects": [
+    "Arizona",
+    "California",
+    "Congressional oversight",
+    "Department of Agriculture",
+    "Executive agency funding and structure",
+    "New Mexico",
+    "Regional and metropolitan planning",
+    "Texas"
+  ],
+  "title_official": "To establish an Office of Colonia Affairs within the Department of Agriculture, and for other purposes.",
+  "type": "hr"
+}

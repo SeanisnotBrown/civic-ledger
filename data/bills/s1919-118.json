@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001261",
+    "B001310",
+    "B001319",
+    "E000295",
+    "H001079",
+    "M001183"
+  ],
+  "id": "s1919-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Foreign Relations.",
+  "latest_action_date": "2023-06-08",
+  "number": 1919,
+  "policy_area": "Foreign Trade and International Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1919",
+  "sponsor_id": "B001305",
+  "subjects": [
+    "Asia",
+    "China",
+    "Congressional oversight",
+    "Currency",
+    "International monetary system and foreign exchange"
+  ],
+  "title_official": "Chinese Currency Accountability Act of 2023",
+  "type": "s"
+}

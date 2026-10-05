@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-10-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H001066",
+    "L000590"
+  ],
+  "id": "hres800-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Oversight and Accountability.",
+  "latest_action_date": "2023-10-25",
+  "number": 800,
+  "policy_area": "Sports and Recreation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/800",
+  "sponsor_id": "T000468",
+  "subjects": [],
+  "title_official": "Congratulating the Las Vegas Aces for winning the 2023 Women's National Basketball Association Finals.",
+  "type": "hres"
+}

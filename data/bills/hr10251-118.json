@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "F000478",
+    "M001212",
+    "O000175",
+    "R000614"
+  ],
+  "id": "hr10251-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-11-22",
+  "number": 10251,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/10251",
+  "sponsor_id": "B001302",
+  "subjects": [
+    "Bank accounts, deposits, capital",
+    "Crimes against property",
+    "Currency",
+    "Fraud offenses and financial crimes",
+    "Fruit and vegetables",
+    "Marine and inland water transportation",
+    "Postal service",
+    "U.S. Capitol"
+  ],
+  "title_official": "End Endless Criminal Statutes Act",
+  "type": "hr"
+}

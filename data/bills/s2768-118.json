@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-09-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-09-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035",
+    "D000622",
+    "H001079",
+    "K000383",
+    "R000595"
+  ],
+  "id": "s2768-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-09-12",
+  "number": 2768,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2768",
+  "sponsor_id": "M001183",
+  "subjects": [
+    "Assault and harassment offenses",
+    "Crime prevention",
+    "Criminal procedure and sentencing",
+    "Government studies and investigations",
+    "Health facilities and institutions",
+    "Health personnel",
+    "Hospital care",
+    "Worker safety and health"
+  ],
+  "title_official": "SAVE Act",
+  "type": "s"
+}

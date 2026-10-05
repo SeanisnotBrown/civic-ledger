@@ -1,0 +1,95 @@
+{
+  "actions": [
+    {
+      "action_code": "H2E000",
+      "committees": null,
+      "date": "2024-05-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Laid on the table.",
+      "time": "19:10:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-05-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "UNANIMOUS CONSENT REQUEST - Mr. Steil asked unanimous consent that H. Res. 961 be laid on the table. Agreed to without objection.",
+      "time": "19:10:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12450",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2024-05-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to discharge the Committee on Rules filed by Mr. Steube. Assigned to the Discharge Calendar, Calendar No. 1. (consideration: CR H3270-3271)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H17000",
+      "committees": null,
+      "date": "2024-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to Discharge Committee filed by Mr. Steube. Petition No: 118-11. (<a href=\"https: //clerk.house.gov/DischargePetition/2024043011?Page=2&CongressNum=118\">Discharge petition</a> text with signatures.)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2024-01-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-01-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-01-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres961-118",
+  "jurisdiction": "us",
+  "latest_action": "Laid on the table.",
+  "latest_action_date": "2024-05-21",
+  "number": 961,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/961",
+  "sponsor_id": "S001214",
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
+  "title_official": "Providing for the consideration of the bill (H.R. 5863) to provide tax relief with respect to certain Federal disasters.",
+  "type": "hres"
+}

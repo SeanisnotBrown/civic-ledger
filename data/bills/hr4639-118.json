@@ -1,4 +1,362 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:52:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": "h-118-2-0136",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 219 - 199, 1 Present (Roll no. 136).",
+      "time": "17:52:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": "h-118-2-0136",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 219 - 199, 1 Present (Roll no. 136).",
+      "time": "17:52:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House adopted the amendments en gross as agreed to by the Committee of the Whole House on the state of the Union.",
+      "time": "17:44:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "17:44:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 4639.",
+      "time": "17:42:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "time": "17:01:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H2480-2481)",
+      "time": "17:01:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 4639 as unfinished business.",
+      "time": "13:22:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "time": "13:21:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Davidson moved that the committee rise.",
+      "time": "13:21:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the LaLota amendment No. 3, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. LaLota demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:20:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1149, the Committee of the Whole proceeded with 10 minutes of debate on the LaLota amendment No. 3.",
+      "time": "13:12:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1149, the Committee of the Whole proceeded with 10 minutes of debate on the Higgins (LA) amendment No. 2.",
+      "time": "13:04:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1149, the Committee of the Whole proceeded with 10 minutes of debate on the Davidson amendment No. 1.",
+      "time": "13:00:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 4639.",
+      "time": "12:23:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable Jerry L. Carl to act as Chairman of the Committee.",
+      "time": "12:22:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 1149 and Rule XVIII.",
+      "time": "12:22:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 6323, H. Res. 1143, H.R. 4691, H.R. 5947, H.R. 6046 and H.R. 4639. The resolution provides for consideration of H.R. 6323, H. Res. 1143, H.R. 4691, H.R. 5947, and H.R. 6046 under a closed rule, and for consideration of H.R. 4639 under a structured rule. The resolution provides for one hour of debate on each measure and one motion to recommit on H.R. 6323, H.R. 4691, H.R. 5947, H.R. 6046, and H.R. 4639.",
+      "time": "12:22:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1149. (consideration: CR H2459-2468; text: CR H2463-2465)",
+      "time": "12:22:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2024-04-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 1149 passed House.",
+      "time": "14:13:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2024-04-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1149 Reported to House. Rule provides for consideration of H.R. 6323, H. Res. 1143, H.R. 4691, H.R. 5947, H.R. 6046 and H.R. 4639. The resolution provides for consideration of H.R. 6323, H. Res. 1143, H.R. 4691, H.R. 5947, and H.R. 6046 under a closed rule, and for consideration of H.R. 4639 under a structured rule. The resolution provides for one hour of debate on each measure and one motion to recommit on H.R. 6323, H.R. 4691, H.R. 5947, H.R. 6046, and H.R. 4639.",
+      "time": "09:28:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 381.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12300",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee on Intelligence (Permanent) discharged.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5500",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Intelligence (Permanent) discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Judiciary. H. Rept. 118-459, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Judiciary. H. Rept. 118-459, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 30 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-11-14T16:36:00Z",

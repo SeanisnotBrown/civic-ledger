@@ -1,0 +1,82 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001277",
+    "C001070",
+    "S000033",
+    "S000770",
+    "S001203",
+    "W000817"
+  ],
+  "id": "s3090-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-10-19",
+  "number": 3090,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3090",
+  "sponsor_id": "B001288",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Cardiovascular and respiratory health",
+    "Child health",
+    "Community life and organization",
+    "Congressional oversight",
+    "Dental care",
+    "Department of Health and Human Services",
+    "Digestive and metabolic diseases",
+    "Disability and health-based discrimination",
+    "Emergency medical services and trauma care",
+    "Family planning and birth control",
+    "Foreign language and bilingual programs",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Health care quality",
+    "Health information and medical records",
+    "Health personnel",
+    "Health programs administration and funding",
+    "Health promotion and preventive care",
+    "Health technology, devices, supplies",
+    "Home and outpatient care",
+    "Infectious and parasitic diseases",
+    "Internet, web applications, social media",
+    "Medicaid",
+    "Minority health",
+    "Poverty and welfare assistance",
+    "Racial and ethnic relations",
+    "Sex and reproductive health",
+    "Sex, gender, sexual orientation discrimination",
+    "Social work, volunteer service, charitable organizations",
+    "State and local government operations",
+    "Wages and earnings",
+    "Women's health"
+  ],
+  "title_official": "MOMMIES Act",
+  "type": "s"
+}

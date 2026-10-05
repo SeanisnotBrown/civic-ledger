@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001088",
+    "F000062",
+    "G000359",
+    "M001153",
+    "T000476"
+  ],
+  "id": "s1306-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-04-26",
+  "number": 1306,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1306",
+  "sponsor_id": "K000367",
+  "subjects": [
+    "Community life and organization",
+    "Law enforcement administration and funding"
+  ],
+  "title_official": "COPS Reauthorization Act of 2023",
+  "type": "s"
+}

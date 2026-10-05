@@ -1,0 +1,77 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5968; text: CR S5964-5965)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.(consideration: CR S5968; text: CR S5964-5965)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001243",
+    "B001319",
+    "B001320",
+    "C001035",
+    "C001047",
+    "C001113",
+    "E000295",
+    "F000463",
+    "H001079",
+    "K000367",
+    "K000377",
+    "S001181",
+    "S001203"
+  ],
+  "id": "sres499-118",
+  "jurisdiction": "us",
+  "latest_action": "Message on Senate action sent to the House.",
+  "latest_action_date": "2023-12-14",
+  "number": 499,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/499",
+  "sponsor_id": "S001191",
+  "subjects": [
+    "Congressional tributes",
+    "Judges",
+    "Supreme Court"
+  ],
+  "title_official": "A resolution acknowledging the lifetime of service of Sandra Day O'Connor to the United States as a successful Arizona State Senator, trailblazer, expert collaborator, educational advocate, and one of the great Justices of the Supreme Court of the United States.",
+  "type": "sres"
+}

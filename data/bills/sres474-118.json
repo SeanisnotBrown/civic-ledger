@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5617; text: CR S5600-5601)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-11-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5617; text: CR S5600-5601)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035"
+  ],
+  "id": "sres474-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5617; text: CR S5600-5601)",
+  "latest_action_date": "2023-11-27",
+  "number": 474,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/474",
+  "sponsor_id": "S001181",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Digestive and metabolic diseases",
+    "Health care coverage and access",
+    "Health promotion and preventive care",
+    "Medical research"
+  ],
+  "title_official": "A resolution designating November 2023 as American Diabetes Month.",
+  "type": "sres"
+}

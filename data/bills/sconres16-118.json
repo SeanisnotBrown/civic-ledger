@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Foreign Relations. (text: CR S3463-3464)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001288",
+    "S001217"
+  ],
+  "id": "sconres16-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Foreign Relations. (text: CR S3463-3464)",
+  "latest_action_date": "2023-07-20",
+  "number": 16,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-concurrent-resolution/16",
+  "sponsor_id": "M001176",
+  "subjects": [
+    "Animal protection and human-animal relationships",
+    "Meat",
+    "Nutrition and diet",
+    "Trade restrictions",
+    "World health"
+  ],
+  "title_official": "A concurrent resolution urging all countries to outlaw the dog and cat meat trade and to enforce existing laws against such trade.",
+  "type": "sconres"
+}

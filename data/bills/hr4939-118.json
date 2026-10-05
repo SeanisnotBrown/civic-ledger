@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001063"
+  ],
+  "id": "hr4939-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2023-07-26",
+  "number": 4939,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4939",
+  "sponsor_id": "P000048",
+  "subjects": [],
+  "title_official": "To authorize livestock producers and their employees to take crested caracaras in order to prevent the death of or injury or destruction to livestock, and for other purposes.",
+  "type": "hr"
+}

@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "F000466",
+    "M001221",
+    "R000579",
+    "S001190",
+    "T000467"
+  ],
+  "id": "hr7517-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2024-03-01",
+  "number": 7517,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7517",
+  "sponsor_id": "K000381",
+  "subjects": [],
+  "title_official": "Skills Investment Act of 2023",
+  "type": "hr"
+}

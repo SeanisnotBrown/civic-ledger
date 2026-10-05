@@ -1,0 +1,82 @@
+{
+  "actions": [
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "09:19:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On agreeing to the resolution Agreed to without objection. (text: CR H5861)",
+      "time": "09:19:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to without objection. (text: CR H5861)",
+      "time": "09:19:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as privileged matter. (consideration: CR H5861)",
+      "time": "09:18:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres871-118",
+  "jurisdiction": "us",
+  "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
+  "latest_action_date": "2023-11-15",
+  "number": 871,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/871",
+  "sponsor_id": "A000371",
+  "subjects": [
+    "Congressional committees",
+    "House Committee on Foreign Affairs",
+    "Members of Congress"
+  ],
+  "title_official": "Electing a member to a certain standing committee of the House of Representatives.",
+  "type": "hres"
+}

@@ -1,0 +1,108 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 156.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-73.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-73.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-05-30T17:20:00Z",
+      "title": "S. 931, Strengthening Agency Management and Oversight of Software Assets Act",
+      "url": "https://www.cbo.gov/publication/59198"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001075",
+    "E000295",
+    "H000273",
+    "H000601",
+    "T000476",
+    "W000779"
+  ],
+  "id": "s931-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 156.",
+  "latest_action_date": "2023-07-25",
+  "number": 931,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/931",
+  "sponsor_id": "P000595",
+  "subjects": [
+    "Accounting and auditing",
+    "Budget process",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Licensing and registrations",
+    "Public contracts and procurement"
+  ],
+  "title_official": "Strengthening Agency Management and Oversight of Software Assets Act",
+  "type": "s"
+}

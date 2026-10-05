@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001305"
+  ],
+  "id": "s2399-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+  "latest_action_date": "2023-07-19",
+  "number": 2399,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2399",
+  "sponsor_id": "M000133",
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Chemical and biological weapons",
+    "Infectious and parasitic diseases",
+    "Technology assessment"
+  ],
+  "title_official": "Artificial Intelligence and Biosecurity Risk Assessment Act",
+  "type": "s"
+}

@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-11-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000359",
+    "S000770",
+    "V000137"
+  ],
+  "id": "s3376-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-11-30",
+  "number": 3376,
+  "policy_area": "Foreign Trade and International Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3376",
+  "sponsor_id": "B000944",
+  "subjects": [],
+  "title_official": "A bill to provide for the liquidation or reliquidation of certain entries of steel and aluminum products retroactively approved for exclusion from certain duties during the COVID-19 pandemic.",
+  "type": "s"
+}

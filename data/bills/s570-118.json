@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "D000563",
+    "S000770"
+  ],
+  "id": "s570-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-02-28",
+  "number": 570,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/570",
+  "sponsor_id": "C000141",
+  "subjects": [
+    "Congressional oversight",
+    "Dental care",
+    "Government information and archives",
+    "Health care quality",
+    "Health promotion and preventive care",
+    "Intergovernmental relations",
+    "Medicaid",
+    "Poverty and welfare assistance",
+    "State and local government operations",
+    "U.S. territories and protectorates"
+  ],
+  "title_official": "Medicaid Dental Benefit Act of 2023",
+  "type": "s"
+}

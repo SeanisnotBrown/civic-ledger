@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-11-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-11-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-11-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000576",
+    "G000579",
+    "M001160",
+    "P000607",
+    "S001213",
+    "T000165",
+    "V000135"
+  ],
+  "id": "hres884-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Oversight and Accountability.",
+  "latest_action_date": "2023-11-21",
+  "number": 884,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/884",
+  "sponsor_id": "F000471",
+  "subjects": [],
+  "title_official": "Honoring the victims of the devastating attack that took place at the Waukesha, Wisconsin, Christmas parade on November 21, 2021.",
+  "type": "hres"
+}

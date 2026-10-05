@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s3533-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-12-14",
+  "number": 3533,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3533",
+  "sponsor_id": "K000393",
+  "subjects": [],
+  "title_official": "A bill to appropriate, with an offset, $36,000,000 for the Seafood Import Monitoring Program of the National Oceanic and Atmospheric Administration to increase audits of imported shrimp and red snapper.",
+  "type": "s"
+}

@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001291",
+    "B001295",
+    "D000032",
+    "D000628",
+    "G000591",
+    "H001091",
+    "L000598",
+    "L000599",
+    "M000194",
+    "N000193",
+    "R000603",
+    "R000610",
+    "S000168",
+    "S000522",
+    "S001214",
+    "T000480",
+    "W000806",
+    "W000814"
+  ],
+  "id": "hres409-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-05-17",
+  "number": 409,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/409",
+  "sponsor_id": "G000593",
+  "subjects": [],
+  "title_official": "Condemning the acts of terrorism committed by Iranian military proxies, including Hamas, Hezbollah, and the Palestinian Islamic Jihad, against the people of the State of Israel.",
+  "type": "hres"
+}

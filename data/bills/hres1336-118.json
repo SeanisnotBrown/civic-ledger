@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-06-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-06-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-06-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "G000595",
+    "H001077",
+    "O000175",
+    "V000135"
+  ],
+  "id": "hres1336-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-06-28",
+  "number": 1336,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1336",
+  "sponsor_id": "R000614",
+  "subjects": [],
+  "title_official": "Calling on Vice President Kamala D. Harris to convene and mobilize the principal officers of the executive departments of the Cabinet to activate section 4 of the 25th Amendment to declare President Joseph R. Biden incapable of executing the duties of his office and to immediately exercise powers as Acting President.",
+  "type": "hres"
+}

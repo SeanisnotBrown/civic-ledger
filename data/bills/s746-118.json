@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "C001098",
+    "C001113",
+    "H001042",
+    "M001198",
+    "R000595",
+    "R000608",
+    "T000476",
+    "Y000064"
+  ],
+  "id": "s746-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-09",
+  "number": 746,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/746",
+  "sponsor_id": "M000639",
+  "subjects": [
+    "Civil actions and liability",
+    "Evidence and witnesses",
+    "Intellectual property",
+    "Jurisdiction and venue",
+    "Property rights"
+  ],
+  "title_official": "No Stolen Trademarks Honored in America Act",
+  "type": "s"
+}

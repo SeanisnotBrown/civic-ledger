@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001120",
+    "D000032",
+    "D000616",
+    "M000871",
+    "S001212"
+  ],
+  "id": "hr1116-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Oversight and Accountability.",
+  "latest_action_date": "2023-02-21",
+  "number": 1116,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1116",
+  "sponsor_id": "C001039",
+  "subjects": [
+    "Disability assistance",
+    "Drug trafficking and controlled substances",
+    "Government lending and loan guarantees",
+    "Human trafficking",
+    "Licensing and registrations",
+    "Medicaid",
+    "Medicare",
+    "Poverty and welfare assistance",
+    "Public contracts and procurement",
+    "Public housing",
+    "Smuggling and trafficking",
+    "Social security and elderly assistance",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "Stop Taxpayer Funding of Traffickers Act",
+  "type": "hr"
+}

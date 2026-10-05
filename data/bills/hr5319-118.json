@@ -1,0 +1,77 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-08-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001291",
+    "B001299",
+    "B001302",
+    "D000615",
+    "G000565",
+    "G000590",
+    "G000595",
+    "H001052",
+    "H001077",
+    "H001096",
+    "M000871",
+    "M001195",
+    "M001211",
+    "M001224",
+    "N000190",
+    "O000175",
+    "P000048",
+    "S001214",
+    "S001224",
+    "T000480",
+    "W000816"
+  ],
+  "id": "hr5319-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-08-29",
+  "number": 5319,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5319",
+  "sponsor_id": "W000814",
+  "subjects": [
+    "Abortion",
+    "Civil actions and liability",
+    "Legal fees and court costs",
+    "Navigation, waterways, harbors"
+  ],
+  "title_official": "Ban Offshore Abortion Tourism Act",
+  "type": "hr"
+}

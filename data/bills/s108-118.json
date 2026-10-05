@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 58.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters without amendment. With written report No. 118-19.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters without amendment. With written report No. 118-19.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-04-17T20:38:00Z",
+      "title": "S. 108, Guidance Clarity Act of 2023",
+      "url": "https://www.cbo.gov/publication/59076"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "J000293",
+    "R000584",
+    "S001191"
+  ],
+  "id": "s108-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 58.",
+  "latest_action_date": "2023-05-09",
+  "number": 108,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/108",
+  "sponsor_id": "L000575",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Government information and archives"
+  ],
+  "title_official": "Guidance Clarity Act of 2023",
+  "type": "s"
+}

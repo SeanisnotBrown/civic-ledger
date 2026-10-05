@@ -1,4 +1,296 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-3.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-3.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2023-04-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2023-04-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-29",
+      "rollcall_id": "s-118-1-0080",
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Yea-Nay Vote. 68 - 23. Record Vote Number: 80.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-03-29",
+      "rollcall_id": "s-118-1-0080",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Yea-Nay Vote. 68 - 23. Record Vote Number: 80.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S1028, S1043-1044)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 33.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Finance discharged pursuant to 50 U.S.C. 1622.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Finance discharged pursuant to 50 U.S.C. 1622.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:09:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": "h-118-1-0104",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 229 - 197 (Roll no. 104). (consideration: CR H608)",
+      "time": "17:09:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": "h-118-1-0104",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 229 - 197 (Roll no. 104). (consideration: CR H608)",
+      "time": "17:09:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H612-613)",
+      "time": "16:58:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H.J. Res. 7, the Chair put the question on passage and by voice vote, announced that the ayes had prevailed. Mr. Graves (MO) demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
+      "time": "15:43:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "15:43:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.J. Res. 7.",
+      "time": "15:11:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.J. Res. 7, H.R. 139, H.R. 382 and H.R. 497. All bills are considered under a closed rule with one hour of general debate and one motion to recommit.",
+      "time": "15:11:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 75. (consideration: CR H607-611)",
+      "time": "15:11:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Development, Public Buildings, and Emergency Management Subcommittee"
+      ],
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Development, Public Buildings, and Emergency Management.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 75 Reported to House. Rule provides for consideration of H.J. Res. 7, H.R. 139, H.R. 382 and H.R. 497. All bills are considered under a closed rule with one hour of general debate and one motion to recommit.",
+      "time": "10:06:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-01-30T18:26:00Z",

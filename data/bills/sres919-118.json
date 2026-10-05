@@ -1,0 +1,43 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-12-03",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S6782)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-12-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "W000779",
+    "W000800"
+  ],
+  "id": "sres919-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S6782)",
+  "latest_action_date": "2024-12-03",
+  "number": 919,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/919",
+  "sponsor_id": "M001176",
+  "subjects": [],
+  "title_official": "A resolution recognizing the 40th year since the 1984 Bhopal chemical disaster and helping to ensure that no other community suffers another chemical disaster, by designating December 3 as National Chemical Disaster Awareness Day.",
+  "type": "sres"
+}

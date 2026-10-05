@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ethics Committee"
+      ],
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ethics.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000583",
+    "L000601",
+    "M001135",
+    "M001217",
+    "P000616",
+    "S000344",
+    "S001190",
+    "T000483"
+  ],
+  "id": "hres623-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ethics.",
+  "latest_action_date": "2023-07-27",
+  "number": 623,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/623",
+  "sponsor_id": "W000797",
+  "subjects": [],
+  "title_official": "Censuring Paul Gosar, Representative of the 9th Congressional District of Arizona.",
+  "type": "hres"
+}

@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001267",
+    "M000934"
+  ],
+  "id": "s2548-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+  "latest_action_date": "2023-07-26",
+  "number": 2548,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2548",
+  "sponsor_id": "C000141",
+  "subjects": [
+    "Aviation and airports",
+    "Government trust funds",
+    "Public contracts and procurement",
+    "Transportation programs funding",
+    "Transportation safety and security"
+  ],
+  "title_official": "Aviation Security Checkpoint Technology Fund Act of 2023",
+  "type": "s"
+}

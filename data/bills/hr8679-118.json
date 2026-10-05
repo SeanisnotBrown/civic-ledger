@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "C001051",
+    "C001078",
+    "D000399",
+    "F000459",
+    "F000466",
+    "F000474",
+    "G000597",
+    "G000599",
+    "H001091",
+    "K000375",
+    "K000380",
+    "L000557",
+    "M001136",
+    "M001194",
+    "M001196",
+    "R000305",
+    "S001189",
+    "S001201",
+    "T000463",
+    "V000130",
+    "V000131",
+    "W000795"
+  ],
+  "id": "hr8679-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-06-11",
+  "number": 8679,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8679",
+  "sponsor_id": "C001068",
+  "subjects": [],
+  "title_official": "To include the Czech Republic in the list of foreign states whose nationals are eligible for admission into the United States as E-1 nonimmigrants if United States nationals are treated similarly by the Government of the Czech Republic.",
+  "type": "hr"
+}

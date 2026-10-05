@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s1894-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-06-08",
+  "number": 1894,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1894",
+  "sponsor_id": "B001288",
+  "subjects": [
+    "Cancer",
+    "Digestive and metabolic diseases",
+    "Health care costs and insurance",
+    "Medical tests and diagnostic methods",
+    "Medicare"
+  ],
+  "title_official": "Colorectal Cancer Payment Fairness Act",
+  "type": "s"
+}

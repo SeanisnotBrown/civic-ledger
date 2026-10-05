@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S573-574)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "B001288",
+    "C000127",
+    "C001047",
+    "H001042",
+    "K000367"
+  ],
+  "id": "sres90-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S573-574)",
+  "latest_action_date": "2023-03-01",
+  "number": 90,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/90",
+  "sponsor_id": "D000622",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Health promotion and preventive care",
+    "Women's health"
+  ],
+  "title_official": "A resolution recognizing the significance of endometriosis as an unmet chronic disease for women and designating March 2023 as \"Endometriosis Awareness Month\".",
+  "type": "sres"
+}

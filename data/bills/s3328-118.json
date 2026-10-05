@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary. (text: CR S5549-5550)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "C001056",
+    "G000359",
+    "H001042",
+    "K000367",
+    "K000393",
+    "T000476",
+    "W000802"
+  ],
+  "id": "s3328-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary. (text: CR S5549-5550)",
+  "latest_action_date": "2023-11-15",
+  "number": 3328,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3328",
+  "sponsor_id": "D000563",
+  "subjects": [
+    "Bankruptcy",
+    "Consumer credit",
+    "Homeland security",
+    "Military personnel and dependents",
+    "National Guard and reserves"
+  ],
+  "title_official": "National Guard and Reservists Debt Relief Extension Act of 2023",
+  "type": "s"
+}

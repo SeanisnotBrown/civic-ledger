@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance. (text: CR S5112)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "H001076",
+    "K000383"
+  ],
+  "id": "s3098-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance. (text: CR S5112)",
+  "latest_action_date": "2023-10-19",
+  "number": 3098,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3098",
+  "sponsor_id": "T000250",
+  "subjects": [],
+  "title_official": "Securing Advances and a Variety of Evidence-Based IMD Options Act",
+  "type": "s"
+}

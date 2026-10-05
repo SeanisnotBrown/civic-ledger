@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2023-08-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Environment, Manufacturing, and Critical Materials.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-08-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "P000613"
+  ],
+  "id": "hr5210-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Environment, Manufacturing, and Critical Materials.",
+  "latest_action_date": "2023-08-18",
+  "number": 5210,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5210",
+  "sponsor_id": "E000246",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Climate change and greenhouse gases",
+    "Environmental Protection Agency (EPA)",
+    "First responders and emergency personnel",
+    "Homeland security",
+    "Intergovernmental relations",
+    "Marine and inland water transportation"
+  ],
+  "title_official": "MOTOR Act",
+  "type": "hr"
+}

@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2023-01-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr180-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+  "latest_action_date": "2023-01-20",
+  "number": 180,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/180",
+  "sponsor_id": "M000871",
+  "subjects": [
+    "Congressional oversight",
+    "General energy matters",
+    "Presidents and presidential powers, Vice Presidents",
+    "Public participation and lobbying"
+  ],
+  "title_official": "To promote accountability and transparency in future executive orders.",
+  "type": "hr"
+}

@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-217.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-06-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "S001217",
+    "T000278"
+  ],
+  "id": "s1828-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-217.",
+  "latest_action_date": "2023-07-12",
+  "number": 1828,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1828",
+  "sponsor_id": "R000595",
+  "subjects": [
+    "Health personnel",
+    "Licensing and registrations",
+    "Nursing",
+    "Veterans' medical care"
+  ],
+  "title_official": "Veterans Homecare Choice Act of 2023",
+  "type": "s"
+}

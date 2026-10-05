@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-09-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Star Print ordered on the bill.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "T000278"
+  ],
+  "id": "s2357-118",
+  "jurisdiction": "us",
+  "latest_action": "Star Print ordered on the bill.",
+  "latest_action_date": "2023-09-30",
+  "number": 2357,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2357",
+  "sponsor_id": "V000137",
+  "subjects": [
+    "Child health",
+    "Civil actions and liability",
+    "Drug therapy",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Higher education",
+    "Medical education",
+    "Sex and reproductive health",
+    "Sex, gender, sexual orientation discrimination",
+    "Surgery and anesthesia",
+    "Teaching, teachers, curricula",
+    "Visas and passports"
+  ],
+  "title_official": "Protect Children’s Innocence Act",
+  "type": "s"
+}

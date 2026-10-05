@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-05-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "P000595",
+    "S001191"
+  ],
+  "id": "s1781-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-05-31",
+  "number": 1781,
+  "policy_area": "Foreign Trade and International Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1781",
+  "sponsor_id": "C001075",
+  "subjects": [],
+  "title_official": "A bill to amend the Harmonized Tariff Schedule of the United States to provide a uniform 8-digit subheading number for all whiskies.",
+  "type": "s"
+}

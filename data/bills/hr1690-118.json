@@ -1,0 +1,191 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 30.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12300",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee on the Judiciary discharged.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on the Judiciary discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Foreign Affairs. H. Rept. 118-46, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Foreign Affairs. H. Rept. 118-46, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 25 - 22.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on the Judiciary, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on the Judiciary, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-05-02T18:25:00Z",
+      "title": "H.R. 1690, Orderly Requirements Designed to Enforce and Regulate Latin American Migration Act",
+      "url": "https://www.cbo.gov/publication/59117"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001282",
+    "B001307",
+    "G000590",
+    "H001058",
+    "I000056",
+    "K000397",
+    "K000398",
+    "M001199",
+    "M001216",
+    "M001218",
+    "M001224",
+    "R000600",
+    "S000168",
+    "S000522",
+    "S001224",
+    "W000795",
+    "W000812",
+    "W000823"
+  ],
+  "id": "hr1690-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 30.",
+  "latest_action_date": "2023-05-05",
+  "number": 1690,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1690",
+  "sponsor_id": "M001157",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Congressional oversight",
+    "El Salvador",
+    "Guatemala",
+    "Honduras",
+    "International law and treaties",
+    "Latin America",
+    "Mexico",
+    "Refugees, asylum, displaced persons"
+  ],
+  "title_official": "ORDER Act",
+  "type": "hr"
+}

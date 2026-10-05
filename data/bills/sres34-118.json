@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Rules and Administration. (text: CR S268)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Aging (Special) Committee"
+      ],
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Special Committee on Aging. Original measure reported to Senate by Senator Casey. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Aging (Special) Committee"
+      ],
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Special Committee on Aging. Original measure reported to Senate by Senator Casey. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "sres34-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Rules and Administration. (text: CR S268)",
+  "latest_action_date": "2023-02-07",
+  "number": 34,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/34",
+  "sponsor_id": "C001070",
+  "subjects": [
+    "Congressional committees",
+    "Senate Special Committee on Aging"
+  ],
+  "title_official": "An original resolution authorizing expenditures by the Special Committee on Aging.",
+  "type": "sres"
+}

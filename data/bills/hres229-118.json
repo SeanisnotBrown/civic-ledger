@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-03-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "S001218"
+  ],
+  "id": "hres229-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2023-03-14",
+  "number": 229,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/229",
+  "sponsor_id": "L000273",
+  "subjects": [],
+  "title_official": "Recognizing the significance of the 1973 New Mexico Bilingual Multicultural Education Act on its 50th anniversary and the importance of cultivating education in both the mother tongue as well as English for the preservation of culture, identity, and Indigenous knowledge.",
+  "type": "hres"
+}

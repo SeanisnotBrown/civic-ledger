@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 247.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Rules and Administration. Reported by Senator Klobuchar without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Rules and Administration. Reported by Senator Klobuchar without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Rules and Administration. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-10-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Rules and Administration. (text: CR S5259-5260)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "sres444-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 247.",
+  "latest_action_date": "2023-11-14",
+  "number": 444,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/444",
+  "sponsor_id": "R000122",
+  "subjects": [
+    "Legislative rules and procedure",
+    "Military personnel and dependents",
+    "Senate"
+  ],
+  "title_official": "A resolution providing for the en bloc consideration of military nominations.",
+  "type": "sres"
+}

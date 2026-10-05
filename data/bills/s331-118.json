@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Appropriations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s331-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Appropriations.",
+  "latest_action_date": "2023-02-09",
+  "number": 331,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/331",
+  "sponsor_id": "B001243",
+  "subjects": [],
+  "title_official": "A bill to make 1 percent across-the-board rescissions in non-defense, non-homeland-security, and non-veterans-affairs discretionary spending for each of fiscal years 2024 and 2025.",
+  "type": "s"
+}

@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001236",
+    "B001305",
+    "C001047",
+    "E000295",
+    "F000479",
+    "G000386",
+    "H001046",
+    "H001079",
+    "H001089",
+    "K000377",
+    "K000384",
+    "K000393",
+    "M000934",
+    "M001198",
+    "S000770",
+    "S001181",
+    "S001191",
+    "S001198",
+    "S001203",
+    "W000437",
+    "W000800",
+    "W000805"
+  ],
+  "id": "s1110-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-03-30",
+  "number": 1110,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1110",
+  "sponsor_id": "C001070",
+  "subjects": [
+    "Health care coverage and access",
+    "Health facilities and institutions",
+    "Hospital care",
+    "Medicare",
+    "Rural conditions and development"
+  ],
+  "title_official": "Rural Hospital Support Act",
+  "type": "s"
+}

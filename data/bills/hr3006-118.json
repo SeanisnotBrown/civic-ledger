@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H2092)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000551",
+    "M001160",
+    "N000002",
+    "N000147",
+    "P000619",
+    "S001221",
+    "T000481"
+  ],
+  "id": "hr3006-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2023-04-28",
+  "number": 3006,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3006",
+  "sponsor_id": "G000587",
+  "subjects": [],
+  "title_official": "To direct the Secretary of Education to carry out a grant program to support the placement of students and licensed professional social workers in public libraries, and for other purposes.",
+  "type": "hr"
+}

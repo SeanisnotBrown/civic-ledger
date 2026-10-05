@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-10-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-10-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-10-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001302",
+    "B001311",
+    "B001317",
+    "F000459",
+    "H001077",
+    "N000190",
+    "W000814"
+  ],
+  "id": "hr6096-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-10-26",
+  "number": 6096,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6096",
+  "sponsor_id": "M001195",
+  "subjects": [],
+  "title_official": "Allied Burden Sharing Report Act of 2023",
+  "type": "hr"
+}

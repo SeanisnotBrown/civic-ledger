@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H000601",
+    "S000770"
+  ],
+  "id": "s1099-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Energy and Natural Resources.",
+  "latest_action_date": "2023-03-30",
+  "number": 1099,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1099",
+  "sponsor_id": "P000595",
+  "subjects": [
+    "Air quality",
+    "Energy efficiency and conservation",
+    "Energy storage, supplies, demand",
+    "Hybrid, electric, and advanced technology vehicles",
+    "Manufacturing",
+    "Materials",
+    "Motor fuels",
+    "Motor vehicles",
+    "Oil and gas",
+    "Performance measurement",
+    "Public transit",
+    "Research and development",
+    "Solid waste and recycling",
+    "Technology assessment",
+    "Technology transfer and commercialization"
+  ],
+  "title_official": "Vehicle Innovation Act of 2023",
+  "type": "s"
+}

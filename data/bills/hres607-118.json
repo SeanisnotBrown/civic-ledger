@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000626"
+  ],
+  "id": "hres607-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-07-20",
+  "number": 607,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/607",
+  "sponsor_id": "R000614",
+  "subjects": [],
+  "title_official": "Expressing the sense of the House of Representatives that the majority of NATO member countries have failed to meet their defense spending commitment and that the United States should not continue to subsidize the security of countries that choose not to invest in their own defense.",
+  "type": "hres"
+}

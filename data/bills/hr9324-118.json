@@ -1,0 +1,88 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-08-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-08-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-08-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000490",
+    "B000740",
+    "C000059",
+    "C001068",
+    "D000230",
+    "H001085",
+    "J000295",
+    "K000399",
+    "M001210",
+    "N000147",
+    "N000191",
+    "P000048",
+    "P000599",
+    "P000616",
+    "S000510",
+    "S001196",
+    "T000460",
+    "V000129",
+    "W000828"
+  ],
+  "id": "hr9324-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2024-09-11",
+  "number": 9324,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9324",
+  "sponsor_id": "W000809",
+  "subjects": [
+    "Health care coverage and access",
+    "Health personnel",
+    "Health technology, devices, supplies",
+    "Prescription drugs",
+    "Veterans' medical care"
+  ],
+  "title_official": "Protecting Veteran Access to Telemedicine Services Act of 2024",
+  "type": "hr"
+}

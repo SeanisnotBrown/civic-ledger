@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001305",
+    "L000575"
+  ],
+  "id": "s374-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-02-09",
+  "number": 374,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/374",
+  "sponsor_id": "E000295",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Criminal procedure and sentencing",
+    "Customs enforcement",
+    "Drug trafficking and controlled substances",
+    "Firearms and explosives",
+    "Human trafficking",
+    "Law enforcement administration and funding",
+    "Law enforcement officers",
+    "Smuggling and trafficking"
+  ],
+  "title_official": "Transnational Criminal Organization Illicit Spotter Prevention and Elimination Act",
+  "type": "s"
+}

@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-09-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000370",
+    "N000194"
+  ],
+  "id": "hres686-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-09-15",
+  "number": 686,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/686",
+  "sponsor_id": "H001091",
+  "subjects": [
+    "Child health",
+    "Commemorative events and holidays",
+    "Health promotion and preventive care",
+    "Sex and reproductive health"
+  ],
+  "title_official": "Supporting the designation of September 19, 2023, as \"National Stillbirth Prevention Day\", recognizing tens of thousands of American families that have endured a stillbirth, and seizing the opportunity to keep other families from experiencing the same tragedy.",
+  "type": "hres"
+}

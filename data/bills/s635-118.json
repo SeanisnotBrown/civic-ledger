@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "C001098",
+    "D000618",
+    "L000575",
+    "M001190",
+    "R000595",
+    "V000137"
+  ],
+  "id": "s635-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-02",
+  "number": 635,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/635",
+  "sponsor_id": "C001095",
+  "subjects": [
+    "Child health",
+    "Civil actions and liability",
+    "Health care quality",
+    "Health personnel",
+    "Health programs administration and funding",
+    "Sex, gender, sexual orientation discrimination",
+    "State and local government operations"
+  ],
+  "title_official": "Protecting Minors from Medical Malpractice Act of 2023",
+  "type": "s"
+}

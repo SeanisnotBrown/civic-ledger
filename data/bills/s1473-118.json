@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "C001035",
+    "C001047",
+    "C001056",
+    "M001183",
+    "T000464",
+    "T000476"
+  ],
+  "id": "s1473-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-05-04",
+  "number": 1473,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1473",
+  "sponsor_id": "S001191",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Immigrant health and welfare",
+    "Immigration status and procedures",
+    "Mexico",
+    "Refugees, asylum, displaced persons",
+    "Terrorism",
+    "Violent crime"
+  ],
+  "title_official": "A bill to authorize the immediate expulsion of inadmissible aliens attempting to enter the United States by fraud or without a necessary entry document, and for other purposes.",
+  "type": "s"
+}

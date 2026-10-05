@@ -1,0 +1,45 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-06-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S1903)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001096",
+    "C001098",
+    "L000575",
+    "R000595"
+  ],
+  "id": "sres236-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S1903)",
+  "latest_action_date": "2023-06-01",
+  "number": 236,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/236",
+  "sponsor_id": "S001217",
+  "subjects": [],
+  "title_official": "A resolution honoring the 125th anniversary of the Rough Riders in the Spanish American War and designating June 2, 2023, as \"National Rough Rider Day\".",
+  "type": "sres"
+}

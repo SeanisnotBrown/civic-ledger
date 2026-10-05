@@ -1,0 +1,82 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-10-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-10-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-10-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001281",
+    "C001120",
+    "F000466",
+    "G000551",
+    "G000553",
+    "G000583",
+    "G000587",
+    "G000589",
+    "G000600",
+    "H001090",
+    "J000295",
+    "J000309",
+    "L000596",
+    "L000599",
+    "M001212",
+    "N000194",
+    "O000175",
+    "P000048",
+    "P000599",
+    "P000620",
+    "R000305",
+    "R000609",
+    "S000250",
+    "W000814"
+  ],
+  "id": "hr5979-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2023-10-25",
+  "number": 5979,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5979",
+  "sponsor_id": "D000594",
+  "subjects": [
+    "Congressional oversight",
+    "Department of Veterans Affairs",
+    "Government lending and loan guarantees",
+    "Government studies and investigations",
+    "Housing finance and home ownership",
+    "Veterans' loans, housing, homeless programs"
+  ],
+  "title_official": "VA Home Loan Awareness Act of 2023",
+  "type": "hr"
+}

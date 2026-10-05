@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001281",
+    "B001285",
+    "C001067",
+    "C001080",
+    "E000299",
+    "G000583",
+    "G000586",
+    "K000382",
+    "L000551",
+    "M000312",
+    "N000002",
+    "N000147",
+    "P000618",
+    "R000576",
+    "S001156",
+    "V000081",
+    "W000788",
+    "W000822"
+  ],
+  "id": "hres605-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2023-07-20",
+  "number": 605,
+  "policy_area": "Families",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/605",
+  "sponsor_id": "M001188",
+  "subjects": [
+    "Child care and development",
+    "Child health",
+    "Commuting",
+    "Employee leave",
+    "Family services",
+    "Income tax credits",
+    "Minority employment",
+    "Nutrition and diet",
+    "Poverty and welfare assistance",
+    "Racial and ethnic relations",
+    "Sex, gender, sexual orientation discrimination",
+    "Tax treatment of families",
+    "Wages and earnings",
+    "Women's employment",
+    "Women's health"
+  ],
+  "title_official": "Recognizing that the United States needs to support and strengthen mothers in the workforce by investing in the Mom Economy.",
+  "type": "hres"
+}

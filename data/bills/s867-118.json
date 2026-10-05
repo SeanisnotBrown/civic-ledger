@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001070",
+    "D000563",
+    "D000622",
+    "F000062",
+    "F000479",
+    "H001042",
+    "M000639",
+    "P000145",
+    "R000122",
+    "W000802"
+  ],
+  "id": "s867-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-16",
+  "number": 867,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/867",
+  "sponsor_id": "S001194",
+  "subjects": [
+    "Congressional oversight",
+    "Firearms and explosives",
+    "Government information and archives",
+    "Intergovernmental relations",
+    "Licensing and registrations",
+    "State and local government operations"
+  ],
+  "title_official": "State Firearms Dealer Licensing Enhancement Act",
+  "type": "s"
+}

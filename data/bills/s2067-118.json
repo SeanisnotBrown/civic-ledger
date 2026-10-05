@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-217.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001236",
+    "B001277",
+    "C001096",
+    "H001046",
+    "H001076",
+    "P000595",
+    "S001191",
+    "S001217"
+  ],
+  "id": "s2067-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-217.",
+  "latest_action_date": "2023-07-12",
+  "number": 2067,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2067",
+  "sponsor_id": "T000476",
+  "subjects": [
+    "Disability and paralysis",
+    "Health programs administration and funding",
+    "Mental health",
+    "Neurological disorders",
+    "Service animals",
+    "Veterans' medical care"
+  ],
+  "title_official": "SAVES Act",
+  "type": "s"
+}

@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-01-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "C001096",
+    "L000575",
+    "S001217",
+    "S001227"
+  ],
+  "id": "s56-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-01-24",
+  "number": 56,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/56",
+  "sponsor_id": "C001098",
+  "subjects": [
+    "Charitable contributions",
+    "Elementary and secondary education",
+    "Employment and training programs",
+    "Government information and archives",
+    "Higher education",
+    "Income tax credits",
+    "Social work, volunteer service, charitable organizations",
+    "Student aid and college costs",
+    "Vocational and technical education"
+  ],
+  "title_official": "Education Freedom Scholarships and Opportunity Act",
+  "type": "s"
+}

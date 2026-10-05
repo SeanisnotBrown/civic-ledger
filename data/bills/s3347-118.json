@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-11-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-11-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001261",
+    "C001095",
+    "H000601",
+    "M001198",
+    "R000595",
+    "T000476"
+  ],
+  "id": "s3347-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Foreign Relations.",
+  "latest_action_date": "2023-11-27",
+  "number": 3347,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3347",
+  "sponsor_id": "C001098",
+  "subjects": [],
+  "title_official": "A bill to require the imposition of sanctions with respect to Ansarallah and its officials, agents, or affiliates for acts of international terrorism.",
+  "type": "s"
+}

@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2023-06-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres534-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Economic Opportunity.",
+  "latest_action_date": "2023-06-29",
+  "number": 534,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/534",
+  "sponsor_id": "T000472",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Housing finance and home ownership",
+    "Housing for the elderly and disabled",
+    "Residential rehabilitation and home repair",
+    "Veterans' loans, housing, homeless programs"
+  ],
+  "title_official": "Expressing support for the designation of the day of June 19, 2023, to commemorate and celebrate the 75th Anniversary of the Specially Adapted Housing Grant Program.",
+  "type": "hres"
+}

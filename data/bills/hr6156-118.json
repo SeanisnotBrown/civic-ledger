@@ -1,0 +1,130 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2024-02-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 312.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2024-02-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Small Business. H. Rept. 118-382.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2024-02-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Small Business. H. Rept. 118-382.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2023-11-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-11-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-11-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-03-14T21:00:00Z",
+      "title": "H.R. 6156, Child Care Small Business Insight and Improvement Act of 2023",
+      "url": "https://www.cbo.gov/publication/60110"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000629",
+    "G000583",
+    "G000592",
+    "G000600",
+    "L000595",
+    "M000687",
+    "M001204",
+    "M001220",
+    "M001221",
+    "T000483"
+  ],
+  "id": "hr6156-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 312.",
+  "latest_action_date": "2024-02-13",
+  "number": 6156,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6156",
+  "sponsor_id": "L000601",
+  "subjects": [
+    "Business investment and capital",
+    "Child care and development",
+    "Government studies and investigations",
+    "Preschool education"
+  ],
+  "title_official": "Child Care Small Business Insight and Improvement Act of 2023",
+  "type": "hr"
+}

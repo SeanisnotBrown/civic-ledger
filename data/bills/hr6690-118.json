@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Livestock, Dairy, and Poultry Subcommittee"
+      ],
+      "date": "2024-01-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Livestock, Dairy, and Poultry.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001059",
+    "D000633"
+  ],
+  "id": "hr6690-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Livestock, Dairy, and Poultry.",
+  "latest_action_date": "2024-01-25",
+  "number": 6690,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6690",
+  "sponsor_id": "V000129",
+  "subjects": [
+    "Agricultural prices, subsidies, credit",
+    "Livestock",
+    "Natural disasters"
+  ],
+  "title_official": "To amend the Commodity Credit Corporation Charter Act to authorize the use of Commodity Credit Corporation funds for emergency assistance to dairy producers in the case of livestock relocation and feed crop losses due to natural disasters, and for other purposes.",
+  "type": "hr"
+}

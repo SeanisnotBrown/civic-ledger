@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "D000618",
+    "L000571"
+  ],
+  "id": "s1479-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-05-09",
+  "number": 1479,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1479",
+  "sponsor_id": "B001243",
+  "subjects": [],
+  "title_official": "Make the Migrant Protection Protocols Mandatory Act of 2023",
+  "type": "s"
+}

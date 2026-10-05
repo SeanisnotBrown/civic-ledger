@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "B001300",
+    "C001068",
+    "C001131",
+    "D000399",
+    "G000583",
+    "G000586",
+    "H001068",
+    "J000298",
+    "L000599",
+    "L000602",
+    "M001184",
+    "M001195",
+    "N000002",
+    "N000147",
+    "N000191",
+    "O000175",
+    "P000607",
+    "R000606",
+    "S000929",
+    "T000468"
+  ],
+  "id": "hr1249-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Agriculture.",
+  "latest_action_date": "2023-02-28",
+  "number": 1249,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1249",
+  "sponsor_id": "M000194",
+  "subjects": [],
+  "title_official": "Opportunities for Fairness in Farming Act of 2023",
+  "type": "hr"
+}

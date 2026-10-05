@@ -1,0 +1,83 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "B001243",
+    "B001261",
+    "B001267",
+    "B001310",
+    "C000174",
+    "C001035",
+    "C001047",
+    "C001070",
+    "C001095",
+    "C001096",
+    "D000618",
+    "G000555",
+    "H001079",
+    "K000367",
+    "L000575",
+    "M000639",
+    "M000934",
+    "M001153",
+    "M001198",
+    "R000595",
+    "S001191",
+    "S001203",
+    "T000476",
+    "V000137",
+    "W000437",
+    "W000805",
+    "Y000064"
+  ],
+  "id": "s626-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-03-02",
+  "number": 626,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/626",
+  "sponsor_id": "S000770",
+  "subjects": [
+    "Adult day care",
+    "Drug therapy",
+    "Emergency medical services and trauma care",
+    "Health care coverage and access",
+    "Health care quality",
+    "Health promotion and preventive care",
+    "Home and outpatient care",
+    "Medicaid",
+    "Medical tests and diagnostic methods",
+    "Medicare",
+    "Mental health",
+    "Minority health",
+    "Neurological disorders"
+  ],
+  "title_official": "Comprehensive Care for Alzheimer’s Act",
+  "type": "s"
+}

@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR E76)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000370",
+    "C001125",
+    "E000296",
+    "G000551",
+    "G000553",
+    "K000400",
+    "L000601",
+    "N000147",
+    "T000193",
+    "T000483",
+    "T000487",
+    "V000130",
+    "W000822",
+    "W000826"
+  ],
+  "id": "hr654-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2023-01-31",
+  "number": 654,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/654",
+  "sponsor_id": "C001072",
+  "subjects": [
+    "Education of the disadvantaged",
+    "Education programs funding",
+    "Elementary and secondary education",
+    "Employment and training programs",
+    "Higher education",
+    "National and community service",
+    "Teaching, teachers, curricula",
+    "Temporary and part-time employment",
+    "Wages and earnings"
+  ],
+  "title_official": "Students Helping Young Students Act of 2023",
+  "type": "hr"
+}

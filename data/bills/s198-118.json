@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "B001267",
+    "D000563",
+    "L000571",
+    "P000595",
+    "R000608",
+    "S001191",
+    "S001203"
+  ],
+  "id": "s198-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-02-01",
+  "number": 198,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/198",
+  "sponsor_id": "B001261",
+  "subjects": [
+    "Drug safety, medical device, and laboratory regulation",
+    "Family planning and birth control",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Health personnel",
+    "Health promotion and preventive care",
+    "Medical research",
+    "Medicare",
+    "Mental health",
+    "Research and development",
+    "Retail and wholesale trades",
+    "Rural conditions and development",
+    "Women's health"
+  ],
+  "title_official": "Rural Health Clinic Burden Reduction Act",
+  "type": "s"
+}

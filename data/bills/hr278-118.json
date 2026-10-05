@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "National Intelligence Enterprise Subcommittee"
+      ],
+      "date": "2023-02-07",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on the National Intelligence Enterprise.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-01-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Intelligence (Permanent Select).",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr278-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on the National Intelligence Enterprise.",
+  "latest_action_date": "2023-02-07",
+  "number": 278,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/278",
+  "sponsor_id": "J000032",
+  "subjects": [
+    "Computer security and identity theft",
+    "Congressional oversight",
+    "Emergency communications systems",
+    "Emergency planning and evacuation",
+    "Government studies and investigations",
+    "Military civil functions",
+    "Military command and structure",
+    "Military education and training",
+    "National Guard and reserves",
+    "Natural disasters",
+    "Terrorism"
+  ],
+  "title_official": "Cyber Defense National Guard Act",
+  "type": "hr"
+}

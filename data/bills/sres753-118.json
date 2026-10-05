@@ -1,0 +1,94 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-08-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (text: 7/9/2024 CR S4269)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-08-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (text: 7/9/2024 CR S4269)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2024-08-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent. (consideration: CR S5836)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2024-08-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent. (consideration: CR S5836)",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001111",
+    "W000790"
+  ],
+  "id": "sres753-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (text: 7/9/2024 CR S4269)",
+  "latest_action_date": "2024-08-01",
+  "number": 753,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/753",
+  "sponsor_id": "O000174",
+  "subjects": [
+    "Afghanistan",
+    "Asia",
+    "Detention of persons",
+    "Human rights",
+    "Middle East",
+    "Qatar"
+  ],
+  "title_official": "A resolution calling for the immediate release of George Glezmann, a United States citizen who was wrongfully detained by the Taliban on December 5, 2022, and condemning the wrongful detention of all Americans by the Taliban.",
+  "type": "sres"
+}

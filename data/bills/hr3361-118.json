@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Communications and Technology Subcommittee"
+      ],
+      "date": "2023-05-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Communications and Technology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr3361-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Communications and Technology.",
+  "latest_action_date": "2023-05-19",
+  "number": 3361,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3361",
+  "sponsor_id": "C001097",
+  "subjects": [
+    "Computers and information technology",
+    "Congressional oversight",
+    "Government information and archives",
+    "Internet, web applications, social media",
+    "Technology assessment"
+  ],
+  "title_official": "To direct the Assistant Secretary of Commerce for Communications and Information to submit a report on the digital divide and to update the Indicators of Broadband Need mapping application, and for other purposes.",
+  "type": "hr"
+}

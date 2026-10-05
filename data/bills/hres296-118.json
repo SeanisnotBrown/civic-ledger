@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H2080)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-04-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres296-118",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H2080)",
+  "latest_action_date": "2023-04-27",
+  "number": 296,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/296",
+  "sponsor_id": "S001215",
+  "subjects": [],
+  "title_official": "Expressing support for the designation of April 13, 2023, as \"Remanufacturing Day\".",
+  "type": "hres"
+}

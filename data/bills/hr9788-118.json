@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001112",
+    "G000585",
+    "L000582",
+    "L000593",
+    "S000344",
+    "T000472"
+  ],
+  "id": "hr9788-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2024-09-24",
+  "number": 9788,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9788",
+  "sponsor_id": "S001156",
+  "subjects": [],
+  "title_official": "To amend the Internal Revenue Code of 1986 to disregard veteran disability compensation or pension payments in determining income for purposes of the low income housing tax credit and qualified residential rental project bonds.",
+  "type": "hr"
+}

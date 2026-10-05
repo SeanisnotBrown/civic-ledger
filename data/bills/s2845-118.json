@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "S001217"
+  ],
+  "id": "s2845-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+  "latest_action_date": "2023-09-19",
+  "number": 2845,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2845",
+  "sponsor_id": "R000595",
+  "subjects": [
+    "Disaster relief and insurance",
+    "Government lending and loan guarantees",
+    "Housing and community development funding",
+    "Small business"
+  ],
+  "title_official": "Disaster Assistance Simplification Act",
+  "type": "s"
+}

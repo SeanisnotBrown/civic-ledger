@@ -1,0 +1,127 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 436.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 118-524.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 118-524.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by the Yeas and Nays: 30 - 2.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-02-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-02-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-04-17T20:01:00Z",
+      "title": "H.R. 1166, Public Health Emergency Medical Supplies Enhancement Act of 2023",
+      "url": "https://www.cbo.gov/publication/59049"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H001072"
+  ],
+  "id": "hr1166-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 436.",
+  "latest_action_date": "2024-05-23",
+  "number": 1166,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1166",
+  "sponsor_id": "V000130",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Emergency medical services and trauma care",
+    "Health promotion and preventive care",
+    "Health technology, devices, supplies",
+    "Manufacturing",
+    "Military procurement, research, weapons development",
+    "Public contracts and procurement",
+    "Small business",
+    "Strategic materials and reserves"
+  ],
+  "title_official": "Public Health Emergency Medical Supplies Enhancement Act of 2023",
+  "type": "hr"
+}

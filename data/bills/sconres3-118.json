@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S211-212)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "B001310",
+    "C001095",
+    "C001096",
+    "C001098",
+    "H001061",
+    "H001079",
+    "H001089",
+    "L000575",
+    "L000577",
+    "R000584",
+    "R000595",
+    "S001198",
+    "S001217",
+    "T000250",
+    "T000476",
+    "W000437"
+  ],
+  "id": "sconres3-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S211-212)",
+  "latest_action_date": "2023-02-01",
+  "number": 3,
+  "policy_area": "Civil Rights and Liberties, Minority Issues",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-concurrent-resolution/3",
+  "sponsor_id": "D000618",
+  "subjects": [
+    "Commemorative events and holidays",
+    "First Amendment rights",
+    "Human rights",
+    "Religion",
+    "U.S. history",
+    "Virginia"
+  ],
+  "title_official": "A concurrent resolution affirming the importance of religious freedom as a fundamental human right that is essential to a free society and protected for all people of the United States under the Constitution of the United States, and recognizing the 237th anniversary of the enactment of the Virginia Statute for Religious Freedom.",
+  "type": "sconres"
+}

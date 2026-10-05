@@ -1,0 +1,105 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-05-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 372.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2024-05-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Reported by Senator Cardin with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2024-05-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Reported by Senator Cardin with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2024-04-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-06-14T14:50:00Z",
+      "title": "S. 2336, Making Iran Sanctions Stick In Lieu of Expiration of Sanctions Act",
+      "url": "https://www.cbo.gov/publication/60400"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000386",
+    "H000601",
+    "R000618"
+  ],
+  "id": "s2336-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 372.",
+  "latest_action_date": "2024-05-07",
+  "number": 2336,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2336",
+  "sponsor_id": "M000639",
+  "subjects": [
+    "Arms control and nonproliferation",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Iran",
+    "Middle East",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sanctions",
+    "Trade restrictions",
+    "Visas and passports"
+  ],
+  "title_official": "MISSILES Act",
+  "type": "s"
+}

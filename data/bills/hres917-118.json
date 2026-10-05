@@ -1,0 +1,86 @@
+{
+  "actions": [
+    {
+      "action_code": "H1B000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to the provisions of H. Res. 918, H. Res. 917 is considered passed House. (consideration: CR H6924; text: CR H6924)",
+      "time": "18:00:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-12-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: Pursuant to the provisions of H. Res. 918, H. Res. 917 is considered passed House.",
+      "time": "18:00:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres917-118",
+  "jurisdiction": "us",
+  "latest_action": "Pursuant to the provisions of H. Res. 918, H. Res. 917 is considered passed House. (consideration: CR H6924; text: CR H6924)",
+  "latest_action_date": "2023-12-13",
+  "number": 917,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/917",
+  "sponsor_id": "A000377",
+  "subjects": [
+    "Congressional committees",
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Constitution and constitutional amendments",
+    "Evidence and witnesses",
+    "Government ethics and transparency, public corruption",
+    "Government information and archives",
+    "Government studies and investigations",
+    "House Committee on Oversight and Reform",
+    "House Committee on Ways and Means",
+    "House Committee on the Judiciary",
+    "House of Representatives",
+    "Intelligence activities, surveillance, classified information",
+    "Legislative rules and procedure",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
+  "title_official": "Authorizing the enforcement of subpoenas issued by the Chairs of the Committees on Oversight and Accountability, Ways and Means, or the Judiciary as part of the inquiry into whether sufficient grounds exist for the House of Representatives to exercise its Constitutional power to impeach Joseph Biden, President of the United States of America, and for other purposes.",
+  "type": "hres"
+}

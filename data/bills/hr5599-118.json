@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Development, Public Buildings, and Emergency Management Subcommittee"
+      ],
+      "date": "2023-09-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Development, Public Buildings, and Emergency Management.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Emergency Management and Technology Subcommittee"
+      ],
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Emergency Management and Technology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000032",
+    "G000577",
+    "H001094",
+    "L000599",
+    "M001219",
+    "M001220",
+    "S000168"
+  ],
+  "id": "hr5599-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Economic Development, Public Buildings, and Emergency Management.",
+  "latest_action_date": "2023-09-21",
+  "number": 5599,
+  "policy_area": "Emergency Management",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5599",
+  "sponsor_id": "M001217",
+  "subjects": [
+    "Administrative remedies",
+    "Emergency planning and evacuation",
+    "Executive agency funding and structure",
+    "Federal Emergency Management Agency (FEMA)",
+    "Government employee pay, benefits, personnel management"
+  ],
+  "title_official": "FEMA Independence Act of 2023",
+  "type": "hr"
+}

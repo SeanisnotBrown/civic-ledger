@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2023-08-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "F000466",
+    "M001221",
+    "T000483"
+  ],
+  "id": "hr5137-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2023-08-04",
+  "number": 5137,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5137",
+  "sponsor_id": "B001278",
+  "subjects": [
+    "Drug, alcohol, tobacco use",
+    "Homelessness and emergency shelter",
+    "Low- and moderate-income housing",
+    "Mental health",
+    "Public housing",
+    "Unemployment"
+  ],
+  "title_official": "START Housing Act of 2023",
+  "type": "hr"
+}

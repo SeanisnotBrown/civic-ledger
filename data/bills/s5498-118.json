@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-12-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-12-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "W000800"
+  ],
+  "id": "s5498-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2024-12-12",
+  "number": 5498,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/5498",
+  "sponsor_id": "C001056",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Criminal investigation, prosecution, interrogation",
+    "Department of Justice",
+    "Drug safety, medical device, and laboratory regulation",
+    "Federal preemption",
+    "Genetics",
+    "Government information and archives",
+    "Law enforcement administration and funding",
+    "State and local government operations"
+  ],
+  "title_official": "Carla Walker Act",
+  "type": "s"
+}

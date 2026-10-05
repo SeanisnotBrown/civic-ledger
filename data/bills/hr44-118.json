@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr44-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-01-09",
+  "number": 44,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/44",
+  "sponsor_id": "J000032",
+  "subjects": [
+    "Child health",
+    "Child safety and welfare",
+    "Community life and organization",
+    "Congressional oversight",
+    "Correctional facilities and imprisonment",
+    "Criminal investigation, prosecution, interrogation",
+    "Criminal procedure and sentencing",
+    "Detention of persons",
+    "Due process and equal protection",
+    "Evidence and witnesses",
+    "Government studies and investigations",
+    "Juvenile crime and gang violence",
+    "Law enforcement administration and funding",
+    "Law enforcement officers",
+    "Lawyers and legal services",
+    "Mental health",
+    "Sound recording",
+    "State and local government operations"
+  ],
+  "title_official": "Kalief’s Law",
+  "type": "hr"
+}

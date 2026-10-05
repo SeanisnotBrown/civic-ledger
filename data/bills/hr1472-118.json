@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Conservation, Research, and Biotechnology Subcommittee"
+      ],
+      "date": "2023-04-04",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001307",
+    "B001315",
+    "C001134",
+    "C001135",
+    "D000230",
+    "E000296",
+    "F000466",
+    "L000599",
+    "M001221",
+    "P000597",
+    "R000305",
+    "S001190",
+    "W000823"
+  ],
+  "id": "hr1472-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+  "latest_action_date": "2023-04-04",
+  "number": 1472,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1472",
+  "sponsor_id": "P000613",
+  "subjects": [],
+  "title_official": "Plant Biostimulant Act",
+  "type": "hr"
+}

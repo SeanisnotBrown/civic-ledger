@@ -1,0 +1,111 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy Subcommittee"
+      ],
+      "date": "2024-02-02",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "B001295",
+    "B001309",
+    "C001116",
+    "C001120",
+    "D000032",
+    "E000071",
+    "E000298",
+    "F000246",
+    "F000450",
+    "F000475",
+    "G000576",
+    "G000579",
+    "H001067",
+    "H001086",
+    "H001096",
+    "I000056",
+    "J000304",
+    "K000392",
+    "L000564",
+    "L000589",
+    "L000600",
+    "M001194",
+    "M001205",
+    "M001211",
+    "N000189",
+    "N000190",
+    "O000175",
+    "P000599",
+    "P000609",
+    "R000103",
+    "R000603",
+    "R000610",
+    "R000612",
+    "S001172",
+    "S001196",
+    "S001212",
+    "S001224",
+    "T000478",
+    "T000480",
+    "V000133",
+    "V000134",
+    "V000135",
+    "W000814",
+    "Y000067"
+  ],
+  "id": "hjres111-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy, Climate and Grid Security.",
+  "latest_action_date": "2024-02-02",
+  "number": 111,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/111",
+  "sponsor_id": "F000470",
+  "subjects": [
+    "Energy efficiency and conservation",
+    "Oil and gas"
+  ],
+  "title_official": "Disapproving the rule submitted by the Department of Energy relating to \"Energy Conservation Program: Energy Conservation Standards for Consumer Furnaces\".",
+  "type": "hjres"
+}

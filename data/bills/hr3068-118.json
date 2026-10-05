@@ -1,0 +1,130 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-05-05",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001223",
+    "B001224",
+    "B001313",
+    "C001067",
+    "C001072",
+    "C001130",
+    "G000551",
+    "J000288",
+    "L000551",
+    "M001225",
+    "N000002",
+    "N000147",
+    "P000604",
+    "Q000023",
+    "S000510",
+    "S001185",
+    "S001205",
+    "T000193",
+    "T000472",
+    "V000081",
+    "W000822"
+  ],
+  "id": "hr3068-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2024-12-17",
+  "number": 3068,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3068",
+  "sponsor_id": "S001150",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Administrative remedies",
+    "Advisory bodies",
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Department of Health and Human Services",
+    "Disability and health-based discrimination",
+    "Executive agency funding and structure",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Health care coverage and access",
+    "Health care quality",
+    "Health facilities and institutions",
+    "Health information and medical records",
+    "Health programs administration and funding",
+    "Hospital care",
+    "Licensing and registrations",
+    "Medicaid",
+    "Medicare",
+    "Minority health",
+    "State and local government operations"
+  ],
+  "title_official": "Equal Health Care for All Act",
+  "type": "hr"
+}

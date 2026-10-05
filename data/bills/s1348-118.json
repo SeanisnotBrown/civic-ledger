@@ -1,0 +1,159 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2024-12-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "10:13:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2024-12-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "10:12:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Voice Vote. (consideration: CR S7288-7297; text: CR S7288-7292)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-12-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 422.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2024-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Manchin with an amendment in the nature of a substitute. With written report No. 118-185.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2024-06-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Manchin with an amendment in the nature of a substitute. With written report No. 118-185.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Public Lands, Forests, and Mining Subcommittee"
+      ],
+      "date": "2023-10-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held. With printed Hearing: S.Hrg. 118-311.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000571"
+  ],
+  "id": "s1348-118",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2024-12-24",
+  "number": 1348,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1348",
+  "sponsor_id": "B001261",
+  "subjects": [
+    "Congressional oversight",
+    "Fires",
+    "Forests, forestry, trees",
+    "Government studies and investigations",
+    "Land transfers",
+    "Land use and conservation",
+    "Wilderness and natural areas, wildlife refuges, wild rivers, habitats",
+    "Wyoming"
+  ],
+  "title_official": "Wyoming Public Lands Initiative Act of 2023",
+  "type": "s"
+}

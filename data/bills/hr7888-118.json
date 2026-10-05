@@ -1,4 +1,550 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-49.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-49.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-19",
+      "rollcall_id": "s-118-2-0150",
+      "source_system": "Senate",
+      "text": "Passed Senate, under the order of 4/19/2024, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 60 - 34. Record Vote Number: 150.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-04-19",
+      "rollcall_id": "s-118-2-0150",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate, under the order of 4/19/2024, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 60 - 34. Record Vote Number: 150.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by motion. (consideration: CR S2921-2928)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-19",
+      "rollcall_id": "s-118-2-0143",
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure agreed to in Senate by Yea-Nay Vote. 62 - 30. Record Vote Number: 143.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S2907)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-18",
+      "rollcall_id": "s-118-2-0141",
+      "source_system": "Senate",
+      "text": "Cloture on the motion to proceed to the measure invoked in Senate by Yea-Nay Vote. 67 - 32. Record Vote Number: 141. (CR S2838)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S2833)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S2797)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to proceed to the measure presented in Senate. (CR S2762)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S2762)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 365.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate. Read the first time. Placed on Senate Legislative Calendar under Read the First Time. (Legislative Day April 10, 2024).",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table.",
+      "time": "19:03:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36610",
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": "h-118-2-0120",
+      "source_system": "House floor actions",
+      "text": "On motion to table the motion to reconsider Agreed to by recorded vote: 259 - 128 (Roll no. 120).",
+      "time": "19:03:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H82000",
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Turner moved to table the motion to reconsider",
+      "time": "18:32:16",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-04-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H2382-2383)",
+      "time": "18:31:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - The Chair put the question on the motion to table the motion to reconsider and by voice vote announced that the ayes had prevailed. Mrs. Luna demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:03:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H82000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Turner moved to table the motion to reconsider",
+      "time": "13:03:55",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H36600",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Lee (FL) moved to reconsider.",
+      "time": "13:02:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid upon the table. Objection heard.",
+      "time": "13:01:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": "h-118-2-0119",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by recorded vote: 273 - 147 (Roll no. 119).",
+      "time": "13:01:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": "h-118-2-0119",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by recorded vote: 273 - 147 (Roll no. 119).",
+      "time": "13:01:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House adopted the amendments en gross as agreed to by the Committee of the Whole House on the state of the Union.",
+      "time": "12:51:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "12:51:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 7888.",
+      "time": "12:50:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Turner amendment No. 6, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Mr. Turner demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "time": "11:54:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1137, the Committee of the Whole proceeded with 10 minutes of debate on the Turner amendment No. 6.",
+      "time": "11:46:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Waltz amendment No. 5, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Ms. Jayapal demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "time": "11:45:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1137, the Committee of the Whole proceeded with 10 minutes of debate on the Waltz amendment No. 5.",
+      "time": "11:34:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Crenshaw amendment No. 4, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Crenshaw demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "time": "11:33:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1137, the Committee of the Whole proceeded with 10 minutes of debate on the Crenshaw amendment No. 4.",
+      "time": "11:22:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1137, the Committee of the Whole proceeded with 10 minutes of debate on the Cline amendment No. 3.",
+      "time": "11:12:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Roy amendment No. 2, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Turner demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "time": "11:12:08",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1137, the Committee of the Whole proceeded with 10 minutes of debate on the Roy amendment No. 2.",
+      "time": "11:04:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Biggs amendment No. 1, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Turner demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "time": "11:03:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1137, the Committee of the Whole proceeded with 10 minutes of debate on the Biggs amendment No. 1.",
+      "time": "10:51:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 7888.",
+      "time": "09:41:47",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable Daniel Meuser to act as Chairman of the Committee.",
+      "time": "09:40:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 1137 and Rule XVIII.",
+      "time": "09:40:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 7888, H.R. 529, H. Res. 1112 and H. Res. 1117. The resolution provides for consideration of H.R. 7888 under a structured rule and H.R. 529, H. Res. 1112, and H. Res. 1117 each under a closed rule. Rule provides for one hour of general debate on H.R. 7888, H.R. 529, H. Res. 1112, and H. Res. 1117. Motion to recommit allowed on H.R. 7888 and H.R. 529.",
+      "time": "09:39:58",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1137. (consideration: CR H2328-2359; text: CR H2337-2345)",
+      "time": "09:39:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2024-04-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1137 Reported to House. Rule provides for consideration of H.R. 7888, H.R. 529, H. Res. 1112 and H. Res. 1117. The resolution provides for consideration of H.R. 7888 under a structured rule and H.R. 529, H. Res. 1112, and H. Res. 1117 each under a closed rule. Rule provides for one hour of general debate on H.R. 7888, H.R. 529, H. Res. 1112, and H. Res. 1117. Motion to recommit allowed on H.R. 7888 and H.R. 529.",
+      "time": "07:08:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2024-04-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1125 Reported to House. Rule provides for consideration of H.R. 7888, H.R. 529, H. Res. 1112 and H. Res. 1117. The resolution provides for consideration of H.R. 7888 under a structured rule and H.R. 529, H. Res. 1112, and H. Res. 1117 each under a closed rule. The rule provides for two hours of general debate on H.R. 7888 and one hour of general debate on H.R. 529, H. Res. 1112, and H. Res. 1117. Motion to recommit provided on H.R. 7888 and H.R. 529.",
+      "time": "10:09:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2024-04-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-04-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 118,
   "cosponsor_ids": [],

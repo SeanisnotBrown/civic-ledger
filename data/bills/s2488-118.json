@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-12-18T19:00:00Z",
+      "title": "The Budgetary and Economic Effects of S. 2488, the Raise the Wage Act of 2023",
+      "url": "https://www.cbo.gov/publication/59833"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001230",
+    "B001277",
+    "B001288",
+    "B001320",
+    "C000127",
+    "C000141",
+    "D000563",
+    "D000622",
+    "F000062",
+    "F000479",
+    "G000555",
+    "H001042",
+    "K000367",
+    "K000384",
+    "M000133",
+    "M001111",
+    "M001169",
+    "M001176",
+    "P000145",
+    "P000595",
+    "R000122",
+    "S000770",
+    "S001194",
+    "S001203",
+    "V000128",
+    "W000779",
+    "W000790",
+    "W000800",
+    "W000802",
+    "W000817"
+  ],
+  "id": "s2488-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+  "latest_action_date": "2023-07-25",
+  "number": 2488,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2488",
+  "sponsor_id": "S000033",
+  "subjects": [],
+  "title_official": "Raise the Wage Act of 2023",
+  "type": "s"
+}

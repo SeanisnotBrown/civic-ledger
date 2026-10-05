@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-10-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-10-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-10-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001303",
+    "B001313",
+    "C001059",
+    "C001130",
+    "M000312",
+    "P000613",
+    "S000168",
+    "T000487"
+  ],
+  "id": "hres783-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Oversight and Accountability.",
+  "latest_action_date": "2023-10-25",
+  "number": 783,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/783",
+  "sponsor_id": "P000597",
+  "subjects": [],
+  "title_official": "Supporting the designation of October 16, 2023, and October 16, 2024, as \"World Food Day\".",
+  "type": "hres"
+}

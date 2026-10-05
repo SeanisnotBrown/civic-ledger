@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-01-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s48-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-01-24",
+  "number": 48,
+  "policy_area": "Families",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/48",
+  "sponsor_id": "R000595",
+  "subjects": [
+    "Child care and development",
+    "Child health",
+    "Community life and organization",
+    "Congressional oversight",
+    "Family planning and birth control",
+    "Family services",
+    "Government studies and investigations",
+    "Mental health",
+    "Performance measurement",
+    "Sex and reproductive health",
+    "Women's health"
+  ],
+  "title_official": "Community Mentors for Moms Act",
+  "type": "s"
+}

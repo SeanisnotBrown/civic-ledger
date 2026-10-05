@@ -1,0 +1,112 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 21.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on the Judiciary. Reported by Senator Durbin with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on the Judiciary. Reported by Senator Durbin with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on the Judiciary. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-01-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-03-13T15:24:00Z",
+      "title": "S. 148, Stop STALLING Act",
+      "url": "https://www.cbo.gov/publication/60084"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "B001288",
+    "B001310",
+    "C001098",
+    "D000563",
+    "G000386",
+    "O000174",
+    "W000800"
+  ],
+  "id": "s148-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 21.",
+  "latest_action_date": "2023-03-01",
+  "number": 148,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/148",
+  "sponsor_id": "K000367",
+  "subjects": [
+    "Administrative remedies",
+    "Business ethics",
+    "Civil actions and liability",
+    "Competition and antitrust",
+    "Department of Health and Human Services",
+    "Drug safety, medical device, and laboratory regulation",
+    "Food and Drug Administration (FDA)",
+    "Licensing and registrations",
+    "Prescription drugs",
+    "Public participation and lobbying"
+  ],
+  "title_official": "Stop STALLING Act",
+  "type": "s"
+}

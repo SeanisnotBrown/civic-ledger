@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "B001319",
+    "C001098",
+    "L000577",
+    "V000137"
+  ],
+  "id": "s696-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-08",
+  "number": 696,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/696",
+  "sponsor_id": "T000278",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Detention of persons",
+    "Government liability",
+    "Immigration status and procedures",
+    "Intergovernmental relations",
+    "Visas and passports"
+  ],
+  "title_official": "Border Safety and Security Act of 2023",
+  "type": "s"
+}

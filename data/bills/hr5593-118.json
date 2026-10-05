@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Trade Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Trade.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "W000821"
+  ],
+  "id": "hr5593-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Trade.",
+  "latest_action_date": "2024-12-17",
+  "number": 5593,
+  "policy_area": "Foreign Trade and International Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5593",
+  "sponsor_id": "H001038",
+  "subjects": [],
+  "title_official": "To amend the Trade Act of 1974 to exempt from the Generalized System of Preferences certain tire articles, and for other purposes.",
+  "type": "hr"
+}

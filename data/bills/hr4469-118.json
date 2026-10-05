@@ -1,0 +1,157 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-09-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 136.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 118-172.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 118-172.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 26 - 22.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by the Yeas and Nays: 12 - 7 .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2023-07-07",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Environment, Manufacturing, and Critical Materials.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-10-18T20:30:00Z",
+      "title": "H.R. 4469, No Fuel Credits for Batteries Act of 2023",
+      "url": "https://www.cbo.gov/publication/59669"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000568",
+    "M001215"
+  ],
+  "id": "hr4469-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 136.",
+  "latest_action_date": "2023-09-01",
+  "number": 4469,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4469",
+  "sponsor_id": "P000615",
+  "subjects": [
+    "Alternative and renewable resources",
+    "Energy storage, supplies, demand",
+    "Motor fuels"
+  ],
+  "title_official": "No Fuel Credits for Batteries Act of 2023",
+  "type": "hr"
+}

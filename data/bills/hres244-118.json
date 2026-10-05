@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000032",
+    "L000564",
+    "M001210",
+    "V000133"
+  ],
+  "id": "hres244-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-03-22",
+  "number": 244,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/244",
+  "sponsor_id": "L000578",
+  "subjects": [
+    "Firearms and explosives",
+    "Manufacturing"
+  ],
+  "title_official": "Expressing the sense of the House of Representatives that mandates imposed on manufacturers requiring inclusion of unproven and unreliable technology in firearms is costly and punitive, and the prohibition of firearms without such features is an infringement on the rights of citizens under the Second Amendment.",
+  "type": "hres"
+}

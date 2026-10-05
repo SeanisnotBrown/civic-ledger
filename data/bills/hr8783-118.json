@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-06-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-06-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-06-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000617",
+    "J000298",
+    "K000381",
+    "S000510",
+    "S001159",
+    "S001216"
+  ],
+  "id": "hr8783-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2024-06-18",
+  "number": 8783,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8783",
+  "sponsor_id": "L000560",
+  "subjects": [
+    "Advisory bodies",
+    "Aquatic ecology",
+    "Ecology",
+    "Environmental assessment, monitoring, research",
+    "Intergovernmental relations",
+    "Marine and coastal resources, fisheries",
+    "Pacific Ocean",
+    "Seashores and lakeshores",
+    "State and local government operations",
+    "Washington State",
+    "Water quality",
+    "Wetlands",
+    "Wildlife conservation and habitat protection"
+  ],
+  "title_official": "Northwest Straits Marine Conservation Initiative Reauthorization Act of 2024",
+  "type": "hr"
+}

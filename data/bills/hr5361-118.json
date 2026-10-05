@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2023-09-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "C001055",
+    "C001080",
+    "C001112",
+    "C001130",
+    "F000454",
+    "F000477",
+    "G000582",
+    "G000583",
+    "G000599",
+    "H001085",
+    "L000582",
+    "M001227",
+    "N000147",
+    "P000614",
+    "P000616",
+    "S001226",
+    "T000487",
+    "V000081"
+  ],
+  "id": "hr5361-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Small Business.",
+  "latest_action_date": "2023-09-08",
+  "number": 5361,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5361",
+  "sponsor_id": "D000629",
+  "subjects": [
+    "Business education",
+    "Government information and archives",
+    "Small Business Administration",
+    "Small business",
+    "Women in business"
+  ],
+  "title_official": "Women’s Business Centers Improvement Act of 2023",
+  "type": "hr"
+}

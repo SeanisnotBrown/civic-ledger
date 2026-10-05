@@ -1,0 +1,82 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2023-11-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Banking, Housing, and Urban Affairs. Hearings held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-02-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-03-06T20:57:00Z",
+      "title": "S. 185, Native American Direct Loan Improvement Act of 2023",
+      "url": "https://www.cbo.gov/publication/58958"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "K000377",
+    "K000383",
+    "P000595",
+    "S001198",
+    "T000464"
+  ],
+  "id": "s185-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Banking, Housing, and Urban Affairs. Hearings held.",
+  "latest_action_date": "2023-11-02",
+  "number": 185,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/185",
+  "sponsor_id": "R000605",
+  "subjects": [
+    "Building construction",
+    "Housing finance and home ownership",
+    "Indian social and development programs",
+    "Residential rehabilitation and home repair",
+    "Veterans' loans, housing, homeless programs"
+  ],
+  "title_official": "Native American Direct Loan Improvement Act of 2023",
+  "type": "s"
+}

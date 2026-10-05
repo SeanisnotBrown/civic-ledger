@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001319",
+    "C001047",
+    "W000802"
+  ],
+  "id": "s2464-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+  "latest_action_date": "2023-07-25",
+  "number": 2464,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2464",
+  "sponsor_id": "S001181",
+  "subjects": [
+    "Cancer",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Medical tests and diagnostic methods",
+    "Women's health"
+  ],
+  "title_official": "Access to Breast Cancer Diagnosis Act of 2023",
+  "type": "s"
+}

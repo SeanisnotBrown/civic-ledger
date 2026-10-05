@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "T000250"
+  ],
+  "id": "s1162-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+  "latest_action_date": "2023-03-30",
+  "number": 1162,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1162",
+  "sponsor_id": "R000608",
+  "subjects": [
+    "Department of Commerce",
+    "Executive agency funding and structure",
+    "Geography and mapping",
+    "Government information and archives",
+    "Internet, web applications, social media"
+  ],
+  "title_official": "Accurate Map for Broadband Investment Act of 2023",
+  "type": "s"
+}

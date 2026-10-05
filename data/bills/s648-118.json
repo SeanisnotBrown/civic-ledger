@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001056",
+    "C001075",
+    "G000359",
+    "H000273",
+    "K000377",
+    "L000570",
+    "O000174"
+  ],
+  "id": "s648-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+  "latest_action_date": "2023-03-02",
+  "number": 648,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/648",
+  "sponsor_id": "C001088",
+  "subjects": [
+    "Alternative and renewable resources",
+    "Energy efficiency and conservation",
+    "Energy storage, supplies, demand",
+    "Government lending and loan guarantees",
+    "Infrastructure development",
+    "Motor carriers"
+  ],
+  "title_official": "Hydrogen for Trucks Act of 2023",
+  "type": "s"
+}

@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-01-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "B001223",
+    "B001278",
+    "C001117",
+    "C001127",
+    "E000297",
+    "G000586",
+    "L000551",
+    "M000312",
+    "M001196",
+    "O000172",
+    "P000617",
+    "P000618",
+    "S001145",
+    "S001150",
+    "T000481",
+    "T000482"
+  ],
+  "id": "hjres16-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-01-11",
+  "number": 16,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/16",
+  "sponsor_id": "M001188",
+  "subjects": [
+    "Age discrimination",
+    "Constitution and constitutional amendments",
+    "Elections, voting, political campaign regulation",
+    "Voting rights"
+  ],
+  "title_official": "Proposing an amendment to the Constitution of the United States extending the right to vote to citizens sixteen years of age or older.",
+  "type": "hjres"
+}

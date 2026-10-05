@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Water, Wildlife and Fisheries Subcommittee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Water, Wildlife, and Fisheries.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-02-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr1061-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Water, Wildlife, and Fisheries.",
+  "latest_action_date": "2023-03-22",
+  "number": 1061,
+  "policy_area": "Water Resources Development",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1061",
+  "sponsor_id": "A000377",
+  "subjects": [
+    "Dams and canals",
+    "Electric power generation and transmission",
+    "Missouri River",
+    "North Dakota",
+    "Public contracts and procurement",
+    "Water use and supply"
+  ],
+  "title_official": "To make certain irrigation districts eligible for Pick-Sloan Missouri Basin Program pumping power, and for other purposes.",
+  "type": "hr"
+}

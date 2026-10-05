@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "General Farm Commodities, Risk Management, and Credit Subcommittee"
+      ],
+      "date": "2023-07-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "B001278",
+    "C001059",
+    "C001112",
+    "C001135",
+    "E000215",
+    "H001068",
+    "H001090",
+    "N000189",
+    "P000613",
+    "S001156"
+  ],
+  "id": "hr4308-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+  "latest_action_date": "2023-07-28",
+  "number": 4308,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4308",
+  "sponsor_id": "T000460",
+  "subjects": [
+    "Agricultural conservation and pollution",
+    "Agricultural insurance",
+    "Agricultural research",
+    "Alcoholic beverages",
+    "California",
+    "Fires",
+    "Fruit and vegetables",
+    "Oregon",
+    "Public contracts and procurement",
+    "Research and development"
+  ],
+  "title_official": "Smoke Exposure Crop Insurance Act of 2023",
+  "type": "hr"
+}

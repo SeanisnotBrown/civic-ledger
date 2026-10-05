@@ -1,0 +1,89 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-07-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001068",
+    "C001097",
+    "C001125",
+    "D000230",
+    "G000585",
+    "G000587",
+    "H001090",
+    "P000610",
+    "S001185",
+    "V000130"
+  ],
+  "id": "hr4985-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-07-28",
+  "number": 4985,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4985",
+  "sponsor_id": "C001059",
+  "subjects": [
+    "Building construction",
+    "Congressional oversight",
+    "Education of the disadvantaged",
+    "Education programs funding",
+    "Educational facilities and institutions",
+    "Government information and archives",
+    "Health care coverage and access",
+    "Health personnel",
+    "Health programs administration and funding",
+    "Higher education",
+    "Medical education",
+    "Minority education",
+    "Minority employment",
+    "Rural conditions and development",
+    "Teaching, teachers, curricula"
+  ],
+  "title_official": "Expanding Medical Education Act",
+  "type": "hr"
+}

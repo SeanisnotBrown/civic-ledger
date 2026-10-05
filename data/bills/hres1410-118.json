@@ -1,0 +1,97 @@
+{
+  "actions": [
+    {
+      "action_code": "H2E000",
+      "committees": null,
+      "date": "2024-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Laid on the table.",
+      "time": "10:25:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-11-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "UNANIMOUS CONSENT REQUEST - Mr. Luttrell asked unanimous consent that H. Res. 1410 be laid on the table. Agreed to without objection.",
+      "time": "10:22:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12450",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2024-09-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to discharge the Committee on Rules filed by Mr. Graves (LA). Assigned to the Discharge Calendar, Calendar No. 2. (consideration: CR H5520-5521)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H17000",
+      "committees": null,
+      "date": "2024-09-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to Discharge Committee filed by Mr. Graves (LA). Petition No: 118-16. (<a href=\"https://clerk.house.gov/DischargePetition/2024091016?Page=2&CongressNum=118\">Discharge petition</a> text with signatures)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2024-08-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-08-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-08-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "S001209"
+  ],
+  "id": "hres1410-118",
+  "jurisdiction": "us",
+  "latest_action": "Laid on the table.",
+  "latest_action_date": "2024-11-15",
+  "number": 1410,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1410",
+  "sponsor_id": "G000577",
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
+  "title_official": "Providing for the consideration of the bill (H.R. 82) to amend title II of the Social Security Act to repeal the Government pension offset and windfall elimination provisions.",
+  "type": "hres"
+}

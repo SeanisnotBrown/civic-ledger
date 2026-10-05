@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001070",
+    "F000479",
+    "M001176",
+    "P000595"
+  ],
+  "id": "s2294-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Veterans' Affairs.",
+  "latest_action_date": "2023-07-13",
+  "number": 2294,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2294",
+  "sponsor_id": "S000770",
+  "subjects": [
+    "Cancer",
+    "Cardiovascular and respiratory health",
+    "Congressional oversight",
+    "Digestive and metabolic diseases",
+    "Disability and paralysis",
+    "Hazardous wastes and toxic substances",
+    "Hospital care",
+    "Military facilities and property",
+    "Military personnel and dependents",
+    "National Guard and reserves",
+    "Veterans' medical care",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "VET PFAS Act",
+  "type": "s"
+}

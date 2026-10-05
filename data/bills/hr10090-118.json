@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-11-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-11-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-11-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000380",
+    "B001285",
+    "C001061",
+    "C001066",
+    "C001067",
+    "C001117",
+    "C001127",
+    "G000598",
+    "G000599",
+    "J000288",
+    "M001196",
+    "N000147",
+    "N000191",
+    "Q000023",
+    "R000305",
+    "T000460"
+  ],
+  "id": "hr10090-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-11-01",
+  "number": 10090,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/10090",
+  "sponsor_id": "K000385",
+  "subjects": [],
+  "title_official": "Keeping Guns from High-Risk Individuals Act",
+  "type": "hr"
+}

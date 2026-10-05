@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-07-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "Q000023",
+    "T000487"
+  ],
+  "id": "hr9008-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Energy and Commerce.",
+  "latest_action_date": "2024-07-11",
+  "number": 9008,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9008",
+  "sponsor_id": "G000598",
+  "subjects": [
+    "Hazardous wastes and toxic substances",
+    "Health programs administration and funding",
+    "Infectious and parasitic diseases",
+    "Water quality"
+  ],
+  "title_official": "SEWER Act",
+  "type": "hr"
+}

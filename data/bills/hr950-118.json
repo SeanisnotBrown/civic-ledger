@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001257",
+    "B001285",
+    "C001039",
+    "C001055",
+    "D000032",
+    "D000628",
+    "G000582",
+    "M001217",
+    "S000522",
+    "S001214",
+    "W000804",
+    "W000823"
+  ],
+  "id": "hr950-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Armed Services.",
+  "latest_action_date": "2023-02-09",
+  "number": 950,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/950",
+  "sponsor_id": "S000168",
+  "subjects": [
+    "Aquatic ecology",
+    "Congressional oversight",
+    "Government information and archives",
+    "Marine and coastal resources, fisheries"
+  ],
+  "title_official": "REEF Act",
+  "type": "hr"
+}

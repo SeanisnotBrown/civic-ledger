@@ -1,0 +1,96 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-11-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S5480; text: 10/25/2023 CR S5192-5193)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-11-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.(consideration: CR S5480; text: 10/25/2023 CR S5192-5193)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-11-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-11-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-10-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "C001047",
+    "H000273",
+    "K000383",
+    "M001169",
+    "W000817"
+  ],
+  "id": "sres427-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S5480; text: 10/25/2023 CR S5192-5193)",
+  "latest_action_date": "2023-11-13",
+  "number": 427,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/427",
+  "sponsor_id": "C001075",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Elementary and secondary education",
+    "Neurological disorders",
+    "Special education"
+  ],
+  "title_official": "A resolution calling on Congress, schools, and State and local educational agencies to recognize the significant educational implications of dyslexia that must be addressed, and designating October 2023 as \"National Dyslexia Awareness Month\".",
+  "type": "sres"
+}

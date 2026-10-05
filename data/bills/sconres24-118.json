@@ -1,0 +1,43 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Foreign Relations. (text: CR S6060)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000563",
+    "R000584"
+  ],
+  "id": "sconres24-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Foreign Relations. (text: CR S6060)",
+  "latest_action_date": "2023-12-19",
+  "number": 24,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-concurrent-resolution/24",
+  "sponsor_id": "C000141",
+  "subjects": [],
+  "title_official": "A concurrent resolution condemning the hostilities in Sudan and standing with the people of Sudan in their calls for peace and their democratic aspirations.",
+  "type": "sconres"
+}

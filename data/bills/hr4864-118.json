@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-12-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "ASSUMING FIRST SPONSPORSHIP - Mr. Strong asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4864, a bill originally introduced by Representative Gaetz, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+      "time": "14:25:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001302",
+    "B001317",
+    "C001116",
+    "C001132",
+    "G000565",
+    "L000596",
+    "P000609",
+    "S001222"
+  ],
+  "id": "hr4864-118",
+  "jurisdiction": "us",
+  "latest_action": "ASSUMING FIRST SPONSPORSHIP - Mr. Strong asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4864, a bill originally introduced by Representative Gaetz, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+  "latest_action_date": "2024-12-18",
+  "number": 4864,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4864",
+  "sponsor_id": "G000578",
+  "subjects": [],
+  "title_official": "End Birthright Citizenship Fraud Act of 2023",
+  "type": "hr"
+}

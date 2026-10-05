@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-06-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035",
+    "C001096",
+    "K000367",
+    "K000377",
+    "K000383",
+    "P000595",
+    "S000770",
+    "S001191",
+    "S001203",
+    "V000128"
+  ],
+  "id": "s1832-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-06-06",
+  "number": 1832,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1832",
+  "sponsor_id": "S001181",
+  "subjects": [
+    "Digestive and metabolic diseases",
+    "Health care coverage and access",
+    "Health promotion and preventive care",
+    "Health technology, devices, supplies",
+    "Home and outpatient care",
+    "Internet, web applications, social media",
+    "Medicare"
+  ],
+  "title_official": "Expanding Access to Diabetes Self-Management Training Act of 2023",
+  "type": "s"
+}

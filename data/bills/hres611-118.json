@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": "H17000",
+      "committees": null,
+      "date": "2023-09-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to Discharge Committee filed by Ms. DeLauro. Petition No: 118-7. (<a href=\"https://clerk.house.gov/DischargePetition/2023091207?CongressNum=118\">Discharge petition</a> text with signatures.)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres611-118",
+  "jurisdiction": "us",
+  "latest_action": "Motion to Discharge Committee filed by Ms. DeLauro. Petition No: 118-7. (<a href=\"https://clerk.house.gov/DischargePetition/2023091207?CongressNum=118\">Discharge petition</a> text with signatures.)",
+  "latest_action_date": "2023-09-12",
+  "number": 611,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/611",
+  "sponsor_id": "D000216",
+  "subjects": [
+    "House of Representatives",
+    "Legislative rules and procedure"
+  ],
+  "title_official": "Providing for consideration of the bill (H.R. 660) to amend chapter 44 of title 18, United States Code, to require the safe storage of firearms, and for other purposes.",
+  "type": "hres"
+}

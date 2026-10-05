@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000551",
+    "O000172",
+    "T000486"
+  ],
+  "id": "hr3390-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2023-05-16",
+  "number": 3390,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3390",
+  "sponsor_id": "V000081",
+  "subjects": [
+    "Congressional oversight",
+    "Government studies and investigations",
+    "Puerto Rico",
+    "U.S. territories and protectorates"
+  ],
+  "title_official": "Report on Grant Consolidation Authority for Puerto Rico Act",
+  "type": "hr"
+}

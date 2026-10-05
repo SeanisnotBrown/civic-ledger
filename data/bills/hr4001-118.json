@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-06-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H2953-2955)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr4001-118",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H2953-2955)",
+  "latest_action_date": "2023-06-15",
+  "number": 4001,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4001",
+  "sponsor_id": "S001222",
+  "subjects": [],
+  "title_official": "To prohibit arms sales, cybersecurity sales, and military sales with the People's Republic of China and the Chinese Communist Party.",
+  "type": "hr"
+}

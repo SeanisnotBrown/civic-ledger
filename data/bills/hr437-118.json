@@ -1,0 +1,86 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-01-27",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-01-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001299",
+    "F000446",
+    "G000591",
+    "R000609",
+    "V000133"
+  ],
+  "id": "hr437-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-01-27",
+  "number": 437,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/437",
+  "sponsor_id": "S001199",
+  "subjects": [
+    "Child health",
+    "Child safety and welfare",
+    "Crime prevention",
+    "Crime victims",
+    "Crimes against children",
+    "Criminal justice information and records",
+    "Domestic violence and child abuse",
+    "Family planning and birth control",
+    "Health information and medical records",
+    "Health personnel",
+    "Health programs administration and funding",
+    "Human trafficking",
+    "Sex and reproductive health",
+    "Sex offenses",
+    "Sexually transmitted diseases",
+    "State and local government operations",
+    "Violent crime"
+  ],
+  "title_official": "Reporting Accountability and Abuse Prevention Act of 2023",
+  "type": "hr"
+}

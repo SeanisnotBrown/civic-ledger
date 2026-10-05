@@ -1,0 +1,81 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2023-12-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-12-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-12-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-12-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "D000615",
+    "G000565",
+    "H001096",
+    "M001157",
+    "M001184",
+    "O000175",
+    "P000599",
+    "R000103",
+    "R000614",
+    "T000165"
+  ],
+  "id": "hr6563-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+  "latest_action_date": "2023-12-08",
+  "number": 6563,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6563",
+  "sponsor_id": "P000605",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advanced technology and technological innovations",
+    "Department of Transportation",
+    "Drug, alcohol, tobacco use",
+    "Motor vehicles",
+    "Transportation safety and security"
+  ],
+  "title_official": "No Kill Switches in Cars Act",
+  "type": "hr"
+}

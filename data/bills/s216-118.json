@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-02-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-03-22T20:52:00Z",
+      "title": "S. 216, Reinforcing Enhanced Support through Promoting Equity for Caregivers Act of 2023",
+      "url": "https://www.cbo.gov/publication/58972"
+    },
+    {
+      "date": "2023-03-22T20:52:00Z",
+      "title": "S. 216, Reinforcing Enhanced Support through Promoting Equity for Caregivers Act of 2023 ",
+      "url": "https://www.cbo.gov/publication/58972"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001088",
+    "K000377"
+  ],
+  "id": "s216-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Ordered to be reported without amendment favorably.",
+  "latest_action_date": "2023-02-16",
+  "number": 216,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/216",
+  "sponsor_id": "M000934",
+  "subjects": [
+    "Family services",
+    "Health facilities and institutions",
+    "Health promotion and preventive care",
+    "Mental health",
+    "Neurological disorders",
+    "Veterans' medical care",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "RESPECT Act of 2023",
+  "type": "s"
+}

@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Intelligence (Select) Committee"
+      ],
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Select Committee on Intelligence.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001267",
+    "C001056",
+    "C001070",
+    "H001046",
+    "K000383",
+    "M000934",
+    "R000605",
+    "W000779"
+  ],
+  "id": "s1541-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Select Committee on Intelligence.",
+  "latest_action_date": "2023-05-10",
+  "number": 1541,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1541",
+  "sponsor_id": "W000805",
+  "subjects": [],
+  "title_official": "Classification Reform Act of 2023",
+  "type": "s"
+}

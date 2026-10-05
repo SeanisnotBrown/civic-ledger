@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H783)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2023-02-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Accountability.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000490",
+    "E000246",
+    "H001072",
+    "K000394"
+  ],
+  "id": "hres111-118",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H783)",
+  "latest_action_date": "2023-02-09",
+  "number": 111,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/111",
+  "sponsor_id": "T000467",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Social work, volunteer service, charitable organizations"
+  ],
+  "title_official": "Supporting the designation of a \"Boy Scouts of America Day\" in celebration of its 113th anniversary.",
+  "type": "hres"
+}

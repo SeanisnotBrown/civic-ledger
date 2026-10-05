@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-11-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000371"
+  ],
+  "id": "hres868-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Science, Space, and Technology.",
+  "latest_action_date": "2023-11-14",
+  "number": 868,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/868",
+  "sponsor_id": "C001114",
+  "subjects": [],
+  "title_official": "Expressing support for the designation of November 15, 2023, as \"National GIS Day\".",
+  "type": "hres"
+}

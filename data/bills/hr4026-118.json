@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001219",
+    "T000486"
+  ],
+  "id": "hr4026-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2023-06-12",
+  "number": 4026,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4026",
+  "sponsor_id": "G000582",
+  "subjects": [],
+  "title_official": "To amend the Internal Revenue Code of 1986 to allow certain credits and deductions to be taken as a refundable tax credit by Puerto Rico businesses or residents, and to extend such credits and deductions to possessions of the United States.",
+  "type": "hr"
+}

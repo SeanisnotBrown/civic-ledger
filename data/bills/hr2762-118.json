@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Work and Welfare Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Work and Welfare.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001224",
+    "B001298",
+    "D000629",
+    "F000466",
+    "J000032",
+    "J000298",
+    "T000483",
+    "T000487"
+  ],
+  "id": "hr2762-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Work and Welfare.",
+  "latest_action_date": "2024-12-17",
+  "number": 2762,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2762",
+  "sponsor_id": "K000400",
+  "subjects": [],
+  "title_official": "Tribal Family Fairness Act",
+  "type": "hr"
+}

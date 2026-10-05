@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "C000174",
+    "M001190"
+  ],
+  "id": "s2481-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-07-25",
+  "number": 2481,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2481",
+  "sponsor_id": "M001183",
+  "subjects": [
+    "Drug safety, medical device, and laboratory regulation",
+    "Drug trafficking and controlled substances",
+    "Drug, alcohol, tobacco use",
+    "Health care quality",
+    "Health information and medical records",
+    "Medicaid",
+    "Prescription drugs",
+    "State and local government operations"
+  ],
+  "title_official": "IMPROVE Addiction Care Act",
+  "type": "s"
+}

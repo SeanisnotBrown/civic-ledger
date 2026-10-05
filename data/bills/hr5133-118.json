@@ -1,0 +1,87 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Conservation, Research, and Biotechnology Subcommittee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-08-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "R000606",
+    "S000185",
+    "S001168",
+    "S001209"
+  ],
+  "id": "hr5133-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+  "latest_action_date": "2023-09-19",
+  "number": 5133,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5133",
+  "sponsor_id": "W000804",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Agricultural conservation and pollution",
+    "Chesapeake Bay",
+    "Delaware",
+    "Department of Agriculture",
+    "District of Columbia",
+    "Farmland",
+    "Lakes and rivers",
+    "Land use and conservation",
+    "Marine and coastal resources, fisheries",
+    "Maryland",
+    "New York State",
+    "Pennsylvania",
+    "Virginia",
+    "Water quality",
+    "Water use and supply",
+    "Watersheds",
+    "West Virginia"
+  ],
+  "title_official": "Chesapeake Bay Conservation Acceleration Act of 2023",
+  "type": "hr"
+}

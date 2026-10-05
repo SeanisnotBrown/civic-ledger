@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000369",
+    "G000579",
+    "M001221",
+    "M001223",
+    "R000579",
+    "S001222",
+    "T000483"
+  ],
+  "id": "hr2450-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2023-03-30",
+  "number": 2450,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2450",
+  "sponsor_id": "S001209",
+  "subjects": [],
+  "title_official": "Strengthening Supply Chains Through Truck Driver Incentives Act of 2023",
+  "type": "hr"
+}

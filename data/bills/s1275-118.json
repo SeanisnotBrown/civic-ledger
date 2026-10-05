@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-04-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary. (text: CR S1347)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "M001176",
+    "W000800"
+  ],
+  "id": "s1275-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary. (text: CR S1347)",
+  "latest_action_date": "2023-04-25",
+  "number": 1275,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1275",
+  "sponsor_id": "D000563",
+  "subjects": [
+    "Civil actions and liability",
+    "Environmental health",
+    "Hazardous wastes and toxic substances",
+    "Legal fees and court costs",
+    "Veterans' pensions and compensation",
+    "Water quality"
+  ],
+  "title_official": "Protect Access to Justice for Veterans Act of 2023",
+  "type": "s"
+}

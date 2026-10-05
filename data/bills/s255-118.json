@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary. (Sponsor introductory remarks on measure: CR S235-236)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "K000383",
+    "M001153",
+    "S001191"
+  ],
+  "id": "s255-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary. (Sponsor introductory remarks on measure: CR S235-236)",
+  "latest_action_date": "2023-02-02",
+  "number": 255,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/255",
+  "sponsor_id": "C001035",
+  "subjects": [],
+  "title_official": "Asylum Seeker Work Authorization Act of 2023",
+  "type": "s"
+}

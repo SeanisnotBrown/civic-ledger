@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000668",
+    "C001116",
+    "D000615",
+    "E000246",
+    "F000472",
+    "H001058",
+    "H001095",
+    "J000301",
+    "M001194",
+    "N000190",
+    "R000603",
+    "R000609",
+    "T000467",
+    "T000478",
+    "W000795",
+    "W000814"
+  ],
+  "id": "hjres134-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-05-01",
+  "number": 134,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/134",
+  "sponsor_id": "A000377",
+  "subjects": [],
+  "title_official": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Department of Labor relating to \"Improving Protections for Workers in Temporary Agricultural Employment in the United States\".",
+  "type": "hjres"
+}

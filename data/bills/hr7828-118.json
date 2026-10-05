@@ -1,0 +1,92 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2024-03-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-03-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-03-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-03-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001223",
+    "B001278",
+    "B001281",
+    "B001285",
+    "C001067",
+    "C001068",
+    "C001078",
+    "C001080",
+    "D000624",
+    "D000631",
+    "F000462",
+    "F000476",
+    "G000553",
+    "G000587",
+    "H001081",
+    "J000288",
+    "K000375",
+    "K000385",
+    "K000389",
+    "M001160",
+    "N000147",
+    "O000173",
+    "P000607",
+    "R000617",
+    "S001150",
+    "T000468",
+    "V000081",
+    "W000797",
+    "W000822"
+  ],
+  "id": "hr7828-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+  "latest_action_date": "2024-03-29",
+  "number": 7828,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7828",
+  "sponsor_id": "T000474",
+  "subjects": [],
+  "title_official": "Pink Tax Repeal Act",
+  "type": "hr"
+}

@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "B001305",
+    "B001310",
+    "C001096",
+    "H001061",
+    "H001079",
+    "S001217",
+    "V000137",
+    "W000437"
+  ],
+  "id": "s166-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-01-31",
+  "number": 166,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/166",
+  "sponsor_id": "C001095",
+  "subjects": [
+    "Abortion",
+    "Employee leave",
+    "Government employee pay, benefits, personnel management",
+    "Income tax credits"
+  ],
+  "title_official": "HEALING Mothers and Fathers Act",
+  "type": "s"
+}

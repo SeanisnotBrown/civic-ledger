@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "B001300",
+    "C001054",
+    "C001055",
+    "C001112",
+    "D000032",
+    "D000096",
+    "G000577",
+    "K000381",
+    "K000398",
+    "M001217",
+    "P000613",
+    "P000619",
+    "S001145",
+    "T000469",
+    "T000481",
+    "T000487"
+  ],
+  "id": "hres1496-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2024-09-24",
+  "number": 1496,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1496",
+  "sponsor_id": "H001068",
+  "subjects": [],
+  "title_official": "Supporting the designation of October 23, 2024, as \"National Marine Sanctuary Day\".",
+  "type": "hres"
+}

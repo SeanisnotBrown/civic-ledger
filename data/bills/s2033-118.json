@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-06-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "B001288",
+    "D000563",
+    "G000359",
+    "G000386",
+    "H001042",
+    "H001089",
+    "W000805"
+  ],
+  "id": "s2033-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-06-15",
+  "number": 2033,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2033",
+  "sponsor_id": "K000367",
+  "subjects": [],
+  "title_official": "American Innovation and Choice Online Act",
+  "type": "s"
+}

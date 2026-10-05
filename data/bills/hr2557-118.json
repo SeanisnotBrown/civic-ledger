@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Homeland Security.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr2557-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Homeland Security.",
+  "latest_action_date": "2023-04-10",
+  "number": 2557,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2557",
+  "sponsor_id": "H001077",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Congressional oversight",
+    "Executive agency funding and structure",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives"
+  ],
+  "title_official": "CBP Workload Staffing Model Act",
+  "type": "hr"
+}

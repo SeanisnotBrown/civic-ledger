@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Conservation, Research, and Biotechnology Subcommittee"
+      ],
+      "date": "2023-09-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "General Farm Commodities, Risk Management, and Credit Subcommittee"
+      ],
+      "date": "2023-09-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-08-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000230",
+    "H001090",
+    "J000309",
+    "L000599"
+  ],
+  "id": "hr5257-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Conservation, Research, and Biotechnology.",
+  "latest_action_date": "2023-09-25",
+  "number": 5257,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5257",
+  "sponsor_id": "N000193",
+  "subjects": [
+    "Agricultural conservation and pollution",
+    "Emergency planning and evacuation",
+    "Farmland",
+    "Natural disasters",
+    "Watersheds"
+  ],
+  "title_official": "To amend the Agricultural Credit Act of 1978 to enhance the long-term protection of watersheds, and for other purposes.",
+  "type": "hr"
+}

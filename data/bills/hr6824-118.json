@@ -1,0 +1,88 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-02-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-02-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-12-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-02-29T21:29:00Z",
+      "title": "H.R. 6824, NICS Data Reporting Act",
+      "url": "https://www.cbo.gov/publication/60038"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001118",
+    "S000929"
+  ],
+  "id": "hr6824-118",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 0.",
+  "latest_action_date": "2024-02-15",
+  "number": 6824,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6824",
+  "sponsor_id": "M001184",
+  "subjects": [
+    "Congressional oversight",
+    "Criminal justice information and records",
+    "Firearms and explosives",
+    "Government information and archives"
+  ],
+  "title_official": "NICS Data Reporting Act",
+  "type": "hr"
+}

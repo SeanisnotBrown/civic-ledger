@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001075",
+    "C001113",
+    "F000062",
+    "H001076",
+    "K000377"
+  ],
+  "id": "s157-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-01-31",
+  "number": 157,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/157",
+  "sponsor_id": "G000386",
+  "subjects": [
+    "Aviation and airports",
+    "Crimes against property",
+    "Firearms and explosives",
+    "Motor vehicles",
+    "Violent crime"
+  ],
+  "title_official": "Drone Act of 2023",
+  "type": "s"
+}

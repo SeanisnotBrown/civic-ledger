@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C000059",
+    "C001114",
+    "D000628",
+    "E000298",
+    "F000446",
+    "F000465",
+    "F000470",
+    "F000471",
+    "F000475",
+    "H001091",
+    "K000376",
+    "K000392",
+    "L000585",
+    "M001204",
+    "M001205",
+    "M001224",
+    "S001172",
+    "S001214",
+    "T000478",
+    "V000134",
+    "W000815"
+  ],
+  "id": "hr3270-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2023-05-11",
+  "number": 3270,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3270",
+  "sponsor_id": "S001135",
+  "subjects": [],
+  "title_official": "Permanent Tax Cuts for American Families Act of 2023",
+  "type": "hr"
+}

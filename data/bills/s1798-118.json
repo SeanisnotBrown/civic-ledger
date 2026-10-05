@@ -1,0 +1,105 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 268.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-124.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-12-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-124.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-06-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2023-06-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-07-14T17:58:28Z",
+      "title": "S. 1798, Offices of Countering Weapons of Mass Destruction and Health Security Act of 2023",
+      "url": "https://www.cbo.gov/publication/59369"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001056"
+  ],
+  "id": "s1798-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 268.",
+  "latest_action_date": "2023-12-11",
+  "number": 1798,
+  "policy_area": "Emergency Management",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1798",
+  "sponsor_id": "P000595",
+  "subjects": [
+    "Chemical and biological weapons",
+    "Department of Homeland Security",
+    "Emergency medical services and trauma care",
+    "Emergency planning and evacuation",
+    "Executive agency funding and structure",
+    "Health personnel",
+    "Intergovernmental relations",
+    "Nuclear weapons",
+    "State and local government operations",
+    "Terrorism"
+  ],
+  "title_official": "Offices of Countering Weapons of Mass Destruction and Health Security Act of 2023",
+  "type": "s"
+}

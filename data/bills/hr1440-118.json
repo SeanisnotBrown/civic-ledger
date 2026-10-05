@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "B001295",
+    "B001302",
+    "C001063",
+    "C001119",
+    "C001129",
+    "F000475",
+    "G000583",
+    "H001052",
+    "K000398",
+    "L000585",
+    "L000589",
+    "M000871",
+    "P000614",
+    "P000615",
+    "R000576",
+    "S001212",
+    "T000165",
+    "T000483",
+    "V000129",
+    "V000135",
+    "Y000067"
+  ],
+  "id": "hr1440-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2023-03-08",
+  "number": 1440,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1440",
+  "sponsor_id": "L000578",
+  "subjects": [
+    "Motor carriers",
+    "Motor vehicles",
+    "Retail and wholesale trades",
+    "Sales and excise taxes"
+  ],
+  "title_official": "Modern, Clean, and Safe Trucks Act of 2023",
+  "type": "hr"
+}

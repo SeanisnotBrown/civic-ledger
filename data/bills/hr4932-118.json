@@ -1,0 +1,95 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2023-07-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and the Workforce, and in addition to the Committees on Energy and Commerce, and the Judiciary, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and the Workforce, and in addition to the Committees on Energy and Commerce, and the Judiciary, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and the Workforce, and in addition to the Committees on Energy and Commerce, and the Judiciary, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001110"
+  ],
+  "id": "hr4932-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Innovation, Data, and Commerce.",
+  "latest_action_date": "2023-07-28",
+  "number": 4932,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4932",
+  "sponsor_id": "N000002",
+  "subjects": [
+    "Civil actions and liability",
+    "Competition and antitrust",
+    "Contracts and agency",
+    "Employee hiring",
+    "Employment discrimination and employee rights",
+    "Labor-management relations"
+  ],
+  "title_official": "End Employer Collusion Act",
+  "type": "hr"
+}

@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-160.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-03-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M000934"
+  ],
+  "id": "s897-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-160.",
+  "latest_action_date": "2023-04-26",
+  "number": 897,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/897",
+  "sponsor_id": "T000464",
+  "subjects": [
+    "Administrative remedies",
+    "Department of Veterans Affairs",
+    "Judges",
+    "Specialized courts",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "Expedite Veteran Appeals Act of 2023",
+  "type": "s"
+}

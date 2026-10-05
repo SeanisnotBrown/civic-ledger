@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Budget.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000571"
+  ],
+  "id": "s714-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Budget.",
+  "latest_action_date": "2023-03-08",
+  "number": 714,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/714",
+  "sponsor_id": "B001261",
+  "subjects": [],
+  "title_official": "Dollar-for-Dollar Deficit Reduction Act",
+  "type": "s"
+}

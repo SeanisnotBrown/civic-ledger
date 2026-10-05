@@ -1,0 +1,133 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 41.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Science, Space, and Technology. H. Rept. 118-61.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Science, Space, and Technology. H. Rept. 118-61.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 36 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-05-11T17:56:00Z",
+      "title": "H.R. 1496, National Weather Service Communications Improvement Act",
+      "url": "https://www.cbo.gov/publication/59158"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "C001087",
+    "C001112",
+    "C001126",
+    "F000466",
+    "F000477",
+    "G000582",
+    "H001091",
+    "J000308",
+    "L000578",
+    "L000602",
+    "M001215",
+    "M001222",
+    "R000305",
+    "R000600",
+    "S001225"
+  ],
+  "id": "hr1496-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 41.",
+  "latest_action_date": "2023-05-16",
+  "number": 1496,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1496",
+  "sponsor_id": "F000446",
+  "subjects": [
+    "Atmospheric science and weather"
+  ],
+  "title_official": "National Weather Service Communications Improvement Act",
+  "type": "hr"
+}

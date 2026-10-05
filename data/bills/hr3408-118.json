@@ -1,0 +1,101 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-05-23",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-05-23",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee on Highways and Transit Discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001063",
+    "F000470",
+    "G000592",
+    "W000809"
+  ],
+  "id": "hr3408-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee Consideration and Mark-up Session Held.",
+  "latest_action_date": "2023-05-23",
+  "number": 3408,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3408",
+  "sponsor_id": "C001087",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Congressional oversight",
+    "Department of Transportation",
+    "Employment and training programs",
+    "Licensing and registrations",
+    "Motor carriers",
+    "Personnel records",
+    "Transportation employees",
+    "Transportation safety and security"
+  ],
+  "title_official": "DRIVE Safe Integrity Act of 2023",
+  "type": "hr"
+}

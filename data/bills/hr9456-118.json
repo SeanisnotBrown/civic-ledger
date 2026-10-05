@@ -1,4 +1,208 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2024-09-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:34:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": "h-118-2-0415",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 269 - 149 (Roll no. 415).",
+      "time": "17:34:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": "h-118-2-0415",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 269 - 149 (Roll no. 415).",
+      "time": "17:34:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-09-11",
+      "rollcall_id": "h-118-2-0414",
+      "source_system": "House floor actions",
+      "text": "On motion to recommit Failed by the Yeas and Nays: 203 - 213 (Roll no. 414). (CR H5185)",
+      "time": "17:28:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H5185-5186)",
+      "time": "17:22:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H.R. 9456, the Chair put the question on the motion to recommit and by voice vote announced that the ayes had prevailed. Mr. Lucas demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:05:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "13:04:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Takano moved to recommit to the Committee on Financial Services.",
+      "time": "13:04:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "13:03:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.R. 9456.",
+      "time": "12:16:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 1398, H.R. 1425, H.R. 1516, H.R. 7980, H.R. 9456 and H.R. 9494. The resolution provides for consideration of H.R. 1398, H.R. 1425, and H.R. 1516 under a structured rule and H.R. 7980, H.R. 9456, and H.R. 9494 under a closed rule. The resolution provides for one hour of general debate and one motion to recommit on each bill.",
+      "time": "12:16:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1430. (consideration: CR H5168-5173)",
+      "time": "12:16:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2024-09-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1430 Reported to House. Rule provides for consideration of H.R. 1398, H.R. 1425, H.R. 1516, H.R. 7980, H.R. 9456 and H.R. 9494. The resolution provides for consideration of H.R. 1398, H.R. 1425, and H.R. 1516 under a structured rule and H.R. 7980, H.R. 9456, and H.R. 9494 under a closed rule. The resolution provides for one hour of general debate and one motion to recommit on each bill.",
+      "time": "10:08:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-09-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committees on Foreign Affairs, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2024-09-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committees on Foreign Affairs, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-09-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committees on Foreign Affairs, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 118,
   "cosponsor_ids": [

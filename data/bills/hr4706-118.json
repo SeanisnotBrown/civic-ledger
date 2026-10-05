@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Nutrition and Foreign Agriculture Subcommittee"
+      ],
+      "date": "2023-09-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Nutrition, Foreign Agriculture, and Horticulture.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001130",
+    "H001090",
+    "L000599",
+    "N000191"
+  ],
+  "id": "hr4706-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Nutrition, Foreign Agriculture, and Horticulture.",
+  "latest_action_date": "2023-09-19",
+  "number": 4706,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4706",
+  "sponsor_id": "F000466",
+  "subjects": [
+    "Advisory bodies",
+    "Aging",
+    "Congressional oversight",
+    "Disability assistance",
+    "Food supply, safety, and labeling",
+    "Fruit and vegetables",
+    "Health promotion and preventive care",
+    "Nutrition and diet"
+  ],
+  "title_official": "Senior Nutrition Task Force Act of 2023",
+  "type": "hr"
+}

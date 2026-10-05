@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S989; text: CR S1004)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.(consideration: CR S989; text: CR S1004)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277"
+  ],
+  "id": "sres130-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S989; text: CR S1004)",
+  "latest_action_date": "2023-03-28",
+  "number": 130,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/130",
+  "sponsor_id": "B001310",
+  "subjects": [
+    "Commuting",
+    "Congressional tributes",
+    "Worker safety and health"
+  ],
+  "title_official": "A resolution supporting the designation of the week of April 17 to April 21, 2023, as \"National Work Zone Awareness Week\".",
+  "type": "sres"
+}

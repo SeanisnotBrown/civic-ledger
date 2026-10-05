@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-02-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Rules and Administration. (text: CR S353-354)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-02-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Original measure reported to Senate by Senator Menendez. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2023-02-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Original measure reported to Senate by Senator Menendez. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "sres55-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Rules and Administration. (text: CR S353-354)",
+  "latest_action_date": "2023-02-13",
+  "number": 55,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/55",
+  "sponsor_id": "M000639",
+  "subjects": [
+    "Congressional committees",
+    "Senate Committee on Foreign Relations"
+  ],
+  "title_official": "An original resolution authorizing expenditures by the Committee on Foreign Relations.",
+  "type": "sres"
+}

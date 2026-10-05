@@ -1,0 +1,125 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2024-02-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 324.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2024-02-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on House Administration. H. Rept. 118-395.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2024-02-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on House Administration. H. Rept. 118-395.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2023-11-30",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 6 - 3.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2023-11-30",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-03-29T17:53:00Z",
+      "title": "H.R. 4396, American Confidence in Elections: District of Columbia Citizen Voter Act",
+      "url": "https://www.cbo.gov/publication/60174"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M000194",
+    "M001210",
+    "W000814"
+  ],
+  "id": "hr4396-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 324.",
+  "latest_action_date": "2024-02-23",
+  "number": 4396,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4396",
+  "sponsor_id": "B001295",
+  "subjects": [
+    "Citizenship and naturalization",
+    "District of Columbia",
+    "Elections, voting, political campaign regulation",
+    "Immigration status and procedures",
+    "State and local government operations",
+    "Voting rights"
+  ],
+  "title_official": "American Confidence in Elections: District of Columbia Citizen Voter Act",
+  "type": "hr"
+}

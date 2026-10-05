@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy and Mineral Resources Subcommittee"
+      ],
+      "date": "2023-05-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy and Mineral Resources.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-04-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001059",
+    "G000559",
+    "S001193",
+    "T000468",
+    "W000823"
+  ],
+  "id": "hr2623-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy and Mineral Resources.",
+  "latest_action_date": "2023-05-22",
+  "number": 2623,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2623",
+  "sponsor_id": "S001208",
+  "subjects": [
+    "Administrative remedies",
+    "Department of Defense",
+    "Environmental assessment, monitoring, research",
+    "Environmental regulatory procedures",
+    "Metals",
+    "Mining"
+  ],
+  "title_official": "PRIMED Act",
+  "type": "hr"
+}

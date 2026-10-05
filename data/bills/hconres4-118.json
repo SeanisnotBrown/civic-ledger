@@ -1,0 +1,83 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001282",
+    "C000059",
+    "C001103",
+    "C001118",
+    "C001135",
+    "D000032",
+    "E000235",
+    "F000471",
+    "F000475",
+    "G000558",
+    "G000597",
+    "H001091",
+    "J000302",
+    "K000398",
+    "K000399",
+    "L000585",
+    "L000589",
+    "L000599",
+    "L000600",
+    "M000317",
+    "R000609",
+    "R000610",
+    "S000522",
+    "S000929",
+    "S001196",
+    "T000478",
+    "V000134",
+    "W000815"
+  ],
+  "id": "hconres4-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-01-09",
+  "number": 4,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-concurrent-resolution/4",
+  "sponsor_id": "B001297",
+  "subjects": [
+    "Congressional tributes",
+    "Law enforcement administration and funding",
+    "Law enforcement officers"
+  ],
+  "title_official": "Expressing support for the Nation's law enforcement agencies and condemning any efforts to defund or dismantle law enforcement agencies.",
+  "type": "hconres"
+}

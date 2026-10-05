@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-02-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-02-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-02-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "C001120",
+    "C001133",
+    "C001135",
+    "D000530",
+    "D000628",
+    "D000632",
+    "E000071",
+    "G000582",
+    "G000591",
+    "G000593",
+    "G000597",
+    "L000599",
+    "M000194",
+    "M001157",
+    "M001215",
+    "S000168",
+    "S001201",
+    "S001212",
+    "S001220",
+    "W000812"
+  ],
+  "id": "hr7382-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-02-15",
+  "number": 7382,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7382",
+  "sponsor_id": "L000603",
+  "subjects": [
+    "Human trafficking",
+    "Law enforcement administration and funding"
+  ],
+  "title_official": "Empowering Law Enforcement To Fight Sex Trafficking Demand Act of 2024",
+  "type": "hr"
+}

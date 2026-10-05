@@ -1,0 +1,102 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate with an amendment and with a preamble by Unanimous Consent. (text: CR S6062-6063)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate with an amendment and with a preamble by Unanimous Consent.(text: CR S6062-6063)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S6062-6063)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Commerce, Science, and Transportation discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-12-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Commerce, Science, and Transportation discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-10-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation. (text: CR S5146-5147)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000386"
+  ],
+  "id": "sres423-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate with an amendment and with a preamble by Unanimous Consent. (text: CR S6062-6063)",
+  "latest_action_date": "2023-12-19",
+  "number": 423,
+  "policy_area": "Sports and Recreation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/423",
+  "sponsor_id": "E000295",
+  "subjects": [
+    "Athletes",
+    "Congressional tributes",
+    "Higher education",
+    "Iowa",
+    "School athletics"
+  ],
+  "title_official": "A resolution recognizing the University of Iowa women's basketball team's historic \"Crossover at Kinnick\" game and the importance of women's sports.",
+  "type": "sres"
+}

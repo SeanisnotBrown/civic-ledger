@@ -1,0 +1,113 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 25 - 20.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-03-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-01-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-04-05T13:09:00Z",
+      "title": "H.R. 314, Fighting Oppression until the Reign of Castro Ends Act",
+      "url": "https://www.cbo.gov/publication/59032"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000740",
+    "B001297",
+    "C000059",
+    "C001039",
+    "D000600",
+    "D000628",
+    "G000582",
+    "G000593",
+    "H001072",
+    "I000056",
+    "L000597",
+    "L000599",
+    "M000317",
+    "M001157",
+    "M001195",
+    "M001199",
+    "O000086",
+    "R000609",
+    "R000610",
+    "S000522",
+    "S000929",
+    "S001224",
+    "W000809",
+    "W000814",
+    "W000823"
+  ],
+  "id": "hr314-118",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported by the Yeas and Nays: 25 - 20.",
+  "latest_action_date": "2023-03-28",
+  "number": 314,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/314",
+  "sponsor_id": "S000168",
+  "subjects": [
+    "Caribbean area",
+    "Cuba",
+    "Latin America",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sovereignty, recognition, national governance and status",
+    "Terrorism"
+  ],
+  "title_official": "FORCE Act",
+  "type": "hr"
+}

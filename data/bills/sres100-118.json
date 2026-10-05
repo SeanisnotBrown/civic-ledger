@@ -1,0 +1,66 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S723; text: CR S719)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.(consideration: CR S723; text: CR S719)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "T000476"
+  ],
+  "id": "sres100-118",
+  "jurisdiction": "us",
+  "latest_action": "Message on Senate action sent to the House.",
+  "latest_action_date": "2023-03-09",
+  "number": 100,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/100",
+  "sponsor_id": "B001305",
+  "subjects": [
+    "Congressional tributes",
+    "House of Representatives",
+    "Members of Congress",
+    "North Carolina",
+    "Senate"
+  ],
+  "title_official": "A resolution to honor the life and death of James Thomas Broyhill, former Senator for the State of North Carolina.",
+  "type": "sres"
+}

@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-07-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001302",
+    "B001316",
+    "B001317",
+    "D000626",
+    "G000565",
+    "G000578",
+    "G000590",
+    "M001216",
+    "O000175",
+    "R000103",
+    "R000614",
+    "S001224",
+    "T000165"
+  ],
+  "id": "hres1377-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-07-23",
+  "number": 1377,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1377",
+  "sponsor_id": "C001132",
+  "subjects": [],
+  "title_official": "Directing the Secretary of Homeland Security to transmit to the House of Representatives not later than 7 days after the date of the adoption of this resolution all documents, records, and communications in the possession of the Secretary of Homeland Security relating to the July 13, 2024, attempted assassination of former President Donald J. Trump, and for other purposes.",
+  "type": "hres"
+}

@@ -1,0 +1,97 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-07-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000376",
+    "B001287",
+    "B001300",
+    "C001067",
+    "C001078",
+    "C001080",
+    "C001097",
+    "E000297",
+    "F000466",
+    "G000551",
+    "G000553",
+    "G000598",
+    "K000389",
+    "K000391",
+    "L000551",
+    "M001137",
+    "M001188",
+    "N000179",
+    "P000613",
+    "R000305",
+    "S000510",
+    "S001159",
+    "S001223",
+    "T000472",
+    "T000488",
+    "U000040",
+    "V000081",
+    "W000795",
+    "W000822"
+  ],
+  "id": "hr4914-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-07-28",
+  "number": 4914,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4914",
+  "sponsor_id": "J000298",
+  "subjects": [
+    "Cardiovascular and respiratory health",
+    "Congressional oversight",
+    "Health programs administration and funding",
+    "Minority health"
+  ],
+  "title_official": "South Asian Heart Health Awareness and Research Act of 2023",
+  "type": "hr"
+}

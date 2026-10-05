@@ -1,0 +1,121 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate, considered, and agreed to without amendment by Unanimous Consent. (consideration: CR S2586)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Received in the Senate, considered, and agreed to without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "12:00:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On agreeing to the resolution Agreed to without objection. (text: CR H1488)",
+      "time": "12:00:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to without objection. (text: CR H1488)",
+      "time": "12:00:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30200",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Diaz-Balart asked unanimous consent to consider as introduced.",
+      "time": "12:00:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered by unanimous consent. (consideration: CR H1488)",
+      "time": "12:00:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hconres100-118",
+  "jurisdiction": "us",
+  "latest_action": "Message on Senate action sent to the House.",
+  "latest_action_date": "2024-03-23",
+  "number": 100,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-concurrent-resolution/100",
+  "sponsor_id": "D000600",
+  "subjects": [
+    "Appropriations",
+    "Legislative rules and procedure"
+  ],
+  "title_official": "Directing the Clerk of the House of Representatives to make a correction in the enrollment of H.R. 2882.",
+  "type": "hconres"
+}

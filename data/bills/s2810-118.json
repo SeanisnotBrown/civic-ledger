@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H001061",
+    "L000570",
+    "M001190"
+  ],
+  "id": "s2810-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Indian Affairs.",
+  "latest_action_date": "2023-09-14",
+  "number": 2810,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2810",
+  "sponsor_id": "H001046",
+  "subjects": [
+    "Congressional oversight",
+    "Educational facilities and institutions",
+    "Housing and community development funding",
+    "Indian social and development programs",
+    "Internet, web applications, social media",
+    "Libraries and archives",
+    "Performance measurement"
+  ],
+  "title_official": "Tribal Connect Act of 2023",
+  "type": "s"
+}

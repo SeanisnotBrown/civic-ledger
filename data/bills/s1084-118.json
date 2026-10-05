@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001277",
+    "D000563",
+    "D000622",
+    "H001042",
+    "K000384",
+    "L000570",
+    "M000133",
+    "M001176",
+    "P000145",
+    "S000033",
+    "S000770",
+    "V000128",
+    "W000779",
+    "W000802",
+    "W000817"
+  ],
+  "id": "s1084-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-30",
+  "number": 1084,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1084",
+  "sponsor_id": "C000141",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Border security and unlawful immigration",
+    "Civil actions and liability",
+    "Criminal investigation, prosecution, interrogation",
+    "Criminal justice information and records",
+    "Customs enforcement",
+    "Department of Justice",
+    "Government information and archives",
+    "Government liability",
+    "Law enforcement administration and funding",
+    "Racial and ethnic relations",
+    "Religion",
+    "Right of privacy",
+    "Sex, gender, sexual orientation discrimination"
+  ],
+  "title_official": "ERRPA",
+  "type": "s"
+}

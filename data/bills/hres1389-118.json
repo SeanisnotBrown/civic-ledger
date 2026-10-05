@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-07-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001227",
+    "S001218",
+    "T000487"
+  ],
+  "id": "hres1389-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Energy and Commerce.",
+  "latest_action_date": "2024-07-25",
+  "number": 1389,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1389",
+  "sponsor_id": "R000599",
+  "subjects": [],
+  "title_official": "Supporting the designation of the week of August 26 through August 30, 2024, as the second annual \"National Community Health Worker Awareness Week\".",
+  "type": "hres"
+}

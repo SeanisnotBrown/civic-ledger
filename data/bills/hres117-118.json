@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001248",
+    "B001291",
+    "D000032",
+    "E000071",
+    "G000576",
+    "G000596",
+    "H001067",
+    "J000304",
+    "K000399",
+    "L000589",
+    "M001136",
+    "M001194",
+    "M001205",
+    "M001216",
+    "M001218",
+    "N000190",
+    "W000804"
+  ],
+  "id": "hres117-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2023-02-09",
+  "number": 117,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/117",
+  "sponsor_id": "V000134",
+  "subjects": [
+    "Budget deficits and national debt",
+    "Social security and elderly assistance"
+  ],
+  "title_official": "Affirming that Social Security is one of the primary pillars of retirement support for millions of older Americans, and for other purposes.",
+  "type": "hres"
+}

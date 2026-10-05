@@ -1,0 +1,135 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and an amended preamble by Unanimous Consent. (text: CR S1728-1729)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and an amended preamble by Unanimous Consent.(text: CR S1728-1729)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S1728-1729)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S1630-1631)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001230",
+    "B001277",
+    "B001288",
+    "C000127",
+    "C000141",
+    "C000174",
+    "C001035",
+    "C001070",
+    "C001113",
+    "D000563",
+    "D000622",
+    "F000062",
+    "F000479",
+    "G000555",
+    "H001076",
+    "K000367",
+    "K000384",
+    "M000133",
+    "M000639",
+    "M001111",
+    "M001176",
+    "P000145",
+    "R000122",
+    "R000608",
+    "S001181",
+    "S001194",
+    "S001203",
+    "W000779",
+    "W000790",
+    "W000800",
+    "W000805",
+    "W000817"
+  ],
+  "id": "sres209-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and an amended preamble by Unanimous Consent. (text: CR S1728-1729)",
+  "latest_action_date": "2023-05-18",
+  "number": 209,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/209",
+  "sponsor_id": "H001042",
+  "subjects": [
+    "Alaska Natives and Hawaiians",
+    "Asia",
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Racial and ethnic relations",
+    "U.S. history"
+  ],
+  "title_official": "A resolution recognizing the significance of Asian American, Native Hawaiian, and Pacific Islander Heritage Month as an important time to celebrate the significant contributions of Asian Americans, Native Hawaiians, and Pacific Islanders to the history of the United States.",
+  "type": "sres"
+}

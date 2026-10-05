@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-01-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr242-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-01-10",
+  "number": 242,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/242",
+  "sponsor_id": "J000032",
+  "subjects": [
+    "Africa",
+    "Child safety and welfare",
+    "Crime victims",
+    "Criminal investigation, prosecution, interrogation",
+    "Disability and paralysis",
+    "Firearms and explosives",
+    "Food assistance and relief",
+    "Foreign aid and international relief",
+    "Homelessness and emergency shelter",
+    "Human rights",
+    "Human trafficking",
+    "Law enforcement officers",
+    "Mental health",
+    "Military education and training",
+    "Reconstruction and stabilization",
+    "Refugees, asylum, displaced persons",
+    "Sex and reproductive health",
+    "South Sudan",
+    "Women's education",
+    "Women's employment",
+    "Women's health",
+    "Women's rights",
+    "World health"
+  ],
+  "title_official": "Equal Rights and Access for the Women of South Sudan Act",
+  "type": "hr"
+}

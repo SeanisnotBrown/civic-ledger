@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-09-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-09-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "F000463"
+  ],
+  "id": "s5035-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Veterans' Affairs.",
+  "latest_action_date": "2024-09-12",
+  "number": 5035,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/5035",
+  "sponsor_id": "M000934",
+  "subjects": [
+    "Computers and information technology",
+    "Congressional oversight",
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Public contracts and procurement",
+    "Veterans' medical care"
+  ],
+  "title_official": "A bill to amend title 38, United States Code, to establish an external provider scheduling program to assist the Department of Veterans Affairs in scheduling appointments for care and services under the Veterans Community Care Program, and for other purposes.",
+  "type": "s"
+}

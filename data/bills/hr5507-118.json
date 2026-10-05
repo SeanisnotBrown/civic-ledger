@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Homeland Security.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001132",
+    "E000071",
+    "G000591",
+    "G000596",
+    "J000304",
+    "M001194",
+    "R000603",
+    "R000610"
+  ],
+  "id": "hr5507-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+  "latest_action_date": "2023-09-14",
+  "number": 5507,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5507",
+  "sponsor_id": "P000048",
+  "subjects": [
+    "Department of Homeland Security",
+    "Executive agency funding and structure",
+    "Government information and archives"
+  ],
+  "title_official": "To prohibit the use of Federal funds to establish a Disinformation Governance Board.",
+  "type": "hr"
+}

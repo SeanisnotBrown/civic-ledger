@@ -1,0 +1,185 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 20.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12300",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee on Energy and Commerce discharged.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5500",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Energy and Commerce discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Intelligence. H. Rept. 118-32, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Intelligence. H. Rept. 118-32, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-03-10",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-03-07",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-03-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Intelligence (Permanent Select), and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2023-03-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Intelligence (Permanent Select), and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-03-09T18:03:00Z",
+      "title": "H.R. 1376, COVID-19 Origin Act of 2023",
+      "url": "https://www.cbo.gov/publication/58992"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001087",
+    "C001120",
+    "F000466",
+    "G000061",
+    "G000579",
+    "H001072",
+    "K000388",
+    "L000585",
+    "S001189",
+    "S001192",
+    "S001196",
+    "W000815",
+    "W000823"
+  ],
+  "id": "hr1376-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 20.",
+  "latest_action_date": "2023-03-30",
+  "number": 1376,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1376",
+  "sponsor_id": "T000463",
+  "subjects": [
+    "Asia",
+    "Cardiovascular and respiratory health",
+    "China",
+    "Congressional oversight",
+    "Director of National Intelligence",
+    "Government studies and investigations",
+    "Infectious and parasitic diseases",
+    "Intelligence activities, surveillance, classified information"
+  ],
+  "title_official": "COVID–19 Origin Act of 2023",
+  "type": "hr"
+}

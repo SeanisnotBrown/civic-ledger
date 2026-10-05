@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2023-09-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Banking, Housing, and Urban Affairs. Hearings held. Hearings printed: S.Hrg. 118-475.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001277",
+    "C001070",
+    "D000563",
+    "D000622",
+    "K000367",
+    "S000033",
+    "S001203",
+    "W000800",
+    "W000802",
+    "W000817"
+  ],
+  "id": "s638-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Banking, Housing, and Urban Affairs. Hearings held. Hearings printed: S.Hrg. 118-475.",
+  "latest_action_date": "2023-09-12",
+  "number": 638,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/638",
+  "sponsor_id": "V000128",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Foreign and international corporations",
+    "Securities",
+    "Securities and Exchange Commission (SEC)",
+    "Tax administration and collection, taxpayers",
+    "Taxation of foreign income"
+  ],
+  "title_official": "Disclosure of Tax Havens and Offshoring Act",
+  "type": "s"
+}

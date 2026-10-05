@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-11-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-11-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-11-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "G000551",
+    "H000874",
+    "M001210",
+    "N000147",
+    "T000481",
+    "V000081"
+  ],
+  "id": "hr10210-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Energy and Commerce.",
+  "latest_action_date": "2024-11-21",
+  "number": 10210,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/10210",
+  "sponsor_id": "C001059",
+  "subjects": [
+    "Advisory bodies",
+    "Congressional oversight",
+    "Health promotion and preventive care",
+    "Medical research",
+    "Neurological disorders"
+  ],
+  "title_official": "National Plan for Epilepsy Act",
+  "type": "hr"
+}

@@ -1,0 +1,77 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000055",
+    "A000375",
+    "B001275",
+    "B001295",
+    "B001299",
+    "B001309",
+    "B001317",
+    "C001054",
+    "C001087",
+    "D000628",
+    "G000591",
+    "G000594",
+    "H001067",
+    "H001077",
+    "H001086",
+    "I000056",
+    "K000376",
+    "K000388",
+    "L000564",
+    "M000871",
+    "M001194",
+    "M001195",
+    "M001211",
+    "S001196",
+    "W000814",
+    "W000821"
+  ],
+  "id": "hres546-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-06-22",
+  "number": 546,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/546",
+  "sponsor_id": "S000522",
+  "subjects": [],
+  "title_official": "Celebrating the historic anniversary of the June 24, 2022, decision of the Supreme Court of the United States in Dobbs v. Jackson Women's Health Organization.",
+  "type": "hres"
+}

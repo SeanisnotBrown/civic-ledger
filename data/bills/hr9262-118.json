@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-08-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-08-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-08-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001130",
+    "D000096",
+    "G000551",
+    "G000586",
+    "J000298",
+    "L000602",
+    "N000147",
+    "O000172",
+    "R000606",
+    "S001145",
+    "T000481"
+  ],
+  "id": "hr9262-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2024-08-02",
+  "number": 9262,
+  "policy_area": "Civil Rights and Liberties, Minority Issues",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9262",
+  "sponsor_id": "J000288",
+  "subjects": [],
+  "title_official": "Bivens Act of 2024",
+  "type": "hr"
+}

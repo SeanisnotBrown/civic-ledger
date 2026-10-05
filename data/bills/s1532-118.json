@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2024-01-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Banking, Housing, and Urban Affairs. Hearings held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "C001075",
+    "G000359",
+    "H000601",
+    "R000618"
+  ],
+  "id": "s1532-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Banking, Housing, and Urban Affairs. Hearings held.",
+  "latest_action_date": "2024-01-11",
+  "number": 1532,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1532",
+  "sponsor_id": "S001184",
+  "subjects": [
+    "Border security and unlawful immigration",
+    "Canada",
+    "Drug trafficking and controlled substances",
+    "Immigration status and procedures",
+    "Latin America",
+    "Mexico"
+  ],
+  "title_official": "Alan T. Shao II Fentanyl Public Health Emergency and Overdose Prevention Act",
+  "type": "s"
+}

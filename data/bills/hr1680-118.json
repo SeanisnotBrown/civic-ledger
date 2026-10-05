@@ -1,0 +1,88 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-03-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000376",
+    "B001296",
+    "C001121",
+    "D000631",
+    "F000246",
+    "G000574",
+    "G000597",
+    "K000380",
+    "K000388",
+    "L000599",
+    "M001205",
+    "N000193",
+    "S001156",
+    "S001190",
+    "S001193",
+    "S001200",
+    "S001208",
+    "T000463",
+    "W000806",
+    "W000815"
+  ],
+  "id": "hr1680-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-03-21",
+  "number": 1680,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1680",
+  "sponsor_id": "K000375",
+  "subjects": [
+    "Alliances",
+    "Bulgaria",
+    "Collective security",
+    "Congressional oversight",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Europe",
+    "Georgia",
+    "Government ethics and transparency, public corruption",
+    "Intelligence activities, surveillance, classified information",
+    "Moldova",
+    "Political movements and philosophies",
+    "Romania",
+    "Rule of law and government transparency",
+    "Russia",
+    "Turkey",
+    "Ukraine"
+  ],
+  "title_official": "Black Sea Security Act of 2023",
+  "type": "hr"
+}

@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Energy and Mineral Resources Subcommittee"
+      ],
+      "date": "2023-03-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Energy and Mineral Resources.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001204"
+  ],
+  "id": "hr1457-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Energy and Mineral Resources.",
+  "latest_action_date": "2023-03-22",
+  "number": 1457,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1457",
+  "sponsor_id": "H001096",
+  "subjects": [
+    "Coal",
+    "Environmental assessment, monitoring, research",
+    "Licensing and registrations",
+    "Mining"
+  ],
+  "title_official": "COAL Act",
+  "type": "hr"
+}

@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-01-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001088",
+    "R000595",
+    "W000805"
+  ],
+  "id": "s136-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-01-30",
+  "number": 136,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/136",
+  "sponsor_id": "Y000064",
+  "subjects": [],
+  "title_official": "ISA Student Protection Act of 2023",
+  "type": "s"
+}

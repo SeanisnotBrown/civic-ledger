@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001267",
+    "B001288",
+    "C000141",
+    "D000563",
+    "F000062",
+    "F000479",
+    "K000383",
+    "M001153",
+    "R000608",
+    "S000033",
+    "S001181",
+    "S001194",
+    "T000464",
+    "W000817"
+  ],
+  "id": "s956-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Armed Services.",
+  "latest_action_date": "2023-03-23",
+  "number": 956,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/956",
+  "sponsor_id": "K000377",
+  "subjects": [],
+  "title_official": "Health Care Fairness for Military Families Act of 2023",
+  "type": "s"
+}

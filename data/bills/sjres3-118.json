@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-01-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "sjres3-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-01-23",
+  "number": 3,
+  "policy_area": "Civil Rights and Liberties, Minority Issues",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-joint-resolution/3",
+  "sponsor_id": "T000464",
+  "subjects": [
+    "Constitution and constitutional amendments",
+    "Corporate finance and management",
+    "Elections, voting, political campaign regulation",
+    "First Amendment rights",
+    "Political advertising"
+  ],
+  "title_official": "A joint resolution proposing an amendment to the Constitution of the United States to clarify the authority of Congress and the States to regulate corporations, limited liability companies, and other corporate entities established by the laws of any State, the United States, or any foreign state.",
+  "type": "sjres"
+}

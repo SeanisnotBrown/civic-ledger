@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2023-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Federal Lands.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-01-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000629",
+    "L000266"
+  ],
+  "id": "hr247-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Federal Lands.",
+  "latest_action_date": "2023-02-21",
+  "number": 247,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/247",
+  "sponsor_id": "E000298",
+  "subjects": [
+    "Historic sites and heritage areas",
+    "Kansas",
+    "Nebraska",
+    "Oklahoma",
+    "Parks, recreation areas, trails",
+    "Texas"
+  ],
+  "title_official": "Chisholm National Historic Trail and Western National Historic Trail Designation Act",
+  "type": "hr"
+}

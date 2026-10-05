@@ -1,0 +1,66 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2023-10-02",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr5835-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Highways and Transit.",
+  "latest_action_date": "2023-10-02",
+  "number": 5835,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5835",
+  "sponsor_id": "E000246",
+  "subjects": [
+    "Infrastructure development",
+    "North Carolina",
+    "Roads and highways"
+  ],
+  "title_official": "To amend title 40, United States Code, to increase the mileage of the Appalachian Development Highway System to provide for improvements to and expansion of Corridor K in North Carolina, and for other purposes.",
+  "type": "hr"
+}

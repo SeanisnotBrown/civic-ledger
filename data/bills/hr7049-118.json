@@ -1,0 +1,91 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2024-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Disability Assistance and Memorial Affairs.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001311",
+    "B001316",
+    "C001115",
+    "C001116",
+    "C001118",
+    "C001129",
+    "C001132",
+    "D000032",
+    "G000565",
+    "G000595",
+    "H001096",
+    "J000301",
+    "J000304",
+    "L000596",
+    "M001211",
+    "O000175",
+    "P000605",
+    "R000103",
+    "R000609",
+    "T000165",
+    "W000816"
+  ],
+  "id": "hr7049-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Disability Assistance and Memorial Affairs.",
+  "latest_action_date": "2024-02-21",
+  "number": 7049,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/7049",
+  "sponsor_id": "R000614",
+  "subjects": [
+    "Cardiovascular and respiratory health",
+    "Department of Veterans Affairs",
+    "Government employee pay, benefits, personnel management",
+    "Health personnel",
+    "Immunology and vaccination",
+    "Infectious and parasitic diseases"
+  ],
+  "title_official": "To repeal the Department of Veterans Affairs directive relating to the COVID-19 vaccination program for Veterans Health Administration health care personnel, and for other purposes.",
+  "type": "hr"
+}

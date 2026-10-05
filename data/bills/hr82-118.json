@@ -1,4 +1,414 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2025-01-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-273.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2025-01-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-273.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2025-01-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2025-01-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2024-12-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2024-12-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the measure rendered moot in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-21",
+      "rollcall_id": "s-118-2-0338",
+      "source_system": "Senate",
+      "text": "Passed Senate, under the order of 12/20/2024, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 76 - 20. Record Vote Number: 338.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-12-21",
+      "rollcall_id": "s-118-2-0338",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate, under the order of 12/20/2024, having achieved 60 votes in the affirmative, without amendment by Yea-Nay Vote. 76 - 20. Record Vote Number: 338.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2024-12-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to commit to Senate Committee on Finance with instructions to report back forthwith with the following amendment (SA 3357) withdrawn in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-21",
+      "rollcall_id": "s-118-2-0337",
+      "source_system": "Senate",
+      "text": "Motion to waive all applicable budgetary discipline with respect to the measure agreed to in Senate by Yea-Nay Vote. 66 - 30. Record Vote Number: 337.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Point of order that the measure violates section 311(a)(3) of the Congressional Budget Act raised in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2024-12-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to commit to Senate Committee on Finance with instructions to report back forthwith with the following amendment (SA 3357) made in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the measure presented in Senate. (CR S7286)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate. (consideration: CR S7285-7287, S7303-7304)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by motion.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-19",
+      "rollcall_id": "s-118-2-0328",
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure agreed to in Senate by Yea-Nay Vote. 73 - 23. Record Vote Number: 328.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S7217)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-18",
+      "rollcall_id": "s-118-2-0326",
+      "source_system": "Senate",
+      "text": "Cloture on the motion to proceed to the measure invoked in Senate by Yea-Nay Vote. 73 - 27. Record Vote Number: 326.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S7131)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Social Security Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Social Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to proceed to the measure presented in Senate. (CR S6980)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S6980)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 693.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the first time. Placed on Senate Legislative Calendar under Read the First Time.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-11-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "18:58:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": "h-118-2-0456",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 327 - 75, 1 Present (Roll no. 456). (text: CR H5925)",
+      "time": "18:58:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": "h-118-2-0456",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 327 - 75, 1 Present (Roll no. 456). (text: CR H5925)",
+      "time": "18:58:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H5944-5945)",
+      "time": "18:32:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "time": "17:30:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 82.",
+      "time": "16:46:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H5925-5931)",
+      "time": "16:46:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Smith (MO) moved to suspend the rules and pass the bill.",
+      "time": "16:46:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-11-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "UNANIMOUS CONSENT REQUEST - Mr. Harris asked unanimous consent that the order of the House on November 5, 2024, with respect to H.R. 82 be vacated. Agreed to without objection.",
+      "time": "14:03:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-11-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "UNANIMOUS CONSENT REQUEST - The Chair recongized Mr. Good (VA) for a unanimous consent request. Mr. Good (VA) asked unanimous consent that H.R. 82 be laid on the table. Without objection the unanimous consent request was agreed to.",
+      "time": "17:02:57",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2024-09-09T20:03:00Z",

@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr9543-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2024-09-11",
+  "number": 9543,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9543",
+  "sponsor_id": "M001220",
+  "subjects": [],
+  "title_official": "American Sovereign Wealth Fund Exploration Act",
+  "type": "hr"
+}

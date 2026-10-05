@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 700.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-12-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-294.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-12-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute. With written report No. 118-294.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-07-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-07-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-12-11T19:45:00Z",
+      "title": "S. 4900, Investing in Community Resilience Act of 2024",
+      "url": "https://www.cbo.gov/publication/61104"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000575"
+  ],
+  "id": "s4900-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 700.",
+  "latest_action_date": "2024-12-16",
+  "number": 4900,
+  "policy_area": "Emergency Management",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/4900",
+  "sponsor_id": "B001320",
+  "subjects": [
+    "Atmospheric science and weather",
+    "Disaster relief and insurance",
+    "Fires",
+    "Floods and storm protection",
+    "Natural disasters"
+  ],
+  "title_official": "Investing in Community Resilience Act of 2024",
+  "type": "s"
+}

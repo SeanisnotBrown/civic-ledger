@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001113",
+    "S001217",
+    "T000476"
+  ],
+  "id": "s3101-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-10-19",
+  "number": 3101,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3101",
+  "sponsor_id": "B001277",
+  "subjects": [],
+  "title_official": "A bill to provide that members of the Armed Forces performing services in Niger, Mali, Burkina Faso, and Chad shall be entitled to tax benefits in the same manner as if such services were performed in a combat zone.",
+  "type": "s"
+}

@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "P000595",
+    "S001198",
+    "W000802"
+  ],
+  "id": "s1918-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+  "latest_action_date": "2023-06-08",
+  "number": 1918,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1918",
+  "sponsor_id": "M001153",
+  "subjects": [
+    "Aquatic ecology",
+    "Employment and training programs",
+    "Marine and coastal resources, fisheries",
+    "Veterans' education, employment, rehabilitation"
+  ],
+  "title_official": "Don Young Veterans Advancing Conservation Act",
+  "type": "s"
+}

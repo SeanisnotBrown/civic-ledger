@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2024-05-03",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Environment, Manufacturing, and Critical Materials.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-04-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "B001316",
+    "C001132",
+    "D000032",
+    "D000616",
+    "E000298",
+    "G000576",
+    "G000589",
+    "G000591",
+    "G000595",
+    "H001052",
+    "H001095",
+    "J000304",
+    "L000564",
+    "L000578",
+    "L000583",
+    "M000871",
+    "M001195",
+    "M001211",
+    "M001218",
+    "M001224",
+    "N000190",
+    "O000019",
+    "O000175",
+    "R000103",
+    "R000609",
+    "R000614",
+    "S000250",
+    "T000478",
+    "V000133",
+    "W000823"
+  ],
+  "id": "hjres131-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Environment, Manufacturing, and Critical Materials.",
+  "latest_action_date": "2024-05-03",
+  "number": 131,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-joint-resolution/131",
+  "sponsor_id": "C001116",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Climate change and greenhouse gases",
+    "Environmental Protection Agency (EPA)",
+    "Hybrid, electric, and advanced technology vehicles",
+    "Motor vehicles"
+  ],
+  "title_official": "Providing for congressional disapproval under chapter 8 of title 5, United States Code, of the rule submitted by the Environmental Protection Agency relating to \"Multi-Pollutant Emissions Standards for Model Years 2027 and Later Light-Duty and Medium-Duty Vehicles\".",
+  "type": "hjres"
+}

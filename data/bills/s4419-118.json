@@ -1,0 +1,105 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 654.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute and an amendment to the title. With written report No. 118-253.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-12-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Peters with an amendment in the nature of a substitute and an amendment to the title. With written report No. 118-253.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-09-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-05-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-09-27T18:27:00Z",
+      "title": "S. 4419, DETECT Fentanyl and Xylazine Act of 2024",
+      "url": "https://www.cbo.gov/publication/60786"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000575",
+    "M000934",
+    "O000174",
+    "R000608",
+    "S001191",
+    "W000790"
+  ],
+  "id": "s4419-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 654.",
+  "latest_action_date": "2024-12-02",
+  "number": 4419,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/4419",
+  "sponsor_id": "C001056",
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Computers and information technology",
+    "Drug trafficking and controlled substances",
+    "Libraries and archives",
+    "Research and development"
+  ],
+  "title_official": "DETECT Fentanyl and Xylazine Act of 2024",
+  "type": "s"
+}

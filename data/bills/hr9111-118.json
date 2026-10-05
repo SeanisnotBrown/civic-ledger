@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-07-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "F000471",
+    "G000576",
+    "S001212",
+    "S001213",
+    "V000135"
+  ],
+  "id": "hr9111-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2024-07-23",
+  "number": 9111,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9111",
+  "sponsor_id": "T000165",
+  "subjects": [
+    "Geography and mapping",
+    "Historic sites and heritage areas",
+    "Hunting and fishing",
+    "Land use and conservation",
+    "Parks, recreation areas, trails",
+    "Wisconsin"
+  ],
+  "title_official": "Apostle Islands National Park and Preserve Act",
+  "type": "hr"
+}

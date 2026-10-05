@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "D000230",
+    "H001085"
+  ],
+  "id": "hr8967-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Armed Services.",
+  "latest_action_date": "2024-07-09",
+  "number": 8967,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8967",
+  "sponsor_id": "K000399",
+  "subjects": [],
+  "title_official": "To extend the authority of the Secretary of the Army to enter into a contract, partnership, or grant with a non-profit organization for the purpose of providing financial support for the maintenance and sustainment of infrastructure and facilities at military service memorials and museums that highlight the role of women in the military.",
+  "type": "hr"
+}

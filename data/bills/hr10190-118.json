@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2024-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001051",
+    "C001063",
+    "G000377",
+    "G000553",
+    "M001157"
+  ],
+  "id": "hr10190-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on House Administration.",
+  "latest_action_date": "2024-11-20",
+  "number": 10190,
+  "policy_area": "Arts, Culture, Religion",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/10190",
+  "sponsor_id": "W000814",
+  "subjects": [],
+  "title_official": "Juneteenth Museum Act of 2024",
+  "type": "hr"
+}

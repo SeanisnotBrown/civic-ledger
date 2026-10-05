@@ -1,4 +1,304 @@
 {
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Social Security Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Social Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Trade Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Trade.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 71.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-05-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate. Read the first time. Placed on Senate Legislative Calendar under Read the First Time.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "16:23:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": "h-118-1-0209",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 219 - 213 (Roll no. 209). (text: 5/10/2023 CR H2195-2216)",
+      "time": "16:23:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": "h-118-1-0209",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 219 - 213 (Roll no. 209). (text: 5/10/2023 CR H2195-2216)",
+      "time": "16:23:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-11",
+      "rollcall_id": "h-118-1-0208",
+      "source_system": "House floor actions",
+      "text": "On motion to recommit Failed by the Yeas and Nays: 211 - 221 (Roll no. 208).",
+      "time": "16:16:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H2293-2294)",
+      "time": "15:39:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - The Chair put the question on the motion to recommit the bill and by voice vote announced the noes had prevailed. Ms. Garcia (TX) demanded the yeas and nays, and the Chair postoned further proceedings until a time to be announced.",
+      "time": "14:34:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "14:33:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Garcia (TX) moved to recommit to the Committee on the Judiciary. (text: CR H2281)",
+      "time": "14:33:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "14:32:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House resumed with further debate on H.R. 2.",
+      "time": "11:18:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H2258-2281)",
+      "time": "11:18:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to clause 1(c) of rule XIX, the Chair announced that consideration of H.R. 2 would now resume.",
+      "time": "11:18:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - Pursuant to clause 1(c) of rule XIX, the Chair announced further proceedings on H. R. 2 would be postponed.",
+      "time": "20:51:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with five hours of debate on H.R. 2.",
+      "time": "18:23:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 2 and H.R. 1163. The resolution provides for consideration of H.R. 2 under a closed rule with five hours of general debate, and the resolution provides for consideration of H.R. 1163 under a closed rule with one hour of general debate. The resolution provides for a motion to recommit on each measure.",
+      "time": "18:22:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 383. (consideration: CR H2195-2236)",
+      "time": "18:22:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2023-05-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 383 Reported to House. Rule provides for consideration of H.R. 2 and H.R. 1163. The resolution provides for consideration of H.R. 2 under a closed rule with five hours of general debate, and the resolution provides for consideration of H.R. 1163 under a closed rule with one hour of general debate. The resolution provides for a motion to recommit on each measure.",
+      "time": "10:01:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, Ways and Means, Education and the Workforce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, Ways and Means, Education and the Workforce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, Ways and Means, Education and the Workforce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, Ways and Means, Education and the Workforce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, Ways and Means, Education and the Workforce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2023-05-09T20:17:00Z",

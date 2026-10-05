@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035",
+    "F000463",
+    "G000386",
+    "K000367",
+    "K000377",
+    "K000383",
+    "L000570",
+    "P000603",
+    "S001181",
+    "S001191",
+    "S001217",
+    "V000137",
+    "W000437"
+  ],
+  "id": "s260-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-02-02",
+  "number": 260,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/260",
+  "sponsor_id": "B000944",
+  "subjects": [
+    "Digestive and metabolic diseases",
+    "Health information and medical records",
+    "Health personnel",
+    "Health technology, devices, supplies",
+    "Medicare"
+  ],
+  "title_official": "Promoting Access to Diabetic Shoes Act",
+  "type": "s"
+}

@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-10-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance. (text: CR S5215-5216)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "L000575",
+    "W000779"
+  ],
+  "id": "s3154-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance. (text: CR S5215-5216)",
+  "latest_action_date": "2023-10-26",
+  "number": 3154,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3154",
+  "sponsor_id": "T000250",
+  "subjects": [
+    "Child safety and welfare",
+    "Debt collection",
+    "Federal-Indian relations",
+    "Government information and archives",
+    "Separation, divorce, custody, support",
+    "Tax administration and collection, taxpayers"
+  ],
+  "title_official": "Tribal Child Support Enforcement Act",
+  "type": "s"
+}

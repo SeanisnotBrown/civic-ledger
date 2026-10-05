@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-10-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hres826-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Rules.",
+  "latest_action_date": "2023-10-30",
+  "number": 826,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/826",
+  "sponsor_id": "M001222",
+  "subjects": [],
+  "title_official": "Amending the Rules of the House of Representatives to limit the privileged status of a motion causing a vacancy in the Office of Speaker to motions offered by direction of not fewer than 112 Members from the majority party or 112 Members from the minority party.",
+  "type": "hres"
+}

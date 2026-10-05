@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "L000577",
+    "M001111",
+    "P000603",
+    "S001194",
+    "T000464"
+  ],
+  "id": "s2576-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-07-27",
+  "number": 2576,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2576",
+  "sponsor_id": "W000779",
+  "subjects": [
+    "Business records",
+    "Civil actions and liability",
+    "Computers and information technology",
+    "Constitution and constitutional amendments",
+    "Consumer affairs",
+    "Criminal investigation, prosecution, interrogation",
+    "Criminal procedure and sentencing",
+    "Intelligence activities, surveillance, classified information",
+    "Internet, web applications, social media",
+    "Right of privacy",
+    "Telephone and wireless communication"
+  ],
+  "title_official": "Fourth Amendment Is Not For Sale Act",
+  "type": "s"
+}

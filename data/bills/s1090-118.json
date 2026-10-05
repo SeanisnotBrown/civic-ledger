@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-160.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s1090-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-160.",
+  "latest_action_date": "2023-04-26",
+  "number": 1090,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1090",
+  "sponsor_id": "M000639",
+  "subjects": [
+    "Bank accounts, deposits, capital",
+    "Foreign and international banking",
+    "Higher education",
+    "Student aid and college costs",
+    "Veterans' education, employment, rehabilitation"
+  ],
+  "title_official": "A bill to direct the Secretary of Veterans Affairs to update the payment system of the Department of Veterans Affairs to allow for electronic fund transfer of educational assistance, administered by the Secretary, to a foreign institution of higher education, and for other purposes.",
+  "type": "s"
+}

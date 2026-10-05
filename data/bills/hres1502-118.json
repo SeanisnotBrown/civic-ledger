@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001300",
+    "C001059",
+    "C001097",
+    "G000581",
+    "N000179",
+    "R000599",
+    "S000168",
+    "S001200",
+    "S001226"
+  ],
+  "id": "hres1502-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Energy and Commerce.",
+  "latest_action_date": "2024-09-25",
+  "number": 1502,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1502",
+  "sponsor_id": "C001134",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Health personnel",
+    "Minority employment"
+  ],
+  "title_official": "Expressing support for the designation of October 1, 2024, as \"National Latino Physician Day\".",
+  "type": "hres"
+}

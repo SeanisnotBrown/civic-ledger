@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Work and Welfare Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Work and Welfare.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001080",
+    "D000617",
+    "E000296",
+    "G000585",
+    "H001066",
+    "L000557",
+    "M001160",
+    "S001156",
+    "S001185",
+    "T000193"
+  ],
+  "id": "hr8203-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Work and Welfare.",
+  "latest_action_date": "2024-12-17",
+  "number": 8203,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8203",
+  "sponsor_id": "D000096",
+  "subjects": [],
+  "title_official": "TANF State Expenditure Integrity Act of 2024",
+  "type": "hr"
+}

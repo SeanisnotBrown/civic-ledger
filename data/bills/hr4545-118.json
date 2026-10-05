@@ -1,0 +1,79 @@
+{
+  "actions": [
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "ASSUMING FIRST SPONSORSHIP - Mr. Cline asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4545, a bill originally introduced by Representative Gallagher, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+      "time": "17:10:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001299",
+    "B001313",
+    "D000230",
+    "J000301",
+    "J000308",
+    "K000391",
+    "L000599",
+    "M001194",
+    "M001196",
+    "R000606",
+    "R000614",
+    "S001207",
+    "S001209",
+    "W000804"
+  ],
+  "id": "hr4545-118",
+  "jurisdiction": "us",
+  "latest_action": "ASSUMING FIRST SPONSORSHIP - Mr. Cline asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4545, a bill originally introduced by Representative Gallagher, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+  "latest_action_date": "2024-12-10",
+  "number": 4545,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4545",
+  "sponsor_id": "G000579",
+  "subjects": [
+    "Government information and archives",
+    "Licensing and registrations",
+    "Public participation and lobbying"
+  ],
+  "title_official": "Retroactive Foreign Agents Registration Act",
+  "type": "hr"
+}

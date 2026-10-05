@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001261",
+    "C001035",
+    "C001047",
+    "C001096",
+    "C001113",
+    "D000618",
+    "H001046",
+    "H001079",
+    "K000377",
+    "M001153",
+    "S001191",
+    "W000437"
+  ],
+  "id": "s230-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-02-02",
+  "number": 230,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/230",
+  "sponsor_id": "T000464",
+  "subjects": [
+    "Education programs funding",
+    "Emergency medical services and trauma care",
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Hospital care",
+    "Medical education",
+    "Medicare",
+    "Rural conditions and development"
+  ],
+  "title_official": "Rural Physician Workforce Production Act of 2023",
+  "type": "s"
+}

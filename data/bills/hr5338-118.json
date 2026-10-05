@@ -1,0 +1,120 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2023-09-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 185.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-09-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Education and the Workforce. H. Rept. 118-226.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-09-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Education and the Workforce. H. Rept. 118-226.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 23 - 19.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-09-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-09-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-09-22T19:39:00Z",
+      "title": "H.R. 5338, No Discrimination in My Benefits Act",
+      "url": "https://www.cbo.gov/publication/59599"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr5338-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 185.",
+  "latest_action_date": "2023-09-26",
+  "number": 5338,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5338",
+  "sponsor_id": "G000595",
+  "subjects": [
+    "Employee benefits and pensions",
+    "Employment discrimination and employee rights",
+    "Financial services and investments",
+    "Racial and ethnic relations",
+    "Sex, gender, sexual orientation discrimination"
+  ],
+  "title_official": "No Discrimination in My Benefits Act",
+  "type": "hr"
+}

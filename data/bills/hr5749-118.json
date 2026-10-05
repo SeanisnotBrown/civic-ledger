@@ -1,0 +1,82 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2023-09-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2023-09-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-09-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-09-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001303",
+    "F000466",
+    "H001090",
+    "L000599",
+    "M001160",
+    "N000147",
+    "R000576",
+    "R000606",
+    "S001205",
+    "V000129",
+    "W000826"
+  ],
+  "id": "hr5749-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2023-09-29",
+  "number": 5749,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5749",
+  "sponsor_id": "D000624",
+  "subjects": [
+    "Cardiovascular and respiratory health",
+    "Centers for Disease Control and Prevention (CDC)",
+    "Congressional oversight",
+    "Government information and archives",
+    "Health information and medical records",
+    "Health promotion and preventive care",
+    "Intergovernmental relations"
+  ],
+  "title_official": "Elijah E. Cummings Family Asthma Act",
+  "type": "hr"
+}

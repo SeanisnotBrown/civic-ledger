@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2024-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001282",
+    "D000032",
+    "M001204"
+  ],
+  "id": "hr8686-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2024-06-11",
+  "number": 8686,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8686",
+  "sponsor_id": "L000583",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Banking and financial institutions regulation",
+    "Business records",
+    "Currency",
+    "Department of the Treasury",
+    "Fraud offenses and financial crimes"
+  ],
+  "title_official": "Financial Reporting Threshold Modernization Act",
+  "type": "hr"
+}

@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Rules and Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001305",
+    "B001310",
+    "C001075",
+    "C001096",
+    "H001061",
+    "H001089",
+    "T000278",
+    "T000476"
+  ],
+  "id": "s170-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Rules and Administration.",
+  "latest_action_date": "2023-01-31",
+  "number": 170,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/170",
+  "sponsor_id": "S001217",
+  "subjects": [],
+  "title_official": "A bill to establish a Joint Select Committee on Afghanistan to conduct a full investigation and compile a joint report on the United States withdrawal from Afghanistan.",
+  "type": "s"
+}

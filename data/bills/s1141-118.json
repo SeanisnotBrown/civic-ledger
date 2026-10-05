@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001047",
+    "D000618",
+    "M001198",
+    "R000595",
+    "R000605",
+    "S001227",
+    "W000437",
+    "Y000064"
+  ],
+  "id": "s1141-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-03-30",
+  "number": 1141,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1141",
+  "sponsor_id": "C001075",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Department of Justice",
+    "Drug trafficking and controlled substances",
+    "Licensing and registrations",
+    "Research administration and funding"
+  ],
+  "title_official": "HALT Fentanyl Act",
+  "type": "s"
+}

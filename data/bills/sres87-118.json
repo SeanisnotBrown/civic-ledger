@@ -1,0 +1,46 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Finance. (text: CR S571)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "C001075",
+    "S001217"
+  ],
+  "id": "sres87-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Finance. (text: CR S571)",
+  "latest_action_date": "2023-03-01",
+  "number": 87,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/87",
+  "sponsor_id": "B001310",
+  "subjects": [
+    "Budget deficits and national debt"
+  ],
+  "title_official": "A resolution recognizing the national debt as a threat to national security.",
+  "type": "sres"
+}

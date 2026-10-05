@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000574",
+    "B001313",
+    "C001080",
+    "D000623",
+    "G000598",
+    "J000032",
+    "M001160",
+    "N000147"
+  ],
+  "id": "hr981-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-02-10",
+  "number": 981,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/981",
+  "sponsor_id": "K000400",
+  "subjects": [
+    "Adult education and literacy",
+    "Community life and organization",
+    "Congressional oversight",
+    "Correctional facilities and imprisonment",
+    "Drug, alcohol, tobacco use",
+    "Elections, voting, political campaign regulation",
+    "Employee hiring",
+    "Employment and training programs",
+    "Family relationships",
+    "Family services",
+    "Financial literacy",
+    "Food assistance and relief",
+    "Health care coverage and access",
+    "Higher education",
+    "Housing and community development funding",
+    "Lawyers and legal services",
+    "Licensing and registrations",
+    "Mental health",
+    "Performance measurement",
+    "Public housing",
+    "Student aid and college costs",
+    "Telephone and wireless communication",
+    "Transportation costs",
+    "Vocational and technical education",
+    "Voting rights"
+  ],
+  "title_official": "One Stop Shop Community Reentry Program Act of 2023",
+  "type": "hr"
+}

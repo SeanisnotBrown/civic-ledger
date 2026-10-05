@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-10-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5082-5083; text: CR S5091)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-10-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.(consideration: CR S5082-5083; text: CR S5091)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-10-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M000355"
+  ],
+  "id": "sres416-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5082-5083; text: CR S5091)",
+  "latest_action_date": "2023-10-18",
+  "number": 416,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/416",
+  "sponsor_id": "S000148",
+  "subjects": [
+    "Congressional officers and employees",
+    "Criminal investigation, prosecution, interrogation",
+    "District of Columbia",
+    "Evidence and witnesses",
+    "Legislative rules and procedure",
+    "Senate",
+    "Subversive activities"
+  ],
+  "title_official": "A resolution to authorize testimony and representation in United States v. Sullivan.",
+  "type": "sres"
+}

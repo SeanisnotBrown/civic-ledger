@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "C001072",
+    "C001120",
+    "D000032",
+    "D000230",
+    "D000600",
+    "D000624",
+    "D000628",
+    "E000246",
+    "F000478",
+    "G000578",
+    "G000582",
+    "M000194",
+    "M001136",
+    "M001217",
+    "M001219",
+    "P000599",
+    "P000619",
+    "S001214"
+  ],
+  "id": "hr1434-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Armed Services.",
+  "latest_action_date": "2023-03-08",
+  "number": 1434,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1434",
+  "sponsor_id": "L000596",
+  "subjects": [
+    "Assault and harassment offenses",
+    "Military education and training",
+    "Sex offenses",
+    "Violent crime"
+  ],
+  "title_official": "Stop Our Sexual Assault in the Military Act",
+  "type": "hr"
+}

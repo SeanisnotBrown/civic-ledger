@@ -1,0 +1,85 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-07-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001054",
+    "D000032",
+    "L000564",
+    "M001219"
+  ],
+  "id": "hr4872-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Border Security and Enforcement.",
+  "latest_action_date": "2023-07-25",
+  "number": 4872,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4872",
+  "sponsor_id": "J000299",
+  "subjects": [
+    "Aviation and airports",
+    "Border security and unlawful immigration",
+    "Motor vehicles",
+    "Roads and highways",
+    "Wilderness and natural areas, wildlife refuges, wild rivers, habitats"
+  ],
+  "title_official": "Securing Our Borders and Wilderness Act",
+  "type": "hr"
+}

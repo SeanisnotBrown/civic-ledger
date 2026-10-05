@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001243",
+    "D000618",
+    "H001079",
+    "L000577",
+    "R000595",
+    "W000437"
+  ],
+  "id": "s251-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-02-02",
+  "number": 251,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/251",
+  "sponsor_id": "C001075",
+  "subjects": [
+    "Criminal procedure and sentencing",
+    "Federal officials",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Supreme Court"
+  ],
+  "title_official": "Stop Supreme Court Leakers Act of 2023",
+  "type": "s"
+}

@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-01-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001267",
+    "B001277",
+    "B001320",
+    "C000141",
+    "C001070",
+    "C001113",
+    "G000555",
+    "H001076",
+    "K000367",
+    "K000384",
+    "R000122",
+    "R000608",
+    "S000770",
+    "S001203"
+  ],
+  "id": "s8-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-01-23",
+  "number": 8,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/8",
+  "sponsor_id": "S001181",
+  "subjects": [],
+  "title_official": "Improving Health Insurance Affordability Act of 2023",
+  "type": "s"
+}

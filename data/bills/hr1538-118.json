@@ -1,0 +1,79 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2023-03-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-03-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR E209)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001055",
+    "C001125",
+    "D000096",
+    "E000297",
+    "G000586",
+    "G000587",
+    "H001066",
+    "J000032",
+    "J000309",
+    "K000391",
+    "L000557",
+    "L000601",
+    "M001225",
+    "R000617",
+    "S001156",
+    "S001218",
+    "T000193",
+    "T000488"
+  ],
+  "id": "hr1538-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Small Business.",
+  "latest_action_date": "2023-03-10",
+  "number": 1538,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1538",
+  "sponsor_id": "C001072",
+  "subjects": [],
+  "title_official": "Emerging Business Encouragement Act of 2023",
+  "type": "hr"
+}

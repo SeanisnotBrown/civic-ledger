@@ -1,0 +1,91 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2024-09-24",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-11-04T14:51:00Z",
+      "title": "H.R. 9718, Extending and Enhancing U.S.-U.K. Nuclear Cooperation for Mutual Defense Purposes Act",
+      "url": "https://www.cbo.gov/publication/60858"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "L000599",
+    "P000616"
+  ],
+  "id": "hr9718-118",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported by Voice Vote.",
+  "latest_action_date": "2024-09-24",
+  "number": 9718,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9718",
+  "sponsor_id": "Z000018",
+  "subjects": [
+    "Alliances",
+    "Congressional oversight",
+    "Europe",
+    "International law and treaties",
+    "International organizations and cooperation",
+    "Nuclear power",
+    "United Kingdom"
+  ],
+  "title_official": "Extending and Enhancing U.S.-U.K. Nuclear Cooperation for Mutual Defense Purposes Act",
+  "type": "hr"
+}

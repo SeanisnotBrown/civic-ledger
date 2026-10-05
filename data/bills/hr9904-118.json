@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2024-10-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-10-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-10-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001260",
+    "B001307",
+    "D000616",
+    "H001077",
+    "S001214",
+    "W000806",
+    "W000814"
+  ],
+  "id": "hr9904-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Small Business.",
+  "latest_action_date": "2024-10-01",
+  "number": 9904,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9904",
+  "sponsor_id": "M001216",
+  "subjects": [],
+  "title_official": "Preventing SBA Assistance from Going to China Act",
+  "type": "hr"
+}

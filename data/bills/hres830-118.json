@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2023-11-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-11-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-11-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000740",
+    "B001307",
+    "D000600",
+    "F000472",
+    "H001091",
+    "M001216",
+    "M001218",
+    "O000019",
+    "S000522",
+    "W000828"
+  ],
+  "id": "hres830-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2023-11-01",
+  "number": 830,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/830",
+  "sponsor_id": "G000061",
+  "subjects": [],
+  "title_official": "Condemning the Chinese Communist Party for its role in the fentanyl crisis and urging the Biden administration to take certain actions to combat the flow of fentanyl precursors from China to North America.",
+  "type": "hres"
+}

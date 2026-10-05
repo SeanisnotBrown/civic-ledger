@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001035",
+    "M001153",
+    "M001183",
+    "S001191"
+  ],
+  "id": "s317-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2023-02-09",
+  "number": 317,
+  "policy_area": "Civil Rights and Liberties, Minority Issues",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/317",
+  "sponsor_id": "K000384",
+  "subjects": [
+    "Civil actions and liability",
+    "Family planning and birth control",
+    "Legal fees and court costs",
+    "Sex and reproductive health",
+    "Women's health"
+  ],
+  "title_official": "Reproductive Freedom for All Act",
+  "type": "s"
+}

@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-08-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-08-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-08-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001299",
+    "D000616",
+    "H001067",
+    "T000165",
+    "T000478",
+    "Y000067"
+  ],
+  "id": "hres651-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2023-08-11",
+  "number": 651,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/651",
+  "sponsor_id": "G000576",
+  "subjects": [],
+  "title_official": "Condemning the decision of the Secretary of Education to prohibit the use of funds under the Elementary and Secondary Education Act of 1965 for hunter, archery, and other shooting sports education programs in schools and explicitly affirming that school programs that train students in archery, hunting, or other shooting sports are eligible for Federal funding under such Act.",
+  "type": "hres"
+}

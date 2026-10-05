@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Environment and Public Works. (text: CR S1425-1426)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001277",
+    "B001288",
+    "M000133",
+    "M001176",
+    "W000800",
+    "W000817"
+  ],
+  "id": "sconres9-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Environment and Public Works. (text: CR S1425-1426)",
+  "latest_action_date": "2023-04-27",
+  "number": 9,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-concurrent-resolution/9",
+  "sponsor_id": "S000033",
+  "subjects": [
+    "Air quality",
+    "Climate change and greenhouse gases",
+    "Economic performance and conditions",
+    "Emergency planning and evacuation",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
+  "title_official": "A concurrent resolution expressing the sense of Congress that there is a climate emergency which demands a massive-scale mobilization to halt, reverse, and address its consequences and causes.",
+  "type": "sconres"
+}

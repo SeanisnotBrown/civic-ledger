@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "H001042",
+    "M001153"
+  ],
+  "id": "s1913-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Veterans' Affairs.",
+  "latest_action_date": "2023-06-08",
+  "number": 1913,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1913",
+  "sponsor_id": "S001194",
+  "subjects": [
+    "Congressional oversight",
+    "Health personnel",
+    "Marshall Islands",
+    "Micronesia",
+    "Palau",
+    "U.S. territories and protectorates",
+    "Veterans' medical care",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "Care for COFA Veterans Act",
+  "type": "s"
+}

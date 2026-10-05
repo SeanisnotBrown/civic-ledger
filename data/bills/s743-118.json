@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Budget.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001310",
+    "C001096",
+    "M001183",
+    "R000605"
+  ],
+  "id": "s743-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Budget.",
+  "latest_action_date": "2023-03-09",
+  "number": 743,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/743",
+  "sponsor_id": "L000571",
+  "subjects": [
+    "Advisory bodies",
+    "Budget deficits and national debt",
+    "Budget process",
+    "Congressional operations and organization",
+    "Congressional oversight",
+    "Government information and archives",
+    "Government studies and investigations",
+    "House of Representatives",
+    "Legislative rules and procedure",
+    "Presidents and presidential powers, Vice Presidents",
+    "Senate"
+  ],
+  "title_official": "Sustainable Budget Act of 2023",
+  "type": "s"
+}

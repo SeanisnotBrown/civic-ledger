@@ -1,0 +1,124 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S350; text: 01/18/2024 CR S188-189)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S350; text: 01/18/2024 CR S188-189)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-02-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001230",
+    "B001243",
+    "B001277",
+    "B001288",
+    "B001310",
+    "B001319",
+    "B001320",
+    "C000174",
+    "C001035",
+    "C001047",
+    "C001056",
+    "C001088",
+    "D000563",
+    "D000622",
+    "H001076",
+    "H001079",
+    "K000367",
+    "K000383",
+    "K000384",
+    "L000570",
+    "L000575",
+    "M000133",
+    "M001169",
+    "M001190",
+    "R000122",
+    "R000595",
+    "S000033",
+    "S001198",
+    "S001203",
+    "V000128",
+    "W000779",
+    "W000800"
+  ],
+  "id": "sres529-118",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S350; text: 01/18/2024 CR S188-189)",
+  "latest_action_date": "2024-02-01",
+  "number": 529,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/529",
+  "sponsor_id": "W000802",
+  "subjects": [
+    "Child care and development",
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Educational guidance",
+    "Elementary and secondary education",
+    "Social work, volunteer service, charitable organizations"
+  ],
+  "title_official": "A resolution recognizing January 2024 as \"National Mentoring Month\".",
+  "type": "sres"
+}

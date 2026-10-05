@@ -1,0 +1,133 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 304.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Judiciary. H. Rept. 118-371.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Judiciary. H. Rept. 118-371.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-09-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 18 - 15.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-09-28",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2023-11-20T19:18:00Z",
+      "title": "H.R. 2553, No More Political Prosecutions Act of 2023",
+      "url": "https://www.cbo.gov/publication/59773"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000825",
+    "B001302",
+    "D000032",
+    "F000471",
+    "H001096",
+    "J000299",
+    "M001211",
+    "M001212",
+    "N000026",
+    "V000133"
+  ],
+  "id": "hr2553-118",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 304.",
+  "latest_action_date": "2024-01-31",
+  "number": 2553,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2553",
+  "sponsor_id": "F000478",
+  "subjects": [
+    "Civil actions and liability",
+    "Criminal investigation, prosecution, interrogation",
+    "Federal district courts",
+    "Judicial procedure and administration",
+    "Jurisdiction and venue",
+    "Presidents and presidential powers, Vice Presidents",
+    "State and local courts"
+  ],
+  "title_official": "No More Political Prosecutions Act of 2023",
+  "type": "hr"
+}

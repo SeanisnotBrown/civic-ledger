@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-217.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "R000595",
+    "R000605",
+    "S001191",
+    "T000278",
+    "T000476",
+    "W000437"
+  ],
+  "id": "s1315-118",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 118-217.",
+  "latest_action_date": "2023-07-12",
+  "number": 1315,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/1315",
+  "sponsor_id": "M000934",
+  "subjects": [
+    "Computers and information technology",
+    "Congressional oversight",
+    "Government employee pay, benefits, personnel management",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Health information and medical records",
+    "Health personnel",
+    "Health technology, devices, supplies",
+    "Performance measurement",
+    "Telephone and wireless communication",
+    "Veterans' medical care",
+    "Veterans' organizations and recognition",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "Veterans' Health Empowerment, Access, Leadership, and Transparency for our Heroes (HEALTH) Act of 2023",
+  "type": "s"
+}

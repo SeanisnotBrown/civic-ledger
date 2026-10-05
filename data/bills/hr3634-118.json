@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Aviation Subcommittee"
+      ],
+      "date": "2023-05-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Aviation.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2023-05-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001309",
+    "C001072",
+    "D000623",
+    "N000147"
+  ],
+  "id": "hr3634-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Aviation.",
+  "latest_action_date": "2023-05-25",
+  "number": 3634,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3634",
+  "sponsor_id": "C001068",
+  "subjects": [
+    "Accidents",
+    "Administrative law and regulatory procedures",
+    "Aviation and airports",
+    "Broadcasting, cable, digital technologies",
+    "Department of Transportation",
+    "Emergency communications systems",
+    "Transportation safety and security"
+  ],
+  "title_official": "Safe Aviation and Flight Enhancement Act of 2023",
+  "type": "hr"
+}

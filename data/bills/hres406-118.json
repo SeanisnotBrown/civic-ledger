@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-05-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H2508)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-05-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C001129",
+    "H001086",
+    "L000596",
+    "M001210",
+    "M001211",
+    "M001212",
+    "M001216",
+    "S001214",
+    "V000133"
+  ],
+  "id": "hres406-118",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H2508)",
+  "latest_action_date": "2023-05-23",
+  "number": 406,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/406",
+  "sponsor_id": "G000596",
+  "subjects": [],
+  "title_official": "Impeaching Christopher Asher Wray, Director of the Federal Bureau of Investigation, for facilitating the development of a Federal police force to intimidate, harass, and entrap American citizens that are deemed enemies of the Biden regime.",
+  "type": "hres"
+}

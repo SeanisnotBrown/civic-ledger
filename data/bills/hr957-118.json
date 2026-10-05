@@ -1,0 +1,86 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-02-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "B001315",
+    "C001119",
+    "C001135",
+    "D000632",
+    "F000466",
+    "G000553",
+    "G000583",
+    "G000597",
+    "I000058",
+    "K000380",
+    "K000398",
+    "L000598",
+    "L000599",
+    "M001217",
+    "N000191",
+    "N000194",
+    "O000175",
+    "P000096",
+    "S000522",
+    "S001196",
+    "S001212",
+    "T000463"
+  ],
+  "id": "hr957-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2024-12-17",
+  "number": 957,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/957",
+  "sponsor_id": "S001209",
+  "subjects": [],
+  "title_official": "Public Safety Retirees Healthcare Protection Act of 2023",
+  "type": "hr"
+}

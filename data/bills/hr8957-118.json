@@ -1,0 +1,131 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Trade Subcommittee"
+      ],
+      "date": "2024-12-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Trade.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committees on Energy and Commerce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committees on Energy and Commerce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committees on Energy and Commerce, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-07-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000369",
+    "B000668",
+    "B001275",
+    "B001301",
+    "C001059",
+    "C001068",
+    "C001112",
+    "C001119",
+    "C001121",
+    "C001125",
+    "C001133",
+    "C001135",
+    "D000197",
+    "D000624",
+    "D000632",
+    "F000466",
+    "G000592",
+    "G000593",
+    "G000597",
+    "H001085",
+    "J000295",
+    "K000382",
+    "L000582",
+    "L000590",
+    "L000598",
+    "M001135",
+    "M001163",
+    "M001199",
+    "M001213",
+    "M001221",
+    "M001223",
+    "M001228",
+    "N000194",
+    "O000086",
+    "P000608",
+    "P000613",
+    "S000168",
+    "S001135",
+    "S001225",
+    "T000487",
+    "V000129",
+    "W000804",
+    "W000826",
+    "Z000018"
+  ],
+  "id": "hr8957-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Trade.",
+  "latest_action_date": "2024-12-17",
+  "number": 8957,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/8957",
+  "sponsor_id": "C001114",
+  "subjects": [],
+  "title_official": "PROVE IT Act of 2024",
+  "type": "hr"
+}

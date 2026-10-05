@@ -1,0 +1,48 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2024-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C000127",
+    "H001061",
+    "M001111",
+    "T000250"
+  ],
+  "id": "s3797-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Indian Affairs.",
+  "latest_action_date": "2024-02-12",
+  "number": 3797,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3797",
+  "sponsor_id": "R000605",
+  "subjects": [
+    "Health care costs and insurance",
+    "Indian social and development programs"
+  ],
+  "title_official": "Purchased and Referred Care Improvement Act",
+  "type": "s"
+}

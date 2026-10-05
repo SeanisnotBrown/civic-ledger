@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2024-05-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and the Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-05-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-05-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000376",
+    "A000379",
+    "B001285",
+    "B001296",
+    "C001061",
+    "C001117",
+    "D000096",
+    "D000530",
+    "F000466",
+    "G000559",
+    "K000380",
+    "L000569",
+    "L000599",
+    "M001160",
+    "M001219",
+    "N000147",
+    "P000608",
+    "P000618",
+    "S001209",
+    "S001215",
+    "T000463",
+    "T000467",
+    "W000826"
+  ],
+  "id": "hres1197-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and the Workforce.",
+  "latest_action_date": "2024-05-06",
+  "number": 1197,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1197",
+  "sponsor_id": "G000546",
+  "subjects": [],
+  "title_official": "Recognizing the roles and contributions of elementary and secondary school teachers in building and enhancing the civic, cultural, and economic well-being of the United States.",
+  "type": "hres"
+}

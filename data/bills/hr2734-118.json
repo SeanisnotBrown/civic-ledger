@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001278",
+    "F000466",
+    "G000582",
+    "L000599"
+  ],
+  "id": "hr2734-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Science, Space, and Technology.",
+  "latest_action_date": "2023-04-20",
+  "number": 2734,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/2734",
+  "sponsor_id": "C001112",
+  "subjects": [
+    "Air quality",
+    "Aquatic ecology",
+    "Climate change and greenhouse gases",
+    "Food industry and services",
+    "Marine and coastal resources, fisheries",
+    "Marine pollution",
+    "Research administration and funding",
+    "Seafood"
+  ],
+  "title_official": "Ocean Acidification Research Partnerships Act",
+  "type": "hr"
+}

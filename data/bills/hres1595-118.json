@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-11-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "A000148",
+    "L000599"
+  ],
+  "id": "hres1595-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Energy and Commerce.",
+  "latest_action_date": "2024-11-22",
+  "number": 1595,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1595",
+  "sponsor_id": "B001296",
+  "subjects": [],
+  "title_official": "Expressing support for the designation of November 2024 as \"National Lung Cancer Awareness Month\" and expressing support for early detection and treatment of lung cancer.",
+  "type": "hres"
+}

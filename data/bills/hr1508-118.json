@@ -1,0 +1,95 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by the Yeas and Nays: 19 - 18.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-01-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-03-01T18:08:00Z",
+      "title": "H.R. 1508, Traveler’s Gun Rights Act",
+      "url": "https://www.cbo.gov/publication/60052"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001298",
+    "C001120",
+    "D000032",
+    "D000615",
+    "G000565",
+    "L000266",
+    "L000578",
+    "M001177",
+    "P000605",
+    "S001192"
+  ],
+  "id": "hr1508-118",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported in the Nature of a Substitute (Amended) by the Yeas and Nays: 19 - 18.",
+  "latest_action_date": "2024-01-18",
+  "number": 1508,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1508",
+  "sponsor_id": "J000301",
+  "subjects": [
+    "Criminal justice information and records",
+    "Firearms and explosives",
+    "Military personnel and dependents"
+  ],
+  "title_official": "Traveler’s Gun Rights Act",
+  "type": "hr"
+}

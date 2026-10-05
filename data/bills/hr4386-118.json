@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-06-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2023-06-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR E621)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-06-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-06-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "hr4386-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2023-06-27",
+  "number": 4386,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/4386",
+  "sponsor_id": "N000147",
+  "subjects": [
+    "Criminal investigation, prosecution, interrogation",
+    "District of Columbia",
+    "Federal district courts",
+    "Judges",
+    "Judicial procedure and administration",
+    "Law enforcement officers",
+    "State and local courts"
+  ],
+  "title_official": "District of Columbia Federal Judicial Officials Residency Equality Act of 2023",
+  "type": "hr"
+}

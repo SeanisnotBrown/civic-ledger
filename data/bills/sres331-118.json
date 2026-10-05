@@ -1,0 +1,66 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2023-09-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S4233; text: CR S4232)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2023-09-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.(consideration: CR S4233; text: CR S4232)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-09-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "B001310",
+    "B001319",
+    "C001075",
+    "C001095",
+    "C001098",
+    "H001079",
+    "K000393",
+    "T000278",
+    "T000476",
+    "W000790"
+  ],
+  "id": "sres331-118",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S4233; text: CR S4232)",
+  "latest_action_date": "2023-09-06",
+  "number": 331,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/331",
+  "sponsor_id": "W000437",
+  "subjects": [
+    "Aquaculture",
+    "Commemorative events and holidays",
+    "Fishes",
+    "Food industry and services",
+    "Migrant, seasonal, agricultural labor"
+  ],
+  "title_official": "A resolution designating August 2023 as \"National Catfish Month\".",
+  "type": "sres"
+}

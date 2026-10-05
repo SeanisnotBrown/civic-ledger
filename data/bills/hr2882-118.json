@@ -1,4 +1,670 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-47.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 118-47.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0114",
+      "source_system": "Senate",
+      "text": "Senate agreed, under the order of 3/22/2024, having achieved 60 votes in the affirmative, to the House amendment to the Senate amendment to H.R. 2882 by Yea-Nay Vote. 74 - 24. Record Vote Number: 114.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "20500",
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0114",
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- Senate actions: Senate agreed, under the order of 3/22/2024, having achieved 60 votes in the affirmative, to the House amendment to the Senate amendment to H.R. 2882 by Yea-Nay Vote. 74 - 24. Record Vote Number: 114.",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to refer to Senate Committee on Appropriations the House message to accompany H.R. 2882 with instructions to report back forthwith with the following amendment (SA 1792) withdrawn by unanimous consent in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1790) withdrawn by unanimous consent in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to concur in the House amendment to the Senate amendment to H.R. 2882 withdrawn by unanimous consent in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0113",
+      "source_system": "Senate",
+      "text": "Motion to table amendment SA 1792 (the instructions of the motion to refer) rejected in Senate by Yea-Nay Vote. 47 - 51. Record Vote Number: 113.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0112",
+      "source_system": "Senate",
+      "text": "Motion to table amendment SA 1793 rejected in Senate by Yea-Nay Vote. 47 - 51. Record Vote Number: 112.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0111",
+      "source_system": "Senate",
+      "text": "Motion to table amendment SA 1794 rejected in Senate by Yea-Nay Vote. 47 - 51. Record Vote Number: 111.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Blackburn to refer to Senate Committee on the Judiciary with instructions to report back rejected in Senate by Voice Vote. (CR S2583)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lankford to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1718) was not agreed to by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lankford to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1718) made in Senate. (CR S2583)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lankford to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1713) was not agreed to by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lankford to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1713) made in Senate. (CR S2582)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0110",
+      "source_system": "Senate",
+      "text": "Motion to table the motion to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1706) was agreed to in Senate by Yea-Nay Vote. 51 - 47. Record Vote Number: 110.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Johnson to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1706) made in Senate. (CR S2582)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0109",
+      "source_system": "Senate",
+      "text": "Motion by Senator Schmitt to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1795) was not agreed to by Yea-Nay Vote. 47 - 51. Record Vote Number: 109.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schmitt to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1795) made in Senate. (CR S2581)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0108",
+      "source_system": "Senate",
+      "text": "Motion to table the motion to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1781) was agreed to in Senate by Yea-Nay Vote. 51 - 47. Record Vote Number: 108.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Tuberville to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1781) made in Senate. (CR S2580)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0107",
+      "source_system": "Senate",
+      "text": "Motion to table the motion to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1804) was agreed to in Senate by Yea-Nay Vote. 51 - 47. Record Vote Number: 107.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Cruz to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1804) made in Senate. (CR S2580)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0106",
+      "source_system": "Senate",
+      "text": "Motion by Senator Paul to refer to Senate Committee on Appropriations with instructions to report back rejected in Senate by Yea-Nay Vote. 34 - 63. Record Vote Number: 106. (CR S2579)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-23",
+      "rollcall_id": "s-118-2-0105",
+      "source_system": "Senate",
+      "text": "Motion by Senator Lee to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1722) was not agreed to by Yea-Nay Vote. 45 - 51. Record Vote Number: 105.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Lee to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1722) made in Senate. (CR S2578)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to refer to Senate Committee on Appropriations the House message to accompany H.R. 2882 with instructions to report back forthwith with the following amendment (SA 1792) made in Senate. (CR S2559)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to concur in the House amendment to the Senate amendment to H.R. 2882 with an amendment (SA 1790) made in Senate. (CR S2558)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to concur in the House amendment to the Senate amendment to H.R. 2882 presented in Senate. (CR S2558)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Schumer to concur in the House amendment to the Senate amendment to H.R. 2882. (CR S2558)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by motion. (consideration: CR S2558-2564, S2572-2575, S2578-2586)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": "s-118-2-0103",
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of the House message to accompany H.R. 2882 agreed to in Senate by Yea-Nay Vote. 78 - 18. Record Vote Number: 103.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on House action received in Senate and at desk: House amendment to Senate amendment.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1B000",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to the provisions of H. Res. 1102, the House agreed to the Senate amendment with amendment. (consideration: CR H1365-1487)",
+      "time": "12:46:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2024-03-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: Pursuant to the provisions of H. Res. 1102, the House agreed to the Senate amendment with amendment.",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2024-03-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-03-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S2370)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2024-02-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "19:01:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": "h-118-2-0032",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 350 - 58 (Roll no. 32). (text: CR H395)",
+      "time": "19:01:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": "h-118-2-0032",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 350 - 58 (Roll no. 32). (text: CR H395)",
+      "time": "19:01:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H409)",
+      "time": "18:30:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "time": "16:09:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 2882.",
+      "time": "16:01:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H395-396)",
+      "time": "16:01:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2024-02-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Westerman moved to suspend the rules and pass the bill, as amended.",
+      "time": "16:01:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-01-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Natural Resources. H. Rept. 118-364, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2024-01-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Natural Resources. H. Rept. 118-364, Part I.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15000-B",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-11-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee on Indian and Insular Affairs Discharged",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2023-07-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2023-05-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Indian and Insular Affairs .",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and the Workforce, and in addition to the Committee on Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and the Workforce, and in addition to the Committee on Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-04-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2024-01-10T18:25:00Z",

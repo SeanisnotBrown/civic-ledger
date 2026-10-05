@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2024-09-11",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2024-09-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2024-09-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2024-09-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2024-12-18T20:58:00Z",
+      "title": "H.R. 9497, AI Advancement and Reliability Act of 2024",
+      "url": "https://www.cbo.gov/publication/61125"
+    }
+  ],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001287",
+    "B001292",
+    "B001316",
+    "F000454",
+    "K000401",
+    "L000397",
+    "L000491",
+    "L000582",
+    "N000191",
+    "O000172",
+    "P000616"
+  ],
+  "id": "hr9497-118",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported (Amended) by Voice Vote.",
+  "latest_action_date": "2024-09-11",
+  "number": 9497,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/9497",
+  "sponsor_id": "O000019",
+  "subjects": [
+    "Advanced technology and technological innovations",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Government studies and investigations",
+    "Public-private cooperation",
+    "Research and development"
+  ],
+  "title_official": "AI Advancement and Reliability Act of 2024",
+  "type": "hr"
+}

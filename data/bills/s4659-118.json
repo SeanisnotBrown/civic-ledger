@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2024-07-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Budget.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-07-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "M001198",
+    "S001217",
+    "T000476"
+  ],
+  "id": "s4659-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Budget.",
+  "latest_action_date": "2024-07-10",
+  "number": 4659,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/4659",
+  "sponsor_id": "B001310",
+  "subjects": [],
+  "title_official": "Debt-to-GDP Transparency and Stabilization Act",
+  "type": "s"
+}

@@ -1,0 +1,56 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-06-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-06-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B000944",
+    "B001277",
+    "D000563",
+    "M000133",
+    "M001176"
+  ],
+  "id": "s2012-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-06-15",
+  "number": 2012,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2012",
+  "sponsor_id": "C000141",
+  "subjects": [
+    "Advisory bodies",
+    "Dental care",
+    "Emergency medical services and trauma care",
+    "Health personnel",
+    "Health promotion and preventive care",
+    "Health technology, devices, supplies",
+    "Medical research",
+    "Medical tests and diagnostic methods",
+    "Medicare"
+  ],
+  "title_official": "Medicare Dental Benefit Act of 2023",
+  "type": "s"
+}

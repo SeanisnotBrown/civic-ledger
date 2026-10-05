@@ -1,0 +1,51 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-12-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [],
+  "id": "s3451-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2023-12-07",
+  "number": 3451,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3451",
+  "sponsor_id": "B001288",
+  "subjects": [
+    "Child health",
+    "Congressional oversight",
+    "Correctional facilities and imprisonment",
+    "Drug, alcohol, tobacco use",
+    "Government information and archives",
+    "Health care coverage and access",
+    "Medicaid",
+    "Mental health",
+    "Poverty and welfare assistance",
+    "State and local finance"
+  ],
+  "title_official": "Rehabilitation and Recovery During Incarceration Act",
+  "type": "s"
+}

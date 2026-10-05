@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2023-03-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S803-804)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-03-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001236",
+    "B001261",
+    "B001305",
+    "B001310",
+    "C001075",
+    "C001095",
+    "C001098",
+    "G000359",
+    "H001089",
+    "K000393",
+    "L000575",
+    "L000577",
+    "M000934",
+    "M001190",
+    "M001198",
+    "R000584",
+    "R000595",
+    "R000618",
+    "V000137",
+    "W000437"
+  ],
+  "id": "sres107-118",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S803-804)",
+  "latest_action_date": "2023-03-15",
+  "number": 107,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/107",
+  "sponsor_id": "H001079",
+  "subjects": [],
+  "title_official": "A resolution recognizing the expiration of the Equal Rights Amendment proposed by Congress in March 1972, and observing that Congress has no authority to modify a resolution proposing a constitutional amendment after the amendment has been submitted to the States or after the amendment has expired.",
+  "type": "sres"
+}

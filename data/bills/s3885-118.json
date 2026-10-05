@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2024-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "H001042",
+    "M000934"
+  ],
+  "id": "s3885-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Veterans' Affairs.",
+  "latest_action_date": "2024-03-06",
+  "number": 3885,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/3885",
+  "sponsor_id": "S001191",
+  "subjects": [
+    "Congressional oversight",
+    "Department of Veterans Affairs",
+    "Employee benefits and pensions",
+    "Employee hiring",
+    "Employment and training programs",
+    "Family relationships",
+    "Government studies and investigations",
+    "Health personnel",
+    "Medicare",
+    "Veterans' medical care"
+  ],
+  "title_official": "Veteran Caregiver Reeducation, Reemployment, and Retirement Act",
+  "type": "s"
+}

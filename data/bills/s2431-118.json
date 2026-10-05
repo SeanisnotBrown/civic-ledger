@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2023-07-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "C000880",
+    "H000273",
+    "R000584"
+  ],
+  "id": "s2431-118",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Veterans' Affairs.",
+  "latest_action_date": "2023-07-20",
+  "number": 2431,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/2431",
+  "sponsor_id": "B001267",
+  "subjects": [
+    "Consumer credit",
+    "Employee hiring",
+    "Employment and training programs",
+    "Lawyers and legal services",
+    "Mental health",
+    "Military personnel and dependents",
+    "Small business",
+    "Social work, volunteer service, charitable organizations",
+    "Veterans' education, employment, rehabilitation",
+    "Veterans' medical care"
+  ],
+  "title_official": "HUBS for Veterans Act",
+  "type": "s"
+}

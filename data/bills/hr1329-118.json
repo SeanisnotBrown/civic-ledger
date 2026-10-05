@@ -1,0 +1,106 @@
+{
+  "actions": [
+    {
+      "action_code": "H25000",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-04-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee on Disability Assistance and Memorial Affairs Discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2023-03-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2023-03-23",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Disability Assistance and Memorial Affairs.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2023-03-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 118,
+  "cosponsor_ids": [
+    "B001257",
+    "C001072",
+    "C001130",
+    "D000616",
+    "G000551",
+    "G000600",
+    "J000288",
+    "M000194",
+    "M001135",
+    "M001199",
+    "M001210",
+    "S001211",
+    "S001212"
+  ],
+  "id": "hr1329-118",
+  "jurisdiction": "us",
+  "latest_action": "Subcommittee on Disability Assistance and Memorial Affairs Discharged.",
+  "latest_action_date": "2023-04-19",
+  "number": 1329,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1329",
+  "sponsor_id": "S001224",
+  "subjects": [
+    "Administrative remedies",
+    "Department of Veterans Affairs",
+    "Judges",
+    "Specialized courts",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "To amend title 38, United States Code, to provide for an increase in the maximum number of judges who may be appointed to the United States Court of Appeals for Veterans Claims.",
+  "type": "hr"
+}

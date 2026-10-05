@@ -1,5 +1,9 @@
 // V2-11 task 7 — one bill's feed. The "Track this bill" affordance on /b/{id} points
-// here, and it needs no account and records nothing about the reader.
+// here, and it needs no account. Do NOT re-add a claim that it records nothing about
+// the reader: the owner ruled on 2026-09-30 that this claim family be stripped, not
+// reworded, because the no-logging claim is impossible for what the project needs to
+// do, and feed polling makes it worse — a feed reader is a recurring request pattern
+// the host sees. Stripped from the bill page 2026-10-05 on the owner's word.
 //
 // Built for the SAME set of bills that get pages (getPagedBills — SD-33 3(c)). A feed
 // per tracked bill would be 38,756 extra built files and would blow the 20,000-file

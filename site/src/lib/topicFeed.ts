@@ -2,7 +2,12 @@
 //
 // The most recent official actions on every bill the government classified under this
 // term. This is the "get an alert when a bill that affects X comes up" path, and it
-// needs no account and records nothing about the reader.
+// needs no account. Do NOT re-add a claim that it records nothing about the reader:
+// the owner ruled on 2026-09-30 that this claim family be stripped, not reworded,
+// because the no-logging claim is impossible for what the project needs to do, and
+// feed polling makes it worse — a feed reader is a recurring request pattern the host
+// sees. Stripped from the bill page 2026-10-05 on the owner's word. See D98/D99 era
+// notes and docs/draft-v2-7-privacy-claims.md.
 import { getTopicBills, getTopicPath, recentActions, votedBillIds } from "./data";
 import type { Topic } from "./data";
 import { actionEntries, atomFeed, atomResponse, FEED_LIMIT } from "./atom";

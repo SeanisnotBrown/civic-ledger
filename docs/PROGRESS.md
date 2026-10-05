@@ -3,94 +3,98 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-02, 20:30 CDT, end of session (V2-11 tasks **1-7 + 5b done**,
-D88-D97). Task 7 is committed and **pushed** (five commits, `8e65c8fbf`..`06150265c`).
-**Next increment task: V2-11 task 8 (fold `ingest bill-activity --since` into the nightly)
-— but do task 0 below FIRST.**
+**Last updated:** 2026-10-05, end of session. **V2-11 IS COMPLETE — tasks 1-8 + 5b done**
+(D88-D99). The Congress 118 backfill finished and is committed. Three commits this
+session plus a docs commit; see "NEXT" for the one thing that is still open.
+**Next increment: V2-7 (privacy page true), and read the ⚠ below before you write a word
+of it.**
 
-## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (owner's instruction, 2026-10-02)
+## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (2026-10-05)
 
-**Check the backfill.** The owner left it running deliberately and asked that the next
-session prioritise checking on it. It was at **18,796 of 19,315** bills for Congress 118
-at 20:31 CDT, with roughly **519 to go, ~40 minutes** — so **it has almost certainly
-FINISHED by the time you read this.**
+**Check whether the Congress 119 backfill is running, and check CI.**
 
-Three commands, in this order:
-
-    grep -l '"actions"' data/bills/*.json | wc -l     # 19,315 means Congress 118 is done
-    tasklist | grep -i python                          # the ~75 MB one is the backfill
-    ls data/quality/quarantine/ | grep '^bill-'        # 1 at session end (bill-s4869-118)
+    tasklist | grep -i python                          # a ~60-80 MB one is a backfill
+    grep -l '"actions"' data/bills/*.json | wc -l      # 19,804 means only 118 is done
+    gh run list -L 3                                   # the push from 2026-10-05
+    git status --short -- data | wc -l                 # 0 means no ingest is mid-flight
 
 Then take the branch that matches:
 
-- **Finished (count at ~19,315, process gone)** → **commit the data.** This is the
-  highest-value thing available and it has been waiting a day. Use the four-command loop
-  further down, and do not skip `uv run ingest events && uv run ingest topics &&
-  uv run export` — without it the push goes red on invariant 8, invariant 9 and the
-  manifest counts. **Also commit every file in `data/quality/quarantine/` and add each
-  bill id to the committed accept list** (see live fact 2) or
-  `test_committed_accept_list_matches_committed_quarantines` goes red.
-  **Committing the data is what makes task 7 visible**: the deployed site currently
-  renders timelines for only the 44 committed bills that have both a page and actions,
-  out of ~1,000 that will have them once this lands.
-- **Still running** → leave it alone (the owner's standing instruction is "do not stop the
-  process that is pulling data") and work on task 8, which touches `.github/workflows/`
-  and `ingest/`, not `data/`. Commit the data when it finishes.
-- **Died partway** → that is FINE and expected. Resume is the default and costs 0.56 s
-  with zero API requests (D95a): just relaunch the same command.
-
-**Congress 119 has NOT been started.** It is a separate `--congress 119` run of roughly
-24 h. Ask the owner before launching it — it is his machine and his API quota.
+- **A backfill is running** → leave it alone (the owner's standing instruction is "do not
+  stop the process that is pulling data") and work on V2-7, which touches `site/` and
+  `docs/`, not `data/`. Commit the data when it finishes, with the four-command loop
+  further down.
+- **Nothing is running and `git status -- data` is clean** → Congress 119 has not been
+  started or has finished. **The owner approved launching 119 on 2026-10-05**, so if the
+  count is still ~19,804 you may launch it: `uv run ingest bill-activity --congress 119`,
+  detached, logging to a gitignored `backfill-*.log`. It is ~24 h and ~19,441 bills.
+- **Dirty `data/` with no process** → a run died. That is FINE: resume is the default and
+  costs 0.56 s with zero API requests (D95a). Relaunch the same command, or just commit
+  what is on disk with the four-command loop.
 
 ## ▶▶ READ THIS FIRST — the three live facts
 
-**1. A BACKFILL IS RUNNING ON THIS MACHINE RIGHT NOW and was deliberately left running.**
-`uv run ingest bill-activity --congress 118`, detached, logging to `backfill-118.log`
-(gitignored). It writes **only** `data/bills/`. The owner's instruction at session end was
-explicitly "do not stop the process that is pulling data".
-- **Progress is read off DISK, never the log** (Python buffers stdout when redirected, so
-  the log sits empty for long stretches while the run is working fine):
-  `grep -l '"actions"' data/bills/*.json | wc -l` — **18,796 at 20:31 CDT on 2026-10-02**
-  (461 two sessions ago, 9,883 that afternoon), target **19,315** for Congress 118.
-  Sustained rate over 22 h: **~4.5 s/bill**. Congress 118 was ~40 minutes from done at
-  session end. **Congress 119 is a separate run and has not been started.**
-- **Is it still alive?** `tasklist | grep -i python` — it is the ~80 MB one.
-  **If it is gone, that is FINE**: resume is the default and costs 0.56 s / zero requests.
+**1. NOTHING IS WRITING `data/` AS OF SESSION END, and Congress 118 IS COMPLETE.**
+The backfill the previous two sessions left running finished at 20:54 CDT on 2026-10-02.
+Final enumeration: **19,118 bills for Congress 118**; 19,102 hold timelines. `data/bills/`
+holds **19,804** files total (118 complete + 508 pre-existing 119 bills with activity).
+**The "19,315" target recorded in earlier sessions is WRONG** — it predated a real
+enumeration, and the API's own count is 19,118. **Congress 119 has NOT been backfilled**
+and the owner approved starting it; see TASK 0.
 
-**2. THERE IS UNCOMMITTED BILL DATA, on purpose.** `git status --short -- data` was
-**18,408 files** at session end. This is the single biggest piece of pending work in the
-repo and task 0 above is how you clear it.
-**▶ NEW, and it is NOT a bill file:** the backfill also wrote
-`data/quality/quarantine/bill-s4869-118.json` (`KeyError: 'text'` — one congress.gov
-action row with no `text` field). It is untracked, so the earlier claim that the run
-writes "only `data/bills/`" is wrong. **Still exactly ONE at 18,796 bills** — the failure
-rate did not grow as expected, so re-check the directory rather than assuming a handful. **Whoever commits the data must also
-commit that file AND add `bill-s4869-118` to the committed accept list**, or
-`test_committed_accept_list_matches_committed_quarantines` goes red in CI. Expect a few
-more of these by the time 118 finishes. It was NOT committed because **the
-derived artifacts cannot be verified while the run is writing** (see the operational rule
-below). Nothing is at risk — the files are on disk and resume reads disk, not git.
-**To commit it, stop the run first, then use the four-command loop further down.**
+**2. THE DATA IS COMMITTED. `git status -- data` is CLEAN.** This reverses the single
+biggest standing item in this file. Three commits:
+- `c68614ca4` — 18,904 files, the Congress 118 timelines.
+- `5755126f3` — V2-11 task 8 + the nullable-`text` fix (D98, D99).
+- `a9c177360` — the regenerated activity feed, topic index, schemas and manifest.
+**`verify-recompute` is GREEN on the full corpus** — 3,519 roll calls, 31 month files of
+the activity feed and the topic index all recompute exactly (invariants 8 and 9). This was
+impossible to run for three days while the backfill wrote; it is now verified.
 
-**3. CI STATE: the five task-7 commits were PUSHED at the end of this session** —
-`8e65c8fbf`, `3d6c09414`, `54204419e`, `ed89527ce`, `06150265c`. **Check that run before
-anything else in CI terms** (`gh run list -L 3`); the last known-green run before them was
-`36960519658` on `4b0f731c9`. They touch `site/` and `docs/` ONLY — zero Python, zero
-`data/` — so the python job's inputs are unchanged from that green run, and `uv run
-checks`, `uv run ruff check .`, the build, links, file-count and 60/60 e2e were all green
-locally before the push. **The local pytest run is RED with 3
-failures and all three are the running backfill**, not the new code:
-`test_committed_manifest_matches_regeneration` (committed manifest says 1,385 bills, disk
-now has 10,481), `test_verify_recompute_entrypoint_green` (invariants 8/9 — the documented
-interference below), and `test_committed_accept_list_matches_committed_quarantines` (the
-new untracked `data/quality/quarantine/bill-s4869-118.json`). **CI checks out committed
-data only and sees none of the three.** Verify by re-reading this section rather than
-re-running the suite and re-deriving it.
-For the record of how it got there: the task-6 push (`006a5d481`) went red at the Ruff
-step on two over-long lines in `tests/test_topics_v2_11.py` — lint only, no logic — because
-`ruff check ingest/` was run locally where CI runs `ruff check .` (D96 addendum). The fix
-is `3f0499118` and it is green. The task-6 run itself shows **cancelled**, which was the
-fix push superseding it under the concurrency group, not a second failure.
+**3. ⚠ 15 BILLS CANNOT BE FETCHED, AND IT IS NOT TRANSIENT.** `TruncatedFetchError` is
+**deterministic** for `s467-118`, `hr1516-118`, `hres1617-118`, `hres1627-118`,
+`hres1626-118`, `hres1618-118`, `hres712-118`, `s4072-118`, `hr9748-118`, `hr6872-118`
+and five more. **Three full passes returned 16, then 15, then 15 failures with the same
+ids recurring.** The run's own "re-run to retry" message is misleading — do not spend a
+session retrying, it will not clear them. They keep whatever record they had: stale, not
+false. The cause is in `congress_gov.py`'s fetch, most likely a response-size or
+pagination case. **Raised as an H-task; it needs its own measurement.** Note that D99's
+nightly tolerance will now absorb these silently every night, which is the right call for
+a valid night's data and the wrong outcome for these 15 bills.
+
+## ⚠ BEFORE YOU WRITE V2-7: A FALSE CLAIM IS LIVE ON THE SITE RIGHT NOW
+
+`site/src/pages/b/[bill].astro:170` renders **"No account, and nothing about you is
+recorded."** on every bill page. It sits outside the actions conditional, so it is on all
+of them. It was written 2026-10-02 as part of task 7 — **after** the owner's 2026-09-30
+ruling (`docs/decisions.md:2038-2045`) that this exact claim family be **stripped, not
+reworded**, because "the no-logging claim is impossible for what the project needs to do".
+Feed polling makes it worse, not better: a feed reader produces a recurring request
+pattern the host sees. The same wording is in two code comments —
+`site/src/lib/topicFeed.ts:5` and `site/src/pages/b/[bill]/feed.xml.ts:2`.
+
+**It was NOT removed this session: the owner was asked and had not answered by session
+end.** Published prose making a claim about reader data is his call (§0.8), and his
+standing ruling says strip rather than reword. **Ask him, then strip it.**
+
+**A full V2-7 claim-by-claim audit already exists: `docs/draft-v2-7-privacy-claims.md`.**
+Read it before writing any privacy copy. It carries 15 `VERIFIED TODAY` claims with
+file:line evidence, 10 `PLANNED — not yet true`, 5 `NEEDS OWNER DECISION`, two existing
+claims to REMOVE and one to REWORD, and six ranked owner questions. Its headline findings:
+- `/privacy` itself already claims a legal demand "would produce **only** what that private
+  repository contains" (`privacy.astro:22-24`). Gitignored material already exists outside
+  the repo (`data/raw/`, `build.db`, `.env`). Low harm today — none of it is reader data —
+  but it is a factual claim and it is not accurate, and at V2-8 the D1 database makes it
+  decisively false.
+- **"No third-party scripts" breaks at V2-8, not V2-9** — Turnstile (H17) is a third-party
+  script and lands one increment earlier than the analytics everyone expects to break it.
+- `MemberBrowser.tsx:137-144` mirrors the reader's **typed search text** into the page
+  address via `replaceState`, and `/compare?m=…` carries the compared member set to the
+  host. Unflattering, deliberately not smoothed.
+- **Q1 (how to describe Cloudflare as host) blocks the whole page.** The 15 verified claims
+  can be written on that answer alone, and that today-true page is worth shipping on its
+  own. The forward-looking half is blocked on Q3 (which email company, H18) and Q5 (which
+  table list is canonical — the spec names six, the plan's V2-12 adds a seventh).
 
 ## Where the build actually stands
 
@@ -142,11 +146,18 @@ pagination, which needs H20 (Workers Paid).**
 114 MB) — a fresh machine has the package but not the binary, and every e2e test fails
 with "Executable doesn't exist" until it is there.
 
-**NEXT — task 8 (the last piece of V2-11):** fold `uv run ingest bill-activity --since`
-into `nightly.yml` (the SD-33 daily-digest cadence). **Only `ingest events` and
-`ingest topics` are wired in so far — the delta FETCH is not.** Task 7 needs nothing
-further from it: the site builds against whatever is on disk and behaves identically at
-38,756. Then V2-7 (privacy page true) before anything that stores user data.
+**TASK 8 IS DONE (D99, commit `5755126f3`).** `nightly.yml` step 1b runs
+`uv run ingest bill-activity --since 30`, after `ingest bills` and before
+`ingest legislation` and steps 3e/3f. **V2-11 is therefore COMPLETE (tasks 1-8 + 5b).**
+The one behaviour change worth knowing: a fetch-failure count at or under
+`max(2, 2% of the window)` no longer fails the nightly, because the step runs under
+`set -euo pipefail` and one `ConnectTimeout` used to abort the night before classify,
+metrics, grades, events, topics, export and the commit. Full reasoning in D99.
+
+**NEXT — V2-7 (privacy page true).** It is the blocking gate before V2-8/V2-9/V2-12/V2-13,
+which store user data. **Read the ⚠ section at the top of this file first**: a false claim
+is live on every bill page right now, and `docs/draft-v2-7-privacy-claims.md` is a
+finished claim-by-claim audit with the owner questions already ranked.
 
 ## ⚠ OPERATIONAL RULE — invariants 8 and 9 cannot be verified while a backfill runs
 

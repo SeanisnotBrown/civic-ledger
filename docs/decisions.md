@@ -2687,3 +2687,122 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   elements. `<updated>` is derived from record dates everywhere, so two consecutive fetches
   are byte-identical — pinned by an e2e test, because a build-clock stamp would re-notify
   every subscriber on every rebuild.
+
+- **D98 (2026-10-05) — `BillAction.text` and `BillEvent.text` are nullable, because a
+  required field was a sampling artefact that hid a real bill.**
+  The task-3 survey read `text` as present on 520/520 sampled action rows and recorded it
+  as **required**. Real data contradicts that: congress.gov served `s4869-118` a Library of
+  Congress `Intro-S` row dated 2024-07-30 with no `text` key at all, and `parse_actions`
+  raised `KeyError: 'text'`, quarantining a real bill with a real three-action timeline.
+  **Rate: 1 in 19,118** over the complete Congress 118 enumeration — rare, and now known to
+  be real rather than hypothetical. The model docstring's "520/520 -> required" is corrected
+  in place rather than deleted, so the next reader sees why a measurement can mislead.
+
+  **Tolerate the field, do not accept the quarantine.** These are genuinely different
+  outcomes and §0.4 Value #1 decides between them: the accept-list is defined by its own
+  header as records "accepted as **un-ingestable**", and `s4869-118` is not un-ingestable —
+  our model was too strict. Accepting publishes *nothing* for a real bill; tolerating
+  publishes the bill with one action lacking a sentence. The missing bill is the larger
+  falsehood, and Value #4 (ship partial value) breaks the same way.
+
+  **Absent text is `None` and never the empty string, and the deciding argument is
+  mechanical, not aesthetic.** `actionText()` in `site/src/lib/display.ts` guards with `??`,
+  which is *nullish*: an empty string is not nullish, so it would slip straight through the
+  existing site guard and render a blank timeline line — the exact Value #1 failure the
+  guard was added to prevent. A sentinel string in the record is wrong for a separate
+  reason (§0.5: every text field in these records is the government's own, so our wording
+  lives in `display.ts`, never on disk). `None` is also the D27 convention already in use.
+
+  **No subscriber is re-notified, checked specifically rather than assumed.** `event_id`
+  hashes the action row *as stored*, canonically. No stored row changes: a row that has
+  text keeps identical bytes, so every pre-existing id is byte-identical, and only rows that
+  were previously unstorable (the bill published nothing) gain an id. Cross-runtime parity
+  also holds because `_dumps` writes `"text": null` rather than dropping the key — had the
+  key been dropped, `JSON.stringify` would omit it while Python kept `None`, splitting the
+  two ids. Pinned by a literal id in `tests/test_events_v2_11.py`.
+
+  **Proven, not asserted.** A resume re-ingest with the fix in the tree landed
+  `data/bills/s4869-118.json` with **3 actions, exactly 1 carrying `"text": null`**, and
+  `0 quarantined`. `data/schema/{bill,events}.schema.json` regenerate from the models via
+  `uv run export` and are committed with the change. `s4869-118` comes **off**
+  `accepted-quarantine.yaml` in the same commit, because
+  `test_committed_accept_list_matches_committed_quarantines` is bidirectional and an
+  accept-list entry with no quarantine file on disk fails it.
+
+  **Two follow-ups owed, neither urgent.** `site/src/lib/data.ts` declares
+  `BillAction.text: string`, now a false type whose comment claims it mirrors
+  `ingest/models.py` "including which fields are nullable"; the build is safe only because
+  `actionText` already accepts `string | null`. And `parse_bill` still does
+  `latest_action=latest["text"]` on the detail endpoint's `latestAction` — that endpoint was
+  never fetched for this bill, and widening it ripples into `Bill.latest_action: string` on
+  the site, so it was deliberately left alone.
+
+- **D99 (2026-10-05) — V2-11 task 8: the bill-activity delta runs in the nightly, and a
+  transient fetch failure no longer discards a green night.**
+  `.github/workflows/nightly.yml` gains step **1b**, `uv run ingest bill-activity
+  --since 30`. SD-33 decision 6 puts the daily digest on the existing nightly rather than a
+  second workflow, which makes the plan's required push-collision mitigation (a shared
+  concurrency group plus `pull --rebase` in a second committer) moot — the D84 rebase loop
+  already covers the one commit this nightly makes.
+
+  **Window = 30 h, passed explicitly at the call site.** The cron is 24 h, so 30 h is ~6 h
+  of slack for a late start, a retried run or a `workflow_dispatch` rehearsal, and re-seeing
+  a bill is idempotent (D90). It is written in the workflow rather than left to the code
+  default so the cadence is readable where it runs and a future change to the default cannot
+  silently re-time the nightly. **48 h was considered and rejected on cost**, which is the
+  discriminating constraint: D88 measured 280-435 covered bills updated per day, so 30 h is
+  ~350-545 bills (~6-9 min/night, ~180-270 min/month) on top of the D86 nightly's
+  ~900-1,400 of the 2,000-minute free allowance (H24). The rejected option was attractive —
+  it would have given every bill two chances, a free retry of a transient failure, where
+  30 h only re-sees bills updated within 6 h of a run — but not at that price.
+
+  **Placement is also a choice.** After `ingest bills`, so a newly-voted bill exists before
+  the delta refreshes it and the `/actions` responses just fetched are served from the raw
+  cache at zero extra requests. Before `ingest legislation`, so the Sunday `--full` re-page
+  (~3.5 h) never shifts this step's wall-clock — consecutive runs stay ~24 h apart, which is
+  what makes a 30 h window a guarantee rather than an average. And before steps 3e/3f, which
+  project `data/bills` into `data/events` and `data/topics` (invariants 8 and 9).
+
+  **The failure signal is the judgment call.** `run_activity` returned 1 on any fetch
+  failure, and the step runs under `set -euo pipefail`: one `ConnectTimeout` on one of
+  ~38,756 bills aborted the night *before* classify, metrics, rankings, grades, events,
+  topics, export, checks and the commit — discarding a fully valid night's votes and grades
+  and leaving the previous deploy live. Measured: the 19,118-bill Congress 118 backfill ended
+  with 16 fetch failures, **0.08%**, so a ~400-bill night expects ~0.3 and the per-night
+  probability of at least one is material. §6.1 ("stale-not-fatal sources") and the
+  `accepted-quarantine.yaml` header both reserve the "nightly failed" alarm for NEW,
+  unexpected problems, and D87 records what happens when a per-record failure is allowed to
+  turn every night red with no accept path. So on the `--since` delta, a count at or under
+  `max(ACTIVITY_FETCH_FAILURE_MIN_TOLERATED = 2, ACTIVITY_FETCH_FAILURE_MAX_FRACTION = 0.02
+  x window)` prints a note and returns 0; above it, and on the `--congress` backfill, it
+  still returns 1. Value #1 holds: `export_bill` is never reached for a failed bill, so its
+  committed record is **stale, not false**, and the projections re-derive from disk, so
+  invariants 8 and 9 stay green.
+
+  The tolerance is bounded on purpose. The floor exists because 2% of a thin 20-bill night
+  is zero; the fraction reuses `QUARANTINE_MAX_FRACTION`'s value (~25x the observed rate) so
+  a dead key, a bad window or an API outage blows through it and still returns 1 — and a dead
+  key fails harder still, because the enumeration call itself raises. **The change had to be
+  in `run_activity`, not the yml**: the §6.1 quarantine ceiling and fetch failures both
+  return 1, so the workflow cannot discriminate by exit code, and a trailing `|| true` would
+  have swallowed the quarantine ceiling too. **`bills.run()` is deliberately unchanged** and
+  still fails the nightly on any fetch failure: it walks the ~1,000 bills that have `/b/`
+  pages, where the delta's exposure is ~38x larger and its retry is idempotent. The
+  asymmetry is the point.
+
+  **Ramp-up, recorded rather than hidden:** Congress 119 was never backfilled, so most of
+  the ~411 119th-Congress bills in a nightly window are genuinely new and pay the full four
+  requests (~20-30 min/night) until the active set is held. And the nightly's "quiet night"
+  branch is now effectively dormant — ~427 bills update per day, so `data/bills` changes
+  almost every night and there is a commit and a deploy per day. That is SD-33's intended
+  cadence, but it is a change in the nightly's operational profile.
+
+  **A premise in this decision is wrong for 15 bills, and that is a separate problem.** The
+  tolerance above is justified by fetch failures being *transient*. Three full passes over
+  Congress 118 returned 16, then 15, then 15 failures with the same ids recurring —
+  `TruncatedFetchError` is **deterministic** for `s467-118`, `hr1516-118`, `hres1617-118`,
+  `hres1627-118`, `hres1626-118`, `hres1618-118`, `hres712-118`, `s4072-118`, `hr9748-118`,
+  `hr6872-118` and five more. The log's own "re-run to retry" advice will never clear them,
+  and the nightly will now tolerate them silently every night. Raised as an H-task rather
+  than patched here: the cause is in `congress_gov.py`'s fetch, most likely a response-size
+  or pagination case, and it needs its own measurement.

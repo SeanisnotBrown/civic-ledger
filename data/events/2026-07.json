@@ -1,6 +1,838 @@
 {
-  "count": 20,
+  "count": 244,
   "events": [
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9946-119",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-30--13ec166e7fdf",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4097-119",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s4097-119--2026-07-30--a1612106a38a",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4097",
+      "subjects": [
+        "Government lending and loan guarantees",
+        "Higher education",
+        "Interest, dividends, interest rates",
+        "State and local government operations",
+        "Student aid and college costs"
+      ],
+      "text": "Committee on Health, Education, Labor, and Pensions. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5175-119",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s5175-119--2026-07-30--31e2d9f83c55",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5175",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5175-119",
+      "committees": null,
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s5175-119--2026-07-30--63d0f85a9d7f",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5175",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5199-119",
+      "committees": null,
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s5199-119--2026-07-30--63d0f85a9d7f",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5199",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5199-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s5199-119--2026-07-30--95a39db1062b",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5199",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr5254-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "hr5254-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5254",
+      "subjects": [
+        "Missouri",
+        "Parks, recreation areas, trails",
+        "Public-private cooperation",
+        "User charges and fees"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr6380-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "hr6380-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6380",
+      "subjects": [
+        "Arizona",
+        "Federal-Indian relations",
+        "Monuments and memorials",
+        "Parks, recreation areas, trails"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr7831-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "hr7831-119--2026-07-29--096dbc3ac6e9",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7831",
+      "subjects": [
+        "Licensing and registrations",
+        "Mining",
+        "Oil and gas"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported without amendment favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2498-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s2498-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2498",
+      "subjects": [
+        "Land use and conservation",
+        "Parks, recreation areas, trails"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2767-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s2767-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2767",
+      "subjects": [
+        "Missouri",
+        "Parks, recreation areas, trails",
+        "Public-private cooperation",
+        "User charges and fees"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2933-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s2933-119--2026-07-29--096dbc3ac6e9",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2933",
+      "subjects": [
+        "Cancer",
+        "Child health",
+        "Parks, recreation areas, trails",
+        "West Virginia"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported without amendment favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3194-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s3194-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3194",
+      "subjects": [
+        "California",
+        "Environmental assessment, monitoring, research",
+        "Historic sites and heritage areas",
+        "Land use and conservation",
+        "Public-private cooperation"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3720-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s3720-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3720",
+      "subjects": [
+        "California",
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Parks, recreation areas, trails"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3738-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s3738-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3738",
+      "subjects": [
+        "California",
+        "Congressional oversight",
+        "Endangered and threatened species",
+        "Environmental assessment, monitoring, research",
+        "Fishes",
+        "Government information and archives",
+        "Lakes and rivers",
+        "Public-private cooperation",
+        "Utah",
+        "Water quality",
+        "Water resources funding",
+        "Water use and supply",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4041-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s4041-119--2026-07-29--48eed57bbcd7",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4041",
+      "subjects": [
+        "Water quality",
+        "Water resources funding",
+        "Water use and supply",
+        "Watersheds"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4538-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s4538-119--2026-07-29--096dbc3ac6e9",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4538",
+      "subjects": [
+        "Government studies and investigations",
+        "Maryland",
+        "Parks, recreation areas, trails",
+        "Pennsylvania",
+        "U.S. history",
+        "Virginia",
+        "West Virginia"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported without amendment favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5039-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s5039-119--2026-07-29--096dbc3ac6e9",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5039",
+      "subjects": [
+        "Licensing and registrations",
+        "Mining",
+        "Oil and gas"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported without amendment favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5169-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s5169-119--2026-07-29--451182024ae6",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5169",
+      "subjects": [
+        "Congressional oversight",
+        "Historic sites and heritage areas",
+        "Military history",
+        "Parks, recreation areas, trails",
+        "U.S. history",
+        "Virginia",
+        "West Virginia"
+      ],
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5169-119",
+      "committees": null,
+      "date": "2026-07-29",
+      "has_page": false,
+      "id": "s5169-119--2026-07-29--cf8661d9e95f",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5169",
+      "subjects": [
+        "Congressional oversight",
+        "Historic sites and heritage areas",
+        "Military history",
+        "Parks, recreation areas, trails",
+        "U.S. history",
+        "Virginia",
+        "West Virginia"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4009-119",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "s4009-119--2026-07-27--3d8aace68a75",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4009",
+      "subjects": [
+        "Asia",
+        "China",
+        "Civil actions and liability",
+        "Congressional oversight",
+        "Foreign property",
+        "Human rights",
+        "Medical ethics",
+        "Organ and tissue donation and transplantation",
+        "Presidents and presidential powers, Vice Presidents",
+        "Religion",
+        "Sanctions",
+        "Visas and passports"
+      ],
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4009-119",
+      "committees": null,
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "s4009-119--2026-07-27--772d8b2d1ee5",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4009",
+      "subjects": [
+        "Asia",
+        "China",
+        "Civil actions and liability",
+        "Congressional oversight",
+        "Foreign property",
+        "Human rights",
+        "Medical ethics",
+        "Organ and tissue donation and transplantation",
+        "Presidents and presidential powers, Vice Presidents",
+        "Religion",
+        "Sanctions",
+        "Visas and passports"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 506.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s4009-119",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "s4009-119--2026-07-27--ec90a7fef394",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4009",
+      "subjects": [
+        "Asia",
+        "China",
+        "Civil actions and liability",
+        "Congressional oversight",
+        "Foreign property",
+        "Human rights",
+        "Medical ethics",
+        "Organ and tissue donation and transplantation",
+        "Presidents and presidential powers, Vice Presidents",
+        "Religion",
+        "Sanctions",
+        "Visas and passports"
+      ],
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4726-119",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "s4726-119--2026-07-27--3d8aace68a75",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4726",
+      "subjects": [
+        "Aviation and airports",
+        "Chemical and biological weapons",
+        "Child safety and welfare",
+        "Civil actions and liability",
+        "Conflicts and wars",
+        "Congressional oversight",
+        "Currency",
+        "Detention of persons",
+        "Digital media",
+        "Diplomacy, foreign officials, Americans abroad",
+        "Egypt",
+        "Foreign and international banking",
+        "Foreign loans and debt",
+        "Foreign property",
+        "Human rights",
+        "Immigration status and procedures",
+        "International organizations and cooperation",
+        "Manufacturing",
+        "Middle East",
+        "Militias and paramilitary groups",
+        "Mining",
+        "Multilateral development programs",
+        "Presidents and presidential powers, Vice Presidents",
+        "Reconstruction and stabilization",
+        "Religion",
+        "Rule of law and government transparency",
+        "Sanctions",
+        "Saudi Arabia",
+        "Smuggling and trafficking",
+        "Sovereignty, recognition, national governance and status",
+        "Subversive activities",
+        "Sudan",
+        "Supply chain",
+        "Terrorism",
+        "United Arab Emirates",
+        "United Nations",
+        "Violent crime",
+        "Visas and passports",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4726-119",
+      "committees": null,
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "s4726-119--2026-07-27--b6103943d20e",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4726",
+      "subjects": [
+        "Aviation and airports",
+        "Chemical and biological weapons",
+        "Child safety and welfare",
+        "Civil actions and liability",
+        "Conflicts and wars",
+        "Congressional oversight",
+        "Currency",
+        "Detention of persons",
+        "Digital media",
+        "Diplomacy, foreign officials, Americans abroad",
+        "Egypt",
+        "Foreign and international banking",
+        "Foreign loans and debt",
+        "Foreign property",
+        "Human rights",
+        "Immigration status and procedures",
+        "International organizations and cooperation",
+        "Manufacturing",
+        "Middle East",
+        "Militias and paramilitary groups",
+        "Mining",
+        "Multilateral development programs",
+        "Presidents and presidential powers, Vice Presidents",
+        "Reconstruction and stabilization",
+        "Religion",
+        "Rule of law and government transparency",
+        "Sanctions",
+        "Saudi Arabia",
+        "Smuggling and trafficking",
+        "Sovereignty, recognition, national governance and status",
+        "Subversive activities",
+        "Sudan",
+        "Supply chain",
+        "Terrorism",
+        "United Arab Emirates",
+        "United Nations",
+        "Violent crime",
+        "Visas and passports",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 519.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s4726-119",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "s4726-119--2026-07-27--ec90a7fef394",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4726",
+      "subjects": [
+        "Aviation and airports",
+        "Chemical and biological weapons",
+        "Child safety and welfare",
+        "Civil actions and liability",
+        "Conflicts and wars",
+        "Congressional oversight",
+        "Currency",
+        "Detention of persons",
+        "Digital media",
+        "Diplomacy, foreign officials, Americans abroad",
+        "Egypt",
+        "Foreign and international banking",
+        "Foreign loans and debt",
+        "Foreign property",
+        "Human rights",
+        "Immigration status and procedures",
+        "International organizations and cooperation",
+        "Manufacturing",
+        "Middle East",
+        "Militias and paramilitary groups",
+        "Mining",
+        "Multilateral development programs",
+        "Presidents and presidential powers, Vice Presidents",
+        "Reconstruction and stabilization",
+        "Religion",
+        "Rule of law and government transparency",
+        "Sanctions",
+        "Saudi Arabia",
+        "Smuggling and trafficking",
+        "Sovereignty, recognition, national governance and status",
+        "Subversive activities",
+        "Sudan",
+        "Supply chain",
+        "Terrorism",
+        "United Arab Emirates",
+        "United Nations",
+        "Violent crime",
+        "Visas and passports",
+        "War crimes, genocide, crimes against humanity"
+      ],
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "sres781-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "sres781-119--2026-07-27--7a8e61bb24d2",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/781",
+      "subjects": [
+        "Commemorative events and holidays",
+        "Racial and ethnic relations",
+        "U.S. history"
+      ],
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "bill_id": "sres781-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "sres781-119--2026-07-27--884ff4711339",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/781",
+      "subjects": [
+        "Commemorative events and holidays",
+        "Racial and ethnic relations",
+        "U.S. history"
+      ],
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "sres781-119",
+      "committees": null,
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "sres781-119--2026-07-27--8d1bf7b7aad0",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/781",
+      "subjects": [
+        "Commemorative events and holidays",
+        "Racial and ethnic relations",
+        "U.S. history"
+      ],
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S4286)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "bill_id": "sres781-119",
+      "committees": null,
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "sres781-119--2026-07-27--df1d654151e8",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/781",
+      "subjects": [
+        "Commemorative events and holidays",
+        "Racial and ethnic relations",
+        "U.S. history"
+      ],
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr1550-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr1550-119--2026-07-23--09393264ac3d",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1550",
+      "subjects": [
+        "Geography and mapping",
+        "Historic sites and heritage areas",
+        "Military history",
+        "New York State",
+        "Parks, recreation areas, trails",
+        "U.S. history"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 492.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "hr1550-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr1550-119--2026-07-23--7fa8dd516565",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1550",
+      "subjects": [
+        "Geography and mapping",
+        "Historic sites and heritage areas",
+        "Military history",
+        "New York State",
+        "Parks, recreation areas, trails",
+        "U.S. history"
+      ],
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr1550-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr1550-119--2026-07-23--f3dd424e6942",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1550",
+      "subjects": [
+        "Geography and mapping",
+        "Historic sites and heritage areas",
+        "Military history",
+        "New York State",
+        "Parks, recreation areas, trails",
+        "U.S. history"
+      ],
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee without amendment. Without written report.",
+      "type": "Committee"
+    },
     {
       "action_code": null,
       "bill_id": "hr7008-119",
@@ -21,6 +853,307 @@
         "Securities"
       ],
       "text": "Received in the Senate.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "hr952-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr952-119--2026-07-23--7fa8dd516565",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr952-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr952-119--2026-07-23--7fb7e0f2d20e",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 491.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr952-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr952-119--2026-07-23--f3dd424e6942",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9946-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--1b26d30f53dc",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, Veterans' Affairs, Armed Services, and Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9946-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--259c1a311377",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9946-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--393efc0b678f",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9946-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--3b3b9971c442",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, Veterans' Affairs, Armed Services, and Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9946-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--3e1484dc2649",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, Veterans' Affairs, Armed Services, and Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9946-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--e5573213a338",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, Veterans' Affairs, Armed Services, and Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9946-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9946-119--2026-07-23--fee75dd9bd55",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9946",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, Veterans' Affairs, Armed Services, and Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s2273-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s2273-119--2026-07-23--7fa8dd516565",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2273",
+      "subjects": [
+        "Education programs funding",
+        "Government trust funds",
+        "Land use and conservation",
+        "Wyoming"
+      ],
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2273-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s2273-119--2026-07-23--f3dd424e6942",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2273",
+      "subjects": [
+        "Education programs funding",
+        "Government trust funds",
+        "Land use and conservation",
+        "Wyoming"
+      ],
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2273-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s2273-119--2026-07-23--f54a55e52baa",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2273",
+      "subjects": [
+        "Education programs funding",
+        "Government trust funds",
+        "Land use and conservation",
+        "Wyoming"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 483.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5097-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s5097-119--2026-07-23--5ddfd2688fcc",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5097",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5097-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s5097-119--2026-07-23--f11f56fe8fe3",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5097",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5127-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s5127-119--2026-07-23--5ddfd2688fcc",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5127",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5127-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "s5127-119--2026-07-23--6abf9b03417b",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5127",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Finance.",
       "type": "IntroReferral"
     },
     {
@@ -292,6 +1425,1438 @@
       "type": "Floor"
     },
     {
+      "action_code": "H38310",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--04d844750c98",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--0aff8a5b4587",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Self amendment No. 28, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Ms. Houlahan demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--0b830e0a0e70",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--0bd31c7872d4",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": "h-119-2-0278",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "On passage Passed by the Yeas and Nays: 216 - 212 (Roll no. 278).",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--0d7baf8ffebb",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The House adopted the amendments en gros as agreed to by the Committee of the Whole House on the state of the Union.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--16ceeebcd6cb",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--1bddd4bb8148",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--331166025689",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Issa amendment No. 30, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Casten demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--3bfc8e418c2b",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Grothman amendment No. 316, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Mr. Grothman demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--4751cd9ee738",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Self amendment No. 28.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--49f80804ee8a",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Grothman amendment No. 316.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--4a5d0ec00cdd",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 8800 as unfinished business.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--4e9e44d26223",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": "h-119-2-0278",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 216 - 212 (Roll no. 278).",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--50bf9eafb626",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Hinson amendment No. 34.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--517f50a260a7",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Issa amendment No. 30.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--5b4bf6b7a83a",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Considered as unfinished business. (consideration: CR H5153-5157)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--65e0f0bde84a",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 40 minutes of debate on the Rogers (AL) amendment en bloc No. 5.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--6b1145d65142",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The previous question was ordered pursuant to the rule.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--709d11c98fbb",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Mr. Rogers (AL) moved that the committee rise.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--76aca7782ee9",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 40 minutes of debate on the Rogers (AL) amendment en bloc No. 2.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--815de776e055",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 40 minutes of debate on the Rogers (AL) amendment en bloc No. 4.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--84ad8e43413f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Harrigan amendment No. 44.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--8cfc18eee5d3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Considered as unfinished business. (consideration: CR H5029-5127)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--9298477b9024",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Harrigan amendment No. 44, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Cisneros demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "bill_id": "hr8800-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--a5ad47d0e0a6",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Mr. Ryan moved to recommit to the Committee on Armed Services. (text: CR H5156)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--b34e08c1ba24",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "bill_id": "hr8800-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--cc8881a7cc2a",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": "h-119-2-0277",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "On motion to recommit Failed by the Yeas and Nays: 213 - 216 (Roll no. 277).",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--eb5d013e4e5d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 40 minutes of debate on the Rogers (AL) amendment en bloc No. 3.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-22--f6ea3f46e313",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 8800.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9721-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9721-119--2026-07-22--948188c3fd7a",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9721",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Charitable contributions",
+        "Department of the Treasury",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 23 - 15.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9721-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9721-119--2026-07-22--f7b058636179",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9721",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Charitable contributions",
+        "Department of the Treasury",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9832-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9832-119--2026-07-22--16ff8c772ac0",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9832",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9832-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9832-119--2026-07-22--a01fcd5335d4",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9832",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9832-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9832-119--2026-07-22--c50b2ec412e2",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9832",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9832-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hr9832-119--2026-07-22--e04cf77d6611",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9832",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1450-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hres1450-119--2026-07-22--0803073354c0",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1450",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1450-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hres1450-119--2026-07-22--2d0b3fc7d8cf",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1450",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1450-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "hres1450-119--2026-07-22--b6de52a8eebe",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1450",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3258-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "s3258-119--2026-07-22--9cd42191f46b",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3258",
+      "subjects": [
+        "Aviation and airports",
+        "Government information and archives",
+        "Licensing and registrations",
+        "Prescription drugs",
+        "Transportation employees"
+      ],
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5087-119",
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "s5087-119--2026-07-22--0fab06da933b",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5087",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Environment and Public Works.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5087-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "s5087-119--2026-07-22--a51c1c62285a",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5087",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5089-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "s5089-119--2026-07-22--550a6c704341",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5089",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Finance.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5089-119",
+      "committees": null,
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "s5089-119--2026-07-22--a51c1c62285a",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5089",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr1703-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-21--02e7198ecd78",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Received in the Senate and Read twice and referred to the Committee on Finance.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr5254-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "hr5254-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5254",
+      "subjects": [
+        "Missouri",
+        "Parks, recreation areas, trails",
+        "Public-private cooperation",
+        "User charges and fees"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr8747-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "hr8747-119--2026-07-21--1607cebc851f",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8747",
+      "subjects": [
+        "Advanced technology and technological innovations",
+        "Education programs funding",
+        "Elementary and secondary education",
+        "Teaching, teachers, curricula"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 18 - 15.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr8747-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "hr8747-119--2026-07-21--1d1fb7fdecf3",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8747",
+      "subjects": [
+        "Advanced technology and technological innovations",
+        "Education programs funding",
+        "Elementary and secondary education",
+        "Teaching, teachers, curricula"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--01142217398c",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 3, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Ms. Boebert demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--0e79f7111105",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Crank amendment No. 17, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Ms. Tokuda demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--1567e35da24e",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--1b6a78ee5882",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 8800.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--1f55193cee92",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 1438 and Rule XVIII.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--2178897d383d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the McDowell amendment No. 26, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Courtney demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--2541719eeb14",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 4.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--32c6eba6e229",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 18, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Takano demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--33ac094a3d79",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 3.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--45233b650262",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Hunt amendment No. 7, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Carbajal demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--45f050594c31",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Hunt amendment No. 7.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--508611ed4778",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Mace amendment No. 20, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Ms. Jacobs demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--59904183aa2d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Gallagher amendment No. 8.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--5d7e5acda4b8",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Crane amendment No. 14.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--5e6b7fd92bb6",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Mr. Rogers (AL) moved that the committee rise.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--719e3f79c179",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 1.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--73908cccb14c",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Considered as unfinished business. (consideration: CR H5008-5018)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--792440795679",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 8800 as unfinished business.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--7a2502d5f892",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--7e77add9ce0c",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Mace amendment No. 19.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--8eac53a98843",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The Speaker designated the Honorable Nathaniel Moran to act as Chairman of the Committee.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--91af515c9266",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Mace amendment No. 19, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Cisneros demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--95f766638951",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Hunt amendment No. 6, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Garamendi demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--9bcb2313a110",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Carter (GA) amendment No. 9.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--9cf340f6f3b3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Hunt amendment No. 6.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--9e7ef43f8754",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Crane amendment No. 15, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Mr. Crane demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--a037497db1ee",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 2.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--a1429c40816c",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Mace amendment No. 20.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--a16b17c5d0a4",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the McDowell amendment No. 26.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--ab9010703c28",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 1, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Ms. Boebert demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--b37b7e5e6c38",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 18.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--b5a73de681c7",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Mr. Rogers (AL) moved that the committee rise.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--bbb2462220fc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Considered under the provisions of rule H. Res. 1438. (consideration: CR H4736-5007; text of amendment in the nature of a substitute: CR H4746-4967)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--bd93de314826",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 4, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Ms. Boebert demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--bfaa785bdacb",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Crane amendment No. 14, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Mr. Crane demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--c04aa25639d3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--c7700a43b897",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 8800 as unfinished business.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--ce841a6eab3e",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Crane amendment No. 15.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--db00a14dcba4",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 2, the Chair put the question on agreeing to the amendment and by voice vote, announced the noes had prevailed. Ms. Boebert demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--ed42d0a8fc36",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Gallagher amendment No. 8, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Carbajal demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--ede6d7f8dd3f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 40 minutes of debate on the Rogers (AL) en bloc amendment No. 1.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--f880d2632fb2",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Carter (GA) amendment No. 9, the Chair put the question on agreeing to the amendment and by voice vote, announced the ayes had prevailed. Mr. Carbajal demanded a recorded vote, and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--faa217437488",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "Rule provides for consideration of H.R. 8800, H.R. 8884, H. Con. Res. 113, H.R. 7008, H.R. 6955 and H.R. 9770. The resolution provides for consideration of H.R. 8800 under a structured rule and for consideration of H.R. 8884, H. Con. Res. 113, H.R. 7008, H.R. 6955, and H.R. 9770 under a closed rule, with one hour of debate on each measure and one motion to recommit on H.R. 8800, H.R. 8884, H.R. 7008, H.R. 6955, and H.R. 9770.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-21--fffece304ebf",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
+      "text": "DEBATE - Pursuant to the provisions of H. Res. 1438, the Committee of the Whole proceeded with 10 minutes of debate on the Crank amendment No. 17.",
+      "type": "Floor"
+    },
+    {
       "action_code": "H19000",
       "bill_id": "hr9340-119",
       "committees": [
@@ -348,6 +2913,490 @@
       "type": "Committee"
     },
     {
+      "action_code": "H19000",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-21--a56be1b90f69",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Ordered to be Reported by the Yeas and Nays: 47 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-21--b03afa6b5082",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2498-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s2498-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2498",
+      "subjects": [
+        "Land use and conservation",
+        "Parks, recreation areas, trails"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2767-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s2767-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2767",
+      "subjects": [
+        "Missouri",
+        "Parks, recreation areas, trails",
+        "Public-private cooperation",
+        "User charges and fees"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2933-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s2933-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2933",
+      "subjects": [
+        "Cancer",
+        "Child health",
+        "Parks, recreation areas, trails",
+        "West Virginia"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3194-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s3194-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3194",
+      "subjects": [
+        "California",
+        "Environmental assessment, monitoring, research",
+        "Historic sites and heritage areas",
+        "Land use and conservation",
+        "Public-private cooperation"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3371-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s3371-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3371",
+      "subjects": [
+        "Disability and paralysis",
+        "Maryland",
+        "Museums, exhibitions, cultural centers"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3524-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s3524-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3524",
+      "subjects": [
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Historic sites and heritage areas",
+        "Parks, recreation areas, trails",
+        "U.S. history"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3720-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s3720-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3720",
+      "subjects": [
+        "California",
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Parks, recreation areas, trails"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4538-119",
+      "committees": [
+        "National Parks Subcommittee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s4538-119--2026-07-21--849deabe7bcc",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4538",
+      "subjects": [
+        "Government studies and investigations",
+        "Maryland",
+        "Parks, recreation areas, trails",
+        "Pennsylvania",
+        "U.S. history",
+        "Virginia",
+        "West Virginia"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on National Parks. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5039-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5039-119--2026-07-21--3159c055bf10",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5039",
+      "subjects": [
+        "Licensing and registrations",
+        "Mining",
+        "Oil and gas"
+      ],
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5039-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5039-119--2026-07-21--84cd51f85638",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5039",
+      "subjects": [
+        "Licensing and registrations",
+        "Mining",
+        "Oil and gas"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5045-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5045-119--2026-07-21--84cd51f85638",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5045",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5045-119",
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5045-119--2026-07-21--ad87607727d9",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5045",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Environment and Public Works.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5049-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5049-119--2026-07-21--84cd51f85638",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5049",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5049-119",
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5049-119--2026-07-21--9a2fb6473aab",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5049",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5054-119",
+      "committees": null,
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5054-119--2026-07-21--84cd51f85638",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5054",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5054-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-07-21",
+      "has_page": false,
+      "id": "s5054-119--2026-07-21--ef38dbd1b5ce",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5054",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Finance.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-20--3b1d9b9a6c61",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H4636-4637)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-20--432564d62292",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-20--66dbb7ad038f",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 1703.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-20--a966eeb132e4",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Mr. Guthrie moved to suspend the rules and pass the bill, as amended.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-20--c8bff5a636ac",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H4636-4637)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-20--f34dfe097d99",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H4636-4637)",
+      "type": "Floor"
+    },
+    {
       "action_code": "H1L210",
       "bill_id": "hr7008-119",
       "committees": null,
@@ -366,6 +3415,21 @@
         "Members of Congress",
         "Securities"
       ],
+      "text": "Rules Committee Resolution H. Res. 1438 Reported to House. Rule provides for consideration of H.R. 8800, H.R. 8884, H. Con. Res. 113, H.R. 7008, H.R. 6955 and H.R. 9770. The resolution provides for consideration of H.R. 8800 under a structured rule and for consideration of H.R. 8884, H. Con. Res. 113, H.R. 7008, H.R. 6955, and H.R. 9770 under a closed rule, with one hour of debate on each measure and one motion to recommit on H.R. 8800, H.R. 8884, H.R. 7008, H.R. 6955, and H.R. 9770.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "bill_id": "hr8800-119",
+      "committees": null,
+      "date": "2026-07-20",
+      "has_page": true,
+      "id": "hr8800-119--2026-07-20--53d3a638bc52",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8800",
+      "subjects": [],
       "text": "Rules Committee Resolution H. Res. 1438 Reported to House. Rule provides for consideration of H.R. 8800, H.R. 8884, H. Con. Res. 113, H.R. 7008, H.R. 6955 and H.R. 9770. The resolution provides for consideration of H.R. 8800 under a structured rule and for consideration of H.R. 8884, H. Con. Res. 113, H.R. 7008, H.R. 6955, and H.R. 9770 under a closed rule, with one hour of debate on each measure and one motion to recommit on H.R. 8800, H.R. 8884, H.R. 7008, H.R. 6955, and H.R. 9770.",
       "type": "Floor"
     },
@@ -396,6 +3460,756 @@
       ],
       "text": "Committee Consideration and Mark-up Session Held",
       "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-20",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-20--4ae3a161501d",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr1703-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-18",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-18--0e708335c64a",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Reported (Amended) by the Committee on Energy and Commerce. H. Rept. 119-753, Part I.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12300",
+      "bill_id": "hr1703-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-18",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-18--260e1c47c0c9",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Committee on Ways and Means discharged.",
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr1703-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-18",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-18--8abfeb1dc62f",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Reported (Amended) by the Committee on Energy and Commerce. H. Rept. 119-753, Part I.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr1703-119",
+      "committees": null,
+      "date": "2026-07-18",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-18--dbf6a40f67df",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 656.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "5500",
+      "bill_id": "hr1703-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-18",
+      "has_page": false,
+      "id": "hr1703-119--2026-07-18--f6fc854755c9",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
+      "subjects": [
+        "Aging",
+        "Disability and paralysis",
+        "Health care costs and insurance",
+        "Health technology, devices, supplies",
+        "Medicare"
+      ],
+      "text": "Committee on Ways and Means discharged.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9721-119",
+      "committees": null,
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "hr9721-119--2026-07-16--9becd5dec7dd",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9721",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Charitable contributions",
+        "Department of the Treasury",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9721-119",
+      "committees": null,
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "hr9721-119--2026-07-16--9c9aff6cc442",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9721",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Charitable contributions",
+        "Department of the Treasury",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9721-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "hr9721-119--2026-07-16--dfb706c47be9",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9721",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Charitable contributions",
+        "Department of the Treasury",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations"
+      ],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1413-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s1413-119--2026-07-16--830cf2559ffa",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1413",
+      "subjects": [
+        "California",
+        "Lakes and rivers",
+        "Water resources funding"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported without amendment favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2754-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s2754-119--2026-07-16--0a50af009111",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2754",
+      "subjects": [
+        "Colorado",
+        "Dams and canals",
+        "Geography and mapping",
+        "Land transfers",
+        "Water storage"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3383-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s3383-119--2026-07-16--3a4c13b2222e",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3383",
+      "subjects": [
+        "Economic development",
+        "Federal-Indian relations",
+        "Indian lands and resources rights"
+      ],
+      "text": "Committee on Indian Affairs. Reported by Senator Murkowski without amendment. With written report No. 119-130.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s3383-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s3383-119--2026-07-16--425be3b58282",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3383",
+      "subjects": [
+        "Economic development",
+        "Federal-Indian relations",
+        "Indian lands and resources rights"
+      ],
+      "text": "Committee on Indian Affairs. Reported by Senator Murkowski without amendment. With written report No. 119-130.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3383-119",
+      "committees": null,
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s3383-119--2026-07-16--665bb045995c",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3383",
+      "subjects": [
+        "Economic development",
+        "Federal-Indian relations",
+        "Indian lands and resources rights"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 459.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3725-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s3725-119--2026-07-16--0a50af009111",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3725",
+      "subjects": [
+        "Congressional oversight",
+        "Environmental assessment, monitoring, research",
+        "Government information and archives",
+        "Iowa",
+        "Minnesota",
+        "Public-private cooperation",
+        "Rural conditions and development",
+        "South Dakota",
+        "Water resources funding",
+        "Water use and supply"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres112-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--2ca66da8ba45",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committees on the Judiciary, Transportation and Infrastructure, Energy and Commerce, and Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres112-119",
+      "committees": null,
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--2e3c9c0e9a09",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hconres112-119",
+      "committees": null,
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--5377751585fe",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres112-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--554e4a1f2ca8",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committees on the Judiciary, Transportation and Infrastructure, Energy and Commerce, and Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres112-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--685758b0fb8b",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committees on the Judiciary, Transportation and Infrastructure, Energy and Commerce, and Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres112-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--7643abdba139",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committees on the Judiciary, Transportation and Infrastructure, Energy and Commerce, and Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres112-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hconres112-119--2026-07-15--99b41178fc53",
+      "policy_area": "Civil Rights and Liberties, Minority Issues",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/112",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committees on the Judiciary, Transportation and Infrastructure, Energy and Commerce, and Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr3514-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr3514-119--2026-07-15--781d80793b7e",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3514",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Computers and information technology",
+        "Congressional oversight",
+        "Department of Health and Human Services",
+        "Government information and archives",
+        "Health care coverage and access",
+        "Internet, web applications, social media",
+        "Medicare"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 42 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr3514-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr3514-119--2026-07-15--c0fd833688e6",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3514",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Computers and information technology",
+        "Congressional oversight",
+        "Department of Health and Human Services",
+        "Government information and archives",
+        "Health care coverage and access",
+        "Internet, web applications, social media",
+        "Medicare"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr7831-119",
+      "committees": [
+        "Public Lands, Forests, and Mining Subcommittee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr7831-119--2026-07-15--e5ba3fb4ee25",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7831",
+      "subjects": [
+        "Licensing and registrations",
+        "Mining",
+        "Oil and gas"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9607-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr9607-119--2026-07-15--06c11e600f6e",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9607",
+      "subjects": [
+        "Adult education and literacy",
+        "Department of Education",
+        "Department of Labor",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Vocational and technical education"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9607-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr9607-119--2026-07-15--dd874bf6d7c5",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9607",
+      "subjects": [
+        "Adult education and literacy",
+        "Department of Education",
+        "Department of Labor",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Vocational and technical education"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 19 - 16.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9611-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr9611-119--2026-07-15--06c11e600f6e",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9611",
+      "subjects": [
+        "Department of Education",
+        "Department of Labor",
+        "Disability assistance",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Minority education",
+        "Science and engineering education",
+        "Student aid and college costs"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9611-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "hr9611-119--2026-07-15--e4cfbb25d63d",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9611",
+      "subjects": [
+        "Department of Education",
+        "Department of Labor",
+        "Disability assistance",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Minority education",
+        "Science and engineering education",
+        "Student aid and college costs"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 20 - 16.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5004-119",
+      "committees": null,
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "s5004-119--2026-07-15--4165b14ced26",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5004",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5004-119",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-07-15",
+      "has_page": false,
+      "id": "s5004-119--2026-07-15--7ae6e693c2a3",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5004",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr2347-119",
+      "committees": null,
+      "date": "2026-07-14",
+      "has_page": false,
+      "id": "hr2347-119--2026-07-14--a3389fb977a0",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2347",
+      "subjects": [
+        "Assault and harassment offenses",
+        "Civil actions and liability",
+        "Crime victims",
+        "Income tax exclusion",
+        "Sex offenses"
+      ],
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 453.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2026-07-14",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-14--317ebffe4278",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2026-07-14",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-14--451ec5e952ea",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4968-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-07-14",
+      "has_page": false,
+      "id": "s4968-119--2026-07-14--396986c62ce0",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4968",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s4968-119",
+      "committees": null,
+      "date": "2026-07-14",
+      "has_page": false,
+      "id": "s4968-119--2026-07-14--3e268ae1a49a",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4968",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
     },
     {
       "action_code": "14500",
@@ -478,6 +4292,524 @@
       ],
       "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 456.",
       "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr2347-119",
+      "committees": null,
+      "date": "2026-07-13",
+      "has_page": false,
+      "id": "hr2347-119--2026-07-13--48930e25a7df",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2347",
+      "subjects": [
+        "Assault and harassment offenses",
+        "Civil actions and liability",
+        "Crime victims",
+        "Income tax exclusion",
+        "Sex offenses"
+      ],
+      "text": "Read the first time. Placed on Senate Legislative Calendar under Read the First Time.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "E30000",
+      "bill_id": "hr6644-119",
+      "committees": null,
+      "date": "2026-07-11",
+      "has_page": true,
+      "id": "hr6644-119--2026-07-11--31fb1024fe7f",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6644",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advisory bodies",
+        "Congressional oversight",
+        "Data collection, sharing, protection",
+        "Department of Housing and Urban Development",
+        "Disability assistance",
+        "Environmental assessment, monitoring, research",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Housing finance and home ownership",
+        "Housing industry and standards",
+        "Housing supply and affordability",
+        "Land use and conservation",
+        "Landlord and tenant",
+        "Licensing and registrations",
+        "Low- and moderate-income housing",
+        "Performance measurement",
+        "Public housing",
+        "Regional and metropolitan planning",
+        "Residential rehabilitation and home repair",
+        "Rural conditions and development",
+        "Urban and suburban affairs and development"
+      ],
+      "text": "Sent to Archivist of the United States unsigned.",
+      "type": "President"
+    },
+    {
+      "action_code": "E40000",
+      "bill_id": "hr6644-119",
+      "committees": null,
+      "date": "2026-07-11",
+      "has_page": true,
+      "id": "hr6644-119--2026-07-11--72e527344227",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6644",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advisory bodies",
+        "Congressional oversight",
+        "Data collection, sharing, protection",
+        "Department of Housing and Urban Development",
+        "Disability assistance",
+        "Environmental assessment, monitoring, research",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Housing finance and home ownership",
+        "Housing industry and standards",
+        "Housing supply and affordability",
+        "Land use and conservation",
+        "Landlord and tenant",
+        "Licensing and registrations",
+        "Low- and moderate-income housing",
+        "Performance measurement",
+        "Public housing",
+        "Regional and metropolitan planning",
+        "Residential rehabilitation and home repair",
+        "Rural conditions and development",
+        "Urban and suburban affairs and development"
+      ],
+      "text": "Became Public Law No: 119-101.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr6644-119",
+      "committees": null,
+      "date": "2026-07-11",
+      "has_page": true,
+      "id": "hr6644-119--2026-07-11--73206edefe42",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6644",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advisory bodies",
+        "Congressional oversight",
+        "Data collection, sharing, protection",
+        "Department of Housing and Urban Development",
+        "Disability assistance",
+        "Environmental assessment, monitoring, research",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Housing finance and home ownership",
+        "Housing industry and standards",
+        "Housing supply and affordability",
+        "Land use and conservation",
+        "Landlord and tenant",
+        "Licensing and registrations",
+        "Low- and moderate-income housing",
+        "Performance measurement",
+        "Public housing",
+        "Regional and metropolitan planning",
+        "Residential rehabilitation and home repair",
+        "Rural conditions and development",
+        "Urban and suburban affairs and development"
+      ],
+      "text": "Became Public Law No: 119-101.",
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9607-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9607-119--2026-07-09--d498ff48a1c8",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9607",
+      "subjects": [
+        "Adult education and literacy",
+        "Department of Education",
+        "Department of Labor",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Vocational and technical education"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9607-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9607-119--2026-07-09--e28bd4d2b318",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9607",
+      "subjects": [
+        "Adult education and literacy",
+        "Department of Education",
+        "Department of Labor",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Vocational and technical education"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9607-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9607-119--2026-07-09--f33f6c5cc654",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9607",
+      "subjects": [
+        "Adult education and literacy",
+        "Department of Education",
+        "Department of Labor",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Vocational and technical education"
+      ],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9611-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9611-119--2026-07-09--d498ff48a1c8",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9611",
+      "subjects": [
+        "Department of Education",
+        "Department of Labor",
+        "Disability assistance",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Minority education",
+        "Science and engineering education",
+        "Student aid and college costs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9611-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9611-119--2026-07-09--e28bd4d2b318",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9611",
+      "subjects": [
+        "Department of Education",
+        "Department of Labor",
+        "Disability assistance",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Minority education",
+        "Science and engineering education",
+        "Student aid and college costs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9611-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9611-119--2026-07-09--f33f6c5cc654",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9611",
+      "subjects": [
+        "Department of Education",
+        "Department of Labor",
+        "Disability assistance",
+        "Executive agency funding and structure",
+        "Higher education",
+        "Minority education",
+        "Science and engineering education",
+        "Student aid and college costs"
+      ],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9617-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-09--d498ff48a1c8",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9617-119",
+      "committees": null,
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-09--e28bd4d2b318",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Environment Subcommittee"
+      ],
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-09--e8fb538a3181",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Referred to the Subcommittee on Environment.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9617-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-09",
+      "has_page": false,
+      "id": "hr9617-119--2026-07-09--eb23a7da9619",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9617",
+      "subjects": [
+        "Congressional oversight",
+        "Metals",
+        "Solid waste and recycling",
+        "Strategic materials and reserves"
+      ],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9199-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-07-07",
+      "has_page": false,
+      "id": "hr9199-119--2026-07-07--28c17f816b3d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9199",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9199-119",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-07-07",
+      "has_page": false,
+      "id": "hr9199-119--2026-07-07--8d9bc090fb1e",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9199",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9199-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-07-07",
+      "has_page": false,
+      "id": "hr9199-119--2026-07-07--c3f8f6121932",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9199",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9200-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-07-07",
+      "has_page": false,
+      "id": "hr9200-119--2026-07-07--28c17f816b3d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9200",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9200-119",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-07-07",
+      "has_page": false,
+      "id": "hr9200-119--2026-07-07--8d9bc090fb1e",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9200",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr9200-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-07-07",
+      "has_page": false,
+      "id": "hr9200-119--2026-07-07--c3f8f6121932",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9200",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9496-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-01",
+      "has_page": false,
+      "id": "hr9496-119--2026-07-01--e229c7e928fa",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9496",
+      "subjects": [
+        "Administrative remedies",
+        "Computers and information technology",
+        "Detention of persons",
+        "Diplomacy, foreign officials, Americans abroad",
+        "Internal Revenue Service (IRS)",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations",
+        "Terrorism"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 40 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9496-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-01",
+      "has_page": false,
+      "id": "hr9496-119--2026-07-01--f5a726d4eed9",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9496",
+      "subjects": [
+        "Administrative remedies",
+        "Computers and information technology",
+        "Detention of persons",
+        "Diplomacy, foreign officials, Americans abroad",
+        "Internal Revenue Service (IRS)",
+        "Tax administration and collection, taxpayers",
+        "Tax-exempt organizations",
+        "Terrorism"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
     }
   ],
   "month": "2026-07"

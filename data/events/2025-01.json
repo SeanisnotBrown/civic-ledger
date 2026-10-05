@@ -1,6 +1,387 @@
 {
-  "count": 286,
+  "count": 307,
   "events": [
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr831-119",
+      "committees": null,
+      "date": "2025-01-31",
+      "has_page": false,
+      "id": "hr831-119--2025-01-31--28bd37a7397c",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/831",
+      "subjects": [
+        "Arizona",
+        "California",
+        "Financial services and investments",
+        "Government trust funds",
+        "Lakes and rivers",
+        "Nevada",
+        "Water use and supply",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr831-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-01-31",
+      "has_page": false,
+      "id": "hr831-119--2025-01-31--2c6cdab7ebf2",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/831",
+      "subjects": [
+        "Arizona",
+        "California",
+        "Financial services and investments",
+        "Government trust funds",
+        "Lakes and rivers",
+        "Nevada",
+        "Water use and supply",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr831-119",
+      "committees": null,
+      "date": "2025-01-31",
+      "has_page": false,
+      "id": "hr831-119--2025-01-31--6223a851517b",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/831",
+      "subjects": [
+        "Arizona",
+        "California",
+        "Financial services and investments",
+        "Government trust funds",
+        "Lakes and rivers",
+        "Nevada",
+        "Water use and supply",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr837-119",
+      "committees": null,
+      "date": "2025-01-31",
+      "has_page": false,
+      "id": "hr837-119--2025-01-31--28bd37a7397c",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/837",
+      "subjects": [
+        "Arizona",
+        "Forests, forestry, trees",
+        "Geography and mapping",
+        "Land transfers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr837-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-01-31",
+      "has_page": false,
+      "id": "hr837-119--2025-01-31--2c6cdab7ebf2",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/837",
+      "subjects": [
+        "Arizona",
+        "Forests, forestry, trees",
+        "Geography and mapping",
+        "Land transfers"
+      ],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr837-119",
+      "committees": null,
+      "date": "2025-01-31",
+      "has_page": false,
+      "id": "hr837-119--2025-01-31--6223a851517b",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/837",
+      "subjects": [
+        "Arizona",
+        "Forests, forestry, trees",
+        "Geography and mapping",
+        "Land transfers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s291-119",
+      "committees": null,
+      "date": "2025-01-29",
+      "has_page": false,
+      "id": "s291-119--2025-01-29--4455aaeb5f47",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/291",
+      "subjects": [
+        "Arizona",
+        "California",
+        "Financial services and investments",
+        "Government trust funds",
+        "Lakes and rivers",
+        "Nevada",
+        "Water use and supply",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s291-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-01-29",
+      "has_page": false,
+      "id": "s291-119--2025-01-29--77eaeb8a237b",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/291",
+      "subjects": [
+        "Arizona",
+        "California",
+        "Financial services and investments",
+        "Government trust funds",
+        "Lakes and rivers",
+        "Nevada",
+        "Water use and supply",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources. (Sponsor introductory remarks on measure: CR S482)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr725-119",
+      "committees": null,
+      "date": "2025-01-24",
+      "has_page": false,
+      "id": "hr725-119--2025-01-24--3324057910ef",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/725",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Montana",
+        "State and local taxation"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr725-119",
+      "committees": null,
+      "date": "2025-01-24",
+      "has_page": false,
+      "id": "hr725-119--2025-01-24--d3e79863d53e",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/725",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Montana",
+        "State and local taxation"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr725-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-01-24",
+      "has_page": false,
+      "id": "hr725-119--2025-01-24--ef5eb1533b5d",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/725",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Montana",
+        "State and local taxation"
+      ],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s239-119",
+      "committees": null,
+      "date": "2025-01-24",
+      "has_page": false,
+      "id": "s239-119--2025-01-24--a14849af4ebf",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/239",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Montana",
+        "State and local taxation"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s239-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-01-24",
+      "has_page": false,
+      "id": "s239-119--2025-01-24--d77dc84924ca",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/239",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Montana",
+        "State and local taxation"
+      ],
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr251-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-01-09",
+      "has_page": false,
+      "id": "hr251-119--2025-01-09--28dc8c344445",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/251",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Ways and Means, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr251-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-01-09",
+      "has_page": false,
+      "id": "hr251-119--2025-01-09--6e8c619ad19d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/251",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Ways and Means, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr251-119",
+      "committees": null,
+      "date": "2025-01-09",
+      "has_page": false,
+      "id": "hr251-119--2025-01-09--86e0a197668f",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/251",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr251-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-01-09",
+      "has_page": false,
+      "id": "hr251-119--2025-01-09--ebcaca121d50",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/251",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Ways and Means, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr251-119",
+      "committees": null,
+      "date": "2025-01-09",
+      "has_page": false,
+      "id": "hr251-119--2025-01-09--f038a5e5b26b",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/251",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
     {
       "action_code": null,
       "bill_id": "s5319-118",
@@ -6354,6 +6735,80 @@
       ],
       "text": "Committee on Science, Space, and Technology discharged.",
       "type": "Discharge"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr61-119",
+      "committees": null,
+      "date": "2025-01-03",
+      "has_page": false,
+      "id": "hr61-119--2025-01-03--2dc5a7bfc5dd",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/61",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Child safety and welfare",
+        "Detention of persons",
+        "Family relationships",
+        "Immigrant health and welfare",
+        "Immigration status and procedures",
+        "Licensing and registrations",
+        "State and local government operations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr61-119",
+      "committees": null,
+      "date": "2025-01-03",
+      "has_page": false,
+      "id": "hr61-119--2025-01-03--62f8e3e08f12",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/61",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Child safety and welfare",
+        "Detention of persons",
+        "Family relationships",
+        "Immigrant health and welfare",
+        "Immigration status and procedures",
+        "Licensing and registrations",
+        "State and local government operations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr61-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-01-03",
+      "has_page": false,
+      "id": "hr61-119--2025-01-03--aad0c541deb5",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/61",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Child safety and welfare",
+        "Detention of persons",
+        "Family relationships",
+        "Immigrant health and welfare",
+        "Immigration status and procedures",
+        "Licensing and registrations",
+        "State and local government operations"
+      ],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
     },
     {
       "action_code": null,

@@ -1,0 +1,137 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-09-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Unanimous Consent. (consideration: CR S5120-5121; text: CR S5120-5121)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-09-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Unanimous Consent. (consideration: CR S5120-5121; text: CR S5120-5121)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 506.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-03-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-03-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-07-30T14:33:00Z",
+      "title": "S. 4009, Falun Gong and Victims of Forced Organ Harvesting Protection Act",
+      "url": "https://www.cbo.gov/publication/62605"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001113",
+    "J000293",
+    "L000575",
+    "M001176",
+    "M001198",
+    "M001243",
+    "R000605",
+    "S001150",
+    "W000779",
+    "W000790",
+    "Y000064"
+  ],
+  "id": "s4009-119",
+  "jurisdiction": "us",
+  "latest_action": "Passed Senate with an amendment by Unanimous Consent. (consideration: CR S5120-5121; text: CR S5120-5121)",
+  "latest_action_date": "2026-09-28",
+  "number": 4009,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4009",
+  "sponsor_id": "C001098",
+  "subjects": [
+    "Asia",
+    "China",
+    "Civil actions and liability",
+    "Congressional oversight",
+    "Foreign property",
+    "Human rights",
+    "Medical ethics",
+    "Organ and tissue donation and transplantation",
+    "Presidents and presidential powers, Vice Presidents",
+    "Religion",
+    "Sanctions",
+    "Visas and passports"
+  ],
+  "title_official": "Falun Gong and Victims of Forced Organ Harvesting Protection Act",
+  "type": "s"
+}

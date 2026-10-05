@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-09-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 677.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-09-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Budget discharged pursuant to Section 300 of the Congressional Budget Act.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-09-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Budget discharged pursuant to Section 300 of the Congressional Budget Act.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-09-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Budget. (text: CR S4862-4867)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10025",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-09-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "sconres40-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 677.",
+  "latest_action_date": "2026-09-22",
+  "number": 40,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-concurrent-resolution/40",
+  "sponsor_id": "P000603",
+  "subjects": [],
+  "title_official": "A concurrent resolution setting forth the congressional budget for the United States Government for fiscal year 2027 and setting forth the appropriate budgetary levels for fiscal years 2028 through 2036.",
+  "type": "sconres"
+}

@@ -1,0 +1,93 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-09-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S5299)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-09-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-09-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Health, Education, Labor, and Pensions discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Health, Education, Labor, and Pensions. (text: CR S4802)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10025",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "S001150"
+  ],
+  "id": "sres866-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S5299)",
+  "latest_action_date": "2026-09-30",
+  "number": 866,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/866",
+  "sponsor_id": "R000618",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Drug, alcohol, tobacco use",
+    "Health promotion and preventive care",
+    "Mental health"
+  ],
+  "title_official": "A resolution supporting the designation of October 2026 as \"Substance Use & Misuse Prevention Month\" to raise awareness of substance use and misuse in the United States.",
+  "type": "sres"
+}

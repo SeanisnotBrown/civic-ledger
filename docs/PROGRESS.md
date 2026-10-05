@@ -72,7 +72,9 @@ straight to fetching — no enumeration pause was observable**, contradicting ea
 guidance that the first ~7 minutes look dead.
 - **Everything committed as of 18:10 is pushed** (`d5b62e0a0`). Anything dirty under
   `data/` after that time is the running backfill's output, not abandoned work.
-- **Congress 118: COMPLETE.** 19,118 enumerated, 19,296 files, 19,292 with timelines.
+- **Congress 118: complete EXCEPT the 15 D100 bills.** 19,118 enumerated, 19,296 files,
+  19,292 with timelines — but the 15 bills D100 unblocked were never re-fetched (the fix
+  landed after the 118 commit). A resume run picks up only those 15.
 - **Congress 119: PARTIAL and growing as you read this.** 1,148 files and **650 with
   timelines at the 18:10 commit**, of ~19,441. ~18,800 to go, ~23 h.
 - Corpus totals at the 18:10 regeneration: **91,043 events across 46 month files**; **33
@@ -97,7 +99,11 @@ from cache with zero API requests: across 19,118 bills and 87,307 action rows th
 the two sets coincide. Confirmed against govinfo BILLSTATUS bulk XML on a second host —
 hr9748-118 really does carry the same referral line four times. Twelve of the fifteen had
 **no record on disk at all**. Fixed: dedupe now applies only to a copy already held from an
-EARLIER page. **Do not spend a session retrying fetch failures as if they were network
+EARLIER page. **⚠ That measurement is of the RAW CACHE, not of `data/`. The fix postdates
+the commit that completed the 118 backfill, so none of the 15 was ever re-fetched: the
+committed 118 corpus carries 0 repeated rows and is still missing those 15 timelines. A
+Congress 118 re-run is owed** (`uv run ingest bill-activity --congress 118` — resume makes
+it cheap; only the 15 are outstanding). **Do not spend a session retrying fetch failures as if they were network
 flakes** — check for duplicate rows first. **SD-37 now decides how they render; see below.**
 
 ## ✅ BOTH OWNER QUESTIONS ARE ANSWERED (2026-10-05) — and SD-37 is unbuilt work
@@ -116,11 +122,27 @@ that remains (enable Email Sending on the account, create the binding/secret).
 **2. The duplicated action rows — SD-37: render ONCE with a count line.** The timeline shows
 the action one time with *"The official record lists this action 4 times."* underneath.
 Display-layer only; nothing on disk changes. **The action count must keep counting what the
-record lists (22 on hr9748-118), not the de-duplicated render count — the number and the
-note are both true only if they disagree.** Paired and ratified in the same breath: the
-feeds must emit **one entry per distinct action id** (`site/src/lib/atom.ts` currently emits
-entries sharing an `atom:id` — measured: 1 duplicate each on `hr1516-118`, `hres712-118`,
-`s4072-118`). **NEITHER HALF IS BUILT. This is the next code task.**
+record lists, not the de-duplicated render count — the number and the note are both true
+only if they disagree.** Paired and ratified in the same breath: the feeds must emit **one
+entry per distinct action id**. **NEITHER HALF IS BUILT. This is the next code task.**
+
+**▶ THE NUMBERS THE OWNER WAS GIVEN WHEN THIS WAS ASKED WERE WRONG. Measured 2026-10-05,
+after the decision; full correction in the SD-37 entry in `docs/decisions.md`.** The three
+bills cited as emitting duplicate feed entries (`hr1516-118`, `hres712-118`, `s4072-118`)
+have **no `actions` key on disk at all** and emit no feed entries. The real state:
+- **Congress 118 on disk: 0 repeated rows** across 19,296 files / 88,011 action rows. D100's
+  "15 bills" was measured in the **raw cache**, and **the D100 fix postdates the commit that
+  completed the 118 backfill** — so those 15 timelines were never re-fetched. **A Congress
+  118 re-run is owed** and 118 is not as complete as live fact 1 implies.
+- **Congress 119, fetched by the fixed code: 30 repeat-bearing bills already**, out of only
+  1,189 with timelines — ~2.5% and climbing while the backfill runs. Mostly a resolution's
+  `"Submitted in House"` row listed twice.
+- **The committed activity feed already publishes 23 duplicate `event_id`s** (23 extra rows
+  over 91,043; `2026-09.json` 9, `2026-10.json` 14), served verbatim at
+  `/events/{month}.json` and `/events/latest.json` — the endpoint the V2-12 Worker polls.
+- **None of the 30 has a `/b/` page** (no action reached a roll call, SD-33 3(c)).
+  **So the two halves have different urgency: the feed/event-id half is LIVE in committed
+  data; the bill-page half has zero affected pages yet. Build the feed half first.**
 
 ## Where V2-7 stands (the current increment)
 

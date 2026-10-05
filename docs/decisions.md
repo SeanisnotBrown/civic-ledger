@@ -3039,11 +3039,40 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   duplicate, or a correction — no claim about the government's intent is ratified here.
 
   **Paired feed change, ratified in the same question.** Repeated rows hash identically, so
-  `site/src/lib/atom.ts` currently emits feed entries sharing an `atom:id` (measured: one
-  duplicate each on `hr1516-118`, `hres712-118`, `s4072-118`). The feeds must emit **one
-  entry per distinct action id**. Harmless at today's zero subscribers; it becomes a real
-  double-alert the moment V2-12 ships, and `ingest.events.event_id` is the identity the
-  alert path keys on (D97), so the duplicate would survive into deliveries.
+  the published activity feed emits rows sharing one `event_id`, and `site/src/lib/atom.ts`
+  emits Atom entries sharing one `atom:id`. The feeds must emit **one entry per distinct
+  action id**. `ingest.events.event_id` is the identity the alert path keys on (D97), so a
+  duplicate survives into deliveries and becomes a real double-alert the moment V2-12 ships.
+
+  **▶ CORRECTION, measured 2026-10-05 after this decision was taken. The three bills cited
+  when the question was put to the owner were the WRONG evidence, and the true numbers are
+  larger and growing.** `hr1516-118`, `hres712-118` and `s4072-118` were named as carrying
+  one duplicate feed entry each. They do not: all three have **no `actions` key on disk at
+  all**, so they emit no feed entries and cannot duplicate one. Where the real duplicates
+  are, each figure measured directly rather than inferred:
+  - **The committed Congress 118 corpus carries ZERO repeated action rows** — scanned all
+    19,296 files, 19,292 with timelines, 88,011 action rows. This is not a contradiction of
+    D100's cache measurement: D100 measured the **raw download cache**, where 15 bills do
+    carry a repeat, and **the D100 fix postdates the commit that completed the 118
+    backfill**. Those 15 timelines were never re-fetched, so **Congress 118 is still
+    missing them on disk and a 118 re-run is owed** (twelve had no bill file at all; the
+    other three are the ones named above, with no `actions` key).
+  - **Congress 119, fetched by the FIXED code, already carries 30 repeat-bearing bills** out
+    of only 1,189 with timelines (1,686 files, 5,213 action rows) — roughly 2.5%, and
+    climbing while the backfill runs. The repeats are overwhelmingly a resolution's
+    `"Submitted in House"` row listed twice.
+  - **The committed activity feed already publishes 23 duplicate `event_id`s** — 23 extra
+    rows over 91,043, in `2026-09.json` (9) and `2026-10.json` (14). They are served
+    verbatim at `/events/{month}.json` and `/events/latest.json` (V2-11 task 5b), which is
+    the endpoint the V2-12 alert Worker polls.
+  - **None of the 30 has an action tied to a roll call, so none has a `/b/` page** (SD-33
+    3(c)). **The two halves of this decision therefore have different urgency: the feed and
+    event-id half is LIVE and in committed data now; the bill-page rendering half has zero
+    affected pages until a repeat-bearing bill reaches a recorded vote.** Build the feed
+    half first. Neither half changes what is stored.
+  The decision itself is unaffected — the owner chose how repeats should render, and that
+  choice is right whether there are 15 or 500. Only the urgency framing he was given was
+  wrong, and it understated the feed half.
 
   **Scope guard for whoever implements it:** the action count on `/b/[bill]` must keep
   counting what the record lists (22 on `hr9748-118`), not the de-duplicated render count.

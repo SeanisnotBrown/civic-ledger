@@ -2361,7 +2361,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 262,
-    "sponsored": 28
+    "sponsored": 29
   },
   "member_id": "E000300",
   "source_url": "https://api.congress.gov/v3/member/E000300/sponsored-legislation",
@@ -2401,6 +2401,15 @@
       "introduced_date": "2026-09-28",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10618",
       "title": "STOP Medicaid Fraud Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10735-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10735",
+      "title": "To amend the Federal Crop Insurance Act to require certain types of cattle to be included in a livestock pilot program, and for other purposes."
     },
     {
       "became_law": false,

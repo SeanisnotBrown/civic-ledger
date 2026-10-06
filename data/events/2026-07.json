@@ -1,5 +1,5 @@
 {
-  "count": 1744,
+  "count": 1759,
   "events": [
     {
       "action_code": "H11100",
@@ -1026,6 +1026,38 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5184",
       "subjects": [],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5185-119",
+      "committees": null,
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s5185-119--2026-07-30--63d0f85a9d7f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5185",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5185-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-07-30",
+      "has_page": false,
+      "id": "s5185-119--2026-07-30--f85d4f4ad8b6",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5185",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Armed Services.",
       "type": "IntroReferral"
     },
     {
@@ -3776,6 +3808,70 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1461",
       "subjects": [],
       "text": "Referred to the House Committee on House Administration.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1462-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "hres1462-119--2026-07-27--41268c6dea60",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1462",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1462-119",
+      "committees": null,
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "hres1462-119--2026-07-27--8ee85e5bc6b1",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1462",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1462-119",
+      "committees": null,
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "hres1462-119--2026-07-27--e12a6f278a7c",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1462",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1462-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-07-27",
+      "has_page": false,
+      "id": "hres1462-119--2026-07-27--e6624179b8da",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1462",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {
@@ -7345,6 +7441,53 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9934",
       "subjects": [],
       "text": "Referred to the Committee on Financial Services, and in addition to the Committees on Ways and Means, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9936-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9936-119--2026-07-23--259c1a311377",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9936",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9936-119",
+      "committees": null,
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9936-119--2026-07-23--393efc0b678f",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9936",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9936-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-07-23",
+      "has_page": false,
+      "id": "hr9936-119--2026-07-23--c88ecad1502e",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9936",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
       "type": "IntroReferral"
     },
     {
@@ -14025,6 +14168,43 @@
         "Student aid and college costs"
       ],
       "text": "Committee on Health, Education, Labor, and Pensions. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4429-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-07-22",
+      "has_page": false,
+      "id": "s4429-119--2026-07-22--9cd42191f46b",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4429",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advanced technology and technological innovations",
+        "Advisory bodies",
+        "Asia",
+        "China",
+        "Civil actions and liability",
+        "Computers and information technology",
+        "Congressional oversight",
+        "Department of Commerce",
+        "Europe",
+        "Government information and archives",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Iran",
+        "Manufacturing",
+        "Middle East",
+        "Motor vehicles",
+        "North Korea",
+        "Retail and wholesale trades",
+        "Russia"
+      ],
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
       "type": "Committee"
     },
     {
@@ -33178,6 +33358,38 @@
     },
     {
       "action_code": null,
+      "bill_id": "s5018-119",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s5018-119--2026-07-16--17e04ec014ec",
+      "policy_area": "Emergency Management",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5018",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs. (Sponsor introductory remarks on measure: CR S4139-4140)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s5018-119",
+      "committees": null,
+      "date": "2026-07-16",
+      "has_page": false,
+      "id": "s5018-119--2026-07-16--f25535534a18",
+      "policy_area": "Emergency Management",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5018",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
       "bill_id": "s5022-119",
       "committees": [
         "Finance Committee"
@@ -47587,6 +47799,53 @@
         "Rural conditions and development",
         "Surgery and anesthesia"
       ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9651-119",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2026-07-13",
+      "has_page": false,
+      "id": "hr9651-119--2026-07-13--5606dbcf476d",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9651",
+      "subjects": [],
+      "text": "Referred to the House Committee on Science, Space, and Technology.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9651-119",
+      "committees": null,
+      "date": "2026-07-13",
+      "has_page": false,
+      "id": "hr9651-119--2026-07-13--bc857ca83acb",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9651",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9651-119",
+      "committees": null,
+      "date": "2026-07-13",
+      "has_page": false,
+      "id": "hr9651-119--2026-07-13--d3954546281b",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9651",
+      "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
     },

@@ -1,0 +1,66 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-07-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-06-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-09-30T13:48:00Z",
+      "title": "S. 4691, Disaster Communications Coordination and Preparedness Act",
+      "url": "https://www.cbo.gov/publication/62824"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "K000367"
+  ],
+  "id": "s4691-119",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Commerce, Science, and Transportation. Ordered to be reported without amendment favorably.",
+  "latest_action_date": "2026-07-22",
+  "number": 4691,
+  "policy_area": "Science, Technology, Communications",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4691",
+  "sponsor_id": "S001232",
+  "subjects": [
+    "Emergency communications systems",
+    "Emergency planning and evacuation",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Natural disasters"
+  ],
+  "title_official": "Disaster Communications Coordination and Preparedness Act",
+  "type": "s"
+}

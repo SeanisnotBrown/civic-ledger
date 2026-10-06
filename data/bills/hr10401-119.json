@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-09-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-09-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-09-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001068",
+    "C001072",
+    "C001130",
+    "C001136",
+    "D000096",
+    "E000297",
+    "E000299",
+    "G000553",
+    "G000586",
+    "G000599",
+    "J000288",
+    "J000310",
+    "M001143",
+    "M001196",
+    "M001229",
+    "M001246",
+    "N000147",
+    "Q000023",
+    "R000599",
+    "S001145",
+    "T000193",
+    "T000481",
+    "W000822"
+  ],
+  "id": "hr10401-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2026-09-15",
+  "number": 10401,
+  "policy_area": null,
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10401",
+  "sponsor_id": "T000488",
+  "subjects": [],
+  "title_official": "No ICE Deaths in the Dark Act of 2026",
+  "type": "hr"
+}

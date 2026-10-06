@@ -1,6 +1,23 @@
 {
-  "count": 68,
+  "count": 266,
   "events": [
+    {
+      "action_code": "H11000",
+      "bill_id": "hr3623-119",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2025-05-30",
+      "has_page": false,
+      "id": "hr3623-119--2025-05-30--7435ee9087ad",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3623",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "type": "Committee"
+    },
     {
       "action_code": "H11100",
       "bill_id": "hr3620-119",
@@ -82,6 +99,53 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "1000",
+      "bill_id": "hr3623-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3623-119--2025-05-29--ac5e2e1b7dc3",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3623",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3623-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3623-119--2025-05-29--ccf932be0517",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3623",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3623-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3623-119--2025-05-29--cfb233718d58",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3623",
+      "subjects": [],
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hr3624-119",
       "committees": [
@@ -129,6 +193,341 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H11100",
+      "bill_id": "hr3652-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3652-119--2025-05-29--74e9d04a195d",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3652",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Transportation and Infrastructure, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3652-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3652-119--2025-05-29--ac5e2e1b7dc3",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3652",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3652-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3652-119--2025-05-29--be3ac030afaa",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3652",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Transportation and Infrastructure, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3652-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3652-119--2025-05-29--ccf932be0517",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3652",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3654-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3654-119--2025-05-29--6d82cf0071cd",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3654",
+      "subjects": [
+        "Advisory bodies",
+        "Civil actions and liability",
+        "Congressional oversight",
+        "Disaster relief and insurance",
+        "Environmental assessment, monitoring, research",
+        "Federal-Indian relations",
+        "Indian lands and resources rights",
+        "Indian social and development programs",
+        "Intergovernmental relations",
+        "Land transfers",
+        "Licensing and registrations",
+        "Natural disasters"
+      ],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3654-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3654-119--2025-05-29--ac5e2e1b7dc3",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3654",
+      "subjects": [
+        "Advisory bodies",
+        "Civil actions and liability",
+        "Congressional oversight",
+        "Disaster relief and insurance",
+        "Environmental assessment, monitoring, research",
+        "Federal-Indian relations",
+        "Indian lands and resources rights",
+        "Indian social and development programs",
+        "Intergovernmental relations",
+        "Land transfers",
+        "Licensing and registrations",
+        "Natural disasters"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3654-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3654-119--2025-05-29--ccf932be0517",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3654",
+      "subjects": [
+        "Advisory bodies",
+        "Civil actions and liability",
+        "Congressional oversight",
+        "Disaster relief and insurance",
+        "Environmental assessment, monitoring, research",
+        "Federal-Indian relations",
+        "Indian lands and resources rights",
+        "Indian social and development programs",
+        "Intergovernmental relations",
+        "Land transfers",
+        "Licensing and registrations",
+        "Natural disasters"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3657-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3657-119--2025-05-29--2c0bb7f74b97",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3657",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Electric power generation and transmission",
+        "Licensing and registrations"
+      ],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3657-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3657-119--2025-05-29--ac5e2e1b7dc3",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3657",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Electric power generation and transmission",
+        "Licensing and registrations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3657-119",
+      "committees": null,
+      "date": "2025-05-29",
+      "has_page": false,
+      "id": "hr3657-119--2025-05-29--ccf932be0517",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3657",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Electric power generation and transmission",
+        "Licensing and registrations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3593-119",
+      "committees": null,
+      "date": "2025-05-23",
+      "has_page": false,
+      "id": "hr3593-119--2025-05-23--7f4e08cf9636",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3593",
+      "subjects": [
+        "Employment and training programs",
+        "Health personnel",
+        "Health programs administration and funding",
+        "Medical education",
+        "Nursing"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3593-119",
+      "committees": null,
+      "date": "2025-05-23",
+      "has_page": false,
+      "id": "hr3593-119--2025-05-23--9ca14af38a84",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3593",
+      "subjects": [
+        "Employment and training programs",
+        "Health personnel",
+        "Health programs administration and funding",
+        "Medical education",
+        "Nursing"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3593-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-23",
+      "has_page": false,
+      "id": "hr3593-119--2025-05-23--e426cff8c39d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3593",
+      "subjects": [
+        "Employment and training programs",
+        "Health personnel",
+        "Health programs administration and funding",
+        "Medical education",
+        "Nursing"
+      ],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr3572-119",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "hr3572-119--2025-05-22--17f0cfa780bc",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3572",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1874-119",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1874-119--2025-05-22--82ebc151e61b",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1874",
+      "subjects": [
+        "Employment and training programs",
+        "Health personnel",
+        "Health programs administration and funding",
+        "Medical education",
+        "Nursing"
+      ],
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1874-119",
+      "committees": null,
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1874-119--2025-05-22--ed854ad3a79e",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1874",
+      "subjects": [
+        "Employment and training programs",
+        "Health personnel",
+        "Health programs administration and funding",
+        "Medical education",
+        "Nursing"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": null,
       "bill_id": "s1879-119",
       "committees": [
@@ -158,6 +557,263 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1879",
       "subjects": [],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1890-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1890-119--2025-05-22--4f04185b4b28",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1890",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Department of Justice",
+        "Drug safety, medical device, and laboratory regulation",
+        "Federal preemption",
+        "Genetics",
+        "Government information and archives",
+        "Law enforcement administration and funding",
+        "State and local government operations"
+      ],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1890-119",
+      "committees": null,
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1890-119--2025-05-22--ed854ad3a79e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1890",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Department of Justice",
+        "Drug safety, medical device, and laboratory regulation",
+        "Federal preemption",
+        "Genetics",
+        "Government information and archives",
+        "Law enforcement administration and funding",
+        "State and local government operations"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1897-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1897-119--2025-05-22--4f04185b4b28",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1897",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1897-119",
+      "committees": null,
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1897-119--2025-05-22--ed854ad3a79e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1897",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1914-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1914-119--2025-05-22--4f04185b4b28",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1914",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1914-119",
+      "committees": null,
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1914-119--2025-05-22--ed854ad3a79e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1914",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1916-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1916-119--2025-05-22--4f04185b4b28",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1916",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1916-119",
+      "committees": null,
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1916-119--2025-05-22--ed854ad3a79e",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1916",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1919-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1919-119--2025-05-22--516d08c9f4a7",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1919",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Finance.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1919-119",
+      "committees": null,
+      "date": "2025-05-22",
+      "has_page": false,
+      "id": "s1919-119--2025-05-22--ed854ad3a79e",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1919",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr3185-119",
+      "committees": [
+        "Oversight and Investigations Subcommittee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3185-119--2025-05-21--ae8ab34af5da",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3185",
+      "subjects": [
+        "Administrative remedies",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Federal officials",
+        "Government employee pay, benefits, personnel management",
+        "Government lending and loan guarantees",
+        "Housing finance and home ownership",
+        "Personnel records",
+        "User charges and fees",
+        "Veterans' loans, housing, homeless programs"
+      ],
+      "text": "Referred to the Subcommittee on Oversight and Investigations.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3530-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3530-119--2025-05-21--2830c64a1d5d",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3530",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3530-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3530-119--2025-05-21--92a4ca7e5634",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3530",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3530-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3530-119--2025-05-21--9c128c148bdb",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3530",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
       "type": "IntroReferral"
     },
     {
@@ -242,6 +898,147 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "Intro-H",
+      "bill_id": "hr3544-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3544-119--2025-05-21--2830c64a1d5d",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3544",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3544-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3544-119--2025-05-21--92a4ca7e5634",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3544",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3544-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3544-119--2025-05-21--ca2f323e6241",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3544",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3569-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3569-119--2025-05-21--0aa179815f14",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3569",
+      "subjects": [],
+      "text": "Referred to the House Committee on Armed Services.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3569-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3569-119--2025-05-21--2830c64a1d5d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3569",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3569-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3569-119--2025-05-21--92a4ca7e5634",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3569",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3572-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3572-119--2025-05-21--2830c64a1d5d",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3572",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3572-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3572-119--2025-05-21--61e166ae5ef4",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3572",
+      "subjects": [],
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3572-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "hr3572-119--2025-05-21--92a4ca7e5634",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3572",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "10000",
       "bill_id": "s1847-119",
       "committees": null,
@@ -288,6 +1085,145 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "10000",
+      "bill_id": "s1848-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "s1848-119--2025-05-21--1ff052c45820",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1848",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1848-119",
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "s1848-119--2025-05-21--27b76ddfb60f",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1848",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s283-119",
+      "committees": null,
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "s283-119--2025-05-21--05b84397e563",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/283",
+      "subjects": [
+        "Congressional oversight",
+        "Fishes",
+        "Food supply, safety, and labeling",
+        "Marine and coastal resources, fisheries",
+        "Seafood"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 86.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s283-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "s283-119--2025-05-21--76b50bd45427",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/283",
+      "subjects": [
+        "Congressional oversight",
+        "Fishes",
+        "Food supply, safety, and labeling",
+        "Marine and coastal resources, fisheries",
+        "Seafood"
+      ],
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz without amendment. With written report No. 119-24.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s283-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "s283-119--2025-05-21--fe5cb986bcfe",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/283",
+      "subjects": [
+        "Congressional oversight",
+        "Fishes",
+        "Food supply, safety, and labeling",
+        "Marine and coastal resources, fisheries",
+        "Seafood"
+      ],
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz without amendment. With written report No. 119-24.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s599-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-05-21",
+      "has_page": false,
+      "id": "s599-119--2025-05-21--213f2e16def9",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/599",
+      "subjects": [
+        "Transportation costs",
+        "Veterans' education, employment, rehabilitation",
+        "Veterans' medical care",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Committee on Veterans' Affairs. Hearings held. Hearings printed: S.Hrg. 119-86.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-20--3333bae39f84",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Star Print ordered on the referred concurrent resolution.",
+      "type": "Floor"
+    },
+    {
       "action_code": "H15001",
       "bill_id": "hr1190-119",
       "committees": [
@@ -330,6 +1266,77 @@
       ],
       "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 51 - 0.",
       "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "bill_id": "hr2388-119",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr2388-119--2025-05-20--b49fa841b308",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2388",
+      "subjects": [
+        "Federal-Indian relations",
+        "Gambling",
+        "Geography and mapping",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation"
+      ],
+      "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3513-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3513-119--2025-05-20--099299574d67",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3513",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3513-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3513-119--2025-05-20--8c2bd176b5c2",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3513",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3513-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3513-119--2025-05-20--fd98484ba62f",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3513",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
     },
     {
       "action_code": "H11000",
@@ -458,6 +1465,117 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "Intro-H",
+      "bill_id": "hr3521-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3521-119--2025-05-20--099299574d67",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3521",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3521-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3521-119--2025-05-20--255b58ee1abc",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3521",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3521-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3521-119--2025-05-20--e1779e4af6d0",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3521",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3521-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3521-119--2025-05-20--fd98484ba62f",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3521",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3526-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3526-119--2025-05-20--099299574d67",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3526",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3526-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3526-119--2025-05-20--b418d58e6c82",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3526",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3526-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "hr3526-119--2025-05-20--fd98484ba62f",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3526",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": null,
       "bill_id": "s1816-119",
       "committees": [
@@ -505,6 +1623,205 @@
         "Medicare"
       ],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s237-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "s237-119--2025-05-20--490f7bb2e1e8",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/237",
+      "subjects": [
+        "Cancer",
+        "Congressional oversight",
+        "Disability assistance",
+        "Government employee pay, benefits, personnel management",
+        "Government information and archives",
+        "Law enforcement officers",
+        "Worker safety and health"
+      ],
+      "text": "Committee on the Judiciary. Reported by Senator Grassley without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s237-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "s237-119--2025-05-20--5d4770a5f9f8",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/237",
+      "subjects": [
+        "Cancer",
+        "Congressional oversight",
+        "Disability assistance",
+        "Government employee pay, benefits, personnel management",
+        "Government information and archives",
+        "Law enforcement officers",
+        "Worker safety and health"
+      ],
+      "text": "Committee on the Judiciary. Reported by Senator Grassley without amendment. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s237-119",
+      "committees": null,
+      "date": "2025-05-20",
+      "has_page": false,
+      "id": "s237-119--2025-05-20--d71268971826",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/237",
+      "subjects": [
+        "Cancer",
+        "Congressional oversight",
+        "Disability assistance",
+        "Government employee pay, benefits, personnel management",
+        "Government information and archives",
+        "Law enforcement officers",
+        "Worker safety and health"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 78.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr3449-119",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2025-05-16",
+      "has_page": false,
+      "id": "hr3449-119--2025-05-16--633e8c3f754d",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3449",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "B00100",
+      "bill_id": "hr3372-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3372-119--2025-05-15--1e226dbb018d",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3372",
+      "subjects": [],
+      "text": "Sponsor introductory remarks on measure. (CR H2059)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3449-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3449-119--2025-05-15--117222fcd00f",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3449",
+      "subjects": [],
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3449-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3449-119--2025-05-15--839918e843e7",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3449",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3449-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3449-119--2025-05-15--e3ed9fa990a8",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3449",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3460-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3460-119--2025-05-15--2c5fb9f8aa8b",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3460",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3460-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3460-119--2025-05-15--839918e843e7",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3460",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3460-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "hr3460-119--2025-05-15--e3ed9fa990a8",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3460",
+      "subjects": [],
+      "text": "Introduced in House",
       "type": "IntroReferral"
     },
     {
@@ -619,6 +1936,114 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H15000",
+      "bill_id": "s195-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "s195-119--2025-05-15--3b79131f8e3a",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/195",
+      "subjects": [
+        "Congressional oversight",
+        "Museums, exhibitions, cultural centers",
+        "Music",
+        "Performing arts",
+        "Travel and tourism"
+      ],
+      "text": "Held at the desk.",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s195-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "s195-119--2025-05-15--53866a26d6eb",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/195",
+      "subjects": [
+        "Congressional oversight",
+        "Museums, exhibitions, cultural centers",
+        "Music",
+        "Performing arts",
+        "Travel and tourism"
+      ],
+      "text": "Message on Senate action sent to the House.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "bill_id": "s195-119",
+      "committees": null,
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "s195-119--2025-05-15--6a740e2b9814",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/195",
+      "subjects": [
+        "Congressional oversight",
+        "Museums, exhibitions, cultural centers",
+        "Music",
+        "Performing arts",
+        "Travel and tourism"
+      ],
+      "text": "Received in the House.",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s237-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-15",
+      "has_page": false,
+      "id": "s237-119--2025-05-15--d8f23cde8484",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/237",
+      "subjects": [
+        "Cancer",
+        "Congressional oversight",
+        "Disability assistance",
+        "Government employee pay, benefits, personnel management",
+        "Government information and archives",
+        "Law enforcement officers",
+        "Worker safety and health"
+      ],
+      "text": "Committee on the Judiciary. Ordered to be reported without amendment favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hconres30-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-14--24e8d547ecfa",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Received in the Senate and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": null,
       "bill_id": "hr1550-119",
       "committees": [
@@ -644,6 +2069,145 @@
     },
     {
       "action_code": null,
+      "bill_id": "hr331-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr331-119--2025-05-14--9e98b982fefc",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3398-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr3398-119--2025-05-14--2d901bb5d8d8",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3398",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3398-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr3398-119--2025-05-14--e18aa7dcef06",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3398",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3398-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr3398-119--2025-05-14--f063dbbaeeca",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3398",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3408-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr3408-119--2025-05-14--2d901bb5d8d8",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3408",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3408-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr3408-119--2025-05-14--e18aa7dcef06",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3408",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3408-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr3408-119--2025-05-14--f063dbbaeeca",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3408",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr677-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "hr677-119--2025-05-14--9e98b982fefc",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
       "bill_id": "hr952-119",
       "committees": [
         "Energy and Natural Resources Committee"
@@ -661,6 +2225,338 @@
       ],
       "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1750-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1750-119--2025-05-14--d45ea6d72148",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1750",
+      "subjects": [
+        "Alabama",
+        "Federal-Indian relations",
+        "Indian lands and resources rights"
+      ],
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1750-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1750-119--2025-05-14--d7256515daa8",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1750",
+      "subjects": [
+        "Alabama",
+        "Federal-Indian relations",
+        "Indian lands and resources rights"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1756-119",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1756-119--2025-05-14--ae0fd5f0a3f9",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1756",
+      "subjects": [
+        "Abortion",
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Department of Health and Human Services"
+      ],
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1756-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1756-119--2025-05-14--d7256515daa8",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1756",
+      "subjects": [
+        "Abortion",
+        "Administrative law and regulatory procedures",
+        "Civil actions and liability",
+        "Department of Health and Human Services"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1758-119",
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1758-119--2025-05-14--6a4fa23929a6",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1758",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1758-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1758-119--2025-05-14--d7256515daa8",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1758",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1766-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1766-119--2025-05-14--a96638d4b484",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1766",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1766-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s1766-119--2025-05-14--d7256515daa8",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1766",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s195-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s195-119--2025-05-14--ef4a15eb9e64",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/195",
+      "subjects": [
+        "Congressional oversight",
+        "Museums, exhibitions, cultural centers",
+        "Music",
+        "Performing arts",
+        "Travel and tourism"
+      ],
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S2933; text: CR S2933)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "bill_id": "s195-119",
+      "committees": null,
+      "date": "2025-05-14",
+      "has_page": false,
+      "id": "s195-119--2025-05-14--fb446420cfb6",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/195",
+      "subjects": [
+        "Congressional oversight",
+        "Museums, exhibitions, cultural centers",
+        "Music",
+        "Performing arts",
+        "Travel and tourism"
+      ],
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--01b775154e39",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H1961-1965)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--141ac46e32e5",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--4d4be9731e8c",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--4dea1f9de9ba",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H. Con. Res. 30.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--c0b74b6fde4d",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": "h-119-1-0123",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "On motion to suspend the rules and agree to the resolution Agreed to by the Yeas and Nays: (2/3 required): 411 - 1 (Roll no. 123). (text: CR H1961-1962)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--e085266ef30e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Considered as unfinished business. (consideration: CR H1985-1986)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--ef4e1a573faa",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": "h-119-1-0123",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and agree to the resolution Agreed to by the Yeas and Nays: (2/3 required): 411 - 1 (Roll no. 123). (text: CR H1961-1962)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-13--f29de777ef2f",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Mr. Jordan moved to suspend the rules and agree to the resolution.",
+      "type": "Floor"
     },
     {
       "action_code": "H30300",
@@ -795,6 +2691,525 @@
       "type": "Floor"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr2388-119",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr2388-119--2025-05-13--a59cfef17a99",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2388",
+      "subjects": [
+        "Federal-Indian relations",
+        "Gambling",
+        "Geography and mapping",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation"
+      ],
+      "text": "Referred to the Subcommittee on Indian and Insular Affairs.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hr331-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr331-119--2025-05-13--13bdffe7c8fd",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hr331-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr331-119--2025-05-13--22e72d555c8b",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1969)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hr331-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr331-119--2025-05-13--3077c668fde9",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "Mr. Westerman moved to suspend the rules and pass the bill, as amended.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr331-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr331-119--2025-05-13--4b10703e81f7",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H1969-1970)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr331-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr331-119--2025-05-13--73c2cf91889d",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1969)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr331-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr331-119--2025-05-13--b720795aa1dc",
+      "policy_area": "Water Resources Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/331",
+      "subjects": [
+        "Land use and conservation",
+        "Water use and supply"
+      ],
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 331.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3358-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3358-119--2025-05-13--2c69381322d1",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3358",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3358-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3358-119--2025-05-13--c5dcea698e6c",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3358",
+      "subjects": [],
+      "text": "Referred to the House Committee on Agriculture.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3358-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3358-119--2025-05-13--f4a4e1276a08",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3358",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3360-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3360-119--2025-05-13--2c69381322d1",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3360",
+      "subjects": [
+        "Computers and information technology",
+        "Consumer affairs",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Internet, web applications, social media",
+        "Motor vehicles",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr3360-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3360-119--2025-05-13--5dbdd5c37afc",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3360",
+      "subjects": [
+        "Computers and information technology",
+        "Consumer affairs",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Internet, web applications, social media",
+        "Motor vehicles",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment"
+      ],
+      "text": "Referred to the Subcommittee on Commerce, Manufacturing, and Trade.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3360-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3360-119--2025-05-13--d7410e7a3f76",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3360",
+      "subjects": [
+        "Computers and information technology",
+        "Consumer affairs",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Internet, web applications, social media",
+        "Motor vehicles",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment"
+      ],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3360-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3360-119--2025-05-13--f4a4e1276a08",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3360",
+      "subjects": [
+        "Computers and information technology",
+        "Consumer affairs",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Internet, web applications, social media",
+        "Motor vehicles",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3366-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3366-119--2025-05-13--1919a5cb3571",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3366",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3366-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3366-119--2025-05-13--2c69381322d1",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3366",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3366-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3366-119--2025-05-13--f4a4e1276a08",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3366",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3372-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3372-119--2025-05-13--1919a5cb3571",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3372",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3372-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3372-119--2025-05-13--2c69381322d1",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3372",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3372-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr3372-119--2025-05-13--f4a4e1276a08",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3372",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr677-119--2025-05-13--3b77bbce4e04",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 677.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr677-119--2025-05-13--3bc7752d55c7",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1973)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr677-119--2025-05-13--5755e9fc06bb",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Mr. Westerman moved to suspend the rules and pass the bill, as amended.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr677-119--2025-05-13--e61c2e370c1d",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H1973-1974)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr677-119--2025-05-13--ef7e1c228aaf",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-13",
+      "has_page": false,
+      "id": "hr677-119--2025-05-13--ffa48bde55c2",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1973)",
+      "type": "Floor"
+    },
+    {
       "action_code": "H37300",
       "bill_id": "hr952-119",
       "committees": null,
@@ -904,6 +3319,394 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr3270-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3270-119--2025-05-08--00174739c18d",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3270",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr3270-119",
+      "committees": [
+        "Aviation Subcommittee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3270-119--2025-05-08--0107f9f34f90",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3270",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Aviation.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3270-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3270-119--2025-05-08--7c29e8af3083",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3270",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3270-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3270-119--2025-05-08--b203426973d5",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3270",
+      "subjects": [],
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3270-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3270-119--2025-05-08--b696abee78a0",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3270",
+      "subjects": [],
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3276-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": true,
+      "id": "hr3276-119--2025-05-08--00174739c18d",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3276",
+      "subjects": [
+        "Birds",
+        "Community life and organization",
+        "Environmental assessment, monitoring, research",
+        "Urban and suburban affairs and development",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3276-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": true,
+      "id": "hr3276-119--2025-05-08--4936a2fef9d3",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3276",
+      "subjects": [
+        "Birds",
+        "Community life and organization",
+        "Environmental assessment, monitoring, research",
+        "Urban and suburban affairs and development",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3276-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": true,
+      "id": "hr3276-119--2025-05-08--7c29e8af3083",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3276",
+      "subjects": [
+        "Birds",
+        "Community life and organization",
+        "Environmental assessment, monitoring, research",
+        "Urban and suburban affairs and development",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3277-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3277-119--2025-05-08--00174739c18d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3277",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3277-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3277-119--2025-05-08--2dab29fa8784",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3277",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3277-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3277-119--2025-05-08--7c29e8af3083",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3277",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3277-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3277-119--2025-05-08--af399fa82523",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3277",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3277-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3277-119--2025-05-08--bdfd48798e76",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3277",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Education and Workforce, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3278-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3278-119--2025-05-08--00174739c18d",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3278",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3278-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3278-119--2025-05-08--2386ab3f600c",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3278",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3278-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3278-119--2025-05-08--7c29e8af3083",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3278",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3278-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3278-119--2025-05-08--fa2605eaa7fe",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3278",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3285-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3285-119--2025-05-08--00174739c18d",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3285",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3285-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3285-119--2025-05-08--7c29e8af3083",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3285",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3285-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3285-119--2025-05-08--be315078b5d4",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3285",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr3310-119",
       "committees": null,
       "date": "2025-05-08",
@@ -967,6 +3770,147 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "Intro-H",
+      "bill_id": "hr3312-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3312-119--2025-05-08--00174739c18d",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3312",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3312-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3312-119--2025-05-08--3c4716ee70b2",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3312",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3312-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "hr3312-119--2025-05-08--7c29e8af3083",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3312",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1677-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "s1677-119--2025-05-08--9c6d2d607482",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1677",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1677-119",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "s1677-119--2025-05-08--a6118bf5f01f",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1677",
+      "subjects": [
+        "Birth defects",
+        "Child health",
+        "Dental care",
+        "Government studies and investigations",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Home and outpatient care",
+        "Hospital care",
+        "Surgery and anesthesia"
+      ],
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1680-119",
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "s1680-119--2025-05-08--3385ffdb11c2",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1680",
+      "subjects": [
+        "Forests, forestry, trees",
+        "Virginia",
+        "Water quality",
+        "Wilderness and natural areas, wildlife refuges, wild rivers, habitats"
+      ],
+      "text": "Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1680-119",
+      "committees": null,
+      "date": "2025-05-08",
+      "has_page": false,
+      "id": "s1680-119--2025-05-08--9c6d2d607482",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1680",
+      "subjects": [
+        "Forests, forestry, trees",
+        "Virginia",
+        "Water quality",
+        "Wilderness and natural areas, wildlife refuges, wild rivers, habitats"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": null,
       "bill_id": "s1699-119",
       "committees": [
@@ -996,6 +3940,117 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1699",
       "subjects": [],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3226-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3226-119--2025-05-07--15f04fd55916",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3226",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3226-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3226-119--2025-05-07--565cedae06ec",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3226",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3226-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3226-119--2025-05-07--d56dd872548e",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3226",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3235-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3235-119--2025-05-07--15f04fd55916",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3235",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3235-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3235-119--2025-05-07--565cedae06ec",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3235",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3235-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3235-119--2025-05-07--a6da4f0f62e0",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3235",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3235-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hr3235-119--2025-05-07--ca5d1e169db0",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3235",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {
@@ -1046,6 +4101,181 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H11100",
+      "bill_id": "hres395-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hres395-119--2025-05-07--09fb8dfd62d5",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/395",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres395-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hres395-119--2025-05-07--197fe5e8d0a9",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/395",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres395-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "hres395-119--2025-05-07--da67adbac4cb",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/395",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1650-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "s1650-119--2025-05-07--063b423818ad",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1650",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1650-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "s1650-119--2025-05-07--803417a366d7",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1650",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1666-119",
+      "committees": null,
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "s1666-119--2025-05-07--063b423818ad",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1666",
+      "subjects": [
+        "Computer security and identity theft",
+        "Executive agency funding and structure",
+        "Social Security Administration"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1666-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-05-07",
+      "has_page": false,
+      "id": "s1666-119--2025-05-07--e16e5bc742c3",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1666",
+      "subjects": [
+        "Computer security and identity theft",
+        "Executive agency funding and structure",
+        "Social Security Administration"
+      ],
+      "text": "Read twice and referred to the Committee on Finance.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres30-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-06",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-06--0abc5ccae009",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-06",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-06--244b0c33bc84",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hconres30-119",
+      "committees": null,
+      "date": "2025-05-06",
+      "has_page": true,
+      "id": "hconres30-119--2025-05-06--968a3fb25f06",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/30",
+      "subjects": [
+        "Congressional tributes",
+        "Law enforcement officers"
+      ],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11000",
       "bill_id": "hr3184-119",
       "committees": [
@@ -1061,6 +4291,157 @@
       "subjects": [],
       "text": "Referred to the Subcommittee on Water Resources and Environment.",
       "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3178-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3178-119--2025-05-05--229bdc2cd9f3",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3178",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3178-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3178-119--2025-05-05--7c6378bcf4a8",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3178",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3178-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3178-119--2025-05-05--c023b0f98dd7",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3178",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3183-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3183-119--2025-05-05--229bdc2cd9f3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3183",
+      "subjects": [
+        "Aging",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure",
+        "Health personnel",
+        "Health promotion and preventive care",
+        "Long-term, rehabilitative, and terminal care",
+        "Medical research",
+        "Veterans' medical care"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3183-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3183-119--2025-05-05--7c6378bcf4a8",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3183",
+      "subjects": [
+        "Aging",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure",
+        "Health personnel",
+        "Health promotion and preventive care",
+        "Long-term, rehabilitative, and terminal care",
+        "Medical research",
+        "Veterans' medical care"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3183-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3183-119--2025-05-05--9ad25cae56fc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3183",
+      "subjects": [
+        "Aging",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure",
+        "Health personnel",
+        "Health promotion and preventive care",
+        "Long-term, rehabilitative, and terminal care",
+        "Medical research",
+        "Veterans' medical care"
+      ],
+      "text": "Referred to the Committee on Veterans' Affairs, and in addition to the Committee on Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3183-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3183-119--2025-05-05--a51f69372b90",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3183",
+      "subjects": [
+        "Aging",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure",
+        "Health personnel",
+        "Health promotion and preventive care",
+        "Long-term, rehabilitative, and terminal care",
+        "Medical research",
+        "Veterans' medical care"
+      ],
+      "text": "Referred to the Committee on Veterans' Affairs, and in addition to the Committee on Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "1000",
@@ -1124,6 +4505,337 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3184",
       "subjects": [],
       "text": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Transportation and Infrastructure, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3185-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3185-119--2025-05-05--229bdc2cd9f3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3185",
+      "subjects": [
+        "Administrative remedies",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Federal officials",
+        "Government employee pay, benefits, personnel management",
+        "Government lending and loan guarantees",
+        "Housing finance and home ownership",
+        "Personnel records",
+        "User charges and fees",
+        "Veterans' loans, housing, homeless programs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3185-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3185-119--2025-05-05--302854e76314",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3185",
+      "subjects": [
+        "Administrative remedies",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Federal officials",
+        "Government employee pay, benefits, personnel management",
+        "Government lending and loan guarantees",
+        "Housing finance and home ownership",
+        "Personnel records",
+        "User charges and fees",
+        "Veterans' loans, housing, homeless programs"
+      ],
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3185-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3185-119--2025-05-05--7c6378bcf4a8",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3185",
+      "subjects": [
+        "Administrative remedies",
+        "Congressional oversight",
+        "Department of Veterans Affairs",
+        "Federal officials",
+        "Government employee pay, benefits, personnel management",
+        "Government lending and loan guarantees",
+        "Housing finance and home ownership",
+        "Personnel records",
+        "User charges and fees",
+        "Veterans' loans, housing, homeless programs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3199-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3199-119--2025-05-05--229bdc2cd9f3",
+      "policy_area": "Animals",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3199",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3199-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3199-119--2025-05-05--7c6378bcf4a8",
+      "policy_area": "Animals",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3199",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3199-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr3199-119--2025-05-05--8afaccc58c80",
+      "policy_area": "Animals",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3199",
+      "subjects": [],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr677-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr677-119--2025-05-05--465dce3c945e",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Reported (Amended) by the Committee on Natural Resources. H. Rept. 119-88.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr677-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr677-119--2025-05-05--bf6efbfa3e5f",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Reported (Amended) by the Committee on Natural Resources. H. Rept. 119-88.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr677-119",
+      "committees": null,
+      "date": "2025-05-05",
+      "has_page": false,
+      "id": "hr677-119--2025-05-05--f65604adce13",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/677",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Administrative remedies",
+        "Department of the Interior",
+        "Indian lands and resources rights",
+        "Land transfers",
+        "Land use and conservation",
+        "Mining"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 63.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3139-119",
+      "committees": null,
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3139-119--2025-05-01--154c32c2c959",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3139",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3139-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3139-119--2025-05-01--65d38a85576b",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3139",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3139-119",
+      "committees": null,
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3139-119--2025-05-01--e45f0ee4724d",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3139",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr3164-119",
+      "committees": null,
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3164-119--2025-05-01--154c32c2c959",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3164",
+      "subjects": [
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Medicare",
+        "Prescription drugs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3164-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3164-119--2025-05-01--201b3222187e",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3164",
+      "subjects": [
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Medicare",
+        "Prescription drugs"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr3164-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3164-119--2025-05-01--3a8e4421059d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3164",
+      "subjects": [
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Medicare",
+        "Prescription drugs"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr3164-119",
+      "committees": null,
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "hr3164-119--2025-05-01--e45f0ee4724d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3164",
+      "subjects": [
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Medicare",
+        "Prescription drugs"
+      ],
+      "text": "Introduced in House",
       "type": "IntroReferral"
     },
     {
@@ -1265,6 +4977,38 @@
         "Specialized courts",
         "Telephone and wireless communication"
       ],
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s1580-119",
+      "committees": null,
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "s1580-119--2025-05-01--37b5ad2aa31a",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1580",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1580-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-01",
+      "has_page": false,
+      "id": "s1580-119--2025-05-01--6e7203cbea4e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1580",
+      "subjects": [],
       "text": "Read twice and referred to the Committee on the Judiciary.",
       "type": "IntroReferral"
     }

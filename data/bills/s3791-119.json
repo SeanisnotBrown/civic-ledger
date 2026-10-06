@@ -1,0 +1,136 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-09-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 563.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-09-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-144.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-09-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-144.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-04-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-02-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-02-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-05-27T20:15:00Z",
+      "title": "S. 3791, Regional Ocean Partnerships Reauthorization Act",
+      "url": "https://www.cbo.gov/publication/62484"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000382",
+    "B001277",
+    "B001303",
+    "B001319",
+    "C000127",
+    "C001035",
+    "C001075",
+    "C001088",
+    "H001076",
+    "H001079",
+    "K000393",
+    "M000133",
+    "M001169"
+  ],
+  "id": "s3791-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 563.",
+  "latest_action_date": "2026-09-14",
+  "number": 3791,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3791",
+  "sponsor_id": "W000437",
+  "subjects": [
+    "Alabama",
+    "Aquatic ecology",
+    "California",
+    "Connecticut",
+    "Delaware",
+    "Environmental assessment, monitoring, research",
+    "Florida",
+    "Great Lakes",
+    "Gulf of Mexico",
+    "Indian lands and resources rights",
+    "Intergovernmental relations",
+    "Louisiana",
+    "Maine",
+    "Marine and coastal resources, fisheries",
+    "Maryland",
+    "Massachusetts",
+    "Mississippi",
+    "New Hampshire",
+    "New Jersey",
+    "New York State",
+    "Oregon",
+    "Regional and metropolitan planning",
+    "Rhode Island",
+    "Seashores and lakeshores",
+    "State and local government operations",
+    "Texas",
+    "Vermont",
+    "Virginia",
+    "Washington State"
+  ],
+  "title_official": "Regional Ocean Partnerships Reauthorization Act",
+  "type": "s"
+}

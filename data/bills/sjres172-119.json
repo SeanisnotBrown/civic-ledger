@@ -1,4 +1,52 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-16",
+      "rollcall_id": "s-119-2-0174",
+      "source_system": "Senate",
+      "text": "Motion to discharge Senate Committee on Foreign Relations rejected by Yea-Nay Vote. 47 - 48. Record Vote Number: 174.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to discharge Senate Committee on Foreign Relations made. (Pursuant to the Arms Export Control Act of 1976).",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-04-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-04-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 119,
   "cosponsor_ids": [],

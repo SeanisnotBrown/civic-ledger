@@ -1,0 +1,112 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 517.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-07-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-08-12T18:32:00Z",
+      "title": "S. 4709, Unlocking Next-Generation Licensing and Opportunities for Collaborative Know-how for AUKUS Act",
+      "url": "https://www.cbo.gov/publication/62645"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001243",
+    "B001267",
+    "C001088",
+    "D000563",
+    "K000384",
+    "K000394",
+    "R000584",
+    "S001198",
+    "S001217"
+  ],
+  "id": "s4709-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 517.",
+  "latest_action_date": "2026-07-27",
+  "number": 4709,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4709",
+  "sponsor_id": "R000618",
+  "subjects": [
+    "Alliances",
+    "Australia",
+    "Collective security",
+    "Europe",
+    "International organizations and cooperation",
+    "Military assistance, sales, and agreements",
+    "Military operations and strategy",
+    "Oceania",
+    "United Kingdom"
+  ],
+  "title_official": "UNLOCK AUKUS Act",
+  "type": "s"
+}

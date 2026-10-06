@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Intelligence (Permanent Select) Committee"
+      ],
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000626",
+    "W000831"
+  ],
+  "id": "hr10502-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary, and in addition to the Committee on Intelligence (Permanent Select), for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+  "latest_action_date": "2026-09-17",
+  "number": 10502,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10502",
+  "sponsor_id": "M001240",
+  "subjects": [],
+  "title_official": "To direct the Director of National Intelligence to submit to Congress a report on the use of artificial intelligence systems to acquire, analyze, query, disseminate, or otherwise access information under section 702 of the Foreign Intelligence Surveillance Act of 1978.",
+  "type": "hr"
+}

@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001260",
+    "B001315",
+    "C001059",
+    "C001112",
+    "D000629",
+    "E000300",
+    "K000009",
+    "L000599",
+    "N000147",
+    "T000467"
+  ],
+  "id": "hr9474-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Agriculture.",
+  "latest_action_date": "2026-06-25",
+  "number": 9474,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9474",
+  "sponsor_id": "M001237",
+  "subjects": [],
+  "title_official": "Local Foods for Healthy Schools Act of 2026",
+  "type": "hr"
+}

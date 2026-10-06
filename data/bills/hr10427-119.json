@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001313",
+    "G000606",
+    "S001218"
+  ],
+  "id": "hr10427-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Education and Workforce.",
+  "latest_action_date": "2026-09-16",
+  "number": 10427,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10427",
+  "sponsor_id": "C001069",
+  "subjects": [],
+  "title_official": "MAGNET Act",
+  "type": "hr"
+}

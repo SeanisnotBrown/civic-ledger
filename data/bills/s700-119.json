@@ -1,0 +1,99 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-07-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 471.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee with an amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-07-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Energy and Natural Resources. Reported by Senator Lee with an amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-02-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-02-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-02-24T18:18:00Z",
+      "title": "S. 700, a bill to require the Secretary of Agriculture to convey the Pleasant Valley Ranger District Administrative Site to Gila County, Arizona",
+      "url": "https://www.cbo.gov/publication/62174"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "G000574"
+  ],
+  "id": "s700-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 471.",
+  "latest_action_date": "2026-07-23",
+  "number": 700,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/700",
+  "sponsor_id": "K000377",
+  "subjects": [
+    "Arizona",
+    "Forests, forestry, trees",
+    "Geography and mapping",
+    "Land transfers"
+  ],
+  "title_official": "A bill to require the Secretary of Agriculture to convey the Pleasant Valley Ranger District Administrative Site to Gila County, Arizona.",
+  "type": "s"
+}

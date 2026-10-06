@@ -1,0 +1,172 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "13:27:37",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H5913-5922)",
+      "time": "13:27:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote.",
+      "time": "13:27:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 9086.",
+      "time": "13:11:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H5913-5924)",
+      "time": "13:11:58",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Lawler moved to suspend the rules and pass the bill, as amended.",
+      "time": "13:11:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-06-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-06-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-06-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-06-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "G000601",
+    "M001199",
+    "M001230"
+  ],
+  "id": "hr9086-119",
+  "jurisdiction": "us",
+  "latest_action": "Received in the Senate and Read twice and referred to the Committee on Foreign Relations.",
+  "latest_action_date": "2026-09-17",
+  "number": 9086,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9086",
+  "sponsor_id": "L000599",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Advisory bodies",
+    "Asia",
+    "Australia",
+    "Business records",
+    "China",
+    "Computer security and identity theft",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Department of State",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Drug trafficking and controlled substances",
+    "Employee hiring",
+    "Employment and training programs",
+    "Europe",
+    "Executive agency funding and structure",
+    "Federal officials",
+    "Foreign aid and international relief",
+    "Foreign language and bilingual programs",
+    "Fraud offenses and financial crimes",
+    "Government employee pay, benefits, personnel management",
+    "Government ethics and transparency, public corruption",
+    "Human trafficking",
+    "Law enforcement officers",
+    "Oceania",
+    "Organized crime",
+    "Racial and ethnic relations",
+    "Rule of law and government transparency",
+    "Smuggling and trafficking",
+    "Strategic materials and reserves",
+    "Supply chain",
+    "United Kingdom",
+    "Veterans' education, employment, rehabilitation"
+  ],
+  "title_official": "Foreign Service Modernization Act",
+  "type": "hr"
+}

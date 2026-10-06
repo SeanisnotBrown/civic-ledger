@@ -1,4 +1,470 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-60.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-60.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-17",
+      "rollcall_id": "s-119-1-0648",
+      "source_system": "Senate",
+      "text": "Senate agreed to the House amendment to S. 1071 by Yea-Nay Vote. 77 - 20. Record Vote Number: 648.",
+      "time": null,
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "20500",
+      "committees": null,
+      "date": "2025-12-17",
+      "rollcall_id": "s-119-1-0648",
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- Senate actions: Senate agreed to the House amendment to S. 1071 by Yea-Nay Vote. 77 - 20. Record Vote Number: 648.",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to concur in the House amendment to S. 1071 with an amendment (SA 3961) withdrawn in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate (Message from the House considered).",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate (Message from the House considered). (consideration: CR S8749)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate (Message from the House considered). (consideration: CR S8707-8708)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-12-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to refer to Senate Committee on Armed Services the House message to accompany S. 1071 with instructions to report back forthwith with the following amendment (SA 3963) fell when cloture was invoked on the motion to concur in the House amendment to S. 1071 in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-15",
+      "rollcall_id": "s-119-1-0647",
+      "source_system": "Senate",
+      "text": "Cloture on the motion to concur in the House amendment to S. 1071 invoked in Senate by Yea-Nay Vote. 76 - 20. Record Vote Number: 647. (CR S8707)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to refer to Senate Committee on Armed Services the House message to accompany S. 1071 with instructions to report back forthwith with the following amendment (SA 3963) made in Senate. (CR S8656)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to concur in the House amendment to S. 1071 with an amendment (SA 3961) made in Senate. (CR S8656)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to concur in the House amendment to S. 1071 presented in Senate. (CR S8655-8656)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to concur in the House amendment to S. 1071 made in Senate. (CR S8655)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by motion. (consideration: CR S8655-8656)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": "s-119-1-0646",
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of the House message to accompany S. 1071 agreed to in Senate by Yea-Nay Vote. 75 - 22. Record Vote Number: 646. (CR S8655)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on House action received in Senate and at desk: House amendment to Senate bill.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:32:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": "h-119-1-0320",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 312 - 112 (Roll no. 320). (text of amendment in the nature of a substitute: CR H5136-5510)",
+      "time": "17:32:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": "h-119-1-0320",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 312 - 112 (Roll no. 320). (text of amendment in the nature of a substitute: CR H5136-5510)",
+      "time": "17:32:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-12-10",
+      "rollcall_id": "h-119-1-0319",
+      "source_system": "House floor actions",
+      "text": "On motion to commit Failed by the Yeas and Nays: 209 - 216 (Roll no. 319).",
+      "time": "17:24:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H5519-5520)",
+      "time": "16:50:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on S. 1071, the Chair put the question on motion to commit and by voice vote announced the noes had prevailed. Mr. Norcross demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
+      "time": "16:37:45",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to commit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "16:37:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Norcross moved to commit to the Committee on Armed Services. (text: CR H5518)",
+      "time": "16:37:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "16:36:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on S. 1071.",
+      "time": "15:28:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 3898, H.R. 3383, H.R. 3638, H.R. 3628, H.R. 3668 and S. 1071. The resolution provides for consideration of H.R. 3898, H.R. 3383, H.R. 3638, and H.R. 3628 under a structured rule; and H.R. 3668 and S. 1071 under a closed rule. The resolution provides for one motion to recommit on H.R. 3898, H.R. 3383, H.R. 3638, H.R. 3628, and H.R. 3668; and one motion to commit on S. 1071.",
+      "time": "15:27:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 936. (consideration: CR H5136-5518)",
+      "time": "15:27:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2025-12-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 936 passed House.",
+      "time": "15:25:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2025-12-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 936 Reported to House. Rule provides for consideration of H.R. 3898, H.R. 3383, H.R. 3638, H.R. 3628, H.R. 3668 and S. 1071. The resolution provides for consideration of H.R. 3898, H.R. 3383, H.R. 3638, and H.R. 3628 under a structured rule; and H.R. 3668 and S. 1071 under a closed rule. The resolution provides for one motion to recommit on H.R. 3898, H.R. 3383, H.R. 3638, H.R. 3628, and H.R. 3668; and one motion to commit on S. 1071.",
+      "time": "19:52:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2025-08-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "11:44:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2025-08-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "11:33:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-08-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-08-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S5475; text: CR S5475)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-08-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-08-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Veterans' Affairs discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-08-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Veterans' Affairs discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-03-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-03-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2025-12-09T21:01:00Z",

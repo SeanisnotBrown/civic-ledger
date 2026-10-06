@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-09-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-09-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001230",
+    "B001277",
+    "M000133",
+    "M001176",
+    "S000033",
+    "S001203"
+  ],
+  "id": "s5512-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2026-09-24",
+  "number": 5512,
+  "policy_area": null,
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5512",
+  "sponsor_id": "W000817",
+  "subjects": [],
+  "title_official": "A bill to subject certain private funds to joint and several liability with respect to the liabilities of firms acquired and controlled by those funds, and for other purposes.",
+  "type": "s"
+}

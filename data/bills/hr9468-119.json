@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 40 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-09-30T18:36:00Z",
+      "title": "H.R. 9468, Saving Today’s Acute-Care Resources Act",
+      "url": "https://www.cbo.gov/publication/62813"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001126",
+    "K000376",
+    "M001205",
+    "S001199"
+  ],
+  "id": "hr9468-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 40 - 0.",
+  "latest_action_date": "2026-07-15",
+  "number": 9468,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9468",
+  "sponsor_id": "H001082",
+  "subjects": [
+    "Health care costs and insurance",
+    "Hospital care",
+    "Long-term, rehabilitative, and terminal care",
+    "Medicare"
+  ],
+  "title_official": "STAR Act",
+  "type": "hr"
+}

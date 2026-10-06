@@ -1,0 +1,122 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2026-08-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "11:11:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2026-08-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "11:02:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-08-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-08-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S4550-4551; text: CR S4551)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-08-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-08-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-08-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-06-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-06-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001088",
+    "C001098",
+    "D000563",
+    "W000802"
+  ],
+  "id": "s4850-119",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2026-08-10",
+  "number": 4850,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4850",
+  "sponsor_id": "K000393",
+  "subjects": [
+    "Inflation and prices",
+    "Jurisdiction and venue"
+  ],
+  "title_official": "Diversity Jurisdiction Inflation Adjustment Act",
+  "type": "s"
+}

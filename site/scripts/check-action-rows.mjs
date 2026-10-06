@@ -57,6 +57,7 @@ if (pages.length === 0) {
 
 let rowCount = 0;
 let collapsed = 0;
+let timelines = 0;
 const offenders = [];
 for (const file of pages) {
   const html = readFileSync(file, "utf-8");
@@ -64,6 +65,7 @@ for (const file of pages) {
   // The timeline is the only <ol> on the page, and each action is one <li>.
   const list = html.match(/<ol class="mt-2 divide-y[^"]*">([\s\S]*?)<\/ol>/);
   if (!list) continue; // a bill whose timeline is uncollected renders a <p>, not a list
+  timelines += 1;
   const seen = new Map();
   for (const li of list[1].matchAll(/<li class="py-2 text-sm">([\s\S]*?)<\/li>/g)) {
     const row = li[1];
@@ -90,6 +92,19 @@ for (const file of pages) {
   }
 }
 
+// A markup change that defeats the selectors above would make this script find
+// nothing and exit 0. A gate that passes by seeing nothing is worse than no gate,
+// so seeing nothing is itself the failure. Negative-tested by changing one class.
+if (timelines === 0 || rowCount === 0) {
+  console.error(
+    `FAIL: parsed ${timelines} timeline(s) and ${rowCount} action row(s) out of ` +
+      `${pages.length} bill page(s). Hundreds of those pages carry a timeline, so ` +
+      "this means the selectors in this script no longer match the markup — not " +
+      "that the repeats are gone. Fix the selectors.",
+  );
+  process.exit(1);
+}
+
 if (offenders.length > 0) {
   console.error(`FAIL: SD-37 violations on ${offenders.length} row(s):`);
   for (const line of offenders.slice(0, 20)) console.error(`  ${line}`);
@@ -98,6 +113,7 @@ if (offenders.length > 0) {
 }
 
 console.log(
-  `OK: ${rowCount} action rows across ${pages.length} bill page(s), ` +
+  `OK: ${rowCount} action rows across ${timelines} timeline(s) of ` +
+    `${pages.length} bill page(s), ` +
     `no action rendered twice; ${collapsed} row(s) carry the repeat note.`,
 );

@@ -3240,3 +3240,28 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   only: the stored order is still the government's, never re-sorted on `time`** (it is
   absent on 56% of rows, which is why V2-11 task 7 refused to sort on it).
   Not evaluative under §0.8 — no metric, threshold or published number.
+
+- **D103 addendum (2026-10-06) — two things the review caught after the commit.**
+  **(a) The gate could have passed by seeing nothing.** `check-action-rows.mjs` finds the
+  timeline by its `<ol class="mt-2 divide-y…">` and each action by its `<li class="py-2
+  text-sm">`. Change either class and the script parses zero rows, reports no offenders, and
+  **exits 0** — a green check meaning "the markup moved", not "no action is rendered twice".
+  It now fails when it parses no timeline or no row at all, and that failure is
+  negative-tested by changing one class (`mt-2` → `mt-9`): FAIL, with a message that says the
+  selectors are stale rather than that the repeats are gone. Measured on the real build:
+  **604 timelines of 1,040 bill pages** (the rest have no collected timeline yet), 14,133
+  rows.
+  **(b) The rendered time carries no zone, and the record does not give one.** congress.gov's
+  `actionTime` is a bare local clock (`"09:14:56"`), and `ingest/models.py` does not claim a
+  zone for it. The page therefore shows the time verbatim and **labels no zone** — asserting
+  "Eastern" would be a claim the record does not make, and §0.5 forbids adding to it. If the
+  owner ever wants a zone shown, it needs a citation to congress.gov's own documentation
+  first. **Precedent, and it is exact:** `committees` is kept for the same reason, recorded in
+  `ingest/models.py` (D88 addendum) — `hr2670-118` carries five rows reading "Forwarded by
+  Subcommittee to Full Committee by Voice Vote ." on one day under one action code, differing
+  only in which subcommittee acted, and "without this field the rendered timeline repeats a
+  line five times with no explanation, and the dedupe that produced it looks like a bug". The
+  `time` field was the same hole for same-day procedural repeats; this closes it.
+  **Also confirmed against the source before shipping:** SD-37 calls its sentence a
+  **"Required wording shape"**, quoting the N=4 form as the example. `repeatNote()`
+  interpolates the count, which is the shape and not a reworded claim.

@@ -3,8 +3,12 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-06, morning session, wrapped at 09:45 CDT.
-**Three commits, all pushed** (`1bd754c67`, `9193e7010`, `8c5c36488`). **V2-7 IS COMPLETE —
+**Last updated:** 2026-10-06, afternoon session, wrapped at 16:55 CDT.
+**Four more commits pushed** (`cd3052c0e` D104, `a5f2c7862` SD-39+SD-40, `320d776da` data,
+`ebe25c64a` the nightly merge) — remote is at `ebe25c64a`, **CI run 37536141049 was still
+in progress at wrap; check it before trusting this line.** The 119 backfill is RELAUNCHED
+and confirmed writing (PIDs 30108/40804 at 16:45 CDT, 6,484 timelines and climbing).
+Earlier the same day, three commits (`1bd754c67`, `9193e7010`, `8c5c36488`). **V2-7 IS COMPLETE —
 task 1's last half shipped, so the privacy truth gate no longer blocks V2-8/V2-9/V2-12/V2-13.**
 **SD-38 (owner, today) ratified the storage list at SEVEN tables.** **SD-37 is now complete
 too — its bill-page half was built because it stopped being hypothetical** (D103). **Congress
@@ -28,7 +32,40 @@ accept-list guard compared `p.stem` against bare ids, but bill quarantines are w
 `bill-<id>.json`, so it could never have passed for a real bill quarantine. **Do not read
 that first red gate as an SD-39/SD-40 regression — it was a genuine data finding.**
 
-**Local gates at the push:** `uv run ruff check .` clean; **567 passed / 1 skipped at 100%
+**▶ THE NIGHTLY PUSHED WHILE THE GATE RAN, AND THE PUSH WAS REJECTED. This will happen
+again — here is the resolution that worked.** `data: nightly 2026-10-06` (`7c4ba6ac0`)
+landed on the remote mid-gate. It touched 466 files to this session's 3,110; the overlap
+was 47 bills, 20 event months, the topic index and the manifest. **All 47 overlapping
+`data/bills` records were byte-identical on both sides** (checked one by one before
+merging) — no clobber in either direction, so only the DERIVED files conflicted.
+**Resolve a derived-file conflict by REGENERATING it, never by text-merging it:**
+`git merge origin/master`, then `uv run ingest events && uv run ingest topics && uv run
+export` over the merged `data/bills`, then `verify-recompute` as the proof. Result:
+26,079 bills, 6,470 timelines, 119,645 events, 33 policy areas + 971 subjects, and
+verify-recompute OK on 3,519 roll calls. **The bill set changed, so every gate had to be
+re-run** — a green gate from before a merge does not carry across it.
+
+**▶ THE LOCAL GATES GET KILLED WHEN THE MACHINE IS LOW ON MEMORY, AND IT LOOKS LIKE A
+FAILURE WHEN IT IS NOT.** The full pytest line needs roughly 3-4 GB at peak and the
+harness kills a background task when system memory runs low. It died three times at ~25%
+with ~2 GB free; with 5.1 GB free it passed in 15:44. **Check free memory before blaming a
+test, and do not run the build and pytest concurrently — that is what caused the first
+kill.** One trap: a killed task can leave the real work RUNNING. The astro build was
+reported killed but had already printed `Complete!` and its node process finished on its
+own — always confirm against the process list and the artefacts on disk, the same way
+TASK 0 says to judge the backfill.
+
+**Local gates at THIS afternoon's push (`ebe25c64a`, run on the MERGED tree):**
+`uv run ruff check .` clean; **568 passed / 1 skipped at 100% branch coverage** under
+`CI=true GITHUB_ACTIONS=true` (15:44 — 568 not 567 because D104 replaced one test with two);
+`verify-recompute` OK; build **14,265 pages / 17,007 files**; `test:file-count` 17,007 of
+20,000; `test:links` OK — **25,039 tracked bills with no recorded vote correctly have no
+page**, which is also the published-side proof that D104's hr2-119 publishes nothing;
+`test:feed-ids` 94,380 entries / no duplicate ids; `test:action-rows` 16,978 rows across
+738 timelines of 1,040 bill pages, 4 carrying the repeat note; `test:metrics-sections` and
+`test:grade-labels` OK. Local e2e and lighthouse were not run; CI covers them.
+
+**Local gates at the MORNING push:** `uv run ruff check .` clean; **567 passed / 1 skipped at 100%
 branch coverage** under `CI=true GITHUB_ACTIONS=true` (20 min); `verify-recompute` OK;
 `astro check` 0 errors; build **14,264 pages / 17,005 files**; `test:action-rows`,
 `test:feed-ids`, `test:links`, `test:file-count`, `test:grade-labels`,
@@ -62,7 +99,7 @@ COMMAND LINE, not by the name `python.exe`. In PowerShell:
 
 Then read progress off disk:
 
-    grep -l '"actions"' data/bills/*-119.json | wc -l    # 3,263 when this session ended
+    grep -l '"actions"' data/bills/*-119.json | wc -l    # 6,484 when this session ended
     ls -lt data/bills/*-119.json | head -1                # should be seconds old
 
 **▶ THIS SESSION FOUND THE RUN DEAD WHILE `tasklist | grep -i python` SAID IT WAS ALIVE.**

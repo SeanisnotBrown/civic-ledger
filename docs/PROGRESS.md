@@ -65,11 +65,13 @@ duplicate-row cases first.
 
 **1. ⚠ THE CONGRESS 119 BACKFILL IS RUNNING RIGHT NOW. A DIRTY `data/` IS DELIBERATE —
 DO NOT CLEAN IT UP AND DO NOT COMMIT IT WITHOUT READING TASK 0'S STOP LOOP FIRST.**
-Relaunched 2026-10-05 at 18:10 CDT (PID 18276 at launch; it will have changed if the run
-was restarted since). Aliveness was confirmed all three ways at launch: process present,
-timeline count moved 650 → 652, newest `*-119.json` four seconds old. **Resume skipped
-straight to fetching — no enumeration pause was observable**, contradicting earlier
-guidance that the first ~7 minutes look dead.
+Relaunched 2026-10-05 at 20:17 CDT (PIDs 38956/39416 at launch; they will have changed if
+the run was restarted since). It was stopped twice earlier in the session, both times
+deliberately, to take honest gate readings — at 18:10→20:00 it went 650 → 2,145 timelines.
+**The enumeration pause is real but NOT reliable either way:** the 18:10 relaunch skipped
+straight to fetching (count moved within 4 seconds), while the 20:17 relaunch sat with no
+disk movement for minutes. Both are normal; it depends on whether the list pages are still
+cached. **Judge aliveness by the PROCESS first, and only then by the disk count.**
 - **Everything committed as of 18:10 is pushed** (`d5b62e0a0`). Anything dirty under
   `data/` after that time is the running backfill's output, not abandoned work.
 - **Congress 118: complete EXCEPT the 15 D100 bills.** 19,118 enumerated, 19,296 files,
@@ -145,6 +147,10 @@ affected pages today.**
   published-schema change (`data/schema/events.schema.json`) and every V2-12 consumer
   parses it; the owner ratified the page's wording, not the feed's shape. The multiplicity
   is still in `data/bills/*.json`. Ask him if a consumer ever needs it.
+- **Known e2e flake, not a break:** `drilldown.spec.ts:66` ("setting a member aside…",
+  `[mobile]`) failed once in the full 60-test suite and passes in isolation — a
+  member-browser hydration-timing flake under load. Playwright's exit code was 0 (it
+  retried). It touches no feed code. **Do not report 60/60 clean without re-running it.**
 - **The duplicate count grows fast** — 23 at 1,189 Congress 119 timelines, 214 at 2,145,
   projecting to ~2,000 at the full ~19,441. The repeats are concentrated in recent
   resolutions (`"Submitted in House"` listed twice), so a number measured earlier in the

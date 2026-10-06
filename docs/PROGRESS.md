@@ -14,10 +14,17 @@ too — its bill-page half was built because it stopped being hypothetical** (D1
 branch coverage** under `CI=true GITHUB_ACTIONS=true` (20 min); `verify-recompute` OK;
 `astro check` 0 errors; build **14,264 pages / 17,005 files**; `test:action-rows`,
 `test:feed-ids`, `test:links`, `test:file-count`, `test:grade-labels`,
-`test:metrics-sections` all OK. **CI has NOT been observed green on these commits yet —
-check the run for `8c5c36488` before trusting it.** Local e2e was NOT run this session (CI
-runs it; the known `drilldown.spec.ts:66` `[mobile]` flake is a local timing artefact — do
-not chase it).
+`test:metrics-sections` all OK.
+
+**▶ CI IS GREEN on the final push — run 37482544648, HEAD `9af74a157`.** 567 passed / 1
+skipped, `ALL CHECKS PASSED`, **e2e 60/60**, and the new `test:action-rows` gate ran with
+real numbers rather than passing on an empty scan: **14,133 action rows across 604
+timeline(s) of 1,040 bill pages, 4 rows carrying the repeat note**, identical to the local
+build. `test:feed-ids` 91,128 entries / no duplicate ids; `test:links` OK; file-count 17,005
+of 20,000. **The two earlier runs on this session's commits (37480099897, 37480664843) show
+`cancelled`, not failed** — each was superseded by the next push under `ci.yml`'s concurrency
+group. Local e2e was not run this session; the known `drilldown.spec.ts:66` `[mobile]` flake
+is a local timing artefact — do not chase it.
 
 ## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (owner's instruction, standing)
 

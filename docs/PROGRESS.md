@@ -3,48 +3,55 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-05, second session of the day, wrapped at 20:35 CDT.
-**CI IS GREEN on the final push** (run 37398440967: 561 passed / 1 skipped at 100% branch
-coverage, e2e **60/60**, the new feed-id gate OK over 90,045 entries). **V2-11 is COMPLETE**
-(tasks 1-8 + 5b, D88-D100). **V2-7 is 3 of 4 tasks done and its acceptance test exists,
-green and negative-tested.** **Both owner questions are answered — SD-36 (Cloudflare Email
-Sending) and SD-37 — and SD-37's FEED HALF IS BUILT AND SHIPPED (D101): 214 duplicate rows
-are gone from the published feed and 0 duplicate `event_id`s remain.** The previous
-session's orphaned handoff and data commit were never pushed; both are pushed now.
+**Last updated:** 2026-10-06, morning session, wrapped at 09:45 CDT.
+**Three commits, all pushed** (`1bd754c67`, `9193e7010`, `8c5c36488`). **V2-7 IS COMPLETE —
+task 1's last half shipped, so the privacy truth gate no longer blocks V2-8/V2-9/V2-12/V2-13.**
+**SD-38 (owner, today) ratified the storage list at SEVEN tables.** **SD-37 is now complete
+too — its bill-page half was built because it stopped being hypothetical** (D103). **Congress
+118 is finally, actually complete**: the 15 D100 bills were re-fetched.
 
-**Seven commits this session, all pushed, CI green:** `ec03bec07` + `af1dfbfff` (the
-orphaned data + handoff), `d5b62e0a0` (SD-36/37), `15dec68a7` (V2-7 acceptance test),
-`4571441f1` (the SD-37 evidence correction), `cffbefcf5` (data), `d5feb41d4` (SD-37 feed
-half + D101), `396f870e1` (handoff).
-
-**▶ The local e2e flake did NOT reproduce in CI.** `drilldown.spec.ts:66` `[mobile]` failed
-once locally under full-suite load and CI ran **60/60**. Treat it as a local timing flake;
-do not chase it.
+**Local gates at the push:** `uv run ruff check .` clean; **567 passed / 1 skipped at 100%
+branch coverage** under `CI=true GITHUB_ACTIONS=true` (20 min); `verify-recompute` OK;
+`astro check` 0 errors; build **14,264 pages / 17,005 files**; `test:action-rows`,
+`test:feed-ids`, `test:links`, `test:file-count`, `test:grade-labels`,
+`test:metrics-sections` all OK. **CI has NOT been observed green on these commits yet —
+check the run for `8c5c36488` before trusting it.** Local e2e was NOT run this session (CI
+runs it; the known `drilldown.spec.ts:66` `[mobile]` flake is a local timing artefact — do
+not chase it).
 
 ## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (owner's instruction, standing)
 
-**CHECK WHETHER THE CONGRESS 119 PULL IS STILL ALIVE; RESTART IT IF NOT.** It was running
-when the last session ended (live fact 1). The owner approved this run on 2026-10-05 and
-the approval stands across sessions. **Do not ask.** If it is alive, leave it alone and do
-your work in `site/` and `docs/` — then use the stop loop below before any gate run.
+**CHECK WHETHER THE CONGRESS 119 PULL IS STILL ALIVE; RESTART IT IF NOT.** The owner
+approved this run on 2026-10-05 and the approval stands across sessions. **Do not ask.** If
+it is alive, leave it alone and do your work in `site/` and `docs/` — then use the stop loop
+below before any gate run.
 
 One command, detached, from the repo root:
 
     nohup uv run ingest bill-activity --congress 119 > backfill-119.log 2>&1 &
 
-Then confirm it is alive (do all three — the log is useless for this):
+Then confirm it is alive. **Judge by the PROCESS first** — and judge the process by its
+COMMAND LINE, not by the name `python.exe`. In PowerShell:
 
-    tasklist | grep -i python                                  # the 60-90 MB one is it
-    grep -l '"actions"' data/bills/*-119.json | wc -l           # 650 at last session's end
-    ls -l --time-style=full-iso $(ls -t data/bills/*-119.json | head -1)   # should be seconds old
+    Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Where-Object { $_.CommandLine -like '*bill-activity*' } | Select-Object ProcessId,CreationDate,WorkingSetSize | Format-Table -AutoSize
 
-**What to expect.** Resume is the DEFAULT (D91/D95a) — it skips every bill that already has
-a timeline before making any network call, at **zero API requests**. The run re-enumerates
+Then read progress off disk:
+
+    grep -l '"actions"' data/bills/*-119.json | wc -l    # 3,263 when this session ended
+    ls -lt data/bills/*-119.json | head -1                # should be seconds old
+
+**▶ THIS SESSION FOUND THE RUN DEAD WHILE `tasklist | grep -i python` SAID IT WAS ALIVE.**
+Two `python.exe` processes were running — both were the browser-use MCP server, one of them
+at 98 MB, which is exactly the size the old guidance told you to look for. The giveaway was
+on disk: the newest `data/bills/*-119.json` was 11 hours old. **Use the command-line filter
+above; the 60-90 MB heuristic is not safe on this machine.**
+
+**What to expect.** Resume is the DEFAULT (D91/D95a) — it skips every bill that already has a
+timeline before making any network call, at **zero API requests**. The run re-enumerates
 Congress 119 first, which costs **~78 list pages** and prints nothing to the log while it
 does. Python buffers stdout when redirected; **read progress off disk, never off the log.**
-Roughly **18,800 bills still to fetch at ~4.5 s each ≈ 23 h.** Measured 2026-10-05: it
-wrote 39 bills in the first ~9 minutes including enumeration, so the enumeration pause is
-shorter than the ~7 minutes earlier guidance claimed.
+Roughly **16,200 bills still to fetch at ~4.5 s each ≈ 20 h.** Measured this session: 57 new
+timelines in the first 5 minutes including enumeration, so ~11/minute once it is moving.
 
 **▶ STOP IT BEFORE YOU RUN THE GATES, and know exactly why.** Three committed artifacts
 re-derive from `data/bills/`: `data/events/` (invariant 8), `data/topics/index.json`
@@ -54,203 +61,192 @@ every pytest run**, so a concurrent backfill does not merely break `verify-recom
 makes the **pytest gate itself dishonest**. The loop, in this order, is not optional:
 
     Stop-Process -Id <pid> -Force                                  # PowerShell; safe always
-    uv run ingest events && uv run ingest topics && uv run export  # regenerate
-    uv run verify-recompute                                        # now meaningful
-    uv run ruff check .  &&  <the pytest gate line below>          # now honest
+    uv run ingest events && uv run ingest topics && uv run export  # regenerate (~35 s)
+    uv run verify-recompute                                        # now meaningful (~3 min)
+    uv run ruff check .  &&  <the pytest gate line below>          # now honest (~20 min)
+    cd site && npm run build && npm run test:action-rows && npm run test:feed-ids && npm run test:links && npm run test:file-count
     git add data/ && git commit && git push
     # relaunch the backfill
 
 **It is safe to kill at any moment** — every write on this path is atomic (D95a, measured
 against a real hard kill), and a resume costs 0.56 s and zero requests. In Git Bash
 `taskkill /F` gets its flag mangled into a path; use PowerShell `Stop-Process -Id <pid>
--Force`.
-
-**▶ The 119 bills fetched before D100 were fetched by the pre-D100 code.** D100 fixed a
-guard that wrongly rejected any bill whose action list contains a byte-identical repeat
-(see live fact 3). A plain resume picks those up; nothing extra to do. If the restarted run
-reports fetch failures, **do not assume they are transient** — check whether they are
-duplicate-row cases first.
+-Force`. **Note for an agent session:** the Bash tool's sandbox classifier refuses
+`Stop-Process` invoked through `powershell -Command`; the PowerShell tool runs it fine.
 
 ## ▶▶ READ THIS FIRST — the three live facts
 
 **1. ⚠ THE CONGRESS 119 BACKFILL IS RUNNING RIGHT NOW. A DIRTY `data/` IS DELIBERATE —
 DO NOT CLEAN IT UP AND DO NOT COMMIT IT WITHOUT READING TASK 0'S STOP LOOP FIRST.**
-Relaunched 2026-10-05 at 20:17 CDT (PIDs 38956/39416 at launch; they will have changed if
-the run was restarted since). It was stopped twice earlier in the session, both times
-deliberately, to take honest gate readings — at 18:10→20:00 it went 650 → 2,145 timelines.
-**The enumeration pause is real but NOT reliable either way:** the 18:10 relaunch skipped
-straight to fetching (count moved within 4 seconds), while the 20:17 relaunch sat with no
-disk movement for minutes. Both are normal; it depends on whether the list pages are still
-cached. **Judge aliveness by the PROCESS first, and only then by the disk count.**
-- **Everything committed as of 18:10 is pushed** (`d5b62e0a0`). Anything dirty under
-  `data/` after that time is the running backfill's output, not abandoned work.
-- **Congress 118: complete EXCEPT the 15 D100 bills.** 19,118 enumerated, 19,296 files,
-  19,292 with timelines — but the 15 bills D100 unblocked were never re-fetched (the fix
-  landed after the 118 commit). A resume run picks up only those 15.
-- **Congress 119: PARTIAL and growing as you read this.** At the 20:35 session end:
-  **2,884 files, 2,411 with timelines**, of ~19,441 — so **~17,000 to go, ~21 h**. The last
-  data COMMIT was at 2,148 timelines, so **~266 bill files in the tree are uncommitted and
-  that is the running run's output, not abandoned work.** Nothing is lost if the machine is
-  shut down: the files stay on disk and a resume skips every bill that already has a
-  timeline, at zero API requests.
-- Corpus totals at the 18:10 regeneration: **91,043 events across 46 month files**; **33
-  policy areas + 966 subject terms over 20,444 bills**. These are already stale if the
-  backfill is still running — regenerate before trusting them.
+Relaunched 2026-10-06 at 09:39 CDT (PIDs 39296/43384 at launch; they will have changed if the
+run was restarted since). **Everything on disk as of 09:00 is committed and pushed**
+(`8c5c36488`, at 3,257 timelines); anything dirty under `data/` after that is the running
+run's output, not abandoned work. Nothing is lost if the machine is shut down: the files stay
+on disk and a resume skips every bill that already has a timeline, at zero API requests.
+- **Congress 119: PARTIAL and growing as you read this.** 3,263 timelines of ~19,441 at the
+  09:45 session end — so **~16,200 to go, ~20 h**.
+- **Congress 118: COMPLETE, finally and for real.** 19,307 files with timelines against
+  19,118 enumerated. The 15 D100 bills were re-fetched this session: 12 new + 3 refreshed, 0
+  quarantined, 0 fetch failures, 3 minutes. **The "a 118 re-run is owed" line that sat in
+  this section for two sessions is DISCHARGED.**
+- Corpus totals at the 09:00 regeneration: **103,970 events across 46 month files**; **33
+  policy areas + 970 subject terms over 23,001 bills**. Stale while the backfill runs —
+  regenerate before trusting them.
 - **`backfill-119.log` is 0 bytes** and that is not a failure. Python buffers stdout when
   redirected; the disk count is the record.
 
-**2. ZERO quarantines were produced by the 119 run.** `data/quality/quarantine/` holds only
-the four long-standing roll-call entries (`h-118-1-0001`, `h-119-1-0001`, `h-119-2-0130`,
-`h-119-2-0131`) and the accept list matches them exactly. **`bill-s4869-118` is GONE from
-both** — D98 made `BillAction.text` nullable, the bill now ingests with 3 actions (one with
-`"text": null`), and its accept-list entry was removed in the same commit because
+**2. ZERO quarantines, still.** `data/quality/quarantine/` holds only the four long-standing
+roll-call entries (`h-118-1-0001`, `h-119-1-0001`, `h-119-2-0130`, `h-119-2-0131`) and the
+accept list matches them exactly. The 118 re-run added none. **`bill-s4869-118` is GONE from
+both** — D98 made `BillAction.text` nullable, the bill ingests with 3 actions (one with
+`"text": null`), and its accept-list entry went in the same commit because
 `test_committed_accept_list_matches_committed_quarantines` is bidirectional.
 
-**3. ⚠ THE "15 UNFETCHABLE BILLS" WERE OUR BUG AND IT IS FIXED (D100).** `bill_actions`
-de-duplicated action rows WITHIN a page and compared the survivors against
-`pagination.count`; congress.gov legitimately repeats some rows byte-for-byte, so the guard
-raised `TruncatedFetchError` on valid responses. **Nothing was ever truncated.** Measured
-from cache with zero API requests: across 19,118 bills and 87,307 action rows there are
-**0 genuinely short pages** and exactly **15 bills carrying a byte-identical repeat**, and
-the two sets coincide. Confirmed against govinfo BILLSTATUS bulk XML on a second host —
-hr9748-118 really does carry the same referral line four times. Twelve of the fifteen had
-**no record on disk at all**. Fixed: dedupe now applies only to a copy already held from an
-EARLIER page. **⚠ That measurement is of the RAW CACHE, not of `data/`. The fix postdates
-the commit that completed the 118 backfill, so none of the 15 was ever re-fetched: the
-committed 118 corpus carries 0 repeated rows and is still missing those 15 timelines. A
-Congress 118 re-run is owed** (`uv run ingest bill-activity --congress 118` — resume makes
-it cheap; only the 15 are outstanding). **Do not spend a session retrying fetch failures as if they were network
-flakes** — check for duplicate rows first. **SD-37 now decides how they render; see below.**
+**3. ✅ THE "15 UNFETCHABLE BILLS" WERE OUR BUG (D100), AND THE RE-RUN THAT WAS OWED IS
+DONE.** `bill_actions` de-duplicated action rows WITHIN a page and compared the survivors
+against `pagination.count`; congress.gov legitimately repeats some rows byte-for-byte, so the
+guard raised `TruncatedFetchError` on valid responses. **Nothing was ever truncated.** The fix
+postdated the commit that completed the 118 backfill, so those 15 timelines had never been
+fetched — **they are on disk now** (`8c5c36488`). The fifteen: `hr1516-118`, `hres712-118`,
+`s4072-118`, `hr6855-118`, `hr6856-118`, `hr6860-118`, `hr6872-118`, `hr6878-118`,
+`hr9748-118`, `hres1617-118`, `hres1618-118`, `hres1626-118`, `hres1627-118`, `hres941-118`,
+`s467-118`. **Three of them have recorded votes and therefore `/b/` pages** — which is what
+un-deferred SD-37's bill-page half. **Do not spend a session retrying fetch failures as if
+they were network flakes** — check for duplicate rows first.
 
-## ✅ BOTH OWNER QUESTIONS ARE ANSWERED (2026-10-05) — and SD-37 is unbuilt work
+## ✅ SD-37 IS COMPLETE — both halves (D101 feed, D103 bill page)
 
-Neither is open any more. Both are recorded in `docs/decisions.md`; read the full entries
-before implementing, because each carries a scope guard.
+The owner's decision: a byte-identical repeated action renders **once**, with *"The official
+record lists this action 4 times."* underneath, and the feeds emit **one entry per distinct
+action id**. Display-layer only; nothing on disk changed.
+- **Feed half (D101, last session):** `events_for_bill` keys events by `event_id`;
+  `actionEntries()` de-duplicates with a `Set`. 214 duplicate rows left the published feed and
+  0 duplicate `event_id`s remain. Gate `npm run test:feed-ids` — **91,128 entries across
+  2,683 feeds, no duplicate ids** at this session's build.
+- **Bill-page half (D103, this session):** `timelineRows()` in `site/src/lib/actions.ts`
+  collapses repeats by `entryId()` — the identity the feeds and `data/events` already use, so
+  one government action is one thing on all three surfaces. `repeatNote()` emits the ratified
+  sentence. **The header count stays `actions.length`**, the record's count, per the scope
+  guard: the number and the note are both true only if they disagree.
+- **New gate `npm run test:action-rows`** (`site/scripts/check-action-rows.mjs`), in `ci.yml`
+  beside `test:feed-ids`. It asserts the invariant and not a bill id — no two rendered rows in
+  one timeline are byte-identical, any collapsed row carries the ratified sentence — so it
+  keeps meaning something as the backfill brings in bills nobody has looked at. **14,133
+  action rows across 1,040 bill pages; 4 rows carry the note** (`hr1516-118`, `hres712-118`,
+  `s4072-118`, `hres5-119`).
+- **▶ THE GATE FOUND A REAL DEFECT ON ITS FIRST RUN AND IT WAS NOT A DUPLICATE.** 33 pages
+  rendered two visually identical action rows. The record distinguishes them only by `time`,
+  which the page did not show — `hr4820-118` resolved into Committee of the Whole three times
+  on 2023-11-07 (14:11:27, 16:00:10, 21:00:57), identical in every other field. **Collapsing
+  them would have been false**: three events, not one listed three times. Fixed by rendering
+  the record's clock time on the 44% of rows that carry one — more of the record, not less,
+  and it makes the gate's invariant exact. **Display only; the stored order is still the
+  government's, never re-sorted on `time`.**
+- **Still deliberately NOT done:** the event row does not carry the repeat count. That is a
+  published-schema change (`data/schema/events.schema.json`) and every V2-12 consumer parses
+  it; the owner ratified the page's wording, not the feed's shape. The multiplicity is still
+  in `data/bills/*.json`. Ask him if a consumer ever needs it.
 
-**1. H18 — SD-36: Cloudflare Email Sending.** The owner chose it over Resend/Postmark: one
-company instead of two sees reader email addresses, and the Workers Paid plan (H20) is
-required for V2-12 anyway. **Accepted caveat: 3,000 emails/month included, which a daily
-digest exhausts at roughly 100 subscribers** — a capacity decision deferred to the day it
-binds, not a hidden cost. `docs/HUMAN-TASKS.md` H18 is marked decided, with the human step
-that remains (enable Email Sending on the account, create the binding/secret).
-**This unblocks the forward-looking half of `/privacy` and all of V2-8.**
+## ✅ V2-7 IS COMPLETE (2026-10-06) — the blocking privacy gate is lifted
 
-**2. The duplicated action rows — SD-37: render ONCE with a count line.** The timeline shows
-the action one time with *"The official record lists this action 4 times."* underneath.
-Display-layer only; nothing on disk changes. **The action count must keep counting what the
-record lists, not the de-duplicated render count — the number and the note are both true
-only if they disagree.** Paired and ratified in the same breath: the feeds must emit **one
-entry per distinct action id**.
-
-**▶ THE FEED HALF IS BUILT AND VERIFIED (D101). The bill-page half is NOT, and has zero
-affected pages today.**
-- **Built:** `events_for_bill` keys events by `event_id` and keeps the first;
-  `actionEntries()` in `site/src/lib/atom.ts` does the same with a `Set`. **214 duplicate
-  rows left the published feed** (97,437 → 97,223 over the same `data/bills/`), and a direct
-  scan confirms **0 duplicate `event_id`s remain**. Built feeds: **90,045 entries across
-  2,683 feeds, no duplicate ids.**
-- **New build gate `npm run test:feed-ids`** (`site/scripts/check-feed-ids.mjs`), in
-  `ci.yml` after `npm run build`. Negative-tested by duplicating an `<entry>` in a built
-  `dist/feed.xml`. It also fails on an `<entry>` with no `<id>` and on finding zero feeds.
-- **Not built:** the `/b/[bill]` row-once + *"The official record lists this action 4
-  times."* line. **None of the repeat-bearing bills has a `/b/` page** (no action reached a
-  roll call, SD-33 3(c)), so there is nothing to render yet. `/b/[bill].astro` reads
-  `bill.actions.length` from the stored timeline and must keep doing so — leave it alone
-  until a repeat-bearing bill takes a vote.
-- **Deliberately NOT done:** the event row does not carry the repeat count. That is a
-  published-schema change (`data/schema/events.schema.json`) and every V2-12 consumer
-  parses it; the owner ratified the page's wording, not the feed's shape. The multiplicity
-  is still in `data/bills/*.json`. Ask him if a consumer ever needs it.
-- **Known e2e flake, not a break:** `drilldown.spec.ts:66` ("setting a member aside…",
-  `[mobile]`) failed once in the full 60-test suite and passes in isolation — a
-  member-browser hydration-timing flake under load. Playwright's exit code was 0 (it
-  retried). It touches no feed code, **and CI then ran 60/60 on the same commit** — so it is
-  a local timing flake, confirmed, not a defect. Do not chase it.
-- **The duplicate count grows fast** — 23 at 1,189 Congress 119 timelines, 214 at 2,145,
-  projecting to ~2,000 at the full ~19,441. The repeats are concentrated in recent
-  resolutions (`"Submitted in House"` listed twice), so a number measured earlier in the
-  backfill understates it badly.
-
-**▶ THE NUMBERS THE OWNER WAS GIVEN WHEN THIS WAS ASKED WERE WRONG. Measured 2026-10-05,
-after the decision; full correction in the SD-37 entry in `docs/decisions.md`.** The three
-bills cited as emitting duplicate feed entries (`hr1516-118`, `hres712-118`, `s4072-118`)
-have **no `actions` key on disk at all** and emit no feed entries. The real state:
-- **Congress 118 on disk: 0 repeated rows** across 19,296 files / 88,011 action rows. D100's
-  "15 bills" was measured in the **raw cache**, and **the D100 fix postdates the commit that
-  completed the 118 backfill** — so those 15 timelines were never re-fetched. **A Congress
-  118 re-run is owed** and 118 is not as complete as live fact 1 implies.
-- **Congress 119, fetched by the fixed code: 30 repeat-bearing bills already**, out of only
-  1,189 with timelines — ~2.5% and climbing while the backfill runs. Mostly a resolution's
-  `"Submitted in House"` row listed twice.
-- **The committed activity feed already publishes 23 duplicate `event_id`s** (23 extra rows
-  over 91,043; `2026-09.json` 9, `2026-10.json` 14), served verbatim at
-  `/events/{month}.json` and `/events/latest.json` — the endpoint the V2-12 Worker polls.
-- **None of the 30 has a `/b/` page** (no action reached a roll call, SD-33 3(c)).
-  **So the two halves have different urgency: the feed/event-id half is LIVE in committed
-  data; the bill-page half has zero affected pages yet. Build the feed half first.**
-
-## Where V2-7 stands (the current increment)
-
-**3 of 4 tasks done; the acceptance test now exists and is green; the one remaining half of task 1 is UNBLOCKED as of SD-36.**
-- **Task 1 — `/privacy` rewritten, partly.** The today-true half is live and honest.
-  **Removed:** "built to collect as little as possible", "No cookies. No analytics. No
-  third-party fonts, scripts, or CDNs", and "a legal demand to the operator would produce
-  only what that private repository contains" — which was **already false**, since
-  `data/raw/`, `build.db`, `backfill-*.log` and `.env` have always lived outside that repo.
-  **Added** the owner's chosen plain sentence naming Cloudflare, and the one standing
-  promise. **Still owed, blocked on H18:** the forward-looking half — the §5 table list in
-  plain words, the public-profile carve-out, deletion semantics, and naming the email
-  provider.
-- **Task 2 — `/threat-model` is NEW and done.** What is true today, what accounts will
-  hold, what a legal demand produces, then an explicit **"what is not promised"** section
-  naming the withdrawn guarantees, and **"what is promised"**: never sold, hard delete,
-  K-anon. It also discloses, verified rather than assumed, that `MemberBrowser.tsx:144`
-  copies typed search text into the page address and that `/compare` carries the chosen
-  members. Linked from `/privacy` and the footer — the `/topics` orphan (D97) is why that
-  is a step and not an afterthought.
+All four tasks done, acceptance green and negative-tested. **V2-8/V2-9/V2-12/V2-13 are no
+longer gated on it.**
+- **Task 1 — `/privacy` rewritten, both halves.** The today-true half shipped last session.
+  **This session's half:** the §5 table list in plain words, the public-profile carve-out in
+  the spec's own wording (*"anything you choose to publish on your profile is public"*),
+  deletion semantics, the K-anon rule, **Cloudflare named as the sender of email as well as
+  the deliverer of the site** (SD-36), and that reading the record and its feeds need no
+  account. Two framing sentences had to move with it: the intro no longer claims the page
+  "describes only what is true today" (a planned-storage section would have falsified that on
+  its face), and the never-sell line now calls itself "the only thing on this page offered as
+  a promise rather than a description" — the promise stays singular, which is what SD-34
+  ratified.
+- **Task 2 — `/threat-model`** is unchanged in substance. Its SD-36 sentence was **narrowed,
+  not rewritten**, exactly as SD-36 asked: two unnamed companies became one named one.
 - **Task 3 — H19 canary: CLOSED. Retired, not reshaped (SD-35, owner).** Nothing to build.
-- **Task 4 — done.** Spec §0.4.3 and `CONTRIBUTING.md` Value #3 both still promised things
-  SD-34 withdrew; both now record the withdrawal with a do-not-reinstate note.
-- **Acceptance: WRITTEN AND GREEN (2026-10-05).**
-  `tests/test_privacy_accuracy_v2_7.py` — 7 passing, 1 deliberately skipped.
-  What it pins: the K number the reader is shown equals `config.K_ANON` (the page's literal
-  is `50`, split across two source lines, so the test whitespace-normalizes the file —
-  a per-line scan of the shape `banned_words.py` uses finds nothing and passes silently);
-  `K_ANON` has exactly one definition in `ingest/`; the storage list carries one bullet per
-  spec-§5 table (6); the spec still names all six; the three promises SD-34 kept are still
-  stated; the four claims SD-34 withdrew are absent from all of `site/src/`; `/privacy`
-  still links `/threat-model`. **Negative-tested by tampering** — `K_ANON=25`, a deleted
-  storage bullet, and a re-added "No cookies. No analytics." each fail with a legible
-  message. **It reads `site/src/` source, not `site/dist/`**: in CI the Python job runs
-  before the Node job's `npm run build`, so `dist/` does not exist at pytest time.
-- **The one skipped test is deferred twice over, not once.**
-  `test_schema_half_is_still_deferred` activates by itself when any `.sql` appears. The
-  spec's acceptance compares the stated list to the Worker's D1 schema, which V2-8 creates
-  (today: no `worker/`, no `.sql`, no `d1_databases` in `site/wrangler.jsonc`) — **and the
-  canonical table list is itself unratified**: §5 names six tables,
-  `docs/plan-subscriptions-and-alerts.md` task 1 adds a seventh (`email_verifications`)
-  that is on neither §5 nor the page. Ratify the list before comparing against it; picking
-  one by guess defeats the test.
-- **Note which page carries what.** `/privacy` holds neither the storage list nor the K
-  number — both are on `/threat-model`, and `/privacy` links to it as "the long version of
-  this page". The acceptance's "privacy page" is read as the privacy *surface*, both pages,
-  and a test pins the link that joins them. Argon2id is deliberately NOT on the site: the
-  page says "a scrambled form of your password" instead, so the test pins the plain-words
-  version plus the spec still specifying the algorithm.
-- **Task 1's remaining half is now UNBLOCKED by SD-36** — the §5 table list in plain words,
-  the public-profile carve-out, deletion semantics, and naming Cloudflare as the sender.
+- **Task 4 — done.** Spec §0.4.3 and `CONTRIBUTING.md` Value #3 record SD-34's withdrawal
+  with a do-not-reinstate note.
+- **▶ ONE LIST, TWO PAGES — the structural change, and it is not cosmetic.** The seven
+  sentences moved out of `threat-model.astro` into **`site/src/lib/storageDisclosure.ts`**,
+  which both pages render with `STORED_WHEN_ACCOUNTS_SHIP.map(...)`. Task 1 wanted the same
+  list on `/privacy`, and two hand-maintained copies of a disclosure list drift — a privacy
+  surface that disagrees with itself is the Value #1 failure V2-7 exists to prevent. Each
+  entry carries the §5 table it discloses, so the sentence-to-table mapping is **checked**
+  rather than commented in the test file. **The published K floor moved into the same
+  module**: `site/` now holds exactly one `50`, pinned to `ingest.config.K_ANON`, and a test
+  fails any page that hardcodes it again.
+- **Acceptance: 13 passed / 1 skipped.** `tests/test_privacy_accuracy_v2_7.py`. What it pins
+  beyond the previous session's list: both pages render the shared list and neither
+  hand-writes a sentence it already carries; both interpolate the K floor and neither states
+  a number; the carve-out phrase is on `/privacy`; `/privacy` names Cloudflare as the sender;
+  `/privacy` says reading needs no account. **Negative-tested by tampering four ways** — K
+  floor set to 25, the `profiles` entry deleted, `/privacy` hardcoding "50 people", the
+  carve-out reworded — each failing in the test that should catch it.
+- **The one skipped test is now deferred ONCE, not twice.**
+  `test_schema_half_is_still_deferred` activates by itself when any `.sql` appears. Only
+  V2-8's D1 schema is outstanding; the canonical table list stopped being a blocker at SD-38.
 
-**▶ SD-34 (2026-10-05) IS THE BIGGEST CHANGE THIS SESSION AND IT CHANGES WHAT YOU MAY
-WRITE.** The owner withdrew the no-tracking guarantees: *"what this is going to evolve to, I
-am going to have to track this info. My only promise is to never sell this data."* The
-project MAY now log requests, keep IP columns, set cookies, hold per-submission rows, let
-the anonymous reader's browsing reach the Worker, and store beyond the §5 tables. **Never
-write any of those guarantees onto the site or back into the values.** Three things SD-34
-did NOT withdraw, flagged in the ADR and the spec so nobody sweeps them away: **Argon2id**,
-the **K-anon (=50) render gate**, and **hard deletion on request**. Each needs its own dated
-decision to remove. `docs/draft-v2-7-privacy-claims.md` is the full claim-by-claim audit —
-read it before writing privacy copy, but note its "no cookies"/"no analytics"/"no
-third-party scripts" rows are now **moot as claims**, and its Q1 and Q6 are answered.
+## ✅ SD-38 (owner, 2026-10-06) — SEVEN tables, not six
+
+Asked in plain words how `/privacy` should describe the address-plus-one-time-code the site
+has to hold between "sign me up" and the reader clicking the confirmation link, the owner
+chose **count it as its own line**. So the storage list has **seven** items and the seventh
+reads: *"An email address you have given but not yet confirmed, and the one-time code sent to
+confirm it."* `email_verifications(user_id, email, code_hash, created_at)` is now in spec §5,
+and `SPEC_TABLES` in the acceptance test is seven.
+
+**What it does NOT settle: no lifetime.** The confirmation-code expiry window and
+`deliveries` retention are both still unratified — **owner question Q4, the last one open in
+`docs/draft-v2-7-privacy-claims.md`**. The page says *what* is held and never *how long*,
+because a number there would be a claim the system does not make. **Columns settle in V2-8**;
+the disclosure guard compares table names, not columns.
+
+## ✅ BOTH EARLIER OWNER QUESTIONS REMAIN ANSWERED
+
+**H18 — SD-36: Cloudflare Email Sending.** One company instead of two sees reader email
+addresses, and Workers Paid (H20) is required for V2-12 anyway. **Accepted caveat: 3,000
+emails/month included, which a daily digest exhausts at roughly 100 subscribers** — a capacity
+decision deferred to the day it binds. **H18 is DECIDED, not finished:** a human still owes
+the account step (enable Email Sending on the Cloudflare account, create the binding/secret).
+That caveat is a cost fact and **must not go on the site**.
+
+**SD-37 — render once with a count line.** Complete; see above.
+
+## ▶ NEXT — V2-8 (accounts + preference sync). Nothing blocks it but human tasks.
+
+V2-7's gate is lifted. Before writing the D1 schema, three things are settled and one is owed
+by a human:
+1. **The table list is ratified: seven** (SD-38). `test_schema_half_is_still_deferred` will
+   compare your `CREATE TABLE` names against exactly that set the moment a `.sql` lands, so
+   create those seven and no others without a dated decision.
+2. **The email provider is settled: Cloudflare Email Sending** (SD-36) — a `send_email`
+   binding, not a third-party API key. Spec §1's H18 row and the plan doc were corrected this
+   session; they used to say Resend/MailChannels and `EMAIL_API_KEY`.
+3. **Q4 is the one open owner question** and it binds here: how long an alert-sent record
+   (`deliveries`) is kept, and how long a confirmation code stays valid. Ask before writing a
+   retention policy into code, and never state a number on the site first.
+4. **Owed by a human:** H18's account step, **H17** (Turnstile keys), **H20** (Workers Paid —
+   now load-bearing for V2-8 as well as V2-12). H21 (SMS) is not needed; email alerts do not
+   wait on it.
+
+**Four stale doc records were corrected this session** so a future session cannot inherit a
+withdrawn guarantee: spec §2's SD-28 row still ended "no IP retention, logging off"
+(withdrawn by SD-34); spec §1's H18 row still named Resend/MailChannels; `HUMAN-TASKS.md` H12
+still asked for monthly warrant-canary signing (retired with the canary itself, SD-35); and
+`docs/plan-subscriptions-and-alerts.md` still said "logging off" and described the table list
+as a guarantee. **`docs/draft-v2-7-privacy-claims.md` is annotated with what is answered and
+what is left (only Q4).**
+
+**▶ SD-34 (2026-10-05) STILL GOVERNS WHAT YOU MAY WRITE.** The owner withdrew the no-tracking
+guarantees: *"what this is going to evolve to, I am going to have to track this info. My only
+promise is to never sell this data."* The project MAY log requests, keep IP columns, set
+cookies, hold per-submission rows, let the anonymous reader's browsing reach the Worker, and
+store beyond the §5 tables. **Never write any of those guarantees onto the site or back into
+the values.** Three things SD-34 did NOT withdraw: **Argon2id**, the **K-anon (=50) render
+gate**, and **hard deletion on request**. Each needs its own dated decision to remove. Four
+strings are mechanical tripwires scanned across all of `site/src/` by the acceptance test:
+"collect as little as possible", "No cookies. No analytics", "No third-party fonts, scripts,
+or CDNs", "would produce only what that private repository contains".
 
 ## Where the build actually stands
 

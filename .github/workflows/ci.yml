@@ -84,6 +84,9 @@ jobs:
       - name: Grade-labels (rendered grade labels ⊆ ratified config — §6.8)
         working-directory: site
         run: npm run test:grade-labels
+      - name: Feed entry ids (no Atom entry id appears twice — SD-37)
+        working-directory: site
+        run: npm run test:feed-ids
       - name: Install Playwright browser
         working-directory: site
         run: npx playwright install --with-deps chromium

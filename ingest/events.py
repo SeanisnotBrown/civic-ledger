@@ -92,13 +92,39 @@ def event_id(bill_id: str, action: dict) -> str:
 
 
 def events_for_bill(bill: dict, *, has_page: bool) -> list[BillEvent]:
-    """Every action on one bill as an event. `[]` when the timeline is absent
-    (D27 `None` = not collected) or empty (`[]` = collected, none exist)."""
+    """One event per DISTINCT action on one bill. `[]` when the timeline is absent
+    (D27 `None` = not collected) or empty (`[]` = collected, none exist).
+
+    **One entry per distinct action id (SD-37, owner, 2026-10-05).** congress.gov
+    legitimately lists some action rows twice byte-for-byte (D100), `bill_actions`
+    now keeps every copy the government's list has, and byte-identical rows
+    necessarily hash alike — so the projection used to publish two rows carrying
+    one `event_id`. Measured before this change: 23 duplicate ids over 91,043
+    committed rows. `event_id` is the identity the V2-12 alert path keys on (D97),
+    so a duplicate becomes a subscriber notified twice for one government action.
+
+    **Nothing is collapsed that differs in any way.** The id hashes the WHOLE row
+    (`event_id`), so two events share an id only if their source rows are
+    byte-identical, which makes the dropped copy indistinguishable from the kept
+    one in every published field. That is the opposite of the D88 bug, where a
+    narrow hash merged genuinely different actions —
+    `test_actions_differing_only_by_committee_stay_FIVE_events` pins that
+    distinction and must keep passing.
+
+    **The record itself is untouched (§0.5).** `data/bills/*.json` keeps every copy
+    exactly as published; the bill page still counts what the record lists. This is
+    a projection of distinct actions, not an edit to the timeline. SD-37's other
+    half — the page stating "The official record lists this action 4 times." — is
+    display-layer and not implemented here.
+
+    `setdefault` keeps the FIRST occurrence and adds no branch, the same reason
+    `.get` is used for `text` below: this module is inside the 100%-branch gate."""
     actions = bill.get("actions")
     if not actions:
         return []
-    return [
-        BillEvent(
+    by_id: dict[str, BillEvent] = {}
+    for action in actions:
+        event = BillEvent(
             id=event_id(bill["id"], action),
             bill_id=bill["id"],
             date=action["date"],
@@ -119,8 +145,8 @@ def events_for_bill(bill: dict, *, has_page: bool) -> list[BillEvent]:
             source_url=bill["source_url"],
             has_page=has_page,
         )
-        for action in actions
-    ]
+        by_id.setdefault(event.id, event)
+    return list(by_id.values())
 
 
 def _sort_key(event: BillEvent) -> tuple:
@@ -130,14 +156,14 @@ def _sort_key(event: BillEvent) -> tuple:
     a quiet re-run could reorder two same-day actions and invariant 8 would fail
     for no real reason.
 
-    `id` is NOT unique per EVENT, and that is deliberate as of D100: 15 Congress 118
-    bills carry a byte-for-byte repeat of an action row (hr9748-118 four copies of
-    one), `bill_actions` now keeps every copy the government's list has, and
-    byte-identical rows necessarily hash alike. The sort stays total in effect — the
-    tied events are identical, so the output bytes are still deterministic. The
-    consequence worth knowing is downstream: a feed reader may collapse entries that
-    share an `atom:id`, so such a group can show as one entry. Open question for the
-    owner, recorded in D100, not settled here."""
+    `id` IS unique per event again as of SD-37 (D101): `events_for_bill` keeps one
+    event per distinct id, so the tie this docstring used to describe — two
+    byte-identical copies of one action row, which D100 made storable and which
+    necessarily hash alike — can no longer reach the sort. The D100-era note that
+    "`id` is NOT unique per EVENT, and that is deliberate" is superseded; the
+    question it left open for the owner is answered, not still open. The key stays
+    a total order on `id` alone, which is what keeps a quiet re-run from reordering
+    two same-day actions and failing invariant 8 for no real reason."""
     return (_desc(event.date), event.bill_id, event.id)
 
 

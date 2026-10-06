@@ -159,15 +159,40 @@ export function atomResponse(body: string): Response {
  * a shortened government sentence in a reader's notification list is a paraphrase the
  * government did not write (§0.5). The same text is in `<content>` for clients that
  * render bodies.
+ *
+ * **One entry per distinct id (SD-37, owner, 2026-10-05).** congress.gov lists some
+ * action rows twice byte-for-byte (D100) and `bill_actions` keeps every copy, so two
+ * refs could produce two entries sharing one `atom:id`. That is malformed in effect —
+ * a reader may collapse them, or notify twice — and `entryId()` is byte-equal to
+ * `ingest.events.event_id`, the identity the V2-12 alert path keys on (D97). Entries
+ * share an id only when the source rows are byte-identical, so the dropped copy is
+ * indistinguishable from the kept one in every rendered field; two rows differing in
+ * any field (hr2670-118's five that differ only in `committees`) keep distinct ids and
+ * both survive. The stored timeline is untouched (§0.5) — the bill page still counts
+ * what the record lists.
+ *
+ * Note the interaction with `FEED_LIMIT`: callers slice their refs to 50 BEFORE this
+ * runs, so a window containing a repeat yields 49 entries rather than 50. Accepted —
+ * under-filling by one is harmless, and re-slicing after de-duplication would mean
+ * reaching back for more refs in all five feed shapes. `check-feed-ids.mjs` enforces
+ * the no-duplicate-id property on the built feeds.
  */
 export function actionEntries(refs: ActionRef[], base: URL, voted: Set<string>): AtomEntry[] {
-  return refs.map((r) => ({
-    id: entryId(r.bill.id, r.action as unknown as Record<string, unknown>),
-    title: `${billLabel(r.bill.id)} — ${actionText(r.action)}`,
-    updated: r.action.date,
-    link: voted.has(r.bill.id)
-      ? new URL(`/b/${r.bill.id}`, base).href
-      : r.bill.source_url,
-    content: actionText(r.action),
-  }));
+  const seen = new Set<string>();
+  const out: AtomEntry[] = [];
+  for (const r of refs) {
+    const id = entryId(r.bill.id, r.action as unknown as Record<string, unknown>);
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push({
+      id,
+      title: `${billLabel(r.bill.id)} — ${actionText(r.action)}`,
+      updated: r.action.date,
+      link: voted.has(r.bill.id)
+        ? new URL(`/b/${r.bill.id}`, base).href
+        : r.bill.source_url,
+      content: actionText(r.action),
+    });
+  }
+  return out;
 }

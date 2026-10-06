@@ -2984,6 +2984,69 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   placeholder. `docs/draft-v2-7-privacy-claims.md` Q6 is answered. Not evaluative under
   §0.8 — no metric, threshold or published number.
 
+- **D101 (2026-10-05) — SD-37's feed half, implemented: one event and one Atom entry per
+  DISTINCT action id. 214 duplicate rows left the published feed.**
+  SD-37 ratified two halves. This is the feed/alert-id half only; the bill-page half (render
+  the row once with *"The official record lists this action 4 times."*) is **not built** and
+  has zero affected pages today, because none of the repeat-bearing bills has reached a
+  recorded vote and so none has a `/b/` page (SD-33 3(c)).
+
+  **Mechanism, both sides, one rule.** `ingest.events.events_for_bill` now keys events into a
+  `dict` by `event_id` and keeps the first occurrence; `actionEntries()` in
+  `site/src/lib/atom.ts` does the same with a `Set` of seen ids. Both use `setdefault`/`Set`
+  rather than a conditional in the Python case, for the reason the `text=action.get(...)`
+  comment already gives: `ingest/events.py` is inside the §8 100%-branch gate and a new
+  `if` would need its own covering test for no behavioural gain.
+
+  **Why this is de-duplication and not the D88 collapse.** `event_id` hashes the WHOLE
+  action row, so two events share an id only when their source rows are byte-identical —
+  which makes the dropped copy indistinguishable from the kept one in every published field.
+  The D88 bug was the opposite: a hash over text alone merged genuinely different actions
+  (hr2670-118's five that differ only in `committees`).
+  `test_actions_differing_only_by_committee_stay_FIVE_events` was already committed and
+  still passes; `test_dedupe_does_NOT_touch_rows_that_differ_in_any_field` was added to pin
+  the same line from the other direction. **No id was narrowed and no field was dropped.**
+
+  **What it removed, measured.** Regenerating the same `data/bills/` twice, once per code
+  version, with no concurrent writer: **97,437 → 97,223 event rows, so 214 duplicates**, and
+  a direct scan confirms **0 duplicate `event_id`s remain** across 46 month files with every
+  file's `count` equal to its own row list. The figure grew fast while this was being built —
+  23 duplicates at 1,189 Congress 119 timelines, 214 at 2,145 — because the repeats are
+  concentrated in recent resolutions (`"Submitted in House"` listed twice). At the full
+  ~19,441 it projects to roughly 2,000. The built feeds carry **90,045 entries across 2,683
+  feeds, no duplicate ids**.
+
+  **The record is untouched (§0.5).** `data/bills/*.json` keeps every copy exactly as
+  congress.gov published it. `data/events/` is a projection of distinct actions, and
+  `/b/[bill].astro`'s action count still reads `bill.actions.length` from the stored
+  timeline — so the page continues to count what the record lists. Nothing about this change
+  touches ingest, the cache, or what is stored.
+
+  **`FEED_LIMIT` under-fills by design.** All five feed shapes slice their refs to 50 before
+  `actionEntries()` runs, so a 50-ref window containing one repeat yields 49 entries.
+  Accepted rather than re-slicing after de-duplication, which would mean reaching back for
+  more refs in five call sites to gain one entry at the bottom of a feed. Recorded here
+  because it will look like an off-by-one to whoever counts entries next.
+
+  **New build gate: `npm run test:feed-ids`** (`site/scripts/check-feed-ids.mjs`), wired into
+  `ci.yml` after `npm run build` and before the Playwright step. It walks every
+  `dist/**/feed.xml` and fails on any `atom:id` appearing twice inside that feed's entries,
+  counting only ids inside an `<entry>` so a feed's own self-`<id>` is never mistaken for
+  one. It also fails on an `<entry>` with no `<id>` at all, and on finding zero feeds — a
+  guard that silently passes because the thing it checks stopped being built is worse than
+  no guard. **Negative-tested by duplicating one `<entry>` block in a built `dist/feed.xml`**
+  and confirming it names the bill and the id (D97's precedent: a render-side guard that has
+  never been seen to fail is not yet a guard).
+
+  **One thing SD-37 left open for the events half, deliberately not built.** The event row
+  does not carry how many times the record lists the action. Adding a count field is a change
+  to the published schema (`data/schema/events.schema.json`) and to what every V2-12
+  consumer parses, and it was not ratified — the owner was asked about the bill page's
+  wording, not about the feed's shape. The information is not lost: it is in
+  `data/bills/*.json`, which is where the bill page reads it. Raise it with the owner if a
+  consumer ever needs the multiplicity.
+  Not evaluative under §0.8 — no metric, threshold or published number.
+
 - **SD-36 (2026-10-05, OWNER DECISION) — H18 answered: Cloudflare Email Sending is the
   email provider.**
   Asked in plain language which company should actually send digests and alerts, the owner

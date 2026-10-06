@@ -124,7 +124,31 @@ the action one time with *"The official record lists this action 4 times."* unde
 Display-layer only; nothing on disk changes. **The action count must keep counting what the
 record lists, not the de-duplicated render count — the number and the note are both true
 only if they disagree.** Paired and ratified in the same breath: the feeds must emit **one
-entry per distinct action id**. **NEITHER HALF IS BUILT. This is the next code task.**
+entry per distinct action id**.
+
+**▶ THE FEED HALF IS BUILT AND VERIFIED (D101). The bill-page half is NOT, and has zero
+affected pages today.**
+- **Built:** `events_for_bill` keys events by `event_id` and keeps the first;
+  `actionEntries()` in `site/src/lib/atom.ts` does the same with a `Set`. **214 duplicate
+  rows left the published feed** (97,437 → 97,223 over the same `data/bills/`), and a direct
+  scan confirms **0 duplicate `event_id`s remain**. Built feeds: **90,045 entries across
+  2,683 feeds, no duplicate ids.**
+- **New build gate `npm run test:feed-ids`** (`site/scripts/check-feed-ids.mjs`), in
+  `ci.yml` after `npm run build`. Negative-tested by duplicating an `<entry>` in a built
+  `dist/feed.xml`. It also fails on an `<entry>` with no `<id>` and on finding zero feeds.
+- **Not built:** the `/b/[bill]` row-once + *"The official record lists this action 4
+  times."* line. **None of the repeat-bearing bills has a `/b/` page** (no action reached a
+  roll call, SD-33 3(c)), so there is nothing to render yet. `/b/[bill].astro` reads
+  `bill.actions.length` from the stored timeline and must keep doing so — leave it alone
+  until a repeat-bearing bill takes a vote.
+- **Deliberately NOT done:** the event row does not carry the repeat count. That is a
+  published-schema change (`data/schema/events.schema.json`) and every V2-12 consumer
+  parses it; the owner ratified the page's wording, not the feed's shape. The multiplicity
+  is still in `data/bills/*.json`. Ask him if a consumer ever needs it.
+- **The duplicate count grows fast** — 23 at 1,189 Congress 119 timelines, 214 at 2,145,
+  projecting to ~2,000 at the full ~19,441. The repeats are concentrated in recent
+  resolutions (`"Submitted in House"` listed twice), so a number measured earlier in the
+  backfill understates it badly.
 
 **▶ THE NUMBERS THE OWNER WAS GIVEN WHEN THIS WAS ASKED WERE WRONG. Measured 2026-10-05,
 after the decision; full correction in the SD-37 entry in `docs/decisions.md`.** The three

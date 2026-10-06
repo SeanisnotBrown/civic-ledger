@@ -154,6 +154,57 @@ def test_actions_differing_only_by_committee_stay_FIVE_events(tmp_path: Path) ->
     assert len({e.id for e in out.events}) == 5  # five DISTINCT ids, not one repeated
 
 
+# --- SD-37: one event per distinct action id ---------------------------------
+def test_a_byte_identical_repeated_row_publishes_ONE_event(tmp_path: Path) -> None:
+    """SD-37 (owner, 2026-10-05). congress.gov lists some rows twice byte-for-byte
+    (D100) and `bill_actions` keeps every copy, so the projection used to emit two
+    rows carrying one `event_id` — measured: 23 duplicate ids over 91,043 committed
+    rows. `event_id` is the identity the V2-12 alert path keys on (D97), so that is
+    a subscriber notified twice for one government action."""
+    row = _action(text="Submitted in House", action_code="Intro-H")
+    data = _dataset(tmp_path, [_bill(actions=[dict(row), dict(row)])])
+    out = events.compute(data)["2026-03"]
+    assert out.count == 1
+    assert len(out.events) == 1
+    assert out.events[0].text == "Submitted in House"
+
+
+def test_four_copies_of_one_row_publish_ONE_event(tmp_path: Path) -> None:
+    """hr9748-118 carries the same referral line four times, confirmed against
+    govinfo BILLSTATUS on a second host (D100)."""
+    row = _action(text="Referred to the Committee on Ways and Means.")
+    data = _dataset(tmp_path, [_bill(actions=[dict(row) for _ in range(4)])])
+    assert events.compute(data)["2026-03"].count == 1
+
+
+def test_dedupe_does_NOT_touch_rows_that_differ_in_any_field(tmp_path: Path) -> None:
+    """The guard on SD-37: the id hashes the WHOLE row, so only byte-identical rows
+    share one. Two rows differing solely in `committees` are two official actions
+    and must stay two events — collapsing them is the D88 bug, and this test is the
+    line between de-duplication and silent collapse."""
+    same = dict(date="2026-03-04", text="Forwarded by Subcommittee to Full Committee "
+                "by Voice Vote .", action_code="H-Fwd")
+    data = _dataset(tmp_path, [_bill(actions=[
+        _action(**same, committees=["Subcommittee A"]),
+        _action(**same, committees=["Subcommittee B"]),
+    ])])
+    out = events.compute(data)["2026-03"]
+    assert out.count == 2
+    assert len({e.id for e in out.events}) == 2
+
+
+def test_the_kept_copy_is_the_first_and_order_is_unchanged(tmp_path: Path) -> None:
+    """Determinism (invariant 8): de-duplication must not depend on which copy wins
+    or on dict iteration luck. Stored order is newest-first already, and the kept
+    copy is the first occurrence, so a repeat cannot move a distinct action."""
+    dup = _action(date="2026-03-05", text="Submitted in House")
+    other = _action(date="2026-03-04", text="Introduced in House.")
+    data = _dataset(tmp_path, [_bill(actions=[dict(dup), dict(dup), other])])
+    out = events.compute(data)["2026-03"]
+    assert [e.text for e in out.events] == ["Submitted in House", "Introduced in House."]
+    assert out.count == 2
+
+
 def test_two_genuinely_identical_rows_hash_the_same(tmp_path: Path) -> None:
     """The id is a function of the row and nothing else — same row, same id. This
     is what makes it usable as a de-duplication key by an alert consumer that sees

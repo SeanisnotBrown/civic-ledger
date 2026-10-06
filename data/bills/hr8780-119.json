@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-05-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-05-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-05-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000379",
+    "B001260",
+    "B001282",
+    "B001301",
+    "B001314",
+    "C001126",
+    "F000459",
+    "G000565",
+    "H001100",
+    "M000871",
+    "M001205",
+    "M001212",
+    "M001218",
+    "M001222",
+    "O000086",
+    "S001172",
+    "S001212",
+    "S001214"
+  ],
+  "id": "hr8780-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2026-05-13",
+  "number": 8780,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8780",
+  "sponsor_id": "M001213",
+  "subjects": [],
+  "title_official": "Critical Mineral and Extraction Tax Parity Act",
+  "type": "hr"
+}

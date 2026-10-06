@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-03-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001301",
+    "C001123",
+    "E000299",
+    "G000601",
+    "L000596",
+    "L000599",
+    "M001240",
+    "R000612",
+    "S001159",
+    "T000487",
+    "V000139"
+  ],
+  "id": "hr7745-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Armed Services.",
+  "latest_action_date": "2026-03-02",
+  "number": 7745,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7745",
+  "sponsor_id": "A000375",
+  "subjects": [],
+  "title_official": "To establish certain requirements relating to wellness checks for the health and welfare of certain members of the Armed Forces, and for other purposes.",
+  "type": "hr"
+}

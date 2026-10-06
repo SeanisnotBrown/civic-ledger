@@ -1,0 +1,162 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2026-07-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Rules and Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:23:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H4401-4402)",
+      "time": "17:23:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H4401-4402)",
+      "time": "17:23:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 8738.",
+      "time": "17:17:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H4401-4402)",
+      "time": "17:17:35",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Steil moved to suspend the rules and pass the bill.",
+      "time": "17:17:26",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-05-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 11 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-05-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-05-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-05-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-05-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-07-08T17:29:00Z",
+      "title": "H.R. 8738, FEC Administrative Improvements Act",
+      "url": "https://www.cbo.gov/publication/62558"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "L000597",
+    "S001185",
+    "S001213"
+  ],
+  "id": "hr8738-119",
+  "jurisdiction": "us",
+  "latest_action": "Received in the Senate and Read twice and referred to the Committee on Rules and Administration.",
+  "latest_action_date": "2026-07-14",
+  "number": 8738,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8738",
+  "sponsor_id": "M001206",
+  "subjects": [
+    "Computers and information technology",
+    "Elections, voting, political campaign regulation",
+    "Government information and archives",
+    "Political advertising",
+    "State and local government operations"
+  ],
+  "title_official": "FEC Administrative Improvements Act",
+  "type": "hr"
+}

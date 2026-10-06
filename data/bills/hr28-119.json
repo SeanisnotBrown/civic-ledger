@@ -1,4 +1,162 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "14:45:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": "h-119-1-0012",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 218 - 206, 1 Present (Roll no. 12). (text: CR H126)",
+      "time": "14:45:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": "h-119-1-0012",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 218 - 206, 1 Present (Roll no. 12). (text: CR H126)",
+      "time": "14:45:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-01-14",
+      "rollcall_id": "h-119-1-0011",
+      "source_system": "House floor actions",
+      "text": "On motion to recommit Failed by the Yeas and Nays: 208 - 218 (Roll no. 11).",
+      "time": "14:37:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H139-140)",
+      "time": "14:31:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H.R. 28, the Chair put the question on the motion to recommit and announced that the noes had prevailed. Ms. Adams demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:25:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "13:25:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Ms. Adams moved to recommit to the Committee on Education and Workforce. (text: CR H137)",
+      "time": "13:25:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "13:24:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.R. 28.",
+      "time": "12:13:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-01-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 5. (consideration: CR H126-138)",
+      "time": "12:13:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 119,
   "cosponsor_ids": [

@@ -1,0 +1,168 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-09-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "15:13:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H5935)",
+      "time": "15:13:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by voice vote.",
+      "time": "15:13:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 9570.",
+      "time": "15:08:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H5935-5936)",
+      "time": "15:08:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2026-09-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Comer moved to suspend the rules and pass the bill.",
+      "time": "15:08:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-07-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-07-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-07-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-07-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-07-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-08-04T15:18:00Z",
+      "title": "H.R. 9570, a bill to designate the facility of the United States Postal Service located at 117 West Lovett Street in Charlotte, Michigan, as the \"Francis C. Flaherty Post Office Building\"",
+      "url": "https://www.cbo.gov/publication/62626"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001301",
+    "D000624",
+    "H001058",
+    "J000307",
+    "M001136",
+    "M001194",
+    "M001237",
+    "S001215",
+    "S001221",
+    "T000481",
+    "T000488",
+    "W000798"
+  ],
+  "id": "hr9570-119",
+  "jurisdiction": "us",
+  "latest_action": "Received in the Senate.",
+  "latest_action_date": "2026-09-17",
+  "number": 9570,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9570",
+  "sponsor_id": "B001321",
+  "subjects": [
+    "Congressional tributes",
+    "Government buildings, facilities, and property",
+    "Michigan",
+    "Postal service"
+  ],
+  "title_official": "To designate the facility of the United States Postal Service located at 117 West Lovett Street in Charlotte, Michigan, as the \"Francis C. Flaherty Post Office Building\".",
+  "type": "hr"
+}

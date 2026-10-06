@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-05-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-05-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-05-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "K000009",
+    "S001212",
+    "V000133"
+  ],
+  "id": "hr8675-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2026-05-07",
+  "number": 8675,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8675",
+  "sponsor_id": "B000740",
+  "subjects": [],
+  "title_official": "Training Rural Law Enforcement Officers Act of 2026",
+  "type": "hr"
+}

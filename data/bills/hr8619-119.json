@@ -1,0 +1,75 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2026-05-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H3541)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000631",
+    "L000607"
+  ],
+  "id": "hr8619-119",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H3541)",
+  "latest_action_date": "2026-05-15",
+  "number": 8619,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8619",
+  "sponsor_id": "M001245",
+  "subjects": [],
+  "title_official": "Kimberly Vaughan Firearm Safe Storage Act",
+  "type": "hr"
+}

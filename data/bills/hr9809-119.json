@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-07-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-07-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-07-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001110",
+    "F000454",
+    "H001072",
+    "K000398",
+    "L000606",
+    "N000147"
+  ],
+  "id": "hr9809-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2026-07-21",
+  "number": 9809,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9809",
+  "sponsor_id": "M001238",
+  "subjects": [],
+  "title_official": "Disabled Access Credit Modernization Act",
+  "type": "hr"
+}

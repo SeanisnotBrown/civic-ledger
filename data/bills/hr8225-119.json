@@ -1,0 +1,89 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-04-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-05-14T19:10:00Z",
+      "title": "H.R. 8225, a bill to designate the facility of the United States Postal Service located at 111 South Tremont Street in Tremonton, Utah, as the “Sorensen-Estrada Post Office”",
+      "url": "https://www.cbo.gov/publication/62433"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "K000403",
+    "M001228",
+    "O000086"
+  ],
+  "id": "hr8225-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported by Voice Vote.",
+  "latest_action_date": "2026-04-29",
+  "number": 8225,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8225",
+  "sponsor_id": "M001213",
+  "subjects": [
+    "Congressional tributes",
+    "Government buildings, facilities, and property",
+    "Postal service",
+    "Utah"
+  ],
+  "title_official": "To designate the facility of the United States Postal Service located at 111 South Tremont Street in Tremonton, Utah, as the \"Sorensen-Estrada Post Office\".",
+  "type": "hr"
+}

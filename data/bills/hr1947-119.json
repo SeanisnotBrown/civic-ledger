@@ -1,0 +1,89 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2025-03-27",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Armed Services, and in addition to the Committee on Veterans' Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Armed Services, and in addition to the Committee on Veterans' Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001257",
+    "C001120",
+    "D000626",
+    "D000631",
+    "F000466",
+    "G000565",
+    "H001085",
+    "M001204",
+    "M001210",
+    "M001218",
+    "N000026",
+    "O000175",
+    "V000129",
+    "V000133"
+  ],
+  "id": "hr1947-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2025-03-27",
+  "number": 1947,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1947",
+  "sponsor_id": "P000605",
+  "subjects": [],
+  "title_official": "TREAT PTSD Act",
+  "type": "hr"
+}

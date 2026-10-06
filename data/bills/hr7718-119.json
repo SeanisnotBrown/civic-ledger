@@ -1,0 +1,80 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-02-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-02-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001291",
+    "C001110",
+    "C001120",
+    "E000235",
+    "G000583",
+    "G000597",
+    "G000599",
+    "G000600",
+    "G000602",
+    "L000397",
+    "L000562",
+    "M000317",
+    "M001231",
+    "M001241",
+    "N000026",
+    "N000191",
+    "P000614",
+    "R000606",
+    "S000250",
+    "S000522",
+    "S001201",
+    "T000468",
+    "T000478"
+  ],
+  "id": "hr7718-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2026-02-25",
+  "number": 7718,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7718",
+  "sponsor_id": "W000814",
+  "subjects": [
+    "Congressional oversight",
+    "Disability assistance",
+    "Employee benefits and pensions",
+    "Government studies and investigations",
+    "Law enforcement officers"
+  ],
+  "title_official": "Officer John Barnes and Chief Michael Ansbro Public Safety Officers’ Benefits Program Expansion Act of 2026",
+  "type": "hr"
+}

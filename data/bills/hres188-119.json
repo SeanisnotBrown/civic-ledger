@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001300",
+    "C001059",
+    "C001067",
+    "C001110",
+    "F000477",
+    "G000551",
+    "G000553",
+    "K000385",
+    "K000389",
+    "L000397",
+    "M000312",
+    "M001143",
+    "M001229",
+    "N000147",
+    "R000617",
+    "S001193",
+    "S001200",
+    "S001226",
+    "T000193",
+    "T000468",
+    "T000474",
+    "T000481",
+    "T000488",
+    "W000788",
+    "W000822"
+  ],
+  "id": "hres188-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2025-03-04",
+  "number": 188,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/188",
+  "sponsor_id": "M001225",
+  "subjects": [],
+  "title_official": "Affirming the obligation of the President of the United States to comply with court orders.",
+  "type": "hres"
+}

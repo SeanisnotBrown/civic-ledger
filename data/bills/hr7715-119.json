@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-25",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-02-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-02-25",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001301",
+    "B001321",
+    "D000624",
+    "H001058",
+    "M001194",
+    "M001196",
+    "M001237",
+    "S001221"
+  ],
+  "id": "hr7715-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2026-02-25",
+  "number": 7715,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7715",
+  "sponsor_id": "S001215",
+  "subjects": [],
+  "title_official": "Justice for Allie Act",
+  "type": "hr"
+}

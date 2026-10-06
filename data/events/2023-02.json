@@ -1,5 +1,5 @@
 {
-  "count": 4109,
+  "count": 4111,
   "events": [
     {
       "action_code": "H23000",
@@ -30084,6 +30084,52 @@
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/466",
       "subjects": [],
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s467-118",
+      "committees": null,
+      "date": "2023-02-16",
+      "has_page": false,
+      "id": "s467-118--2023-02-16--008f11473cd3",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/467",
+      "subjects": [
+        "Higher education",
+        "Marine and inland water transportation",
+        "National Guard and reserves",
+        "State and local government operations",
+        "Student aid and college costs",
+        "Transportation employees"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s467-118",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2023-02-16",
+      "has_page": false,
+      "id": "s467-118--2023-02-16--055e00c0a050",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/118th-congress/senate-bill/467",
+      "subjects": [
+        "Higher education",
+        "Marine and inland water transportation",
+        "National Guard and reserves",
+        "State and local government operations",
+        "Student aid and college costs",
+        "Transportation employees"
+      ],
       "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
       "type": "IntroReferral"
     },

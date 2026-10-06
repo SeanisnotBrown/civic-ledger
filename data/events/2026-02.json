@@ -1,5 +1,5 @@
 {
-  "count": 242,
+  "count": 497,
   "events": [
     {
       "action_code": "H11000",
@@ -22,6 +22,23 @@
         "Medicare"
       ],
       "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7743-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-27",
+      "has_page": false,
+      "id": "hr7743-119--2026-02-27--9c2f4e900c8d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7743",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
       "type": "Committee"
     },
     {
@@ -103,6 +120,40 @@
       "type": "Floor"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr7696-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7696-119--2026-02-26--bd551c4cb8db",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7696",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7709-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7709-119--2026-02-26--89811e74f293",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7709",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
       "action_code": "1000",
       "bill_id": "hr7730-119",
       "committees": null,
@@ -159,6 +210,164 @@
         "Small business"
       ],
       "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7733-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7733-119--2026-02-26--28309458a204",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7733",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7733-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7733-119--2026-02-26--54bab3be9cde",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7733",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7733-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7733-119--2026-02-26--7f89da4ebd90",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7733",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7736-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7736-119--2026-02-26--1880f343a10b",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7736",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7736-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7736-119--2026-02-26--28309458a204",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7736",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7736-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7736-119--2026-02-26--54bab3be9cde",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7736",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7743-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7743-119--2026-02-26--28309458a204",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7743",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7743-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7743-119--2026-02-26--54bab3be9cde",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7743",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7743-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7743-119--2026-02-26--c71242f1936d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7743",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7743-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "hr7743-119--2026-02-26--de881bd99a68",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7743",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {
@@ -284,6 +493,38 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3940",
       "subjects": [],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s3943-119",
+      "committees": null,
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "s3943-119--2026-02-26--306d1fd2ddc9",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3943",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3943-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-02-26",
+      "has_page": false,
+      "id": "s3943-119--2026-02-26--4d723e864e55",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3943",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Finance.",
       "type": "IntroReferral"
     },
     {
@@ -465,6 +706,371 @@
       "type": "Committee"
     },
     {
+      "action_code": "1000",
+      "bill_id": "hr7678-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7678-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7678",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7678-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7678-119--2026-02-25--9e21df9b4b77",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7678",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7678-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7678-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7678",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7683-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7683-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7683",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advisory bodies",
+        "Budget process",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7683-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7683-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7683",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advisory bodies",
+        "Budget process",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7683-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7683-119--2026-02-25--e92124f341cf",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7683",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advisory bodies",
+        "Budget process",
+        "Department of Veterans Affairs",
+        "Executive agency funding and structure"
+      ],
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7696-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7696-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7696",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7696-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7696-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7696",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7696-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7696-119--2026-02-25--eef0b370c1a5",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7696",
+      "subjects": [],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7709-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7709-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7709",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7709-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7709-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7709",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7709-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7709-119--2026-02-25--eef0b370c1a5",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7709",
+      "subjects": [],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7711-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7711-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7711",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7711-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7711-119--2026-02-25--9e21df9b4b77",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7711",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7711-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7711-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7711",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7715-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7715-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7715",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7715-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7715-119--2026-02-25--9e21df9b4b77",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7715",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7715-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7715-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7715",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7718-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7718-119--2026-02-25--6f00b276ad38",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7718",
+      "subjects": [
+        "Congressional oversight",
+        "Disability assistance",
+        "Employee benefits and pensions",
+        "Government studies and investigations",
+        "Law enforcement officers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7718-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7718-119--2026-02-25--9e21df9b4b77",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7718",
+      "subjects": [
+        "Congressional oversight",
+        "Disability assistance",
+        "Employee benefits and pensions",
+        "Government studies and investigations",
+        "Law enforcement officers"
+      ],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7718-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7718-119--2026-02-25--a9d952ed4f71",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7718",
+      "subjects": [
+        "Congressional oversight",
+        "Disability assistance",
+        "Employee benefits and pensions",
+        "Government studies and investigations",
+        "Law enforcement officers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "1025",
       "bill_id": "hres1079-119",
       "committees": null,
@@ -556,6 +1162,70 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1081",
       "subjects": [],
       "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1082-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hres1082-119--2026-02-25--1b5e952c1a8b",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1082",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1082-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hres1082-119--2026-02-25--45471ea460d9",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1082",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1082-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hres1082-119--2026-02-25--5b895fa58be0",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1082",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1082-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hres1082-119--2026-02-25--832f90cbc737",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1082",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {
@@ -889,6 +1559,52 @@
       "type": "Committee"
     },
     {
+      "action_code": "H23000",
+      "bill_id": "hr3159-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr3159-119--2026-02-24--154b2eecf1dc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3159",
+      "subjects": [
+        "Credit and credit markets",
+        "Financial literacy",
+        "Interest, dividends, interest rates",
+        "Military education and training",
+        "Military personnel and dependents"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "bill_id": "hr3159-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr3159-119--2026-02-24--c2e6b38fa7a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3159",
+      "subjects": [
+        "Credit and credit markets",
+        "Financial literacy",
+        "Interest, dividends, interest rates",
+        "Military education and training",
+        "Military personnel and dependents"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "hr5235-119",
       "committees": [
@@ -952,6 +1668,50 @@
       "type": "Committee"
     },
     {
+      "action_code": "H22000",
+      "bill_id": "hr5634-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr5634-119--2026-02-24--c2e6b38fa7a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5634",
+      "subjects": [
+        "Aviation and airports",
+        "Higher education",
+        "Student aid and college costs",
+        "Veterans' education, employment, rehabilitation"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr5634-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr5634-119--2026-02-24--cd9a1e7ff9a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5634",
+      "subjects": [
+        "Aviation and airports",
+        "Higher education",
+        "Student aid and college costs",
+        "Veterans' education, employment, rehabilitation"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee in the Nature of a Substitute (Amended) by Voice Vote.",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "hr6644-119",
       "committees": null,
@@ -989,6 +1749,90 @@
       ],
       "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 343.",
       "type": "Calendars"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr7083-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7083-119--2026-02-24--154b2eecf1dc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7083",
+      "subjects": [
+        "Disability and paralysis",
+        "Motor vehicles",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "bill_id": "hr7083-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7083-119--2026-02-24--c2e6b38fa7a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7083",
+      "subjects": [
+        "Disability and paralysis",
+        "Motor vehicles",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "bill_id": "hr7103-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7103-119--2026-02-24--c2e6b38fa7a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7103",
+      "subjects": [
+        "Advanced technology and technological innovations",
+        "Advisory bodies",
+        "Veterans' education, employment, rehabilitation"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr7103-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7103-119--2026-02-24--cd9a1e7ff9a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7103",
+      "subjects": [
+        "Advanced technology and technological innovations",
+        "Advisory bodies",
+        "Veterans' education, employment, rehabilitation"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee in the Nature of a Substitute (Amended) by Voice Vote.",
+      "type": "Committee"
     },
     {
       "action_code": "Intro-H",
@@ -1054,6 +1898,147 @@
       ],
       "text": "Referred to the House Committee on Ways and Means.",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7661-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7661-119--2026-02-24--32d34acc659c",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7661",
+      "subjects": [
+        "Education programs funding",
+        "Elementary and secondary education",
+        "Sex, gender, sexual orientation discrimination",
+        "Teaching, teachers, curricula"
+      ],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7661-119",
+      "committees": null,
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7661-119--2026-02-24--7a2c5bbbce78",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7661",
+      "subjects": [
+        "Education programs funding",
+        "Elementary and secondary education",
+        "Sex, gender, sexual orientation discrimination",
+        "Teaching, teachers, curricula"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7661-119",
+      "committees": null,
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "hr7661-119--2026-02-24--bca60c7b5de3",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7661",
+      "subjects": [
+        "Education programs funding",
+        "Elementary and secondary education",
+        "Sex, gender, sexual orientation discrimination",
+        "Teaching, teachers, curricula"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3023-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "s3023-119--2026-02-24--3e8bc53a837f",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3023",
+      "subjects": [
+        "Civil actions and liability",
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Domestic violence and child abuse",
+        "Evidence and witnesses",
+        "Law enforcement administration and funding",
+        "Pornography",
+        "Public contracts and procurement",
+        "Sex offenses"
+      ],
+      "text": "Committee on the Judiciary. Reported by Senator Grassley with an amendment in the nature of a substitute. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s3023-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "s3023-119--2026-02-24--8774d3a85338",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3023",
+      "subjects": [
+        "Civil actions and liability",
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Domestic violence and child abuse",
+        "Evidence and witnesses",
+        "Law enforcement administration and funding",
+        "Pornography",
+        "Public contracts and procurement",
+        "Sex offenses"
+      ],
+      "text": "Committee on the Judiciary. Reported by Senator Grassley with an amendment in the nature of a substitute. Without written report.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3023-119",
+      "committees": null,
+      "date": "2026-02-24",
+      "has_page": false,
+      "id": "s3023-119--2026-02-24--a7fdfc299de1",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3023",
+      "subjects": [
+        "Civil actions and liability",
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Domestic violence and child abuse",
+        "Evidence and witnesses",
+        "Law enforcement administration and funding",
+        "Pornography",
+        "Public contracts and procurement",
+        "Sex offenses"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 345.",
+      "type": "Calendars"
     },
     {
       "action_code": "H38310",
@@ -1270,6 +2255,23 @@
       "type": "Calendars"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr7625-119",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-02-23",
+      "has_page": false,
+      "id": "hr7625-119--2026-02-23--44e8892d27e2",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7625",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "type": "Committee"
+    },
+    {
       "action_code": "Intro-H",
       "bill_id": "hr7645-119",
       "committees": null,
@@ -1380,6 +2382,23 @@
       ],
       "text": "Introduced in House",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7625-119",
+      "committees": [
+        "Coast Guard and Maritime Transportation Subcommittee"
+      ],
+      "date": "2026-02-21",
+      "has_page": false,
+      "id": "hr7625-119--2026-02-21--750e2df3076e",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7625",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Coast Guard and Maritime Transportation.",
+      "type": "Committee"
     },
     {
       "action_code": "H12200",
@@ -1524,6 +2543,243 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr7622-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7622-119--2026-02-20--595faa66b580",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7622",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7622-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7622-119--2026-02-20--60059e7ae630",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7622",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Financial Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7622-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7622-119--2026-02-20--681848d3aa13",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7622",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Financial Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7622-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7622-119--2026-02-20--b3f816d35f5e",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7622",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7625-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7625-119--2026-02-20--2b3ba973f00a",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7625",
+      "subjects": [],
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7625-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7625-119--2026-02-20--595faa66b580",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7625",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7625-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7625-119--2026-02-20--b3f816d35f5e",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7625",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7625-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7625-119--2026-02-20--dab4c311843f",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7625",
+      "subjects": [],
+      "text": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7629-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7629-119--2026-02-20--52c0510e8d83",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7629",
+      "subjects": [],
+      "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7629-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7629-119--2026-02-20--595faa66b580",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7629",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7629-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7629-119--2026-02-20--b3f816d35f5e",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7629",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "bill_id": "hr7629-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7629-119--2026-02-20--e303e22f2892",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7629",
+      "subjects": [],
+      "text": "Sponsor introductory remarks on measure. (CR E147)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7594-119",
+      "committees": null,
+      "date": "2026-02-17",
+      "has_page": false,
+      "id": "hr7594-119--2026-02-17--a75056b1d964",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7594",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7594-119",
+      "committees": null,
+      "date": "2026-02-17",
+      "has_page": false,
+      "id": "hr7594-119--2026-02-17--b0ddf7a4e9f6",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7594",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7594-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-17",
+      "has_page": false,
+      "id": "hr7594-119--2026-02-17--f775cc4b5d9d",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7594",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr7598-119",
       "committees": null,
       "date": "2026-02-17",
@@ -1568,6 +2824,27 @@
       "subjects": [],
       "text": "Referred to the House Committee on Veterans' Affairs.",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7574-119",
+      "committees": [
+        "Counterterrorism and Intelligence Subcommittee"
+      ],
+      "date": "2026-02-14",
+      "has_page": false,
+      "id": "hr7574-119--2026-02-14--d98bd9b5632e",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7574",
+      "subjects": [
+        "Congressional oversight",
+        "Department of Homeland Security",
+        "Executive agency funding and structure"
+      ],
+      "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
+      "type": "Committee"
     },
     {
       "action_code": "H11000",
@@ -2045,6 +3322,151 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "1000",
+      "bill_id": "hr7574-119",
+      "committees": null,
+      "date": "2026-02-13",
+      "has_page": false,
+      "id": "hr7574-119--2026-02-13--806d7d59ccaf",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7574",
+      "subjects": [
+        "Congressional oversight",
+        "Department of Homeland Security",
+        "Executive agency funding and structure"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7574-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-13",
+      "has_page": false,
+      "id": "hr7574-119--2026-02-13--b4670364654d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7574",
+      "subjects": [
+        "Congressional oversight",
+        "Department of Homeland Security",
+        "Executive agency funding and structure"
+      ],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7574-119",
+      "committees": null,
+      "date": "2026-02-13",
+      "has_page": false,
+      "id": "hr7574-119--2026-02-13--cea200574b0c",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7574",
+      "subjects": [
+        "Congressional oversight",
+        "Department of Homeland Security",
+        "Executive agency funding and structure"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr3482-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr3482-119--2026-02-12--2f6c1ece3fda",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3482",
+      "subjects": [
+        "Computers and information technology",
+        "Health personnel",
+        "Internet, web applications, social media",
+        "Veterans' medical care"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr3482-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr3482-119--2026-02-12--ae6b9704f684",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3482",
+      "subjects": [
+        "Computers and information technology",
+        "Health personnel",
+        "Internet, web applications, social media",
+        "Veterans' medical care"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr3726-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr3726-119--2026-02-12--2f6c1ece3fda",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3726",
+      "subjects": [
+        "Military medicine",
+        "Veterans' loans, housing, homeless programs",
+        "Veterans' medical care"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr3726-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr3726-119--2026-02-12--ae6b9704f684",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3726",
+      "subjects": [
+        "Military medicine",
+        "Veterans' loans, housing, homeless programs",
+        "Veterans' medical care"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by Voice Vote.",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "hr3872-119",
       "committees": [
@@ -2066,6 +3488,52 @@
         "Oil and gas"
       ],
       "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr6047-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": true,
+      "id": "hr6047-119--2026-02-12--1df6863be210",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6047",
+      "subjects": [
+        "Government lending and loan guarantees",
+        "Housing finance and home ownership",
+        "User charges and fees",
+        "Veterans' loans, housing, homeless programs",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by the Yeas and Nays: 13 - 10.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr6047-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": true,
+      "id": "hr6047-119--2026-02-12--2f6c1ece3fda",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6047",
+      "subjects": [
+        "Government lending and loan guarantees",
+        "Housing finance and home ownership",
+        "User charges and fees",
+        "Veterans' loans, housing, homeless programs",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
       "type": "Committee"
     },
     {
@@ -2091,6 +3559,57 @@
         "Mining"
       ],
       "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7492-119",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-12--10192345ad34",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7492-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-12--ce4a2f23c331",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7512-119",
+      "committees": [
+        "Emergency Management and Technology Subcommittee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7512-119--2026-02-12--ad139aa8dafe",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7512",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Emergency Management and Technology.",
       "type": "Committee"
     },
     {
@@ -2157,6 +3676,53 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr7534-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7534-119--2026-02-12--1cc79a6d4293",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7534",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7534-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7534-119--2026-02-12--249d6d00e9f8",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7534",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7534-119",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7534-119--2026-02-12--3b1c844e134a",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7534",
+      "subjects": [],
+      "text": "Referred to the House Committee on Small Business.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr7539-119",
       "committees": null,
       "date": "2026-02-12",
@@ -2200,6 +3766,70 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7539",
       "subjects": [],
       "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7540-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7540-119--2026-02-12--1cc79a6d4293",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7540",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7540-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7540-119--2026-02-12--249d6d00e9f8",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7540",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7540-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7540-119--2026-02-12--59e719c6fdbb",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7540",
+      "subjects": [],
+      "text": "Referred to the Committee on Armed Services, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7540-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7540-119--2026-02-12--788cb95e7039",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7540",
+      "subjects": [],
+      "text": "Referred to the Committee on Armed Services, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {
@@ -2499,6 +4129,34 @@
     },
     {
       "action_code": null,
+      "bill_id": "s2554-119",
+      "committees": [
+        "Public Lands, Forests, and Mining Subcommittee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "s2554-119--2026-02-12--52d90b99eb53",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2554",
+      "subjects": [
+        "Alaska",
+        "Alaska Natives and Hawaiians",
+        "Federal-Indian relations",
+        "Historical and cultural resources",
+        "Indian claims",
+        "Indian lands and resources rights",
+        "Indian social and development programs",
+        "Land transfers",
+        "Minority education",
+        "Minority health"
+      ],
+      "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "bill_id": "s2754-119",
       "committees": [
         "Public Lands, Forests, and Mining Subcommittee"
@@ -2571,6 +4229,46 @@
       ],
       "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
       "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s3859-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "s3859-119--2026-02-12--080a5be6b81c",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3859",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "South Carolina"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3859-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "s3859-119--2026-02-12--85e1bc2b49f3",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3859",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian claims",
+        "South Carolina"
+      ],
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -2791,6 +4489,84 @@
       "type": "Committee"
     },
     {
+      "action_code": "H15001",
+      "bill_id": "hr3706-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr3706-119--2026-02-11--5850523e473a",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3706",
+      "subjects": [
+        "Congressional oversight",
+        "Crimes against animals and natural resources",
+        "Fishes",
+        "Food supply, safety, and labeling",
+        "Government studies and investigations",
+        "Marine and coastal resources, fisheries",
+        "Seafood",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr3706-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr3706-119--2026-02-11--82153c4d9fee",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3706",
+      "subjects": [
+        "Congressional oversight",
+        "Crimes against animals and natural resources",
+        "Fishes",
+        "Food supply, safety, and labeling",
+        "Government studies and investigations",
+        "Marine and coastal resources, fisheries",
+        "Seafood",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by Unanimous Consent.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "bill_id": "hr3706-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr3706-119--2026-02-11--a00fe776a232",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3706",
+      "subjects": [
+        "Congressional oversight",
+        "Crimes against animals and natural resources",
+        "Fishes",
+        "Food supply, safety, and labeling",
+        "Government studies and investigations",
+        "Marine and coastal resources, fisheries",
+        "Seafood",
+        "Wildlife conservation and habitat protection"
+      ],
+      "text": "Subcommittee on Water, Wildlife and Fisheries Discharged",
+      "type": "Committee"
+    },
+    {
       "action_code": "H19000",
       "bill_id": "hr4463-119",
       "committees": [
@@ -2851,6 +4627,69 @@
         "South Carolina"
       ],
       "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr6300-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr6300-119--2026-02-11--21a2425736fd",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6300",
+      "subjects": [
+        "Forests, forestry, trees",
+        "Licensing and registrations",
+        "Livestock"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by the Yeas and Nays: 25 - 14.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr6300-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr6300-119--2026-02-11--5850523e473a",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6300",
+      "subjects": [
+        "Forests, forestry, trees",
+        "Licensing and registrations",
+        "Livestock"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "bill_id": "hr6300-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr6300-119--2026-02-11--6233dd6dcefb",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6300",
+      "subjects": [
+        "Forests, forestry, trees",
+        "Licensing and registrations",
+        "Livestock"
+      ],
+      "text": "Subcommittee on Federal Lands Discharged",
       "type": "Committee"
     },
     {
@@ -2959,6 +4798,23 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr7470-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7470-119--2026-02-11--d5ad830376a3",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7470",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
       "action_code": "Intro-H",
       "bill_id": "hr7482-119",
       "committees": null,
@@ -3003,6 +4859,198 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7482",
       "subjects": [],
       "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7492-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-11--154fac72a9cc",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7492-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-11--6efe6c118324",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Ways and Means, and Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7492-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-11--807283b35993",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7492-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-11--b4e3f659dc82",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Ways and Means, and Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7492-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7492-119--2026-02-11--f932a10d0e44",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7492",
+      "subjects": [],
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committees on Ways and Means, and Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7498-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7498-119--2026-02-11--154fac72a9cc",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7498",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7498-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7498-119--2026-02-11--29b1c2ccee70",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7498",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7498-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7498-119--2026-02-11--807283b35993",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7498",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7512-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7512-119--2026-02-11--154fac72a9cc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7512",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7512-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7512-119--2026-02-11--79175b3fe41d",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7512",
+      "subjects": [],
+      "text": "Referred to the Committee on Homeland Security, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7512-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7512-119--2026-02-11--807283b35993",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7512",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7512-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "hr7512-119--2026-02-11--b38d3ce72127",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7512",
+      "subjects": [],
+      "text": "Referred to the Committee on Homeland Security, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {
@@ -3299,6 +5347,48 @@
     },
     {
       "action_code": "10000",
+      "bill_id": "s3835-119",
+      "committees": null,
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "s3835-119--2026-02-11--5974edfcfcd5",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3835",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Pennsylvania",
+        "Postal service"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3835-119",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-02-11",
+      "has_page": false,
+      "id": "s3835-119--2026-02-11--eaf6997e539f",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3835",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Pennsylvania",
+        "Postal service"
+      ],
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
       "bill_id": "s3850-119",
       "committees": null,
       "date": "2026-02-11",
@@ -3328,6 +5418,29 @@
       "subjects": [],
       "text": "Read twice and referred to the Committee on the Judiciary.",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H21000",
+      "bill_id": "hr1329-119",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": true,
+      "id": "hr1329-119--2026-02-10--f988f0797210",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1329",
+      "subjects": [
+        "Congressional oversight",
+        "Government buildings, facilities, and property",
+        "Museums, exhibitions, cultural centers",
+        "Smithsonian Institution",
+        "U.S. history"
+      ],
+      "text": "Subcommittee Hearings Held",
+      "type": "Committee"
     },
     {
       "action_code": "H22000",
@@ -3383,6 +5496,48 @@
         "Technology assessment"
       ],
       "text": "Forwarded by Subcommittee to Full Committee (Amended) by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "bill_id": "hr3385-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr3385-119--2026-02-10--3f6604d75bf6",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3385",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Transportation",
+        "Motor vehicles"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr3385-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr3385-119--2026-02-10--9fc5cc94fcc8",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3385",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Transportation",
+        "Motor vehicles"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
       "type": "Committee"
     },
     {
@@ -3469,6 +5624,62 @@
       "type": "Committee"
     },
     {
+      "action_code": "H22000",
+      "bill_id": "hr7390-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-10--3f6604d75bf6",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H23000",
+      "bill_id": "hr7390-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-10--6020644319ec",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by the Yeas and Nays: 12 - 11.",
+      "type": "Committee"
+    },
+    {
       "action_code": "H11000",
       "bill_id": "hr7427-119",
       "committees": [
@@ -3489,6 +5700,23 @@
         "State and local government operations",
         "Travel and tourism"
       ],
+      "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7435-119",
+      "committees": [
+        "Counterterrorism and Intelligence Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7435-119--2026-02-10--ff937062343e",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7435",
+      "subjects": [],
       "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
       "type": "Committee"
     },
@@ -3515,6 +5743,197 @@
       ],
       "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
       "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7443-119",
+      "committees": [
+        "Counterterrorism and Intelligence Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7443-119--2026-02-10--ff937062343e",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7443",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Homeland Security",
+        "Intelligence activities, surveillance, classified information",
+        "Intergovernmental relations",
+        "Performance measurement",
+        "State and local government operations"
+      ],
+      "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7448-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7448-119--2026-02-10--14fb57a1c32b",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7448",
+      "subjects": [
+        "Congressional oversight",
+        "Crime prevention",
+        "Emergency communications systems",
+        "Emergency planning and evacuation",
+        "Terrorism"
+      ],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7448-119",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7448-119--2026-02-10--d6e224a7976e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7448",
+      "subjects": [
+        "Congressional oversight",
+        "Crime prevention",
+        "Emergency communications systems",
+        "Emergency planning and evacuation",
+        "Terrorism"
+      ],
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7448-119",
+      "committees": [
+        "Counterterrorism and Intelligence Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7448-119--2026-02-10--ff937062343e",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7448",
+      "subjects": [
+        "Congressional oversight",
+        "Crime prevention",
+        "Emergency communications systems",
+        "Emergency planning and evacuation",
+        "Terrorism"
+      ],
+      "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7449-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7449-119--2026-02-10--1f92f6aa181e",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7449",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7449-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7449-119--2026-02-10--41782562c7e8",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7449",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7470-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7470-119--2026-02-10--1135ff214003",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7470",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7470-119",
+      "committees": null,
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7470-119--2026-02-10--1e58a6631ea0",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7470",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7470-119",
+      "committees": null,
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7470-119--2026-02-10--5129bca19e89",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7470",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7470-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-10",
+      "has_page": false,
+      "id": "hr7470-119--2026-02-10--7dfd67679b24",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7470",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "1000",
@@ -4044,6 +6463,175 @@
     },
     {
       "action_code": "H11100",
+      "bill_id": "hr7417-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7417-119--2026-02-09--6955c85e6692",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7417",
+      "subjects": [
+        "Cardiovascular and respiratory health",
+        "Congressional oversight",
+        "Health programs administration and funding",
+        "Health promotion and preventive care",
+        "Women's health"
+      ],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7417-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7417-119--2026-02-09--aee60e95d886",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7417",
+      "subjects": [
+        "Cardiovascular and respiratory health",
+        "Congressional oversight",
+        "Health programs administration and funding",
+        "Health promotion and preventive care",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7417-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7417-119--2026-02-09--cd0710061caf",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7417",
+      "subjects": [
+        "Cardiovascular and respiratory health",
+        "Congressional oversight",
+        "Health programs administration and funding",
+        "Health promotion and preventive care",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7418-119",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7418-119--2026-02-09--05c30274aad2",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7418",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Elections, voting, political campaign regulation",
+        "Government information and archives",
+        "Government trust funds",
+        "Internet, web applications, social media",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Referred to the Committee on House Administration, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7418-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7418-119--2026-02-09--aee60e95d886",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7418",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Elections, voting, political campaign regulation",
+        "Government information and archives",
+        "Government trust funds",
+        "Internet, web applications, social media",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7418-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7418-119--2026-02-09--cd0710061caf",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7418",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Elections, voting, political campaign regulation",
+        "Government information and archives",
+        "Government trust funds",
+        "Internet, web applications, social media",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7418-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7418-119--2026-02-09--f1a353ba1319",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7418",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Elections, voting, political campaign regulation",
+        "Government information and archives",
+        "Government trust funds",
+        "Internet, web applications, social media",
+        "Presidents and presidential powers, Vice Presidents",
+        "State and local government operations",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Referred to the Committee on House Administration, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
       "bill_id": "hr7427-119",
       "committees": [
         "Homeland Security Committee"
@@ -4136,6 +6724,145 @@
     },
     {
       "action_code": "H11100",
+      "bill_id": "hr7432-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7432-119--2026-02-09--0b28bf45bd5c",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7432",
+      "subjects": [
+        "Adoption and foster care",
+        "Child safety and welfare",
+        "Congressional oversight",
+        "Housing and community development funding",
+        "Low- and moderate-income housing",
+        "Public housing"
+      ],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committee on Financial Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7432-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7432-119--2026-02-09--2ce61ac0f741",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7432",
+      "subjects": [
+        "Adoption and foster care",
+        "Child safety and welfare",
+        "Congressional oversight",
+        "Housing and community development funding",
+        "Low- and moderate-income housing",
+        "Public housing"
+      ],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committee on Financial Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7432-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7432-119--2026-02-09--aee60e95d886",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7432",
+      "subjects": [
+        "Adoption and foster care",
+        "Child safety and welfare",
+        "Congressional oversight",
+        "Housing and community development funding",
+        "Low- and moderate-income housing",
+        "Public housing"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7432-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7432-119--2026-02-09--cd0710061caf",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7432",
+      "subjects": [
+        "Adoption and foster care",
+        "Child safety and welfare",
+        "Congressional oversight",
+        "Housing and community development funding",
+        "Low- and moderate-income housing",
+        "Public housing"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7435-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7435-119--2026-02-09--7012fe8fe8dc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7435",
+      "subjects": [],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7435-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7435-119--2026-02-09--aee60e95d886",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7435",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7435-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7435-119--2026-02-09--cd0710061caf",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7435",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
       "bill_id": "hr7436-119",
       "committees": [
         "Homeland Security Committee"
@@ -4199,6 +6926,203 @@
         "Government information and archives",
         "Intelligence activities, surveillance, classified information"
       ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7443-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7443-119--2026-02-09--7012fe8fe8dc",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7443",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Homeland Security",
+        "Intelligence activities, surveillance, classified information",
+        "Intergovernmental relations",
+        "Performance measurement",
+        "State and local government operations"
+      ],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7443-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7443-119--2026-02-09--aee60e95d886",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7443",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Homeland Security",
+        "Intelligence activities, surveillance, classified information",
+        "Intergovernmental relations",
+        "Performance measurement",
+        "State and local government operations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7443-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7443-119--2026-02-09--cd0710061caf",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7443",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Homeland Security",
+        "Intelligence activities, surveillance, classified information",
+        "Intergovernmental relations",
+        "Performance measurement",
+        "State and local government operations"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7448-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7448-119--2026-02-09--7012fe8fe8dc",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7448",
+      "subjects": [
+        "Congressional oversight",
+        "Crime prevention",
+        "Emergency communications systems",
+        "Emergency planning and evacuation",
+        "Terrorism"
+      ],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7448-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7448-119--2026-02-09--aee60e95d886",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7448",
+      "subjects": [
+        "Congressional oversight",
+        "Crime prevention",
+        "Emergency communications systems",
+        "Emergency planning and evacuation",
+        "Terrorism"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7448-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7448-119--2026-02-09--cd0710061caf",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7448",
+      "subjects": [
+        "Congressional oversight",
+        "Crime prevention",
+        "Emergency communications systems",
+        "Emergency planning and evacuation",
+        "Terrorism"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7449-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7449-119--2026-02-09--4dc27ed9c453",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7449",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7449-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7449-119--2026-02-09--7134a567b559",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7449",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7449-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7449-119--2026-02-09--aee60e95d886",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7449",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7449-119",
+      "committees": null,
+      "date": "2026-02-09",
+      "has_page": false,
+      "id": "hr7449-119--2026-02-09--cd0710061caf",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7449",
+      "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
     },
@@ -4315,6 +7239,151 @@
     },
     {
       "action_code": "H11000",
+      "bill_id": "hr7392-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-06",
+      "has_page": false,
+      "id": "hr7392-119--2026-02-06--116f76fc0a75",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7392",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7392-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-06",
+      "has_page": false,
+      "id": "hr7392-119--2026-02-06--f17d0075a8ab",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7392",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7395-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-06",
+      "has_page": false,
+      "id": "hr7395-119--2026-02-06--f17d0075a8ab",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7395",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "bill_id": "hr3482-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr3482-119--2026-02-05--36c4ba60d867",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3482",
+      "subjects": [
+        "Computers and information technology",
+        "Health personnel",
+        "Internet, web applications, social media",
+        "Veterans' medical care"
+      ],
+      "text": "Subcommittee on Oversight and Investigations Discharged",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "bill_id": "hr3726-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr3726-119--2026-02-05--c383aee8712a",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3726",
+      "subjects": [
+        "Military medicine",
+        "Veterans' loans, housing, homeless programs",
+        "Veterans' medical care"
+      ],
+      "text": "Subcommittee on Health Discharged",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7347-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7347-119--2026-02-05--9745ad630531",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7347",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7347-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7347-119--2026-02-05--dbd19463026a",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7347",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7363-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7363-119--2026-02-05--dbd19463026a",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7363",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
       "bill_id": "hr7371-119",
       "committees": [
         "Aviation Subcommittee"
@@ -4329,6 +7398,317 @@
       "subjects": [],
       "text": "Referred to the Subcommittee on Aviation.",
       "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7390-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-05--336eb877447a",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Referred to the Subcommittee on Commerce, Manufacturing, and Trade.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7390-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-05--a27f48899c94",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7390-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-05--a4a5d3702887",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7390-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-05--c85558e01e19",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7390-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7390-119--2026-02-05--d6856750d063",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7390",
+      "subjects": [
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Motor vehicles",
+        "Performance measurement",
+        "Product safety and quality",
+        "Roads and highways",
+        "Technology assessment",
+        "Transportation safety and security"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7391-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7391-119--2026-02-05--70b2ec2539cf",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7391",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7391-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7391-119--2026-02-05--a27f48899c94",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7391",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7391-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7391-119--2026-02-05--d6856750d063",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7391",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7392-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7392-119--2026-02-05--03d078737dcc",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7392",
+      "subjects": [],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7392-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7392-119--2026-02-05--a27f48899c94",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7392",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7392-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7392-119--2026-02-05--d6856750d063",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7392",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7395-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7395-119--2026-02-05--3254e7c4af45",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7395",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7395-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7395-119--2026-02-05--4a0c0aa9dc74",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7395",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7395-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7395-119--2026-02-05--a27f48899c94",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7395",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7395-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7395-119--2026-02-05--c29114b16835",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7395",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7395-119",
+      "committees": null,
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "hr7395-119--2026-02-05--d6856750d063",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7395",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
     },
     {
       "action_code": "H11100",
@@ -4459,6 +7839,33 @@
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s3023-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-05",
+      "has_page": false,
+      "id": "s3023-119--2026-02-05--a542d5533e24",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3023",
+      "subjects": [
+        "Civil actions and liability",
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Domestic violence and child abuse",
+        "Evidence and witnesses",
+        "Law enforcement administration and funding",
+        "Pornography",
+        "Public contracts and procurement",
+        "Sex offenses"
+      ],
+      "text": "Committee on the Judiciary. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
     },
     {
       "action_code": "10000",
@@ -4673,6 +8080,232 @@
       "type": "Committee"
     },
     {
+      "action_code": "5000",
+      "bill_id": "hr1588-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1588-119--2026-02-04--1f587f81d9d1",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1588",
+      "subjects": [
+        "Broadcasting, cable, digital technologies",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Internet, web applications, social media",
+        "Performance measurement"
+      ],
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-486, Part I.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr1588-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1588-119--2026-02-04--7b20f801bd2f",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1588",
+      "subjects": [
+        "Broadcasting, cable, digital technologies",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Internet, web applications, social media",
+        "Performance measurement"
+      ],
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-486, Part I.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr1665-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--16af0bc30b02",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-487, Part I.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5500",
+      "bill_id": "hr1665-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--32b34e3e350c",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Committee on Agriculture discharged.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr1665-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--47d0e0670391",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Reported by the Committee on Natural Resources. H. Rept. 119-487, Part II.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr1665-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--85aaf5fb0468",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-487, Part I.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr1665-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--9c808c7d3e80",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 416.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12300",
+      "bill_id": "hr1665-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--b336b7dd5bc0",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Committee on Agriculture discharged.",
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr1665-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1665-119--2026-02-04--ba0f78338acd",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1665",
+      "subjects": [
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Internet, web applications, social media",
+        "Land use and conservation",
+        "Telephone and wireless communication"
+      ],
+      "text": "Reported by the Committee on Natural Resources. H. Rept. 119-487, Part II.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr1849-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr1849-119--2026-02-04--b3722f22ecf9",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1849",
+      "subjects": [
+        "Disaster relief and insurance",
+        "Income tax exclusion",
+        "Natural disasters",
+        "Residential rehabilitation and home repair",
+        "State and local government operations"
+      ],
+      "text": "ASSUMING FIRST SPONSORSHIP - Mr. Murphy asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 1849, a bill originally introduced by Representative LaMalfa, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
       "action_code": "H21000",
       "bill_id": "hr3276-119",
       "committees": [
@@ -4693,6 +8326,394 @@
         "Wildlife conservation and habitat protection"
       ],
       "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr3474-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr3474-119--2026-02-04--0828ad539d7d",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3474",
+      "subjects": [
+        "Building construction",
+        "Energy efficiency and conservation",
+        "Government buildings, facilities, and property",
+        "Lighting, heating, cooling",
+        "Water use and supply"
+      ],
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-481.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr3474-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr3474-119--2026-02-04--245545f44739",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3474",
+      "subjects": [
+        "Building construction",
+        "Energy efficiency and conservation",
+        "Government buildings, facilities, and property",
+        "Lighting, heating, cooling",
+        "Water use and supply"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 411.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr3474-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr3474-119--2026-02-04--c41c0603ce22",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3474",
+      "subjects": [
+        "Building construction",
+        "Energy efficiency and conservation",
+        "Government buildings, facilities, and property",
+        "Lighting, heating, cooling",
+        "Water use and supply"
+      ],
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-481.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr3699-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr3699-119--2026-02-04--12b411d20011",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3699",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Electric power generation and transmission",
+        "Oil and gas",
+        "State and local government operations"
+      ],
+      "text": "Reported (Amended) by the Committee on Energy and Commerce. H. Rept. 119-482.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr3699-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr3699-119--2026-02-04--6777f4b8a992",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3699",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Electric power generation and transmission",
+        "Oil and gas",
+        "State and local government operations"
+      ],
+      "text": "Reported (Amended) by the Committee on Energy and Commerce. H. Rept. 119-482.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr3699-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr3699-119--2026-02-04--dde18d69085a",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3699",
+      "subjects": [
+        "Alternative and renewable resources",
+        "Electric power generation and transmission",
+        "Oil and gas",
+        "State and local government operations"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 412.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr5438-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr5438-119--2026-02-04--4cd8138fadf6",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5438",
+      "subjects": [
+        "Budget deficits and national debt",
+        "Budget process",
+        "Executive agency funding and structure"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr5438-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr5438-119--2026-02-04--c9cffb15f7cd",
+      "policy_area": "Economics and Public Finance",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5438",
+      "subjects": [
+        "Budget deficits and national debt",
+        "Budget process",
+        "Executive agency funding and structure"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 25 - 19.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr5658-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr5658-119--2026-02-04--563d87bd2099",
+      "policy_area": "Families",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5658",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Adoption and foster care",
+        "Adult education and literacy",
+        "Advisory bodies",
+        "Building construction",
+        "Cardiovascular and respiratory health",
+        "Child care and development",
+        "Comprehensive health care",
+        "Congressional oversight",
+        "Disability and paralysis",
+        "Domestic violence and child abuse",
+        "Education of the disadvantaged",
+        "Education programs funding",
+        "Educational facilities and institutions",
+        "Elementary and secondary education",
+        "Employee benefits and pensions",
+        "Employment and training programs",
+        "Employment discrimination and employee rights",
+        "Food assistance and relief",
+        "Foreign language and bilingual programs",
+        "Government buildings, facilities, and property",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Health care coverage and access",
+        "Higher education",
+        "Homelessness and emergency shelter",
+        "Indian social and development programs",
+        "Intergovernmental relations",
+        "Labor-management relations",
+        "Licensing and registrations",
+        "Medical education",
+        "Mental health",
+        "Nutrition and diet",
+        "Performance measurement",
+        "Poverty and welfare assistance",
+        "Preschool education",
+        "Public-private cooperation",
+        "Research administration and funding",
+        "Right of privacy",
+        "School administration",
+        "Science and engineering education",
+        "Special education",
+        "State and local government operations",
+        "Teaching, teachers, curricula",
+        "User charges and fees",
+        "Wages and earnings"
+      ],
+      "text": "ASSUMING FIRST SPONSORSHIP - Ms. Ocasio-Cortez asked unanimous consent that she may hereafter be considered as the first sponsor of H.R. 5658, a bill originally introduced by Representative Sherrill, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr6020-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6020-119--2026-02-04--4cd8138fadf6",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6020",
+      "subjects": [
+        "Congressional tributes",
+        "Illinois",
+        "Postal service",
+        "U.S. Postal Service"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr6020-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6020-119--2026-02-04--8fecd6a0b451",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6020",
+      "subjects": [
+        "Congressional tributes",
+        "Illinois",
+        "Postal service",
+        "U.S. Postal Service"
+      ],
+      "text": "Ordered to be Reported by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "bill_id": "hr6021-119",
+      "committees": [
+        "Water, Wildlife and Fisheries Subcommittee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6021-119--2026-02-04--cf4542ecfe53",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6021",
+      "subjects": [
+        "Alaska Natives and Hawaiians",
+        "Birds",
+        "Historical and cultural resources"
+      ],
+      "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr6808-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6808-119--2026-02-04--4cd8138fadf6",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6808",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Postal service",
+        "Tennessee"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr6808-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6808-119--2026-02-04--8fecd6a0b451",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6808",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Postal service",
+        "Tennessee"
+      ],
+      "text": "Ordered to be Reported by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr6995-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6995-119--2026-02-04--4cd8138fadf6",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6995",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Mississippi",
+        "Postal service"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr6995-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr6995-119--2026-02-04--8fecd6a0b451",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6995",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Mississippi",
+        "Postal service"
+      ],
+      "text": "Ordered to be Reported by Voice Vote.",
       "type": "Committee"
     },
     {
@@ -4793,6 +8814,336 @@
       "type": "Committee"
     },
     {
+      "action_code": "1000",
+      "bill_id": "hr7347-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7347-119--2026-02-04--498922a09d3b",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7347",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7347-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7347-119--2026-02-04--7021468dc13d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7347",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7347-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7347-119--2026-02-04--bf531fa9ec06",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7347",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7347-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7347-119--2026-02-04--d892df9dfe1c",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7347",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7352-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7352-119--2026-02-04--498922a09d3b",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7352",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7352-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7352-119--2026-02-04--7021468dc13d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7352",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7352-119",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7352-119--2026-02-04--beb8d52ce9b5",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7352",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7352-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7352-119--2026-02-04--f993ab012c16",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7352",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7362-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7362-119--2026-02-04--498922a09d3b",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7362",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Financial services and investments"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7362-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7362-119--2026-02-04--7021468dc13d",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7362",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Financial services and investments"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7362-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7362-119--2026-02-04--83176de0338b",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7362",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Financial services and investments"
+      ],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7362-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7362-119--2026-02-04--b3492462924b",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7362",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Financial services and investments"
+      ],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7363-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7363-119--2026-02-04--498922a09d3b",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7363",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7363-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7363-119--2026-02-04--7021468dc13d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7363",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7363-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7363-119--2026-02-04--bf531fa9ec06",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7363",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7363-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7363-119--2026-02-04--d892df9dfe1c",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7363",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7365-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7365-119--2026-02-04--498922a09d3b",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7365",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Postal service",
+        "Virginia"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7365-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7365-119--2026-02-04--7021468dc13d",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7365",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Postal service",
+        "Virginia"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7365-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7365-119--2026-02-04--b76ed544f1e2",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7365",
+      "subjects": [
+        "Congressional tributes",
+        "Government buildings, facilities, and property",
+        "Postal service",
+        "Virginia"
+      ],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hr7371-119",
       "committees": [
@@ -4835,6 +9186,100 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7371",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7381-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7381-119--2026-02-04--498922a09d3b",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7381",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7381-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7381-119--2026-02-04--7021468dc13d",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7381",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7381-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7381-119--2026-02-04--ae4fcfe976a6",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7381",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7383-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7383-119--2026-02-04--2978e525234c",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7383",
+      "subjects": [],
+      "text": "Referred to the House Committee on Agriculture.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7383-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7383-119--2026-02-04--498922a09d3b",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7383",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7383-119",
+      "committees": null,
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "hr7383-119--2026-02-04--7021468dc13d",
+      "policy_area": "Agriculture and Food",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7383",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -5062,6 +9507,27 @@
     },
     {
       "action_code": null,
+      "bill_id": "s2098-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "s2098-119--2026-02-04--03ec37fc1fc3",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2098",
+      "subjects": [
+        "Alaska",
+        "Hazardous wastes and toxic substances",
+        "Land transfers"
+      ],
+      "text": "Committee on Indian Affairs. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "bill_id": "s2881-119",
       "committees": [
         "Energy and Natural Resources Committee"
@@ -5133,6 +9599,28 @@
     },
     {
       "action_code": null,
+      "bill_id": "s699-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "s699-119--2026-02-04--03ec37fc1fc3",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/699",
+      "subjects": [
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Indian social and development programs",
+        "Minority health"
+      ],
+      "text": "Committee on Indian Affairs. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "bill_id": "s700-119",
       "committees": [
         "Energy and Natural Resources Committee"
@@ -5176,6 +9664,54 @@
       "type": "Committee"
     },
     {
+      "action_code": null,
+      "bill_id": "s91-119",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-02-04",
+      "has_page": false,
+      "id": "s91-119--2026-02-04--00079793b015",
+      "policy_area": "Emergency Management",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/91",
+      "subjects": [
+        "Accounting and auditing",
+        "Advanced technology and technological innovations",
+        "Advisory bodies",
+        "Appropriations",
+        "Atmospheric science and weather",
+        "Aviation and airports",
+        "Budget process",
+        "Community life and organization",
+        "Computers and information technology",
+        "Congressional oversight",
+        "Department of Agriculture",
+        "Department of the Interior",
+        "Disaster relief and insurance",
+        "Ecology",
+        "Emergency planning and evacuation",
+        "Executive agency funding and structure",
+        "Fires",
+        "First responders and emergency personnel",
+        "Forests, forestry, trees",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Land use and conservation",
+        "Military education and training",
+        "Military operations and strategy",
+        "Motor vehicles",
+        "Parks, recreation areas, trails",
+        "Research and development",
+        "Social work, volunteer service, charitable organizations",
+        "Transportation safety and security",
+        "Wilderness and natural areas, wildlife refuges, wild rivers, habitats"
+      ],
+      "text": "Committee on Energy and Natural Resources. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
       "action_code": "H21000",
       "bill_id": "hr1004-119",
       "committees": [
@@ -5191,6 +9727,73 @@
       "subjects": [
         "Marriage and family status",
         "Military personnel and dependents",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr1329-119",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-02-03",
+      "has_page": true,
+      "id": "hr1329-119--2026-02-03--20bc60b9b90e",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1329",
+      "subjects": [
+        "Congressional oversight",
+        "Government buildings, facilities, and property",
+        "Museums, exhibitions, cultural centers",
+        "Smithsonian Institution",
+        "U.S. history"
+      ],
+      "text": "Referred to the Subcommittee on Federal Lands.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr3497-119",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-03--b9f1a7f64c61",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "Received in the Senate and Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H21000",
+      "bill_id": "hr5723-119",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr5723-119--2026-02-03--c4e6c33d917f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5723",
+      "subjects": [
+        "Accounting and auditing",
+        "Congressional oversight",
+        "Fraud offenses and financial crimes",
+        "Government information and archives",
         "Veterans' pensions and compensation"
       ],
       "text": "Subcommittee Hearings Held",
@@ -5217,6 +9820,29 @@
         "Water storage"
       ],
       "text": "Referred to the Subcommittee on Federal Lands.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "bill_id": "hr6698-119",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr6698-119--2026-02-03--c4e6c33d917f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6698",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Government information and archives",
+        "Judicial review and appeals",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Subcommittee Hearings Held",
       "type": "Committee"
     },
     {
@@ -5287,6 +9913,29 @@
         "Securities"
       ],
       "text": "Reported (Amended) by the Committee on House Administration. H. Rept. 119-479.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
+      "bill_id": "hr7260-119",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr7260-119--2026-02-03--c4e6c33d917f",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7260",
+      "subjects": [
+        "Cemeteries and funerals",
+        "Congressional oversight",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Veterans' organizations and recognition"
+      ],
+      "text": "Subcommittee Hearings Held",
       "type": "Committee"
     },
     {
@@ -5465,6 +10114,188 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "8000",
+      "bill_id": "hr3497-119",
+      "committees": null,
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-02--1af897f90613",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1925-1926)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hr3497-119",
+      "committees": null,
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-02--3e2aac7230ca",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hr3497-119",
+      "committees": null,
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-02--74e02792ba1a",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "Mr. Jordan moved to suspend the rules and pass the bill, as amended.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hr3497-119",
+      "committees": null,
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-02--8900c690ef30",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H1925-1926)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr3497-119",
+      "committees": null,
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-02--aed10975e808",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 3497.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr3497-119",
+      "committees": null,
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr3497-119--2026-02-02--d0f7d5619533",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3497",
+      "subjects": [
+        "Advisory bodies",
+        "First responders and emergency personnel",
+        "Law enforcement officers"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H1925-1927)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr6410-119",
+      "committees": [
+        "Coast Guard and Maritime Transportation Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr6410-119--2026-02-02--36b913733712",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6410",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Coast Guard and Maritime Transportation.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr6507-119",
+      "committees": [
+        "Coast Guard and Maritime Transportation Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr6507-119--2026-02-02--36b913733712",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6507",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Coast Guard and Maritime Transportation.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr6507-119",
+      "committees": [
+        "Railroads, Pipelines, and Hazardous Materials Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr6507-119--2026-02-02--be8a5c81c437",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6507",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Railroads, Pipelines, and Hazardous Materials.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr6507-119",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr6507-119--2026-02-02--e2ecf8428b8a",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6507",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "type": "Committee"
+    },
+    {
       "action_code": "H11000",
       "bill_id": "hr6635-119",
       "committees": [
@@ -5479,6 +10310,112 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6635",
       "subjects": [],
       "text": "Referred to the Subcommittee on Highways and Transit.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7083-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr7083-119--2026-02-02--9689c26f82be",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7083",
+      "subjects": [
+        "Disability and paralysis",
+        "Motor vehicles",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7285-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr7285-119--2026-02-02--e0223d379218",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7285",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7285-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr7285-119--2026-02-02--e530bf0f85d3",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7285",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7300-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr7300-119--2026-02-02--4e8c6cb00b6f",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7300",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7300-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr7300-119--2026-02-02--e0223d379218",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7300",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7300-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-02-02",
+      "has_page": false,
+      "id": "hr7300-119--2026-02-02--e530bf0f85d3",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7300",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
       "type": "Committee"
     }
   ],

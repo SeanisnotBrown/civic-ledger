@@ -1,0 +1,155 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2025-12-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "16:18:19",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2025-12-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "16:06:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S8691; text: CR S8691)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 261.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-11-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Indian Affairs. Reported by Senator Murkowski without amendment. With written report No. 119-94.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-11-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Indian Affairs. Reported by Senator Murkowski without amendment. With written report No. 119-94.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-03-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Indian Affairs. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-03-28T18:26:00Z",
+      "title": "S. 546, Technical Correction to the Shoshone-Paiute Tribes of the Duck Valley Reservation Water Rights Settlement Act of 2025",
+      "url": "https://www.cbo.gov/publication/61276"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C000880",
+    "R000584",
+    "R000608"
+  ],
+  "id": "s546-119",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2025-12-15",
+  "number": 546,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/546",
+  "sponsor_id": "C001113",
+  "subjects": [
+    "Federal-Indian relations",
+    "Government trust funds",
+    "Idaho",
+    "Indian claims",
+    "Indian lands and resources rights",
+    "Interest, dividends, interest rates",
+    "Nevada",
+    "Water use and supply"
+  ],
+  "title_official": "Technical Correction to the Shoshone-Paiute Tribes of the Duck Valley Reservation Water Rights Settlement Act of 2025",
+  "type": "s"
+}

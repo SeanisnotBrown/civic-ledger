@@ -1,5 +1,9 @@
 ---
 import Layout from "../components/Layout.astro";
+import {
+  STORED_WHEN_ACCOUNTS_SHIP,
+  K_ANON_PUBLISH_FLOOR,
+} from "../lib/storageDisclosure";
 ---
 <Layout title="Threat model — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Threat model</h1>
@@ -41,12 +45,7 @@ import Layout from "../components/Layout.astro";
     these things about you, and <strong>the operator can read all of them</strong>:
   </p>
   <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
-    <li>Who you are: your email address, whether it has been confirmed, a scrambled form of your password, and when you signed up.</li>
-    <li>What you follow: which bills, topics and members, and how often you want to hear about them.</li>
-    <li>Your settings and your answers to anything the site asks you.</li>
-    <li>Which alerts have already gone to you, so the same one is not sent twice.</li>
-    <li>Where to reach you: your email address, and a phone number only if that is ever added.</li>
-    <li>A public profile, only if you choose to make one. Published means public.</li>
+    {STORED_WHEN_ACCOUNTS_SHIP.map((thing) => <li>{thing.text}</li>)}
   </ul>
   <p class="mt-2 max-w-prose text-sm text-neutral-700">
     An earlier design for this site scrambled your answers on your own device,
@@ -64,9 +63,11 @@ import Layout from "../components/Layout.astro";
     operator to hand over data gets the real thing.
   </p>
   <p class="mt-2 max-w-prose text-sm text-neutral-700">
-    Separately, and outside the operator's reach: whoever delivers the site
-    and whoever sends the email hold their own records, and can be compelled
-    on their own.
+    Separately, and outside the operator's reach: Cloudflare delivers the site
+    and will also send the email, so it holds its own records of both — your
+    requests, your email address, and the text of the messages sent to you —
+    and it can be compelled on its own. That it is one company rather than
+    two is the reason it was chosen.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is not promised</h2>
@@ -97,7 +98,8 @@ import Layout from "../components/Layout.astro";
     <li>
       <strong>Nothing published can single you out.</strong> Any figure this
       site publishes that is derived from reader data has to cover at least
-      50 people. Below that, the number is not published at all.
+      {K_ANON_PUBLISH_FLOOR} people. Below that, the number is not published
+      at all.
     </li>
   </ul>
 
@@ -109,7 +111,7 @@ import Layout from "../components/Layout.astro";
   </p>
 
   <p class="mt-8 text-xs text-neutral-500">
-    Last reviewed 2026-10-05. The sections describing accounts will be
+    Last reviewed 2026-10-06. The sections describing accounts will be
     rewritten as each feature actually ships, before it collects anything.
   </p>
 </Layout>

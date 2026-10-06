@@ -3141,3 +3141,62 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   counting what the record lists (22 on `hr9748-118`), not the de-duplicated render count.
   The number and the note are both true only if they disagree.
   Not evaluative under §0.8 — no metric, threshold or published number.
+
+- **SD-38 (2026-10-06, OWNER DECISION) — the unconfirmed email address is disclosed on its
+  own line: SEVEN tables, not six.**
+  Asked in plain language how `/privacy` should describe the address-plus-one-time-code the
+  site has to hold between "sign me up" and the reader clicking the confirmation link, the
+  owner chose **count it as its own line** over folding it into "your email address" or
+  rebuilding signup so no unconfirmed address is ever written. So the storage list the
+  reader is shown has **seven** items, and the seventh reads: *"An email address you have
+  given but not yet confirmed, and the one-time code sent to confirm it."*
+
+  **What this closes.** The canonical table list had been unratified since the subscriptions
+  plan was written — §5 named six tables and
+  `docs/plan-subscriptions-and-alerts.md` task 1 added `email_verifications`, which was on
+  neither §5 nor the page. `tests/test_privacy_accuracy_v2_7.py` recorded that gap as a
+  deliberate half-skip rather than guessing. It is now a ratified seven:
+  `email_verifications(user_id, email, code_hash, created_at)` is in §5, the sentence is in
+  the shared disclosure list, and `SPEC_TABLES` in the acceptance test is seven.
+
+  **What it does NOT settle.** No lifetime is stated for the code, on the site or in the
+  spec — the expiry window is still the open owner question (Q4, together with `deliveries`
+  retention). The page says *what* is held and not *how long*, because a number written
+  there would be a claim the system does not yet make. Columns settle in V2-8; the
+  disclosure guard compares table names, not columns.
+  Not evaluative under §0.8 — no metric, threshold or published number.
+
+- **D102 (2026-10-06) — V2-7 task 1 finished: the forward-looking half of `/privacy`, and
+  the disclosure list moved into one module both pages render.**
+  Task 1 owed four things that SD-36 unblocked: the §5 table list in plain words, the
+  public-profile carve-out, deletion semantics, and naming the email sender. All four are
+  now on `/privacy`, which also states the K-anon rule and that reading the record and its
+  feeds need no account.
+
+  **The one structural decision, and why it is not cosmetic.** The seven sentences were
+  hand-written `<li>`s on `/threat-model`, and task 1 requires the same list on `/privacy`.
+  Writing a second copy would have left two hand-maintained disclosure lists free to drift,
+  and a privacy surface that disagrees with itself is exactly the Value #1 failure V2-7
+  exists to prevent. So the list lives in `site/src/lib/storageDisclosure.ts` and both pages
+  render it with `STORED_WHEN_ACCOUNTS_SHIP.map(...)`. Each entry carries the §5 table it
+  discloses, which turns the bullet-to-table mapping from a comment in the test file into
+  something the test checks: the set of tables named in the module must equal the set §5
+  names. The published K floor moved into the same module for the same reason — `site/` now
+  holds exactly one `50`, pinned to `ingest.config.K_ANON`, and a test fails any page that
+  hardcodes the number again.
+
+  **Acceptance: 13 passed / 1 skipped**, the skip now naming one blocker instead of two
+  (V2-8's D1 schema; the table list stopped being a blocker at SD-38). **Negative-tested by
+  tampering**, four ways, each failing in the test that should catch it: the module's K floor
+  set to 25, the `profiles` entry deleted, `/privacy` hardcoding `50 people`, and the
+  carve-out sentence reworded.
+
+  **Two wording constraints honoured rather than discovered.** The never-sell line on
+  `/privacy` used to call itself "deliberately the only promise on this page"; deletion and
+  the K floor now appear there too, so it reads "the only thing on this page offered as a
+  promise rather than a description" — the promise stays singular, which is what SD-34
+  ratified. And `/privacy`'s intro used to say the page "describes only what is true today",
+  which a planned-storage section would have falsified on its face; it now says which half
+  is which. The SD-36 sentence on `/threat-model` was **narrowed, not rewritten**, exactly as
+  SD-36 asked: two unnamed companies became one named one.
+  Not evaluative under §0.8 — no metric, threshold or published number.

@@ -189,7 +189,7 @@ site live). v2 adds:
 | **H15** | Threshold ratification (recurring) | V2-4, V2-5, V2-10 | Per §0.8. The builder brings options in plain English; you pick; your choice is committed with its reasoning. Expect one sitting per increment that introduces evaluative output. |
 | **H16** | Branch protection on `master` | V2-0 | GitHub → Settings → Branches → protect `master`: require CI, forbid force-push. This makes the correction-history promise (`docs/correction-process.md`) enforced rather than assumed. |
 | **H17** | Turnstile site + secret keys | V2-8 | Cloudflare dashboard → Turnstile → new widget (invisible mode) → `.env` / repo secrets `TURNSTILE_SITE_KEY`, `TURNSTILE_SECRET`. |
-| **H18** | Transactional email provider | V2-8 | Account signup/reset needs outbound email. Pick a provider (e.g. Resend/MailChannels free tier), create API key → secret `EMAIL_API_KEY`. Note: the provider sees recipient addresses; `/privacy` must name it (V2-7 text anticipates this). |
+| **H18** | Transactional email provider | V2-8 | **DECIDED 2026-10-05 by SD-36: Cloudflare Email Sending.** The earlier text here said "pick a provider (e.g. Resend/MailChannels), create API key → secret `EMAIL_API_KEY`" and is superseded — no third-party key, a `send_email` binding instead. **Still owed by a human:** enable Email Sending on the Cloudflare account and create the binding/secret the Worker reads. The sender sees recipient addresses and message text, and `/privacy` names it (done 2026-10-06, D102). |
 | **H19** | Warrant-canary decision | V2-7 | Decide-item, plain terms in V2-7: the old canary promise ("we can't hand anything over because we hold nothing") dies once accounts exist. Options the builder will present: retire the canary idea, or reshape it ("we have received no demand as of {date}"). No canary was ever published, so retiring costs nothing visible. |
 
 ---
@@ -249,7 +249,7 @@ finding). Resolution:
 | SD-25 | **Value #4 unchanged** (owner reconfirmed) | Prioritization tiebreaker; no conflict with the amendments. |
 | SD-26 | **Gate 1 = option (c):** per-category grades **plus one fixed site-published overall grade**, with an over-time trend; no reader re-weighting requirement | Owner's choice over (a) ranks-only, (b) category-only, (d) reader-adjustable overall. Retires SD-19. |
 | SD-27 | **Gate 2:** threshold authority = propose → ratify → commit (§0.8) | Keeps the unamended no-LLM rule intact: the owner authors every evaluative constant; the build applies it. |
-| SD-28 | **Gate 3 (as amended by SD-32, 2026-09-23):** accounts = email + password (Argon2id); user data (follows, preferences, quiz answers, weights) stored **readable** on the server; public profile strictly opt-in — published means public; deletion hard-deletes; trends only via K-anon (=50) counters; no IP retention, logging off | The 2026-08-13 choice was client-side encryption ("locked even from you"). Retired by SD-32: server-sent alerts require the server to read what a user follows, and the owner chose to let the site read and collect what its features need. Password reset no longer loses data. |
+| SD-28 | **Gate 3 (as amended by SD-32, 2026-09-23):** accounts = email + password (Argon2id); user data (follows, preferences, quiz answers, weights) stored **readable** on the server; public profile strictly opt-in — published means public; deletion hard-deletes; trends only via K-anon (=50) counters; ~~no IP retention, logging off~~ — **those last two clauses are WITHDRAWN by SD-34 (2026-10-05): the project may log requests and may keep IP columns, and neither may be claimed on the site.** The rest of this row stands. | The 2026-08-13 choice was client-side encryption ("locked even from you"). Retired by SD-32: server-sent alerts require the server to read what a user follows, and the owner chose to let the site read and collect what its features need. Password reset no longer loses data. |
 | SD-29 | **Gate 4:** published data stays deterministic JSON in-repo (the inspectable contract); a gitignored SQLite `build.db` becomes the build accelerator; vote-record pages restructured to control page count | Numbers in V2-1. The JSON contract is the product's credibility; the caveat "chamber totals are not recomputable" dies with V2-1 — a stated credibility upgrade. |
 | SD-30 | **Gate 5:** Mississippi layer preserved as-is through the pivot; reskinned to mirror federal presentation and folded under the States tab in V2-10 | Fastest pivot; nothing live breaks; MS is touched once, at the end, against a finished federal template. |
 | SD-31 | **ADR renumbering** as described above | Ends the D19 collision without rewriting append-only history. |
@@ -350,6 +350,15 @@ unchanged.
 - **Account model** (V2-8/V2-12, D1 tables — never exported to `data/`;
   readable, SD-32):
   `users(id, email, email_verified_at, pw_hash argon2id, created_at)`;
+  `email_verifications(user_id, email, code_hash, created_at)` — the address a
+  reader has given but not yet confirmed, plus the one-time code sent to confirm
+  it (double opt-in; `docs/plan-subscriptions-and-alerts.md` task 1). **Added
+  2026-10-06 by SD-38: SEVEN tables, not six.** The owner ratified disclosing
+  this one on its own line rather than folding it into "your email address", so
+  the storage list the reader is shown has seven items and the V2-7 accuracy
+  test counts seven. Columns settle in V2-8; the disclosure guard compares
+  table names. No lifetime is stated here or on the site — the code's expiry
+  window is unratified (owner question Q4, with `deliveries` retention);
   `preferences(user_id, json, updated_at)` — quiz answers, issue weights,
   settings;
   `subscriptions(user_id, kind ∈ {bill, topic, member}, key, cadence, created_at)`;

@@ -41,6 +41,10 @@ account follows, its preferences, quiz answers, and notification addresses are
 stored readable by the operator and can be produced under a legal demand. The
 spec's §10 records this trade. Guardrails that remain: collect nothing no
 scheduled feature needs; list every stored table on `/privacy` before it exists
+**▶ STALE as written (this doc predates SD-34, 2026-10-05).** Collecting ahead of a
+scheduled need is now allowed, and the table list is a description rather than a
+guarantee — accurate, but not a closed list. What survives: the ordering gate (the page
+is true before the collection ships) and never-sell
 (V2-7); never sell; K-anon for anything published; hard delete.
 
 **2. Which delivery channel first?**
@@ -162,7 +166,9 @@ here. **Estimate:** 1–2 sessions.
 ### V2-8 — Accounts + preference sync (as amended in the spec; needs H17, H18)
 Per the spec's amended §7 V2-8: `worker/` (wrangler project; Hono or plain
 fetch handler), readable D1 tables per §5, Argon2id, email verification,
-password reset by email (no data loss), Turnstile, hard delete, logging off.
+password reset by email (no data loss), Turnstile, hard delete, ~~logging off~~
+(**withdrawn by SD-34** — the project may log; do not write "logging is off" or "no IP
+addresses are stored" anywhere, least of all on the site).
 No client-side crypto, no recovery code (retired by SD-32). If the owner picks
 Cloudflare Email Service for H18, the domain onboarding (SPF/DKIM/DMARC)
 happens here because signup verification needs it. **Estimate:** 3–5 sessions

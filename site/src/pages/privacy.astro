@@ -1,12 +1,17 @@
 ---
 import Layout from "../components/Layout.astro";
+import {
+  STORED_WHEN_ACCOUNTS_SHIP,
+  K_ANON_PUBLISH_FLOOR,
+} from "../lib/storageDisclosure";
 ---
 <Layout title="Privacy — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Privacy</h1>
   <p class="mt-2 max-w-prose text-neutral-700">
-    What happens to you when you read this site. This page is rewritten before
-    any feature that stores your data ships, and it describes only what is true
-    today — not what we would like to be true.
+    What happens to you when you read this site. The first half of this page is
+    what is true today. The second half is what the site will store once it has
+    accounts and sends alerts — written now, before any of it is built, so the
+    description comes first and the collection second.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What this site is</h2>
@@ -18,24 +23,83 @@ import Layout from "../components/Layout.astro";
       count them. That is a record of your reading, and it is outside the
       operator's control.
     </li>
+    <li>
+      Reading the record needs no account, and it never will. Every bill,
+      topic and member also has a feed you can follow in a feed reader without
+      signing up for anything.
+    </li>
   </ul>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">The one promise</h2>
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
     Your data is never sold. That is the whole of it, and it is deliberately
-    the only promise on this page. Features planned for this site need to keep
-    a record of what you follow, so a pledge not to collect anything would be
-    one we could not keep — and a promise that cannot be kept is worse than no
-    promise. This one holds whatever gets built, because selling your data
-    would be a decision by the operator rather than something the software
-    could do on its own.
+    the only thing on this page offered as a promise rather than a
+    description. Features planned for this site need to keep a record of what
+    you follow, so a pledge not to collect anything would be one we could not
+    keep — and a promise that cannot be kept is worse than no promise. This
+    one holds whatever gets built, because selling your data would be a
+    decision by the operator rather than something the software could do on
+    its own.
   </p>
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is stored</h2>
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is stored today</h2>
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
     Every fact on a member, vote, or bill page links to the original government
     record it came from, so you can check it yourself. The dataset and source
     code are kept in a repository that is not currently public.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What will be stored when accounts ship</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Accounts, email alerts and profiles are planned, not built. None of this
+    exists yet and nothing below is being collected today. When they arrive,
+    the site will hold these things about you, and
+    <strong>the operator can read all of them</strong>:
+  </p>
+  <ul class="mt-2 max-w-prose list-disc space-y-1 pl-5 text-sm text-neutral-700">
+    {STORED_WHEN_ACCOUNTS_SHIP.map((thing) => <li>{thing.text}</li>)}
+  </ul>
+  <p class="mt-2 max-w-prose text-sm text-neutral-700">
+    This is a description of what the features need, not a guarantee that
+    nothing else is ever kept. If that list grows, this page is rewritten
+    before the thing that grew it ships.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Your profile is the part other people can see</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Everything else in that list is between you and the operator. A profile is
+    the exception, and it is off until you turn it on: there is an explicit
+    publish step, and <strong>anything you choose to publish on your profile
+    is public</strong> — readable by anyone, and by anything that crawls the
+    web. Nothing reaches a profile by default.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Deleting your account</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Deletion is real deletion. Asking for your account to be deleted removes
+    its rows across every one of the things listed above, rather than flagging
+    them as hidden. Leaving an alert list is separate and simpler: every email
+    carries an unsubscribe link that works without logging in.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Who else sees it</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    Cloudflare, the same company that delivers this site, is also the company
+    that will send the email. It therefore receives your email address and the
+    text of every message sent to you, and it keeps its own records of that,
+    which can be demanded from it directly. Email is the only alert channel
+    being built. A phone number, and the phone company that would carry the
+    message, only come into it if text alerts are ever added — and that is not
+    decided.
+  </p>
+
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Numbers published about readers</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    If this site ever publishes a figure drawn from what readers do — how many
+    people follow a bill, say — that figure has to cover at least
+    {K_ANON_PUBLISH_FLOOR} people. Below that it is not published at all, because a
+    small enough group is a group someone can be picked out of. The default is
+    to publish nothing.
   </p>
 
   <p class="mt-8 max-w-prose text-sm text-neutral-700">

@@ -6,6 +6,7 @@ import {
 } from "../../lib/data";
 import type { Bill } from "../../lib/data";
 import { formatDate, billLabel, ordinal, actionText } from "../../lib/display";
+import { timelineRows, repeatNote } from "../../lib/actions";
 
 export function getStaticPaths() {
   return getPagedBills().map((b) => ({ params: { bill: b.id }, props: { bill: b } }));
@@ -25,6 +26,11 @@ const rolls = getVotesForBill(bill.id);
 // renders differently from an empty list (see Bill.actions) — normalised to null here
 // so the three cases are one check each below.
 const actions = bill.actions ?? null;
+
+// SD-37: byte-identical repeats in the official record render ONCE, with a count
+// line. `actions.length` below stays the record's count on purpose — the scope
+// guard is that the number and the note are both true only if they disagree.
+const rows = actions === null ? null : timelineRows(bill.id, actions);
 
 // Absolute, because the point of the affordance is a URL a reader pastes into a feed
 // client that is not this page. `Astro.site` is the canonical origin from astro.config.
@@ -127,14 +133,25 @@ const subjectTopics = (bill.subjects ?? []).map((name) => ({
           Congress, shown word for word.
         </p>
         <ol class="mt-2 divide-y divide-neutral-100">
-          {actions.map((a) => (
+          {rows!.map(({ action: a, listed }) => (
             <li class="py-2 text-sm">
               <div class="flex flex-wrap items-baseline gap-x-2">
                 <span class="tabular-nums text-neutral-500">{formatDate(a.date)}</span>
+                {/* The record's own clock time, verbatim, on the 44% of rows that carry
+                    one. Not decoration: the chamber can take the same procedural step
+                    more than once in a day (hr4820-118 resolved into Committee of the
+                    Whole three times on 2023-11-07), and those rows are identical in
+                    every other field. Without the time they render as one line repeated,
+                    which reads as a duplicate and is not one. Display only — the stored
+                    order is still the government's, never re-sorted on this field. */}
+                {a.time && <span class="tabular-nums text-xs text-neutral-400">{a.time}</span>}
                 <span class="text-xs text-neutral-400">{a.type}</span>
                 {a.action_code && <span class="text-xs text-neutral-400">code {a.action_code}</span>}
               </div>
               <p class="mt-0.5 text-neutral-700">{actionText(a)}</p>
+              {repeatNote(listed) && (
+                <p class="mt-0.5 text-xs text-neutral-500">{repeatNote(listed)}</p>
+              )}
               {a.committees && a.committees.length > 0 && (
                 <p class="mt-0.5 text-xs text-neutral-500">{a.committees.join(" · ")}</p>
               )}

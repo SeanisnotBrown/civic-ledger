@@ -87,6 +87,9 @@ jobs:
       - name: Feed entry ids (no Atom entry id appears twice — SD-37)
         working-directory: site
         run: npm run test:feed-ids
+      - name: Action rows (no action rendered twice; repeat note is the ratified one — SD-37)
+        working-directory: site
+        run: npm run test:action-rows
       - name: Install Playwright browser
         working-directory: site
         run: npx playwright install --with-deps chromium

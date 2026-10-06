@@ -13,6 +13,7 @@
     "test:metrics-sections": "node scripts/check-metrics-sections.mjs",
     "test:grade-labels": "node scripts/check-grade-labels.mjs",
     "test:feed-ids": "node scripts/check-feed-ids.mjs",
+    "test:action-rows": "node scripts/check-action-rows.mjs",
     "test:e2e": "playwright test",
     "test:lighthouse": "lhci autorun"
   },

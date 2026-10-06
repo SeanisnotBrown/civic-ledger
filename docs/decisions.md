@@ -3200,3 +3200,43 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   is which. The SD-36 sentence on `/threat-model` was **narrowed, not rewritten**, exactly as
   SD-36 asked: two unnamed companies became one named one.
   Not evaluative under §0.8 — no metric, threshold or published number.
+
+- **D103 (2026-10-06) — SD-37's bill-page half, implemented, because it stopped being
+  hypothetical: three affected pages appeared the moment the owed 118 re-run landed.**
+  D101 built the feed half and recorded that the bill-page half had **zero affected pages**
+  — none of the repeat-bearing bills had reached a roll call, so none had a `/b/` page
+  (SD-33 3(c)). **That changed today.** The owed Congress 118 re-run (the 15 bills D100
+  unblocked) brought in `hr1516-118`, `hres712-118` and `s4072-118`, and all three *do*
+  have recorded votes, so all three have pages — each carrying one byte-identical repeat.
+  A fourth page, `hres5-119`, came in with the running 119 backfill. The half that was
+  "nothing to render yet" became four live pages, so it is built.
+
+  **What ships.** `timelineRows()` in `site/src/lib/actions.ts` collapses byte-identical
+  repeats and counts them; `repeatNote()` returns the owner's ratified sentence, *"The
+  official record lists this action N times."* The identity is `entryId()` — the same
+  sha256-over-the-whole-row rule as `ingest.events.event_id` and the Atom feeds — so one
+  government action is one thing on the page, in the feed, and in `data/events`. A looser
+  identity here would collapse rows the feed keeps apart and the page would disagree with
+  the feed it links to. **The header count stays `actions.length`**, the record's count, per
+  SD-37's scope guard: the number and the note are both true only if they disagree.
+
+  **New build gate `npm run test:action-rows`** (`site/scripts/check-action-rows.mjs`), in
+  `ci.yml` beside `test:feed-ids`. It asserts the invariant rather than a bill id — no two
+  rendered rows in one timeline are byte-identical, and any collapsed row carries the
+  ratified sentence — so it keeps meaning something as the backfill brings in bills nobody
+  has looked at. Measured: **14,133 action rows across 1,040 bill pages, 4 rows carrying the
+  note.**
+
+  **▶ The gate found a real defect on its first run, and it was not a duplicate.** 33 pages
+  rendered two visually identical action rows. The record distinguishes them only by `time`,
+  which the page did not show: `hr4820-118` resolved into Committee of the Whole three times
+  on 2023-11-07 (14:11:27, 16:00:10, 21:00:57), and those rows are identical in every other
+  field. **Collapsing them would have been false** — they are three events, not one listed
+  three times — and leaving them as-is published a page that reads as repeating itself.
+  **Fixed by rendering the record's own clock time** on the 44% of rows that carry one.
+  Mechanical and non-evaluative under §0.1(d): it is an official field shown verbatim, it
+  publishes more of the record rather than less, and it makes the gate's invariant exact —
+  every field the record carries is now either rendered or the row's identity. **Display
+  only: the stored order is still the government's, never re-sorted on `time`** (it is
+  absent on 56% of rows, which is why V2-11 task 7 refused to sort on it).
+  Not evaluative under §0.8 — no metric, threshold or published number.

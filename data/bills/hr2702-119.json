@@ -1,0 +1,140 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2025-06-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 131.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-06-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 119-164.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-06-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 119-164.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-05-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 33 - 19.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-05-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-04-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-04-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-04-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-02-06T16:58:00Z",
+      "title": "H.R. 2702, FIRM Act",
+      "url": "https://www.cbo.gov/publication/62092"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000634",
+    "F000471",
+    "G000576",
+    "G000597",
+    "L000491",
+    "L000578",
+    "L000583",
+    "M001136",
+    "M001233",
+    "M001236",
+    "O000175",
+    "R000612",
+    "S000250",
+    "S001188",
+    "S001228",
+    "T000480",
+    "T000486",
+    "W000812",
+    "W000816"
+  ],
+  "id": "hr2702-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 131.",
+  "latest_action_date": "2025-06-20",
+  "number": 2702,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2702",
+  "sponsor_id": "B001282",
+  "subjects": [
+    "Banking and financial institutions regulation",
+    "Congressional oversight",
+    "Financial services and investments",
+    "Government information and archives",
+    "Government studies and investigations"
+  ],
+  "title_official": "FIRM Act",
+  "type": "hr"
+}

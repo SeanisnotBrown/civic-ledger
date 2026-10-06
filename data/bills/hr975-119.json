@@ -1,0 +1,150 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2025-02-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:24:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2025-02-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H601-602)",
+      "time": "17:24:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2025-02-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H601-602)",
+      "time": "17:24:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-02-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 975.",
+      "time": "17:14:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-02-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H601-603)",
+      "time": "17:14:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2025-02-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Hill (AR) moved to suspend the rules and pass the bill.",
+      "time": "17:14:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001059",
+    "C001080",
+    "C001112",
+    "C001117",
+    "D000626",
+    "F000454",
+    "F000469",
+    "F000475",
+    "G000568",
+    "H001058",
+    "I000056",
+    "K000397",
+    "L000491",
+    "M001137",
+    "M001204",
+    "N000193",
+    "P000608",
+    "S000344",
+    "S001221",
+    "T000468",
+    "T000480",
+    "W000788"
+  ],
+  "id": "hr975-119",
+  "jurisdiction": "us",
+  "latest_action": "Received in the Senate and Read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
+  "latest_action_date": "2025-02-11",
+  "number": 975,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/975",
+  "sponsor_id": "V000130",
+  "subjects": [
+    "Administrative remedies",
+    "Banking and financial institutions regulation",
+    "Corporate finance and management",
+    "National Credit Union Administration"
+  ],
+  "title_official": "Credit Union Board Modernization Act",
+  "type": "hr"
+}

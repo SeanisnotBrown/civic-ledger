@@ -1,0 +1,121 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2026-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 557.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Ways and Means. H. Rept. 119-640.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Ways and Means. H. Rept. 119-640.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 42 - 0.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-05-06T21:27:00Z",
+      "title": "H.R. 7529, Fresh Starts for Foster Youth Act",
+      "url": "https://www.cbo.gov/publication/62418"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "L000585",
+    "L000599",
+    "S001183"
+  ],
+  "id": "hr7529-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 557.",
+  "latest_action_date": "2026-05-11",
+  "number": 7529,
+  "policy_area": "Families",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7529",
+  "sponsor_id": "D000096",
+  "subjects": [
+    "Adoption and foster care",
+    "State and local government operations"
+  ],
+  "title_official": "Fresh Starts for Foster Youth Act",
+  "type": "hr"
+}

@@ -1,0 +1,100 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2025-02-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001298",
+    "B001326",
+    "C001055",
+    "C001121",
+    "C001123",
+    "D000230",
+    "F000466",
+    "F000471",
+    "G000583",
+    "G000597",
+    "G000600",
+    "G000602",
+    "G000605",
+    "H001047",
+    "H001081",
+    "H001090",
+    "K000402",
+    "L000590",
+    "L000599",
+    "M000317",
+    "N000191",
+    "P000613",
+    "R000579",
+    "R000612",
+    "R000622",
+    "S001201",
+    "S001216",
+    "S001226",
+    "T000478",
+    "T000488",
+    "V000133",
+    "V000138"
+  ],
+  "id": "hr438-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2025-02-20",
+  "number": 438,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/438",
+  "sponsor_id": "L000598",
+  "subjects": [
+    "Advisory bodies",
+    "Government lending and loan guarantees",
+    "Mental health",
+    "Veterans' medical care"
+  ],
+  "title_official": "PFC Joseph P. Dwyer Peer Support Program Act",
+  "type": "hr"
+}

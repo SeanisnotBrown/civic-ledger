@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR E398)",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000624",
+    "L000566",
+    "M001214",
+    "S001145",
+    "T000481",
+    "W000829"
+  ],
+  "id": "hres1240-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2026-04-30",
+  "number": 1240,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1240",
+  "sponsor_id": "K000009",
+  "subjects": [],
+  "title_official": "Expressing support for the designation of the week of May 8 through May 17, 2026, as \"National American Birding Week\".",
+  "type": "hres"
+}

@@ -1,4 +1,414 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-07-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "17:12:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": "h-119-2-0247",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 217 - 209 (Roll no. 247).",
+      "time": "17:12:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": "h-119-2-0247",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 217 - 209 (Roll no. 247).",
+      "time": "17:12:51",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36210",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-07-15",
+      "rollcall_id": "h-119-2-0246",
+      "source_system": "House floor actions",
+      "text": "On motion to recommit Failed by the Yeas and Nays: 209 - 216 (Roll no. 246).",
+      "time": "17:00:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8A000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question on the motion to recommit was ordered pursuant to clause 2(b) of rule XIX.",
+      "time": "16:53:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36200",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Amo moved to recommit to the Committee on Appropriations.",
+      "time": "16:53:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H34400",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House adopted the amendments en gros as agreed to by the Committee of the Whole House on the state of the Union.",
+      "time": "16:52:20",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "16:52:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32600",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House rose from the Committee of the Whole House on the state of the Union to report H.R. 8595.",
+      "time": "16:51:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32050",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House resolved into Committee of the Whole House on the state of the Union for further consideration.",
+      "time": "16:00:40",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business.",
+      "time": "16:00:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32700",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee of the Whole House on the state of the Union rises leaving H.R. 8595 as unfinished business.",
+      "time": "14:26:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32341",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the committee rise Agreed to by voice vote.",
+      "time": "14:25:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32340",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Diaz-Balart moved that the committee rise.",
+      "time": "14:25:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Tenney amendment No. 28.",
+      "time": "14:19:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Steube amendment No. 27.",
+      "time": "14:11:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Roy amendment No. 20, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Lois Frankel (FL) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "14:10:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Roy amendment No. 20.",
+      "time": "14:01:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Massie amendment No. 9, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Massie demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:59:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Massie amendment No. 9.",
+      "time": "13:53:18",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Massie amendment No. 8, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Mr. Massie demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:46:56",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Massie amendment No. 8.",
+      "time": "13:35:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Fine amendment No. 6, the Chair put the question on agreeing to the amendment and by voice vote, announced that the ayes had prevailed. Ms. Lois Frankel (FL) demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:34:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Fine amendment No. 6.",
+      "time": "13:26:39",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Crane amendment No. 4.",
+      "time": "13:17:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on the Boebert amendment No. 1, the Chair put the question on agreeing to the amendment and by voice vote, announced that the noes had prevailed. Ms. Boebert demanded a recorded vote and the Chair postponed further proceedings until a time to be announced.",
+      "time": "13:16:27",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 10 minutes of debate on the Boebert amendment No. 1.",
+      "time": "13:09:49",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - Pursuant to the provisions of H.Res. 1423, the Committee of the Whole proceeded with 20 minutes of debate on the Diaz-Balart amendment en bloc.",
+      "time": "13:06:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "GENERAL DEBATE - The Committee of the Whole proceeded with one hour of general debate on H.R. 8595.",
+      "time": "12:10:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32400",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The Speaker designated the Honorable Jimmy Patronis to act as Chairman of the Committee.",
+      "time": "12:10:04",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H32020",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House resolved itself into the Committee of the Whole House on the state of the Union pursuant to H. Res. 1423 and Rule XVIII.",
+      "time": "12:10:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 139, H.R. 8595, H.R. 9237 and H.R. 1181. The resolution provides for consideration of H.R. 139, H.R. 9237, and H.R. 1181 under a closed rule, and H.R. 8595 under a structured rule with one hour of debate and one motion to reconsider on each bill.",
+      "time": "12:09:34",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-07-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1423. (consideration: CR H4480-4528)",
+      "time": "12:09:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2026-07-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1423 Reported to House. Rule provides for consideration of H.R. 139, H.R. 8595, H.R. 9237 and H.R. 1181. The resolution provides for consideration of H.R. 139, H.R. 9237, and H.R. 1181 under a closed rule, and H.R. 8595 under a structured rule with one hour of debate and one motion to reconsider on each bill.",
+      "time": "17:59:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2026-06-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1398 Reported to House. Rule provides for consideration of H.R. 8800, H.R. 8595, H.R. 8884 and H. Res. 1383. The resolution provides for consideration of H.R. 8800 and H.R. 8595 under a structured rule, and H.R. 8884 and H. Res. 1383 under a closed rule. The resolution provides for one hour of general debate on each measure and one motion to recommit on H.R. 8800, H.R. 8595, and H.R. 8884.",
+      "time": "09:16:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2026-06-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1377 Reported to House. Rule provides for consideration of H.R. 1181, H.R. 9022, H.R. 8595 and H.R. 9237. The resolution provides for consideration of H.R. 1181 and H.R. 9237 under a closed rule and H.R. 9022 and H.R. 8595 under a structured rule. The resolution provides for one hour of general debate and one motion to recommit on each bill.",
+      "time": "19:18:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 547.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12100",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The House Committee on Appropriations reported an original measure, H. Rept. 119-631, by Mr. Diaz-Balart.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "1010",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "The House Committee on Appropriations reported an original measure, H. Rept. 119-631, by Mr. Diaz-Balart.",
+      "time": null,
+      "type": "Committee"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 119,
   "cosponsor_ids": [],

@@ -1,0 +1,92 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 224.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Environment and Public Works. Reported by Senator Capito without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Environment and Public Works. Reported by Senator Capito without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Environment and Public Works. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-06-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Environment and Public Works.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-06-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "W000802"
+  ],
+  "id": "s2082-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 224.",
+  "latest_action_date": "2025-10-29",
+  "number": 2082,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2082",
+  "sponsor_id": "H001104",
+  "subjects": [
+    "Energy efficiency and conservation",
+    "Industrial facilities",
+    "Nuclear power"
+  ],
+  "title_official": "Nuclear REFUEL Act of 2025",
+  "type": "s"
+}

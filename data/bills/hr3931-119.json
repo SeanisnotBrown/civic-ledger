@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2025-06-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001285",
+    "B001327",
+    "C001068",
+    "D000623",
+    "D000629",
+    "F000466",
+    "F000482",
+    "H001066",
+    "H001090",
+    "M001196",
+    "M001229",
+    "M001238",
+    "N000147",
+    "P000614",
+    "T000468"
+  ],
+  "id": "hr3931-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Highways and Transit.",
+  "latest_action_date": "2025-06-12",
+  "number": 3931,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3931",
+  "sponsor_id": "S001221",
+  "subjects": [],
+  "title_official": "Kids on the Go Act of 2025",
+  "type": "hr"
+}

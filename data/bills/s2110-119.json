@@ -1,0 +1,172 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "18:18:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "17:44:05",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S8398; text: CR S8398)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 225.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Environment and Public Works. Reported by Senator Capito without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Environment and Public Works. Reported by Senator Capito without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Environment and Public Works. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Environment and Public Works.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001047"
+  ],
+  "id": "s2110-119",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2025-11-20",
+  "number": 2110,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2110",
+  "sponsor_id": "M001176",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Air quality",
+    "Alcoholic beverages",
+    "Aviation and airports",
+    "Civil actions and liability",
+    "Community life and organization",
+    "Congressional oversight",
+    "Consumer affairs",
+    "Ecology",
+    "Environmental Protection Agency (EPA)",
+    "Environmental education",
+    "Environmental health",
+    "Environmental regulatory procedures",
+    "Food industry and services",
+    "Food supply, safety, and labeling",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Hazardous wastes and toxic substances",
+    "Higher education",
+    "Intergovernmental relations",
+    "Low- and moderate-income housing",
+    "Manufacturing",
+    "Marine pollution",
+    "Poverty and welfare assistance",
+    "Product safety and quality",
+    "Racial and ethnic relations",
+    "Railroads",
+    "Retail and wholesale trades",
+    "Soil pollution",
+    "Solid waste and recycling",
+    "State and local government operations",
+    "Trade restrictions",
+    "Water quality"
+  ],
+  "title_official": "REUSE Act of 2025",
+  "type": "s"
+}

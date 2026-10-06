@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2026-05-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2026-05-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "G000598"
+  ],
+  "id": "hres1272-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2026-05-11",
+  "number": 1272,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1272",
+  "sponsor_id": "G000593",
+  "subjects": [],
+  "title_official": "Celebrating 200 years of United States diplomatic relations with Peru.",
+  "type": "hres"
+}

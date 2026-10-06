@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-04-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-04-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-04-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "G000592",
+    "S001201"
+  ],
+  "id": "hjres156-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Foreign Affairs.",
+  "latest_action_date": "2026-04-16",
+  "number": 156,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/156",
+  "sponsor_id": "F000466",
+  "subjects": [],
+  "title_official": "Directing the President, pursuant to the War Powers Resolution, to comply with the 60-day use of force and 30-day phased withdrawal requirements regarding the use of the United States Armed Forces in Operation Epic Fury in Iran.",
+  "type": "hjres"
+}

@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2025-02-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committee on Veterans' Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committee on Veterans' Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000032",
+    "H001077",
+    "M001194",
+    "O000175",
+    "V000133"
+  ],
+  "id": "hr75-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Economic Opportunity.",
+  "latest_action_date": "2025-02-06",
+  "number": 75,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/75",
+  "sponsor_id": "B001302",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Building construction",
+    "Congressional oversight",
+    "Department of Housing and Urban Development",
+    "Energy efficiency and conservation",
+    "Housing and community development funding",
+    "Housing industry and standards",
+    "Intergovernmental relations",
+    "State and local government operations"
+  ],
+  "title_official": "HOUSE Act of 2025",
+  "type": "hr"
+}

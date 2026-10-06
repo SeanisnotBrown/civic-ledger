@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-04-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-04-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-04-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001126",
+    "F000470",
+    "F000474",
+    "F000485",
+    "M001204",
+    "M001205",
+    "M001213",
+    "M001230",
+    "R000619",
+    "S001214",
+    "T000478"
+  ],
+  "id": "hr8415-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2026-04-21",
+  "number": 8415,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8415",
+  "sponsor_id": "K000392",
+  "subjects": [],
+  "title_official": "Small Business Tax Cut Act",
+  "type": "hr"
+}

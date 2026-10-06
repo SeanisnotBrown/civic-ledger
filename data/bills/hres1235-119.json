@@ -1,0 +1,88 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H3327)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Foreign Affairs, and in addition to the Committee on Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001326",
+    "C001080",
+    "C001110",
+    "D000399",
+    "D000635",
+    "K000389",
+    "K000397",
+    "K000402",
+    "L000397",
+    "L000607",
+    "M000317",
+    "M001241",
+    "S000344",
+    "S001230",
+    "T000474"
+  ],
+  "id": "hres1235-119",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H3327)",
+  "latest_action_date": "2026-04-30",
+  "number": 1235,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1235",
+  "sponsor_id": "T000491",
+  "subjects": [],
+  "title_official": "Recognizing the 51st anniversary of Black April and the Fall of Saigon on April 30, 1975.",
+  "type": "hres"
+}

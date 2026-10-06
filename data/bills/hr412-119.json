@@ -1,0 +1,80 @@
+{
+  "actions": [
+    {
+      "action_code": "H21000",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2025-02-05",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2025-01-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Indian and Insular Affairs.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "T000481"
+  ],
+  "id": "hr412-119",
+  "jurisdiction": "us",
+  "latest_action": "Subcommittee Hearings Held",
+  "latest_action_date": "2025-02-05",
+  "number": 412,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/412",
+  "sponsor_id": "B001301",
+  "subjects": [
+    "Indian lands and resources rights",
+    "Land transfers",
+    "Michigan"
+  ],
+  "title_official": "To authorize the Bay Mills Indian Community of the State of Michigan to convey land and interests in land owned by the Tribe.",
+  "type": "hr"
+}

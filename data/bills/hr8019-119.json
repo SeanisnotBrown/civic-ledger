@@ -1,0 +1,96 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-05-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 43 - 3.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-05-13",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-03-19",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-03-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-03-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-05-22T21:28:00Z",
+      "title": "H.R. 8019, U.S.-Greece Defense Cooperation Advancement Act",
+      "url": "https://www.cbo.gov/publication/62456"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000380",
+    "B001257",
+    "L000599",
+    "M000317",
+    "M001218",
+    "M001226",
+    "M001238",
+    "S000344",
+    "T000468"
+  ],
+  "id": "hr8019-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported (Amended) by the Yeas and Nays: 43 - 3.",
+  "latest_action_date": "2026-05-13",
+  "number": 8019,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8019",
+  "sponsor_id": "P000614",
+  "subjects": [
+    "Europe",
+    "Greece",
+    "Military assistance, sales, and agreements",
+    "Military education and training",
+    "Military operations and strategy"
+  ],
+  "title_official": "U.S.-Greece Defense Cooperation Advancement Act",
+  "type": "hr"
+}

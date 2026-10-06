@@ -1,4 +1,464 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2026-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-74.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-74.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2026-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-01-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": "s-119-2-0011",
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Yea-Nay Vote. 82 - 15. Record Vote Number: 11.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": "s-119-2-0011",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Yea-Nay Vote. 82 - 15. Record Vote Number: 11.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to commit to Senate Committee on Appropriations with instructions to report back forthwith with the following amendment (SA 4210) fell when cloture on the measure was invoked in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": "s-119-2-0010",
+      "source_system": "Senate",
+      "text": "Cloture on the measure invoked in Senate by Yea-Nay Vote. 85 - 14. Record Vote Number: 10. (CR S230)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate. (consideration: CR S227-249)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Considered by Senate. (consideration: CR S185-218)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the measure presented in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-01-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to commit to Senate Committee on Appropriations with instructions to report back forthwith with the following amendment (SA 4210) made in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by motion.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure agreed to in Senate by Voice Vote. (consideration: CR S141-143, S157)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-12",
+      "rollcall_id": "s-119-2-0007",
+      "source_system": "Senate",
+      "text": "Cloture on the motion to proceed to the measure invoked in Senate by Yea-Nay Vote. 80 - 13. Record Vote Number: 7. (CR S128)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (consideration: CR S121-128)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to proceed to the measure presented in Senate. (CR S119)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S119)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 299.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate. Read the first time. Placed on Senate Legislative Calendar under Read the First Time. (Legislative Day January 7, 2026).",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "15:11:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": "h-119-2-0007",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 397 - 28 (Roll no. 7). (text: CR H151-199)",
+      "time": "15:11:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": "h-119-2-0007",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 397 - 28 (Roll no. 7). (text: CR H151-199)",
+      "time": "15:11:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36610",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": "h-119-2-0006",
+      "source_system": "House floor actions",
+      "text": "On Retaining Divisions B and C Agreed to by the Yeas and Nays: 419 - 6 (Roll no. 6).",
+      "time": "15:04:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36600",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Cole moved On Retaining Divisions B and C.",
+      "time": "14:58:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36610",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": "h-119-2-0005",
+      "source_system": "House floor actions",
+      "text": "On Retaining Division A Agreed to by the Yeas and Nays: 375 - 47 (Roll no. 5).",
+      "time": "14:58:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H36600",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Cole moved On Retaining Division A.",
+      "time": "14:31:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H209-211)",
+      "time": "14:31:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - The Chair put the question on retaining Division A of H.R. 6938 and pursuant to H. Res. 977 the yeas and nays were ordered. The Chair postponed further proceedings until a time to be announced.",
+      "time": "13:24:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to section 4(a) of H. Res. 977, the Chair will put the question on retaining Division A of the bill, and then retaining Divisions B and C.",
+      "time": "13:24:22",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "13:24:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.R. 6938.",
+      "time": "12:29:46",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 4593, H.R. 5184 and H.R. 6938. The resolution provides for consideration of H.R. 4593, H.R. 5184, and H.R. 6938 under a closed rule with one hour of general debate and provides for one motion to recommit on each bill.",
+      "time": "12:29:16",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 977. (consideration: CR H151-205)",
+      "time": "12:29:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "UNANIMOUS CONSENT REQUEST - Mr. Cole asked unanimous consent that the question of retaining a portion of the bill on H.R. 6938 may be subject to postponement, as though under clause 8 of rule 20. Agreed to without objection.",
+      "time": "12:28:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2026-01-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 977 passed House.",
+      "time": "17:33:14",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2026-01-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 977 Reported to House. Rule provides for consideration of H.R. 4593, H.R. 5184 and H.R. 6938. The resolution provides for consideration of H.R. 4593, H.R. 5184, and H.R. 6938 under a closed rule with one hour of general debate and provides for one motion to recommit on each bill.",
+      "time": "09:46:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-01-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-01-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-01-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-01-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2026-01-07T20:14:00Z",

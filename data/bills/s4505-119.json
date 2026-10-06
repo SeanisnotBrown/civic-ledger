@@ -1,0 +1,122 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-08-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 546.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-08-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Paul with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-08-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Homeland Security and Governmental Affairs. Reported by Senator Paul with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-08-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Homeland Security and Governmental Affairs. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
+      "date": "2026-05-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-05-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001261",
+    "B001267",
+    "B001277",
+    "D000563",
+    "L000575",
+    "M001242",
+    "P000145",
+    "S001181",
+    "S001184",
+    "S001217"
+  ],
+  "id": "s4505-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 546.",
+  "latest_action_date": "2026-08-06",
+  "number": 4505,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4505",
+  "sponsor_id": "E000295",
+  "subjects": [
+    "California",
+    "Colorado",
+    "Connecticut",
+    "Florida",
+    "Illinois",
+    "Indiana",
+    "Iowa",
+    "Kentucky",
+    "Louisiana",
+    "Minnesota",
+    "Nevada",
+    "New Hampshire",
+    "New Jersey",
+    "New York State",
+    "North Carolina",
+    "Ohio",
+    "Oklahoma",
+    "Postal service",
+    "South Carolina",
+    "Texas",
+    "Utah",
+    "Virginia",
+    "Wisconsin",
+    "Wyoming"
+  ],
+  "title_official": "A bill to require the United States Postal Service to designate ZIP Codes for certain communities.",
+  "type": "s"
+}

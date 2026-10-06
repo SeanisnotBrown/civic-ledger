@@ -1,0 +1,123 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2026-05-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 554.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-05-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Judiciary. H. Rept. 119-637.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-05-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Judiciary. H. Rept. 119-637.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 20 - 10.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-01-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-09-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-09-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-09-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-02-12T20:08:00Z",
+      "title": "H.R. 5213, No Federal Funds for Cashless Bail Act",
+      "url": "https://www.cbo.gov/publication/62113"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "J000307",
+    "M001236",
+    "N000026"
+  ],
+  "id": "hr5213-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 554.",
+  "latest_action_date": "2026-05-04",
+  "number": 5213,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5213",
+  "sponsor_id": "S001196",
+  "subjects": [
+    "Criminal procedure and sentencing",
+    "Intergovernmental relations",
+    "State and local government operations",
+    "Violent crime"
+  ],
+  "title_official": "No Federal Funds for Cashless Bail Act",
+  "type": "hr"
+}

@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2026-05-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2026-05-07",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2026-05-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "V000081"
+  ],
+  "id": "hres1267-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Small Business.",
+  "latest_action_date": "2026-05-07",
+  "number": 1267,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1267",
+  "sponsor_id": "S001231",
+  "subjects": [],
+  "title_official": "Expressing the sense of the House of Representatives that small business owners seeking financing have fundamental rights, including transparent pricing and terms, competitive products, responsible underwriting, fair treatment from financing providers, brokers, and lead generators, inclusive credit access, and fair collection practices.",
+  "type": "hres"
+}

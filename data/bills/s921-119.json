@@ -1,0 +1,163 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "14:11:36",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "14:02:32",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Unanimous Consent. (consideration: CR S1559-1560; text: CR S1559-1560)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-03-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 307.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-01-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Health, Education, Labor, and Pensions. Reported by Senator Cassidy with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-01-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Health, Education, Labor, and Pensions. Reported by Senator Cassidy with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Health, Education, Labor, and Pensions. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2025-03-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Health, Education, Labor, and Pensions.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-03-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-04-08T18:34:00Z",
+      "title": "S. 921, Tyler’s Law",
+      "url": "https://www.cbo.gov/publication/62303"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C000127",
+    "G000386",
+    "H001076",
+    "K000367",
+    "K000394",
+    "M001190",
+    "M001244",
+    "P000145",
+    "S001217",
+    "T000278",
+    "W000790",
+    "W000805",
+    "Y000064"
+  ],
+  "id": "s921-119",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2026-03-24",
+  "number": 921,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/921",
+  "sponsor_id": "B001299",
+  "subjects": [
+    "Drug, alcohol, tobacco use",
+    "Emergency medical services and trauma care",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Hospital care",
+    "Medical tests and diagnostic methods"
+  ],
+  "title_official": "Tyler’s Law",
+  "type": "s"
+}

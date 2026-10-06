@@ -1,0 +1,116 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 101.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 119-132.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 119-132.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-05-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 29 - 21.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-05-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "F000471",
+    "M001204",
+    "S000250"
+  ],
+  "id": "hr1900-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 101.",
+  "latest_action_date": "2025-06-04",
+  "number": 1900,
+  "policy_area": "Finance and Financial Sector",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1900",
+  "sponsor_id": "B001282",
+  "subjects": [
+    "Banking and financial institutions regulation",
+    "Business records",
+    "Corporate finance and management"
+  ],
+  "title_official": "Bank Failure Prevention Act of 2025",
+  "type": "hr"
+}

@@ -1,4 +1,72 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": "s-119-1-0095",
+      "source_system": "Senate",
+      "text": "Failed of passage in Senate by Yea-Nay Vote. 47 - 52. Record Vote Number: 95. (consideration: CR S1364, S1367-1390)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "18000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": "s-119-1-0095",
+      "source_system": "Library of Congress",
+      "text": "Failed of passage/not agreed to in Senate: Failed of passage in Senate by Yea-Nay Vote. 47 - 52. Record Vote Number: 95.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Energy and Natural Resources discharged by Unanimous Consent pursuant to the order of 02/18/2025.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Energy and Natural Resources discharged by Unanimous Consent pursuant to the order of 02/18/2025.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2025-02-03",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 119,
   "cosponsor_ids": [

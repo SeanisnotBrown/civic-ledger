@@ -1,0 +1,150 @@
+{
+  "actions": [
+    {
+      "action_code": "H15000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Held at the desk.",
+      "time": "13:12:48",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H14000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Received in the House.",
+      "time": "13:04:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S8248; text: CR S8248)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-11-19",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 230.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Environment and Public Works. Reported by Senator Capito without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Environment and Public Works. Reported by Senator Capito without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Environment and Public Works. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Environment and Public Works Committee"
+      ],
+      "date": "2025-10-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Environment and Public Works.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-10-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-12-09T14:48:00Z",
+      "title": "S.3022, Save Our Seas 2.0 Marine Debris Infrastructure Programs Reauthorization Act",
+      "url": "https://www.cbo.gov/publication/61901"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "W000802"
+  ],
+  "id": "s3022-119",
+  "jurisdiction": "us",
+  "latest_action": "Held at the desk.",
+  "latest_action_date": "2025-11-20",
+  "number": 3022,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3022",
+  "sponsor_id": "S001198",
+  "subjects": [
+    "Congressional oversight",
+    "Marine pollution",
+    "Navigation, waterways, harbors",
+    "Solid waste and recycling",
+    "State and local government operations"
+  ],
+  "title_official": "Save Our Seas 2.0 Marine Debris Infrastructure Programs Reauthorization Act",
+  "type": "s"
+}

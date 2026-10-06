@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-03-14",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-03-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-03-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001292",
+    "C001080",
+    "E000296",
+    "G000585",
+    "H001066",
+    "L000557",
+    "M001160",
+    "S001156",
+    "T000193"
+  ],
+  "id": "hr2108-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2025-03-14",
+  "number": 2108,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2108",
+  "sponsor_id": "D000096",
+  "subjects": [],
+  "title_official": "TANF State Expenditure Integrity Act of 2025",
+  "type": "hr"
+}

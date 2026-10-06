@@ -1,4 +1,820 @@
 {
+  "actions": [
+    {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-86.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-86.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E20000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Presented to President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "H41931",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "13:06:15",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H41610",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion that the House suspend the rules and recede from the House amendment to the Senate amendment to H.R. 7147, and concur in the Senate amendment Agreed to by voice vote. (text: CR H3311-3321)",
+      "time": "13:06:00",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: On motion that the House suspend the rules and recede from the House amendment to the Senate amendment to H.R. 7147, and concur in the Senate amendment Agreed to by voice vote. (text: CR H3311-3321)",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with 40 minutes of debate on the motion to suspend the rules and recede from the House amendment to the Senate amendment to H.R. 7147, and concur in the Senate amendment.",
+      "time": "13:05:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H40140",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Alford moved that the House suspend the rules and recede from the House amendment to the Senate amendment to H.R. 7147, and concur in the Senate amendment (consideration: CR H3311-3322)",
+      "time": "13:04:51",
+      "type": "ResolvingDifferences"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-04-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Alford asked unanimous consent to take from the Speaker's table the bill H.R. 7147, with the House amendment to the Senate amendment thereto, to recede from the House amendment, and to concur in the Senate amendment. Objection heard.",
+      "time": "12:59:38",
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-04-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-04-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to table the House message to accompany H.R. 7147 agreed to by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-04-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S1696)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-04-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on House action received in Senate and at desk: House amendment to Senate amendment.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to the provisions of H. Res. 1142, the Senate amendment to H.R. 7147 is considered as agreed to with an amendment consisting of the text of Rules Committee Print 119-21.",
+      "time": "23:26:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1B000",
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "House agreed to Senate amendment with amendment pursuant to H. Res. 1142",
+      "time": "23:26:24",
+      "type": "Floor"
+    },
+    {
+      "action_code": "19500",
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Resolving differences -- House actions: House agreed to Senate amendment with amendment pursuant to H. Res. 1142",
+      "time": null,
+      "type": "NotUsed"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which the fourth cloture on the motion to proceed to the measure was not invoked (Record Vote No. 73) rendered moot in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Fifth cloture motion on the motion to proceed to the measure rendered moot in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate with an amendment by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate with an amendment by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S1660)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure agreed to in Senate by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which the fourth cloture on the motion to proceed to the measure was not invoked (Record Vote No. 74) entered in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-26",
+      "rollcall_id": "s-119-2-0074",
+      "source_system": "Senate",
+      "text": "Fourth cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 53 - 47. Record Vote Number: 74. (CR S1651-1652)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1648)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Fifth cloture motion on the motion to proceed to the measure presented in Senate. (CR S1609)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-25",
+      "rollcall_id": "s-119-2-0071",
+      "source_system": "Senate",
+      "text": "Upon reconsideration, third cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 54 - 46. Record Vote Number: 71. (CR S1599-1600)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote (Record Vote No. 54) by which the third cloture motion on the motion to proceed to the measure was not invoked agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of the motion to reconsider the vote by which the third cloture on the motion to proceed to the measure was not invoked (Record Vote No. 54) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-25",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1589)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Fourth cloture motion on the motion to proceed to the measure presented in Senate. (CR S1577)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1570)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure withdrawn in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1561)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-22",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1495)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1461)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-20",
+      "rollcall_id": "s-119-2-0059",
+      "source_system": "Senate",
+      "text": "Upon reconsideration, second cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 47 - 37. Record Vote Number: 59. (CR S1425)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which the second cloture motion on the motion to proceed to the measure was not invoked (Record Vote No. 39) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of the motion to reconsider the vote by which the second cloture on the motion to proceed to the measure was not invoked (Record Vote No. 39) agreed to in Senate by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1419)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S1311)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which the third cloture on the motion to proceed to the measure was not invoked (Record Vote No. 54) entered in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-12",
+      "rollcall_id": "s-119-2-0054",
+      "source_system": "Senate",
+      "text": "Third cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 51 - 46. Record Vote Number: 54. (CR S1034)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S1024)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Third cloture motion on the motion to proceed to the measure presented in Senate. (CR S946)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate. (CR S946)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-05",
+      "rollcall_id": "s-119-2-0047",
+      "source_system": "Senate",
+      "text": "Upon reconsideration, cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 51 - 45. Record Vote Number: 47.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote (Record Vote No. 38) by which cloture was not invoked on the motion to proceed to the measure agreed to in Senate by Voice Vote. (CR S871)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of the motion to reconsider the vote by which cloture was not invoked on the motion to proceed to the measure (Record Vote No. 38) agreed to in Senate by Voice Vote. (CR S871)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-24",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which the second cloture on the motion to proceed to the measure was not invoked (Record Vote No. 39) entered in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-24",
+      "rollcall_id": "s-119-2-0039",
+      "source_system": "Senate",
+      "text": "Second cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 50 - 45. Record Vote Number: 39. (CR S641)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Second cloture motion on the motion to proceed to the measure presented in Senate. (CR S593)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which cloture on the motion to proceed to the measure was not invoked (Record Vote No. 38) entered in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": "s-119-2-0038",
+      "source_system": "Senate",
+      "text": "Cloture on the motion to proceed to the measure not invoked in Senate by Yea-Nay Vote. 52 - 47. Record Vote Number: 38.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S593)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S559)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Cloture motion on the motion to proceed to the measure presented in Senate. (CR S557)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to measure considered in Senate. (CR S547)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion to proceed to consideration of measure made in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the second time. Placed on Senate Legislative Calendar under General Orders. Calendar No. 311.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read the first time. Placed on Senate Legislative Calendar under Read the First Time.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "16:41:55",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": "h-119-2-0042",
+      "source_system": "House floor actions",
+      "text": "On passage Passed by the Yeas and Nays: 220 - 207 (Roll no. 42). (text of amendment in the nature of a substitute: CR H1300-1311)",
+      "time": "16:41:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": "h-119-2-0042",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 220 - 207 (Roll no. 42). (text of amendment in the nature of a substitute: CR H1300-1311)",
+      "time": "16:41:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H1330)",
+      "time": "16:10:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "POSTPONED PROCEEDINGS - The Chair put the question on passage of the bill. Pursuant to clause 10 of rule 20, the yeas and nays are ordered. Further proceedings are postponed.",
+      "time": "14:23:26",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "The previous question was ordered pursuant to the rule.",
+      "time": "14:22:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with one hour of debate on H.R. 7147.",
+      "time": "13:27:23",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule provides for consideration of H.R. 7148 and H.R. 7147. The resolution provides for consideration of H.R. 7148 under a structured rule and H.R. 7147 under a closed rule. The rule provides for one hour of debate and a motion to recommit on each bill.",
+      "time": "13:26:08",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under the provisions of rule H. Res. 1014. (consideration: CR H1299-1317)",
+      "time": "13:26:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L220",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rule H. Res. 1014 passed House.",
+      "time": "11:52:33",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H1L210",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Rules Committee Resolution H. Res. 1014 Reported to House. Rule provides for consideration of H.R. 7148 and H.R. 7147. The resolution provides for consideration of H.R. 7148 under a structured rule and H.R. 7147 under a closed rule. The rule provides for one hour of debate and a motion to recommit on each bill.",
+      "time": "09:03:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2026-01-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2026-01-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on the Budget, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-01-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-01-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [
     {
       "date": "2026-01-21T19:56:00Z",

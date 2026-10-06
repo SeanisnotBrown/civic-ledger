@@ -1,0 +1,105 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 93.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch with an amendment in the nature of a substitute. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-06-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-02-17T18:57:00Z",
+      "title": "S. 1463, Finding ORE Act",
+      "url": "https://www.cbo.gov/publication/62133"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001056",
+    "C001098",
+    "H000273",
+    "Y000064"
+  ],
+  "id": "s1463-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 93.",
+  "latest_action_date": "2025-06-18",
+  "number": 1463,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1463",
+  "sponsor_id": "C001088",
+  "subjects": [
+    "Employment and training programs",
+    "Geography and mapping",
+    "Materials",
+    "Metals",
+    "Mining",
+    "Public-private cooperation",
+    "Strategic materials and reserves"
+  ],
+  "title_official": "Finding ORE Act",
+  "type": "s"
+}

@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-09-10",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Federal Lands.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "G000576",
+    "M001160",
+    "P000607",
+    "S001213",
+    "T000165",
+    "V000135",
+    "W000829"
+  ],
+  "id": "hr7495-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Federal Lands.",
+  "latest_action_date": "2026-09-10",
+  "number": 7495,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7495",
+  "sponsor_id": "F000471",
+  "subjects": [],
+  "title_official": "To authorize the establishment of memorials to the Wisconsin infantry officers and enlisted men who fought in the Battle of Antietam and the Second Battle of Bull Run, and for other purposes.",
+  "type": "hr"
+}

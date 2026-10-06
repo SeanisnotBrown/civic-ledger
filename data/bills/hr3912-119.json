@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Budget.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001055",
+    "C001118",
+    "E000298",
+    "G000592",
+    "G000600",
+    "G000605",
+    "N000190",
+    "S001188",
+    "V000138"
+  ],
+  "id": "hr3912-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Budget.",
+  "latest_action_date": "2025-06-11",
+  "number": 3912,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3912",
+  "sponsor_id": "G000576",
+  "subjects": [],
+  "title_official": "Stop the Baseline Bloat Act of 2025",
+  "type": "hr"
+}

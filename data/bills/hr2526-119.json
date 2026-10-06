@@ -1,0 +1,68 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Highways and Transit Subcommittee"
+      ],
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Highways and Transit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001309",
+    "G000583",
+    "L000599",
+    "V000138",
+    "W000822"
+  ],
+  "id": "hr2526-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Highways and Transit.",
+  "latest_action_date": "2025-03-31",
+  "number": 2526,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2526",
+  "sponsor_id": "V000133",
+  "subjects": [],
+  "title_official": "Bus Parity and Clarity Act",
+  "type": "hr"
+}

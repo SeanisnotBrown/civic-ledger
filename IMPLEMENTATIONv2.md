@@ -366,7 +366,15 @@ unchanged.
   `channels(user_id, kind ∈ {email, phone, push}, address, verified_at)` —
   phone only after H21;
   `profiles(user_id, published_json, updated_at)` — the opt-in public profile;
-  published means public. A schema test asserts that the set of tables and
+  published means public.
+  **Retention, ratified 2026-10-06 by SD-39 (Q4):** `deliveries` rows are purged at
+  **90 days**; a signup confirmation code is valid **24 hours**; a password-reset token
+  is valid **1 hour**. All three are single-use where applicable and deleted on use, not
+  left to expire. V2-8 must define each number **once** in the Worker with a test pinning
+  it to this paragraph — same shape as `K_ANON` and the privacy surface, because a
+  retention period the code and the record disagree about is a privacy claim that has
+  silently become false. **No duration appears on the site** (§6.7): the page states what
+  is held and that the code is deleted once confirmed, never how long anything is kept. A schema test asserts that the set of tables and
   columns equals the storage list stated on `/privacy` (§8, the V2-7 accuracy
   test) — the guard is disclosure, not encryption.
 

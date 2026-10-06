@@ -327,8 +327,11 @@ def test_schema_half_is_still_deferred() -> None:
     if not sql:
         pytest.skip(
             "deferred: V2-8 has not created the D1 schema (no .sql, no worker/, "
-            "no d1_databases in site/wrangler.jsonc). The table list itself is "
-            "no longer a blocker — SD-38 ratified seven tables on 2026-10-06."
+            "no d1_databases in site/wrangler.jsonc). Nothing else blocks it — "
+            "SD-38 ratified the seven tables and SD-39 the three retention "
+            "periods (deliveries 90 days, signup code 24 h, reset token 1 h), "
+            "both on 2026-10-06. V2-8 also owes a test pinning each of those "
+            "three numbers to spec §5, the same shape as the K floor."
         )
     declared: set[str] = set()
     for path in sql:

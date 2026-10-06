@@ -9,6 +9,24 @@ task 1's last half shipped, so the privacy truth gate no longer blocks V2-8/V2-9
 **SD-38 (owner, today) ratified the storage list at SEVEN tables.** **SD-37 is now complete
 too — its bill-page half was built because it stopped being hypothetical** (D103). **Congress
 118 is finally, actually complete**: the 15 D100 bills were re-fetched.
+**Later the same day: SD-39 closed Q4 (retention), which was the LAST open owner
+question in `docs/draft-v2-7-privacy-claims.md`, and SD-40 DEFERRED H20 (Workers Paid)
+until the owner has the site laid out the way he wants — so V2-8 is buildable but not
+finishable. Read the NEXT section before planning anything.**
+
+**▶ D104 — THE 119 BACKFILL FOUND A BILL THE PIPELINE COULD NOT PARSE, AND THE FIX IS
+COMMITTED.** The second stop-window pytest gate came back **`1 failed, 566 passed`** on
+`test_committed_accept_list_matches_committed_quarantines`: `bill-hr2-119.json` had appeared
+in `data/quality/quarantine/` with `KeyError: 'text'`. **It was not a bug in the response.
+HR 2 of the 119th is titled "Reserved for the Speaker."** — a number leadership holds and
+never introduces; the API answers 200 with `latestAction: null` and `/actions` `[]`.
+`parse_bill` now raises `NoActionOnRecord` when `latestAction` is absent AND no actions were
+collected; both callers catch it ahead of the quarantine clause, publish nothing, and print
+the excluded ids. **Expect more** — `hr3/hr5/hr6/hr8/hr9/hr10-119` have no file yet and the
+rule handles them with no accept-list entry. A second, latent defect was fixed with it: the
+accept-list guard compared `p.stem` against bare ids, but bill quarantines are written
+`bill-<id>.json`, so it could never have passed for a real bill quarantine. **Do not read
+that first red gate as an SD-39/SD-40 regression — it was a genuine data finding.**
 
 **Local gates at the push:** `uv run ruff check .` clean; **567 passed / 1 skipped at 100%
 branch coverage** under `CI=true GITHUB_ACTIONS=true` (20 min); `verify-recompute` OK;
@@ -208,6 +226,43 @@ and `SPEC_TABLES` in the acceptance test is seven.
 because a number there would be a claim the system does not make. **Columns settle in V2-8**;
 the disclosure guard compares table names, not columns.
 
+## ✅ SD-39 (owner, 2026-10-06) — Q4 answered: retention. **No owner questions are open.**
+
+The last one from `docs/draft-v2-7-privacy-claims.md`. Three numbers, ratified together, the
+builder's recommendation accepted as given:
+- **`deliveries`: 90 days, then purged.** The rows exist to stop a second alert for the same
+  event; they only need to outlive the window in which an event can still reach the Worker's
+  poll of `/events/latest.json`, and events are keyed by RECORD date, so an action's date
+  leaves that window permanently. **"Keep forever" was the rejected option**, on privacy
+  grounds: an unbounded table turns an anti-duplicate ledger into a permanent dated history
+  of what each reader was told about — exactly what `/threat-model` says a legal demand
+  yields.
+- **Signup confirmation code: 24 hours**, single-use, deleted on use. It only proves inbox
+  ownership, so it is not a takeover vector, and one hour punishes a reader who opens mail in
+  the evening.
+- **Password-reset token: 1 hour**, single-use, deleted on use. This one **is** a takeover
+  vector. Two different risks, two different numbers, deliberately — do not "simplify" them
+  to one.
+
+**No duration goes on the site.** The page states what is held, and now also that the
+one-time code is deleted once the reader confirms (SD-39 makes that true). It never states a
+period: every number there is a claim that has to survive the next code change (§6.7), and
+"kept for 90 days" is a promise about a cron job. **The numbers live in spec §5** beside the
+tables they govern; **V2-8 owes a test pinning each to that paragraph**, the same shape as the
+K floor.
+
+**Accepted limit:** 90 days caps what a reader could ever be shown of their own alert history.
+Not a planned feature.
+
+## ⏸️ SD-40 (owner, 2026-10-06) — H20 (Workers Paid, $5/mo) is DEFERRED
+
+The owner would rather not pay for a subscription that sits idle while the site is *"currently
+not the way I want overall"*, and he cannot say how long getting it there will take.
+**Nothing was cancelled — H20 was never started**, so this is a decision not to begin. Full
+reasoning, the measured file-count discharge, and what the deferral costs are in the NEXT
+section above and in `docs/decisions.md`. The one-line version: **V2-8 can be built but not
+finished, because signup's confirmation mail needs Email Sending.**
+
 ## ✅ BOTH EARLIER OWNER QUESTIONS REMAIN ANSWERED
 
 **H18 — SD-36: Cloudflare Email Sending.** One company instead of two sees reader email
@@ -219,41 +274,57 @@ That caveat is a cost fact and **must not go on the site**.
 
 **SD-37 — render once with a count line.** Complete; see above.
 
-## ▶ NEXT — V2-8 (accounts + preference sync). Nothing blocks it but human tasks.
+## ▶ NEXT — and it is NOT simply "start V2-8". Read all four points.
 
-V2-7's gate is lifted. Before writing the D1 schema, three things are settled and one is owed
-by a human:
-1. **The table list is ratified: seven** (SD-38). `test_schema_half_is_still_deferred` will
-   compare your `CREATE TABLE` names against exactly that set the moment a `.sql` lands, so
-   create those seven and no others without a dated decision.
-2. **The email provider is settled: Cloudflare Email Sending** (SD-36) — a `send_email`
-   binding, not a third-party API key. Spec §1's H18 row and the plan doc were corrected this
-   session; they used to say Resend/MailChannels and `EMAIL_API_KEY`.
-3. **Q4 is the one open owner question** and it binds here: how long an alert-sent record
-   (`deliveries`) is kept, and how long a confirmation code stays valid. Ask before writing a
-   retention policy into code, and never state a number on the site first.
-4. **Owed by a human:** H18's account step, **H17** (Turnstile keys), **H20** (Workers Paid —
-   now load-bearing for V2-8 as well as V2-12). H21 (SMS) is not needed; email alerts do not
-   wait on it.
+**1. ⏸️ V2-8 CAN BE BUILT BUT NOT FINISHED (SD-40).** The owner deferred H20 (Cloudflare
+Workers Paid, $5/mo) until the site's layout is where he wants it — in his words, the site is
+*"currently not the way I want overall"* and he would rather not pay for a subscription that
+sits idle. **Nothing was cancelled: H20 was never started.** Workers Paid is what unlocks
+Email Sending, so signup's confirmation mail cannot send, and **V2-8 stalls at its acceptance
+step, not at its code.** Per §0.2 the right move is to build around the block — `worker/`,
+the seven-table D1 schema, Argon2id, double opt-in, password reset, hard delete, all
+unit-tested against a stubbed sender — and **leave the acceptance open rather than fake it.**
+D1 itself has a free tier. **Do not take this as licence to start V2-9/V2-12/V2-13:** the
+increment order (SD-32) stands, and V2-8 unfinished is still V2-8 in progress.
 
-**Four stale doc records were corrected this session** so a future session cannot inherit a
-withdrawn guarantee: spec §2's SD-28 row still ended "no IP retention, logging off"
-(withdrawn by SD-34); spec §1's H18 row still named Resend/MailChannels; `HUMAN-TASKS.md` H12
-still asked for monthly warrant-canary signing (retired with the canary itself, SD-35); and
-`docs/plan-subscriptions-and-alerts.md` still said "logging off" and described the table list
-as a guarantee. **`docs/draft-v2-7-privacy-claims.md` is annotated with what is answered and
-what is left (only Q4).**
+**2. ▶ THE OWNER'S REAL BLOCKER IS THE LAYOUT, AND IT IS NOT AN INCREMENT YET.** He said the
+site overall is not how he intends it and he does not know how long getting there will take.
+Nothing in `IMPLEMENTATIONv2.md` §7 describes that work — V2-6 (the trend chart) is deferred
+and the rest is data and accounts. **This is the one thing worth asking him before planning a
+session:** what "the way I want it laid out" means, concretely, page by page. Turn his answer
+into an increment with an acceptance before building any of it. **Do not redesign the site on
+your own judgment** — presentation is where Value #2's disclosure standard and §0.5's ban on
+LLM-authored political content are easiest to breach by accident.
 
-**▶ SD-34 (2026-10-05) STILL GOVERNS WHAT YOU MAY WRITE.** The owner withdrew the no-tracking
-guarantees: *"what this is going to evolve to, I am going to have to track this info. My only
-promise is to never sell this data."* The project MAY log requests, keep IP columns, set
-cookies, hold per-submission rows, let the anonymous reader's browsing reach the Worker, and
-store beyond the §5 tables. **Never write any of those guarantees onto the site or back into
-the values.** Three things SD-34 did NOT withdraw: **Argon2id**, the **K-anon (=50) render
-gate**, and **hard deletion on request**. Each needs its own dated decision to remove. Four
-strings are mechanical tripwires scanned across all of `site/src/` by the acceptance test:
-"collect as little as possible", "No cookies. No analytics", "No third-party fonts, scripts,
-or CDNs", "would produce only what that private repository contains".
+**3. The file-count trigger that used to gate H20 is DISCHARGED — measured, not estimated.**
+`dist/` is at **17,005 of the free 20,000-file ceiling** (warn at 18,000), and **the bill-page
+count is already FINAL at 1,040**: the roll-call dataset is complete and every bill it
+references already has a file on disk, so the ~13,000 Congress 119 bills still to arrive add
+`data/` files and **no published page** (SD-33 3(c) gives a page only to a bill that reached a
+recorded vote). The only thing still growing in `dist/` is a new CRS subject term at two files
+each, and that count moved 970 → 971 over 2,955 new bills. **The static ceiling will not force
+the upgrade.** Re-verify that Email Sending still needs Paid on the day he takes it — the
+"Paid unlocks it" reading is from 2026-09-23 and plan boundaries move.
+
+**4. Everything V2-8 needs decided IS decided. Three numbers and a table list:**
+- **Seven tables** (SD-38). `test_schema_half_is_still_deferred` activates by itself the
+  moment a `.sql` lands and compares your `CREATE TABLE` names against exactly that set.
+- **Retention (SD-39, Q4 — the last open owner question, now closed):** `deliveries` purged
+  at **90 days**; signup confirmation code valid **24 hours**; password-reset token valid
+  **1 hour**; all single-use where applicable and **deleted on use, not left to expire**. The
+  two code lifetimes differ on purpose: a signup code only proves inbox ownership, a reset
+  token is an account-takeover vector. **V2-8 owes a test pinning each number to spec §5**,
+  the same shape as the K floor — a retention period the code and the record disagree about
+  is a privacy claim that has silently become false.
+- **No duration on the site**, by the same decision. The page states what is held and that
+  the one-time code is deleted once confirmed; it never says how long anything is kept,
+  because every number on that page is a claim that has to survive the next code change
+  (§6.7).
+- **The email provider is Cloudflare Email Sending** (SD-36) — a `send_email` binding, not a
+  third-party API key.
+- **Owed by a human, in order of what unblocks what:** **H17** (Turnstile keys — free, and
+  V2-8 needs it for write endpoints); **H18's account step** (now waiting on H20's deferral);
+  **H20** (deferred, see above). H21 (SMS) is not needed — email alerts do not wait on it.
 
 ## Where the build actually stands
 

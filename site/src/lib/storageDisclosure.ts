@@ -20,10 +20,13 @@
 //     of your password" is the pinned plain-words version.
 //   - SD-38: the unconfirmed address and its one-time code are disclosed as
 //     their own line rather than folded into "your email address".
+//   - SD-39: the MECHANISM may be stated (the code is deleted once used); the
+//     DURATION may not. Retention periods are ratified (90 days / 24 h / 1 h)
+//     and live in spec §5, not here — a number on the page is a promise about a
+//     cron job, and §6.7 says copy flips atomically with the feature.
 //   - H21: phone stays hypothetical until the owner ratifies it.
-//   - No retention period appears here. `deliveries` retention and the
-//     confirmation-code lifetime are both unratified (draft Q4) and a number
-//     written here would be a claim the system does not yet make.
+//   - No retention period appears here. Both are now RATIFIED (SD-39) and both
+//     stay off the page by the same decision: see spec §5 for the numbers.
 
 export type StoredThing = {
   /** The D1 table from IMPLEMENTATIONv2.md §5 this sentence discloses. */
@@ -39,7 +42,7 @@ export const STORED_WHEN_ACCOUNTS_SHIP: readonly StoredThing[] = [
   },
   {
     table: "email_verifications",
-    text: "An email address you have given but not yet confirmed, and the one-time code sent to confirm it.",
+    text: "An email address you have given but not yet confirmed, and the one-time code sent to confirm it, which is deleted once you confirm.",
   },
   {
     table: "subscriptions",

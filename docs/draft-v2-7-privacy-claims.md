@@ -202,7 +202,7 @@ Drawn from `IMPLEMENTATIONv2.md:344-355` (the §5 account model) and
 
 ### Three gaps that block the page, not the build
 
-**▶ STATUS 2026-10-06: gap 1 is CLOSED and gap 3 no longer blocks.** The owner ratified the table list at SEVEN (SD-38) — `email_verifications` is disclosed on its own line — and SD-36 named the email sender, so `/privacy`'s forward-looking half shipped the same day (D102). **Gap 2 (`deliveries` retention) is still open**, and so is the confirmation-code lifetime that rides with it: Q4. Read the rest of this section as the record of why the page waited, not as work outstanding.
+**▶ STATUS 2026-10-06: gap 1 is CLOSED and gap 3 no longer blocks.** The owner ratified the table list at SEVEN (SD-38) — `email_verifications` is disclosed on its own line — and SD-36 named the email sender, so `/privacy`'s forward-looking half shipped the same day (D102). **▶ UPDATE, same day: gap 2 is CLOSED too — SD-39 answered Q4** (`deliveries` purged at 90 days; signup code 24 h; password-reset token 1 h; all single-use and deleted on use, none of the durations stated on the site). **Every question in this document is now answered.** Read all of it as the record of why the page waited, not as work outstanding.
 
 1. **The two table lists disagree.** — **ANSWERED: seven, SD-38 (2026-10-06).** The spec's §5 names six tables. The plan's V2-12 task 1
    adds a seventh, `email_verifications` (`docs/plan-subscriptions-and-alerts.md:177-179`).
@@ -362,7 +362,7 @@ Consequence either way: the page cannot be finished with a blank where the name 
 
 ---
 
-**Q4 — How long do we keep the record of alerts already sent? (blocks V2-12; decide now so
+**Q4 [ANSWERED 2026-10-06 — SD-39: 90 days for `deliveries`; 24 h signup code; 1 h password-reset token; single-use, deleted on use; no duration on the site] — How long do we keep the record of alerts already sent? (blocks V2-12; decide now so
 the page is written once)**
 
 To avoid telling someone the same news twice, we keep a row saying "we sent this person
@@ -429,8 +429,9 @@ wrong (C8) and the bill pages carry one you have already ruled impossible (Q2).
 The forward-looking half of the page — the part the blocking gate actually exists for — is
 **blocked on Q3 (the email company's name), Q5 (which list of stored tables is canonical),
 and Q4 (how long the alert-sent record is kept)**. — **Q3 answered by SD-36 and Q5 by
-SD-38; the page shipped 2026-10-06 (D102). Only Q4 remains, and it blocks no page: the
-site states what is held, never how long.** Q3 and Q5 block V2-8 specifically: the
+SD-38; the page shipped 2026-10-06 (D102). **Q4 is answered too, by SD-39 — so nothing in
+this document is open.** The site states what is held and that the one-time code is deleted
+once used, never how long anything is kept.** Q3 and Q5 block V2-8 specifically: the
 page cannot name a provider that has not been chosen, and the V2-7 accuracy test compares
 the page's table list against the database schema, so writing the page from the wrong list
 would either fail the test or hollow it out. Q4 blocks V2-12 but should be answered in the

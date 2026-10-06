@@ -3,13 +3,23 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-05, second session of the day. **V2-11 is COMPLETE** (tasks 1-8
-+ 5b, D88-D100). **V2-7 is 3 of 4 tasks done AND its acceptance test now exists** — the
-drift-proof accuracy test is written, negative-tested and green. **Both open owner
-questions are answered: SD-36 (Cloudflare Email Sending, H18 closed) and SD-37 (repeated
-action rows render once with a count line; feeds emit one entry per distinct action).**
-The previous session's handoff and data commit were never pushed — its wrapup died at 26%
-of pytest — and both are pushed now.
+**Last updated:** 2026-10-05, second session of the day, wrapped at 20:35 CDT.
+**CI IS GREEN on the final push** (run 37398440967: 561 passed / 1 skipped at 100% branch
+coverage, e2e **60/60**, the new feed-id gate OK over 90,045 entries). **V2-11 is COMPLETE**
+(tasks 1-8 + 5b, D88-D100). **V2-7 is 3 of 4 tasks done and its acceptance test exists,
+green and negative-tested.** **Both owner questions are answered — SD-36 (Cloudflare Email
+Sending) and SD-37 — and SD-37's FEED HALF IS BUILT AND SHIPPED (D101): 214 duplicate rows
+are gone from the published feed and 0 duplicate `event_id`s remain.** The previous
+session's orphaned handoff and data commit were never pushed; both are pushed now.
+
+**Seven commits this session, all pushed, CI green:** `ec03bec07` + `af1dfbfff` (the
+orphaned data + handoff), `d5b62e0a0` (SD-36/37), `15dec68a7` (V2-7 acceptance test),
+`4571441f1` (the SD-37 evidence correction), `cffbefcf5` (data), `d5feb41d4` (SD-37 feed
+half + D101), `396f870e1` (handoff).
+
+**▶ The local e2e flake did NOT reproduce in CI.** `drilldown.spec.ts:66` `[mobile]` failed
+once locally under full-suite load and CI ran **60/60**. Treat it as a local timing flake;
+do not chase it.
 
 ## ▶▶▶ TASK 0 — THE FIRST THING YOU DO THIS SESSION (owner's instruction, standing)
 
@@ -77,8 +87,12 @@ cached. **Judge aliveness by the PROCESS first, and only then by the disk count.
 - **Congress 118: complete EXCEPT the 15 D100 bills.** 19,118 enumerated, 19,296 files,
   19,292 with timelines — but the 15 bills D100 unblocked were never re-fetched (the fix
   landed after the 118 commit). A resume run picks up only those 15.
-- **Congress 119: PARTIAL and growing as you read this.** 1,148 files and **650 with
-  timelines at the 18:10 commit**, of ~19,441. ~18,800 to go, ~23 h.
+- **Congress 119: PARTIAL and growing as you read this.** At the 20:35 session end:
+  **2,884 files, 2,411 with timelines**, of ~19,441 — so **~17,000 to go, ~21 h**. The last
+  data COMMIT was at 2,148 timelines, so **~266 bill files in the tree are uncommitted and
+  that is the running run's output, not abandoned work.** Nothing is lost if the machine is
+  shut down: the files stay on disk and a resume skips every bill that already has a
+  timeline, at zero API requests.
 - Corpus totals at the 18:10 regeneration: **91,043 events across 46 month files**; **33
   policy areas + 966 subject terms over 20,444 bills**. These are already stale if the
   backfill is still running — regenerate before trusting them.
@@ -150,7 +164,8 @@ affected pages today.**
 - **Known e2e flake, not a break:** `drilldown.spec.ts:66` ("setting a member aside…",
   `[mobile]`) failed once in the full 60-test suite and passes in isolation — a
   member-browser hydration-timing flake under load. Playwright's exit code was 0 (it
-  retried). It touches no feed code. **Do not report 60/60 clean without re-running it.**
+  retried). It touches no feed code, **and CI then ran 60/60 on the same commit** — so it is
+  a local timing flake, confirmed, not a defect. Do not chase it.
 - **The duplicate count grows fast** — 23 at 1,189 Congress 119 timelines, 214 at 2,145,
   projecting to ~2,000 at the full ~19,441. The repeats are concentrated in recent
   resolutions (`"Submitted in House"` listed twice), so a number measured earlier in the
@@ -295,10 +310,34 @@ The one behaviour change worth knowing: a fetch-failure count at or under
 `set -euo pipefail` and one `ConnectTimeout` used to abort the night before classify,
 metrics, grades, events, topics, export and the commit. Full reasoning in D99.
 
-**NEXT — V2-7 (privacy page true).** It is the blocking gate before V2-8/V2-9/V2-12/V2-13,
-which store user data. **Read the ⚠ section at the top of this file first**: a false claim
-is live on every bill page right now, and `docs/draft-v2-7-privacy-claims.md` is a
-finished claim-by-claim audit with the owner questions already ranked.
+**NEXT — finish V2-7 task 1, which SD-36 just unblocked.** V2-7 is the blocking gate
+before V2-8/V2-9/V2-12/V2-13, which store user data, and only one piece is left: the
+forward-looking half of `/privacy` — the §5 table list in plain words, the public-profile
+carve-out, deletion semantics, and **naming Cloudflare as both the deliverer of the site
+and the sender of email** (SD-36). Nothing blocks it any more.
+
+Read before writing a word of privacy copy: the ⚠ SD-34 section at the top of this file,
+then `docs/draft-v2-7-privacy-claims.md` (its "no cookies"/"no analytics"/"no third-party
+scripts" rows are **moot as claims** now, and its Q1 and Q6 are answered). The acceptance
+test `tests/test_privacy_accuracy_v2_7.py` already pins the storage list at six bullets and
+the K number against `config.K_ANON`, **so it will fail if the rewrite changes either** —
+that is the test working, not a problem to route around.
+
+**Then V2-8** (accounts + preference sync), which needs the D1 schema. Two things to settle
+when you get there, both recorded: the canonical table list is unratified (§5 says six;
+`docs/plan-subscriptions-and-alerts.md` task 1 adds `email_verifications`), and H18's human
+step is still owed — enable Email Sending on the Cloudflare account and create the
+binding/secret.
+
+**Smaller, genuinely optional items, in rough priority order:**
+1. **A Congress 118 resume run.** The 15 bills D100 unblocked were never re-fetched (the
+   fix postdates the 118 commit), so 118 is missing 15 timelines. A resume picks up only
+   those 15 and costs almost nothing.
+2. **SD-37's bill-page half**, when a repeat-bearing bill first reaches a recorded vote —
+   render the row once plus *"The official record lists this action 4 times."* Today none of
+   them has a `/b/` page, so there is nothing to render (D101).
+3. **`ubuntu-latest` migrates to Ubuntu 26 on 2026-10-19** (GitHub's own CI annotation on
+   every run). Worth a look before then.
 
 ## ⚠ OPERATIONAL RULE — invariants 8 and 9 cannot be verified while a backfill runs
 

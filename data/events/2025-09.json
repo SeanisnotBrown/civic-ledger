@@ -1,5 +1,5 @@
 {
-  "count": 679,
+  "count": 708,
   "events": [
     {
       "action_code": null,
@@ -2289,6 +2289,71 @@
       "type": "Committee"
     },
     {
+      "action_code": "Intro-H",
+      "bill_id": "hr5509-119",
+      "committees": null,
+      "date": "2025-09-19",
+      "has_page": false,
+      "id": "hr5509-119--2025-09-19--6f143fad6553",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5509",
+      "subjects": [
+        "Congressional oversight",
+        "Drug therapy",
+        "Government information and archives",
+        "Health care costs and insurance",
+        "Prescription drugs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr5509-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-09-19",
+      "has_page": false,
+      "id": "hr5509-119--2025-09-19--86c6023f3b19",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5509",
+      "subjects": [
+        "Congressional oversight",
+        "Drug therapy",
+        "Government information and archives",
+        "Health care costs and insurance",
+        "Prescription drugs"
+      ],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr5509-119",
+      "committees": null,
+      "date": "2025-09-19",
+      "has_page": false,
+      "id": "hr5509-119--2025-09-19--9fc37f9ed01e",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5509",
+      "subjects": [
+        "Congressional oversight",
+        "Drug therapy",
+        "Government information and archives",
+        "Health care costs and insurance",
+        "Prescription drugs"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hr5517-119",
       "committees": [
@@ -2961,6 +3026,21 @@
       "type": "Committee"
     },
     {
+      "action_code": "B00100",
+      "bill_id": "hr5355-119",
+      "committees": null,
+      "date": "2025-09-18",
+      "has_page": false,
+      "id": "hr5355-119--2025-09-18--b6e1af6f6c13",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5355",
+      "subjects": [],
+      "text": "Sponsor introductory remarks on measure. (CR H4418)",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hr5448-119",
       "committees": [
@@ -3492,6 +3572,68 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr5505-119",
+      "committees": null,
+      "date": "2025-09-18",
+      "has_page": false,
+      "id": "hr5505-119--2025-09-18--81b30fd38525",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5505",
+      "subjects": [
+        "Education programs funding",
+        "Higher education",
+        "Religion",
+        "School administration"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr5505-119",
+      "committees": null,
+      "date": "2025-09-18",
+      "has_page": false,
+      "id": "hr5505-119--2025-09-18--9f853465655f",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5505",
+      "subjects": [
+        "Education programs funding",
+        "Higher education",
+        "Religion",
+        "School administration"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr5505-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-09-18",
+      "has_page": false,
+      "id": "hr5505-119--2025-09-18--c31583f605cc",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5505",
+      "subjects": [
+        "Education programs funding",
+        "Higher education",
+        "Religion",
+        "School administration"
+      ],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr5506-119",
       "committees": null,
       "date": "2025-09-18",
@@ -3821,6 +3963,46 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/745",
       "subjects": [],
       "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s2871-119",
+      "committees": null,
+      "date": "2025-09-18",
+      "has_page": false,
+      "id": "s2871-119--2025-09-18--bcfcad040a6b",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2871",
+      "subjects": [
+        "California",
+        "Indian lands and resources rights",
+        "Land transfers"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2871-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-09-18",
+      "has_page": false,
+      "id": "s2871-119--2025-09-18--d2cb552e9cce",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2871",
+      "subjects": [
+        "California",
+        "Indian lands and resources rights",
+        "Land transfers"
+      ],
+      "text": "Read twice and referred to the Committee on Indian Affairs. (Sponsor introductory remarks on measure: CR S6734)",
       "type": "IntroReferral"
     },
     {
@@ -5012,6 +5194,53 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H11100",
+      "bill_id": "hr5441-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-09-17",
+      "has_page": false,
+      "id": "hr5441-119--2025-09-17--0ef81733a9b1",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5441",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr5441-119",
+      "committees": null,
+      "date": "2025-09-17",
+      "has_page": false,
+      "id": "hr5441-119--2025-09-17--6f8adc6ecd6f",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5441",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr5441-119",
+      "committees": null,
+      "date": "2025-09-17",
+      "has_page": false,
+      "id": "hr5441-119--2025-09-17--9d17b42f47a6",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5441",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H15001",
       "bill_id": "hr979-119",
       "committees": [
@@ -5408,6 +5637,53 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5370",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr5378-119",
+      "committees": null,
+      "date": "2025-09-16",
+      "has_page": false,
+      "id": "hr5378-119--2025-09-16--a25f0aa491e5",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5378",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr5378-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-09-16",
+      "has_page": false,
+      "id": "hr5378-119--2025-09-16--c38763a61d93",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5378",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr5378-119",
+      "committees": null,
+      "date": "2025-09-16",
+      "has_page": false,
+      "id": "hr5378-119--2025-09-16--f3ba0737dfd9",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5378",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -6780,6 +7056,53 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5350",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr5355-119",
+      "committees": null,
+      "date": "2025-09-15",
+      "has_page": false,
+      "id": "hr5355-119--2025-09-15--5054ecd008f6",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5355",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr5355-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-09-15",
+      "has_page": false,
+      "id": "hr5355-119--2025-09-15--6bb0668eed22",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5355",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr5355-119",
+      "committees": null,
+      "date": "2025-09-15",
+      "has_page": false,
+      "id": "hr5355-119--2025-09-15--ca41560bea48",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5355",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -30886,6 +31209,53 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "1000",
+      "bill_id": "hr5152-119",
+      "committees": null,
+      "date": "2025-09-04",
+      "has_page": false,
+      "id": "hr5152-119--2025-09-04--2116d345ac53",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5152",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr5152-119",
+      "committees": null,
+      "date": "2025-09-04",
+      "has_page": false,
+      "id": "hr5152-119--2025-09-04--36a50264044c",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5152",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr5152-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-09-04",
+      "has_page": false,
+      "id": "hr5152-119--2025-09-04--70a5324b44e7",
+      "policy_area": "Crime and Law Enforcement",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5152",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11000",
       "bill_id": "hr5160-119",
       "committees": [
@@ -31041,6 +31411,38 @@
       ],
       "text": "Referred to the Subcommittee on Indian and Insular Affairs.",
       "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s2725-119",
+      "committees": null,
+      "date": "2025-09-04",
+      "has_page": false,
+      "id": "s2725-119--2025-09-04--2776bbb51d75",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2725",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2725-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-09-04",
+      "has_page": false,
+      "id": "s2725-119--2025-09-04--7781a445827e",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2725",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Finance.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -31316,6 +31718,53 @@
       ],
       "text": "Subcommittee on Aviation Discharged",
       "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr5106-119",
+      "committees": null,
+      "date": "2025-09-03",
+      "has_page": false,
+      "id": "hr5106-119--2025-09-03--45502b19d5d5",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5106",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr5106-119",
+      "committees": null,
+      "date": "2025-09-03",
+      "has_page": false,
+      "id": "hr5106-119--2025-09-03--a19619c76644",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5106",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr5106-119",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2025-09-03",
+      "has_page": false,
+      "id": "hr5106-119--2025-09-03--d0f7c3eb9520",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5106",
+      "subjects": [],
+      "text": "Referred to the House Committee on House Administration.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "1000",
@@ -31981,6 +32430,73 @@
       "subjects": [],
       "text": "Submitted in House",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "14000",
+      "bill_id": "s841-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-09-02",
+      "has_page": false,
+      "id": "s841-119--2025-09-02--094b458529a1",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/841",
+      "subjects": [
+        "Civil actions and liability",
+        "Consumer affairs",
+        "Fraud offenses and financial crimes",
+        "Internet, web applications, social media",
+        "Licensing and registrations"
+      ],
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-58.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s841-119",
+      "committees": null,
+      "date": "2025-09-02",
+      "has_page": false,
+      "id": "s841-119--2025-09-02--362411ce0c9f",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/841",
+      "subjects": [
+        "Civil actions and liability",
+        "Consumer affairs",
+        "Fraud offenses and financial crimes",
+        "Internet, web applications, social media",
+        "Licensing and registrations"
+      ],
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 145.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s841-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-09-02",
+      "has_page": false,
+      "id": "s841-119--2025-09-02--c784fa61a2bb",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/841",
+      "subjects": [
+        "Civil actions and liability",
+        "Consumer affairs",
+        "Fraud offenses and financial crimes",
+        "Internet, web applications, social media",
+        "Licensing and registrations"
+      ],
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-58.",
+      "type": "Committee"
     },
     {
       "action_code": "H11000",

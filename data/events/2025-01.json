@@ -1,5 +1,5 @@
 {
-  "count": 756,
+  "count": 776,
   "events": [
     {
       "action_code": "Intro-H",
@@ -2202,6 +2202,94 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "Intro-H",
+      "bill_id": "hr646-119",
+      "committees": null,
+      "date": "2025-01-23",
+      "has_page": false,
+      "id": "hr646-119--2025-01-23--2de1cf8652fc",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/646",
+      "subjects": [
+        "Child care and development",
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Public housing"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr646-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-01-23",
+      "has_page": false,
+      "id": "hr646-119--2025-01-23--474bf9298b6b",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/646",
+      "subjects": [
+        "Child care and development",
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Public housing"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr646-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-01-23",
+      "has_page": false,
+      "id": "hr646-119--2025-01-23--6f923d8dd979",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/646",
+      "subjects": [
+        "Child care and development",
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Public housing"
+      ],
+      "text": "Referred to the Committee on Financial Services, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr646-119",
+      "committees": null,
+      "date": "2025-01-23",
+      "has_page": false,
+      "id": "hr646-119--2025-01-23--8ac6a78f49b5",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/646",
+      "subjects": [
+        "Child care and development",
+        "Congressional oversight",
+        "Government studies and investigations",
+        "Housing and community development funding",
+        "Public housing"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hr675-119",
       "committees": [
@@ -3882,6 +3970,82 @@
       "subjects": [
         "Federal officials",
         "Government employee pay, benefits, personnel management"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr495-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2025-01-16",
+      "has_page": true,
+      "id": "hr495-119--2025-01-16--adbc27e5768d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/495",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Government information and archives"
+      ],
+      "text": "Referred to the House Committee on Homeland Security.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr495-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2025-01-16",
+      "has_page": true,
+      "id": "hr495-119--2025-01-16--ba791886157d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/495",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Government information and archives"
+      ],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr495-119",
+      "committees": null,
+      "date": "2025-01-16",
+      "has_page": true,
+      "id": "hr495-119--2025-01-16--c3d54d91a3e6",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/495",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Government information and archives"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr495-119",
+      "committees": null,
+      "date": "2025-01-16",
+      "has_page": true,
+      "id": "hr495-119--2025-01-16--ffb40302fbba",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/495",
+      "subjects": [
+        "Border security and unlawful immigration",
+        "Government information and archives"
       ],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -7666,6 +7830,71 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr220-119",
+      "committees": null,
+      "date": "2025-01-07",
+      "has_page": false,
+      "id": "hr220-119--2025-01-07--5890f87dce23",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/220",
+      "subjects": [
+        "Health care coverage and access",
+        "Sex and reproductive health",
+        "Transportation costs",
+        "Veterans' medical care",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr220-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-01-07",
+      "has_page": false,
+      "id": "hr220-119--2025-01-07--a80a4966feb8",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/220",
+      "subjects": [
+        "Health care coverage and access",
+        "Sex and reproductive health",
+        "Transportation costs",
+        "Veterans' medical care",
+        "Women's health"
+      ],
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr220-119",
+      "committees": null,
+      "date": "2025-01-07",
+      "has_page": false,
+      "id": "hr220-119--2025-01-07--dbdd82234ab9",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/220",
+      "subjects": [
+        "Health care coverage and access",
+        "Sex and reproductive health",
+        "Transportation costs",
+        "Veterans' medical care",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr226-119",
       "committees": null,
       "date": "2025-01-07",
@@ -7757,6 +7986,71 @@
         "Water use and supply"
       ],
       "text": "Referred to the House Committee on Natural Resources.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2025-01-07",
+      "has_page": true,
+      "id": "hr227-119--2025-01-07--5890f87dce23",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr227-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-01-07",
+      "has_page": true,
+      "id": "hr227-119--2025-01-07--961be443425c",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2025-01-07",
+      "has_page": true,
+      "id": "hr227-119--2025-01-07--dbdd82234ab9",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Introduced in House",
       "type": "IntroReferral"
     },
     {
@@ -8071,6 +8365,71 @@
         "House of Representatives",
         "Members of Congress",
         "Senate"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr211-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-01-06",
+      "has_page": false,
+      "id": "hr211-119--2025-01-06--86e61c25a9a5",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/211",
+      "subjects": [
+        "Family planning and birth control",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Veterans' medical care",
+        "Women's health"
+      ],
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr211-119",
+      "committees": null,
+      "date": "2025-01-06",
+      "has_page": false,
+      "id": "hr211-119--2025-01-06--97301534e1c2",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/211",
+      "subjects": [
+        "Family planning and birth control",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Veterans' medical care",
+        "Women's health"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr211-119",
+      "committees": null,
+      "date": "2025-01-06",
+      "has_page": false,
+      "id": "hr211-119--2025-01-06--ad38b15c70c1",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/211",
+      "subjects": [
+        "Family planning and birth control",
+        "Health care costs and insurance",
+        "Health care coverage and access",
+        "Veterans' medical care",
+        "Women's health"
       ],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -13693,6 +14052,62 @@
         "Sex, gender, sexual orientation discrimination"
       ],
       "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr45-119",
+      "committees": null,
+      "date": "2025-01-03",
+      "has_page": false,
+      "id": "hr45-119--2025-01-03--2dc5a7bfc5dd",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/45",
+      "subjects": [
+        "Firearms and explosives",
+        "Public contracts and procurement"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr45-119",
+      "committees": null,
+      "date": "2025-01-03",
+      "has_page": false,
+      "id": "hr45-119--2025-01-03--62f8e3e08f12",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/45",
+      "subjects": [
+        "Firearms and explosives",
+        "Public contracts and procurement"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr45-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2025-01-03",
+      "has_page": false,
+      "id": "hr45-119--2025-01-03--d9cf565991ee",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/45",
+      "subjects": [
+        "Firearms and explosives",
+        "Public contracts and procurement"
+      ],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
       "type": "IntroReferral"
     },
     {

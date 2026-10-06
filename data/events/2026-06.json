@@ -1,5 +1,5 @@
 {
-  "count": 805,
+  "count": 838,
   "events": [
     {
       "action_code": "H21000",
@@ -1992,6 +1992,87 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr9519-119",
+      "committees": null,
+      "date": "2026-06-29",
+      "has_page": false,
+      "id": "hr9519-119--2026-06-29--064426941716",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9519",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9519-119",
+      "committees": null,
+      "date": "2026-06-29",
+      "has_page": false,
+      "id": "hr9519-119--2026-06-29--1d776285f58d",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9519",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9519-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-06-29",
+      "has_page": false,
+      "id": "hr9519-119--2026-06-29--2981ae255568",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9519",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committees on Education and Workforce, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9519-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-29",
+      "has_page": false,
+      "id": "hr9519-119--2026-06-29--8fa677c4eb58",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9519",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committees on Education and Workforce, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9519-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-06-29",
+      "has_page": false,
+      "id": "hr9519-119--2026-06-29--c8bb2ce841f7",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9519",
+      "subjects": [],
+      "text": "Referred to the Committee on Ways and Means, and in addition to the Committees on Education and Workforce, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr9534-119",
       "committees": null,
       "date": "2026-06-29",
@@ -2341,6 +2422,50 @@
         "Medicare"
       ],
       "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr5505-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr5505-119--2026-06-25--62ff2cc42e5e",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5505",
+      "subjects": [
+        "Education programs funding",
+        "Higher education",
+        "Religion",
+        "School administration"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 18 - 15.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr5505-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr5505-119--2026-06-25--899e46ab4216",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5505",
+      "subjects": [
+        "Education programs funding",
+        "Higher education",
+        "Religion",
+        "School administration"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
       "type": "Committee"
     },
     {
@@ -2696,6 +2821,52 @@
         "Higher education",
         "Racial and ethnic relations",
         "School administration"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9228-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr9228-119--2026-06-25--62ff2cc42e5e",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9228",
+      "subjects": [
+        "Business ethics",
+        "Civil actions and liability",
+        "Data collection, sharing, protection",
+        "Health care costs and insurance",
+        "Health information and medical records"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 18 - 15.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9228-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr9228-119--2026-06-25--899e46ab4216",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9228",
+      "subjects": [
+        "Business ethics",
+        "Civil actions and liability",
+        "Data collection, sharing, protection",
+        "Health care costs and insurance",
+        "Health information and medical records"
       ],
       "text": "Committee Consideration and Mark-up Session Held",
       "type": "Committee"
@@ -3126,6 +3297,53 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9482",
       "subjects": [],
       "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9486-119",
+      "committees": null,
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr9486-119--2026-06-25--46d0d7e652f2",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9486",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9486-119",
+      "committees": null,
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr9486-119--2026-06-25--c889c12dae21",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9486",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9486-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-25",
+      "has_page": false,
+      "id": "hr9486-119--2026-06-25--dd0fffd77dc5",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9486",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
       "type": "IntroReferral"
     },
     {
@@ -7280,6 +7498,38 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4862",
       "subjects": [],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "bill_id": "s4869-119",
+      "committees": null,
+      "date": "2026-06-23",
+      "has_page": false,
+      "id": "s4869-119--2026-06-23--805d150cd618",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4869",
+      "subjects": [],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4869-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-06-23",
+      "has_page": false,
+      "id": "s4869-119--2026-06-23--9ec56306bc67",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4869",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
       "type": "IntroReferral"
     },
     {
@@ -12416,6 +12666,94 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H33000",
+      "bill_id": "hres1504-119",
+      "committees": [
+        "Ethics Committee"
+      ],
+      "date": "2026-06-10",
+      "has_page": false,
+      "id": "hres1504-119--2026-06-10--0302b9eec0d3",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1504",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Evidence and witnesses",
+        "House of Representatives"
+      ],
+      "text": "The committee report referred to in this resolution is H.Rept. 119-693.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H33000",
+      "bill_id": "hres1504-119",
+      "committees": [
+        "Ethics Committee"
+      ],
+      "date": "2026-06-10",
+      "has_page": false,
+      "id": "hres1504-119--2026-06-10--2bae23955eb5",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1504",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Evidence and witnesses",
+        "House of Representatives"
+      ],
+      "text": "The committee favorably reported H.Rept. 119-693.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H33000",
+      "bill_id": "hres1505-119",
+      "committees": [
+        "Ethics Committee"
+      ],
+      "date": "2026-06-10",
+      "has_page": false,
+      "id": "hres1505-119--2026-06-10--1706a00d10c6",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1505",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Evidence and witnesses",
+        "House of Representatives"
+      ],
+      "text": "The committee favorably reported H.Rept. 119-694.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H33000",
+      "bill_id": "hres1505-119",
+      "committees": [
+        "Ethics Committee"
+      ],
+      "date": "2026-06-10",
+      "has_page": false,
+      "id": "hres1505-119--2026-06-10--8fb65bac67d9",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1505",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Evidence and witnesses",
+        "House of Representatives"
+      ],
+      "text": "The committee report referred to in this resolution is H.Rept. 119-694.",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "s1288-119",
       "committees": [
@@ -13196,6 +13534,71 @@
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9216",
       "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9228-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-09",
+      "has_page": false,
+      "id": "hr9228-119--2026-06-09--3e5eca60090b",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9228",
+      "subjects": [
+        "Business ethics",
+        "Civil actions and liability",
+        "Data collection, sharing, protection",
+        "Health care costs and insurance",
+        "Health information and medical records"
+      ],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9228-119",
+      "committees": null,
+      "date": "2026-06-09",
+      "has_page": false,
+      "id": "hr9228-119--2026-06-09--5421dbf526ee",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9228",
+      "subjects": [
+        "Business ethics",
+        "Civil actions and liability",
+        "Data collection, sharing, protection",
+        "Health care costs and insurance",
+        "Health information and medical records"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9228-119",
+      "committees": null,
+      "date": "2026-06-09",
+      "has_page": false,
+      "id": "hr9228-119--2026-06-09--976ac8963ac1",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9228",
+      "subjects": [
+        "Business ethics",
+        "Civil actions and liability",
+        "Data collection, sharing, protection",
+        "Health care costs and insurance",
+        "Health information and medical records"
+      ],
       "text": "Introduced in House",
       "type": "IntroReferral"
     },
@@ -14389,6 +14792,70 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "1000",
+      "bill_id": "hr9183-119",
+      "committees": null,
+      "date": "2026-06-08",
+      "has_page": false,
+      "id": "hr9183-119--2026-06-08--19105c0dfeb5",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9183",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9183-119",
+      "committees": null,
+      "date": "2026-06-08",
+      "has_page": false,
+      "id": "hr9183-119--2026-06-08--b76c91ea1707",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9183",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9183-119",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2026-06-08",
+      "has_page": false,
+      "id": "hr9183-119--2026-06-08--ea6b90a2962d",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9183",
+      "subjects": [],
+      "text": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9183-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-06-08",
+      "has_page": false,
+      "id": "hr9183-119--2026-06-08--f13b7adf5485",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9183",
+      "subjects": [],
+      "text": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hr9191-119",
       "committees": [
@@ -15410,6 +15877,70 @@
       "subjects": [],
       "text": "Committee Consideration and Mark-up Session Held",
       "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9151-119",
+      "committees": null,
+      "date": "2026-06-04",
+      "has_page": false,
+      "id": "hr9151-119--2026-06-04--05d45919ea72",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9151",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9151-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-06-04",
+      "has_page": false,
+      "id": "hr9151-119--2026-06-04--8e64b9f176bd",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9151",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr9151-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-06-04",
+      "has_page": false,
+      "id": "hr9151-119--2026-06-04--bd642c96ed84",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9151",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9151-119",
+      "committees": null,
+      "date": "2026-06-04",
+      "has_page": false,
+      "id": "hr9151-119--2026-06-04--f2ebf47003cb",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9151",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
     },
     {
       "action_code": "Intro-H",
@@ -16531,6 +17062,53 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H11100",
+      "bill_id": "hr9134-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-06-03",
+      "has_page": false,
+      "id": "hr9134-119--2026-06-03--30f9aa42db3d",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9134",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr9134-119",
+      "committees": null,
+      "date": "2026-06-03",
+      "has_page": false,
+      "id": "hr9134-119--2026-06-03--77079cdd0355",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9134",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr9134-119",
+      "committees": null,
+      "date": "2026-06-03",
+      "has_page": false,
+      "id": "hr9134-119--2026-06-03--ec08ea2d4f99",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9134",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "5000",
       "bill_id": "hr915-119",
       "committees": [
@@ -16609,6 +17187,27 @@
         "Indian lands and resources rights",
         "Land transfers",
         "Washington State"
+      ],
+      "text": "Committee on Indian Affairs. Hearings held.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s2871-119",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-06-03",
+      "has_page": false,
+      "id": "s2871-119--2026-06-03--6c025d2b28d7",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/2871",
+      "subjects": [
+        "California",
+        "Indian lands and resources rights",
+        "Land transfers"
       ],
       "text": "Committee on Indian Affairs. Hearings held.",
       "type": "Committee"

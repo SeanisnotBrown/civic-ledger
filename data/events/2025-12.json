@@ -1,5 +1,5 @@
 {
-  "count": 843,
+  "count": 866,
   "events": [
     {
       "action_code": "H12410",
@@ -203,6 +203,26 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4114",
       "subjects": [
         "Congressional oversight",
+        "Veterans' medical care"
+      ],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr4527-119",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2025-12-19",
+      "has_page": false,
+      "id": "hr4527-119--2025-12-19--b4e8e661d342",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4527",
+      "subjects": [
+        "Health information and medical records",
         "Veterans' medical care"
       ],
       "text": "Referred to the Subcommittee on Health.",
@@ -4317,6 +4337,54 @@
     },
     {
       "action_code": "H15001",
+      "bill_id": "hr6553-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-12-17",
+      "has_page": false,
+      "id": "hr6553-119--2025-12-17--43f28aa1bce2",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr6553-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-12-17",
+      "has_page": false,
+      "id": "hr6553-119--2025-12-17--7beaf9fd124d",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 33 - 19.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
       "bill_id": "hr6644-119",
       "committees": [
         "Financial Services Committee"
@@ -4413,6 +4481,70 @@
       "subjects": [],
       "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
       "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6771-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-12-17",
+      "has_page": false,
+      "id": "hr6771-119--2025-12-17--b11cf943b482",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6771",
+      "subjects": [],
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on Financial Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr6771-119",
+      "committees": null,
+      "date": "2025-12-17",
+      "has_page": false,
+      "id": "hr6771-119--2025-12-17--b405c4d27edc",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6771",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr6771-119",
+      "committees": null,
+      "date": "2025-12-17",
+      "has_page": false,
+      "id": "hr6771-119--2025-12-17--bf36657a6cde",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6771",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6771-119",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2025-12-17",
+      "has_page": false,
+      "id": "hr6771-119--2025-12-17--e2cde13b5177",
+      "policy_area": "Housing and Community Development",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6771",
+      "subjects": [],
+      "text": "Referred to the Committee on Appropriations, and in addition to the Committee on Financial Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "H11100",
@@ -7056,6 +7188,30 @@
         "Energy revenues and royalties"
       ],
       "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr6553-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-12-16",
+      "has_page": false,
+      "id": "hr6553-119--2025-12-16--196fc902b1db",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
       "type": "Committee"
     },
     {
@@ -10198,6 +10354,66 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H23000",
+      "bill_id": "hr2657-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2025-12-11",
+      "has_page": false,
+      "id": "hr2657-119--2025-12-11--e0953e809686",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2657",
+      "subjects": [
+        "Business records",
+        "Child safety and welfare",
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Digital media",
+        "Family relationships",
+        "Internet, web applications, social media",
+        "Licensing and registrations",
+        "Mental health",
+        "Product safety and quality",
+        "Right of privacy"
+      ],
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "bill_id": "hr2657-119",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2025-12-11",
+      "has_page": false,
+      "id": "hr2657-119--2025-12-11--f3358d24819f",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2657",
+      "subjects": [
+        "Business records",
+        "Child safety and welfare",
+        "Computer security and identity theft",
+        "Computers and information technology",
+        "Consumer affairs",
+        "Digital media",
+        "Family relationships",
+        "Internet, web applications, social media",
+        "Licensing and registrations",
+        "Mental health",
+        "Product safety and quality",
+        "Right of privacy"
+      ],
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "hr3857-119",
       "committees": [
@@ -10796,6 +11012,53 @@
         "Rural conditions and development",
         "Urban and suburban affairs and development"
       ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6646-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-12-11",
+      "has_page": false,
+      "id": "hr6646-119--2025-12-11--2540a0c3e57a",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6646",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr6646-119",
+      "committees": null,
+      "date": "2025-12-11",
+      "has_page": false,
+      "id": "hr6646-119--2025-12-11--36aec07753df",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6646",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr6646-119",
+      "committees": null,
+      "date": "2025-12-11",
+      "has_page": false,
+      "id": "hr6646-119--2025-12-11--eb56de1fd2fb",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6646",
+      "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
     },
@@ -13936,6 +14199,52 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H15001",
+      "bill_id": "hr227-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-12-10",
+      "has_page": true,
+      "id": "hr227-119--2025-12-10--3b563ba6be9c",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr227-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-12-10",
+      "has_page": true,
+      "id": "hr227-119--2025-12-10--7179e53b47ec",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Ordered to be Reported in the Nature of a Substitute (Amended) by the Yeas and Nays: 40 - 0.",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "hr2302-119",
       "committees": [
@@ -14324,6 +14633,74 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr6553-119",
+      "committees": null,
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6553-119--2025-12-10--0e9b9eff53f7",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr6553-119",
+      "committees": null,
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6553-119--2025-12-10--65ede8848267",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6553-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6553-119--2025-12-10--7c9dec8e3747",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Referred to the House Committee on Financial Services.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr6557-119",
       "committees": null,
       "date": "2025-12-10",
@@ -14461,6 +14838,87 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6574",
       "subjects": [],
       "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr6576-119",
+      "committees": null,
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6576-119--2025-12-10--0e9b9eff53f7",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6576",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr6576-119",
+      "committees": null,
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6576-119--2025-12-10--65ede8848267",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6576",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6576-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6576-119--2025-12-10--c28b00c624d9",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6576",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Oversight and Government Reform, and Transportation and Infrastructure, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6576-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6576-119--2025-12-10--c3a1ea3890d2",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6576",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Oversight and Government Reform, and Transportation and Infrastructure, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr6576-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2025-12-10",
+      "has_page": false,
+      "id": "hr6576-119--2025-12-10--f10ec5745b49",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6576",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Oversight and Government Reform, and Transportation and Infrastructure, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
     },
     {

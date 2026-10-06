@@ -1,5 +1,5 @@
 {
-  "count": 692,
+  "count": 716,
   "events": [
     {
       "action_code": "H8D000",
@@ -10714,6 +10714,53 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr8565-119",
+      "committees": null,
+      "date": "2026-04-29",
+      "has_page": false,
+      "id": "hr8565-119--2026-04-29--5f07ae3f9978",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8565",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr8565-119",
+      "committees": null,
+      "date": "2026-04-29",
+      "has_page": false,
+      "id": "hr8565-119--2026-04-29--6483399533c2",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8565",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8565-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2026-04-29",
+      "has_page": false,
+      "id": "hr8565-119--2026-04-29--bb2d7cd63a02",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8565",
+      "subjects": [],
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr8571-119",
       "committees": null,
       "date": "2026-04-29",
@@ -11105,6 +11152,78 @@
     },
     {
       "action_code": "10000",
+      "bill_id": "s4429-119",
+      "committees": null,
+      "date": "2026-04-29",
+      "has_page": false,
+      "id": "s4429-119--2026-04-29--1f98675518fd",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4429",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advanced technology and technological innovations",
+        "Advisory bodies",
+        "Asia",
+        "China",
+        "Civil actions and liability",
+        "Computers and information technology",
+        "Congressional oversight",
+        "Department of Commerce",
+        "Europe",
+        "Government information and archives",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Iran",
+        "Manufacturing",
+        "Middle East",
+        "Motor vehicles",
+        "North Korea",
+        "Retail and wholesale trades",
+        "Russia"
+      ],
+      "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s4429-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-04-29",
+      "has_page": false,
+      "id": "s4429-119--2026-04-29--346f19b77fc0",
+      "policy_area": "Foreign Trade and International Finance",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4429",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Advanced technology and technological innovations",
+        "Advisory bodies",
+        "Asia",
+        "China",
+        "Civil actions and liability",
+        "Computers and information technology",
+        "Congressional oversight",
+        "Department of Commerce",
+        "Europe",
+        "Government information and archives",
+        "Hybrid, electric, and advanced technology vehicles",
+        "Iran",
+        "Manufacturing",
+        "Middle East",
+        "Motor vehicles",
+        "North Korea",
+        "Retail and wholesale trades",
+        "Russia"
+      ],
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
       "bill_id": "s4436-119",
       "committees": null,
       "date": "2026-04-29",
@@ -11492,6 +11611,29 @@
         "War and emergency powers"
       ],
       "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "hr227-119",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2026-04-28",
+      "has_page": true,
+      "id": "hr227-119--2026-04-28--90ab83d2df56",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Received in the Senate and Read twice and referred to the Committee on Finance.",
       "type": "IntroReferral"
     },
     {
@@ -12053,6 +12195,174 @@
         "Financial literacy"
       ],
       "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--230f3db42904",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--3052053581ae",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Considered as unfinished business. (consideration: CR H3118-3119)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--32249d105ace",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--4c23ea0462d2",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Mr. Carey moved to suspend the rules and pass the bill, as amended.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--8c539b76de01",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 227.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--a51a79d76956",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H3115-3116)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--d040967e3a22",
+      "policy_area": "Social Welfare",
+      "rollcall_id": "h-119-2-0139",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 350 - 5 (Roll no. 139). (text: CR H3115-3116)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr227-119",
+      "committees": null,
+      "date": "2026-04-27",
+      "has_page": true,
+      "id": "hr227-119--2026-04-27--f89f2585a145",
+      "policy_area": "Social Welfare",
+      "rollcall_id": "h-119-2-0139",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
+      "subjects": [
+        "Congressional oversight",
+        "Income tax exclusion",
+        "Religion",
+        "Social security and elderly assistance",
+        "Tax administration and collection, taxpayers"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 350 - 5 (Roll no. 139). (text: CR H3115-3116)",
       "type": "Floor"
     },
     {
@@ -14660,6 +14970,53 @@
       "subjects": [],
       "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
       "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8432-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-04-22",
+      "has_page": false,
+      "id": "hr8432-119--2026-04-22--5e88b0b29e95",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8432",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr8432-119",
+      "committees": null,
+      "date": "2026-04-22",
+      "has_page": false,
+      "id": "hr8432-119--2026-04-22--793d1932dedc",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8432",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr8432-119",
+      "committees": null,
+      "date": "2026-04-22",
+      "has_page": false,
+      "id": "hr8432-119--2026-04-22--a019d1386430",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8432",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
     },
     {
       "action_code": "H11100",
@@ -17744,6 +18101,53 @@
         "Missouri",
         "Postal service"
       ],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8360-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-04-16",
+      "has_page": false,
+      "id": "hr8360-119--2026-04-16--13eefd7dfa13",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8360",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr8360-119",
+      "committees": null,
+      "date": "2026-04-16",
+      "has_page": false,
+      "id": "hr8360-119--2026-04-16--24b7aea6de93",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8360",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr8360-119",
+      "committees": null,
+      "date": "2026-04-16",
+      "has_page": false,
+      "id": "hr8360-119--2026-04-16--9d86c0e4cd05",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8360",
+      "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
     },
@@ -21030,6 +21434,70 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8267",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8271-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-04-14",
+      "has_page": false,
+      "id": "hr8271-119--2026-04-14--1adbde7d7456",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8271",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr8271-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-04-14",
+      "has_page": false,
+      "id": "hr8271-119--2026-04-14--2cd4df2c1ca6",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8271",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr8271-119",
+      "committees": null,
+      "date": "2026-04-14",
+      "has_page": false,
+      "id": "hr8271-119--2026-04-14--878caa36a5c4",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8271",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr8271-119",
+      "committees": null,
+      "date": "2026-04-14",
+      "has_page": false,
+      "id": "hr8271-119--2026-04-14--c8e99526ce0d",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8271",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"

@@ -1,5 +1,5 @@
 {
-  "count": 497,
+  "count": 512,
   "events": [
     {
       "action_code": "H11000",
@@ -701,6 +701,98 @@
         "Land transfers",
         "Land use and conservation",
         "New Mexico"
+      ],
+      "text": "Referred to the Subcommittee on Indian and Insular Affairs.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr6553-119",
+      "committees": null,
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr6553-119--2026-02-25--6edbfaa5d5c2",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 457.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr6553-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr6553-119--2026-02-25--d46c6952c6b9",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 119-532.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr6553-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr6553-119--2026-02-25--ffc0a3ac967a",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6553",
+      "subjects": [
+        "Bank accounts, deposits, capital",
+        "Banking and financial institutions regulation",
+        "Currency",
+        "Economic performance and conditions",
+        "Financial crises and stabilization",
+        "Performance measurement"
+      ],
+      "text": "Reported (Amended) by the Committee on Financial Services. H. Rept. 119-532.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7065-119",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2026-02-25",
+      "has_page": false,
+      "id": "hr7065-119--2026-02-25--19ca88d30769",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7065",
+      "subjects": [
+        "Federal-Indian relations",
+        "Indian lands and resources rights",
+        "Law enforcement administration and funding",
+        "New York State"
       ],
       "text": "Referred to the Subcommittee on Indian and Insular Affairs.",
       "type": "Committee"
@@ -2543,6 +2635,53 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr7620-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7620-119--2026-02-20--595faa66b580",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7620",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7620-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7620-119--2026-02-20--641abdf14707",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7620",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7620-119",
+      "committees": null,
+      "date": "2026-02-20",
+      "has_page": false,
+      "id": "hr7620-119--2026-02-20--b3f816d35f5e",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7620",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr7622-119",
       "committees": null,
       "date": "2026-02-20",
@@ -2861,6 +3000,23 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7539",
       "subjects": [],
       "text": "Referred to the Subcommittee on Highways and Transit.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr7543-119",
+      "committees": [
+        "Water Resources and Environment Subcommittee"
+      ],
+      "date": "2026-02-13",
+      "has_page": false,
+      "id": "hr7543-119--2026-02-13--c1e6da69e39a",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7543",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Water Resources and Environment.",
       "type": "Committee"
     },
     {
@@ -3830,6 +3986,53 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7540",
       "subjects": [],
       "text": "Referred to the Committee on Armed Services, and in addition to the Committee on Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7543-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7543-119--2026-02-12--1cc79a6d4293",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7543",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7543-119",
+      "committees": null,
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7543-119--2026-02-12--249d6d00e9f8",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7543",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7543-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2026-02-12",
+      "has_page": false,
+      "id": "hr7543-119--2026-02-12--686c04cda8d4",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7543",
+      "subjects": [],
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
       "type": "IntroReferral"
     },
     {
@@ -9937,6 +10140,70 @@
       ],
       "text": "Subcommittee Hearings Held",
       "type": "Committee"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr7325-119",
+      "committees": null,
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr7325-119--2026-02-03--20ab5f2652d4",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7325",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr7325-119",
+      "committees": null,
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr7325-119--2026-02-03--799e16e3cd2d",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7325",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7325-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr7325-119--2026-02-03--939bc5e29f3d",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7325",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr7325-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-03",
+      "has_page": false,
+      "id": "hr7325-119--2026-02-03--cdee2716cde9",
+      "policy_area": "Native Americans",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7325",
+      "subjects": [],
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Natural Resources, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "Intro-H",

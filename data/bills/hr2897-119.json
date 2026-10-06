@@ -1,0 +1,58 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Small Business.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001301",
+    "B001321",
+    "D000530",
+    "M001237",
+    "N000193",
+    "S000510",
+    "S001221"
+  ],
+  "id": "hr2897-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Small Business.",
+  "latest_action_date": "2025-04-10",
+  "number": 2897,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2897",
+  "sponsor_id": "S001215",
+  "subjects": [],
+  "title_official": "To amend the Small Business Act to make disaster loans available for damages caused by prolonged power outages, and for other purposes.",
+  "type": "hr"
+}

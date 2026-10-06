@@ -3265,3 +3265,134 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   **Also confirmed against the source before shipping:** SD-37 calls its sentence a
   **"Required wording shape"**, quoting the N=4 form as the example. `repeatNote()`
   interpolates the count, which is the shape and not a reworded claim.
+
+- **SD-39 (2026-10-06, OWNER DECISION) — Q4 answered: how long reader records are kept.**
+  The last open question from `docs/draft-v2-7-privacy-claims.md`. Three numbers, ratified
+  together, with the builder's recommendation accepted as given:
+  - **`deliveries`: 90 days, then purged.** Those rows exist for one job — never send the
+    same alert twice. They only need to outlive the window in which an event can still reach
+    the Worker's poll of `/events/latest.json`, and events are keyed by RECORD date, so once
+    an action's date falls out of that window it does not come back. A few weeks is
+    functionally enough; 90 days is margin for a paused digest or a re-derived feed. **The
+    rejected option was "keep forever,"** and the reason is a privacy one: an unbounded
+    `deliveries` table turns an anti-duplicate ledger into a permanent dated history of what
+    each reader was told about — which is exactly what `/threat-model` has to say a legal
+    demand yields. The purge is a nightly `DELETE`, no new machinery.
+  - **Signup confirmation code: 24 hours, single-use, deleted on use.** Clicking it only
+    proves the person owns the inbox, so it is not an account-takeover vector. One hour
+    punishes a reader who opens mail in the evening, and this site's readers are not
+    developers sitting in a terminal.
+  - **Password-reset token: 1 hour, single-use, deleted on use.** This one *is* a takeover
+    vector, which is why it does not get the signup code's lifetime. Two different risks,
+    two different numbers, deliberately.
+
+  **No duration goes on the site.** `/privacy` says *what* is held and not *how long*: every
+  number on that page is a claim that has to stay true as the code changes (§6.7, copy flips
+  atomically with the feature), and "kept for 90 days" is a promise about a cron job. The
+  mechanism is safe to state and now is stated — the seventh disclosure line says the
+  one-time code is deleted once the reader confirms, which SD-39 makes true.
+
+  **Where the numbers live.** Nowhere yet, because the Worker does not exist. They are
+  recorded in spec §5 beside the tables they govern, and V2-8 must define each one **once**
+  in the Worker with a test pinning it to the spec — the same shape as `K_ANON` and the
+  privacy surface, for the same reason: a retention period the code and the record disagree
+  about is a privacy claim that has silently become false.
+
+  **Accepted limit:** 90 days caps what a reader could ever be shown of their own alert
+  history, if that feature is ever wanted. Not planned.
+  Not evaluative under §0.8 — no metric, threshold or published number. (§0.8 governs
+  evaluative constants; a retention period is a policy choice, and it is the owner's either
+  way.)
+
+- **SD-40 (2026-10-06, OWNER DECISION) — H20 (Cloudflare Workers Paid, $5/mo) is DEFERRED
+  until the site's layout is where the owner wants it.**
+  In his words: the site is *"currently not the way I want overall"*, he does not know how
+  long getting there will take, and he would rather not pay for a subscription that sits idle
+  meanwhile. **Nothing is cancelled — H20 was never started**, so this is a decision not to
+  begin, with no refund or downgrade involved.
+
+  **Measured before the decision, because the old H20 row said to decide it on the file
+  count, and that trigger turns out never to fire.** The free static ceiling is 20,000 files
+  and the build is at **17,005**. The roll-call dataset is complete and every bill it
+  references already has a file on disk, so **the bill-page count is already final at 1,040**
+  — the ~16,000 Congress 119 bills still to arrive add `data/` files, which are not published,
+  and no `/b/` page or bill feed, because SD-33 3(c) gives a page only to a bill that reached
+  a recorded vote. The only growth left in `dist/` is a new CRS subject term, at two files
+  each (a page and a feed), from 970 today. A realistic landing is ~17,200. **So the static
+  ceiling does not force the upgrade and the H20 row's "decide when the builder brings V2-11
+  task-1 numbers" condition is discharged.**
+
+  **What the deferral actually costs, stated plainly: V2-8 can be built but not finished.**
+  Workers Paid is what unlocks Email Sending (verified 2026-09-23), so without it the signup
+  flow cannot send its confirmation mail and **V2-8 stalls at its acceptance step, not at its
+  code.** Per §0.2 the right response is to build around the block — `worker/`, the seven-table
+  D1 schema, Argon2id, double opt-in, password reset and hard delete can all be written and
+  unit-tested against a stubbed sender — and to leave the acceptance open rather than fake it.
+  D1 itself has a free tier; the daily row caps are irrelevant at this scale.
+
+  **Re-verify, do not assume, when the subscription is taken.** That Email Sending needs Paid
+  is a 2026-09-23 reading of Cloudflare's plans, and plan boundaries move. Check it again on
+  the day rather than treating this entry as current fact.
+  Not evaluative under §0.8 — no metric, threshold or published number.
+
+- **D104 (2026-10-06) — a bill number with NO action on the official record publishes
+  nothing, and that is not a quarantine.** Builder ADR under §0.1: mechanical, no metric,
+  threshold or published number, and strictly narrower than SD-33 3(c), which the owner
+  already ratified.
+
+  **What was found.** The second stop-window pytest gate for SD-39/SD-40 came back
+  `1 failed, 566 passed` on `test_committed_accept_list_matches_committed_quarantines`: a
+  quarantine file `data/quality/quarantine/bill-hr2-119.json` had appeared on disk at 11:31
+  recording `KeyError: 'text'`. It is not a defect in the response. **HR 2 of the 119th
+  Congress is titled "Reserved for the Speaker."** — a number House leadership holds and
+  never introduces. `GET /v3/bill/119/hr/2` answers **200** with `"latestAction": null`, no
+  `policyArea`, and `GET .../actions` returns **`[]`** (both verified offline from the cached
+  response `data/raw/congress_gov/cafb2067e000a199.json`). `parse_bill` did
+  `latest = bill.get("latestAction") or {}` then `latest["text"]`, so an empty record
+  crashed and quarantined.
+
+  **Why exclusion, and how that squares with the `text` correction in models.py.** That
+  correction (2026-10-05) kept a whole real bill rather than lose it over one missing
+  sentence — "keeping the field required traded one missing sentence for an entire missing
+  bill, which is the worse falsehood." The rule it establishes is *represent the absence
+  rather than drop the record*, and it does not reach this case: there the government had
+  **acted** and the absence was a field; here the government **has not acted at all** and
+  there is no record to represent. Excluding a reserved number hides nothing.
+
+  Exporting it would do positive harm. `ingest/topics.py` increments `n_bills` for **every**
+  file in `data/bills/` unconditionally, and `/topics` publishes that figure as "across N
+  bills with a classification on record" — so a reserved placeholder with no policy area and
+  no subjects would be counted as a classified bill. A `/b/` page was never at stake either
+  way (SD-33 3(c) gives a page only to a bill that reached a recorded vote, and this one has
+  none). Exclusion is also the reversible direction: the raw response stays cached, so a later
+  increment could surface reserved numbers as a feature, whereas a published count that
+  counted non-bills cannot be un-published.
+
+  **The rule.** `parse_bill` raises a new `NoActionOnRecord` when `latestAction` is absent
+  **and** no actions were collected. Both callers (`run`, `run_activity`) catch it ahead of
+  the `(ValidationError, KeyError, BadBillId)` clause, call `_clear_quarantine`, count the id
+  and continue; neither writes a quarantine, and both print the excluded ids (not just a
+  count) in the run summary so the owner can see which numbers published nothing.
+
+  **The `and no actions were collected` half is load-bearing.** A bill that carries actions
+  but no `latestAction` would be upstream inconsistency, and treating it as "nothing to
+  publish" would silently hide real government action. That case deliberately still falls
+  through to the quarantine, which is the correct loud signal for something never observed.
+  Both branches are pinned by tests in `tests/test_bills.py`.
+
+  **This is a class, not a one-off.** The reserved numbers only reach the pipeline now because
+  `run_activity` walks the whole legislation lists, where the pre-V2-11 ingest only ever saw
+  bills referenced by a roll call — which a reserved number never is. `hr3/hr5/hr6/hr8/hr9/hr10`
+  of the 119th have no file on disk and are not yet fetched; the rule handles them when the
+  backfill reaches them, with no per-id accept-list entry. Fixing this by accept-list would
+  have failed anyway: the accept-list is consulted only in the **404** branch, so it does not
+  suppress a parse-failure quarantine, and each new reserved number would turn the nightly red
+  until a human edited YAML.
+
+  **A second, latent defect was found with it and fixed in the same commit.** The guard test
+  compared the accept-list against `p.stem` for each quarantine file, but a bill quarantine is
+  written as `bill-<bill_id>.json` while the accept-list keys bills by their bare id
+  (`hr1234-119`, per its own header and the `bill_id in accepted_ids` check in `bills.run`).
+  The guard could therefore **never** have passed for a genuine bill quarantine — exactly what
+  D87 added bill ids to the accept-list for. It had never been exercised because no bill had
+  ever been quarantined before today. The test now strips the `bill-` prefix before comparing.

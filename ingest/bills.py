@@ -36,6 +36,26 @@ class BadBillId(ValueError):
     """A bill_id that doesn't parse to type+number+congress — quarantine."""
 
 
+class NoActionOnRecord(ValueError):
+    """A bill number with NO government action on the official record — not a
+    quarantine, and not an error. The House reserves low bill numbers for the
+    Speaker (HR 2 of the 119th is titled "Reserved for the Speaker."); the API
+    answers 200 with `latestAction: null` and an EMPTY `/actions` list, because
+    nothing has ever happened to the number.
+
+    The ledger publishes nothing for it (D104). This is narrower than the
+    models.py `text` correction, which kept a whole REAL bill rather than lose
+    one missing sentence: there the government had acted and the absence was a
+    field, here the government has not acted at all and there is no record to
+    represent. Excluding it hides nothing; exporting it would add a non-bill to
+    `data/bills/`, and `topics.counts["bills"]` counts every file there and is
+    published on /topics as "bills with a classification on record"."""
+
+    def __init__(self, bill_id: str) -> None:
+        super().__init__(f"{bill_id}: no action on the official record")
+        self.bill_id = bill_id
+
+
 def parse_bill_id(bill_id: str) -> tuple[str, int, int]:
     m = _BILL_ID_RE.match(bill_id)
     if not m:
@@ -263,7 +283,15 @@ def parse_bill(
         for c in (bill.get("cboCostEstimates") or [])
     ]
 
+    # D104. `latestAction` absent AND no actions collected => the record is empty,
+    # so there is nothing to publish (see NoActionOnRecord). The `not actions` half is
+    # load-bearing: an absent `latestAction` on a bill that DOES carry actions would be
+    # upstream inconsistency, and silently dropping it would hide real government
+    # action — that case still falls through to the KeyError below and quarantines,
+    # which is the right loud signal for something unobserved.
     latest = bill.get("latestAction") or {}
+    if not latest and not actions:
+        raise NoActionOnRecord(bill_id)
 
     return Bill(
         id=bill_id,
@@ -369,6 +397,7 @@ def run(argv: list[str] | None = None) -> int:
     quarantined: list[str] = []
     fetch_failures: list[str] = []
     accepted_missing: list[str] = []
+    no_action: list[str] = []  # D104: reserved numbers; nothing to publish
 
     for bill_id in bill_ids:
         if not force_all and incremental.bill_is_skippable(bill_id, recent):
@@ -407,6 +436,13 @@ def run(argv: list[str] | None = None) -> int:
                 cosponsor_ids=cosponsor_ids,
                 actions=parse_actions(raw_actions, known_rollcall_ids=known_rolls),
             )
+        except NoActionOnRecord:
+            # D104. Not a quarantine: the record is empty, so publishing nothing is
+            # the correct outcome, not a failure. Clear any file a pre-D104 run left
+            # behind, so the quarantine directory keeps telling the truth.
+            _clear_quarantine(bill_id)
+            no_action.append(bill_id)
+            continue
         except (ValidationError, KeyError, BadBillId) as exc:
             _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
             quarantined.append(bill_id)
@@ -417,6 +453,11 @@ def run(argv: list[str] | None = None) -> int:
 
     print(f"civic-ledger bills: {exported} fetched, {skipped} skipped (already "
           f"final), of {total} referenced bills in data/bills/.")
+    if no_action:
+        # Printed as ids, not a bare count: these are deliberate exclusions, and the
+        # owner should be able to see WHICH numbers the ledger published nothing for.
+        print(f"  {len(no_action)} with no action on the official record "
+              f"(nothing published — D104): {no_action[:10]}")
     if quarantined:
         frac = len(quarantined) / total if total else 0.0
         print(f"  {len(quarantined)} quarantined ({frac:.2%}): {quarantined[:10]}")
@@ -615,6 +656,7 @@ def run_activity(argv: list[str] | None = None) -> int:
     skipped = 0
     quarantined: list[str] = []
     fetch_failures: list[str] = []
+    no_action: list[str] = []  # D104: reserved numbers; nothing to publish
 
     for n, item in enumerate(items, 1):
         bill_id = bill_id_from_list_item(item)
@@ -650,6 +692,13 @@ def run_activity(argv: list[str] | None = None) -> int:
         except fetch_errors as exc:
             fetch_failures.append(f"{bill_id}: {type(exc).__name__}")
             continue
+        except NoActionOnRecord:
+            # D104, and this is the loop that meets them: the legislation lists carry
+            # the Speaker's reserved numbers, so the long backfill walks straight into
+            # them. Nothing to publish, and not a failure.
+            _clear_quarantine(bill_id)
+            no_action.append(bill_id)
+            continue
         except (ValidationError, KeyError, BadBillId) as exc:
             _quarantine(bill_id, f"{type(exc).__name__}: {exc}")
             quarantined.append(bill_id)
@@ -670,6 +719,9 @@ def run_activity(argv: list[str] | None = None) -> int:
         f"already held of {total} ({len(quarantined)} quarantined, "
         f"{len(fetch_failures)} fetch failures)."
     )
+    if no_action:
+        print(f"  {len(no_action)} with no action on the official record "
+              f"(nothing published — D104): {no_action[:10]}")
     if quarantined:
         frac = len(quarantined) / total if total else 0.0
         print(f"  {len(quarantined)} quarantined ({frac:.2%}): {quarantined[:10]}")

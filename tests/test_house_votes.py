@@ -249,7 +249,12 @@ def test_committed_accept_list_matches_committed_quarantines():
     from ingest import incremental
     accepted = incremental.accepted_quarantines()
     qdir = repo_root() / "data" / "quality" / "quarantine"
-    on_disk = {p.stem for p in qdir.glob("*.json")}
+    # A BILL quarantine is written as `bill-<bill_id>.json` (bills._quarantine) while
+    # the accept-list keys bills by their bare id (`hr1234-119`, per the yaml header and
+    # the `bill_id in accepted_ids` check in bills.run). Strip the prefix so the two
+    # sides are comparable: without this the guard could never pass for a genuine bill
+    # quarantine, which is exactly what D87 added bill ids to the accept-list for.
+    on_disk = {p.stem.removeprefix("bill-") for p in qdir.glob("*.json")}
     assert set(accepted) == on_disk
 
 

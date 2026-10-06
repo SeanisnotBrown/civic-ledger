@@ -12,9 +12,9 @@ import json
 import pytest
 from pydantic import ValidationError
 
-from ingest.bills import BadBillId, parse_bill, parse_bill_id
+from ingest.bills import BadBillId, NoActionOnRecord, parse_bill, parse_bill_id
 from ingest.cache import repo_root
-from ingest.models import Bill
+from ingest.models import Bill, BillAction
 
 SAMPLE = repo_root() / "data" / "quality" / "samples" / "congress_bill_hr1_119.json"
 
@@ -89,11 +89,37 @@ def test_html_entities_decoded_in_titles() -> None:
     assert "&#039;" not in b.title_official
 
 
-def test_missing_latest_action_raises() -> None:
+def test_no_latest_action_and_no_actions_is_no_action_on_record() -> None:
+    """D104. The Speaker's reserved numbers (HR 2 of the 119th is titled "Reserved
+    for the Speaker.") answer 200 with `latestAction: null` AND an empty `/actions`
+    list. That is an empty record, not malformed data: `parse_bill` says so with its
+    own exception so the callers can publish nothing without quarantining."""
     data = _sample()
     del data["bill"]["latestAction"]
+    with pytest.raises(NoActionOnRecord) as exc:
+        parse_bill(data, "hr2-119", subjects=[], cosponsor_ids=[], actions=[])
+    assert exc.value.bill_id == "hr2-119"
+    # Same verdict when the sub-resource was never collected — still nothing to publish.
+    with pytest.raises(NoActionOnRecord):
+        parse_bill(data, "hr2-119", subjects=[], cosponsor_ids=[], actions=None)
+
+
+def test_no_latest_action_but_actions_present_still_quarantines() -> None:
+    """The other half of the D104 guard, and the load-bearing half: a bill that HAS
+    actions but no `latestAction` is upstream inconsistency, not a reserved number.
+    Treating it as "nothing to publish" would silently hide real government action, so
+    it must stay a loud quarantine — nothing here has ever been observed in the wild."""
+    data = _sample()
+    real_actions = parse_bill(
+        _sample(), "hr1-119", subjects=[], cosponsor_ids=[]
+    ).actions
+    del data["bill"]["latestAction"]
     with pytest.raises((KeyError, ValidationError)):
-        parse_bill(data, "hr1-119", subjects=[], cosponsor_ids=[])
+        parse_bill(
+            data, "hr1-119", subjects=[], cosponsor_ids=[],
+            actions=real_actions or [BillAction(date="2025-01-03", type="IntroReferral",
+                                                source_system="House floor actions")],
+        )
 
 
 # --- INC-10 sub-resource enumerators (paginated) --------------------------

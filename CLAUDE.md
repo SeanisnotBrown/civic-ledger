@@ -1,32 +1,17 @@
 # CLAUDE.md
-Read IMPLEMENTATIONv2.md in full before any work. It is the sole
-specification (v1 is archived under docs/archive/2026-08-13-pre-v2/).
 
-Rules:
-- Follow §0 ground rules exactly. **Ask the owner when unsure — in plain,
-  non-technical language** — especially anything evaluative (what counts as
-  good/poor performance, thresholds, grade wording). Never publish an
-  evaluative number he hasn't ratified (§0.8).
-- Track state in docs/PROGRESS.md: current increment, acceptance status,
-  blocked H-tasks. Update it before ending any session. **Read its
-  "TASK 0" section and then "READ THIS FIRST — the three live facts" at the top
-  BEFORE touching anything** — TASK 0 is the owner's standing instruction for
-  what this session does first, and it is usually about the long-running local
-  data pull; the live-facts section says whether a long-running local ingest is
-  currently writing `data/`, whether uncommitted data in the tree is deliberate,
-  and what the last CI run did. A dirty `git status` in this repo is often a RUNNING PROCESS, not
-  abandoned work — do not clean it up or commit it without reading that section.
-- Before pushing, run BOTH gates (each has drawn blood — D94, D96 addendum):
-  `uv run ruff check .` (with the dot — a directory you edited is not enough) and
-  the full pytest line with `CI=true GITHUB_ACTIONS=true` that PROGRESS.md
-  records. A green local `uv run pytest` is not evidence CI is green.
-- One increment at a time (V2-N). Do not start the next until the current
-  acceptance passes, except increments marked ∥. **Current priority (owner,
-  2026-09-23, SD-32): V2-11 → V2-7 → V2-8 → V2-12 → V2-13** per
-  docs/plan-subscriptions-and-alerts.md (read it after the spec); V2-6 is
-  deferred. Blocking gates: V2-1 before V2-2/V2-5; V2-7 (privacy page true)
-  before anything that stores user data (V2-8/V2-9/V2-12/V2-13). The site
-  MAY read and collect the user data its features need (SD-32); the gate
-  only orders the truthful /privacy rewrite ahead of the storage.
-- Commit at every passing acceptance criterion with message "V2-N: <what>".
-- Secrets come from .env — never hardcode, never commit.
+Read, in this order, before any work:
+1. `MISSION.md` — what the site is and why. Before any action ask: does this serve the mission? If not, it does not happen.
+2. `IMPLEMENTATIONv3.md` — the only spec. §1 ground rules, §2 ratified decisions, §5 phases.
+3. `STATUS.md` — live state: current phase, whether a local data pull is running, what a human owes.
+
+Rules (full text in `IMPLEMENTATIONv3.md` §1):
+- Ask the owner when unsure, in plain non-technical language, with each option's consequence in one line. Always for anything evaluative (what counts as good or poor, cutoffs, grade wording). Nothing evaluative publishes unratified.
+- One phase at a time. Acceptance passes before the next phase starts.
+- **A dirty `git status` here is often a RUNNING local data pull, not abandoned work.** Read `STATUS.md` "Live facts" before touching, cleaning, or committing anything under `data/`.
+- Before pushing run both gates: `uv run ruff check .` and the full pytest line with `CI=true GITHUB_ACTIONS=true` from `STATUS.md`, then the site build and its `test:*` scripts.
+- Commit at every passing acceptance: `P<N>: <what>`.
+- Update `STATUS.md` before ending any session. Under 50 lines; replace, never append.
+- Secrets come from `.env`. Never hardcode, never commit.
+
+Do not read `docs/archive/` or `docs/decisions.md` unless a task sends you there.

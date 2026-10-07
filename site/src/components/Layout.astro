@@ -22,12 +22,14 @@ const updated = formatDate(manifest.generated_at);
 
 // Primary tabs. `match` decides the active tab from the current path so a detail
 // page still highlights its section: a federal member/vote/bill page lights
-// "Federal". Home is active only on the exact root. aria-current="page" marks it
+// "Members" (the owner's label, 2026-10-07 -- the ROUTE stays /federal, which
+// every member-page back link and the grade-band deep links depend on). Home is
+// active only on the exact root. aria-current="page" marks it
 // for assistive tech.
 const path = Astro.url.pathname;
 const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
   { href: "/", label: "Home", match: (p) => p === "/" },
-  { href: "/federal", label: "Federal",
+  { href: "/federal", label: "Members",
     match: (p) => ["/federal", "/m/", "/v/", "/b/", "/topics", "/compare", "/pairing"].some((x) => p === x || p.startsWith(x)) },
   { href: "/methods", label: "Methodology", match: (p) => p.startsWith("/methods") },
 ];
@@ -81,5 +83,37 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
         <a href="/privacy" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Privacy</a>
       </p>
     </footer>
+
+    <script>
+      // Two-line clamp with an expand control (owner, 2026-10-07: bill titles are
+      // long enough to bury the rest of a row). Nothing is clamped server-side:
+      // with JavaScript off every title renders in full, which is the content.
+      // The button is added only where the text really overflows two lines, so a
+      // short title never grows a pointless control.
+      for (const el of document.querySelectorAll<HTMLElement>("[data-clamp]")) {
+        el.classList.add("line-clamp-2");
+        if (el.scrollHeight <= el.clientHeight + 1) {
+          el.classList.remove("line-clamp-2");
+          continue;
+        }
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className =
+          "mt-0.5 text-[11px] text-neutral-500 underline decoration-line underline-offset-2 hover:text-text";
+        btn.setAttribute("aria-expanded", "false");
+        const label = () => {
+          const open = btn.getAttribute("aria-expanded") === "true";
+          btn.textContent = open ? "Show less" : "Show the full title";
+        };
+        label();
+        btn.addEventListener("click", () => {
+          const open = btn.getAttribute("aria-expanded") === "true";
+          btn.setAttribute("aria-expanded", open ? "false" : "true");
+          el.classList.toggle("line-clamp-2", open);
+          label();
+        });
+        el.insertAdjacentElement("afterend", btn);
+      }
+    </script>
   </body>
 </html>

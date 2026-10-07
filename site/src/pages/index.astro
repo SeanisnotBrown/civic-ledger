@@ -1,50 +1,38 @@
 ---
-// P2 homepage (IMPLEMENTATIONv3.md §4.1), in the owner's order (2026-10-07):
-// intro → In Congress → the rep finder → statistics.
+// P2 homepage (IMPLEMENTATIONv3.md §4.1), restructured on the owner's second
+// review (2026-10-07):
 //
-// The intro is the owner's own ratified Q-A text. He struck its closing line
-// ("Find your representatives below.") once the finder moved below the Congress
-// band, where that sentence would have pointed past it.
+//   1. A HERO that fills the first screen and carries the state picker inside
+//      it, so the first thing on the page is also the first thing to do.
+//   2. A row of entry links — look up a politician, how grades work, where the
+//      data comes from.
+//   3. In Congress: the top five, compact, with "See everything".
+//   4. One statistic, the 97% fact. The attendance distribution moved to
+//      /federal, where the members it describes are.
 //
-// The Congress band is ONE ranked list (owner, 2026-10-07): four equal-weight boxes
-// made a calendar placement look as important as a bill becoming law. The ranking
-// rule is in recentChamberActivity and written out for the reader on /congress.
+// HEADLINE: the H1 is a single constant below. The owner's Q-A sentence is the
+// default; swapping it is a one-string change, which is why it is not inlined.
 //
-// §4.9 cuts applied here: the roll-calls-by-class panel, the chamber bar chart, the
-// dataset count tiles, and the States card are gone. The attendance distribution is
-// NOT a cut — it sits in the statistics area, where it still reproduces each band
-// as a link into the federal list.
+// The picker is one dropdown over states ordered by NAME, and every delegation
+// is in the page so it works with JavaScript off (all of them show, as one
+// list). The script collapses them and reveals the picked one.
 import Layout from "../components/Layout.astro";
-import Histogram from "../components/charts/Histogram.astro";
-import BandLegend from "../components/charts/BandLegend.astro";
 import ActivityItem from "../components/ActivityItem.astro";
 import {
-  getManifest, getGrades, getDelegationsByState, recentChamberActivity,
+  getManifest, getDelegationsByState, recentChamberActivity,
 } from "../lib/data";
 import { formatDate } from "../lib/display";
 import { STATE_NAME } from "../lib/states";
+
+// The owner's ratified Q-A sentence, as the headline.
+const HEADLINE =
+  "Nobody should have to become an expert, or spend their life tracking " +
+  "politicians, to know what the people they vote for actually do.";
 
 const manifest = getManifest();
 const n = (x: number | unknown) => Number(x ?? 0).toLocaleString("en-US");
 const c = manifest.counts as Record<string, any>;
 const updated = formatDate(manifest.generated_at);
-
-// Grade band colours mirror --color-grade-* (global.css), keyed by the ratified letter.
-const GRADE_HEX: Record<string, string> = {
-  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
-};
-const grades = getGrades();
-const att = grades.attendance;
-const bandCounts = att
-  ? att.bands.map((b) => ({
-      grade: b.grade, label: b.label, color: GRADE_HEX[b.grade],
-      count: Object.values(att.members).filter((e) => e.grade === b.grade).length,
-    }))
-  : [];
-const histBands = att ? att.bands.map((b) => ({ grade: b.grade, min: b.min, color: GRADE_HEX[b.grade] })) : [];
-const attValues = att ? Object.values(att.members).map((e) => e.value) : [];
-const gradedTotal = att ? Object.keys(att.members).length : 0;
-const setAside = att ? Object.keys(att.exceptions).length : 0;
 
 // Find your representatives: members who actually hold a seat as of the dataset's
 // own date, grouped by state and ordered by state NAME (§2 — state first; address
@@ -54,86 +42,54 @@ const servingTotal = delegations.reduce((t, d) => t + d.senate.length + d.house.
 const PARTY_HEX: Record<string, string> = { D: "#6f93e6", R: "#e0736b", I: "#c9b06a" };
 
 // In Congress: the last 14 days of floor-resolving actions, from data/events/, in
-// the owner's ratified order — consequence, then how contested the vote was. One
-// ranked list, not four equal-weight boxes: see recentChamberActivity().
-//
-// 10 rows: enough that every item the record actually put to a recorded vote clears
-// the band (7 enacted + 1 failed + 1 contested passage in the window this shipped
-// on), rather than the enacted items alone filling it.
-const activity = recentChamberActivity(10);
+// the owner's ratified order — recorded roll calls first, then what became law.
+// Five rows on the homepage (owner, 2026-10-07); the rest are on /congress.
+const activity = recentChamberActivity(5);
 
-// The "97% never got a floor vote" fact, kept and moved down (§2). Figures come from
-// the recompute-gated manifest block; nothing is computed on this page.
+// The "97% never got a floor vote" fact — the one statistic that stays on the
+// homepage. Figures come from the recompute-gated manifest block; nothing is
+// computed on this page.
 const leg = (c.legislation ?? {}) as Record<string, number>;
 const sponsoredTotal = leg.sponsored_bills ?? 0;
 const neverVoted = leg.sponsored_without_rollcall ?? 0;
 const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100) : 0;
+
+// The entry links. Each target exists and is covered by test:links.
+const ENTRY_LINKS = [
+  // NOT servingTotal: /federal lists every member of the covered Congresses,
+  // which is more than the number currently holding a seat.
+  { href: "/federal", label: "Look up a politician",
+    note: "Every member of the covered Congresses, searchable and sortable" },
+  { href: "/methods#grades", label: "How grades work",
+    note: "The fixed cutoffs, and what is not graded yet" },
+  { href: "/methods#sources", label: "Where the data comes from",
+    note: "Congress's own record, source by source" },
+];
 ---
 <Layout
   title="Civic Ledger — what the people you vote for actually do"
   description="Find your senators and representatives, and see their record from the official account of Congress: the votes, the bills, the attendance."
 >
-  <!-- Top: the welcome (Q-A, owner's wording) -->
-  <section class="max-w-[62ch]">
-    <h1 class="text-[30px] font-medium leading-[1.15] tracking-[-0.025em] text-text sm:text-[38px]">
-      Nobody should have to become an expert, or spend their life tracking
-      politicians, to know what the people they vote for actually do.
-    </h1>
-    <p class="mt-5 text-[15px] leading-relaxed text-neutral-600">
-      So this site does the tracking. It is built from the official record — the
-      votes, the bills, the attendance — and it is the same record for every member
-      of every party.
-    </p>
-  </section>
-
-  <!-- In Congress, from the action record -->
-  {activity && (
-    <section class="mt-10" aria-labelledby="week-h">
-      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-        <h2 id="week-h" class="text-[20px] font-medium text-text">In Congress</h2>
-        <p class="text-[12px] text-neutral-500">
-          Official actions recorded {formatDate(activity.from)} – {formatDate(activity.to)}
-        </p>
-      </div>
-      <p class="mt-2 max-w-[72ch] text-[13px] leading-relaxed text-neutral-600">
-        Most consequential first: what became law, then what was killed on the floor, then
-        what passed on a recorded vote — closest tally first, because the closer the vote,
-        the more divided the chamber was. Every line is the government's own action text,
-        word for word. Nothing here is a summary or a prediction.
-        {" "}<a href="/congress" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">How this is ordered</a>.
+  <!-- Hero: the headline, the support line, and the thing to do, on one screen.
+       min-h is in svh so a phone's dynamic toolbar cannot clip it, and it is a
+       MINIMUM — with JavaScript off the delegation list below the picker simply
+       makes the section taller. -->
+  <section class="flex min-h-[calc(100svh-13rem)] flex-col justify-center">
+    <div class="max-w-[62ch]">
+      <h1 class="text-[30px] font-medium leading-[1.15] tracking-[-0.025em] text-text sm:text-[38px]">
+        {HEADLINE}
+      </h1>
+      <p class="mt-5 text-[15px] leading-relaxed text-neutral-600">
+        So this site does the tracking. It is built from the official record — the
+        votes, the bills, the attendance — and it is the same record for every member
+        of every party.
       </p>
-
-      {activity.total === 0 ? (
-        <p class="mt-4 text-[13px] text-neutral-600">
-          No bill reached the floor in these {activity.days} days of the record.
-        </p>
-      ) : (
-        <>
-          <ol class="mt-4 max-w-[80ch] rounded-lg border border-line bg-surface px-5">
-            {activity.lead.map((row) => <ActivityItem row={row} />)}
-          </ol>
-          {activity.total > activity.lead.length && (
-            <p class="mt-3 text-[13px]">
-              <a href="/congress"
-                 class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">
-                See all {n(activity.total)} actions in this window →
-              </a>
-            </p>
-          )}
-        </>
-      )}
-    </section>
-  )}
-
-  <!-- Find your representatives: one picker -->
-  <section class="mt-10" aria-labelledby="reps-h">
-    <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-      <h2 id="reps-h" class="text-[20px] font-medium text-text">Find your representatives</h2>
-      <p class="text-[12px] text-neutral-500">{n(servingTotal)} members currently in office</p>
     </div>
 
-    <div class="mt-4 rounded-lg border border-line bg-surface p-5" data-reps>
-      <label for="state-pick" class="mb-1.5 block text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Your state</label>
+    <div class="mt-8 max-w-[760px] rounded-lg border border-line bg-surface p-5" data-reps>
+      <label for="state-pick" class="mb-1.5 block text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">
+        Start with your state
+      </label>
       <select id="state-pick" data-reps-select
               class="w-full max-w-[340px] rounded-md border border-line bg-bg px-2.5 py-2 text-[14px] text-text">
         <option value="">Pick a state…</option>
@@ -141,18 +97,19 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
           <option value={d.state}>{STATE_NAME[d.state] ?? d.state}</option>
         ))}
       </select>
+      <p class="mt-2 text-[12px] text-neutral-500">
+        {n(servingTotal)} members currently in office. Or
+        {" "}<a href="/federal" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">search every member by name →</a>
+      </p>
 
-      <!-- Every delegation is in the page, so it works with JavaScript off (all of
-           them show, as one long list). The script hides them and the picker
-           reveals one. -->
       <div class="mt-4" data-reps-panels>
         {delegations.map((d) => (
           <div data-state={d.state} class="mb-5 last:mb-0">
-            <h3 class="text-[13px] font-medium text-text">{STATE_NAME[d.state] ?? d.state}</h3>
+            <h2 class="text-[13px] font-medium text-text">{STATE_NAME[d.state] ?? d.state}</h2>
             {[{ label: "Senate", list: d.senate }, { label: "House", list: d.house }].map((grp) => (
               grp.list.length > 0 && (
                 <>
-                  <h4 class="mt-2.5 text-[10px] font-medium uppercase tracking-[0.1em] text-neutral-500">{grp.label}</h4>
+                  <h3 class="mt-2.5 text-[10px] font-medium uppercase tracking-[0.1em] text-neutral-500">{grp.label}</h3>
                   <ul class="mt-1.5 grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
                     {grp.list.map((m) => (
                       <li>
@@ -174,18 +131,62 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
           </div>
         ))}
       </div>
-      <p class="mt-4 text-[12px] text-neutral-500">
-        Or <a href="/federal" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">search every member by name →</a>
-      </p>
     </div>
+
+    <!-- Entry links: the three other ways in. -->
+    <ul class="mt-6 grid max-w-[760px] gap-2 sm:grid-cols-3">
+      {ENTRY_LINKS.map((l) => (
+        <li>
+          <a href={l.href}
+             class="block rounded-lg border border-line bg-surface px-4 py-3 transition-colors hover:border-accent-700">
+            <span class="block text-[13px] font-medium text-text">{l.label}</span>
+            <span class="mt-0.5 block text-[11px] leading-snug text-neutral-500">{l.note}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
   </section>
 
-  <!-- Bottom: statistics -->
-  <section class="mt-10" aria-labelledby="stats-h">
-    <h2 id="stats-h" class="text-[20px] font-medium text-text">The numbers behind it</h2>
+  <!-- In Congress: the top five, one line of explanation, everything else on /congress. -->
+  {activity && (
+    <section class="mt-12" aria-labelledby="week-h">
+      <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <h2 id="week-h" class="text-[20px] font-medium text-text">In Congress</h2>
+        <p class="text-[12px] text-neutral-500">
+          Official actions recorded {formatDate(activity.from)} – {formatDate(activity.to)}
+        </p>
+      </div>
+      <p class="mt-2 max-w-[72ch] text-[13px] leading-relaxed text-neutral-600">
+        Recorded votes first, then what became law — each line in the government's own words.
+        {" "}<a href="/congress" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">How this is ordered</a>.
+      </p>
+
+      {activity.total === 0 ? (
+        <p class="mt-4 text-[13px] text-neutral-600">
+          No bill reached the floor in these {activity.days} days of the record.
+        </p>
+      ) : (
+        <>
+          <ol class="mt-4 max-w-[80ch] rounded-lg border border-line bg-surface px-5">
+            {activity.lead.map((row) => <ActivityItem row={row} compact />)}
+          </ol>
+          <p class="mt-3 text-[13px]">
+            <a href="/congress"
+               class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">
+              See everything in this window — {n(activity.total)} actions →
+            </a>
+          </p>
+        </>
+      )}
+    </section>
+  )}
+
+  <!-- The one statistic that stays here. -->
+  <section class="mt-12" aria-labelledby="stats-h">
+    <h2 id="stats-h" class="sr-only">The numbers behind it</h2>
 
     {sponsoredTotal > 0 && (
-      <div class="mt-4 rounded-lg border border-line bg-surface p-6 sm:p-8">
+      <div class="rounded-lg border border-line bg-surface p-6 sm:p-8">
         <div class="grid items-center gap-5 sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-8">
           <span class="text-[56px] font-medium leading-none tabular-nums text-accent-300 sm:text-[80px]">{neverPct}%</span>
           <div>
@@ -201,27 +202,6 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
             </p>
           </div>
         </div>
-      </div>
-    )}
-
-    {att && (
-      <div class="mt-3.5 rounded-lg border border-line bg-surface p-5 sm:p-[22px]">
-        <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Attendance, every graded member</h3>
-          <span class="text-[12px] text-neutral-500">{n(gradedTotal)} members · {setAside} set aside</span>
-        </div>
-        <div class="mt-4">
-          <Histogram values={attValues} bands={histBands} />
-        </div>
-        <div class="mt-5">
-          <BandLegend bands={bandCounts} />
-        </div>
-        <p class="mt-4 max-w-[68ch] text-[12px] leading-relaxed text-neutral-500">
-          Each bar counts members whose attendance falls in a 2.5-point range; bar colour
-          follows the grade band of that range. Select a band to see those members. Grades
-          use fixed, published thresholds —
-          <a href="/methods#grade-attendance" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">how attendance is graded</a>.
-        </p>
       </div>
     )}
 

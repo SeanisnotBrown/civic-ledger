@@ -108,6 +108,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import committees
 
         return committees.run(args[1:])
+    if args and args[0] == "vote-amendments":
+        from ingest import vote_amendments
+
+        return vote_amendments.run(args[1:])
     if args and args[0] == "ms":
         from ingest import ms_legislature
 
@@ -133,6 +137,8 @@ def main(argv: list[str] | None = None) -> int:
     print("  grades        V2-4 grades from ratified thresholds -> data/grades/ (after metrics)")
     print("  photos        P2 member photographs -> site/public/photos/ (--refetch)")
     print("  committees    P2 committee assignments -> data/committees/membership.json")
+    print("  vote-amendments P2 which amendment a House amendment vote was on, from the")
+    print("                  Clerk's own XML (--congress N | --limit N)")
     print("  ms            INC-12 Mississippi state legislature (LegiScan) -> data/state/ms/")
     if args:
         print(f"unknown args: {args}")

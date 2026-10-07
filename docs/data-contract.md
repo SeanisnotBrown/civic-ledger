@@ -450,3 +450,67 @@ site has no page for.
 **Scope:** the upstream files are `-current`, so they describe committees as they
 stand now. A member who has left office carries no seats, and the member page labels
 the section as current assignments rather than implying they sit on none.
+
+## Which amendment a House amendment vote was on
+
+**Source.** The Clerk of the House's roll-call XML, the same document each of
+those vote rows already cites as "Official record" (`rollcall.source_url`), e.g.
+`https://clerk.house.gov/evs/2023/roll669.xml`. Fetched by
+`uv run ingest vote-amendments`, one request per House amendment roll call,
+through `ingest.cache.fetch` (cached, one request a second).
+
+**Why a second fetch of a document we already have a URL for.** House votes are
+ingested from congress.gov's `house-vote` member-votes endpoint, which gives the
+question text as the bare string `On Agreeing to the Amendment` and nothing
+else. 637 House roll calls in the dataset carry exactly that question, so
+without the Clerk's own document a reader cannot tell which amendment their
+member voted on. The Clerk's XML carries two fields congress.gov drops:
+
+| XML element | Field on `RollCall` | Example |
+| --- | --- | --- |
+| `<amendment-num>` | `amendment_number` | `Amendment No. 57` |
+| `<amendment-author>` | `amendment_sponsor` | `Lawler of New York Part B Amendment No. 114` |
+
+Both are stored verbatim (the number gains the words "Amendment No." so a bare
+`57` cannot be read as a bill number). `amendment-author` is the Clerk's own
+phrasing and already names both the sponsor and the amendment's printed number,
+so it is the one the vote row renders; `amendment-num` is a different number —
+the sequence within that measure's debate — and is kept in the data only.
+
+**Scope, and what is NOT claimed.** Both fields default to `null`, which is the
+D27 "not collected" sentinel and not a claim that the roll call had no
+amendment: a row renders no "Amendment:" line at all when they are null. The
+Senate is out of scope by its own record — it writes the designation into the
+question text itself (`On the Amendment S.Amdt. 316 to S.Con.Res. 7`) and names
+no sponsor anywhere in its vote XML, so a Senate amendment's sponsor would have
+to come from a different endpoint and is not published.
+
+## What a vote decided (the motion table)
+
+Not a data source: `site/src/lib/motions.ts` is a fixed, hand-written table that
+maps a roll call's verbatim question to one plain-English line saying what a Yea
+and a Nay on that motion did. It exists because the chamber's own question is
+procedural — a Yea on a motion to table an impeachment resolution sets that
+resolution aside, and a row showing only "Yea" and the resolution's title reads
+backwards.
+
+Rules the table is bound by, enforced by `npm run test:motions`:
+
+* First match wins, and the order puts the OUTER motion first (a motion to table
+  a motion to discharge is a tabling vote; cloture on a motion to proceed is a
+  cloture vote).
+* A question the table does not match gets **no line**, never a guess.
+* Every line states what a Yea does AND what a Nay does.
+* No threshold is printed that the record does not carry. The Senate's cloture
+  requirement differs between legislation and nominations and our vote records
+  do not hold `majority_requirement`, so no number appears there; suspension of
+  the rules carries the same two-thirds requirement every time, so that one is
+  stated.
+* The line describes the procedure, never a member's reason for voting.
+
+The same module's `resolvesMeasure()` decides whether a roll call's tally may be
+published as the margin a bill passed or failed by. Without it, the "In Congress"
+list attached a same-day amendment's 96-1 tally to a bill's passage line.
+
+The whole table is rendered for readers at `/methods#motions`, from the module
+itself, so the published explanation cannot drift from the published lines.

@@ -14,7 +14,9 @@
 // docstrings via getExplorerColumns.
 import Layout from "../../components/Layout.astro";
 import MemberBrowser from "../../components/MemberBrowser.tsx";
-import { getMembers, getMemberGrade, getManifest } from "../../lib/data";
+import Histogram from "../../components/charts/Histogram.astro";
+import BandLegend from "../../components/charts/BandLegend.astro";
+import { getMembers, getMemberGrade, getManifest, getGrades } from "../../lib/data";
 import { getExplorerColumns } from "../../lib/columns";
 import { ordinal } from "../../lib/display";
 
@@ -43,6 +45,27 @@ const periodLabel = congresses.length
   ? `the ${ordinal(congresses[0])}–${ordinal(congresses[congresses.length - 1])} Congresses`
   : "the covered Congresses";
 const fmtInt = (x: number) => x.toLocaleString("en-US");
+
+// The attendance distribution. It moved here from the homepage on the owner's
+// second P2 review: it is a chart about these members, and each band is a link
+// that pre-filters the grid directly below it. Grade band colours mirror
+// --color-grade-* (global.css), keyed by the ratified letter.
+const GRADE_HEX: Record<string, string> = {
+  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
+};
+const att = getGrades().attendance;
+const bandCounts = att
+  ? att.bands.map((b) => ({
+      grade: b.grade, label: b.label, color: GRADE_HEX[b.grade],
+      count: Object.values(att.members).filter((e) => e.grade === b.grade).length,
+    }))
+  : [];
+const histBands = att
+  ? att.bands.map((b) => ({ grade: b.grade, min: b.min, color: GRADE_HEX[b.grade] }))
+  : [];
+const attValues = att ? Object.values(att.members).map((e) => e.value) : [];
+const gradedTotal = att ? Object.keys(att.members).length : 0;
+const setAside = att ? Object.keys(att.exceptions).length : 0;
 ---
 <Layout title="Civic Ledger — Federal members" description="Every member of the U.S. House and Senate — attendance, cross-aisle support, vote mix, and legislative output, sortable and filterable.">
   <div class="flex flex-wrap items-end justify-between gap-3">
@@ -78,6 +101,27 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
     — the government's own policy areas and subject terms, each with a feed — or take the
     <a href="/feed.xml" class="text-accent-300 underline underline-offset-2">feed of all legislative activity</a>.
   </p>
+
+  {att && (
+    <div class="mt-5 rounded-lg border border-line bg-surface p-5 sm:p-[22px]">
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Attendance, every graded member</h2>
+        <span class="text-[12px] text-neutral-500">{fmtInt(gradedTotal)} members · {setAside} set aside</span>
+      </div>
+      <div class="mt-4">
+        <Histogram values={attValues} bands={histBands} />
+      </div>
+      <div class="mt-5">
+        <BandLegend bands={bandCounts} />
+      </div>
+      <p class="mt-4 max-w-[68ch] text-[12px] leading-relaxed text-neutral-500">
+        Each bar counts members whose attendance falls in a 2.5-point range; bar colour
+        follows the grade band of that range. Select a band to filter the list below to
+        those members. Grades use fixed, published thresholds —
+        <a href="/methods#grade-attendance" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">how attendance is graded</a>.
+      </p>
+    </div>
+  )}
 
   <MemberBrowser client:idle total={members.length} columns={columns.map((c) => ({ key: c.key, short: c.short }))} />
 

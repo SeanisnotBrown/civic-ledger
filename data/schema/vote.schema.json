@@ -33,6 +33,30 @@
     "RollCall": {
       "additionalProperties": false,
       "properties": {
+        "amendment_number": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amendment Number"
+        },
+        "amendment_sponsor": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Amendment Sponsor"
+        },
         "bill_id": {
           "anyOf": [
             {

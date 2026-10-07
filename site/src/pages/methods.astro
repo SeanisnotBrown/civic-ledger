@@ -13,6 +13,7 @@
 import Layout from "../components/Layout.astro";
 import { getManifest, getMetrics, getMsManifest, getRankings, getGrades, getMembers } from "../lib/data";
 import { VOTE_CLASS_LABEL, VOTE_CLASS_TOOLTIP } from "../lib/display";
+import { MOTIONS } from "../lib/motions";
 import type { VoteClass } from "../lib/data";
 
 const manifest = getManifest();
@@ -70,6 +71,39 @@ const gradeView = gradeCats.map((cat) => {
   return { cat, g, counts, maxCount, setAside };
 });
 const n = (x: number) => x.toLocaleString("en-US");
+
+// The motion table, read from the module the pages render from, so this page and
+// the vote rows can never disagree. The two resolution lines are chosen from the
+// measure's own title at render time, so the row here says so rather than
+// printing one of them as if it were the only one.
+const MOTION_LABEL: Record<string, string> = {
+  table: "Motion to table",
+  waiver: "Motion to waive a rule",
+  veto_override: "Passage over the President's veto",
+  cloture: "Cloture",
+  previous_question: "Ordering the previous question",
+  recommit: "Motion to recommit",
+  discharge: "Motion to discharge a committee",
+  instruct_conferees: "Conference negotiation",
+  commit: "Motion to commit or refer",
+  reconsider: "Motion to reconsider",
+  suspension: "Suspension of the rules",
+  concur: "Motion to concur in the other chamber's version",
+  proceed: "Motion to proceed",
+  nomination: "Confirmation of a nomination",
+  amendment: "Amendment",
+  adjourn: "Motion to adjourn",
+  conference_report: "Conference report",
+  passage: "Passage",
+  resolution: "Agreeing to a resolution",
+  point_of_order: "Point of order",
+  housekeeping: "The chamber's own proceedings",
+};
+const motionRows = MOTIONS.map((m) => ({
+  label: MOTION_LABEL[m.kind] ?? m.kind,
+  meaning: m.meaning,
+  kind: m.kind,
+}));
 ---
 <Layout title="Methodology — Civic Ledger">
   <h1 class="text-[32px] font-medium tracking-[-0.025em]">Methodology</h1>
@@ -189,6 +223,113 @@ const n = (x: number) => x.toLocaleString("en-US");
       </div>
     </section>
   )}
+
+  <section id="motions" aria-labelledby="motions-h">
+    <h2 id="motions-h" class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+      What a vote decided
+    </h2>
+    <div class="mt-3 max-w-[62ch] space-y-3 text-[14px] leading-relaxed text-neutral-700">
+      <p>
+        A roll call's question is the chamber's own wording, and that wording is
+        procedural. “On Motion to Table” is one of the most common: a Yea on a motion to
+        table sets the matter aside without the chamber ever voting on its merits. Read
+        without the procedure, such a row looks like a vote in favour of the thing that
+        was set aside.
+      </p>
+      <p>
+        So each vote row carries one plain-English line saying what a Yea and a Nay on
+        that motion did. Those lines come from the fixed table below, matched against the
+        question text, first match wins. They are written once, by hand, and they are the
+        same line for every member and every bill. No line is generated at build time,
+        and none is produced by an automated summary of the vote. A question the table
+        does not cover gets no line at all rather than a guess.
+      </p>
+      <p>
+        The lines describe the procedure, never a member's reason for voting as they did,
+        and they state no threshold the record does not carry: the Senate's cloture
+        requirement differs between legislation and nominations, so no number is printed
+        there, while suspension of the rules carries the same two-thirds requirement every
+        time it is used, so that one is stated.
+      </p>
+    </div>
+    <div class="mt-4 max-w-[80ch] overflow-x-auto">
+      <table class="w-full border-collapse text-left text-[13px]">
+        <caption class="sr-only">Each motion type and the line published on its vote rows</caption>
+        <thead>
+          <tr class="border-b border-line">
+            <th scope="col" class="py-2 pr-4 align-top text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-500">Motion</th>
+            <th scope="col" class="py-2 align-top text-[11px] font-medium uppercase tracking-[0.08em] text-neutral-500">The line published on the row</th>
+          </tr>
+        </thead>
+        <tbody>
+          {motionRows.map((r) => (
+            <tr class="border-b border-line-soft align-top">
+              <th scope="row" class="w-[28%] min-w-[9rem] py-2 pr-4 font-medium text-text">{r.label}</th>
+              <td class="py-2 leading-relaxed text-neutral-700">
+                {r.meaning
+                  ? r.meaning
+                  : "Two lines, chosen from the measure's own official title: a House resolution whose title opens \u201cProviding for consideration of\u201d sets the terms for debating another bill, and any other resolution is the vote on the resolution itself."}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="mt-3 max-w-[62ch] text-[12px] leading-relaxed text-neutral-500">
+      The table is matched in the order shown, so the outer motion always wins: a vote on a
+      motion to table a motion to discharge a committee is a tabling vote, and a vote on
+      cloture on a motion to proceed is a cloture vote.
+    </p>
+  </section>
+
+  <section id="sources" aria-labelledby="sources-h">
+    <h2 id="sources-h" class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+      Where the data comes from
+    </h2>
+    <div class="mt-3 max-w-[62ch] space-y-3 text-[14px] leading-relaxed text-neutral-700">
+      <p>
+        Every figure on this site is derived from an official U.S. government record. There
+        is no third-party rating, no editorial dataset, and no number typed in by hand.
+        Each individual page links to the record behind it: a vote row links to the
+        chamber's own roll-call page, a bill links to its page on congress.gov.
+      </p>
+      <ul class="list-disc space-y-1.5 pl-5">
+        <li>
+          <strong class="font-medium text-text">Bills, actions, members and nominations</strong> —
+          the Library of Congress API at
+          <a href="https://api.congress.gov" rel="nofollow" class="text-accent-300 underline underline-offset-2">api.congress.gov</a>,
+          the machine interface to congress.gov.
+        </li>
+        <li>
+          <strong class="font-medium text-text">House roll-call votes</strong> — the Clerk of
+          the House, at
+          <a href="https://clerk.house.gov/Votes" rel="nofollow" class="text-accent-300 underline underline-offset-2">clerk.house.gov</a>.
+        </li>
+        <li>
+          <strong class="font-medium text-text">Senate roll-call votes</strong> — the Senate's
+          own published vote records at
+          <a href="https://www.senate.gov/legislative/votes_new.htm" rel="nofollow" class="text-accent-300 underline underline-offset-2">senate.gov</a>.
+        </li>
+        <li>
+          <strong class="font-medium text-text">Stated reasons for an absence</strong> — the
+          Congressional Record, published by the Government Publishing Office. A member's
+          words are quoted verbatim or the row says “No explanation on record.”
+        </li>
+        <li>
+          <strong class="font-medium text-text">Photographs, committee seats and biographical
+          identifiers</strong> — the public-domain
+          <a href="https://github.com/unitedstates/congress-legislators" rel="nofollow" class="text-accent-300 underline underline-offset-2">unitedstates/congress-legislators</a>
+          project, whose photographs are Government Publishing Office portraits.
+        </li>
+      </ul>
+      <p>
+        The full contract for each source — its licence, its exact URL pattern, and what
+        this site does and does not collect from it — is in
+        <a href="https://github.com/SeanisnotBrown/civic-ledger/blob/master/docs/data-contract.md" rel="nofollow" class="text-accent-300 underline underline-offset-2">docs/data-contract.md</a>
+        in the repository.
+      </p>
+    </div>
+  </section>
 
   <section id="party-majority" aria-labelledby="party-majority-h">
     <h2 id="party-majority-h" class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">

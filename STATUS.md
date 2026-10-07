@@ -1,33 +1,30 @@
 # STATUS.md — live state (keep under 50 lines)
-Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated** 2026-10-07 (builder, P2 review round 1 applied).
+Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated** 2026-10-07 (builder, P2 review round 2 applied).
 ## Current phase
-**Phase 2, second pass.** The owner reviewed `/` and a member page on 2026-10-07, said no, and
-gave ten fixes; all ten are applied and every gate is green again. His look is still the open
-acceptance item (below); Phase 3 waits on it.
+**Phase 2, third pass.** The owner reviewed `/` and a member page again, said no, and gave
+eight fixes: seven applied and green, item 3 built but needing one approval (below). His
+look is still the open acceptance item; Phase 3 waits on it.
 
 ## Live facts
-1. **The Congress 119 backfill is STILL RUNNING** (relaunched 2026-10-07). Dirty `data/bills/`
-   is its output — do not clean, commit, or gate while it runs. P2 touched no bill data; the
-   regenerate trio is owed before any gate run (two export tests go red on stale derived data).
-2. **Build: 16,464 of the 20,000 free-plan file limit**, 13,102 pages. Every push gate is green
-   except **Lighthouse, which is unverified** — it dies locally on a Windows temp-dir permission
-   error, not an assertion. All three changed pages grew, so the push may surface a perf hit.
-3. **Review round 1, all ten applied:** "currently in office" now means a term actually covers
-   the dataset's own date, not the roster's `serving` flag — 539 members, every state with two
-   senators (was 555, four showing three); vote rows carry the bill's title; one state dropdown
-   alphabetical by name; attendance once; one "not collected yet" line; 50 rows a page; the band
-   links to `/congress`; the intro's third line is gone; order is intro → In Congress → finder
-   → stats.
-4. **Two decisions ratified today, in §2:** the "In Congress" ranking (consequence then
-   contested, nothing by topic) and the page size (50 rows as read, in 300-row URLs — 50 per
-   URL is 35,580 files, past the free limit).
-5. **New data, both documented in `docs/data-contract.md`:** 618 of 639 photographs from
-   `unitedstates/images` (public domain, GPO; the other 21 are unpublished upstream and show
-   initials), and 3,895 committee seats across 531 members from congress-legislators, now
-   re-pulled nightly behind `ingest members` because the page calls them *current*.
-6. **Phase 5 owns upcoming floor votes** (§5 task 5, confirmed): this week's and next week's
-   scheduled votes go at the TOP of In Congress, above what became law. Gated on Q-D (which
-   schedule source to trust). Nothing on the page claims a vote date today.
+1. **The Congress 119 backfill is STILL RUNNING** (pids 45316/47388). Dirty `data/bills/` is
+   its output — do not clean, commit, or gate while it runs. The regenerate trio is owed;
+   until then two export tests go red on stale derived data, the only pytest red.
+2. **Build: ~16,500 of the 20,000 free-plan file limit**, 13,111 pages. All seven `test:*`
+   gates green, 64 e2e green, ruff clean, banned-words 0. **Lighthouse unverified** — it
+   dies locally on a Windows temp-dir permission error, and gates CI on push.
+3. **A false number was being published and is fixed.** A passage line took the tally of ANY
+   roll call on that bill that day, so `s4668-119` carried an amendment's 96-1 as its passage
+   margin. A tally may now only be a measure's margin when that roll resolved it (§2).
+4. **New in §2, five decisions:** recorded roll calls lead "In Congress" above what became law
+   (the owner gave a choice and left the pick to me — reversible); the resolving-roll rule;
+   a fixed meaning line on every vote row from `site/src/lib/motions.ts` (100% of 3,519 roll
+   calls, gated by `npm run test:motions`, published at `/methods#motions`); the restructured
+   homepage; a two-line title clamp. Nav label "Members"; the route stays `/federal`.
+5. **"This week" was NOT shipped as a heading, deliberately.** A 7-day window from the
+   record's last date (2026-10-05) holds 1 enacted measure and ZERO recorded roll calls; the
+   14-day window holds 8 and 2. The band keeps 14 days and prints its exact dates.
+6. **Phase 5 owns upcoming floor votes** (§5 task 5): this week's and next week's scheduled
+   votes go at the TOP of In Congress. Gated on Q-D. Nothing claims a vote date today.
 ## The backfill: check, stop, relaunch
 Alive? (PowerShell; judge by the command line, not the process name):
 ```
@@ -44,7 +41,10 @@ check .` → the pytest gate below → `cd site && npm run build` + its `test:*`
 CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov-branch --cov-fail-under=100
 ```
 ## Owed by a human (owner)
-1. **Look at `/` and one member page again; say yes or no.** Last P2 acceptance item. `cd site && npm run preview`.
-2. **P1 and P2 are committed, unpushed.** Pushing deploys the new `/privacy` and homepage; run both gates first.
-3. Workers Paid ($5/mo), deferred until the layout is right (Phases 6-7); Turnstile + Email Sending (Phase 7); archive.org keys (Phase 3).
-4. Answers to the §7 open questions as each phase arrives — Q-D now gates the Phase 5 upcoming-votes block.
+1. **Approve the motion table** (at `/methods#motions`) and **one fetch**: `uv run ingest
+   vote-amendments` reads 637 House amendment rolls from the Clerk's XML, 1 req/sec, ~11 min.
+   Until it runs, House amendment rows name no amendment (review item 3).
+2. **Look at `/` and a member page again; say yes or no.** Last P2 acceptance item.
+3. **P1 and P2 are committed, unpushed.** Run both gates before pushing.
+4. Workers Paid ($5/mo), deferred to Phases 6–7; Turnstile + Email Sending (Phase 7);
+   archive.org keys (Phase 3); §7 answers as each phase arrives.

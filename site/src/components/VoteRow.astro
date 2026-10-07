@@ -6,6 +6,7 @@
 import type { Position, RollCall, Absence } from "../lib/data";
 import Badge from "./Badge.astro";
 import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
+import { motionMeaning } from "../lib/motions";
 
 // `filterTopic` is set on the member activity page so its Type / Policy area selects
 // can hide the row; it is absent everywhere else and then renders nothing.
@@ -19,6 +20,26 @@ interface Props {
 }
 const { rollcall: rc, position, absence, filterTopic, billTitle } = Astro.props;
 const notVoting = position === "not_voting";
+
+// What a Yea and a Nay on THIS motion did, from the fixed table in lib/motions.ts.
+// The chamber's own question is procedural: a Yea on a motion to table an
+// impeachment resolution is a vote to set that resolution aside, and a reader
+// who sees only "Yea" and the resolution's title reads the row backwards. The
+// table is fixed and first-match; a question it does not cover gets no line at
+// all rather than a guess. Resolutions need the title to tell a debate rule
+// apart from the resolution itself, so it is passed in.
+const motion = motionMeaning(rc.question, billTitle);
+
+// The amendment a roll call was on, when the record names it. The Senate writes it
+// into the question itself ("On the Amendment S.Amdt. 316 to S.Con.Res. 7"), so
+// repeating it would be noise; the House clerk carries it in separate fields.
+// Absent fields render nothing — never a guess at which amendment this was.
+// The Clerk's `amendment-author` line already carries both the sponsor and the
+// amendment's printed number ("Lawler of New York Part B Amendment No. 114"), so
+// it is the one rendered. `amendment-num` is a different number -- the sequence
+// within that measure's debate -- and showing the two side by side would read as
+// a contradiction, so it is kept in the data and used only as a fallback.
+const amendment = rc.amendment_sponsor ?? rc.amendment_number ?? null;
 ---
 <li class="border-b border-neutral-100 py-3" data-kind="vote" data-topic={filterTopic ?? ""}>
   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
@@ -28,8 +49,19 @@ const notVoting = position === "not_voting";
       {formatDate(rc.date)} · Roll <a href={`/v/${rc.id}`} class="underline hover:text-neutral-800">#{rc.number}</a>
     </span>
   </div>
-  {billTitle && <p class="mt-1 text-sm leading-snug text-text">{billTitle}</p>}
+  {billTitle && <p class="mt-1 text-sm leading-snug text-text" data-clamp>{billTitle}</p>}
   <p class="mt-1 text-sm text-neutral-800">{rc.question}</p>
+  {amendment && (
+    <p class="mt-1 text-xs text-neutral-600">
+      <span class="text-neutral-500">Amendment:</span> {amendment}
+    </p>
+  )}
+  {motion && motion.meaning && (
+    <p class="mt-1 max-w-[70ch] text-xs leading-relaxed text-neutral-600">
+      <span class="text-neutral-500">What this vote decided:</span> {motion.meaning}{" "}
+      <a href="/methods#motions" class="underline decoration-line underline-offset-2 hover:text-neutral-800">how these are written</a>
+    </p>
+  )}
   <div class="mt-1 flex flex-wrap gap-x-3 text-xs text-neutral-500">
     {rc.bill_id && (
       <a href={`/b/${rc.bill_id}`} class="underline hover:text-neutral-800">{billLabel(rc.bill_id)}</a>

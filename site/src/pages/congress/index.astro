@@ -34,16 +34,18 @@ const n = (x: number) => x.toLocaleString("en-US");
       <div class="mt-4 max-w-[72ch] rounded-lg border border-line bg-surface p-5">
         <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">How this list is ordered</h2>
         <ol class="mt-2.5 list-decimal space-y-1 pl-5 text-[13px] leading-relaxed text-neutral-600">
-          <li>Became law — the only final outcome. <span class="tabular-nums text-neutral-500">({n(activity.totals.became_law)})</span></li>
-          <li>Failed on the floor. <span class="tabular-nums text-neutral-500">({n(activity.totals.failed)})</span></li>
-          <li>Passed a chamber on a recorded roll call, closest tally first — the closer the vote, the more divided the chamber was.</li>
-          <li>Passed with no roll call in the record — a voice vote or unanimous consent leaves none, so no member went on the record. <span class="tabular-nums text-neutral-500">(3 and 4 together: {n(activity.totals.passed)})</span></li>
+          <li>Failed on the floor on a recorded roll call — every member who voted is on the record, and the measure is dead.</li>
+          <li>Passed on a recorded roll call, closest tally first — every member who voted is on the record, and the closer the tally the more divided the chamber was.</li>
+          <li>Became law. <span class="tabular-nums text-neutral-500">({n(activity.totals.became_law)})</span> The final outcome — but a bill can reach it without anyone going on the record, by voice vote or unanimous consent.</li>
+          <li>Failed on the floor with no roll call in the record. <span class="tabular-nums text-neutral-500">(1 and 4 together: {n(activity.totals.failed)})</span></li>
+          <li>Passed with no roll call in the record — a voice vote or unanimous consent leaves none, so no member went on the record. <span class="tabular-nums text-neutral-500">(2 and 5 together: {n(activity.totals.passed)})</span></li>
           <li>Placed on a calendar — eligible to be called up. The action record gives no vote date. <span class="tabular-nums text-neutral-500">({n(activity.totals.calendared)})</span></li>
         </ol>
         <p class="mt-2.5 text-[12px] leading-relaxed text-neutral-500">
           Every key comes from the official record: the chamber's own action wording, and the
-          tally on the roll call that resolved the measure. Nothing is ordered by topic, and
-          nothing here is a prediction.
+          tally on the roll call that resolved the measure — the vote on the measure itself,
+          never an amendment or a procedural motion on the same day. Nothing is ordered by
+          topic, and nothing here is a prediction.
         </p>
       </div>
 

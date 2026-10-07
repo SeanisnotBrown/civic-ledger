@@ -4,6 +4,7 @@
 // canonical machine contract is data/schema/*.schema.json (see docs/data-contract.md).
 
 import fs from "node:fs";
+import { resolvesMeasure } from "./motions";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -35,6 +36,12 @@ export interface RollCall {
   // Keyed by party letter → position → count. Present on every federal roll.
   party_totals: Record<string, Record<string, number>>;
   source_url: string;
+  // Which amendment this roll call was on, when the record names one. The House
+  // clerk carries both in its own fields; the Senate writes the number into the
+  // question text and names no sponsor. Absent on every non-amendment roll, and
+  // absent until `ingest vote-amendments` has run over the roll.
+  amendment_number?: string | null;
+  amendment_sponsor?: string | null;
 }
 export interface MemberVote { member_id: string; rollcall_id: string; position: Position; }
 export interface VoteFile { rollcall: RollCall; member_votes: MemberVote[]; }
@@ -991,12 +998,15 @@ export function tallyPartySides(rows: MemberVoteRow[]): PartySideTally {
 // with what the record itself shows to be most consequential, not with four
 // equal-weight boxes. Every key below comes from the official record, and nothing
 // is weighted by topic:
-//   1 became law            — the only final outcome
-//   2 failed on the floor   — a measure actually killed in the open
-//   3 passed WITH a recorded roll call, closest margin first — members were put on
-//     the record, and the closer the tally the more divided the chamber was
-//   4 passed with no roll call (voice vote or unanimous consent) — nobody divided
-//   5 placed on a calendar  — eligible to be called up, no date in the record
+//   1 failed on the floor on a recorded roll call — members are on the record
+//     against it, and the measure is dead
+//   2 passed on a recorded roll call, closest tally first — members are on the
+//     record, and the closer the tally the more divided the chamber was
+//   3 became law — the final outcome, but almost always reached without anyone
+//     going on the record (voice vote or unanimous consent)
+//   4 failed on the floor with no roll call in the record
+//   5 passed with no roll call in the record — nobody divided
+//   6 placed on a calendar — eligible to be called up, no date in the record
 // Within a tier, newest first; the event id breaks ties so the build is byte-stable.
 
 export type ActivityBucket = "became_law" | "passed" | "failed" | "calendared";
@@ -1028,7 +1038,7 @@ export interface ActivityRow {
   event: BillEvent;
   title: string | null;
   bucket: ActivityBucket;
-  /** 1–5, the ratified order above. */
+  /** 1–6, the ratified order above. */
   tier: number;
   /** Short factual label, e.g. "Passed — recorded vote 212–206". */
   tierLabel: string;
@@ -1067,9 +1077,16 @@ function activityBucket(e: BillEvent): ActivityBucket | null {
 function resolvingRoll(e: BillEvent): RollCall | undefined {
   if (e.rollcall_id) {
     const direct = getAllVotes().find((v) => v.rollcall.id === e.rollcall_id);
-    if (direct) return direct.rollcall;
+    if (direct && resolvesMeasure(direct.rollcall.question)) return direct.rollcall;
   }
-  return getVotesForBill(e.bill_id).find((rc) => rc.date.slice(0, 10) === e.date);
+  // Same bill, same calendar day, AND a question that decides the measure. The
+  // last condition is not optional: s4668-119 passed on 2026-09-30 and the only
+  // roll that day on that bill was "On the Amendment S.Amdt. 6828", 96-1.
+  // Without the check, that amendment's tally publishes as the bill's passage
+  // margin -- a false number attached to a true event (Rule 0).
+  return getVotesForBill(e.bill_id).find(
+    (rc) => rc.date.slice(0, 10) === e.date && resolvesMeasure(rc.question),
+  );
 }
 
 function marginOf(rc: RollCall | undefined): ActivityMargin | null {
@@ -1116,17 +1133,20 @@ export function recentChamberActivity(limit = 8): ChamberActivity | null {
     const margin = bucket === "passed" || bucket === "failed" ? marginOf(resolvingRoll(e)) : null;
     let tier: number;
     let tierLabel: string;
-    if (bucket === "became_law") {
+    if (bucket === "failed" && margin) {
       tier = 1;
+      tierLabel = `Failed — recorded vote ${margin.yea}–${margin.nay}`;
+    } else if (bucket === "passed" && margin) {
+      tier = 2;
+      tierLabel = `Passed — recorded vote ${margin.yea}–${margin.nay}`;
+    } else if (bucket === "became_law") {
+      tier = 3;
       tierLabel = "Became law";
     } else if (bucket === "failed") {
-      tier = 2;
-      tierLabel = margin ? `Failed — recorded vote ${margin.yea}–${margin.nay}` : "Failed on the floor";
-    } else if (bucket === "passed" && margin) {
-      tier = 3;
-      tierLabel = `Passed — recorded vote ${margin.yea}–${margin.nay}`;
-    } else if (bucket === "passed") {
       tier = 4;
+      tierLabel = "Failed on the floor";
+    } else if (bucket === "passed") {
+      tier = 5;
       // "no roll call IN THE RECORD", not "no recorded vote": the join above is
       // deliberately narrow (same bill, same calendar day), so the honest claim is
       // about what this dataset holds, not about what the chamber did. In the window
@@ -1135,7 +1155,7 @@ export function recentChamberActivity(limit = 8): ChamberActivity | null {
       // window where the action and its roll land on different dates.
       tierLabel = "Passed — no roll call in the record";
     } else {
-      tier = 5;
+      tier = 6;
       tierLabel = "Placed on a calendar";
     }
 
@@ -1147,9 +1167,9 @@ export function recentChamberActivity(limit = 8): ChamberActivity | null {
 
   rows.sort((a, b) => {
     if (a.tier !== b.tier) return a.tier - b.tier;
-    // Tier 3 only: the closer the tally, the more divided the chamber, so that row
+    // Tier 2 only: the closer the tally, the more divided the chamber, so that row
     // leads. `sharePct` is the winning side's share, so ascending is closest first.
-    if (a.tier === 3 && a.margin && b.margin && a.margin.sharePct !== b.margin.sharePct) {
+    if (a.tier === 2 && a.margin && b.margin && a.margin.sharePct !== b.margin.sharePct) {
       return a.margin.sharePct - b.margin.sharePct;
     }
     if (a.event.date !== b.event.date) return a.event.date < b.event.date ? 1 : -1;

@@ -209,6 +209,15 @@ class RollCall(_Strict):
     # no yea/nay to split by party) — the D27 not-applicable sentinel.
     party_totals: dict[str, dict[str, int]] | None = None
     source_url: str
+    # Which amendment an amendment roll call was on, when the record names one
+    # (P2 review round 2). The House Clerk's XML carries both fields and the
+    # congress.gov vote endpoint drops them, so `ingest vote-amendments` fills
+    # them from the same document the row already cites. The Senate writes the
+    # designation into `question` and names no sponsor at all, so Senate rolls
+    # keep both None. None is the D27 "not collected" sentinel here, NOT a claim
+    # that the roll had no amendment: the page renders nothing when it is None.
+    amendment_number: str | None = None
+    amendment_sponsor: str | None = None
 
 
 class MemberVote(_Strict):

@@ -13,7 +13,12 @@ import AxeBuilder from "@axe-core/playwright";
 // button (data-sort). The invariant asserted here is unchanged — deep-link → filtered,
 // grade-sorted list → member page.
 test("dashboard grade band → filtered federal list → member page", async ({ page }) => {
-  await page.goto("/");
+  // The attendance distribution moved from the homepage to /federal on the owner's
+  // second P2 review (2026-10-07): it is a chart about these members, and each band
+  // now pre-filters the grid directly below it. The invariant under test is
+  // unchanged — a published band is a link that reproduces itself as a filtered
+  // list, and that list clicks through to a member.
+  await page.goto("/federal");
 
   // The attendance-grade distribution links each band to the federal list, pre-filtered.
   const bandLink = page.locator('a[href="/federal?grade=A&sort=grade"]');

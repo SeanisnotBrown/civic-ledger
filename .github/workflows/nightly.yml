@@ -86,6 +86,7 @@ jobs:
           #    every run so a re-export never reverts enriched data to a None sentinel.
           uv run ingest house-votes
           uv run ingest senate-votes
+          uv run ingest vote-amendments
           uv run ingest bills
 
           # 1b) BILL-ACTIVITY DELTA (V2-11 task 8). SD-33 decision 6 = a DAILY DIGEST

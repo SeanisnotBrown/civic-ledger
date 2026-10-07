@@ -44,6 +44,13 @@ export interface MotionEntry {
    *  amendment to it, or a step on the way). Decides whether a roll call may be
    *  published as the margin a bill passed or failed by. */
   resolvesMeasure?: boolean;
+  /** What THIS member did, in one short clause, for a yea and for a nay
+   *  ("Voted to kill it"). Both or neither: a motion whose direction cannot be
+   *  stated plainly gets no short line at all, the same silence the `meaning`
+   *  table keeps for an unmatched question. Rendered above `meaning`, so it
+   *  leads with the member's own act and the procedure explains it. */
+  yea?: string;
+  nay?: string;
 }
 
 export const MOTIONS: MotionEntry[] = [
@@ -53,6 +60,8 @@ export const MOTIONS: MotionEntry[] = [
     // decision already taken. The general tabling line below would read
     // backwards here, so this entry sits above it.
     kind: "table_reconsider",
+    yea: "Voted to make the earlier vote final",
+    nay: "Voted to leave it open to being reconsidered",
     test: /motion to table(\s+the)?\s+motion to reconsider|^table motion to reconsider/i,
     meaning:
       "Tabling a motion to reconsider closes off a second vote on a decision the " +
@@ -61,13 +70,17 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "table",
+    yea: "Voted to kill it",
+    nay: "Voted to keep it alive",
     test: /\bmotion to table\b|^table motion\b/i,
     meaning:
-      "Tabling sets the matter aside without a vote on its merits. A Yea sets it " +
-      "aside; a Nay keeps it before the chamber.",
+      "Tabling disposes of the matter without a vote on its merits — in practice, " +
+      "it kills it. A Yea kills it; a Nay keeps it alive.",
   },
   {
     kind: "waiver",
+    yea: "Voted to set the rule aside",
+    nay: "Voted to keep the rule in force",
     test: /\bmotion to waive\b|waive all applicable/i,
     meaning:
       "Sets aside one of the chamber's own rules that would otherwise stop the " +
@@ -76,6 +89,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "veto_override",
+    yea: "Voted to enact it over the veto",
+    nay: "Voted against enacting it over the veto",
     test: /objections of the president|overriding the veto/i,
     meaning:
       "A vote to enact the bill over the President's veto, which takes two thirds " +
@@ -84,6 +99,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "cloture",
+    yea: "Voted to limit debate",
+    nay: "Voted to keep debate open",
     test: /\bcloture\b/i,
     meaning:
       "Cloture limits further debate so the chamber can reach a vote on the matter " +
@@ -91,6 +108,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "previous_question",
+    yea: "Voted to end debate",
+    nay: "Voted to keep debate open",
     test: /previous question/i,
     meaning:
       "Ordering the previous question ends debate and amendments and brings the " +
@@ -98,6 +117,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "recommit",
+    yea: "Voted to send it back to committee",
+    nay: "Voted against sending it back to committee",
     test: /motion to recommit/i,
     meaning:
       "A motion to recommit sends the bill back to committee instead of holding the " +
@@ -106,6 +127,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "discharge",
+    yea: "Voted to force it out of committee",
+    nay: "Voted to leave it in committee",
     test: /motion to discharge/i,
     meaning:
       "A discharge motion takes a measure away from a committee that has not acted " +
@@ -114,6 +137,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "instruct_conferees",
+    yea: "Voted for the instruction to the negotiators",
+    nay: "Voted against the instruction to the negotiators",
     test: /instruct conferees|go to conference|closing portions of the conference/i,
     meaning:
       "A vote about the negotiation that turns the House and Senate versions into " +
@@ -121,6 +146,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "commit",
+    yea: "Voted to send it to committee",
+    nay: "Voted to keep it on the floor",
     test: /motion to (commit|refer)\b|motion \([^)]*motion to (commit|refer)/i,
     meaning:
       "Hands the measure to a committee rather than voting on it now. A Yea sends it " +
@@ -128,6 +155,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "reconsider",
+    yea: "Voted to vote on it again",
+    nay: "Voted to let the decision stand",
     test: /motion to reconsider/i,
     meaning:
       "Asks the chamber to vote again on something it has already decided. A Yea " +
@@ -135,6 +164,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "suspension",
+    yea: "Voted to pass it",
+    nay: "Voted against passing it",
     test: /suspend the rules/i,
     meaning:
       "Suspension of the rules is a fast route for a measure: no amendments, limited " +
@@ -144,6 +175,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "concur",
+    yea: "Voted to accept the other chamber's changes",
+    nay: "Voted against accepting the other chamber's changes",
     test: /concur in (the )?(senate|house)|motion to concur|concur in senate/i,
     meaning:
       "Accepts the other chamber's changes to the bill. A Yea agrees to their text; " +
@@ -152,6 +185,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "proceed",
+    yea: "Voted to take it up",
+    nay: "Voted against taking it up",
     test: /motion to proceed|motion \([^)]*motion to proceed/i,
     meaning:
       "Decides whether the chamber takes the measure up at all. A Yea begins " +
@@ -159,6 +194,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "nomination",
+    yea: "Voted to confirm them",
+    nay: "Voted against confirming them",
     test: /on the nomination/i,
     meaning:
       "A vote to confirm someone the President nominated. A Yea confirms them; a " +
@@ -166,6 +203,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "amendment",
+    yea: "Voted to change the text",
+    nay: "Voted to leave the text as it stood",
     test: /amendment|\bamdt\b|retaining division/i,
     meaning:
       "A vote to change the text of the measure, not a vote on the measure itself. " +
@@ -173,11 +212,15 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "adjourn",
+    yea: "Voted to adjourn for the day",
+    nay: "Voted against adjourning",
     test: /motion to adjourn/i,
     meaning: "Ends the day's session. It is not a vote on legislation.",
   },
   {
     kind: "conference_report",
+    yea: "Voted to adopt the negotiated version",
+    nay: "Voted against the negotiated version",
     test: /conference report/i,
     meaning:
       "The vote on the single version of the bill that House and Senate " +
@@ -187,6 +230,8 @@ export const MOTIONS: MotionEntry[] = [
   },
   {
     kind: "passage",
+    yea: "Voted to pass it",
+    nay: "Voted against passing it",
     test: /^on passage|passage of the bill|on the (joint|concurrent) resolution/i,
     meaning:
       "The final vote on the measure itself. A Yea passes it out of this chamber; a " +
@@ -225,11 +270,42 @@ const RESOLUTION_RULE_MEANING =
   "This resolution sets the terms for debating another bill — how long the House " +
   "debates it and which amendments may be offered. A Yea adopts those terms; a Nay " +
   "rejects them.";
+const RESOLUTION_RULE_YEA = "Voted to adopt those debate terms";
+const RESOLUTION_RULE_NAY = "Voted against those debate terms";
+const RESOLUTION_YEA = "Voted to adopt it";
+const RESOLUTION_NAY = "Voted against adopting it";
 const RESOLUTION_MEANING =
   "The vote on the resolution itself. A resolution states the chamber's position or " +
   "changes its own rules; it does not become law. A Yea adopts it; a Nay does not.";
 
 export interface MotionMeaning { kind: MotionKind; meaning: string }
+
+/** Position as the vote records write it. Only yea and nay have a direction to
+ *  state: "present" takes no side, and an absence is not a vote at all. */
+export type VotePosition = "yea" | "nay" | "present" | "not_voting";
+
+/** What this member did, in one short clause — "Voted to kill it". Null when
+ *  the position has no direction (present, absent) or when the motion has no
+ *  pair in the table. Never inferred: the clause is written beside the motion's
+ *  own explanation so the two cannot drift apart. */
+export function positionEffect(
+  question: string | null | undefined,
+  position: VotePosition,
+  billTitle?: string | null,
+): string | null {
+  if (!question) return null;
+  if (position !== "yea" && position !== "nay") return null;
+  for (const m of MOTIONS) {
+    if (!m.test.test(question)) continue;
+    if (m.kind === "resolution") {
+      const isRule = Boolean(billTitle && RULE_TITLE.test(billTitle));
+      if (position === "yea") return isRule ? RESOLUTION_RULE_YEA : RESOLUTION_YEA;
+      return isRule ? RESOLUTION_RULE_NAY : RESOLUTION_NAY;
+    }
+    return (position === "yea" ? m.yea : m.nay) ?? null;
+  }
+  return null;
+}
 
 /** The plain-English effect of this question, or null when the fixed table has
  *  no entry for it. `billTitle` is consulted only for the resolution case. */

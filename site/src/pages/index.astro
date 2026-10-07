@@ -24,10 +24,10 @@ import {
 import { formatDate } from "../lib/display";
 import { STATE_NAME } from "../lib/states";
 
-// The owner's ratified Q-A sentence, as the headline.
-const HEADLINE =
-  "Nobody should have to become an expert, or spend their life tracking " +
-  "politicians, to know what the people they vote for actually do.";
+// The headline the owner picked (2026-10-07, option B): the Q-A sentence's own
+// core as an imperative, with the full Q-A sentence immediately beneath it as
+// the support line, so his wording is still on the page in full.
+const HEADLINE = "Know what the people you vote for actually do.";
 
 const manifest = getManifest();
 const n = (x: number | unknown) => Number(x ?? 0).toLocaleString("en-US");
@@ -79,7 +79,11 @@ const ENTRY_LINKS = [
       <h1 class="text-[30px] font-medium leading-[1.15] tracking-[-0.025em] text-text sm:text-[38px]">
         {HEADLINE}
       </h1>
-      <p class="mt-5 text-[15px] leading-relaxed text-neutral-600">
+      <p class="mt-5 text-[17px] leading-relaxed text-neutral-700">
+        Nobody should have to become an expert, or spend their life tracking
+        politicians, to know what the people they vote for actually do.
+      </p>
+      <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">
         So this site does the tracking. It is built from the official record — the
         votes, the bills, the attendance — and it is the same record for every member
         of every party.

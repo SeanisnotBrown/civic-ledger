@@ -6,7 +6,7 @@
 import type { Position, RollCall, Absence } from "../lib/data";
 import Badge from "./Badge.astro";
 import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
-import { motionMeaning } from "../lib/motions";
+import { motionMeaning, positionEffect } from "../lib/motions";
 
 // `filterTopic` is set on the member activity page so its Type / Policy area selects
 // can hide the row; it is absent everywhere else and then renders nothing.
@@ -30,6 +30,13 @@ const notVoting = position === "not_voting";
 // apart from the resolution itself, so it is passed in.
 const motion = motionMeaning(rc.question, billTitle);
 
+// What THIS member did, in one short clause, above the general explanation
+// (owner, 2026-10-07): the row should say "Voted to kill it" before it explains
+// what tabling is. Null for "present" and for an absence — neither takes a
+// direction — and null for the two motions whose direction cannot be stated
+// plainly (a point of order, the chamber's own proceedings).
+const didWhat = positionEffect(rc.question, position, billTitle);
+
 // The amendment a roll call was on, when the record names it. The Senate writes it
 // into the question itself ("On the Amendment S.Amdt. 316 to S.Con.Res. 7"), so
 // repeating it would be noise; the House clerk carries it in separate fields.
@@ -38,7 +45,8 @@ const motion = motionMeaning(rc.question, billTitle);
 // amendment's printed number ("Lawler of New York Part B Amendment No. 114"), so
 // it is the one rendered. `amendment-num` is a different number -- the sequence
 // within that measure's debate -- and showing the two side by side would read as
-// a contradiction, so it is kept in the data and used only as a fallback.
+// two different answers to one question, so it is kept in the data and used only
+// as a fallback.
 const amendment = rc.amendment_sponsor ?? rc.amendment_number ?? null;
 ---
 <li class="border-b border-neutral-100 py-3" data-kind="vote" data-topic={filterTopic ?? ""}>
@@ -55,6 +63,9 @@ const amendment = rc.amendment_sponsor ?? rc.amendment_number ?? null;
     <p class="mt-1 text-xs text-neutral-600">
       <span class="text-neutral-500">Amendment:</span> {amendment}
     </p>
+  )}
+  {didWhat && (
+    <p class="mt-1 text-sm font-medium text-text">{didWhat}</p>
   )}
   {motion && motion.meaning && (
     <p class="mt-1 max-w-[70ch] text-xs leading-relaxed text-neutral-600">

@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2026-06-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H4134)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-06-08",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-06-08",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001292",
+    "C001080",
+    "C001119",
+    "F000476",
+    "F000477",
+    "H001081",
+    "J000288",
+    "K000391",
+    "M001196",
+    "N000147"
+  ],
+  "id": "hr9205-119",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H4134)",
+  "latest_action_date": "2026-06-23",
+  "number": 9205,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9205",
+  "sponsor_id": "S001230",
+  "subjects": [],
+  "title_official": "Protect Every Preschooler Act of 2026",
+  "type": "hr"
+}

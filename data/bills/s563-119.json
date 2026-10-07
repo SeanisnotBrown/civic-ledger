@@ -1,0 +1,107 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-06-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 428.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-06-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Indian Affairs. Reported by Senator Murkowski without amendment. With written report No. 119-124.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2026-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Indian Affairs. Reported by Senator Murkowski without amendment. With written report No. 119-124.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-03-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Indian Affairs. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Indian Affairs Committee"
+      ],
+      "date": "2025-02-13",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Indian Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-03-19T19:55:00Z",
+      "title": "S. 563, Ohkay Owingeh Rio Chama Water Rights Settlement Act of 2025",
+      "url": "https://www.cbo.gov/publication/62242"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "L000570"
+  ],
+  "id": "s563-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 428.",
+  "latest_action_date": "2026-06-04",
+  "number": 563,
+  "policy_area": "Native Americans",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/563",
+  "sponsor_id": "H001046",
+  "subjects": [
+    "Federal-Indian relations",
+    "Government trust funds",
+    "Indian claims",
+    "Indian lands and resources rights",
+    "Land transfers",
+    "Land use and conservation",
+    "New Mexico",
+    "State and local finance",
+    "Water quality",
+    "Water use and supply",
+    "Watersheds",
+    "Wildlife conservation and habitat protection"
+  ],
+  "title_official": "Ohkay Owingeh Rio Chama Water Rights Settlement Act of 2025",
+  "type": "s"
+}

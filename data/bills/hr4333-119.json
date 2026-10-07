@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-07-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Armed Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-07-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-07-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001298",
+    "D000230",
+    "F000466",
+    "G000593",
+    "H001098",
+    "M001196",
+    "M001210",
+    "R000622",
+    "S001228",
+    "W000804"
+  ],
+  "id": "hr4333-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Armed Services.",
+  "latest_action_date": "2025-07-10",
+  "number": 4333,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4333",
+  "sponsor_id": "K000399",
+  "subjects": [],
+  "title_official": "Qualified to Serve Act",
+  "type": "hr"
+}

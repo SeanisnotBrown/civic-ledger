@@ -1,0 +1,128 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2025-10-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 281.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-10-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Natural Resources. H. Rept. 119-328.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-10-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Natural Resources. H. Rept. 119-328.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-07-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 20 - 19.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-07-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-08-28T19:45:00Z",
+      "title": "H.R. 281, Grizzly Bear State Management Act ",
+      "url": "https://www.cbo.gov/publication/61711"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000634",
+    "F000469",
+    "S001212",
+    "Z000018"
+  ],
+  "id": "hr281-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 281.",
+  "latest_action_date": "2025-10-03",
+  "number": 281,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/281",
+  "sponsor_id": "H001096",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Department of the Interior",
+    "Endangered and threatened species",
+    "Idaho",
+    "Judicial review and appeals",
+    "Mammals",
+    "Montana",
+    "Wyoming"
+  ],
+  "title_official": "Grizzly Bear State Management Act",
+  "type": "hr"
+}

@@ -1,0 +1,92 @@
+{
+  "actions": [
+    {
+      "action_code": "H1B000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Pursuant to the provisions of H. Res. 1014, H. Res. 375 is considered passed House as amended.",
+      "time": "11:53:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-01-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Pursuant to the provisions of H. Res. 1014, H. Res. 375 is considered passed House as amended.",
+      "time": "11:53:10",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001298",
+    "B001315",
+    "C001119",
+    "F000446",
+    "F000474",
+    "F000475",
+    "H001091",
+    "M001215",
+    "M001233",
+    "M001237",
+    "P000607",
+    "S001172",
+    "S001212",
+    "S001225",
+    "W000812"
+  ],
+  "id": "hres375-119",
+  "jurisdiction": "us",
+  "latest_action": "Pursuant to the provisions of H. Res. 1014, H. Res. 375 is considered passed House as amended.",
+  "latest_action_date": "2026-01-22",
+  "number": 375,
+  "policy_area": "Energy",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/375",
+  "sponsor_id": "N000193",
+  "subjects": [
+    "Alternative and renewable resources",
+    "Climate change and greenhouse gases",
+    "Commemorative events and holidays",
+    "Energy prices",
+    "Rural conditions and development"
+  ],
+  "title_official": "Expressing support for the designation of May 2025 as Renewable Fuels Month to recognize the important role that renewable fuels play in reducing carbon impacts, lowering fuel prices for consumers, supporting rural communities, and lessening reliance on foreign adversaries.",
+  "type": "hres"
+}

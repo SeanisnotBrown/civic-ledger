@@ -1,0 +1,93 @@
+{
+  "actions": [
+    {
+      "action_code": "H21000",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-07-01",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-06-24",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Federal Lands.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-06-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-06-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-06-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000372",
+    "B000490",
+    "C001103",
+    "C001129",
+    "F000485",
+    "J000288",
+    "J000311",
+    "L000583",
+    "M001208",
+    "M001218",
+    "W000788"
+  ],
+  "id": "hr9416-119",
+  "jurisdiction": "us",
+  "latest_action": "Subcommittee Hearings Held",
+  "latest_action_date": "2026-07-01",
+  "number": 9416,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9416",
+  "sponsor_id": "S001189",
+  "subjects": [
+    "Geography and mapping",
+    "Georgia",
+    "Hunting and fishing",
+    "Indian lands and resources rights",
+    "Land transfers",
+    "Parks, recreation areas, trails"
+  ],
+  "title_official": "Ocmulgee Mounds National Park Redesignation Act",
+  "type": "hr"
+}

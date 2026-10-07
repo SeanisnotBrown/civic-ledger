@@ -1,0 +1,96 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-06-03",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2518)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-06-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-06-03",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-06-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-05-21",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S2446-2447)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10025",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-05-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001095",
+    "M001153",
+    "W000802"
+  ],
+  "id": "sres751-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S2518)",
+  "latest_action_date": "2026-06-03",
+  "number": 751,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/751",
+  "sponsor_id": "C001088",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Congressional tributes",
+    "Health promotion and preventive care",
+    "Medical research",
+    "Neurological disorders"
+  ],
+  "title_official": "A resolution designating May 2026 as \"ALS Awareness Month\".",
+  "type": "sres"
+}

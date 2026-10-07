@@ -1,0 +1,125 @@
+{
+  "actions": [
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2026-01-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 394.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-01-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported (Amended) by the Committee on Education and Workforce. H. Rept. 119-460.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-01-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported (Amended) by the Committee on Education and Workforce. H. Rept. 119-460.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 23 - 10.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-12-11",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-12-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-12-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-12-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-04-13T19:22:00Z",
+      "title": "H.R. 6502, College Financial Aid Clarity Act of 2025",
+      "url": "https://www.cbo.gov/publication/62330"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "K000397",
+    "N000188",
+    "V000138"
+  ],
+  "id": "hr6502-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 394.",
+  "latest_action_date": "2026-01-21",
+  "number": 6502,
+  "policy_area": "Education",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6502",
+  "sponsor_id": "M001136",
+  "subjects": [
+    "Employment and training programs",
+    "Government information and archives",
+    "Government lending and loan guarantees",
+    "Higher education",
+    "Student aid and college costs",
+    "Wages and earnings"
+  ],
+  "title_official": "College Financial Aid Clarity Act of 2025",
+  "type": "hr"
+}

@@ -1,0 +1,102 @@
+{
+  "actions": [
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2026-02-10",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Commerce, Manufacturing, and Trade Subcommittee"
+      ],
+      "date": "2025-12-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Commerce, Manufacturing, and Trade.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-12-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-12-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-12-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "L000397",
+    "M001230",
+    "O000019",
+    "S001223",
+    "T000474",
+    "V000136"
+  ],
+  "id": "hr6688-119",
+  "jurisdiction": "us",
+  "latest_action": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+  "latest_action_date": "2026-02-10",
+  "number": 6688,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6688",
+  "sponsor_id": "H001086",
+  "subjects": [
+    "Congressional oversight",
+    "Consumer affairs",
+    "Government studies and investigations",
+    "Hybrid, electric, and advanced technology vehicles",
+    "Motor vehicles",
+    "Performance measurement",
+    "Product safety and quality",
+    "Technology assessment"
+  ],
+  "title_official": "ADAS Functionality and Integrity Act",
+  "type": "hr"
+}

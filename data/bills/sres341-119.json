@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-07-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S4829)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-07-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "S001150"
+  ],
+  "id": "sres341-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S4829)",
+  "latest_action_date": "2025-07-29",
+  "number": 341,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/341",
+  "sponsor_id": "G000574",
+  "subjects": [],
+  "title_official": "A resolution reaffirming that immigration officers under the direction of the Department of Homeland Security are not authorized to arrest, detain, interrogate, or deport United States citizens and must implement stronger measures to prevent future wrongful enforcement actions against such citizens.",
+  "type": "sres"
+}

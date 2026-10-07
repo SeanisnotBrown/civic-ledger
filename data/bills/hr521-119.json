@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-01-16",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000369",
+    "B001323",
+    "C001132",
+    "E000298",
+    "F000470",
+    "F000480",
+    "G000565",
+    "H001100",
+    "I000056",
+    "K000403",
+    "L000578",
+    "M001213",
+    "N000189",
+    "O000086",
+    "S001212"
+  ],
+  "id": "hr521-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2025-01-16",
+  "number": 521,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/521",
+  "sponsor_id": "M001228",
+  "subjects": [
+    "Monuments and memorials",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
+  "title_official": "Ending Presidential Overreach on Public Lands Act",
+  "type": "hr"
+}

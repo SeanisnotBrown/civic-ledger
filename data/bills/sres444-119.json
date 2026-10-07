@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Voice Vote. (consideration: CR S2813)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-10-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Foreign Relations. (text: CR S7095-7096)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-10-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "sres444-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Voice Vote. (consideration: CR S2813)",
+  "latest_action_date": "2026-06-16",
+  "number": 444,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/444",
+  "sponsor_id": "S001217",
+  "subjects": [
+    "Asia",
+    "China",
+    "Sanctions",
+    "Subversive activities",
+    "War crimes, genocide, crimes against humanity"
+  ],
+  "title_official": "A resolution condemning the dictator of the People's Republic of China, Xi Jinping, for deceit, undermining prospects for peace and security, and orchestrating crimes against humanity.",
+  "type": "sres"
+}

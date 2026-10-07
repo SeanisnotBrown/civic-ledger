@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2025-06-17",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001321",
+    "C001133",
+    "G000591",
+    "M001219",
+    "P000048",
+    "R000600",
+    "V000135",
+    "V000138"
+  ],
+  "id": "hr3720-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Economic Opportunity.",
+  "latest_action_date": "2025-06-17",
+  "number": 3720,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3720",
+  "sponsor_id": "K000404",
+  "subjects": [],
+  "title_official": "HOME Act of 2025",
+  "type": "hr"
+}

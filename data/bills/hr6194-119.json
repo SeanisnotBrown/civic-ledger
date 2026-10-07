@@ -1,0 +1,92 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-03-26",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-03-26",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-06-02T16:10:00Z",
+      "title": "H.R. 6194, Protecting Americans from Russian Litigation Act ",
+      "url": "https://www.cbo.gov/publication/62495"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "F000471",
+    "G000603",
+    "K000400",
+    "L000582",
+    "L000597",
+    "N000002",
+    "V000133"
+  ],
+  "id": "hr6194-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported (Amended) by Voice Vote.",
+  "latest_action_date": "2026-03-26",
+  "number": 6194,
+  "policy_area": "Law",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6194",
+  "sponsor_id": "H001095",
+  "subjects": [
+    "Civil actions and liability",
+    "Contracts and agency",
+    "Sanctions"
+  ],
+  "title_official": "Protecting Americans from Russian Litigation Act of 2025",
+  "type": "hr"
+}

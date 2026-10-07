@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-04-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001243",
+    "B001261",
+    "B001299",
+    "G000386",
+    "H001061",
+    "H001079",
+    "R000618",
+    "T000278"
+  ],
+  "id": "s1375-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2025-04-09",
+  "number": 1375,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1375",
+  "sponsor_id": "H000601",
+  "subjects": [],
+  "title_official": "SNOOP Act of 2025",
+  "type": "s"
+}

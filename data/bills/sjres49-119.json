@@ -1,4 +1,102 @@
 {
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-30",
+      "rollcall_id": "s-119-1-0225",
+      "source_system": "Senate",
+      "text": "Motion to table the motion to reconsider the vote by which S.J. Res. 49 failed of passage (Record Vote No. 225) agreed to in Senate by Yea-Nay Vote. 50 - 49. Record Vote Number: 226.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Motion by Senator Thune to reconsider the vote by which S.J. Res. 49 failed of passage (Record Vote No. 225) made in Senate.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-30",
+      "rollcall_id": "s-119-1-0225",
+      "source_system": "Senate",
+      "text": "Failed of passage in Senate by Yea-Nay Vote. 49 - 49. Record Vote Number: 225.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "18000",
+      "committees": null,
+      "date": "2025-04-30",
+      "rollcall_id": "s-119-1-0225",
+      "source_system": "Library of Congress",
+      "text": "Failed of passage/not agreed to in Senate: Failed of passage in Senate by Yea-Nay Vote. 49 - 49. Record Vote Number: 225.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S2683, S2687-2695, S2683)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-04-30",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Finance discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-04-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Finance discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
   "cbo_estimates": [],
   "congress": 119,
   "cosponsor_ids": [

@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Finance. (text: CR S2740)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000382",
+    "B001277",
+    "B001288",
+    "B001303",
+    "G000555",
+    "H001042",
+    "K000367",
+    "K000383",
+    "L000570",
+    "M000133",
+    "M001176",
+    "R000608",
+    "S001203",
+    "V000128",
+    "W000800",
+    "W000802",
+    "W000805",
+    "W000817"
+  ],
+  "id": "sres198-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Finance. (text: CR S2740)",
+  "latest_action_date": "2025-05-01",
+  "number": 198,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/198",
+  "sponsor_id": "W000779",
+  "subjects": [],
+  "title_official": "A resolution expressing the sense of the Senate that the Secretary of Health and Human Services should withdraw a reduction in public notice and comment opportunities.",
+  "type": "sres"
+}

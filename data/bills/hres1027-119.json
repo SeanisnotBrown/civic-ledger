@@ -1,0 +1,76 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-01-30",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2026-01-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2026-01-30",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B000490",
+    "B001295",
+    "B001313",
+    "B001315",
+    "C001039",
+    "C001059",
+    "C001119",
+    "D000230",
+    "D000629",
+    "G000605",
+    "H001081",
+    "H001091",
+    "K000009",
+    "L000491",
+    "M000871",
+    "M001232",
+    "M001237",
+    "N000189",
+    "R000612",
+    "S001226",
+    "T000487"
+  ],
+  "id": "hres1027-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Agriculture.",
+  "latest_action_date": "2026-01-30",
+  "number": 1027,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1027",
+  "sponsor_id": "P000597",
+  "subjects": [
+    "Food supply, safety, and labeling",
+    "Women in business",
+    "Women's employment"
+  ],
+  "title_official": "Supporting the designation of the \"International Year of the Woman Farmer\" to recognize and honor the critical role of women in agriculture.",
+  "type": "hres"
+}

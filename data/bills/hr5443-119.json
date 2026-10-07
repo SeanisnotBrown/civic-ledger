@@ -1,0 +1,73 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-09-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-09-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-09-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000370",
+    "B001278",
+    "B001313",
+    "C001119",
+    "D000624",
+    "E000296",
+    "F000483",
+    "G000553",
+    "G000585",
+    "G000598",
+    "J000305",
+    "K000391",
+    "M001196",
+    "M001220",
+    "M001223",
+    "M001227",
+    "N000147",
+    "O000173",
+    "R000617",
+    "S001223",
+    "S001231",
+    "T000488"
+  ],
+  "id": "hr5443-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2025-09-17",
+  "number": 5443,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5443",
+  "sponsor_id": "P000608",
+  "subjects": [],
+  "title_official": "Fair Housing Improvement Act of 2025",
+  "type": "hr"
+}

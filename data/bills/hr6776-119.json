@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Nutrition and Foreign Agriculture Subcommittee"
+      ],
+      "date": "2026-05-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Nutrition and Foreign Agriculture.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2025-12-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Agriculture, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2025-12-17",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Agriculture, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-12-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-12-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "M001196",
+    "N000147",
+    "V000133"
+  ],
+  "id": "hr6776-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Nutrition and Foreign Agriculture.",
+  "latest_action_date": "2026-05-20",
+  "number": 6776,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6776",
+  "sponsor_id": "U000040",
+  "subjects": [],
+  "title_official": "Farmers to Families Act",
+  "type": "hr"
+}

@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "K000389",
+    "K000402",
+    "L000602",
+    "M000687",
+    "M001229",
+    "N000147",
+    "O000173",
+    "P000617",
+    "P000620",
+    "T000488",
+    "W000822"
+  ],
+  "id": "hr6234-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2025-11-20",
+  "number": 6234,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6234",
+  "sponsor_id": "T000481",
+  "subjects": [],
+  "title_official": "Baby Bonus Act",
+  "type": "hr"
+}

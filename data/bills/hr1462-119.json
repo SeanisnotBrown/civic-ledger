@@ -1,0 +1,54 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-02-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-02-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "G000589",
+    "G000603",
+    "H001096"
+  ],
+  "id": "hr1462-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Ways and Means.",
+  "latest_action_date": "2025-02-21",
+  "number": 1462,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1462",
+  "sponsor_id": "F000246",
+  "subjects": [],
+  "title_official": "To amend the Internal Revenue Code of 1986 to disallow the production tax credit and investment tax credit for offshore wind facilities placed in service in the inland navigable waters of the United States or the coastal waters of the United States.",
+  "type": "hr"
+}

@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001298",
+    "B001315",
+    "C001125",
+    "F000466",
+    "G000551",
+    "L000601",
+    "N000147",
+    "S001226",
+    "V000136"
+  ],
+  "id": "hr1231-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2025-02-12",
+  "number": 1231,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1231",
+  "sponsor_id": "B001278",
+  "subjects": [
+    "Drug, alcohol, tobacco use",
+    "Homelessness and emergency shelter",
+    "Low- and moderate-income housing",
+    "Mental health",
+    "Public housing",
+    "Unemployment"
+  ],
+  "title_official": "START Housing Act of 2025",
+  "type": "hr"
+}

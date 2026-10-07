@@ -1,0 +1,52 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "K000367"
+  ],
+  "id": "s755-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2025-02-26",
+  "number": 755,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/755",
+  "sponsor_id": "W000437",
+  "subjects": [
+    "Cancer",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Health promotion and preventive care",
+    "Medicaid",
+    "Medical tests and diagnostic methods",
+    "Medicare",
+    "Poverty and welfare assistance",
+    "State and local government operations"
+  ],
+  "title_official": "Finn Sawyer Access to Cancer Testing Act",
+  "type": "s"
+}

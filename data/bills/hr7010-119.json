@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Forestry and Horticulture Subcommittee"
+      ],
+      "date": "2026-05-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Forestry and Horticulture.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-01-12",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-01-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-01-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001108",
+    "C001119",
+    "E000300",
+    "M001236"
+  ],
+  "id": "hr7010-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Forestry and Horticulture.",
+  "latest_action_date": "2026-05-20",
+  "number": 7010,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7010",
+  "sponsor_id": "B001307",
+  "subjects": [],
+  "title_official": "To amend the Agriculture, Rural Development, Food and Drug Administration, and Related Agency Appropriations Act, 2026, to delay the implementation of amendments made by such Act to the hemp production provisions of the Agricultural Marketing Act of 1946.",
+  "type": "hr"
+}

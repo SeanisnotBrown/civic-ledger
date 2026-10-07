@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S2542; text: CR S2569)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "S000148"
+  ],
+  "id": "sres170-119",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S2542; text: CR S2569)",
+  "latest_action_date": "2025-04-10",
+  "number": 170,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/170",
+  "sponsor_id": "T000250",
+  "subjects": [
+    "Civil actions and liability",
+    "Lawyers and legal services",
+    "Members of Congress",
+    "Senate"
+  ],
+  "title_official": "A resolution to authorize representation by the Senate Legal Counsel in the case of Desmond Bellard v. Ronald Wyden, U.S. Senator.",
+  "type": "sres"
+}

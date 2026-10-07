@@ -1,0 +1,49 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-12-04",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-12-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000382",
+    "B001288",
+    "G000555",
+    "K000367",
+    "M001176",
+    "S000148",
+    "S001203",
+    "W000779"
+  ],
+  "id": "s3368-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2025-12-04",
+  "number": 3368,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3368",
+  "sponsor_id": "B001303",
+  "subjects": [],
+  "title_official": "Restoring Patient Protections and Affordability Act of 2025",
+  "type": "s"
+}

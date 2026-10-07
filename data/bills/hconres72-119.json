@@ -1,0 +1,179 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-03",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-03-02",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment by Unanimous Consent. (consideration: CR S728)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-03-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "18:45:15",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On agreeing to the resolution Agreed to without objection. (text: CR H2172)",
+      "time": "18:45:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to without objection.",
+      "time": "18:45:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered by unanimous consent. (consideration: CR H2172)",
+      "time": "18:44:52",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12300",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee on House Administration discharged.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5500",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on House Administration discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H30200",
+      "committees": null,
+      "date": "2026-02-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mrs. Miller (IL) asked unanimous consent to discharge from committee and consider.",
+      "time": "18:44:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-02-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2026-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2026-02-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "F000484",
+    "G000583",
+    "G000601",
+    "L000601",
+    "M001222",
+    "S001190"
+  ],
+  "id": "hconres72-119",
+  "jurisdiction": "us",
+  "latest_action": "Message on Senate action sent to the House.",
+  "latest_action_date": "2026-03-03",
+  "number": 72,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/72",
+  "sponsor_id": "K000392",
+  "subjects": [
+    "Commemorative events and holidays",
+    "Crime victims",
+    "Europe",
+    "Germany",
+    "Religion",
+    "U.S. Capitol",
+    "War crimes, genocide, crimes against humanity"
+  ],
+  "title_official": "Authorizing the use of Emancipation Hall in the Capitol Visitor Center for a ceremony as part of the commemoration of the days of remembrance of victims of the Holocaust.",
+  "type": "hconres"
+}

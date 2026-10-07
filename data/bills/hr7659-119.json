@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-02-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-02-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-02-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001112",
+    "C001125",
+    "D000631",
+    "G000606",
+    "K000391",
+    "L000606",
+    "N000002",
+    "N000147"
+  ],
+  "id": "hr7659-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2026-02-24",
+  "number": 7659,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7659",
+  "sponsor_id": "G000599",
+  "subjects": [],
+  "title_official": "To designate the Pride flag as an authorized flag eligible for display at units of the National Park System, to express the sense of Congress that the Pride flag should be on display at the Stonewall National Monument in the State of New York, and for other purposes.",
+  "type": "hr"
+}

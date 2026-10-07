@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Appropriations Committee"
+      ],
+      "date": "2025-10-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Appropriations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-10-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-10-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000370",
+    "B001296",
+    "B001324",
+    "C001059",
+    "C001072",
+    "C001119",
+    "C001125",
+    "D000629",
+    "E000301",
+    "F000110",
+    "G000581",
+    "G000583",
+    "G000599",
+    "I000058",
+    "L000601",
+    "M001196",
+    "P000614",
+    "R000622",
+    "S001185",
+    "S001193",
+    "T000468"
+  ],
+  "id": "hr5849-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Appropriations.",
+  "latest_action_date": "2025-10-28",
+  "number": 5849,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5849",
+  "sponsor_id": "F000481",
+  "subjects": [],
+  "title_official": "USCP Act",
+  "type": "hr"
+}

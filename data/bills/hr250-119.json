@@ -1,0 +1,162 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2025-02-27",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Rules and Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "15:43:42",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H854)",
+      "time": "15:43:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H854)",
+      "time": "15:43:41",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 250.",
+      "time": "15:31:12",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H854-855)",
+      "time": "15:31:11",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Steil moved to suspend the rules and pass the bill.",
+      "time": "15:31:09",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2025-01-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-01-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000055",
+    "B000740",
+    "B001298",
+    "C001061",
+    "C001068",
+    "C001110",
+    "D000530",
+    "D000624",
+    "D000631",
+    "E000296",
+    "F000466",
+    "F000472",
+    "H001072",
+    "J000302",
+    "K000376",
+    "K000389",
+    "K000399",
+    "L000566",
+    "L000585",
+    "L000597",
+    "L000599",
+    "M000317",
+    "M001136",
+    "M001196",
+    "M001204",
+    "M001230",
+    "M001238",
+    "S000168",
+    "S001205",
+    "T000467",
+    "T000468",
+    "V000129",
+    "V000131",
+    "W000822"
+  ],
+  "id": "hr250-119",
+  "jurisdiction": "us",
+  "latest_action": "Received in the Senate and Read twice and referred to the Committee on Rules and Administration.",
+  "latest_action_date": "2025-02-27",
+  "number": 250,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/250",
+  "sponsor_id": "H001085",
+  "subjects": [
+    "Joint Committee on the Library",
+    "Monuments and memorials",
+    "U.S. Capitol",
+    "U.S. history"
+  ],
+  "title_official": "To direct the Joint Committee on the Library to procure a statue of Benjamin Franklin for placement in the Capitol.",
+  "type": "hr"
+}

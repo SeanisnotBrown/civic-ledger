@@ -1,0 +1,65 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-04-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "L000273",
+    "V000136"
+  ],
+  "id": "hr2877-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Natural Resources.",
+  "latest_action_date": "2025-04-10",
+  "number": 2877,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2877",
+  "sponsor_id": "N000191",
+  "subjects": [
+    "Colorado",
+    "Congressional oversight",
+    "Geography and mapping",
+    "Idaho",
+    "Land transfers",
+    "Land use and conservation",
+    "Montana",
+    "New Mexico",
+    "Outdoor recreation",
+    "Parks, recreation areas, trails",
+    "Wyoming"
+  ],
+  "title_official": "Continental Divide National Scenic Trail Completion Act",
+  "type": "hr"
+}

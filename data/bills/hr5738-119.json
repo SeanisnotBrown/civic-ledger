@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2025-10-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-10-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-10-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000372",
+    "B001260",
+    "D000230",
+    "J000311",
+    "M000317",
+    "M001215",
+    "O000177",
+    "P000622",
+    "W000829"
+  ],
+  "id": "hr5738-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on House Administration.",
+  "latest_action_date": "2025-10-10",
+  "number": 5738,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5738",
+  "sponsor_id": "M001236",
+  "subjects": [],
+  "title_official": "No Budget, No Pay Act",
+  "type": "hr"
+}

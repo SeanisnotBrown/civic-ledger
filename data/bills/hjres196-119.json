@@ -1,0 +1,69 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001072",
+    "C001119",
+    "E000297",
+    "F000110",
+    "F000481",
+    "G000606",
+    "K000389",
+    "K000391",
+    "L000557",
+    "N000147",
+    "P000607",
+    "S001218",
+    "S001231",
+    "T000468",
+    "T000481",
+    "W000788",
+    "W000797",
+    "W000822"
+  ],
+  "id": "hjres196-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2026-06-11",
+  "number": 196,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/196",
+  "sponsor_id": "J000309",
+  "subjects": [],
+  "title_official": "Proposing an amendment to the Constitution of the United States regarding the right to vote.",
+  "type": "hjres"
+}

@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-04-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Veterans' Affairs. Hearings held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2025-12-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Veterans' Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-12-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001277"
+  ],
+  "id": "s3286-119",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Veterans' Affairs. Hearings held.",
+  "latest_action_date": "2026-04-29",
+  "number": 3286,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3286",
+  "sponsor_id": "C001075",
+  "subjects": [
+    "Advisory bodies",
+    "Government information and archives",
+    "Government studies and investigations",
+    "Health information and medical records",
+    "Internet, web applications, social media",
+    "Judicial review and appeals",
+    "Veterans' education, employment, rehabilitation",
+    "Veterans' pensions and compensation"
+  ],
+  "title_official": "Veterans Appeals Improvement and Modernization Act 2.0",
+  "type": "s"
+}

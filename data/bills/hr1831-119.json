@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Counterterrorism and Intelligence Subcommittee"
+      ],
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Homeland Security.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-03-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "hr1831-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Counterterrorism and Intelligence.",
+  "latest_action_date": "2025-03-04",
+  "number": 1831,
+  "policy_area": "Transportation and Public Works",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1831",
+  "sponsor_id": "G000583",
+  "subjects": [],
+  "title_official": "To direct the Secretary of Homeland Security to carry out a pilot program for the prevention and mitigation of acts of terrorism using motor vehicles, and for other purposes.",
+  "type": "hr"
+}

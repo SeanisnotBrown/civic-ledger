@@ -1,0 +1,57 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001277",
+    "B001288",
+    "L000570",
+    "M001176",
+    "W000790",
+    "W000800"
+  ],
+  "id": "s760-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2025-02-26",
+  "number": 760,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/760",
+  "sponsor_id": "M001111",
+  "subjects": [
+    "Child health",
+    "Government studies and investigations",
+    "Health personnel",
+    "Health promotion and preventive care",
+    "Medicaid",
+    "Medical tests and diagnostic methods",
+    "Medicare",
+    "Nursing",
+    "Women's health"
+  ],
+  "title_official": "Kids’ Access to Primary Care Act of 2025",
+  "type": "s"
+}

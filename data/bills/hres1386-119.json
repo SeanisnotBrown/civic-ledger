@@ -1,0 +1,44 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2026-06-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2026-06-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "M001217"
+  ],
+  "id": "hres1386-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Rules.",
+  "latest_action_date": "2026-06-24",
+  "number": 1386,
+  "policy_area": null,
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1386",
+  "sponsor_id": "L000596",
+  "subjects": [],
+  "title_official": "Providing for the consideration of the bill (H.R. 2003) to amend the Higher Education Act of 1965 to lower the interest rate on Federal student loans to 2 percent.",
+  "type": "hres"
+}

@@ -1,0 +1,90 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-01-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 44 - 3.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-01-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2025-12-03",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-12-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-12-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-02-02T21:17:00Z",
+      "title": "H.R. 6411, Preshevo Valley Discrimination Assessment Act",
+      "url": "https://www.cbo.gov/publication/62036"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "V000138"
+  ],
+  "id": "hr6411-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported by the Yeas and Nays: 44 - 3.",
+  "latest_action_date": "2026-01-21",
+  "number": 6411,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6411",
+  "sponsor_id": "S001224",
+  "subjects": [
+    "Albania",
+    "Congressional oversight",
+    "Employment discrimination and employee rights",
+    "Europe",
+    "Minority health",
+    "Racial and ethnic relations",
+    "Serbia"
+  ],
+  "title_official": "Preshevo Valley Discrimination Assessment Act",
+  "type": "hr"
+}

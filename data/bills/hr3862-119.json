@@ -1,0 +1,70 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Water Resources and Environment Subcommittee"
+      ],
+      "date": "2025-06-11",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Water Resources and Environment.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2025-06-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-06-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-06-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001327",
+    "C001136",
+    "G000559",
+    "K000398",
+    "L000599",
+    "N000188",
+    "T000467"
+  ],
+  "id": "hr3862-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Water Resources and Environment.",
+  "latest_action_date": "2025-06-11",
+  "number": 3862,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3862",
+  "sponsor_id": "B001295",
+  "subjects": [],
+  "title_official": "Clean Water SRF Parity Act of 2025",
+  "type": "hr"
+}

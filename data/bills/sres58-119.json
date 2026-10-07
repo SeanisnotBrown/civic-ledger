@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2025-02-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Rules and Administration. (text: CR S672)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2025-02-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Banking, Housing, and Urban Affairs. Original measure reported to Senate by Senator Scott SC. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2025-02-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Banking, Housing, and Urban Affairs. Original measure reported to Senate by Senator Scott SC. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "sres58-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Rules and Administration. (text: CR S672)",
+  "latest_action_date": "2025-02-05",
+  "number": 58,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/58",
+  "sponsor_id": "S001184",
+  "subjects": [
+    "Congressional committees",
+    "Senate Committee on Banking, Housing, and Urban Affairs"
+  ],
+  "title_official": "An original resolution authorizing expenditures by the Committee on Banking, Housing, and Urban Affairs.",
+  "type": "sres"
+}

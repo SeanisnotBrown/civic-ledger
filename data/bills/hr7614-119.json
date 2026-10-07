@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Development, Public Buildings, and Emergency Management Subcommittee"
+      ],
+      "date": "2026-02-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Development, Public Buildings, and Emergency Management.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2026-02-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-02-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-02-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "M001206"
+  ],
+  "id": "hr7614-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Economic Development, Public Buildings, and Emergency Management.",
+  "latest_action_date": "2026-02-21",
+  "number": 7614,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7614",
+  "sponsor_id": "G000568",
+  "subjects": [],
+  "title_official": "To direct the Architect of the Capitol to install an adult changing room in the Library of Congress and the Capitol Visitor Center.",
+  "type": "hr"
+}

@@ -1,0 +1,195 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "15:44:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H1650)",
+      "time": "15:44:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by voice vote. (text: CR H1650)",
+      "time": "15:44:13",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 2480.",
+      "time": "15:38:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H1650-1651)",
+      "time": "15:37:59",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Bilirakis moved to suspend the rules and pass the bill.",
+      "time": "15:37:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2025-04-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 41.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-04-24",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-64.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-04-24",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Energy and Commerce. H. Rept. 119-64.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-04-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-04-08",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-03-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-06-27T19:18:00Z",
+      "title": "H.R. 2480, Securing Semiconductor Supply Chains Act of 2025",
+      "url": "https://www.cbo.gov/publication/61529"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B000668",
+    "F000466"
+  ],
+  "id": "hr2480-119",
+  "jurisdiction": "us",
+  "latest_action": "Received in the Senate.",
+  "latest_action_date": "2025-04-29",
+  "number": 2480,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2480",
+  "sponsor_id": "L000601",
+  "subjects": [
+    "Competitiveness, trade promotion, trade deficits",
+    "Computers and information technology",
+    "Congressional oversight",
+    "Economic development",
+    "Manufacturing",
+    "Supply chain",
+    "U.S. and foreign investments"
+  ],
+  "title_official": "Securing Semiconductor Supply Chains Act of 2025",
+  "type": "hr"
+}

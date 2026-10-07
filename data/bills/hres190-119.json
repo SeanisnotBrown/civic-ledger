@@ -1,0 +1,122 @@
+{
+  "actions": [
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "10:58:29",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On agreeing to the resolution Agreed to without objection. (text: CR H1020)",
+      "time": "10:58:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to without objection.  (text: CR H1020)",
+      "time": "10:58:28",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered by unanimous consent. (consideration: CR H1020)",
+      "time": "10:58:02",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12300",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee on House Administration discharged.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5500",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on House Administration discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H30200",
+      "committees": null,
+      "date": "2025-03-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mrs. Miller (IL) asked unanimous consent to discharge from committee and consider.",
+      "time": "10:58:00",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2025-03-05",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-03-05",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "M001206"
+  ],
+  "id": "hres190-119",
+  "jurisdiction": "us",
+  "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
+  "latest_action_date": "2025-03-06",
+  "number": 190,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/190",
+  "sponsor_id": "S001213",
+  "subjects": [
+    "Congressional committees",
+    "House of Representatives",
+    "Joint Committee on Printing",
+    "Joint Committee on the Library",
+    "Members of Congress"
+  ],
+  "title_official": "Electing Members to the Joint Committee of Congress on the Library and the Joint Committee on Printing.",
+  "type": "hres"
+}

@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Intelligence (Select) Committee"
+      ],
+      "date": "2026-04-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Select Committee on Intelligence.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2026-04-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001095"
+  ],
+  "id": "s4342-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Select Committee on Intelligence.",
+  "latest_action_date": "2026-04-16",
+  "number": 4342,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4342",
+  "sponsor_id": "G000386",
+  "subjects": [],
+  "title_official": "A bill to extend section 702 of the Foreign Intelligence Surveillance Act of 1978 for 18 months.",
+  "type": "s"
+}

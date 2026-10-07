@@ -1,0 +1,50 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "M001153",
+    "S001194"
+  ],
+  "id": "s551-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2025-02-12",
+  "number": 551,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/551",
+  "sponsor_id": "S001198",
+  "subjects": [
+    "Alaska",
+    "Hawaii",
+    "Health care costs and insurance",
+    "Home and outpatient care",
+    "Inflation and prices",
+    "Medicare"
+  ],
+  "title_official": "Ensuring Outpatient Quality for Rural States Act",
+  "type": "s"
+}

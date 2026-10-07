@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Forestry and Horticulture Subcommittee"
+      ],
+      "date": "2026-06-30",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Forestry and Horticulture.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-05-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-05-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001055",
+    "K000404",
+    "M001219"
+  ],
+  "id": "hres1307-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on Forestry and Horticulture.",
+  "latest_action_date": "2026-06-30",
+  "number": 1307,
+  "policy_area": "Public Lands and Natural Resources",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1307",
+  "sponsor_id": "T000487",
+  "subjects": [
+    "Congressional tributes",
+    "Environmental assessment, monitoring, research",
+    "Hawaii"
+  ],
+  "title_official": "Commemorating the 70th anniversary of the United States Forest Service Institute of Pacific Islands Forestry.",
+  "type": "hres"
+}

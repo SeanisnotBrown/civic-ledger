@@ -1,5 +1,5 @@
 {
-  "count": 4408,
+  "count": 4494,
   "events": [
     {
       "action_code": null,
@@ -46708,6 +46708,23 @@
     },
     {
       "action_code": null,
+      "bill_id": "s3929-119",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-09-16",
+      "has_page": false,
+      "id": "s3929-119--2026-09-16--8b2962dcec18",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3929",
+      "subjects": [],
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "bill_id": "s4023-119",
       "committees": [
         "Energy and Natural Resources Committee"
@@ -74900,6 +74917,76 @@
     },
     {
       "action_code": "H12200",
+      "bill_id": "hr5267-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-09-08",
+      "has_page": false,
+      "id": "hr5267-119--2026-09-08--4f218586e1c1",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5267",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Employee hiring",
+        "Employee performance",
+        "Labor standards",
+        "Small business",
+        "Wages and earnings"
+      ],
+      "text": "Reported (Amended) by the Committee on Education and Workforce. H. Rept. 119-802.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr5267-119",
+      "committees": null,
+      "date": "2026-09-08",
+      "has_page": false,
+      "id": "hr5267-119--2026-09-08--7003ba73869d",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5267",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Employee hiring",
+        "Employee performance",
+        "Labor standards",
+        "Small business",
+        "Wages and earnings"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 702.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr5267-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-09-08",
+      "has_page": false,
+      "id": "hr5267-119--2026-09-08--d872c4872454",
+      "policy_area": "Labor and Employment",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5267",
+      "subjects": [
+        "Employee benefits and pensions",
+        "Employee hiring",
+        "Employee performance",
+        "Labor standards",
+        "Small business",
+        "Wages and earnings"
+      ],
+      "text": "Reported (Amended) by the Committee on Education and Workforce. H. Rept. 119-802.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
       "bill_id": "hr5634-119",
       "committees": [
         "Veterans' Affairs Committee"
@@ -76658,6 +76745,100 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr10243-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10243-119--2026-09-03--270a933c30ca",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10243",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10243-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10243-119--2026-09-03--720beeded25a",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10243",
+      "subjects": [],
+      "text": "Referred to the House Committee on Ways and Means.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10243-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10243-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10243",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10244-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10244-119--2026-09-03--270a933c30ca",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10244",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10244-119",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10244-119--2026-09-03--76eaea21fab8",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10244",
+      "subjects": [],
+      "text": "Referred to the House Committee on House Administration.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10244-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10244-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10244",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr10245-119",
       "committees": null,
       "date": "2026-09-03",
@@ -77038,6 +77219,100 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr10252-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10252-119--2026-09-03--270a933c30ca",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10252",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10252-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10252-119--2026-09-03--473cf6b67eba",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10252",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10252-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10252-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10252",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10253-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10253-119--2026-09-03--270a933c30ca",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10253",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10253-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10253-119--2026-09-03--8923b380caac",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10253",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10253-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10253-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10253",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr10254-119",
       "committees": null,
       "date": "2026-09-03",
@@ -77318,6 +77593,87 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10258",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10259-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-03--270a933c30ca",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10259-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-03--5b1fceb0dc55",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10259-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-03--8c11d3d2ed03",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10259-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-03--e57757b6679f",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10259-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -78033,6 +78389,70 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr10274-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10274-119--2026-09-03--270a933c30ca",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10274",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10274-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10274-119--2026-09-03--56559fb04bef",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10274",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Agriculture, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10274-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10274-119--2026-09-03--631076858d82",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10274",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Agriculture, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10274-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10274-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10274",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr10275-119",
       "committees": null,
       "date": "2026-09-03",
@@ -78168,6 +78588,100 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10277",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10278-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10278-119--2026-09-03--270a933c30ca",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10278",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10278-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10278-119--2026-09-03--473cf6b67eba",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10278",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10278-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10278-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10278",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10279-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10279-119--2026-09-03--270a933c30ca",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10279",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10279-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10279-119--2026-09-03--8923b380caac",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10279",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10279-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10279-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10279",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -78411,6 +78925,70 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10282",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10283-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10283-119--2026-09-03--270a933c30ca",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10283",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10283-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10283-119--2026-09-03--6135cef13479",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10283",
+      "subjects": [],
+      "text": "Referred to the Committee on House Administration, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10283-119",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10283-119--2026-09-03--d6a0d73fa6cf",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10283",
+      "subjects": [],
+      "text": "Referred to the Committee on House Administration, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10283-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10283-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10283",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -79026,6 +79604,53 @@
       "rollcall_id": null,
       "source_system": "Library of Congress",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10295",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10296-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10296-119--2026-09-03--270a933c30ca",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10296",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10296-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10296-119--2026-09-03--8923b380caac",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10296",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10296-119",
+      "committees": null,
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10296-119--2026-09-03--e5eae74851ba",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10296",
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
@@ -80208,6 +80833,139 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H37220",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--0c999f786776",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--5efaaf2050fa",
+      "policy_area": "Law",
+      "rollcall_id": "h-119-2-0293",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "On motion to suspend the rules and pass Failed by the Yeas and Nays: (2/3 required): 212 - 206 (Roll no. 293).",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--6e7cdaf168d7",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "Considered under suspension of the rules. (consideration: CR H5443-5451; text: CR H5443)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--84ab610d2c95",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "Mr. Biggs (AZ) moved to suspend the rules and pass the resolution.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--b025f834a516",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "DEBATE - The House proceeded with one hour of debate on H.J. Res. 1.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "9000",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--baa7bd1cce85",
+      "policy_area": "Law",
+      "rollcall_id": "h-119-2-0293",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "Failed of passage/not agreed to in House On motion to suspend the rules and pass Failed by the Yeas and Nays: (2/3 required): 212 - 206 (Roll no. 293).",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hjres1-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hjres1-119--2026-09-02--e57aa03c813d",
+      "policy_area": "Law",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/1",
+      "subjects": [
+        "Constitution and constitutional amendments",
+        "Judges",
+        "Supreme Court"
+      ],
+      "text": "Considered as unfinished business. (consideration: CR H5459-5460)",
+      "type": "Floor"
+    },
+    {
       "action_code": "H21000",
       "bill_id": "hr10128-119",
       "committees": [
@@ -80508,6 +81266,53 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr10225-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10225-119--2026-09-02--12ef872e35b0",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10225",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10225-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10225-119--2026-09-02--6a112383250b",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10225",
+      "subjects": [],
+      "text": "Referred to the House Committee on Financial Services.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10225-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10225-119--2026-09-02--721a3cb6cf6c",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10225",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr10226-119",
       "committees": null,
       "date": "2026-09-02",
@@ -80632,6 +81437,53 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10227",
       "subjects": [],
       "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10228-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10228-119--2026-09-02--08190c7771ea",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10228",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10228-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10228-119--2026-09-02--12ef872e35b0",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10228",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10228-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10228-119--2026-09-02--721a3cb6cf6c",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10228",
+      "subjects": [],
+      "text": "Introduced in House",
       "type": "IntroReferral"
     },
     {
@@ -81056,6 +81908,53 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr10237-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10237-119--2026-09-02--12ef872e35b0",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10237",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10237-119",
+      "committees": [
+        "Transportation and Infrastructure Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10237-119--2026-09-02--2eb29915f3af",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10237",
+      "subjects": [],
+      "text": "Referred to the House Committee on Transportation and Infrastructure.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10237-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr10237-119--2026-09-02--721a3cb6cf6c",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10237",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr10238-119",
       "committees": null,
       "date": "2026-09-02",
@@ -81164,6 +82063,21 @@
       "subjects": [],
       "text": "Referred to the Committee on Education and Workforce, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr1114-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr1114-119--2026-09-02--77a1a2e30152",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1114",
+      "subjects": [],
+      "text": "ASSUMING FIRST SPONSORSHIP - Mr. Jackson (IL) asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 1114, a bill originally introduced by Representative Cherfilus-McCormick, for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+      "type": "Floor"
     },
     {
       "action_code": "H8D000",
@@ -81334,6 +82248,21 @@
         "Mining"
       ],
       "text": "Passed/agreed to in House: On passage Passed by the Yeas and Nays: 218 - 201 (Roll no. 294). (text: CR H5452)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hr4586-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr4586-119--2026-09-02--396ec6e2ae61",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4586",
+      "subjects": [],
+      "text": "ASSUMING FIRST SPONSORSHIP - Mr. Jackson (IL) asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4586, a bill originally introduced by Representative Cherfilus-McCormick for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
       "type": "Floor"
     },
     {
@@ -81509,6 +82438,28 @@
     },
     {
       "action_code": "H21000",
+      "bill_id": "hr6788-119",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr6788-119--2026-09-02--c26d14b8af48",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6788",
+      "subjects": [
+        "Environmental assessment, monitoring, research",
+        "Land use and conservation",
+        "Montana",
+        "Wilderness and natural areas, wildlife refuges, wild rivers, habitats"
+      ],
+      "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H21000",
       "bill_id": "hr9269-119",
       "committees": [
         "Federal Lands Subcommittee"
@@ -81574,6 +82525,100 @@
       ],
       "text": "Subcommittee Hearings Held",
       "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1507-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hres1507-119--2026-09-02--08190c7771ea",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1507",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1507-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hres1507-119--2026-09-02--29974eb93da3",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1507",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1507-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hres1507-119--2026-09-02--885d5a1cee74",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1507",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1508-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hres1508-119--2026-09-02--29974eb93da3",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1508",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1508-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hres1508-119--2026-09-02--51eb4845cbb8",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1508",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1508-119",
+      "committees": null,
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hres1508-119--2026-09-02--885d5a1cee74",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1508",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
     },
     {
       "action_code": "H8D000",
@@ -82116,6 +83161,53 @@
     },
     {
       "action_code": "1000",
+      "bill_id": "hr10206-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": false,
+      "id": "hr10206-119--2026-09-01--14181b9d77bb",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10206",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10206-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-09-01",
+      "has_page": false,
+      "id": "hr10206-119--2026-09-01--3bf1ececd921",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10206",
+      "subjects": [],
+      "text": "Referred to the House Committee on Education and Workforce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10206-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": false,
+      "id": "hr10206-119--2026-09-01--86c0a4707084",
+      "policy_area": "Education",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10206",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
       "bill_id": "hr10207-119",
       "committees": null,
       "date": "2026-09-01",
@@ -82334,6 +83426,53 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10210",
       "subjects": [],
       "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10211-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": false,
+      "id": "hr10211-119--2026-09-01--14181b9d77bb",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10211",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10211-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": false,
+      "id": "hr10211-119--2026-09-01--86c0a4707084",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10211",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10211-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-09-01",
+      "has_page": false,
+      "id": "hr10211-119--2026-09-01--f2fd48886918",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10211",
+      "subjects": [],
+      "text": "Referred to the House Committee on the Judiciary.",
       "type": "IntroReferral"
     },
     {
@@ -84606,6 +85745,330 @@
         "Voting rights"
       ],
       "text": "On agreeing to the resolution Agreed to by the Yeas and Nays: 220 - 192, 2 Present (Roll no. 289). (text: CR H5401-5402)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--00c54f2923f8",
+      "policy_area": "Congress",
+      "rollcall_id": "h-119-2-0292",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "On agreeing to the resolution Agreed to by the Yeas and Nays: 413 - 2 (Roll no. 292). (text: CR H5389)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--1b1f77f8e951",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "The previous question was ordered pursuant to a previous order of the House.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--241c1d9ebcef",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "Consideration initiated pursuant to a previous order. (consideration: CR H5389-5393)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--30e641fff310",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "DEBATE - The House proceeded with one hour of debate on H. Res. 1498.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--9fdebfae7cd7",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "Considered as unfinished business. (consideration: CR H5409-5410)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--a9b7dd7dd1ba",
+      "policy_area": "Congress",
+      "rollcall_id": "h-119-2-0292",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to by the Yeas and Nays: 413 - 2 (Roll no. 292). (text: CR H5389)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--b7abf41ceb12",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H.Res. 1498, the Chair put the question on agreeing to the resolution and by voice vote, announced the ayes had prevailed. Mr. Edwards demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--c9a4b5bbf233",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hres1498-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1498-119--2026-09-01--d259bc9442da",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1498",
+      "subjects": [
+        "Government ethics and transparency, public corruption",
+        "House of Representatives",
+        "Members of Congress",
+        "North Carolina"
+      ],
+      "text": "ORDER OF PROCEDURE - Mr. Guest asked unanimous consent that it be in order at any time to consider H. Res. 1498 in the House without intervention of any point of order if called up by the chair of the Committee on Ethics or his designee; that the resolution be considered as read; and that the previous question be considered as ordered on the resolution to adoption without intervening motion or demand for division of the question except for one hour of debate equally divided and controlled by Representative Guest of Mississippi and Representative Edwards of North Carolina, or their respective designees. Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--0d3564a31345",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "DEBATE - The House proceeded with one hour of debate on H. Res. 1499.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--249aab9b48a8",
+      "policy_area": "Congress",
+      "rollcall_id": "h-119-2-0288",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "On agreeing to the resolution Agreed to by recorded vote: 210 - 208 (Roll no. 288). (text: CR H5368)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H38310",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--2d1116170c65",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H35000",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--3c13bd7822d0",
+      "policy_area": "Congress",
+      "rollcall_id": "h-119-2-0287",
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "On ordering the previous question Agreed to by the Yeas and Nays: 212 - 205 (Roll no. 287).",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--58751b0b08bb",
+      "policy_area": "Congress",
+      "rollcall_id": "h-119-2-0288",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to by recorded vote: 210 - 208 (Roll no. 288). (text: CR H5368)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--68aaab570c3e",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "Considered as privileged matter. (consideration: CR H5368-5377)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--7459f08c6ae1",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "Considered as unfinished business. (consideration: CR H5387-5389)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "bill_id": "hres1499-119",
+      "committees": null,
+      "date": "2026-09-01",
+      "has_page": true,
+      "id": "hres1499-119--2026-09-01--7c9cb7b40893",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1499",
+      "subjects": [
+        "House of Representatives",
+        "Legislative rules and procedure"
+      ],
+      "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H. Res. 1499, the Chair put the question on ordering the previous question and by voice vote, announced the ayes had prevailed. Mr. McGovern demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
       "type": "Floor"
     },
     {

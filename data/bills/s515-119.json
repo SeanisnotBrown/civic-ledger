@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Budget Committee"
+      ],
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Budget.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "S001217"
+  ],
+  "id": "s515-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Budget.",
+  "latest_action_date": "2025-02-11",
+  "number": 515,
+  "policy_area": "Economics and Public Finance",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/515",
+  "sponsor_id": "L000577",
+  "subjects": [
+    "Budget process",
+    "Congressional-executive branch relations",
+    "Legislative rules and procedure",
+    "Presidents and presidential powers, Vice Presidents"
+  ],
+  "title_official": "A bill to repeal the Impoundment Control Act of 1974.",
+  "type": "s"
+}

@@ -1,0 +1,114 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate with an amendment and an amended preamble by Voice Vote. (text of amendment in the nature of a substitute: CR S7976)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-11-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate with an amendment and an amended preamble by Voice Vote.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-11-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S7974-7976)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-11-07",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-11-07",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-10-23",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Foreign Relations. (text: CR S7732)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-10-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000382",
+    "C001047",
+    "C001075",
+    "C001088",
+    "G000359",
+    "G000386",
+    "J000312",
+    "K000384",
+    "M001176",
+    "S001181",
+    "S001184",
+    "S001198",
+    "S001217",
+    "W000437"
+  ],
+  "id": "sres463-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate with an amendment and an amended preamble by Voice Vote. (text of amendment in the nature of a substitute: CR S7976)",
+  "latest_action_date": "2025-11-07",
+  "number": 463,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/463",
+  "sponsor_id": "C001098",
+  "subjects": [
+    "Asia",
+    "China",
+    "Human rights",
+    "Religion"
+  ],
+  "title_official": "A resolution expressing condemnation of the Chinese Communist Party's persecution of religious minority groups, including Christians, Muslims, and Buddhists and the detention of Pastor \"Ezra\" Jin Mingri and leaders of the Zion Church, and reaffirming the United States' global commitment to promote religious freedom and tolerance.",
+  "type": "sres"
+}

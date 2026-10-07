@@ -1,0 +1,95 @@
+{
+  "actions": [
+    {
+      "action_code": "B00100",
+      "committees": null,
+      "date": "2025-02-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Sponsor introductory remarks on measure. (CR H535-536)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-02-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001257",
+    "B001326",
+    "B001327",
+    "C001120",
+    "D000230",
+    "D000628",
+    "G000583",
+    "G000605",
+    "H001067",
+    "H001082",
+    "K000375",
+    "K000398",
+    "M001215",
+    "P000608",
+    "S001199",
+    "S001226",
+    "T000468",
+    "T000488"
+  ],
+  "id": "hr946-119",
+  "jurisdiction": "us",
+  "latest_action": "Sponsor introductory remarks on measure. (CR H535-536)",
+  "latest_action_date": "2025-02-06",
+  "number": 946,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/946",
+  "sponsor_id": "J000302",
+  "subjects": [
+    "Health care costs and insurance",
+    "Medicare",
+    "Prescription drugs"
+  ],
+  "title_official": "ORPHAN Cures Act",
+  "type": "hr"
+}

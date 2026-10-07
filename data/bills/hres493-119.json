@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2025-06-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Financial Services.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2025-06-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-06-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000381",
+    "B001281",
+    "E000296",
+    "F000483",
+    "H001081",
+    "L000601",
+    "N000147",
+    "T000468",
+    "T000488"
+  ],
+  "id": "hres493-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Financial Services.",
+  "latest_action_date": "2025-06-10",
+  "number": 493,
+  "policy_area": "Housing and Community Development",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/493",
+  "sponsor_id": "B001313",
+  "subjects": [],
+  "title_official": "Expressing the sense of the House of Representatives that the United States must take urgent, coordinated action to address the national housing crisis through preservation and production of affordable housing.",
+  "type": "hres"
+}

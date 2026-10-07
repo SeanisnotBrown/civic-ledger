@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-07-31",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment by Unanimous Consent. (consideration: CR S5171; text: CR S5010)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-07-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-07-31",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "P000145"
+  ],
+  "id": "sres362-119",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment by Unanimous Consent. (consideration: CR S5171; text: CR S5010)",
+  "latest_action_date": "2025-07-31",
+  "number": 362,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/362",
+  "sponsor_id": "M000355",
+  "subjects": [
+    "Books and print media",
+    "Congressional operations and organization",
+    "Legislative rules and procedure",
+    "Senate"
+  ],
+  "title_official": "A resolution to provide for the printing of the Senate Manual for the One Hundred Nineteenth Congress.",
+  "type": "sres"
+}

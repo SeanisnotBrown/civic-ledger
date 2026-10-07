@@ -1,0 +1,60 @@
+{
+  "actions": [
+    {
+      "action_code": "H17000",
+      "committees": null,
+      "date": "2026-07-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to Discharge Committee filed by Ms. Garcia (TX). Petition No: 119-25. (<a href=\"https://clerk.house.gov/DischargePetition/2026072025\">Discharge petition</a> text with signatures.)",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2026-07-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2026-07-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2026-07-02",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "hres1414-119",
+  "jurisdiction": "us",
+  "latest_action": "Motion to Discharge Committee filed by Ms. Garcia (TX). Petition No: 119-25. (<a href=\"https://clerk.house.gov/DischargePetition/2026072025\">Discharge petition</a> text with signatures.)",
+  "latest_action_date": "2026-07-20",
+  "number": 1414,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1414",
+  "sponsor_id": "G000587",
+  "subjects": [],
+  "title_official": "Providing for consideration of the bill (H.R. 1589) to authorize the cancellation of removal and adjustment of status of certain aliens, and for other purposes.",
+  "type": "hres"
+}

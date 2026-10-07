@@ -1,0 +1,92 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2025-07-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by the Yeas and Nays: 27 - 23.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2025-07-22",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2025-05-23",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-05-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-05-23",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-10-17T19:51:00Z",
+      "title": "H.R. 3613, Streamlining Foreign Military Sales Act of 2025",
+      "url": "https://www.cbo.gov/publication/61817"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000055",
+    "B001322",
+    "C001063",
+    "K000397",
+    "L000599",
+    "M001233",
+    "P000613"
+  ],
+  "id": "hr3613-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported by the Yeas and Nays: 27 - 23.",
+  "latest_action_date": "2025-07-22",
+  "number": 3613,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3613",
+  "sponsor_id": "Z000018",
+  "subjects": [
+    "Foreign aid and international relief",
+    "Military assistance, sales, and agreements",
+    "Trade restrictions"
+  ],
+  "title_official": "Streamlining Foreign Military Sales Act of 2025",
+  "type": "hr"
+}

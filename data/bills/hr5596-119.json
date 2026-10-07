@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-09-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-09-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-09-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000055",
+    "B001301",
+    "B001307",
+    "F000469",
+    "G000591",
+    "G000594",
+    "H001058",
+    "N000190",
+    "N000193",
+    "S001196",
+    "T000467",
+    "T000478"
+  ],
+  "id": "hr5596-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2025-09-26",
+  "number": 5596,
+  "policy_area": "Labor and Employment",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5596",
+  "sponsor_id": "M001194",
+  "subjects": [],
+  "title_official": "FARMS Act",
+  "type": "hr"
+}

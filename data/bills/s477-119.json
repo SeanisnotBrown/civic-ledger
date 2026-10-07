@@ -1,0 +1,53 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-02-06",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001243",
+    "B001319",
+    "C001098",
+    "G000359",
+    "J000312"
+  ],
+  "id": "s477-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on the Judiciary.",
+  "latest_action_date": "2025-02-06",
+  "number": 477,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/477",
+  "sponsor_id": "K000393",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Criminal procedure and sentencing",
+    "Drug trafficking and controlled substances",
+    "Postal service",
+    "Trade restrictions",
+    "U.S. Sentencing Commission"
+  ],
+  "title_official": "Fairness in Fentanyl Sentencing Act of 2025",
+  "type": "s"
+}

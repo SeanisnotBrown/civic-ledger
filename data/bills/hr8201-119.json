@@ -1,0 +1,94 @@
+{
+  "actions": [
+    {
+      "action_code": "H23000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H22000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-06-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-04-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-04-06",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-04-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-04-06",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000380",
+    "K000398"
+  ],
+  "id": "hr8201-119",
+  "jurisdiction": "us",
+  "latest_action": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
+  "latest_action_date": "2026-06-25",
+  "number": 8201,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8201",
+  "sponsor_id": "L000590",
+  "subjects": [
+    "Drug, alcohol, tobacco use",
+    "Health care coverage and access",
+    "Health programs administration and funding",
+    "Mental health"
+  ],
+  "title_official": "To amend Public Health Service Act to require community health centers to provide behavioral and mental health and substance use disorder services, and for other purposes.",
+  "type": "hr"
+}

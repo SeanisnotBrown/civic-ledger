@@ -1,0 +1,88 @@
+{
+  "actions": [
+    {
+      "action_code": "H19000",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 15 - 12.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-05-21",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-02-26",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-07-09T15:43:00Z",
+      "title": "H.R. 1605, SOPRA",
+      "url": "https://www.cbo.gov/publication/61538"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001118",
+    "O000177",
+    "T000165"
+  ],
+  "id": "hr1605-119",
+  "jurisdiction": "us",
+  "latest_action": "Ordered to be Reported in the Nature of a Substitute by the Yeas and Nays: 15 - 12.",
+  "latest_action_date": "2025-05-21",
+  "number": 1605,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1605",
+  "sponsor_id": "F000471",
+  "subjects": [
+    "Administrative law and regulatory procedures",
+    "Constitution and constitutional amendments",
+    "Judicial review and appeals"
+  ],
+  "title_official": "Separation of Powers Restoration Act of 2025",
+  "type": "hr"
+}

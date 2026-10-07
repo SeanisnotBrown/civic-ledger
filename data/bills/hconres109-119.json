@@ -1,0 +1,164 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Message on Senate action sent to the House.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment by Unanimous Consent. (consideration: CR S2816)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-06-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "10:46:30",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37100",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "On agreeing to the resolution Agreed to without objection. (text: CR H4099-4100)",
+      "time": "10:46:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On agreeing to the resolution Agreed to without objection. (text: CR H4099-4100)",
+      "time": "10:46:25",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered by unanimous consent. (consideration: CR H4099-4100)",
+      "time": "10:46:06",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H12300",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Committee on House Administration discharged.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "5500",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on House Administration discharged.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H30200",
+      "committees": null,
+      "date": "2026-06-11",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mrs. Bice asked unanimous consent to discharge from committee and consider.",
+      "time": "10:45:44",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-06-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on House Administration.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": [
+        "Committee on House Administration"
+      ],
+      "date": "2026-06-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000055",
+    "E000296",
+    "W000822"
+  ],
+  "id": "hconres109-119",
+  "jurisdiction": "us",
+  "latest_action": "Message on Senate action sent to the House.",
+  "latest_action_date": "2026-06-18",
+  "number": 109,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/109",
+  "sponsor_id": "S000168",
+  "subjects": [
+    "Constitution and constitutional amendments",
+    "U.S. Capitol",
+    "U.S. history"
+  ],
+  "title_official": "Allowing Emancipation Hall to be used for a ceremony to dedicate the Semiquincentennial Congressional Time Capsule on Wednesday, June 24, 2026.",
+  "type": "hconres"
+}

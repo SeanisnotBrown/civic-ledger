@@ -1,0 +1,71 @@
+{
+  "actions": [
+    {
+      "action_code": "H11000",
+      "committees": [
+        "General Farm Commodities, Risk Management, and Credit Subcommittee"
+      ],
+      "date": "2025-12-02",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2025-09-15",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Agriculture.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-09-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-09-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000370",
+    "C001072",
+    "C001125",
+    "F000481",
+    "P000613",
+    "S000510",
+    "S001185",
+    "V000138"
+  ],
+  "id": "hr5367-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Subcommittee on General Farm Commodities, Risk Management, and Credit.",
+  "latest_action_date": "2025-12-02",
+  "number": 5367,
+  "policy_area": "Agriculture and Food",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5367",
+  "sponsor_id": "S001159",
+  "subjects": [],
+  "title_official": "Capital for Beginning Farmers and Ranchers Act of 2025",
+  "type": "hr"
+}

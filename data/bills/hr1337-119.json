@@ -1,0 +1,61 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-02-13",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-02-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-02-13",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001296",
+    "F000466",
+    "K000376",
+    "K000402",
+    "L000599",
+    "M000312",
+    "M001210",
+    "M001225",
+    "M001238",
+    "S001205"
+  ],
+  "id": "hr1337-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2025-02-13",
+  "number": 1337,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1337",
+  "sponsor_id": "N000015",
+  "subjects": [],
+  "title_official": "To add Ireland to the E3 nonimmigrant visa program.",
+  "type": "hr"
+}

@@ -1,0 +1,62 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Health, Education, Labor, and Pensions Committee"
+      ],
+      "date": "2026-03-19",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Health, Education, Labor, and Pensions. Hearings held.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-05-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-05-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001075",
+    "S001217",
+    "T000278"
+  ],
+  "id": "s1813-119",
+  "jurisdiction": "us",
+  "latest_action": "Committee on Health, Education, Labor, and Pensions. Hearings held.",
+  "latest_action_date": "2026-03-19",
+  "number": 1813,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1813",
+  "sponsor_id": "S001184",
+  "subjects": [
+    "Charitable contributions",
+    "Elementary and secondary education",
+    "Income tax credits",
+    "Student aid and college costs",
+    "Tax-exempt organizations"
+  ],
+  "title_official": "High-Quality Charter Schools Act",
+  "type": "s"
+}

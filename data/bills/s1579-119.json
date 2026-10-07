@@ -1,0 +1,133 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 95.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-06-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Foreign Relations. Reported by Senator Risch without amendment. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-06-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Foreign Relations. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Foreign Relations.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-05-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2026-03-10T18:30:00Z",
+      "title": "S. 1579, Providing Appropriate Recognition and Treatment Needed to Enhance Relations with ASEAN, CERN, and PIF Act",
+      "url": "https://www.cbo.gov/publication/62213"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001113",
+    "D000622",
+    "E000295",
+    "M001243",
+    "R000618"
+  ],
+  "id": "s1579-119",
+  "jurisdiction": "us",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 95.",
+  "latest_action_date": "2025-06-18",
+  "number": 1579,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1579",
+  "sponsor_id": "R000584",
+  "subjects": [
+    "ASEAN countries",
+    "Asia",
+    "Australia",
+    "Brunei",
+    "Burma",
+    "Cambodia",
+    "Europe",
+    "European Union",
+    "Fiji",
+    "France",
+    "Indonesia",
+    "International law and treaties",
+    "International organizations and cooperation",
+    "Japan",
+    "Kiribati",
+    "Laos",
+    "Malaysia",
+    "Marshall Islands",
+    "Micronesia",
+    "Nauru",
+    "New Zealand",
+    "Oceania",
+    "Palau",
+    "Papua New Guinea",
+    "Philippines",
+    "Russia",
+    "Samoa",
+    "Singapore",
+    "Solomon Islands",
+    "Thailand",
+    "Tonga",
+    "Tuvalu",
+    "Vanuatu",
+    "Vietnam"
+  ],
+  "title_official": "PARTNER with ASEAN, CERN, and PIF Act",
+  "type": "s"
+}

@@ -1,0 +1,91 @@
+{
+  "actions": [
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2025-04-30",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2025-04-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2025-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-04-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000381",
+    "B001313",
+    "B001324",
+    "C001078",
+    "C001130",
+    "C001131",
+    "F000476",
+    "G000598",
+    "K000389",
+    "K000391",
+    "L000602",
+    "M000687",
+    "M001241",
+    "N000147",
+    "P000617",
+    "R000621",
+    "S001218",
+    "S001230",
+    "S001231",
+    "T000481"
+  ],
+  "id": "hres316-119",
+  "jurisdiction": "us",
+  "latest_action": "Committee Consideration and Mark-up Session Held",
+  "latest_action_date": "2025-04-30",
+  "number": 316,
+  "policy_area": "Government Operations and Politics",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/316",
+  "sponsor_id": "L000562",
+  "subjects": [
+    "Computers and information technology",
+    "Congressional oversight",
+    "Congressional-executive branch relations",
+    "Government information and archives",
+    "House of Representatives",
+    "Intelligence activities, surveillance, classified information",
+    "Internet, web applications, social media"
+  ],
+  "title_official": "Of inquiry requesting the President to transmit certain documents relating to the use of insecure electronic communication platforms, including Signal, for official communications and to the compliance of the Administration with all Federal records laws.",
+  "type": "hres"
+}

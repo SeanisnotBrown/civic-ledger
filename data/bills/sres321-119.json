@@ -1,0 +1,101 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate with an amendment and an amended preamble by Unanimous Consent. (text: CR S8892-8893)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate with an amendment and an amended preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S8891-8893)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Foreign Relations discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
+      "date": "2025-07-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Foreign Relations. (text: CR S4371-4372)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-07-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "D000618"
+  ],
+  "id": "sres321-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate with an amendment and an amended preamble by Unanimous Consent. (text: CR S8892-8893)",
+  "latest_action_date": "2025-12-18",
+  "number": 321,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/321",
+  "sponsor_id": "M001176",
+  "subjects": [
+    "Asia",
+    "Congressional tributes",
+    "Diplomacy, foreign officials, Americans abroad",
+    "Vietnam"
+  ],
+  "title_official": "A resolution commemorating 30 years of diplomatic relations between the United States and Vietnam on July 11, 2025.",
+  "type": "sres"
+}

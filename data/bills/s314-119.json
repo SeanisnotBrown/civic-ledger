@@ -1,0 +1,115 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-05-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Star Print ordered on the reported bill.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 49.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment. With written report No. 119-15.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-04-28",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment. With written report No. 119-15.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-02-05",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Ordered to be reported without amendment favorably.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2025-01-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Commerce, Science, and Transportation.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-01-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [
+    {
+      "date": "2025-02-20T18:42:00Z",
+      "title": "S. 314, Hotel Fees Transparency Act of 2025",
+      "url": "https://www.cbo.gov/publication/61213"
+    }
+  ],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001047",
+    "C001113",
+    "M000934"
+  ],
+  "id": "s314-119",
+  "jurisdiction": "us",
+  "latest_action": "Star Print ordered on the reported bill.",
+  "latest_action_date": "2025-05-14",
+  "number": 314,
+  "policy_area": "Commerce",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/314",
+  "sponsor_id": "K000367",
+  "subjects": [
+    "Civil actions and liability",
+    "Consumer affairs",
+    "Inflation and prices",
+    "Internet, web applications, social media",
+    "Landlord and tenant",
+    "Marketing and advertising",
+    "Service industries",
+    "User charges and fees"
+  ],
+  "title_official": "Hotel Fees Transparency Act of 2025",
+  "type": "s"
+}

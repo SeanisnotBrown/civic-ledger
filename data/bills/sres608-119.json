@@ -1,0 +1,93 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-07-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S4311)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-07-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-29",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-29",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S613)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10025",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-02-12",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "sres608-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S4311)",
+  "latest_action_date": "2026-07-29",
+  "number": 608,
+  "policy_area": "Crime and Law Enforcement",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/608",
+  "sponsor_id": "R000608",
+  "subjects": [
+    "Correctional facilities and imprisonment",
+    "Crimes against children",
+    "Criminal procedure and sentencing",
+    "Human trafficking",
+    "Presidents and presidential powers, Vice Presidents",
+    "Sex offenses"
+  ],
+  "title_official": "A resolution expressing the sense of the Senate that Ghislaine Maxwell should not be granted a Presidential pardon or any form of clemency for her crimes with Jeffrey Epstein relating to the sexual exploitation and abuse of minors.",
+  "type": "sres"
+}

@@ -1,0 +1,108 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and an amended preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and an amended preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Measure laid before Senate by unanimous consent. (consideration: CR S263)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on Armed Services discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on Armed Services discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-12-01",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Armed Services. (text: CR S8422)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-12-01",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001319",
+    "D000622",
+    "G000574",
+    "H000273",
+    "O000174",
+    "T000476"
+  ],
+  "id": "sres519-119",
+  "jurisdiction": "us",
+  "latest_action": "Resolution agreed to in Senate without amendment and an amended preamble by Unanimous Consent.",
+  "latest_action_date": "2026-01-15",
+  "number": 519,
+  "policy_area": "Armed Forces and National Security",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/519",
+  "sponsor_id": "K000377",
+  "subjects": [
+    "Aviation and airports",
+    "Conflicts and wars",
+    "Congressional tributes",
+    "Military history",
+    "Military operations and strategy",
+    "Military personnel and dependents"
+  ],
+  "title_official": "A resolution recognizing the achievements and contributions of the AH-64 Apache attack helicopter to the national defense of the United States and its allies and honoring the dedication, service, and sacrifice of the United States Army aviators, maintainers, and support personnel who operate and sustain the Apache.",
+  "type": "sres"
+}

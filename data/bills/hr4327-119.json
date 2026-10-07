@@ -1,0 +1,72 @@
+{
+  "actions": [
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-01-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "ASSUMING FIRST SPONSORSHIP - Mr. Alford asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4327, a bill originally introduced by Representative Greene (GA), for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+      "time": "16:48:50",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2025-07-10",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Ways and Means.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-07-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-07-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000379",
+    "C001110",
+    "H001098",
+    "H001102",
+    "M000871",
+    "O000086",
+    "T000490"
+  ],
+  "id": "hr4327-119",
+  "jurisdiction": "us",
+  "latest_action": "ASSUMING FIRST SPONSORSHIP - Mr. Alford asked unanimous consent that he may hereafter be considered as the first sponsor of H.R. 4327, a bill originally introduced by Representative Greene (GA), for the purpose of adding cosponsors and requesting reprintings pursuant to clause 7 of rule XII. Agreed to without objection.",
+  "latest_action_date": "2026-01-21",
+  "number": 4327,
+  "policy_area": "Taxation",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4327",
+  "sponsor_id": "G000596",
+  "subjects": [
+    "Housing finance and home ownership",
+    "Income tax exclusion",
+    "Sales and excise taxes"
+  ],
+  "title_official": "No Tax on Home Sales Act",
+  "type": "hr"
+}

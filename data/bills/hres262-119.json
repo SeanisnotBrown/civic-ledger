@@ -1,0 +1,74 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Rules Committee"
+      ],
+      "date": "2025-03-27",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Rules.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": null,
+      "date": "2025-03-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": null,
+      "date": "2025-03-27",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000375",
+    "B001291",
+    "B001295",
+    "B001301",
+    "B001302",
+    "C001053",
+    "C001108",
+    "C001133",
+    "G000546",
+    "G000558",
+    "G000581",
+    "G000590",
+    "G000591",
+    "H001072",
+    "J000289",
+    "M001157",
+    "M001199",
+    "R000575",
+    "S001212",
+    "S001213",
+    "T000467",
+    "W000816",
+    "W000821"
+  ],
+  "id": "hres262-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Rules.",
+  "latest_action_date": "2025-03-27",
+  "number": 262,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/262",
+  "sponsor_id": "C001120",
+  "subjects": [],
+  "title_official": "Establishing the Select Committee to Defeat the Mexican Drug Cartels.",
+  "type": "hres"
+}

@@ -1,0 +1,59 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-02-20",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Read twice and referred to the Committee on Finance.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "C001075"
+  ],
+  "id": "s665-119",
+  "jurisdiction": "us",
+  "latest_action": "Read twice and referred to the Committee on Finance.",
+  "latest_action_date": "2025-02-20",
+  "number": 665,
+  "policy_area": "Health",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/665",
+  "sponsor_id": "C000127",
+  "subjects": [
+    "Congressional oversight",
+    "Data collection, sharing, protection",
+    "Drug trafficking and controlled substances",
+    "Drug, alcohol, tobacco use",
+    "Employee hiring",
+    "Government information and archives",
+    "Health care costs and insurance",
+    "Health care coverage and access",
+    "Health personnel",
+    "Health programs administration and funding",
+    "Health promotion and preventive care",
+    "Medicaid",
+    "Mental health",
+    "Prescription drugs",
+    "Public contracts and procurement",
+    "State and local government operations"
+  ],
+  "title_official": "Fatal Overdose Reduction Act of 2025",
+  "type": "s"
+}

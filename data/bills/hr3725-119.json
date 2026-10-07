@@ -1,0 +1,78 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-06-04",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B000825",
+    "B001317",
+    "B001323",
+    "B001325",
+    "D000634",
+    "F000450",
+    "F000478",
+    "G000576",
+    "G000601",
+    "G000603",
+    "H001098",
+    "H001099",
+    "H001102",
+    "K000403",
+    "L000578",
+    "L000600",
+    "M001212",
+    "M001235",
+    "M001236",
+    "M001239",
+    "N000190",
+    "S001228",
+    "T000165",
+    "T000490",
+    "W000814",
+    "W000829",
+    "Y000067"
+  ],
+  "id": "hr3725-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2025-06-04",
+  "number": 3725,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3725",
+  "sponsor_id": "M001240",
+  "subjects": [],
+  "title_official": "Preventing the Abuse of Immigration Parole Act",
+  "type": "hr"
+}

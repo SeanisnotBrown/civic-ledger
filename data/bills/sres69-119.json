@@ -1,0 +1,67 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Rules and Administration Committee"
+      ],
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Rules and Administration. (text: CR S862)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Armed Services. Original measure reported to Senate by Senator Wicker. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Armed Services. Original measure reported to Senate by Senator Wicker. Without written report.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-02-11",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [],
+  "id": "sres69-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Rules and Administration. (text: CR S862)",
+  "latest_action_date": "2025-02-11",
+  "number": 69,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/69",
+  "sponsor_id": "W000437",
+  "subjects": [
+    "Congressional committees",
+    "Senate Committee on Armed Services"
+  ],
+  "title_official": "An original resolution authorizing expenditures by the Committee on Armed Services.",
+  "type": "sres"
+}

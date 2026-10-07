@@ -1,0 +1,64 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on the Judiciary.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2025-12-18",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "A000381",
+    "B001300",
+    "C001067",
+    "C001080",
+    "D000096",
+    "D000197",
+    "J000288",
+    "K000389",
+    "L000582",
+    "M001196",
+    "N000147",
+    "S001145",
+    "T000481"
+  ],
+  "id": "hr6870-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action_date": "2025-12-18",
+  "number": 6870,
+  "policy_area": "Immigration",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6870",
+  "sponsor_id": "L000397",
+  "subjects": [],
+  "title_official": "GRACE Act",
+  "type": "hr"
+}

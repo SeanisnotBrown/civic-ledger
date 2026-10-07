@@ -1,0 +1,42 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Finance Committee"
+      ],
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on Finance. (text: CR S187)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-01-15",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "T000278"
+  ],
+  "id": "sconres5-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on Finance. (text: CR S187)",
+  "latest_action_date": "2025-01-15",
+  "number": 5,
+  "policy_area": "International Affairs",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-concurrent-resolution/5",
+  "sponsor_id": "B001319",
+  "subjects": [],
+  "title_official": "A concurrent resolution expressing the sense of Congress that the proposed \"joint interpretation\" of Annex 14-C of the United States-Mexico-Canada Agreement prepared by United States Trade Representative Katherine Tai is of no legal effect with respect to the United States or any United States person unless it is approved by Congress.",
+  "type": "sconres"
+}

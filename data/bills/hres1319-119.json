@@ -1,0 +1,63 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-05-21",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-05-21",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "J000298",
+    "J000305",
+    "M001160",
+    "M001229",
+    "M001234",
+    "N000147",
+    "S001231",
+    "W000808"
+  ],
+  "id": "hres1319-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Oversight and Government Reform.",
+  "latest_action_date": "2026-05-21",
+  "number": 1319,
+  "policy_area": "Social Welfare",
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1319",
+  "sponsor_id": "T000481",
+  "subjects": [
+    "Child care and development",
+    "Child health",
+    "Child safety and welfare",
+    "Elementary and secondary education",
+    "Family services",
+    "Food assistance and relief",
+    "Health care coverage and access",
+    "Income tax credits",
+    "Nutrition and diet",
+    "Poverty and welfare assistance",
+    "Preschool education"
+  ],
+  "title_official": "Ending child poverty.",
+  "type": "hres"
+}

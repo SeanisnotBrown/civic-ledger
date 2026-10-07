@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": null,
+      "date": "2025-05-14",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S2934; text: CR S2932)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2025-05-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "10000",
+      "committees": null,
+      "date": "2025-05-14",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "S000148"
+  ],
+  "id": "sres229-119",
+  "jurisdiction": "us",
+  "latest_action": "Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S2934; text: CR S2932)",
+  "latest_action_date": "2025-05-14",
+  "number": 229,
+  "policy_area": "Congress",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/229",
+  "sponsor_id": "T000250",
+  "subjects": [
+    "Congressional committees",
+    "Government information and archives",
+    "Senate",
+    "Senate Committee on Foreign Relations"
+  ],
+  "title_official": "A resolution to authorize the production of records by the Committee on Foreign Relations.",
+  "type": "sres"
+}

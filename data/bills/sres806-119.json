@@ -1,0 +1,47 @@
+{
+  "actions": [
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Referred to the Committee on the Judiciary. (text: CR S4140)",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10025",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-07-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Submitted in Senate",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "B001288",
+    "V000128",
+    "W000800",
+    "W000802"
+  ],
+  "id": "sres806-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S4140)",
+  "latest_action_date": "2026-07-16",
+  "number": 806,
+  "policy_area": "Environmental Protection",
+  "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/806",
+  "sponsor_id": "M001176",
+  "subjects": [],
+  "title_official": "A resolution designating July 2026 as \"Plastic Pollution Action Month\".",
+  "type": "sres"
+}

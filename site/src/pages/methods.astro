@@ -190,6 +190,46 @@ const n = (x: number) => x.toLocaleString("en-US");
     </section>
   )}
 
+  <section id="party-majority" aria-labelledby="party-majority-h">
+    <h2 id="party-majority-h" class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+      Whose majority a member sided with
+    </h2>
+    <div class="mt-3 max-w-[62ch] space-y-3 text-[14px] leading-relaxed text-neutral-700">
+      <p>
+        Each member page places every one of their recorded votes into one of four
+        groups: with the Democratic majority only, with the Republican majority only,
+        with both, or against both. The rule is mechanical and uses nothing but the roll
+        call's own per-party tallies and the member's own position.
+      </p>
+      <ul class="list-disc space-y-1.5 pl-5">
+        <li>
+          A party's <strong class="font-medium text-text">majority side</strong> on a roll
+          call is whichever of yea or nay that party cast more of. If a party splits
+          exactly evenly, it has no majority on that roll call and nothing to side with.
+        </li>
+        <li>
+          The member <strong class="font-medium text-text">sided with</strong> a party when
+          their own position is that party's majority side.
+        </li>
+        <li>
+          A position of “present”, or an absence, takes no side, so those votes are placed
+          in no group. Neither are roll calls with no yea/nay tallies at all — an election
+          for Speaker, for instance, where members vote by name.
+        </li>
+        <li>
+          Only the Democratic and Republican tallies are read, because those are the two
+          caucusing majorities. An independent member is placed by exactly the same rule as
+          everyone else.
+        </li>
+      </ul>
+      <p>
+        That is the whole calculation. No outside rating is used, nothing is modelled, and
+        the four counts are the entire result — the site derives no single left-to-right
+        score from them, because the record does not contain one.
+      </p>
+    </div>
+  </section>
+
   {rankedKeys.length > 0 && (
     <>
       <h2 class="mt-9 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Rankings &amp; percentiles</h2>

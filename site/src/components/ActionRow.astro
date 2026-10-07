@@ -1,0 +1,30 @@
+---
+// One official action on a bill the member sponsored, in their activity timeline
+// (P2, §4.2 scroll 3). The government's action text is rendered VERBATIM — never
+// summarised or reworded. `committees` is shown because it is often the only thing
+// distinguishing otherwise identical rows on the same day.
+//
+// The bill link follows the SD-33 3(c) rule: /b/{id} only when that page was built
+// (a bill that reached a recorded vote), otherwise the bill's own page on
+// congress.gov, so no link points at a URL that was never generated.
+import type { Bill, BillAction } from "../lib/data";
+import { formatDate, billLabel } from "../lib/display";
+
+interface Props { bill: Bill; action: BillAction; hasPage: boolean; filterTopic?: string }
+const { bill, action, hasPage, filterTopic } = Astro.props as Props;
+---
+<li class="border-b border-line py-3" data-kind="action" data-topic={filterTopic ?? ""}>
+  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+    <span class="rounded bg-surface px-1.5 py-0.5 text-[11px] text-neutral-600">Bill action</span>
+    <span class="text-xs text-neutral-500">
+      {formatDate(action.date)} ·
+      {" "}{hasPage
+        ? <a href={`/b/${bill.id}`} class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(bill.id)}</a>
+        : <a href={bill.source_url} rel="nofollow" class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(bill.id)}</a>}
+    </span>
+  </div>
+  <p class="mt-1 text-sm leading-snug text-neutral-700">{action.text}</p>
+  {action.committees && action.committees.length > 0 && (
+    <p class="mt-1 text-xs text-neutral-500">{action.committees.join(" · ")}</p>
+  )}
+</li>

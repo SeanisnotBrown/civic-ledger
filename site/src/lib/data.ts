@@ -806,3 +806,359 @@ export function getMemberTimeline(memberId: string): TimelineItem[] {
   });
   return items;
 }
+
+// --- P2: member legislation (data/legislation/{bioguide}.json) ------------
+// The sponsored / cosponsored lists the congress.gov member endpoints publish, as
+// exported by ingest. `became_law` + `enacted_action` are the government's own
+// enactment record for that bill number; nothing here is computed.
+
+export interface LegislationEntry {
+  bill_id: string; congress: number; title: string;
+  introduced_date: string; became_law: boolean;
+  enacted_action: string | null; source_url: string;
+}
+export interface MemberLegislation {
+  member_id: string; source_url: string;
+  lifetime_counts: Record<string, number>;
+  sponsored: LegislationEntry[]; cosponsored: LegislationEntry[];
+}
+
+/** One member's sponsored/cosponsored lists, or undefined when the file is absent
+ *  (a member the legislation pull has not reached — distinct from sponsoring none). */
+export function getMemberLegislation(memberId: string): MemberLegislation | undefined {
+  const p = path.join(DATA_DIR, "legislation", `${memberId}.json`);
+  if (!fs.existsSync(p)) return undefined;
+  return JSON.parse(fs.readFileSync(p, "utf-8")) as MemberLegislation;
+}
+
+/** Newest-introduced first, with a deterministic bill-id tie-break. */
+export function byIntroducedDesc(a: LegislationEntry, b: LegislationEntry): number {
+  if (a.introduced_date !== b.introduced_date) return a.introduced_date < b.introduced_date ? 1 : -1;
+  return a.bill_id.localeCompare(b.bill_id);
+}
+
+// --- P2: find your representatives, by state -----------------------------
+
+export interface StateDelegation { state: string; senate: Member[]; house: Member[]; }
+
+/** Serving federal members grouped by state: senators by name, then House members
+ *  by district (at-large / unknown district last). States are alphabetical by
+ *  postal code. Only `serving` members appear — the roster also holds members whose
+ *  term ended inside the covered Congresses, and offering a reader a former member
+ *  as "your representative" would be false. */
+let _byState: StateDelegation[] | null = null;
+export function getDelegationsByState(): StateDelegation[] {
+  if (_byState) return _byState;
+  const index = new Map<string, StateDelegation>();
+  for (const m of getMembers()) {
+    if (m.jurisdiction !== "us" || !m.serving) continue;
+    let d = index.get(m.state);
+    if (!d) { d = { state: m.state, senate: [], house: [] }; index.set(m.state, d); }
+    (m.chamber === "senate" ? d.senate : d.house).push(m);
+  }
+  for (const d of index.values()) {
+    d.senate.sort((a, b) => a.name.localeCompare(b.name));
+    d.house.sort((a, b) => {
+      const ad = a.district ?? Number.MAX_SAFE_INTEGER;
+      const bd = b.district ?? Number.MAX_SAFE_INTEGER;
+      return ad !== bd ? ad - bd : a.name.localeCompare(b.name);
+    });
+  }
+  _byState = [...index.values()].sort((a, b) => a.state.localeCompare(b.state));
+  return _byState;
+}
+
+/** The calendar year of a member's earliest term start, or null. Rendered as a
+ *  year, not a count of years: a count needs a wall-clock "now", and a wall clock
+ *  in a built artifact breaks determinism (§6.3). */
+export function inOfficeSince(member: Member): number | null {
+  const starts = member.terms.map((t) => t.start).filter(Boolean).sort();
+  return starts.length ? Number(starts[0].slice(0, 4)) : null;
+}
+
+/** True when some later term starts more than ~400 days after the previous one
+ *  ended, i.e. service has not been continuous since `inOfficeSince`. The header
+ *  then says "first took office in" instead of "in office since", so the year is
+ *  never read as unbroken service. */
+export function hasServiceGap(member: Member): boolean {
+  const terms = [...member.terms].sort((a, b) => a.start.localeCompare(b.start));
+  for (let i = 1; i < terms.length; i++) {
+    const prevEnd = Date.parse(terms[i - 1].end);
+    const start = Date.parse(terms[i].start);
+    if (Number.isFinite(prevEnd) && Number.isFinite(start)
+        && start - prevEnd > 400 * 24 * 3600 * 1000) return true;
+  }
+  return false;
+}
+
+// --- P2: party-majority placement of a vote (ratified, §2) ---------------
+// "A vote is placed by which party's majority the member sided with." Computed
+// ONLY from the roll call's own party_totals and the member's own position — no
+// outside score, no model, and no derived single "lean" number.
+//
+// Per roll call, mechanically:
+//   * a party's majority side is "yea" when its yea count exceeds its nay count,
+//     "nay" when its nay exceeds its yea, and nothing at all on a tie;
+//   * the member sided with a party when their position equals that side;
+//   * a position of present / not_voting places nothing — there is no side taken;
+//   * a roll with no party_totals (a Speaker election has no yea/nay) places nothing.
+// Only D and R totals are read: "the other party's majority" is defined only for
+// the two caucusing majorities. An Independent member is placed by the same rule.
+
+export type PartySide = "both" | "d_only" | "r_only" | "neither";
+export const PARTY_SIDE_LABEL: Record<PartySide, string> = {
+  both: "With both party majorities",
+  d_only: "With the Democratic majority only",
+  r_only: "With the Republican majority only",
+  neither: "Against both party majorities",
+};
+export const PARTY_SIDE_ORDER: PartySide[] = ["d_only", "both", "r_only", "neither"];
+
+/** The majority side of one party on one roll call, or null on a tie / no totals. */
+export function partyMajoritySide(rc: RollCall, party: "D" | "R"): "yea" | "nay" | null {
+  const t = rc.party_totals?.[party];
+  if (!t) return null;
+  const yea = Number(t.yea ?? 0);
+  const nay = Number(t.nay ?? 0);
+  if (yea === nay) return null;
+  return yea > nay ? "yea" : "nay";
+}
+
+/** Where a member's vote falls under the ratified rule, or null when the roll
+ *  places nothing (no party_totals, both parties tied, or present / not voting). */
+export function placeVote(rc: RollCall, position: Position): PartySide | null {
+  if (position !== "yea" && position !== "nay") return null;
+  const d = partyMajoritySide(rc, "D");
+  const r = partyMajoritySide(rc, "R");
+  if (d === null && r === null) return null;
+  const withD = d !== null && position === d;
+  const withR = r !== null && position === r;
+  if (withD && withR) return "both";
+  if (withD) return "d_only";
+  if (withR) return "r_only";
+  return "neither";
+}
+
+export interface PartySideTally {
+  counts: Record<PartySide, number>;
+  placed: number;
+  unplaced: number;
+}
+/** Bin counts for one member's votes, plus how many votes the rule places at all. */
+export function tallyPartySides(rows: MemberVoteRow[]): PartySideTally {
+  const counts: Record<PartySide, number> = { both: 0, d_only: 0, r_only: 0, neither: 0 };
+  let placed = 0, unplaced = 0;
+  for (const r of rows) {
+    const side = placeVote(r.rollcall, r.position);
+    if (side === null) { unplaced++; continue; }
+    counts[side]++; placed++;
+  }
+  return { counts, placed, unplaced };
+}
+
+// --- P2: chamber activity for the homepage middle band -------------------
+// Buckets are the government's OWN summary wording, not a reading of it:
+// congress.gov writes the paired labels "Passed/agreed to in {chamber}: …" and
+// "Failed of passage/not agreed to in {chamber}: …" on the action that resolves a
+// measure on the floor, and stamps enactment with action type "BecameLaw". Calendar
+// placements are shown as exactly that — placed on a calendar — because nothing in
+// the action record states a scheduled vote date (that source is Q-D, Phase 5).
+
+export type ActivityBucket = "became_law" | "passed" | "failed" | "calendared";
+export interface ActivityRow { event: BillEvent; title: string | null; }
+export interface ChamberActivity {
+  /** Inclusive window, taken from the record itself — never from a wall clock. */
+  from: string; to: string; days: number;
+  buckets: Record<ActivityBucket, ActivityRow[]>;
+  totals: Record<ActivityBucket, number>;
+}
+
+const ACTIVITY_DAYS = 14;
+
+function activityBucket(e: BillEvent): ActivityBucket | null {
+  if (!e.text) return null; // a null action text has no wording to bucket on
+  if (e.type === "BecameLaw") return "became_law";
+  if (e.text.startsWith("Passed/agreed to in ")) return "passed";
+  if (e.text.startsWith("Failed of passage/not agreed to in ")) return "failed";
+  if (e.type === "Calendars") return "calendared";
+  return null;
+}
+
+/** The most recent `ACTIVITY_DAYS` days of floor-resolving bill actions in the
+ *  record, bucketed. `limit` caps each bucket's rendered rows; `totals` keeps the
+ *  full count, so the page never implies a trimmed list is the whole list. */
+export function recentChamberActivity(limit = 6): ChamberActivity | null {
+  const months = getEventMonths();
+  if (!months.length) return null;
+  // Two months, so a window straddling a month boundary is still whole.
+  const events = months.slice(-2).flatMap((m) => getEventsFile(m).events);
+  if (!events.length) return null;
+  const to = events.reduce((acc, e) => (e.date > acc ? e.date : acc), events[0].date);
+  const from = new Date(
+    Date.parse(`${to}T00:00:00Z`) - (ACTIVITY_DAYS - 1) * 24 * 3600 * 1000,
+  ).toISOString().slice(0, 10);
+
+  const buckets: Record<ActivityBucket, ActivityRow[]> = {
+    became_law: [], passed: [], failed: [], calendared: [],
+  };
+  const totals: Record<ActivityBucket, number> = {
+    became_law: 0, passed: 0, failed: 0, calendared: 0,
+  };
+  const inWindow = events
+    .filter((e) => e.date >= from && e.date <= to)
+    .sort((a, b) => (a.date !== b.date ? (a.date < b.date ? 1 : -1) : a.id.localeCompare(b.id)));
+  const seen = new Set<string>();
+  for (const e of inWindow) {
+    const b = activityBucket(e);
+    if (b === null) continue;
+    // One row per bill per bucket: congress.gov writes a passage twice (its summary
+    // line and the vote line), and both carry the same bill id.
+    const key = `${b}::${e.bill_id}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    totals[b]++;
+    if (buckets[b].length < limit) {
+      buckets[b].push({ event: e, title: getBill(e.bill_id)?.title_official ?? null });
+    }
+  }
+  return { from, to, days: ACTIVITY_DAYS, buckets, totals };
+}
+
+// --- P2: bill actions on a member's own bills, for their timeline ---------
+
+/** Action rows on the bills a member sponsored, newest first. `actions` absent or
+ *  null on a bill is the D27 "not collected" sentinel, not "no actions", so those
+ *  bills simply contribute nothing here rather than an empty timeline. */
+export interface MemberBillAction { bill: Bill; action: BillAction; }
+let _actionsBySponsor: Map<string, MemberBillAction[]> | null = null;
+export function getSponsoredBillActions(memberId: string): MemberBillAction[] {
+  if (!_actionsBySponsor) {
+    const index = new Map<string, MemberBillAction[]>();
+    for (const b of getBills()) {
+      if (!b.sponsor_id || !b.actions || !b.actions.length) continue;
+      let list = index.get(b.sponsor_id);
+      if (!list) { list = []; index.set(b.sponsor_id, list); }
+      for (const a of b.actions) {
+        // 30 actions in the dataset carry a null `text` (the government published the
+        // action code and date with no sentence). A row with no text would render as a
+        // dated blank that says nothing, so those are skipped rather than shown.
+        if (!a.text || !a.date) continue;
+        list.push({ bill: b, action: a });
+      }
+    }
+    _actionsBySponsor = index;
+  }
+  return _actionsBySponsor.get(memberId) ?? [];
+}
+
+// --- P2: the member activity timeline (§4.2 scroll 3) --------------------
+// Votes (absences included — an absence is a vote row with a not_voting position,
+// which is where the stated reason or "No explanation on record" is rendered),
+// statements, and official actions on the bills the member sponsored, on one
+// newest-first list, each row carrying the policy area it can be filtered by.
+
+export type ActivityKind = "vote" | "statement" | "action";
+export const ACTIVITY_KIND_LABEL: Record<ActivityKind, string> = {
+  vote: "Votes", statement: "Statements", action: "Actions on their bills",
+};
+
+export type MemberActivityItem =
+  | { kind: "vote"; day: string; policyArea: string | null; rollcall: RollCall; position: Position }
+  | { kind: "statement"; day: string; policyArea: string | null; statement: Statement; pairedVotes: PairedVote[] }
+  | { kind: "action"; day: string; policyArea: string | null; bill: Bill; action: BillAction };
+
+/** The member's full activity, newest first. Ordering within a calendar day is
+ *  fixed (statements, then votes by recency, then bill actions by bill id) so the
+ *  build is byte-stable. */
+export function getMemberActivity(memberId: string): MemberActivityItem[] {
+  const items: MemberActivityItem[] = [];
+  for (const it of getMemberTimeline(memberId)) {
+    if (it.kind === "vote") {
+      const bill = it.rollcall.bill_id ? getBill(it.rollcall.bill_id) : undefined;
+      items.push({ ...it, policyArea: bill?.policy_area ?? null });
+    } else {
+      const paired = it.statement.paired_bill_ids
+        .map((id) => getBill(id)?.policy_area)
+        .find((p) => p);
+      items.push({ ...it, policyArea: paired ?? null });
+    }
+  }
+  for (const { bill, action } of getSponsoredBillActions(memberId)) {
+    items.push({
+      kind: "action", day: action.date.slice(0, 10),
+      policyArea: bill.policy_area ?? null, bill, action,
+    });
+  }
+  const rank: Record<ActivityKind, number> = { statement: 0, vote: 1, action: 2 };
+  items.sort((a, b) => {
+    if (a.day !== b.day) return a.day < b.day ? 1 : -1;
+    if (rank[a.kind] !== rank[b.kind]) return rank[a.kind] - rank[b.kind];
+    if (a.kind === "vote" && b.kind === "vote") return byRecency(a.rollcall, b.rollcall);
+    if (a.kind === "statement" && b.kind === "statement")
+      return a.statement.id < b.statement.id ? -1 : 1;
+    if (a.kind === "action" && b.kind === "action") {
+      if (a.bill.id !== b.bill.id) return a.bill.id.localeCompare(b.bill.id);
+      return a.action.text.localeCompare(b.action.text);
+    }
+    return 0;
+  });
+  return items;
+}
+
+/** Policy areas present on one page of activity rows, alphabetical. Drives the
+ *  topic filter's options, so the filter never offers a value that filters to
+ *  nothing on the page the reader is looking at. */
+export function policyAreasOf(items: MemberActivityItem[]): string[] {
+  const set = new Set<string>();
+  for (const it of items) if (it.policyArea) set.add(it.policyArea);
+  return [...set].sort((a, b) => a.localeCompare(b));
+}
+
+// --- P2: member photos (task 6) ------------------------------------------
+// Photos live in site/public/photos/{bioguide}.jpg, fetched by
+// scripts/fetch_member_photos.py from the unitedstates/images project (source and
+// licence recorded in docs/data-contract.md). The roster covers members of two
+// Congresses and that project does not carry every one of them, so a missing file
+// is an ordinary state: the header falls back to initials. Checked at build time,
+// once, so a page never links an image that is not there.
+let _photoIds: Set<string> | null = null;
+function photoIds(): Set<string> {
+  if (_photoIds) return _photoIds;
+  const dir = fileURLToPath(new URL("../../public/photos/", import.meta.url));
+  _photoIds = new Set(
+    fs.existsSync(dir)
+      ? fs.readdirSync(dir).filter((f) => f.endsWith(".jpg")).map((f) => f.slice(0, -4))
+      : [],
+  );
+  return _photoIds;
+}
+export function memberPhotoUrl(memberId: string): string | null {
+  return photoIds().has(memberId) ? `/photos/${memberId}.jpg` : null;
+}
+
+// --- P2: committee assignments (task 7) ----------------------------------
+// data/committees/membership.json, written by `uv run ingest committees` from the
+// unitedstates/congress-legislators project. Absent until that ingest has run, in
+// which case the member page says the section is coming rather than implying the
+// member sits on nothing.
+export interface CommitteeSeat {
+  committee_id: string; name: string; parent_name: string | null;
+  rank: number | null; title: string | null; source_url: string;
+}
+export interface CommitteeMembership {
+  source_url: string; seat_count: number; members: Record<string, CommitteeSeat[]>;
+}
+let _committees: CommitteeMembership | null | undefined;
+export function getCommitteeMembership(): CommitteeMembership | null {
+  if (_committees !== undefined) return _committees;
+  const p = path.join(DATA_DIR, "committees", "membership.json");
+  _committees = fs.existsSync(p)
+    ? (JSON.parse(fs.readFileSync(p, "utf-8")) as CommitteeMembership)
+    : null;
+  return _committees;
+}
+export function getMemberCommittees(memberId: string): CommitteeSeat[] | null {
+  const m = getCommitteeMembership();
+  if (!m) return null;
+  return m.members[memberId] ?? [];
+}

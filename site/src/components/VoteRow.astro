@@ -7,11 +7,13 @@ import type { Position, RollCall, Absence } from "../lib/data";
 import Badge from "./Badge.astro";
 import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
 
-interface Props { rollcall: RollCall; position: Position; absence?: Absence }
-const { rollcall: rc, position, absence } = Astro.props;
+// `filterTopic` is set on the member activity page so its Type / Policy area selects
+// can hide the row; it is absent everywhere else and then renders nothing.
+interface Props { rollcall: RollCall; position: Position; absence?: Absence; filterTopic?: string }
+const { rollcall: rc, position, absence, filterTopic } = Astro.props;
 const notVoting = position === "not_voting";
 ---
-<li class="border-b border-neutral-100 py-3">
+<li class="border-b border-neutral-100 py-3" data-kind="vote" data-topic={filterTopic ?? ""}>
   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
     <span class="font-semibold">{POSITION_LABEL[position]}</span>
     <Badge voteClass={rc.vote_class} />

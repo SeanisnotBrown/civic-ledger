@@ -1,8 +1,15 @@
 ---
-// Shared page shell + the §6.7 footer (mandatory on every page): data-last-updated,
-// methodology + corrections links, and the build commit that produced the page.
+// Shared page shell + the footer (on every page): data-last-updated, methodology
+// and corrections links.
 // Nocturne dark theme (owner's design pass, 2026-08-14): 1180px container, sticky nav,
 // self-hosted Inter. Colour lives in the tokens in styles/global.css.
+//
+// P2 (§4.9) removed three things from this shell: the States tab, the threat-model
+// link, and the build commit in the footer. The routes behind them are all still
+// built and still reachable by URL; only the navigation to them is gone, because
+// the reader does not need them to use the site. The "every published fact links to
+// an official source" line went with them — the site earns that by the links
+// working when you click them, not by claiming it in a footer.
 import "../styles/global.css";
 import { getManifest } from "../lib/data";
 import { formatDate } from "../lib/display";
@@ -12,28 +19,16 @@ const { title, description } = Astro.props;
 
 const manifest = getManifest();
 const updated = formatDate(manifest.generated_at);
-// The commit that built THIS page (§6.7). Our CI injects PUBLIC_BUILD_COMMIT
-// (import.meta.env exposes PUBLIC_-prefixed vars); Cloudflare Workers Builds sets
-// WORKERS_CI_COMMIT_SHA (not PUBLIC_-prefixed → read from process.env, which the
-// Node-side frontmatter can see). Falls back to the data-export commit from the
-// manifest, then "dev" locally.
-const buildCommit = (
-  (import.meta.env.PUBLIC_BUILD_COMMIT as string | undefined) ??
-  process.env.WORKERS_CI_COMMIT_SHA ??
-  manifest.commit ??
-  "dev"
-).slice(0, 7);
 
-// Primary tabs (V2-5). `match` decides the active tab from the current path so a
-// detail page still highlights its section: a federal member/vote/bill page lights
-// "Federal"; anything under /ms or /states lights "States". Home is active only on
-// the exact root. aria-current="page" marks it for assistive tech.
+// Primary tabs. `match` decides the active tab from the current path so a detail
+// page still highlights its section: a federal member/vote/bill page lights
+// "Federal". Home is active only on the exact root. aria-current="page" marks it
+// for assistive tech.
 const path = Astro.url.pathname;
 const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
   { href: "/", label: "Home", match: (p) => p === "/" },
   { href: "/federal", label: "Federal",
     match: (p) => ["/federal", "/m/", "/v/", "/b/", "/topics", "/compare", "/pairing"].some((x) => p === x || p.startsWith(x)) },
-  { href: "/states", label: "States", match: (p) => p.startsWith("/states") || p.startsWith("/ms") },
   { href: "/methods", label: "Methodology", match: (p) => p.startsWith("/methods") },
 ];
 ---
@@ -43,7 +38,7 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description ?? "A non-partisan public ledger of the legislative record."} />
+    <meta name="description" content={description ?? "The legislative record of the U.S. Congress: votes, bills, and attendance, from the official account."} />
     <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="alternate" type="application/atom+xml" title="Civic Ledger — legislative activity" href="/feed.xml" />
     <title>{title}</title>
@@ -77,19 +72,13 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
     </main>
 
     <footer class="mx-auto max-w-[1180px] px-6 py-10 text-xs text-neutral-500">
-      <p>
-        Data last updated {updated}. Every published fact links to an official source.
-      </p>
+      <p>Data last updated {updated}.</p>
       <p class="mt-1.5 flex flex-wrap items-center gap-x-2">
         <a href="/methods" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Methodology</a>
         <span aria-hidden="true">·</span>
         <a href="/corrections" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Corrections</a>
         <span aria-hidden="true">·</span>
         <a href="/privacy" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Privacy</a>
-        <span aria-hidden="true">·</span>
-        <a href="/threat-model" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Threat model</a>
-        <span aria-hidden="true">·</span>
-        <span>Build <code class="text-neutral-400">{buildCommit}</code></span>
       </p>
     </footer>
   </body>

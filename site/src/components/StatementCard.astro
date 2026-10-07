@@ -8,10 +8,11 @@ import type { Statement, PairedVote } from "../lib/data";
 import Badge from "./Badge.astro";
 import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
 
-interface Props { statement: Statement; pairedVotes: PairedVote[] }
-const { statement: s, pairedVotes } = Astro.props;
+// `filterTopic`: see VoteRow — set only on the member activity page.
+interface Props { statement: Statement; pairedVotes: PairedVote[]; filterTopic?: string }
+const { statement: s, pairedVotes, filterTopic } = Astro.props;
 ---
-<li class="border-b border-neutral-100 py-3">
+<li class="border-b border-neutral-100 py-3" data-kind="statement" data-topic={filterTopic ?? ""}>
   <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
     <span class="rounded bg-neutral-100 px-1.5 py-0.5 text-xs font-semibold uppercase tracking-wide text-neutral-600">Statement</span>
     <span class="text-xs text-neutral-500">{formatDate(s.date)} · {s.venue}</span>

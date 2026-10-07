@@ -1,0 +1,70 @@
+---
+// The left/right dot graph (P2, §4.2 scroll 1), under the rule the owner ratified
+// in §2: a vote is placed by WHICH PARTY'S MAJORITY the member sided with — with
+// the Democratic majority only, with the Republican majority only, with both, or
+// against both. Computed in data.ts `placeVote` from the roll call's own party
+// totals and the member's own position. No outside score, no model, and no single
+// "lean" number — the four counts are the whole result.
+//
+// One dot stands for `per` votes, stated on the page, because every vote inside a
+// bin is identical under the rule: a dot per vote would add no information and put
+// thousands of elements in the DOM of every member page. The exact count is printed
+// beside each bin, so nothing is rounded away.
+import type { PartySide, PartySideTally } from "../../lib/data";
+import { PARTY_SIDE_LABEL } from "../../lib/data";
+
+interface Props { tally: PartySideTally; per?: number }
+const { tally, per = 10 } = Astro.props as Props;
+
+// Left to right: Democratic majority only · both · Republican majority only.
+// "Against both" is its own row underneath — it is not a point on that axis.
+const AXIS: { key: PartySide; color: string }[] = [
+  { key: "d_only", color: "#6f93e6" },
+  { key: "both", color: "#7fbf9a" },
+  { key: "r_only", color: "#e0736b" },
+];
+const AGAINST: { key: PartySide; color: string } = { key: "neither", color: "#c9b06a" };
+
+const n = (x: number) => x.toLocaleString("en-US");
+const dots = (count: number) => Math.min(240, Math.ceil(count / per));
+const share = (count: number) =>
+  tally.placed > 0 ? Math.round((count / tally.placed) * 1000) / 10 : null;
+
+const rows = [...AXIS, AGAINST].map((b) => ({
+  ...b,
+  label: PARTY_SIDE_LABEL[b.key],
+  count: tally.counts[b.key],
+  pct: share(tally.counts[b.key]),
+}));
+---
+<div>
+  <ul class="space-y-4">
+    {rows.map((r) => (
+      <li>
+        <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-0.5">
+          <span class="text-[13px] text-neutral-700">{r.label}</span>
+          <span class="text-[12px] tabular-nums text-neutral-500">
+            {n(r.count)}{r.pct != null ? ` · ${r.pct}%` : ""}
+          </span>
+        </div>
+        <div class="mt-1.5 flex flex-wrap gap-[3px]" role="img"
+             aria-label={`${r.label}: ${n(r.count)} votes`}>
+          {Array.from({ length: dots(r.count) }).map(() => (
+            <span class="inline-block h-[6px] w-[6px] rounded-full"
+                  style={`background:${r.color};opacity:0.85`}></span>
+          ))}
+          {r.count === 0 && <span class="text-[12px] text-neutral-500">None.</span>}
+        </div>
+      </li>
+    ))}
+  </ul>
+  <p class="mt-4 max-w-[70ch] text-[11px] leading-relaxed text-neutral-500">
+    One dot is {per} votes; the exact count is beside each line. A party's majority on
+    a roll call is whichever of yea or nay it cast more of; on a tie that party has no
+    majority to side with. {n(tally.placed)} of this member's recorded votes are placed
+    by the rule. The other {n(tally.unplaced)} are not: a “present” or absent position
+    takes no side, and some roll calls (a Speaker election, for instance) have no
+    yea/nay totals at all.
+    {" "}<a href="/methods#party-majority" class="underline decoration-line underline-offset-2 hover:text-text">The full rule</a>.
+  </p>
+</div>

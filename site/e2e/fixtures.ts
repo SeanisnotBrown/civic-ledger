@@ -6,14 +6,16 @@ import { fileURLToPath } from "node:url";
 
 const DATA = fileURLToPath(new URL("../../data/", import.meta.url));
 
-function firstJson(sub: string): any {
-  const dir = path.join(DATA, sub);
-  const f = fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()[0];
-  return JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
-}
-
-function firstMemberId(): string {
-  return firstJson("members").id;
+// P2 acceptance names a HOUSE member page and a SENATE member page. `firstMemberId`
+// happens to be a House member, so the Senate case is derived explicitly rather than
+// left to the alphabet.
+function firstByChamber(chamber: "house" | "senate"): string {
+  const dir = path.join(DATA, "members");
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()) {
+    const m = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+    if (m.chamber === chamber && m.jurisdiction === "us") return m.id;
+  }
+  throw new Error(`no ${chamber} member in the roster`);
 }
 
 // V2-3: a non-voting delegate's page — exercises the mixed ranked/unranked tile path
@@ -145,7 +147,8 @@ export const PAGES: string[] = [
   topics.subject, // V2-11: the largest subject term
   "/compare", // V2-5: the compare view (bare — the picker + prompt, JS-rendered)
   "/states", // V2-5: the States tab
-  `/m/${firstMemberId()}/1`,
+  `/m/${firstByChamber("house")}/1`, // P2 acceptance: a House member page
+  `/m/${firstByChamber("senate")}/1`, // P2 acceptance: a Senate member page
   `/m/${firstDelegateId()}/1`, // V2-3: a delegate page (mixed ranked/unranked tiles)
   `/v/${rv.roll}`,
   `/b/${rv.bill}`,

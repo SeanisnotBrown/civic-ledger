@@ -1,19 +1,42 @@
 ---
+// P2 member page (IMPLEMENTATIONv3.md §4.2): above the fold → scroll 1 grades →
+// scroll 2 priorities and work → scroll 3 activity timeline.
+//
+// Page 1 carries the whole page. Pages 2+ are the timeline continued, with a short
+// header and a link back — the grade cards, the dot graph and the bill lists are
+// identical on every page of a member's record, and repeating them on all 5,000-odd
+// paginated pages is weight the reader never asked for.
+//
+// What this page deliberately does NOT show, and says so in plain words:
+//   * an overall grade — four of the five categories are not graded yet (§2), and
+//     one category called "overall" would be a false frame (rule 0);
+//   * a consistency verdict — it is measured against the member's own public
+//     statements, and none are collected yet (Phase 3);
+//   * weight sliders — there is nothing to weigh against while one category is graded.
 import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
+import ActionRow from "../../../components/ActionRow.astro";
 import StatementCard from "../../../components/StatementCard.astro";
 import DotStrip from "../../../components/charts/DotStrip.astro";
+import PartySideGraph from "../../../components/charts/PartySideGraph.astro";
 import {
-  getMembers, getMemberTimeline, getAbsence, paginate, getMetrics, getMemberRanks,
-  getRankings, getMemberGrade, getManifest, getGrades, getGradedAttendanceByChamber,
+  getMembers, getMemberActivity, policyAreasOf, getAbsence, paginate, getMetrics,
+  getMemberRanks, getRankings, getMemberGrade, getManifest, getGrades,
+  getGradedAttendanceByChamber, getMemberVotes, tallyPartySides, getMemberLegislation,
+  byIntroducedDesc, getMemberCommittees, inOfficeSince, hasServiceGap, memberPhotoUrl,
+  votedBillIds, ACTIVITY_KIND_LABEL,
 } from "../../../lib/data";
-import type { TimelineItem } from "../../../lib/data";
+import type { MemberActivityItem, ActivityKind } from "../../../lib/data";
+import { STATE_NAME } from "../../../lib/states";
 
 export function getStaticPaths() {
-  const PAGE_SIZE = 200; // Astro isolates getStaticPaths scope — keep locals inside.
+  // 300 rows a page (P2: the timeline now carries bill actions as well as votes,
+  // ~1.14M rows in all — at 200 the build crossed into the Workers file-count
+  // warning band for no reader benefit).
+  const PAGE_SIZE = 300;
   const paths = [];
   for (const member of getMembers()) {
-    const pages = paginate(getMemberTimeline(member.id), PAGE_SIZE);
+    const pages = paginate(getMemberActivity(member.id), PAGE_SIZE);
     for (let i = 0; i < pages.length; i++) {
       paths.push({
         params: { member: member.id, page: String(i + 1) },
@@ -24,26 +47,10 @@ export function getStaticPaths() {
   return paths;
 }
 
-interface Props { memberId: string; rows: TimelineItem[]; pageNum: number; totalPages: number }
+interface Props { memberId: string; rows: MemberActivityItem[]; pageNum: number; totalPages: number }
 const { memberId, rows, pageNum, totalPages } = Astro.props as Props;
 const member = getMembers().find((m) => m.id === memberId)!;
-const hasStatements = rows.some((r) => r.kind === "statement");
-const mm = getMetrics().members[memberId] as Record<string, any> | undefined;
-const ranks = getMemberRanks(memberId, member.chamber);
-const chamberWord = member.chamber === "house" ? "House" : "Senate";
-const isDelegate =
-  getRankings().attendance?.chambers[member.chamber]?.excluded_delegates.includes(memberId) ?? false;
-const grade = getMemberGrade(memberId);
-const congresses = getManifest().congresses;
-const periodLabel = `${congresses.map((c) => `${c}th`).join("–")} Congresses`;
-
-const GRADE_HEX: Record<string, string> = {
-  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
-};
-const PARTY_HEX: Record<string, string> = { D: "#6f93e6", R: "#e0736b", I: "#c9b06a" };
-const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
-const chamberLabel = member.chamber === "house" ? "U.S. House" : "U.S. Senate";
-const districtSuffix = member.district != null ? `, District ${member.district}` : "";
+const isFirstPage = pageNum === 1;
 
 const n = (x: number) => x.toLocaleString("en-US");
 const pctOrDash = (x: number | null | undefined) => (x == null ? "—" : `${x}%`);
@@ -53,6 +60,22 @@ const ordinal = (x: number): string => {
   return `${n(x)}${suffix}`;
 };
 
+const mm = getMetrics().members[memberId] as Record<string, any> | undefined;
+const ranks = getMemberRanks(memberId, member.chamber);
+const chamberWord = member.chamber === "house" ? "House" : "Senate";
+const isDelegate =
+  getRankings().attendance?.chambers[member.chamber]?.excluded_delegates.includes(memberId) ?? false;
+const grade = getMemberGrade(memberId);
+
+const GRADE_HEX: Record<string, string> = {
+  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
+};
+const PARTY_HEX: Record<string, string> = { D: "#6f93e6", R: "#e0736b", I: "#c9b06a" };
+const PARTY_LABEL: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
+const chamberLabel = member.chamber === "house" ? "U.S. House" : "U.S. Senate";
+const districtSuffix = member.district != null ? `, District ${member.district}` : "";
+const stateName = STATE_NAME[member.state] ?? member.state;
+
 const att = mm?.attendance;
 const ca = mm?.cross_aisle_support;
 const posmix = mm?.position_mix;
@@ -60,30 +83,44 @@ const enact = mm?.enacted_rate;
 const attRank = ranks.attendance; // present only when ranked (delegates excluded, D66)
 const gradeColor = grade?.grade ? GRADE_HEX[grade.grade] : "#6b6f80";
 
-// Distribution strip: this member's chamber, coloured by each dot's grade band.
-const dist = getGradedAttendanceByChamber()[member.chamber].map((e) => ({
-  value: e.value, color: GRADE_HEX[e.grade] ?? "#6b6f80",
-}));
+const photo = memberPhotoUrl(memberId);
+const initials = member.name.split(/\s+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join("");
+const since = inOfficeSince(member);
+const gapped = hasServiceGap(member);
+const officialUrl = `https://bioguide.congress.gov/search/bio/${memberId}`;
 
-// State delegation: same-state members with a graded/known attendance value, on the
-// same 50–100 axis. The member themself is drawn in white and labelled.
-const gradesAtt = getGrades().attendance;
-const allMetrics = getMetrics().members as Record<string, any>;
-const delegation = getMembers()
-  .filter((m) => m.state === member.state && m.jurisdiction === "us")
-  .map((m) => ({
-    id: m.id, name: m.name,
-    pct: allMetrics[m.id]?.attendance?.pct as number | null | undefined,
-    grade: gradesAtt?.members[m.id]?.grade as string | undefined,
-    self: m.id === member.id,
-  }))
-  .filter((d) => d.pct != null)
-  .sort((a, b) => (b.pct as number) - (a.pct as number));
-const showDelegation = delegation.length >= 2;
+// --- Page-1 only: grades, dot graph, bills, committees -------------------
+const allVotes = isFirstPage ? getMemberVotes(memberId) : [];
+const tally = isFirstPage ? tallyPartySides(allVotes) : null;
 
-const officialUrl = `https://bioguide.congress.gov/search/bio/${member.id}`;
+const dist = isFirstPage
+  ? getGradedAttendanceByChamber()[member.chamber].map((e) => ({
+      value: e.value, color: GRADE_HEX[e.grade] ?? "#6b6f80",
+    }))
+  : [];
 
-// Fact tiles (6). Yea/Nay share is the new position_mix metric.
+// The five ratified categories (§2). Attendance is graded; the other four state what
+// they will measure. None of this copy is wrapped in data-grade-label — that marker
+// is reserved for strings that came out of the ratified grade config.
+const CATEGORIES: { name: string; measures: string }[] = [
+  { name: "Consistency",
+    measures: "Votes against the priorities the member has stated publicly, with compromises accounted for. Needs their own public statements, which are not collected yet." },
+  { name: "Effectiveness",
+    measures: "How far the bills they introduced actually moved, and how many became law." },
+  { name: "Bipartisanship",
+    measures: "Cross-aisle cosponsors on their own bills, and votes cast with the other party's majority." },
+  { name: "Responsiveness",
+    measures: "The share of requests for comment their office answers within 14 days." },
+];
+
+const legislation = isFirstPage ? getMemberLegislation(memberId) : undefined;
+const sponsored = legislation ? [...legislation.sponsored].sort(byIntroducedDesc) : [];
+const cosponsored = legislation ? [...legislation.cosponsored].sort(byIntroducedDesc) : [];
+const sponsoredLaw = sponsored.filter((e) => e.became_law);
+const BILL_LIST_LIMIT = 10;
+const committees = isFirstPage ? getMemberCommittees(memberId) : null;
+
+// Fact tiles (§4.2 scroll 2 — the plain recorded numbers).
 const tiles = [
   { key: "attendance", label: "Attendance", value: pctOrDash(att?.pct),
     note: att && att.pct != null ? `${n(att.cast)} of ${n(att.eligible)} eligible` : "no eligible rolls yet" },
@@ -102,145 +139,377 @@ const tiles = [
     value: enact ? `${n(enact.enacted)} of ${n(enact.sponsored)}` : "—",
     note: "enacted under their own bill number" },
 ];
+
+// --- Timeline rows (every page) ------------------------------------------
+const voted = votedBillIds();
+const kindsPresent = [...new Set(rows.map((r) => r.kind))] as ActivityKind[];
+const KIND_ORDER: ActivityKind[] = ["vote", "action", "statement"];
+const kindOptions = KIND_ORDER.filter((k) => kindsPresent.includes(k));
+const topicOptions = policyAreasOf(rows);
+const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")} Congresses`;
 ---
-<Layout title={`${member.name} — Civic Ledger`}>
+<Layout
+  title={`${member.name} — Civic Ledger`}
+  description={`${member.name}: the recorded votes, bills and attendance of the ${PARTY_LABEL[member.party]} ${member.chamber === "senate" ? "senator" : "representative"} for ${stateName}, from the official record.`}
+>
   <nav class="text-xs text-neutral-500">
     <a href="/federal" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Federal</a>
     <span aria-hidden="true"> / </span>{member.name}
   </nav>
 
-  <!-- Header: identity + grade card -->
-  <section class="mt-3 grid gap-5 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,1fr)] lg:items-start">
-    <div>
-      <h1 class="text-[32px] font-medium leading-tight tracking-[-0.025em] text-text sm:text-[36px]">{member.name}</h1>
-      <p class="mt-2 flex items-center gap-2 text-[15px] text-neutral-600">
-        <span aria-hidden="true" class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${PARTY_HEX[member.party]}`}></span>
-        {PARTY_LABEL[member.party]} · {chamberLabel}, {member.state}{districtSuffix}
-      </p>
-      <div class="mt-4 flex flex-wrap gap-2.5">
-        <a href={`/compare?m=${member.id}`}
-           class="rounded-md bg-accent px-3 py-1.5 text-[13px] font-medium text-bg transition-opacity hover:opacity-90">Compare with someone</a>
-        <a href={officialUrl} rel="nofollow"
-           class="rounded-md border border-line px-3 py-1.5 text-[13px] text-neutral-700 transition-colors hover:border-[rgba(233,233,237,0.22)] hover:text-text">Official record ↗</a>
-      </div>
-    </div>
-
-    <!-- Grade card -->
-    <div class="rounded-lg border p-4" style={`background:${gradeColor}1f;border-color:${gradeColor}59`}>
-      {grade?.grade ? (
-        <>
-          <div class="flex items-baseline gap-3">
-            <span class="text-[72px] font-medium leading-none tracking-[-0.04em] text-text">{grade.grade}</span>
-            <span class="text-[26px] font-medium tabular-nums text-text">{pctOrDash(att?.pct)}</span>
-          </div>
-          <p class="mt-2 text-[13px] text-neutral-700"><span data-grade-label>{grade.label}</span></p>
-          {attRank && (
-            <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
-              {ordinal(attRank.rank)} of {n(attRank.covered)} {chamberWord} members by attendance —
-              higher than {attRank.percentile}% of them.
+  {isFirstPage ? (
+    <!-- Above the fold: who they are, and the one grade that exists -->
+    <section class="mt-3 grid gap-5 lg:grid-cols-[minmax(0,1.4fr)_minmax(280px,1fr)] lg:items-start">
+      <div>
+        <div class="flex items-start gap-4">
+          {photo
+            ? <img src={photo} alt={`${member.name}, official photograph`} width="90" height="110"
+                   class="h-[110px] w-[90px] shrink-0 rounded-md border border-line object-cover" />
+            : <span aria-hidden="true"
+                    class="flex h-[110px] w-[90px] shrink-0 items-center justify-center rounded-md border border-line bg-surface text-[26px] font-medium text-neutral-500">{initials}</span>}
+          <div>
+            <h1 class="text-[30px] font-medium leading-tight tracking-[-0.025em] text-text sm:text-[36px]">{member.name}</h1>
+            <p class="mt-2 flex flex-wrap items-center gap-2 text-[15px] text-neutral-600">
+              <span aria-hidden="true" class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${PARTY_HEX[member.party]}`}></span>
+              {PARTY_LABEL[member.party]} · {chamberLabel}, {stateName}{districtSuffix}
             </p>
-          )}
-        </>
-      ) : (
-        <>
-          <p class="text-[20px] font-medium text-text">Not graded on attendance</p>
-          <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
-            {isDelegate
-              ? "Non-voting delegate — cannot vote on final passage, so attendance is not comparable to a full member's."
-              : <span data-grade-label>{grade?.exceptionLabel}</span>}
-          </p>
-          {att?.pct != null && (
-            <p class="mt-2 text-[13px] text-neutral-600">Attendance on record: <span class="tabular-nums text-text">{att.pct}%</span></p>
-          )}
-        </>
-      )}
-    </div>
-  </section>
+            {since != null && (
+              <p class="mt-1.5 text-[13px] text-neutral-500">
+                {gapped ? "First took office in" : "In office since"} {since}.
+                {!member.serving && " No longer serving."}
+              </p>
+            )}
+          </div>
+        </div>
+        <div class="mt-4 flex flex-wrap gap-2.5">
+          <a href={`/compare?m=${memberId}`}
+             class="rounded-md bg-accent px-3 py-1.5 text-[13px] font-medium text-bg transition-opacity hover:opacity-90">Compare with someone</a>
+          <a href={officialUrl} rel="nofollow"
+             class="rounded-md border border-line px-3 py-1.5 text-[13px] text-neutral-700 transition-colors hover:border-[rgba(233,233,237,0.22)] hover:text-text">Official record ↗</a>
+        </div>
+        <p class="mt-4 max-w-[60ch] text-[13px] leading-relaxed text-neutral-600">
+          What this member has said publicly has not been collected yet, so this page
+          does not compare what they say with what they do. Until it does, everything
+          here is the record of what they did.
+        </p>
+      </div>
 
-  <!-- Distribution strip: where this member sits among their chamber -->
-  {dist.length > 0 && (
-    <section class="mt-5 rounded-lg border border-line bg-surface p-5" aria-labelledby="dist-h">
-      <h2 id="dist-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
-        Attendance across the {chamberWord} <span class="text-neutral-400">({n(dist.length)} graded)</span>
-      </h2>
-      <div class="mt-4">
-        <DotStrip points={dist} focus={att?.pct ?? null}
-                  focusLabel={att?.pct != null ? `${member.name.split(" ").slice(-1)[0]} ${att.pct}%` : undefined} />
+      <!-- The one grade that exists today, named for what it measures -->
+      <div class="rounded-lg border p-4" style={`background:${gradeColor}1f;border-color:${gradeColor}59`}>
+        <h2 class="text-[10px] font-medium uppercase tracking-[0.1em] text-neutral-500">Attendance grade</h2>
+        {grade?.grade ? (
+          <>
+            <div class="mt-1.5 flex items-baseline gap-3">
+              <span class="text-[72px] font-medium leading-none tracking-[-0.04em] text-text">{grade.grade}</span>
+              <span class="text-[26px] font-medium tabular-nums text-text">{pctOrDash(att?.pct)}</span>
+            </div>
+            <p class="mt-2 text-[13px] text-neutral-700"><span data-grade-label>{grade.label}</span></p>
+            {attRank && (
+              <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
+                {ordinal(attRank.rank)} of {n(attRank.covered)} {chamberWord} members by attendance —
+                higher than {attRank.percentile}% of them.
+              </p>
+            )}
+          </>
+        ) : (
+          <>
+            <p class="mt-1.5 text-[20px] font-medium text-text">Not graded</p>
+            <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
+              {isDelegate
+                ? "Non-voting delegate — cannot vote on final passage, so attendance is not comparable to a full member's."
+                : <span data-grade-label>{grade?.exceptionLabel}</span>}
+            </p>
+            {att?.pct != null && (
+              <p class="mt-2 text-[13px] text-neutral-600">Attendance on record: <span class="tabular-nums text-text">{att.pct}%</span></p>
+            )}
+          </>
+        )}
+        <p class="mt-3 border-t border-line pt-3 text-[12px] leading-relaxed text-neutral-500">
+          Attendance is the only graded category so far. Four more — consistency,
+          effectiveness, bipartisanship and responsiveness — are listed below with what
+          each will measure. There is no overall grade until they exist.
+        </p>
       </div>
     </section>
-  )}
-
-  <!-- Fact tiles -->
-  {mm && (
-    <section class="mt-4 grid grid-cols-2 gap-3.5 sm:grid-cols-3" aria-label="Record summary">
-      <h2 class="sr-only">Record summary</h2>
-      {tiles.map((t) => (
-        <div class="rounded-lg border border-line bg-surface p-4">
-          <a href={`/methods#${t.anchor ?? `metric-${t.key}`}`} class="text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500 hover:text-neutral-700">{t.label}</a>
-          <p class="mt-1.5 text-[24px] font-medium tabular-nums text-text">{t.value}</p>
-          <p class="mt-1 text-[12px] leading-snug text-neutral-500">{t.note}</p>
-        </div>
-      ))}
+  ) : (
+    <section class="mt-3">
+      <h1 class="text-[24px] font-medium leading-tight tracking-[-0.025em] text-text">{member.name}</h1>
+      <p class="mt-1 text-[13px] text-neutral-500">
+        Activity, page {pageNum} of {totalPages}. ·
+        {" "}<a href={`/m/${memberId}/1`} class="underline decoration-line underline-offset-2 hover:text-text">Back to their grades and bills</a>
+      </p>
     </section>
   )}
 
-  <!-- State delegation -->
-  {showDelegation && (
-    <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="deleg-h">
-      <h2 id="deleg-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
-        {member.state} delegation — attendance
-      </h2>
-      <div class="mt-4 space-y-2">
-        {delegation.map((d) => (
-          <div class="grid grid-cols-[minmax(120px,160px)_minmax(0,1fr)_44px] items-center gap-3">
-            <span class={`truncate text-[12px] ${d.self ? "text-text" : "text-neutral-600"}`}>
-              {d.name}{d.self && <span class="text-neutral-500"> (this member)</span>}
-            </span>
-            <span class="h-2.5 rounded-full"
-                  style={`width:${Math.max(0, Math.min(100, (((d.pct as number) - 50) / 50) * 100))}%;min-width:2px;background:${d.self ? "#e9e9ed" : (d.grade ? GRADE_HEX[d.grade] : "#6b6f80")};opacity:${d.self ? 1 : 0.85}`}></span>
-            <span class="text-right text-[12px] tabular-nums text-neutral-500">{d.pct}%</span>
+  {isFirstPage && (
+    <>
+      <!-- Scroll 1 — Grades -->
+      <h2 class="mt-10 text-[20px] font-medium text-text" id="grades">Grades</h2>
+      <p class="mt-1 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600">
+        Five categories are planned, each with its formula published. One is graded
+        today. Readers will be able to set their own weights across the categories once
+        there is more than one to weigh —
+        {" "}<a href="/methods#grade-attendance" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">how attendance is graded</a>.
+      </p>
+
+      <div class="mt-4 grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-lg border border-line bg-surface p-5">
+          <div class="flex items-baseline justify-between gap-2">
+            <h3 class="text-[14px] font-medium text-text">Attendance</h3>
+            <span class="text-[22px] font-medium leading-none tabular-nums text-text">{pctOrDash(att?.pct)}</span>
+          </div>
+          <p class="mt-2 text-[12px] leading-relaxed text-neutral-600">
+            Recorded votes cast, out of the recorded votes they were eligible for.
+            {att && att.pct != null && ` ${n(att.cast)} of ${n(att.eligible)} in the ${periodLabel}.`}
+          </p>
+          <p class="mt-2 text-[12px] text-neutral-500">
+            <a href="/methods#grade-attendance" class="underline decoration-line underline-offset-2 hover:text-text">Open the formula</a>
+          </p>
+        </div>
+        {CATEGORIES.map((cat) => (
+          <div class="rounded-lg border border-line bg-surface p-5">
+            <div class="flex items-baseline justify-between gap-2">
+              <h3 class="text-[14px] font-medium text-text">{cat.name}</h3>
+              <span class="text-[12px] text-neutral-500">Not yet graded</span>
+            </div>
+            <p class="mt-2 text-[12px] leading-relaxed text-neutral-600">{cat.measures}</p>
           </div>
         ))}
       </div>
-      <p class="mt-3 text-[11px] text-neutral-500">Bars scaled 50–100%.</p>
-    </section>
+
+      {tally && tally.placed + tally.unplaced > 0 && (
+        <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="sides-h">
+          <h3 id="sides-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+            Every recorded vote, by whose majority they sided with
+          </h3>
+          <div class="mt-4">
+            <PartySideGraph tally={tally} />
+          </div>
+        </section>
+      )}
+
+      {dist.length > 0 && (
+        <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="dist-h">
+          <h3 id="dist-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">
+            Attendance across the {chamberWord} <span class="text-neutral-400">({n(dist.length)} graded)</span>
+          </h3>
+          <div class="mt-4">
+            <DotStrip points={dist} focus={att?.pct ?? null}
+                      focusLabel={att?.pct != null ? `${member.name.split(" ").slice(-1)[0]} ${att.pct}%` : undefined} />
+          </div>
+        </section>
+      )}
+
+      <!-- Scroll 2 — Priorities and work -->
+      <h2 class="mt-10 text-[20px] font-medium text-text" id="work">Priorities and work</h2>
+
+      <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="prio-h">
+        <h3 id="prio-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Stated priorities</h3>
+        <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600">
+          This is where the things {member.name} has said matter to them will appear —
+          taken from their own public statements: press releases, floor speeches in the
+          Congressional Record, the issue pages from their most recent campaign, and
+          their official social accounts — each one beside how they voted on it. None
+          have been collected yet, so the section is empty rather than guessing at what
+          they care about.
+        </p>
+      </section>
+
+      {mm && (
+        <section class="mt-4 grid grid-cols-2 gap-3.5 sm:grid-cols-3" aria-label="Record summary">
+          <h3 class="sr-only">Record summary</h3>
+          {tiles.map((t) => (
+            <div class="rounded-lg border border-line bg-surface p-4">
+              <a href={`/methods#${t.anchor ?? `metric-${t.key}`}`} class="text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500 hover:text-neutral-700">{t.label}</a>
+              <p class="mt-1.5 text-[24px] font-medium tabular-nums text-text">{t.value}</p>
+              <p class="mt-1 text-[12px] leading-snug text-neutral-500">{t.note}</p>
+            </div>
+          ))}
+        </section>
+      )}
+
+      <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="cmte-h">
+        <h3 id="cmte-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Committees</h3>
+        {committees === null ? (
+          <p class="mt-2 text-[13px] text-neutral-600">
+            Committee assignments are not in the dataset yet. This section will list them
+            once they are, rather than leave the impression this member sits on none.
+          </p>
+        ) : committees.length === 0 ? (
+          <p class="mt-2 text-[13px] text-neutral-600">
+            The committee roster lists no current assignment for this member.
+          </p>
+        ) : (
+          <ul class="mt-3 space-y-1.5">
+            {committees.map((s) => (
+              <li class="text-[13px] text-neutral-700">
+                <a href={s.source_url} rel="nofollow" class="underline decoration-line underline-offset-2 hover:text-text">{s.name}</a>
+                {s.parent_name && <span class="text-neutral-500"> · {s.parent_name}</span>}
+                {s.title && <span class="text-neutral-500"> · {s.title}</span>}
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      <div class="mt-4 grid gap-3.5 lg:grid-cols-2">
+        {[
+          { heading: "Bills they introduced", list: sponsored, kind: "sponsored" as const },
+          { heading: "Bills they cosponsored", list: cosponsored, kind: "cosponsored" as const },
+        ].map((grp) => (
+          <section class="rounded-lg border border-line bg-surface p-5">
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <h3 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">{grp.heading}</h3>
+              <span class="text-[12px] tabular-nums text-neutral-500">{n(grp.list.length)}</span>
+            </div>
+            {grp.kind === "sponsored" && grp.list.length > 0 && (
+              <p class="mt-1.5 text-[12px] text-neutral-500">
+                {n(sponsoredLaw.length)} became law.
+              </p>
+            )}
+            {legislation === undefined ? (
+              <p class="mt-2 text-[13px] text-neutral-600">
+                This member's sponsorship record is not in the dataset yet.
+              </p>
+            ) : grp.list.length === 0 ? (
+              <p class="mt-2 text-[13px] text-neutral-600">
+                None in the {periodLabel}.
+              </p>
+            ) : (
+              <>
+                <ul class="mt-3 space-y-2.5">
+                  {grp.list.slice(0, BILL_LIST_LIMIT).map((e) => (
+                    <li class="border-t border-line pt-2.5 first:border-0 first:pt-0">
+                      <a href={voted.has(e.bill_id) ? `/b/${e.bill_id}` : e.source_url}
+                         rel={voted.has(e.bill_id) ? undefined : "nofollow"}
+                         class="text-[13px] leading-snug text-neutral-700 underline decoration-line underline-offset-2 hover:text-text">{e.title}</a>
+                      <p class="mt-1 text-[11px] tabular-nums text-neutral-500">
+                        Introduced {e.introduced_date}{e.became_law ? " · became law" : ""}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+                {grp.list.length > BILL_LIST_LIMIT && (
+                  <p class="mt-3 text-[12px] text-neutral-500">
+                    The newest {BILL_LIST_LIMIT} of {n(grp.list.length)}. The rest are in the
+                    activity below and on
+                    {" "}<a href={legislation.source_url} rel="nofollow" class="underline decoration-line underline-offset-2 hover:text-text">the official list</a>.
+                  </p>
+                )}
+              </>
+            )}
+          </section>
+        ))}
+      </div>
+    </>
   )}
 
-  <!-- Record -->
-  <h2 class="mt-8 text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Record</h2>
-  <p class="mt-1 text-xs text-neutral-500">
+  <!-- Scroll 3 — Activity -->
+  <h2 class="mt-10 text-[20px] font-medium text-text" id="activity">Activity</h2>
+  <p class="mt-1 max-w-[72ch] text-[13px] leading-relaxed text-neutral-600">
     Newest first. Page {pageNum} of {totalPages}. Recorded votes show the official
-    question verbatim and link to the official record.{hasStatements ? " Curated statements are shown with a permanent archived copy; a paired vote is placed adjacent under the mechanical pairing rule — the site draws no conclusion." : ""}
+    question verbatim and link to the official record; an absence shows the stated
+    reason when one exists. Actions on the bills this member introduced are the
+    government's own wording, word for word.
     {" "}<a href="/pairing" class="underline decoration-line underline-offset-2 hover:text-text">How statements and votes are paired</a>.
   </p>
 
   {rows.length === 0 ? (
-    <p class="mt-4 text-neutral-600">No recorded votes in the covered Congresses.</p>
+    <p class="mt-4 text-neutral-600">Nothing on record in the {periodLabel}.</p>
   ) : (
-    <ul class="mt-2">
-      {rows.map((row) => (
-        row.kind === "statement" ? (
-          <StatementCard statement={row.statement} pairedVotes={row.pairedVotes} />
-        ) : (
-          <VoteRow
-            rollcall={row.rollcall}
-            position={row.position}
-            absence={row.position === "not_voting" ? getAbsence(member.id, row.rollcall.id) : undefined}
-          />
-        )
-      ))}
-    </ul>
+    <>
+      {(kindOptions.length > 1 || topicOptions.length > 1) && (
+        <div class="mt-4 flex flex-wrap items-end gap-4" data-activity-filters>
+          {kindOptions.length > 1 && (
+            <div>
+              <label for="f-kind" class="mb-1 block text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Type</label>
+              <select id="f-kind" data-filter="kind"
+                      class="rounded-md border border-line bg-surface px-2.5 py-1.5 text-[13px] text-text">
+                <option value="">All types</option>
+                {kindOptions.map((k) => <option value={k}>{ACTIVITY_KIND_LABEL[k]}</option>)}
+              </select>
+            </div>
+          )}
+          {topicOptions.length > 1 && (
+            <div>
+              <label for="f-topic" class="mb-1 block text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Policy area</label>
+              <select id="f-topic" data-filter="topic"
+                      class="max-w-[250px] rounded-md border border-line bg-surface px-2.5 py-1.5 text-[13px] text-text">
+                <option value="">All policy areas</option>
+                {topicOptions.map((t) => <option value={t}>{t}</option>)}
+              </select>
+            </div>
+          )}
+          <p class="text-[12px] text-neutral-500" data-filter-count aria-live="polite">
+            Showing all {n(rows.length)} on this page.
+          </p>
+        </div>
+      )}
+
+      <ul class="mt-2" data-activity-list>
+        {rows.map((row) => (
+          row.kind === "statement" ? (
+            <StatementCard statement={row.statement} pairedVotes={row.pairedVotes}
+                           filterTopic={row.policyArea ?? ""} />
+          ) : row.kind === "action" ? (
+            <ActionRow bill={row.bill} action={row.action} hasPage={voted.has(row.bill.id)}
+                       filterTopic={row.policyArea ?? ""} />
+          ) : (
+            <VoteRow
+              rollcall={row.rollcall}
+              position={row.position}
+              absence={row.position === "not_voting" ? getAbsence(memberId, row.rollcall.id) : undefined}
+              filterTopic={row.policyArea ?? ""}
+            />
+          )
+        ))}
+      </ul>
+    </>
   )}
 
   {totalPages > 1 && (
     <nav class="mt-6 flex items-center justify-between text-sm" aria-label="Pagination">
       {pageNum > 1
-        ? <a href={`/m/${member.id}/${pageNum - 1}`} class="underline decoration-line underline-offset-2 hover:text-text">← Newer</a>
+        ? <a href={`/m/${memberId}/${pageNum - 1}`} class="underline decoration-line underline-offset-2 hover:text-text">← Newer</a>
         : <span class="text-neutral-300">← Newer</span>}
       <span class="text-neutral-500">Page {pageNum} / {totalPages}</span>
       {pageNum < totalPages
-        ? <a href={`/m/${member.id}/${pageNum + 1}`} class="underline decoration-line underline-offset-2 hover:text-text">Older →</a>
+        ? <a href={`/m/${memberId}/${pageNum + 1}`} class="underline decoration-line underline-offset-2 hover:text-text">Older →</a>
         : <span class="text-neutral-300">Older →</span>}
     </nav>
   )}
 </Layout>
+
+<script>
+  // Progressive enhancement for the activity filters: with JavaScript off every row
+  // stays visible and the two selects simply do nothing, which is the honest default
+  // (hiding rows is the enhancement, not the content).
+  const list = document.querySelector<HTMLElement>("[data-activity-list]");
+  const panel = document.querySelector<HTMLElement>("[data-activity-filters]");
+  if (list && panel) {
+    const kindSel = panel.querySelector<HTMLSelectElement>('[data-filter="kind"]');
+    const topicSel = panel.querySelector<HTMLSelectElement>('[data-filter="topic"]');
+    const countEl = panel.querySelector<HTMLElement>("[data-filter-count]");
+    const items = Array.from(list.querySelectorAll<HTMLElement>("li[data-kind]"));
+    const fmt = (x: number) => x.toLocaleString("en-US");
+
+    const apply = () => {
+      const kind = kindSel?.value ?? "";
+      const topic = topicSel?.value ?? "";
+      let shown = 0;
+      for (const li of items) {
+        const ok = (!kind || li.dataset.kind === kind)
+          && (!topic || li.dataset.topic === topic);
+        li.hidden = !ok;
+        if (ok) shown++;
+      }
+      if (countEl) {
+        countEl.textContent = (!kind && !topic)
+          ? `Showing all ${fmt(items.length)} on this page.`
+          : `Showing ${fmt(shown)} of ${fmt(items.length)} on this page.`;
+      }
+    };
+    kindSel?.addEventListener("change", apply);
+    topicSel?.addEventListener("change", apply);
+  }
+</script>

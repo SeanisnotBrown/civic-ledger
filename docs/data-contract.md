@@ -410,3 +410,43 @@ the official `billstatus.ls.state.ms.us` record; scrape fidelity is verified aga
 official per-vote PDFs (470 positions in the GO verdict; `checks/ms.py` re-confirms the
 sampled tallies every build). Not recomputable from a third-party origin — it is the
 official record as mirrored by LegiScan, verified, not two independent sources.
+
+## Member photographs — `site/public/photos/` (P2 task 6)
+
+| Item | Value |
+|------|-------|
+| Source project | [unitedstates/images](https://github.com/unitedstates/images) |
+| Served from | `https://unitedstates.github.io/images/congress/225x275/{bioguide}.jpg` |
+| Original source of the images | U.S. Government Publishing Office (GPO) |
+| Licence of the images | Public domain (works of the U.S. federal government; the project records GPO's assurance that all photos are public domain) |
+| Licence of the project's own files | CC0 1.0 Universal public domain dedication |
+| Size published here | `225x275`, the smallest the project offers — the member header renders at 90x110 CSS px |
+| Fetched by | `uv run ingest photos` (`ingest/photos.py`), 1 request/second |
+| Raw cache | `data/raw/photos/{bioguide}.jpg` (gitignored); a `{bioguide}.absent` sidecar records an upstream 404 so a re-run does not ask again |
+| Published copy | `site/public/photos/{bioguide}.jpg`, committed, served at `/photos/{bioguide}.jpg` |
+
+The roster covers two Congresses and the project does not publish a photograph for
+every member in it. A missing photograph is an ordinary state, not an error: the
+member header falls back to the member's initials, and the build checks which files
+actually exist (`memberPhotoUrl` in `site/src/lib/data.ts`) so no page ever links an
+image that is not there.
+
+## Committee assignments — `data/committees/membership.json` (P2 task 7)
+
+| Item | Value |
+|------|-------|
+| Source project | [unitedstates/congress-legislators](https://github.com/unitedstates/congress-legislators) — the same project the roster comes from |
+| Files read | `committee-membership-current.yaml` (seats) and `committees-current.yaml` (names, official URLs) |
+| Built by | `uv run ingest committees` (`ingest/committees.py`) |
+| Shape | `{source_url, seat_count, members: {bioguide: [{committee_id, name, parent_name, rank, title, source_url}]}}`, sorted keys, no wall-clock |
+| `source_url` per seat | The committee's own official page where upstream publishes one; a subcommittee carries its parent committee's page |
+
+The only derivation is the subcommittee id join: a subcommittee's key in the
+membership file is its parent's `thomas_id` followed by its own (`HSAG` + `15` →
+`HSAG15`). Names, ranks and titles are the project's values verbatim. Seats are
+restricted to bioguide ids in `data/members/`, so the file never names a member the
+site has no page for.
+
+**Scope:** the upstream files are `-current`, so they describe committees as they
+stand now. A member who has left office carries no seats, and the member page labels
+the section as current assignments rather than implying they sit on none.

@@ -340,7 +340,7 @@ proposals, not ratified numbers; the owner may change any of them when the phase
 
 | Id | Question | Blocks |
 |---|---|---|
-| Q-A | Homepage intro wording | Phase 2 task 1 |
+| Q-A | Homepage intro wording | **Answered 2026-10-07** (below) |
 | Q-B | Minimum approved statements before a member's priorities list shows | Phase 3 |
 | Q-C | Fixed bars for each of the four new categories | Phase 4 task 1 |
 | Q-D | Which floor-schedule source to trust for "upcoming" | Phase 5 task 5 |
@@ -351,3 +351,21 @@ proposals, not ratified numbers; the owner may change any of them when the phase
 | Q-I | Which states first | Phase 11 |
 
 A phase may say "blocked on Q-N" in `STATUS.md` if the owner wants to answer later.
+
+### Q-A answered - homepage intro (owner, 2026-10-07)
+
+Phase 2 task 1 ships this text verbatim as the homepage intro:
+
+> Nobody should have to become an expert, or spend their life tracking
+> politicians, to know what the people they vote for actually do.
+>
+> So this site does the tracking. It is built from the official record - the
+> votes, the bills, the attendance - and it is the same record for every member
+> of every party.
+>
+> Find your representatives below.
+
+It deliberately claims neither say-vs-do nor an overall grade: statements land
+in Phase 3 and the other four category grades in Phase 4, and rule 0 flips copy
+in the same commit as the feature that makes it true. Revisit this wording at
+each of those phases.

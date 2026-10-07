@@ -75,6 +75,12 @@ jobs:
           #    GitHub); a quiet night rewrites data/members/*.json byte-identically.
           uv run ingest members
 
+          #    Committee seats come from the same project and change with the roster
+          #    (a resignation vacates a seat), so they refresh right behind it. The
+          #    member page labels the section as CURRENT assignments, which is only
+          #    true if it is re-pulled nightly (rule 0). Keyless, idempotent.
+          uv run ingest committees
+
           #    Then the incremental ingest (finalized rolls skipped). Bills +
           #    legislation derive from votes/members; both fetch their sub-resources
           #    every run so a re-export never reverts enriched data to a None sentinel.

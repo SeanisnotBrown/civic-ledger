@@ -1,0 +1,65 @@
+---
+// The full list behind the homepage "In Congress" band (P2). The band shows the
+// leading items and says how many more there are; this is where "see all" goes, so
+// the count on the homepage is always reachable rather than a dead end.
+//
+// Same window and the same ratified order as the band — one call into
+// recentChamberActivity, so the two surfaces can never disagree.
+import Layout from "../../components/Layout.astro";
+import ActivityItem from "../../components/ActivityItem.astro";
+import { recentChamberActivity } from "../../lib/data";
+import { formatDate } from "../../lib/display";
+
+const activity = recentChamberActivity(0);
+const n = (x: number) => x.toLocaleString("en-US");
+---
+<Layout
+  title="In Congress — Civic Ledger"
+  description="Every bill action in the last two weeks of the official record: what became law, what failed on the floor, what passed, and what is waiting to be called up."
+>
+  <nav class="text-xs text-neutral-500">
+    <a href="/" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Home</a>
+    <span aria-hidden="true"> / </span>In Congress
+  </nav>
+
+  <h1 class="mt-3 text-[28px] font-medium leading-tight tracking-[-0.025em] text-text sm:text-[32px]">In Congress</h1>
+
+  {activity ? (
+    <>
+      <p class="mt-2 max-w-[72ch] text-[14px] leading-relaxed text-neutral-600">
+        Every bill action recorded {formatDate(activity.from)} – {formatDate(activity.to)} that
+        resolved a measure or put one in line for a vote — {n(activity.total)} in all, one line
+        per bill, each in the government's own wording.
+      </p>
+      <div class="mt-4 max-w-[72ch] rounded-lg border border-line bg-surface p-5">
+        <h2 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">How this list is ordered</h2>
+        <ol class="mt-2.5 list-decimal space-y-1 pl-5 text-[13px] leading-relaxed text-neutral-600">
+          <li>Became law — the only final outcome. <span class="tabular-nums text-neutral-500">({n(activity.totals.became_law)})</span></li>
+          <li>Failed on the floor. <span class="tabular-nums text-neutral-500">({n(activity.totals.failed)})</span></li>
+          <li>Passed a chamber on a recorded roll call, closest tally first — the closer the vote, the more divided the chamber was.</li>
+          <li>Passed by voice vote or unanimous consent, so no member went on the record. <span class="tabular-nums text-neutral-500">(3 and 4 together: {n(activity.totals.passed)})</span></li>
+          <li>Placed on a calendar — eligible to be called up. The action record gives no vote date. <span class="tabular-nums text-neutral-500">({n(activity.totals.calendared)})</span></li>
+        </ol>
+        <p class="mt-2.5 text-[12px] leading-relaxed text-neutral-500">
+          Every key comes from the official record: the chamber's own action wording, and the
+          tally on the roll call that resolved the measure. Nothing is ordered by topic, and
+          nothing here is a prediction.
+        </p>
+      </div>
+
+      {activity.total === 0 ? (
+        <p class="mt-6 text-neutral-600">No such action in the record for these {activity.days} days.</p>
+      ) : (
+        <ol class="mt-6 max-w-[80ch]">
+          {activity.ranked.map((row) => <ActivityItem row={row} />)}
+        </ol>
+      )}
+    </>
+  ) : (
+    <p class="mt-4 text-neutral-600">No bill-action record is published yet.</p>
+  )}
+
+  <p class="mt-8 text-[13px]">
+    <a href="/" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">← Back to the homepage</a>
+  </p>
+</Layout>

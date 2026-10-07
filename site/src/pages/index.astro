@@ -1,24 +1,27 @@
 ---
-// P2 homepage (IMPLEMENTATIONv3.md §4.1): welcome → find your representatives →
-// what Congress actually did in the last two weeks → statistics, last.
+// P2 homepage (IMPLEMENTATIONv3.md §4.1), in the owner's order (2026-10-07):
+// intro → In Congress → the rep finder → statistics.
 //
-// The intro text is the owner's own, ratified as Q-A (§7) and shipped verbatim. It
-// deliberately claims neither say-vs-do nor an overall grade: statements land in
-// Phase 3 and the other four category grades in Phase 4, and rule 0 flips copy in
-// the same commit as the feature that makes it true.
+// The intro is the owner's own ratified Q-A text. He struck its closing line
+// ("Find your representatives below.") once the finder moved below the Congress
+// band, where that sentence would have pointed past it.
+//
+// The Congress band is ONE ranked list (owner, 2026-10-07): four equal-weight boxes
+// made a calendar placement look as important as a bill becoming law. The ranking
+// rule is in recentChamberActivity and written out for the reader on /congress.
 //
 // §4.9 cuts applied here: the roll-calls-by-class panel, the chamber bar chart, the
 // dataset count tiles, and the States card are gone. The attendance distribution is
-// NOT a cut — it moves into the statistics area at the bottom, where it still
-// reproduces each band as a link into the federal list.
+// NOT a cut — it sits in the statistics area, where it still reproduces each band
+// as a link into the federal list.
 import Layout from "../components/Layout.astro";
 import Histogram from "../components/charts/Histogram.astro";
 import BandLegend from "../components/charts/BandLegend.astro";
+import ActivityItem from "../components/ActivityItem.astro";
 import {
   getManifest, getGrades, getDelegationsByState, recentChamberActivity,
 } from "../lib/data";
-import type { ActivityBucket } from "../lib/data";
-import { formatDate, billLabel } from "../lib/display";
+import { formatDate } from "../lib/display";
 import { STATE_NAME } from "../lib/states";
 
 const manifest = getManifest();
@@ -43,26 +46,21 @@ const attValues = att ? Object.values(att.members).map((e) => e.value) : [];
 const gradedTotal = att ? Object.keys(att.members).length : 0;
 const setAside = att ? Object.keys(att.exceptions).length : 0;
 
-// Find your representatives: serving members, grouped by state (§2 — state first;
-// address lookup is a later phase).
+// Find your representatives: members who actually hold a seat as of the dataset's
+// own date, grouped by state and ordered by state NAME (§2 — state first; address
+// lookup is a later phase). One picker, not 56 cards.
 const delegations = getDelegationsByState();
 const servingTotal = delegations.reduce((t, d) => t + d.senate.length + d.house.length, 0);
-const PARTY_INITIAL: Record<string, string> = { D: "D", R: "R", I: "I" };
 const PARTY_HEX: Record<string, string> = { D: "#6f93e6", R: "#e0736b", I: "#c9b06a" };
 
-// In Congress: the last 14 days of floor-resolving actions, from data/events/.
-// Buckets are the government's own summary wording — see recentChamberActivity().
-const activity = recentChamberActivity(6);
-const BUCKETS: { key: ActivityBucket; heading: string; note: string }[] = [
-  { key: "became_law", heading: "Became law",
-    note: "Signed by the President, or enacted without signature." },
-  { key: "passed", heading: "Passed a chamber",
-    note: "The chamber's own “Passed/agreed to” action line." },
-  { key: "failed", heading: "Failed on the floor",
-    note: "The chamber's own “Failed of passage/not agreed to” action line." },
-  { key: "calendared", heading: "Placed on a calendar",
-    note: "Eligible to be called up. The action record gives no vote date." },
-];
+// In Congress: the last 14 days of floor-resolving actions, from data/events/, in
+// the owner's ratified order — consequence, then how contested the vote was. One
+// ranked list, not four equal-weight boxes: see recentChamberActivity().
+//
+// 10 rows: enough that every item the record actually put to a recorded vote clears
+// the band (7 enacted + 1 failed + 1 contested passage in the window this shipped
+// on), rather than the enacted items alone filling it.
+const activity = recentChamberActivity(10);
 
 // The "97% never got a floor vote" fact, kept and moved down (§2). Figures come from
 // the recompute-gated manifest block; nothing is computed on this page.
@@ -75,7 +73,7 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
   title="Civic Ledger — what the people you vote for actually do"
   description="Find your senators and representatives, and see their record from the official account of Congress: the votes, the bills, the attendance."
 >
-  <!-- Top: the welcome (Q-A, owner's wording, verbatim) -->
+  <!-- Top: the welcome (Q-A, owner's wording) -->
   <section class="max-w-[62ch]">
     <h1 class="text-[30px] font-medium leading-[1.15] tracking-[-0.025em] text-text sm:text-[38px]">
       Nobody should have to become an expert, or spend their life tracking
@@ -86,62 +84,9 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
       votes, the bills, the attendance — and it is the same record for every member
       of every party.
     </p>
-    <p class="mt-3 text-[15px] leading-relaxed text-neutral-600">
-      Find your representatives below.
-    </p>
   </section>
 
-  <!-- Find your representatives, by state -->
-  <section class="mt-9" aria-labelledby="reps-h">
-    <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-      <h2 id="reps-h" class="text-[20px] font-medium text-text">Find your representatives</h2>
-      <p class="text-[12px] text-neutral-500">{n(servingTotal)} members currently serving · pick your state</p>
-    </div>
-    <ul class="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-      {delegations.map((d) => (
-        <li class="rounded-lg border border-line bg-surface">
-          <details>
-            <summary class="cursor-pointer px-4 py-3 text-[14px] text-text">
-              <span class="font-medium">{STATE_NAME[d.state] ?? d.state}</span>
-              <span class="ml-2 text-[12px] text-neutral-500">
-                {d.senate.length} senator{d.senate.length === 1 ? "" : "s"} ·
-                {" "}{d.house.length} in the House
-              </span>
-            </summary>
-            <div class="border-t border-line px-4 py-3">
-              {[{ label: "Senate", list: d.senate }, { label: "House", list: d.house }].map((grp) => (
-                grp.list.length > 0 && (
-                  <>
-                    <h3 class="mt-1 text-[10px] font-medium uppercase tracking-[0.1em] text-neutral-500">{grp.label}</h3>
-                    <ul class="mt-1.5 mb-2 space-y-1">
-                      {grp.list.map((m) => (
-                        <li>
-                          <a href={`/m/${m.id}/1`}
-                             class="flex items-baseline gap-2 text-[13px] text-neutral-700 underline decoration-line underline-offset-2 hover:text-text">
-                            <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 rounded-full"
-                                  style={`background:${PARTY_HEX[m.party]}`}></span>
-                            <span>{m.name}</span>
-                            <span class="text-[11px] text-neutral-500">
-                              {PARTY_INITIAL[m.party]}{m.district != null ? ` · District ${m.district}` : ""}
-                            </span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                )
-              ))}
-            </div>
-          </details>
-        </li>
-      ))}
-    </ul>
-    <p class="mt-3 text-[12px] text-neutral-500">
-      Looking for someone by name? <a href="/federal" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">Browse every member →</a>
-    </p>
-  </section>
-
-  <!-- Middle: in Congress, from the action record -->
+  <!-- In Congress, from the action record -->
   {activity && (
     <section class="mt-10" aria-labelledby="week-h">
       <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
@@ -150,59 +95,90 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
           Official actions recorded {formatDate(activity.from)} – {formatDate(activity.to)}
         </p>
       </div>
-      <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600">
-        Every line below is the government's own action text, shown word for word.
-        Nothing here is a summary or a prediction.
-      </p>
-      <!-- Phase 5 slot: a labelled, reviewed AI summary goes under each action
-           (§4.6). Deliberately empty until that phase ships it. -->
-      <p class="mt-1 text-[12px] text-neutral-500">
-        Plain-language summaries of each item are coming in a later phase.
+      <p class="mt-2 max-w-[72ch] text-[13px] leading-relaxed text-neutral-600">
+        Most consequential first: what became law, then what was killed on the floor, then
+        what passed on a recorded vote — closest tally first, because the closer the vote,
+        the more divided the chamber was. Every line is the government's own action text,
+        word for word. Nothing here is a summary or a prediction.
+        {" "}<a href="/congress" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">How this is ordered</a>.
       </p>
 
-      <div class="mt-4 grid gap-3.5 lg:grid-cols-2">
-        {BUCKETS.map((b) => {
-          const rows = activity.buckets[b.key];
-          const total = activity.totals[b.key];
-          return (
-            <div class="rounded-lg border border-line bg-surface p-5">
-              <div class="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">{b.heading}</h3>
-                <span class="text-[12px] tabular-nums text-neutral-500">{n(total)}</span>
-              </div>
-              <p class="mt-1.5 text-[11px] leading-relaxed text-neutral-500">{b.note}</p>
-              {rows.length === 0 ? (
-                <p class="mt-3 text-[13px] text-neutral-600">
-                  No such action in the record for these {activity.days} days.
-                </p>
-              ) : (
-                <ol class="mt-3 space-y-3">
-                  {rows.map((r) => (
-                    <li class="border-t border-line pt-3 first:border-0 first:pt-0">
-                      <div class="flex flex-wrap items-baseline gap-x-2 text-[12px] text-neutral-500">
-                        {r.event.has_page
-                          ? <a href={`/b/${r.event.bill_id}`} class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">{billLabel(r.event.bill_id)}</a>
-                          : <a href={r.event.source_url} rel="nofollow" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">{billLabel(r.event.bill_id)}</a>}
-                        <span aria-hidden="true">·</span>
-                        <span class="tabular-nums">{formatDate(r.event.date)}</span>
-                      </div>
-                      {r.title && <p class="mt-1 text-[13px] leading-snug text-text">{r.title}</p>}
-                      <p class="mt-1 text-[12px] leading-relaxed text-neutral-600">{r.event.text}</p>
-                    </li>
-                  ))}
-                </ol>
-              )}
-              {total > rows.length && (
-                <p class="mt-3 text-[12px] text-neutral-500">
-                  {n(total - rows.length)} more in this window, not listed here.
-                </p>
-              )}
-            </div>
-          );
-        })}
-      </div>
+      {activity.total === 0 ? (
+        <p class="mt-4 text-[13px] text-neutral-600">
+          No bill reached the floor in these {activity.days} days of the record.
+        </p>
+      ) : (
+        <>
+          <ol class="mt-4 max-w-[80ch] rounded-lg border border-line bg-surface px-5">
+            {activity.lead.map((row) => <ActivityItem row={row} />)}
+          </ol>
+          {activity.total > activity.lead.length && (
+            <p class="mt-3 text-[13px]">
+              <a href="/congress"
+                 class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">
+                See all {n(activity.total)} actions in this window →
+              </a>
+            </p>
+          )}
+        </>
+      )}
     </section>
   )}
+
+  <!-- Find your representatives: one picker -->
+  <section class="mt-10" aria-labelledby="reps-h">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+      <h2 id="reps-h" class="text-[20px] font-medium text-text">Find your representatives</h2>
+      <p class="text-[12px] text-neutral-500">{n(servingTotal)} members currently in office</p>
+    </div>
+
+    <div class="mt-4 rounded-lg border border-line bg-surface p-5" data-reps>
+      <label for="state-pick" class="mb-1.5 block text-[11px] font-medium uppercase tracking-[0.06em] text-neutral-500">Your state</label>
+      <select id="state-pick" data-reps-select
+              class="w-full max-w-[340px] rounded-md border border-line bg-bg px-2.5 py-2 text-[14px] text-text">
+        <option value="">Pick a state…</option>
+        {delegations.map((d) => (
+          <option value={d.state}>{STATE_NAME[d.state] ?? d.state}</option>
+        ))}
+      </select>
+
+      <!-- Every delegation is in the page, so it works with JavaScript off (all of
+           them show, as one long list). The script hides them and the picker
+           reveals one. -->
+      <div class="mt-4" data-reps-panels>
+        {delegations.map((d) => (
+          <div data-state={d.state} class="mb-5 last:mb-0">
+            <h3 class="text-[13px] font-medium text-text">{STATE_NAME[d.state] ?? d.state}</h3>
+            {[{ label: "Senate", list: d.senate }, { label: "House", list: d.house }].map((grp) => (
+              grp.list.length > 0 && (
+                <>
+                  <h4 class="mt-2.5 text-[10px] font-medium uppercase tracking-[0.1em] text-neutral-500">{grp.label}</h4>
+                  <ul class="mt-1.5 grid gap-1 sm:grid-cols-2 lg:grid-cols-3">
+                    {grp.list.map((m) => (
+                      <li>
+                        <a href={`/m/${m.id}/1`}
+                           class="flex items-baseline gap-2 text-[13px] text-neutral-700 underline decoration-line underline-offset-2 hover:text-text">
+                          <span aria-hidden="true" class="inline-block h-2 w-2 shrink-0 rounded-full"
+                                style={`background:${PARTY_HEX[m.party]}`}></span>
+                          <span>{m.name}</span>
+                          <span class="text-[11px] text-neutral-500">
+                            {m.party}{m.district != null ? ` · District ${m.district}` : ""}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )
+            ))}
+          </div>
+        ))}
+      </div>
+      <p class="mt-4 text-[12px] text-neutral-500">
+        Or <a href="/federal" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">search every member by name →</a>
+      </p>
+    </div>
+  </section>
 
   <!-- Bottom: statistics -->
   <section class="mt-10" aria-labelledby="stats-h">
@@ -256,3 +232,20 @@ const neverPct = sponsoredTotal ? Math.round((neverVoted / sponsoredTotal) * 100
     </p>
   </section>
 </Layout>
+
+<script>
+  // Progressive enhancement for the state picker. With JavaScript off every
+  // delegation stays on the page as one long list, which works; the script
+  // collapses it to the one state the reader picks.
+  const root = document.querySelector<HTMLElement>("[data-reps]");
+  const select = root?.querySelector<HTMLSelectElement>("[data-reps-select]");
+  const panels = root ? Array.from(root.querySelectorAll<HTMLElement>("[data-state]")) : [];
+  if (select && panels.length) {
+    const apply = () => {
+      const want = select.value;
+      for (const p of panels) p.hidden = want !== p.dataset.state;
+    };
+    apply();
+    select.addEventListener("change", apply);
+  }
+</script>

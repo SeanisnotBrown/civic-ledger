@@ -7,6 +7,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { STATE_NAME } from "./states";
+
 const DATA_DIR = fileURLToPath(new URL("../../../data/", import.meta.url));
 
 // --- Types (mirror §5 / data-contract.md) --------------------------------
@@ -841,17 +843,37 @@ export function byIntroducedDesc(a: LegislationEntry, b: LegislationEntry): numb
 
 export interface StateDelegation { state: string; senate: Member[]; house: Member[]; }
 
-/** Serving federal members grouped by state: senators by name, then House members
- *  by district (at-large / unknown district last). States are alphabetical by
- *  postal code. Only `serving` members appear — the roster also holds members whose
- *  term ended inside the covered Congresses, and offering a reader a former member
- *  as "your representative" would be false. */
+/** The date the published dataset describes: the export timestamp in the manifest.
+ *  This is the site's "now" — a real wall clock in the build would make the output
+ *  non-deterministic (§6.3), and the dataset cannot describe a seat later than the
+ *  day it was exported anyway. */
+export function asOfDate(): string {
+  return getManifest().generated_at.slice(0, 10);
+}
+
+/** Whether a member actually holds a seat as of the dataset's own date.
+ *
+ *  NOT the `serving` flag on the record. That flag means "their latest term
+ *  overlaps the latest covered Congress", which is the right definition for vote
+ *  coverage (a member who resigned in March still had rolls to be present for) and
+ *  the WRONG one for "find your representatives": it keeps 16 members whose terms
+ *  have since ended, which showed up as Florida, Ohio, Oklahoma and South Carolina
+ *  each listing three senators. A seat is held only while a term covers the date. */
+export function holdsSeatAsOf(member: Member, asOf: string): boolean {
+  return member.terms.some((t) => t.start <= asOf && asOf <= t.end);
+}
+
+/** Members currently holding a federal seat, grouped by state: senators by name,
+ *  then House members by district (at-large / unknown district last). Ordered by
+ *  the state's NAME, which is the order a reader scans for their own state —
+ *  postal-code order puts Arizona before Alaska. */
 let _byState: StateDelegation[] | null = null;
 export function getDelegationsByState(): StateDelegation[] {
   if (_byState) return _byState;
+  const asOf = asOfDate();
   const index = new Map<string, StateDelegation>();
   for (const m of getMembers()) {
-    if (m.jurisdiction !== "us" || !m.serving) continue;
+    if (m.jurisdiction !== "us" || !holdsSeatAsOf(m, asOf)) continue;
     let d = index.get(m.state);
     if (!d) { d = { state: m.state, senate: [], house: [] }; index.set(m.state, d); }
     (m.chamber === "senate" ? d.senate : d.house).push(m);
@@ -864,7 +886,8 @@ export function getDelegationsByState(): StateDelegation[] {
       return ad !== bd ? ad - bd : a.name.localeCompare(b.name);
     });
   }
-  _byState = [...index.values()].sort((a, b) => a.state.localeCompare(b.state));
+  _byState = [...index.values()].sort((a, b) =>
+    (STATE_NAME[a.state] ?? a.state).localeCompare(STATE_NAME[b.state] ?? b.state));
   return _byState;
 }
 
@@ -956,21 +979,70 @@ export function tallyPartySides(rows: MemberVoteRow[]): PartySideTally {
   return { counts, placed, unplaced };
 }
 
-// --- P2: chamber activity for the homepage middle band -------------------
+// --- P2: chamber activity for the homepage "In Congress" band -----------
 // Buckets are the government's OWN summary wording, not a reading of it:
-// congress.gov writes the paired labels "Passed/agreed to in {chamber}: …" and
-// "Failed of passage/not agreed to in {chamber}: …" on the action that resolves a
+// congress.gov writes the paired labels "Passed/agreed to in {chamber}: ..." and
+// "Failed of passage/not agreed to in {chamber}: ..." on the action that resolves a
 // measure on the floor, and stamps enactment with action type "BecameLaw". Calendar
 // placements are shown as exactly that — placed on a calendar — because nothing in
 // the action record states a scheduled vote date (that source is Q-D, Phase 5).
+//
+// ORDER (owner-ratified 2026-10-07, "consequence then contested"): the band leads
+// with what the record itself shows to be most consequential, not with four
+// equal-weight boxes. Every key below comes from the official record, and nothing
+// is weighted by topic:
+//   1 became law            — the only final outcome
+//   2 failed on the floor   — a measure actually killed in the open
+//   3 passed WITH a recorded roll call, closest margin first — members were put on
+//     the record, and the closer the tally the more divided the chamber was
+//   4 passed with no roll call (voice vote or unanimous consent) — nobody divided
+//   5 placed on a calendar  — eligible to be called up, no date in the record
+// Within a tier, newest first; the event id breaks ties so the build is byte-stable.
 
 export type ActivityBucket = "became_law" | "passed" | "failed" | "calendared";
-export interface ActivityRow { event: BillEvent; title: string | null; }
+
+/** One place for each tier's slug, heading and the rule that fills it, so the
+ *  homepage band and the full list can never describe a tier differently. */
+export interface ActivityBucketMeta {
+  key: ActivityBucket; slug: string; heading: string; note: string;
+}
+export const ACTIVITY_BUCKETS: ActivityBucketMeta[] = [
+  { key: "became_law", slug: "became-law", heading: "Became law",
+    note: "Signed by the President, or enacted without signature." },
+  { key: "failed", slug: "failed", heading: "Failed on the floor",
+    note: "The chamber's own “Failed of passage/not agreed to” action line." },
+  { key: "passed", slug: "passed", heading: "Passed a chamber",
+    note: "The chamber's own “Passed/agreed to” action line." },
+  { key: "calendared", slug: "calendared", heading: "Placed on a calendar",
+    note: "Eligible to be called up. The action record gives no vote date." },
+];
+
+/** The margin of the roll call that resolved a measure, when one exists. */
+export interface ActivityMargin {
+  rollcallId: string; yea: number; nay: number;
+  /** Winning side's share of yea+nay, to 0.1 — lower means more divided. */
+  sharePct: number;
+}
+
+export interface ActivityRow {
+  event: BillEvent;
+  title: string | null;
+  bucket: ActivityBucket;
+  /** 1–5, the ratified order above. */
+  tier: number;
+  /** Short factual label, e.g. "Passed — recorded vote 212–206". */
+  tierLabel: string;
+  margin: ActivityMargin | null;
+}
 export interface ChamberActivity {
   /** Inclusive window, taken from the record itself — never from a wall clock. */
   from: string; to: string; days: number;
-  buckets: Record<ActivityBucket, ActivityRow[]>;
+  /** Every row in the window, in the ratified order. */
+  ranked: ActivityRow[];
+  /** The leading rows, for the homepage band. */
+  lead: ActivityRow[];
   totals: Record<ActivityBucket, number>;
+  total: number;
 }
 
 const ACTIVITY_DAYS = 14;
@@ -984,10 +1056,36 @@ function activityBucket(e: BillEvent): ActivityBucket | null {
   return null;
 }
 
+/** The roll call that resolved this action, if the dataset holds one.
+ *
+ *  `rollcall_id` is set on an event only when the action's own record named a roll
+ *  this dataset holds, which is rare in the projection (2 of 111 in the window this
+ *  shipped on). The fallback join is deliberately narrow and mechanical: the SAME
+ *  bill, on the SAME calendar day. A looser join — any roll on the bill, ever —
+ *  would attach a procedural vote from weeks earlier to a passage line and publish
+ *  its margin as the passage margin, which would be false. */
+function resolvingRoll(e: BillEvent): RollCall | undefined {
+  if (e.rollcall_id) {
+    const direct = getAllVotes().find((v) => v.rollcall.id === e.rollcall_id);
+    if (direct) return direct.rollcall;
+  }
+  return getVotesForBill(e.bill_id).find((rc) => rc.date.slice(0, 10) === e.date);
+}
+
+function marginOf(rc: RollCall | undefined): ActivityMargin | null {
+  if (!rc) return null;
+  const yea = Number(rc.totals?.yea ?? 0);
+  const nay = Number(rc.totals?.nay ?? 0);
+  const cast = yea + nay;
+  if (cast === 0) return null;
+  const sharePct = Math.round((Math.max(yea, nay) / cast) * 1000) / 10;
+  return { rollcallId: rc.id, yea, nay, sharePct };
+}
+
 /** The most recent `ACTIVITY_DAYS` days of floor-resolving bill actions in the
- *  record, bucketed. `limit` caps each bucket's rendered rows; `totals` keeps the
- *  full count, so the page never implies a trimmed list is the whole list. */
-export function recentChamberActivity(limit = 6): ChamberActivity | null {
+ *  record, in the ratified order. One row per bill per tier: congress.gov writes a
+ *  passage twice (its summary line and the vote line) and both carry the bill id. */
+export function recentChamberActivity(limit = 8): ChamberActivity | null {
   const months = getEventMonths();
   if (!months.length) return null;
   // Two months, so a window straddling a month boundary is still whole.
@@ -998,30 +1096,64 @@ export function recentChamberActivity(limit = 6): ChamberActivity | null {
     Date.parse(`${to}T00:00:00Z`) - (ACTIVITY_DAYS - 1) * 24 * 3600 * 1000,
   ).toISOString().slice(0, 10);
 
-  const buckets: Record<ActivityBucket, ActivityRow[]> = {
-    became_law: [], passed: [], failed: [], calendared: [],
-  };
   const totals: Record<ActivityBucket, number> = {
     became_law: 0, passed: 0, failed: 0, calendared: 0,
   };
   const inWindow = events
     .filter((e) => e.date >= from && e.date <= to)
     .sort((a, b) => (a.date !== b.date ? (a.date < b.date ? 1 : -1) : a.id.localeCompare(b.id)));
+
   const seen = new Set<string>();
+  const rows: ActivityRow[] = [];
   for (const e of inWindow) {
-    const b = activityBucket(e);
-    if (b === null) continue;
-    // One row per bill per bucket: congress.gov writes a passage twice (its summary
-    // line and the vote line), and both carry the same bill id.
-    const key = `${b}::${e.bill_id}`;
+    const bucket = activityBucket(e);
+    if (bucket === null) continue;
+    const key = `${bucket}::${e.bill_id}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    totals[b]++;
-    if (buckets[b].length < limit) {
-      buckets[b].push({ event: e, title: getBill(e.bill_id)?.title_official ?? null });
+    totals[bucket]++;
+
+    const margin = bucket === "passed" || bucket === "failed" ? marginOf(resolvingRoll(e)) : null;
+    let tier: number;
+    let tierLabel: string;
+    if (bucket === "became_law") {
+      tier = 1;
+      tierLabel = "Became law";
+    } else if (bucket === "failed") {
+      tier = 2;
+      tierLabel = margin ? `Failed — recorded vote ${margin.yea}–${margin.nay}` : "Failed on the floor";
+    } else if (bucket === "passed" && margin) {
+      tier = 3;
+      tierLabel = `Passed — recorded vote ${margin.yea}–${margin.nay}`;
+    } else if (bucket === "passed") {
+      tier = 4;
+      tierLabel = "Passed — no recorded vote";
+    } else {
+      tier = 5;
+      tierLabel = "Placed on a calendar";
     }
+
+    rows.push({
+      event: e, title: getBill(e.bill_id)?.title_official ?? null,
+      bucket, tier, tierLabel, margin,
+    });
   }
-  return { from, to, days: ACTIVITY_DAYS, buckets, totals };
+
+  rows.sort((a, b) => {
+    if (a.tier !== b.tier) return a.tier - b.tier;
+    // Tier 3 only: the closer the tally, the more divided the chamber, so that row
+    // leads. `sharePct` is the winning side's share, so ascending is closest first.
+    if (a.tier === 3 && a.margin && b.margin && a.margin.sharePct !== b.margin.sharePct) {
+      return a.margin.sharePct - b.margin.sharePct;
+    }
+    if (a.event.date !== b.event.date) return a.event.date < b.event.date ? 1 : -1;
+    return a.event.id.localeCompare(b.event.id);
+  });
+
+  return {
+    from, to, days: ACTIVITY_DAYS,
+    ranked: rows, lead: rows.slice(0, limit), totals, total: rows.length,
+  };
 }
 
 // --- P2: bill actions on a member's own bills, for their timeline ---------
@@ -1063,8 +1195,10 @@ export const ACTIVITY_KIND_LABEL: Record<ActivityKind, string> = {
 };
 
 export type MemberActivityItem =
-  | { kind: "vote"; day: string; policyArea: string | null; rollcall: RollCall; position: Position }
-  | { kind: "statement"; day: string; policyArea: string | null; statement: Statement; pairedVotes: PairedVote[] }
+  | { kind: "vote"; day: string; policyArea: string | null; billTitle: string | null;
+      rollcall: RollCall; position: Position }
+  | { kind: "statement"; day: string; policyArea: string | null; statement: Statement;
+      pairedVotes: PairedVote[] }
   | { kind: "action"; day: string; policyArea: string | null; bill: Bill; action: BillAction };
 
 /** The member's full activity, newest first. Ordering within a calendar day is
@@ -1075,7 +1209,11 @@ export function getMemberActivity(memberId: string): MemberActivityItem[] {
   for (const it of getMemberTimeline(memberId)) {
     if (it.kind === "vote") {
       const bill = it.rollcall.bill_id ? getBill(it.rollcall.bill_id) : undefined;
-      items.push({ ...it, policyArea: bill?.policy_area ?? null });
+      items.push({
+        ...it,
+        policyArea: bill?.policy_area ?? null,
+        billTitle: bill?.title_official ?? null,
+      });
     } else {
       const paired = it.statement.paired_bill_ids
         .map((id) => getBill(id)?.policy_area)

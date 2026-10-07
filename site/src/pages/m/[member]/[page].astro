@@ -29,11 +29,22 @@ import {
 import type { MemberActivityItem, ActivityKind } from "../../../lib/data";
 import { STATE_NAME } from "../../../lib/states";
 
+// The reader turns pages of 50 (owner, 2026-10-07). The URL carries 300 rows and
+// the page shows one 50-row chunk of it at a time, with Prev/Next numbered across
+// the member's WHOLE record, so it reads as one continuous 50-row pagination.
+//
+// Why not 50 rows per URL: the timeline is ~1.14M rows across 639 members, which at
+// 50 is 23,259 member pages and 35,580 built files - the free Cloudflare plan stops
+// at 20,000, so that build cannot deploy. 300 per URL keeps it at 16,464. The owner
+// chose this split over moving to the paid plan now.
+//
+// With JavaScript off the chunking does not apply and the URL shows its full 300
+// rows: more than asked for, never less, and every row still reachable.
+const URL_PAGE_SIZE = 300;
+const VIEW_CHUNK = 50;
+
 export function getStaticPaths() {
-  // 300 rows a page (P2: the timeline now carries bill actions as well as votes,
-  // ~1.14M rows in all — at 200 the build crossed into the Workers file-count
-  // warning band for no reader benefit).
-  const PAGE_SIZE = 300;
+  const PAGE_SIZE = 300; // == URL_PAGE_SIZE; getStaticPaths has its own scope
   const paths = [];
   for (const member of getMembers()) {
     const pages = paginate(getMemberActivity(member.id), PAGE_SIZE);
@@ -104,7 +115,7 @@ const dist = isFirstPage
 // is reserved for strings that came out of the ratified grade config.
 const CATEGORIES: { name: string; measures: string }[] = [
   { name: "Consistency",
-    measures: "Votes against the priorities the member has stated publicly, with compromises accounted for. Needs their own public statements, which are not collected yet." },
+    measures: "Votes against the priorities the member has stated publicly, with compromises accounted for." },
   { name: "Effectiveness",
     measures: "How far the bills they introduced actually moved, and how many became law." },
   { name: "Bipartisanship",
@@ -122,8 +133,6 @@ const committees = isFirstPage ? getMemberCommittees(memberId) : null;
 
 // Fact tiles (§4.2 scroll 2 — the plain recorded numbers).
 const tiles = [
-  { key: "attendance", label: "Attendance", value: pctOrDash(att?.pct),
-    note: att && att.pct != null ? `${n(att.cast)} of ${n(att.eligible)} eligible` : "no eligible rolls yet" },
   { key: "attendance", anchor: "ranking-attendance", label: "Attendance percentile",
     value: attRank ? `${attRank.percentile}%` : "—",
     note: attRank ? `${ordinal(attRank.rank)} of ${n(attRank.covered)} in the ${chamberWord}` : "not ranked" },
@@ -142,6 +151,12 @@ const tiles = [
 
 // --- Timeline rows (every page) ------------------------------------------
 const voted = votedBillIds();
+// Reader-facing pagination: 50-row chunks numbered across the whole record, so
+// "page 7 of 94" means the same thing whichever 300-row URL it lives in.
+const totalRows = (totalPages - 1) * URL_PAGE_SIZE + rows.length;
+const viewTotal = Math.max(1, Math.ceil(totalRows / VIEW_CHUNK));
+const viewFirst = (pageNum - 1) * (URL_PAGE_SIZE / VIEW_CHUNK) + 1;
+const viewsHere = Math.max(1, Math.ceil(rows.length / VIEW_CHUNK));
 const kindsPresent = [...new Set(rows.map((r) => r.kind))] as ActivityKind[];
 const KIND_ORDER: ActivityKind[] = ["vote", "action", "statement"];
 const kindOptions = KIND_ORDER.filter((k) => kindsPresent.includes(k));
@@ -187,11 +202,6 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
           <a href={officialUrl} rel="nofollow"
              class="rounded-md border border-line px-3 py-1.5 text-[13px] text-neutral-700 transition-colors hover:border-[rgba(233,233,237,0.22)] hover:text-text">Official record ↗</a>
         </div>
-        <p class="mt-4 max-w-[60ch] text-[13px] leading-relaxed text-neutral-600">
-          What this member has said publicly has not been collected yet, so this page
-          does not compare what they say with what they do. Until it does, everything
-          here is the record of what they did.
-        </p>
       </div>
 
       <!-- The one grade that exists today, named for what it measures -->
@@ -204,6 +214,9 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
               <span class="text-[26px] font-medium tabular-nums text-text">{pctOrDash(att?.pct)}</span>
             </div>
             <p class="mt-2 text-[13px] text-neutral-700"><span data-grade-label>{grade.label}</span></p>
+            {att && att.pct != null && (
+              <p class="mt-1 text-[12px] text-neutral-500">{n(att.cast)} of {n(att.eligible)} eligible recorded votes.</p>
+            )}
             {attRank && (
               <p class="mt-1 text-[12px] leading-relaxed text-neutral-500">
                 {ordinal(attRank.rank)} of {n(attRank.covered)} {chamberWord} members by attendance —
@@ -256,11 +269,10 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
         <div class="rounded-lg border border-line bg-surface p-5">
           <div class="flex items-baseline justify-between gap-2">
             <h3 class="text-[14px] font-medium text-text">Attendance</h3>
-            <span class="text-[22px] font-medium leading-none tabular-nums text-text">{pctOrDash(att?.pct)}</span>
+            <span class="text-[12px] text-neutral-500">Graded above</span>
           </div>
           <p class="mt-2 text-[12px] leading-relaxed text-neutral-600">
             Recorded votes cast, out of the recorded votes they were eligible for.
-            {att && att.pct != null && ` ${n(att.cast)} of ${n(att.eligible)} in the ${periodLabel}.`}
           </p>
           <p class="mt-2 text-[12px] text-neutral-500">
             <a href="/methods#grade-attendance" class="underline decoration-line underline-offset-2 hover:text-text">Open the formula</a>
@@ -295,7 +307,7 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
           </h3>
           <div class="mt-4">
             <DotStrip points={dist} focus={att?.pct ?? null}
-                      focusLabel={att?.pct != null ? `${member.name.split(" ").slice(-1)[0]} ${att.pct}%` : undefined} />
+                      focusLabel={att?.pct != null ? member.name.split(" ").slice(-1)[0] : undefined} />
           </div>
         </section>
       )}
@@ -306,12 +318,9 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
       <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="prio-h">
         <h3 id="prio-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Stated priorities</h3>
         <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600">
-          This is where the things {member.name} has said matter to them will appear —
-          taken from their own public statements: press releases, floor speeches in the
-          Congressional Record, the issue pages from their most recent campaign, and
-          their official social accounts — each one beside how they voted on it. None
-          have been collected yet, so the section is empty rather than guessing at what
-          they care about.
+          Not collected yet. Their own public statements — press releases, floor speeches,
+          campaign issue pages, official social accounts — will appear here, each beside
+          how they voted on it.
         </p>
       </section>
 
@@ -407,10 +416,10 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
   <!-- Scroll 3 — Activity -->
   <h2 class="mt-10 text-[20px] font-medium text-text" id="activity">Activity</h2>
   <p class="mt-1 max-w-[72ch] text-[13px] leading-relaxed text-neutral-600">
-    Newest first. Page {pageNum} of {totalPages}. Recorded votes show the official
-    question verbatim and link to the official record; an absence shows the stated
-    reason when one exists. Actions on the bills this member introduced are the
-    government's own wording, word for word.
+    Newest first, {n(totalRows)} rows in all. Recorded votes show the bill's title and
+    the official question verbatim, and link to the official record; an absence shows
+    the stated reason when one exists. Actions on the bills this member introduced are
+    the government's own wording, word for word.
     {" "}<a href="/pairing" class="underline decoration-line underline-offset-2 hover:text-text">How statements and votes are paired</a>.
   </p>
 
@@ -446,7 +455,10 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
         </div>
       )}
 
-      <ul class="mt-2" data-activity-list>
+      <ul class="mt-2" data-activity-list data-chunk={VIEW_CHUNK}
+          data-view-first={viewFirst} data-view-total={viewTotal}
+          data-prev-url={pageNum > 1 ? `/m/${memberId}/${pageNum - 1}` : ""}
+          data-next-url={pageNum < totalPages ? `/m/${memberId}/${pageNum + 1}` : ""}>
         {rows.map((row) => (
           row.kind === "statement" ? (
             <StatementCard statement={row.statement} pairedVotes={row.pairedVotes}
@@ -460,6 +472,7 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
               position={row.position}
               absence={row.position === "not_voting" ? getAbsence(memberId, row.rollcall.id) : undefined}
               filterTopic={row.policyArea ?? ""}
+              billTitle={row.billTitle}
             />
           )
         ))}
@@ -467,49 +480,131 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
     </>
   )}
 
+  <nav class="mt-6 flex flex-wrap items-center justify-between gap-3 text-sm" aria-label="Pagination"
+       data-pager hidden>
+    <a href={pageNum > 1 ? `/m/${memberId}/${pageNum - 1}` : "#"} data-pager-prev
+       class="rounded-md border border-line px-3 py-1.5 text-[13px] text-neutral-700 hover:text-text">← Newer</a>
+    <span class="text-[13px] text-neutral-500" data-pager-label aria-live="polite">
+      Page {viewFirst} of {viewTotal}
+    </span>
+    <a href={pageNum < totalPages ? `/m/${memberId}/${pageNum + 1}` : "#"} data-pager-next
+       class="rounded-md border border-line px-3 py-1.5 text-[13px] text-neutral-700 hover:text-text">Older →</a>
+  </nav>
+
+  <!-- JavaScript off: the 50-row chunking never applies, so this URL's whole slice
+       is on the page and these links walk the 300-row slices instead. -->
   {totalPages > 1 && (
-    <nav class="mt-6 flex items-center justify-between text-sm" aria-label="Pagination">
-      {pageNum > 1
-        ? <a href={`/m/${memberId}/${pageNum - 1}`} class="underline decoration-line underline-offset-2 hover:text-text">← Newer</a>
-        : <span class="text-neutral-300">← Newer</span>}
-      <span class="text-neutral-500">Page {pageNum} / {totalPages}</span>
-      {pageNum < totalPages
-        ? <a href={`/m/${memberId}/${pageNum + 1}`} class="underline decoration-line underline-offset-2 hover:text-text">Older →</a>
-        : <span class="text-neutral-300">Older →</span>}
-    </nav>
+    <noscript>
+      <nav class="mt-6 flex items-center justify-between text-sm" aria-label="Pagination">
+        {pageNum > 1
+          ? <a href={`/m/${memberId}/${pageNum - 1}`} class="underline decoration-line underline-offset-2 hover:text-text">← Newer</a>
+          : <span class="text-neutral-300">← Newer</span>}
+        <span class="text-neutral-500">Rows {(pageNum - 1) * URL_PAGE_SIZE + 1}–{(pageNum - 1) * URL_PAGE_SIZE + rows.length} of {totalRows}</span>
+        {pageNum < totalPages
+          ? <a href={`/m/${memberId}/${pageNum + 1}`} class="underline decoration-line underline-offset-2 hover:text-text">Older →</a>
+          : <span class="text-neutral-300">Older →</span>}
+      </nav>
+    </noscript>
   )}
 </Layout>
 
 <script>
-  // Progressive enhancement for the activity filters: with JavaScript off every row
-  // stays visible and the two selects simply do nothing, which is the honest default
-  // (hiding rows is the enhancement, not the content).
+  // Progressive enhancement for the activity list: 50-row paging, plus the type and
+  // policy-area filters. With JavaScript off none of it applies — every row in this
+  // URL's slice stays on the page and the <noscript> pager walks the slices. Hiding
+  // rows is the enhancement; the rows themselves are the content.
   const list = document.querySelector<HTMLElement>("[data-activity-list]");
+  const pager = document.querySelector<HTMLElement>("[data-pager]");
   const panel = document.querySelector<HTMLElement>("[data-activity-filters]");
-  if (list && panel) {
-    const kindSel = panel.querySelector<HTMLSelectElement>('[data-filter="kind"]');
-    const topicSel = panel.querySelector<HTMLSelectElement>('[data-filter="topic"]');
-    const countEl = panel.querySelector<HTMLElement>("[data-filter-count]");
+  if (list) {
     const items = Array.from(list.querySelectorAll<HTMLElement>("li[data-kind]"));
+    const chunk = Number(list.dataset.chunk) || 50;
+    // Page numbers run across the member's WHOLE record, not this URL's slice, so
+    // "page 7 of 94" means one thing wherever the reader is.
+    const viewFirst = Number(list.dataset.viewFirst) || 1;
+    const viewTotal = Number(list.dataset.viewTotal) || 1;
+    const prevUrl = list.dataset.prevUrl || "";
+    const nextUrl = list.dataset.nextUrl || "";
+
+    const kindSel = panel?.querySelector<HTMLSelectElement>('[data-filter="kind"]');
+    const topicSel = panel?.querySelector<HTMLSelectElement>('[data-filter="topic"]');
+    const countEl = panel?.querySelector<HTMLElement>("[data-filter-count]");
+    const prevEl = pager?.querySelector<HTMLAnchorElement>("[data-pager-prev]");
+    const nextEl = pager?.querySelector<HTMLAnchorElement>("[data-pager-next]");
+    const labelEl = pager?.querySelector<HTMLElement>("[data-pager-label]");
     const fmt = (x: number) => x.toLocaleString("en-US");
 
-    const apply = () => {
+    // Index into the chunks of THIS slice, 0-based.
+    let localChunk = 0;
+
+    const render = () => {
       const kind = kindSel?.value ?? "";
       const topic = topicSel?.value ?? "";
-      let shown = 0;
-      for (const li of items) {
-        const ok = (!kind || li.dataset.kind === kind)
-          && (!topic || li.dataset.topic === topic);
-        li.hidden = !ok;
-        if (ok) shown++;
-      }
+      // A filter narrows the set first; paging then applies to what is left, so a
+      // filtered view never shows a page of hidden rows.
+      const matching = items.filter((li) =>
+        (!kind || li.dataset.kind === kind) && (!topic || li.dataset.topic === topic));
+      const filtering = Boolean(kind || topic);
+      const chunksHere = Math.max(1, Math.ceil(matching.length / chunk));
+      if (localChunk > chunksHere - 1) localChunk = chunksHere - 1;
+
+      const start = localChunk * chunk;
+      const end = start + chunk;
+      const visible = new Set(matching.slice(start, end));
+      for (const li of items) li.hidden = !visible.has(li);
+
       if (countEl) {
-        countEl.textContent = (!kind && !topic)
-          ? `Showing all ${fmt(items.length)} on this page.`
-          : `Showing ${fmt(shown)} of ${fmt(items.length)} on this page.`;
+        countEl.textContent = filtering
+          ? `${fmt(matching.length)} of ${fmt(items.length)} rows match.`
+          : "";
       }
+      if (labelEl) {
+        labelEl.textContent = filtering
+          ? `Page ${localChunk + 1} of ${fmt(chunksHere)} of the matching rows`
+          : `Page ${fmt(viewFirst + localChunk)} of ${fmt(viewTotal)}`;
+      }
+
+      // At the edge of this slice, the pager hands off to the next URL. While a
+      // filter is on, paging stays inside the slice: the next URL's rows were never
+      // filtered, so walking into them would silently mix filtered and unfiltered.
+      const hasPrev = localChunk > 0 || (!filtering && Boolean(prevUrl));
+      const hasNext = localChunk < chunksHere - 1 || (!filtering && Boolean(nextUrl));
+      for (const [el, on] of [[prevEl, hasPrev], [nextEl, hasNext]] as const) {
+        if (!el) continue;
+        el.setAttribute("aria-disabled", on ? "false" : "true");
+        el.classList.toggle("opacity-40", !on);
+        el.classList.toggle("pointer-events-none", !on);
+      }
+      if (pager) pager.hidden = chunksHere <= 1 && !prevUrl && !nextUrl;
     };
-    kindSel?.addEventListener("change", apply);
-    topicSel?.addEventListener("change", apply);
+
+    const step = (delta: number) => (ev: Event) => {
+      const filtering = Boolean(kindSel?.value || topicSel?.value);
+      const matching = items.filter((li) => {
+        const kind = kindSel?.value ?? "";
+        const topic = topicSel?.value ?? "";
+        return (!kind || li.dataset.kind === kind) && (!topic || li.dataset.topic === topic);
+      });
+      const chunksHere = Math.max(1, Math.ceil(matching.length / chunk));
+      const target = localChunk + delta;
+      if (target >= 0 && target < chunksHere) {
+        ev.preventDefault();
+        localChunk = target;
+        render();
+        list.scrollIntoView({ block: "start" });
+        return;
+      }
+      // Off the end of this slice: let the href navigate to the neighbouring URL,
+      // unless there is none or a filter is on.
+      const href = delta < 0 ? prevUrl : nextUrl;
+      if (filtering || !href) ev.preventDefault();
+    };
+
+    prevEl?.addEventListener("click", step(-1));
+    nextEl?.addEventListener("click", step(1));
+    for (const sel of [kindSel, topicSel]) {
+      sel?.addEventListener("change", () => { localChunk = 0; render(); });
+    }
+    render();
   }
 </script>

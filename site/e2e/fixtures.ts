@@ -141,6 +141,7 @@ const topics = topicPaths();
 
 export const PAGES: string[] = [
   "/",
+  "/congress", // P2: the full ranked "In Congress" list
   "/federal", // V2-5: the filterable federal-members browser (Preact island)
   "/topics", // V2-11: the topic index (both official vocabularies)
   topics.policyArea, // V2-11: the largest policy area

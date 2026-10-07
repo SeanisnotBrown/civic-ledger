@@ -9,8 +9,15 @@ import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
 
 // `filterTopic` is set on the member activity page so its Type / Policy area selects
 // can hide the row; it is absent everywhere else and then renders nothing.
-interface Props { rollcall: RollCall; position: Position; absence?: Absence; filterTopic?: string }
-const { rollcall: rc, position, absence, filterTopic } = Astro.props;
+// `billTitle` is the official title of the measure the roll call was on. The question
+// text alone is often procedural ("On motion to suspend the rules and pass the bill"),
+// which says nothing about WHAT was voted on — the title is the answer, so the member
+// timeline always passes it.
+interface Props {
+  rollcall: RollCall; position: Position; absence?: Absence;
+  filterTopic?: string; billTitle?: string | null;
+}
+const { rollcall: rc, position, absence, filterTopic, billTitle } = Astro.props;
 const notVoting = position === "not_voting";
 ---
 <li class="border-b border-neutral-100 py-3" data-kind="vote" data-topic={filterTopic ?? ""}>
@@ -21,6 +28,7 @@ const notVoting = position === "not_voting";
       {formatDate(rc.date)} · Roll <a href={`/v/${rc.id}`} class="underline hover:text-neutral-800">#{rc.number}</a>
     </span>
   </div>
+  {billTitle && <p class="mt-1 text-sm leading-snug text-text">{billTitle}</p>}
   <p class="mt-1 text-sm text-neutral-800">{rc.question}</p>
   <div class="mt-1 flex flex-wrap gap-x-3 text-xs text-neutral-500">
     {rc.bill_id && (

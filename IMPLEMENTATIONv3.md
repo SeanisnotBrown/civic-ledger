@@ -72,6 +72,9 @@ Each row is the owner's choice. A builder applies it; a builder does not reopen 
 | CI checks kept | Banned words; symmetry; grade-label guard; lint + full tests + build before push. |
 | Never-sell | **Promise withdrawn.** The privacy page describes what is collected and how it is used, nothing more. |
 | HUMAN-TASKS file | **Archived.** Live items moved to `STATUS.md`. |
+| Homepage order (2026-10-07) | **Intro -> In Congress -> the representative finder -> statistics.** The finder is one dropdown, states alphabetical by name. The intro's third line ("Find your representatives below.") is not shipped - it would point past the Congress band. |
+| "In Congress" order (2026-10-07) | **One ranked list, consequence then contested** - not equal-weight buckets: (1) became law, (2) failed on the floor, (3) passed on a recorded roll call, closest tally first, (4) passed with no recorded vote, (5) placed on a calendar. Within a tier, newest first. Every key comes from the official record; **nothing is ordered by topic.** Shown to the reader on `/congress`. |
+| Timeline page size (2026-10-07) | **50 rows per page as the reader sees it**, carried as 50-row chunks inside 300-row URLs with page numbers running across the whole record. 50 rows per URL would be 23,259 member pages and 35,580 files, past the 20,000 free-plan limit; the owner chose this over moving to Workers Paid now. |
 
 ---
 
@@ -219,7 +222,7 @@ proposals, not ratified numbers; the owner may change any of them when the phase
 5. Member page scroll 1: left/right dot graph by the party-majority rule from `party_totals` + the member's vote. Grade cards for Attendance; placeholder cards for the other four stating "not yet graded" with what will be measured.
 6. Photos: pull from Bioguide or the unitedstates/images project into `data/raw/` then `site/public/`; record the source and license in `docs/data-contract.md`. If neither source is usable, ask the owner.
 7. Member page scroll 2: bills introduced / sponsored / cosponsored from `data/legislation/`. Committees: ingest `committee-membership-current.yaml` if it verifies; otherwise leave the section with "coming" and note the gap in `STATUS.md`.
-8. Member page scroll 3: timeline of votes, bill actions on their bills, absences; filter by topic (bill subjects) and type.
+8. Member page scroll 3: timeline of votes, bill actions on their bills, absences; filter by topic and type. **Built with policy area, not subject terms** (2026-10-07): 973 subject terms do not fit a usable control, and policy area is the same official vocabulary one level up. 50 rows a page (see §2).
 9. Hide the threat-model page, the footer commit hash, and the States tab (keep routes alive; remove nav links). Remove values lists and source-link banners from copy.
 **Acceptance:** build green; e2e (axe + 380px) green on `/`, a House member page, a Senate member page; `test:links`, `test:file-count`, `test:grade-labels` green; owner looks at `/` and one member page and says yes.
 **Out of scope:** new grades, AI text, statements, accounts, visual redesign beyond layout.
@@ -364,6 +367,12 @@ Phase 2 task 1 ships this text verbatim as the homepage intro:
 > of every party.
 >
 > Find your representatives below.
+
+**Amended 2026-10-07 (owner, at P2 review):** the third line, "Find your
+representatives below.", is NOT shipped. The homepage order he set is intro -> In
+Congress -> the representative finder -> statistics, so that sentence would point
+past the Congress band rather than at the finder. The first two paragraphs ship
+verbatim as above.
 
 It deliberately claims neither say-vs-do nor an overall grade: statements land
 in Phase 3 and the other four category grades in Phase 4, and rule 0 flips copy

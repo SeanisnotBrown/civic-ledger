@@ -70,7 +70,7 @@ jobs:
         env:
           PUBLIC_BUILD_COMMIT: ${{ github.sha }}
         run: npm run build
-      - name: Checks (banned-words, no-llm, ...)
+      - name: Checks (banned-words, symmetry, integrity, ...)
         run: uv run checks
       - name: File-count gate (built files < Workers plan limit — H14)
         working-directory: site

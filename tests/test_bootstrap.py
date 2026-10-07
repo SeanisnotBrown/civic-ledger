@@ -1,7 +1,10 @@
-"""INC-0 smoke tests — the tooling skeleton is wired correctly.
+"""Smoke tests — the tooling skeleton is wired correctly.
 
 These give pytest something to collect (pytest exits 5 with zero tests, which
-would fail the acceptance chain) and pin the invariants INC-0 must hold.
+would fail the acceptance chain) and pin the invariants that hold in every
+phase: the console entrypoints import, the shared constants have one
+definition, and the banned-words check (the mechanical edge of
+`IMPLEMENTATIONv3.md` §1 rule 6) works on the real tree.
 """
 
 from __future__ import annotations
@@ -59,38 +62,13 @@ def test_banned_words_detects_a_hit(tmp_path):
     assert any(term == "hypocrisy" for _, _, term in hits)
 
 
-def test_no_llm_does_not_flag_itself():
-    # The guard's own source must not trip its endpoint scan (the classic
-    # self-match bug). Run the real endpoint scan over the real tree.
-    from ingest.checks import no_llm
+def test_checks_suite_does_not_register_the_retired_no_llm_guard():
+    # IMPLEMENTATIONv3.md §1 retired the no-AI-in-the-publishing-path rule and
+    # its CI guard on 2026-10-07 ("do not reinstate"). AI text is now governed
+    # by rule 7 (labeled + human-approved) instead of a structural ban.
+    from ingest.checks import run
 
-    assert no_llm.check_endpoints(no_llm.repo_root()) == []
-
-
-def test_no_llm_detects_endpoint(tmp_path):
-    from ingest.checks import no_llm
-
-    (tmp_path / "ingest").mkdir()
-    # Assemble the forbidden endpoint from parts so THIS test file does not
-    # itself contain the literal (it lives outside the scanned dirs anyway).
-    endpoint = "https://api." + "openai" + ".com/v1/chat"
-    (tmp_path / "ingest" / "leak.py").write_text(f'URL = "{endpoint}"\n', encoding="utf-8")
-    problems = no_llm.check_endpoints(tmp_path)
-    assert problems, "endpoint scan should have flagged the planted URL"
-
-
-def test_no_llm_detects_forbidden_package(tmp_path):
-    from ingest.checks import no_llm
-
-    (tmp_path / "uv.lock").write_text('name = "openai"\nversion = "1.0"\n', encoding="utf-8")
-    problems = no_llm.check_lockfiles(tmp_path)
-    assert any("openai" in p for p in problems)
-
-
-def test_no_llm_contributing_policy_present():
-    from ingest.checks import no_llm
-
-    assert no_llm.check_contributing(no_llm.repo_root()) == []
+    assert "no_llm" not in {name for name, _ in run.CHECKS}
 
 
 @pytest.mark.parametrize("suffix", [".json", ".yaml", ".md", ".astro", ".ts"])

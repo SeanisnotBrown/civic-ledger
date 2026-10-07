@@ -9,8 +9,8 @@ import {
   <h1 class="text-2xl font-semibold tracking-tight">Threat model</h1>
   <p class="mt-2 max-w-prose text-neutral-700">
     What someone could learn about you from this site, who that someone could
-    be, and what is actually promised. Written before accounts exist, so that
-    the description comes first and the collection second.
+    be, and what this site does and does not claim. Written before accounts
+    exist, so that the description comes first and the collection second.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Today, with no accounts</h2>
@@ -73,33 +73,34 @@ import {
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is not promised</h2>
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
     This section exists because the site used to promise these things and the
-    promises could not be kept. As of 2026-10-05 the operator does
-    <strong>not</strong> promise that requests go unlogged, that no network
-    address of yours is stored, that no cookie is ever set, or that storage
-    stays limited to the list above. Features this site is being built toward
-    need to keep a record of what you follow. A promise that cannot survive
-    the next feature is worth less than an accurate description, so you are
-    getting the description.
+    promises could not be kept. As of 2026-10-07 the operator makes
+    <strong>no privacy promises at all</strong>. In particular there is no
+    promise that requests go unlogged, that no network address of yours is
+    stored, that no cookie is ever set, that storage stays limited to the list
+    above, or that your data will not be passed on or sold to anyone else —
+    that last one was a standing promise on this site until 2026-10-07, when
+    the operator withdrew it. A promise that cannot survive the next feature
+    is worth less than an accurate description, so you are getting the
+    description.
   </p>
 
-  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What is promised</h2>
+  <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">What the system does do</h2>
+  <p class="mt-1 max-w-prose text-sm text-neutral-700">
+    These are descriptions of how the software behaves, not pledges about how
+    the operator will behave. This site makes no privacy promises.
+  </p>
   <ul class="mt-2 max-w-prose list-disc space-y-2 pl-5 text-sm text-neutral-700">
-    <li>
-      <strong>Your data is never sold.</strong> This is the one standing
-      promise. It holds whatever gets built, because selling your data would
-      be a decision by the operator rather than something the software could
-      do on its own.
-    </li>
     <li>
       <strong>Deletion is real deletion.</strong> When accounts exist, asking
       for your account to be deleted removes its rows, rather than flagging
       them as hidden.
     </li>
     <li>
-      <strong>Nothing published can single you out.</strong> Any figure this
-      site publishes that is derived from reader data has to cover at least
-      {K_ANON_PUBLISH_FLOOR} people. Below that, the number is not published
-      at all.
+      <strong>A published figure has a floor.</strong> No figure on this site
+      is derived from reader data today, because nothing is collected about
+      readers today. The rule any future one has to clear is already written
+      down: it covers at least {K_ANON_PUBLISH_FLOOR} people, or it is not
+      published at all.
     </li>
   </ul>
 
@@ -111,7 +112,7 @@ import {
   </p>
 
   <p class="mt-8 text-xs text-neutral-500">
-    Last reviewed 2026-10-06. The sections describing accounts will be
+    Last reviewed 2026-10-07. The sections describing accounts will be
     rewritten as each feature actually ships, before it collects anything.
   </p>
 </Layout>

@@ -5,64 +5,77 @@ fact the site renders has a public commit history here. Contributions are
 welcome under the constraints below — they are not style preferences, they are
 the reason the project can be trusted.
 
-## No LLM in the publishing path (policy)
+## Read these first
 
-**No LLM output appears anywhere in the publishing path.** No large-language-model
-SDK may be added to any lockfile, and no source file under `ingest/`, `site/`,
-or `worker/` may call an LLM API endpoint. This is enforced structurally in CI
-by `ingest/checks/no_llm.py` (§6.6 of `IMPLEMENTATIONv2.md`): an LLM call cannot
-merge.
+1. **`MISSION.md`** — what the site is and why. Before any action, ask whether
+   the change serves the mission. If it does not, it does not happen.
+2. **`IMPLEMENTATIONv3.md`** — the only spec. §1 is the ground rules every
+   contribution is held to; §2 is the ratified decisions a contribution applies
+   rather than reopens; §5 is the phase order.
+3. **`STATUS.md`** — the live state: the current phase, whether a local data
+   pull is running, and what a human owes.
 
-Concretely, a contribution **must not**:
+Older specs, plans and progress logs are archived under `docs/archive/` and are
+not read before work.
 
-- add `anthropic`, `openai`, `google-genai`/`generativeai`, `mistralai`,
-  `cohere`, `ollama`, `litellm`, `langchain*`, or `llama-index*` to any
-  dependency lockfile;
-- call any LLM inference endpoint from build, ingest, curation, or site code;
-- generate, summarize, classify, or paraphrase political content that publishes
-  as fact. Where the spec says "curated" or "manual," the data comes from the
-  owner via the curation tools. UI chrome text is fine; political content is not.
+## The rules that block a merge
 
-## The four load-bearing values (priority order, amended 2026-08-13)
+The full text is `IMPLEMENTATIONv3.md` §1. The ones a contributor trips over
+most:
 
-1. Never publish something false or falsely framed.
-2. Evaluative labels — ranks, grades, "poor attendance" — are publishable only
-   under the disclosure standard: a formula published on `/methods`, applied
-   identically to every member and party, with inputs and denominator visible.
-   The site still never asserts motive, intent, or character.
-3. The site may collect, store and read the user data its features need
-   (amended 2026-09-23, SD-32; narrowed again 2026-10-05, SD-34). **Data is
-   never sold — that is the one standing promise**, and the only privacy
-   claim the owner authored rather than a builder. Also surviving: every
-   stored table is described on `/privacy` before it exists (the disclosure
-   is a Value #1 duty, not a storage limit); population trends only via
-   K-anonymous aggregates; deletion deletes; anonymous use stays available
-   forever. **SD-34 withdrew the no-tracking guarantees** — no request
-   logging, no IP columns, no cookies, and "collect only what a scheduled
-   feature needs" are gone. Do not write any of them onto the site or back
-   into this list; `/privacy` describes what happens, it does not promise
-   what will not.
-4. Ship partial value early.
+- **Never publish something false or falsely framed** (rule 0). A true number
+  in a false frame is false. Site copy that describes the system counts: copy
+  flips in the same commit as the feature that makes it true.
+- **Ask the owner when unsure** (rule 1), in plain non-technical language.
+  Always required for anything evaluative — what counts as good or poor, where
+  a cutoff sits, how a grade is worded. A contributor never authors a political
+  judgment.
+- **Evaluative constants are ratified before they publish** (rule 5). Every
+  threshold, weight, grade cutoff and grade label is proposed, picked by the
+  owner, then committed to `data/config/thresholds.yaml` with the reason and
+  the date.
+- **The site states facts, never motive** (rule 6). A grade says what was
+  measured ("voted against 6 of 9 stated priorities"), never why.
+- **AI-written text is labeled and human-approved before it publishes**
+  (rule 7, §4.6). AI is allowed in the publishing path; unlabeled or
+  unreviewed AI text is not. Phase 3 adds `data/config/ai.yaml` (model id and
+  prompt version per task) and `ingest/ai.py`, the one module every AI call
+  goes through. Neither exists yet.
+- **Raw API responses are cached to disk before parsing** (rule 4). Never
+  hammer a government API; re-parse from `data/raw/` when the cached payload
+  already has what is needed.
+- **Secrets come from `.env`** (rule 10). Never hardcoded, never committed.
+- **Both gates run before every push** (rule 9): `uv run ruff check .` and the
+  full pytest line recorded in `STATUS.md`, then the site build and its
+  `test:*` scripts.
 
-When they conflict, the earlier value wins. Full detail, including what
-changed from the original four values and why: `IMPLEMENTATIONv2.md` §0.4.
+## Blocking CI checks
 
-## Other blocking CI checks
-
-- **Banned words** (`ingest/checks/banned_words.py`, §6.4): no motive-or-
-  character framing (`liar`, `hypocrisy`, ...) in `data/**`, `site/src/**`, or
-  `site/dist/**`. Extend the list only by PR so extensions are diffable.
-- **Symmetry** (§6.5), **archive links** (§6.9), **Tier-3 disclosure guard**
-  (§6.8), **a11y** — come online in their increments; all can fail the build.
+- **Banned words** (`ingest/checks/banned_words.py`): no motive-or-character
+  framing (`liar`, `hypocrisy`, ...) in `data/**`, `site/src/**`, or
+  `site/dist/**`. This is the mechanical edge of rule 6. Extend the list only
+  by PR so extensions are diffable.
+- **Symmetry** (`ingest/checks/symmetry.py`): every member is treated by the
+  same formula, or is listed in the exceptions with a mechanical reason.
+- **Classification**, **integrity**, **ms**: dataset guards. All run from
+  `uv run checks`.
+- **Grade labels** and **link/file-count/a11y** checks: the `test:*` scripts in
+  `site/package.json`.
 
 ## Development
 
 - Dev environment: Python 3.12 via `uv`; Node 22 LTS for the Astro site.
 - Python: `uv run checks`, `uv run pytest`.
 - Site: `cd site && npm run build`.
-- Corrections are normal commits, never force-pushes (§9, brief 5.12).
+- Corrections are normal commits, never force-pushes.
+- Commit at every passing phase acceptance, with the message `P<N>: <what>`.
 
 ## Data is public record
 
 Everything under `data/` is published. Treat it as the historical record: a
-correction is a new commit referencing the issue, never a silent edit.
+correction is a new commit referencing the issue, never a silent edit. The
+process is `docs/correction-process.md`.
+
+**A dirty `git status` under `data/` is often a running local data pull, not
+abandoned work.** Read `STATUS.md` before cleaning or committing anything
+there.

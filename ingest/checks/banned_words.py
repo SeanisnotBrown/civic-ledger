@@ -1,18 +1,19 @@
-"""§6.4 — Banned-strings check (CI, blocking).
+"""Banned-strings check (CI, blocking).
 
 Case-insensitive scan of published data fields and site source/build for
-partisan-lean framing. The list lives here as data; extend only by PR (§A3),
-so extensions are themselves diffable.
+partisan-lean framing. This is the mechanical edge of `IMPLEMENTATIONv3.md`
+§1 rule 6: the site states facts, never motive. The list lives here as data;
+extend only by PR, so extensions are themselves diffable.
 
-Scope is EXACTLY the three trees named in §6.4:
+Scope is EXACTLY these three trees:
     data/**            (published dataset)
     site/src/**        (site source)
     site/dist/**       (built output)
-The repo root is deliberately out of scope — IMPLEMENTATIONv2.md §6.4 quotes
-every banned word while specifying this check.
+The repo root is deliberately out of scope — `IMPLEMENTATIONv3.md` and
+`MISSION.md` quote banned words while specifying and explaining this check.
 
 The glossary page is the single allowlisted file, for defining procedural
-terms; it is manually reviewed (§6.4). A hit anywhere else fails the build.
+terms; it is manually reviewed. A hit anywhere else fails the build.
 """
 
 from __future__ import annotations
@@ -20,7 +21,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-# Brief 5.4 verbatim plus the obvious adjacents (§6.4).
+# Motive-or-character framing. Rule 6 (`IMPLEMENTATIONv3.md` §1).
 BANNED: tuple[str, ...] = (
     "hypocrisy",
     "hypocrite",

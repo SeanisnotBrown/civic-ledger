@@ -1,29 +1,35 @@
-"""`checks` console entrypoint — runs the blocking CI suite (§6, §8).
+"""`checks` console entrypoint — runs the blocking CI suite.
 
-Exits nonzero if any check fails. At INC-0 the active checks are the two
-structural/global guards that apply with or without data:
-    banned_words (§6.4)   no_llm (§6.6)
+Exits nonzero if any check fails. The ground rules these enforce are in
+`IMPLEMENTATIONv3.md` §1; the CI checks kept at the 2026-10-07 reset are
+listed in §2 ("CI checks kept").
 
-The data-dependent checks — symmetry (§6.5), archive_links (§6.11 write-time
-+ weekly), integrity (§6.3) — are registered here as they come online in
-their increments (INC-3/7/10/11). On an empty dataset they are no-ops, so
-they are safe to add early; they are wired in as each increment implements
-its real logic.
+Active checks:
+    banned_words   the mechanical edge of rule 6 (facts, never motive)
+    symmetry       equal treatment across parties
+    classification roll-call classification coverage
+    integrity      cross-source agreement on the published dataset
+    ms             Mississippi dataset guards (back burner, §4.10)
+
+The data-dependent checks are no-ops on an empty dataset, so they are safe to
+run at any phase.
+
+The `no_llm` structural guard was removed on 2026-10-07: `IMPLEMENTATIONv3.md`
+§1 retires the no-AI-in-the-publishing-path rule (AI summaries and statement
+categorization are now labeled and human-approved instead, §4.6 / rule 7).
+Do not reinstate it.
 """
 
 from __future__ import annotations
 
 from collections.abc import Callable
 
-from ingest.checks import banned_words, classification, integrity, ms, no_llm, symmetry
+from ingest.checks import banned_words, classification, integrity, ms, symmetry
 
 # (name, callable-returning-exit-code). Ordered; all run even if one fails so
-# the operator sees every problem in a single pass. symmetry + integrity are
-# no-ops until their data exists (INC-3 activates House vote coverage + the clerk
-# cross-check); they stay green on an empty dataset.
+# the operator sees every problem in a single pass.
 CHECKS: list[tuple[str, Callable[[], int]]] = [
     ("banned_words", banned_words.main),
-    ("no_llm", no_llm.main),
     ("symmetry", symmetry.main),
     ("classification", classification.main),
     ("integrity", integrity.main),

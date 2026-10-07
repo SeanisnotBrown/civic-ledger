@@ -1,27 +1,35 @@
 """Global constants. Single source of truth for cross-module thresholds.
 
-K_ANON is the single source of truth for k-anonymity; the Worker (V2-8, not
-yet built) must import/mirror this value, and a test will assert equality
-once it exists (§10.3). Symmetry thresholds are read by checks/symmetry.py.
-Congress coverage per Decision D5.
+Spec: `IMPLEMENTATIONv3.md`. Evaluative constants do NOT live here — every
+threshold, weight, grade cutoff and grade label is ratified by the owner and
+committed to `data/config/thresholds.yaml` with its reason and date (§1 rule
+5). What lives here is mechanical: coverage, the k-anonymity floor, and the
+symmetry and quality gates.
+
+K_ANON is the single source of truth for k-anonymity; the Worker (Phase 7, not
+yet built) must import/mirror this value, and a test will assert equality once
+it exists. `tests/test_privacy_accuracy.py` already pins the site's published
+copy to it. Symmetry thresholds are read by checks/symmetry.py.
 """
 
 from __future__ import annotations
 
 # --- Coverage -------------------------------------------------------------
-# Decision D5: 119th (current) + 118th Congress.
+# 119th (current) + 118th Congress (`IMPLEMENTATIONv3.md` §3.1).
 CONGRESSES: list[int] = [118, 119]
 
 # Covered member set: the Mississippi delegation (5R House, 1 varies; 2 Senate).
 # Membership is derived at ingest from congress-legislators filtered on state.
 COVERED_STATE: str = "MS"
 
-# --- Privacy (§10) --------------------------------------------------------
-# k-anonymity threshold for aggregate export. MUST equal the Worker's copy;
-# a test asserts equality (§10.3).
+# --- Privacy (§4.8) -------------------------------------------------------
+# k-anonymity floor for any published figure derived from reader data. NOTHING
+# READS THIS YET - no reader data is collected, so no gate consumes it. It is
+# the ratified number the Phase 7 Worker must mirror, and it equals the figure
+# the site publishes today (pinned by tests/test_privacy_accuracy.py).
 K_ANON: int = 50
 
-# --- Symmetry thresholds (§6.5, Decision D1) ------------------------------
+# --- Symmetry thresholds --------------------------------------------------
 # Statement curation checks activate once the watchlist median reaches this.
 SYMMETRY_MEDIAN_ACTIVATION: int = 5
 # Each member's statement count must be >= this fraction of the median.
@@ -31,7 +39,7 @@ SYMMETRY_PARTY_MEAN_MAX_REL_DIFF: float = 0.25
 # Specificity-scored percentage must be within this many points across parties.
 SYMMETRY_SPECIFICITY_MAX_POINT_GAP: float = 10.0
 
-# --- Quality gates (§6.1) -------------------------------------------------
+# --- Quality gates --------------------------------------------------------
 # CI fails if quarantined records exceed this fraction of a run.
 QUARANTINE_MAX_FRACTION: float = 0.02
 

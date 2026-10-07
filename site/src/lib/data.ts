@@ -1127,7 +1127,13 @@ export function recentChamberActivity(limit = 8): ChamberActivity | null {
       tierLabel = `Passed — recorded vote ${margin.yea}–${margin.nay}`;
     } else if (bucket === "passed") {
       tier = 4;
-      tierLabel = "Passed — no recorded vote";
+      // "no roll call IN THE RECORD", not "no recorded vote": the join above is
+      // deliberately narrow (same bill, same calendar day), so the honest claim is
+      // about what this dataset holds, not about what the chamber did. In the window
+      // this shipped on, 95 of the 97 resolved measures had no roll call on that bill
+      // at all and none had one a day either side, but the label must stay true in a
+      // window where the action and its roll land on different dates.
+      tierLabel = "Passed — no roll call in the record";
     } else {
       tier = 5;
       tierLabel = "Placed on a calendar";

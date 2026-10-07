@@ -3,11 +3,20 @@
 State-tracking file per `.claude` rules. Updated before ending any session.
 Single source of truth for: current increment, acceptance status, blocked H-tasks.
 
-**Last updated:** 2026-10-06, afternoon session, wrapped at 16:55 CDT.
-**Four more commits pushed** (`cd3052c0e` D104, `a5f2c7862` SD-39+SD-40, `320d776da` data,
-`ebe25c64a` the nightly merge) — remote is at `ebe25c64a`, **CI run 37536141049 was still
-in progress at wrap; check it before trusting this line.** The 119 backfill is RELAUNCHED
-and confirmed writing (PIDs 30108/40804 at 16:45 CDT, 6,484 timelines and climbing).
+**Last updated:** 2026-10-07, morning session (orientation only — no code touched).
+**CI run 37536141049 IS FULLY GREEN — CONFIRMED THIS MORNING.** Both jobs: `python`
+4m53s and `site-and-checks` 19m42s. The "still running at wrap, confirm it" caveat that sat
+here is DISCHARGED. Remote was at `ebe25c64a`; this session pushes `a5817e33c` (D104 +
+nightly-merge docs) plus this edit.
+**The 119 backfill DIED A SECOND TIME in 24 h and is relaunched.** Yesterday's 16:45 run died
+at 17:03 when the owner's machine shut off; the 19:37 relaunch ran overnight and stopped at
+**06:16 CDT — cause unknown**, with no `python.exe` carrying `bill-activity` left alive.
+**RELAUNCHED 2026-10-07 at 08:14 CDT, PIDs 14644/20544**, first write confirmed on disk at
+08:15. **15,324 timelines of ~19,441 — so ~4,100 to go, ~6 h** at the measured ~11/min.
+(`data/bills/*-119.json` is 15,344 files; the 20-file gap is D104's no-action-on-record
+bills, which publish nothing by design.)
+**Earlier guidance in this file saying "~12,800 to go, ~16 h" is from the 19:37 relaunch and
+is STALE** — the overnight run got most of the way there before it died.
 Earlier the same day, three commits (`1bd754c67`, `9193e7010`, `8c5c36488`). **V2-7 IS COMPLETE —
 task 1's last half shipped, so the privacy truth gate no longer blocks V2-8/V2-9/V2-12/V2-13.**
 **SD-38 (owner, today) ratified the storage list at SEVEN tables.** **SD-37 is now complete
@@ -99,7 +108,7 @@ COMMAND LINE, not by the name `python.exe`. In PowerShell:
 
 Then read progress off disk:
 
-    grep -l '"actions"' data/bills/*-119.json | wc -l    # 6,484 when this session ended
+    grep -l '"actions"' data/bills/*-119.json | wc -l    # 15,324 at the 2026-10-07 08:14 relaunch
     ls -lt data/bills/*-119.json | head -1                # should be seconds old
 
 **▶ THIS SESSION FOUND THE RUN DEAD WHILE `tasklist | grep -i python` SAID IT WAS ALIVE.**
@@ -140,13 +149,21 @@ against a real hard kill), and a resume costs 0.56 s and zero requests. In Git B
 
 **1. ⚠ THE CONGRESS 119 BACKFILL IS RUNNING RIGHT NOW. A DIRTY `data/` IS DELIBERATE —
 DO NOT CLEAN IT UP AND DO NOT COMMIT IT WITHOUT READING TASK 0'S STOP LOOP FIRST.**
-Relaunched 2026-10-06 at 09:39 CDT (PIDs 39296/43384 at launch; they will have changed if the
-run was restarted since). **Everything on disk as of 09:00 is committed and pushed**
-(`8c5c36488`, at 3,257 timelines); anything dirty under `data/` after that is the running
-run's output, not abandoned work. Nothing is lost if the machine is shut down: the files stay
-on disk and a resume skips every bill that already has a timeline, at zero API requests.
-- **Congress 119: PARTIAL and growing as you read this.** 3,263 timelines of ~19,441 at the
-  09:45 session end — so **~16,200 to go, ~20 h**.
+Relaunched **2026-10-07 at 08:14 CDT (PIDs 14644/20544 at launch;** they will have changed if
+the run was restarted since), first write confirmed at 08:15. **This is the THIRD launch in
+24 h:** the 16:45 run on 2026-10-06 died at 17:03 when the owner's machine shut off; the 19:37
+relaunch ran overnight and stopped at **06:16 CDT on 2026-10-07, cause unknown** — nothing in
+`backfill-119.log` (0 bytes, as always) and no `bill-activity` process left alive. The tell was
+the same one TASK 0 names: the newest `data/bills/*-119.json` was two hours old.
+**Everything on disk as of the 2026-10-06 afternoon wrap is committed and pushed**
+(`ebe25c64a`, at 6,470 timelines); anything dirty under `data/` after that is the running run's
+output, not abandoned work — **8,852 files at this session's start.** Nothing is lost if the
+machine is shut down: the files stay on disk and a resume skips every bill that already has a
+timeline, at zero API requests.
+- **Congress 119: PARTIAL and growing as you read this.** **15,324 timelines of ~19,441 at the
+  2026-10-07 08:14 relaunch — so ~4,100 to go, ~6 h** at the measured ~11/min. The overnight
+  run covered 6,655 → 15,324 before it died, which is why the old "~12,800 to go" line is gone.
+  `data/bills/*-119.json` is 15,344 files; the 20-file gap is D104's no-action-on-record bills.
 - **Congress 118: COMPLETE, finally and for real.** 19,307 files with timelines against
   19,118 enumerated. The 15 D100 bills were re-fetched this session: 12 new + 3 refreshed, 0
   quarantined, 0 fetch failures, 3 minutes. **The "a 118 re-run is owed" line that sat in

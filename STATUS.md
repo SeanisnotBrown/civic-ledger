@@ -1,9 +1,7 @@
 # STATUS.md — live state (keep under 50 lines)
 
-Read `MISSION.md` first, then `IMPLEMENTATIONv3.md`, then this. Update this
-file before ending any session. Replace lines; do not append history here.
-
-**Last updated:** 2026-10-07 (architect session; docs only, no code or data touched).
+Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Update before ending any
+session; replace lines, never append. **Last updated:** 2026-10-07 (architect, docs only).
 
 ## Current phase
 Phase 1 (docs and rule reset) — spec written, builder has not started. See `IMPLEMENTATIONv3.md` §Phases.
@@ -12,8 +10,7 @@ Phase 1 (docs and rule reset) — spec written, builder has not started. See `IM
 1. **A local backfill of Congress 119 bill timelines is RUNNING.** Dirty `data/` is its
    output, not abandoned work. Do not clean it, commit it, or run the gates while it runs.
    Relaunched 2026-10-07 08:14 CDT (PIDs 14644/20544 at launch; they change on restart).
-   ~15,300 of ~19,400 timelines done at launch, ~11/min. The log file is 0 bytes by
-   design (buffered stdout); judge progress off disk, never off the log.
+   ~15,300 of ~19,400 timelines at launch, ~11/min. The 0-byte log is normal; judge off disk.
 2. **Last CI run confirmed green:** 37536141049 at `ebe25c64a` (the last data push);
    `3ed943e9c` on the remote is docs-only after it. The nightly commits to `master`
    around 09:15 UTC and can reject a local push mid-gate: merge, then **regenerate**

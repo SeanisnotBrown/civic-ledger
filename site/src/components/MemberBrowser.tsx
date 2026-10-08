@@ -295,7 +295,7 @@ export default function MemberBrowser({ total, columns }: { total: number; colum
     "rounded-md border px-2.5 py-1 text-[12px] whitespace-nowrap transition-colors";
   const chip = (active: boolean) =>
     `${chipBase} ${active
-      ? "border-accent bg-[rgba(145,132,217,0.15)] text-text"
+      ? "border-accent bg-[rgba(230,230,230,0.15)] text-text"
       : "border-[rgba(233,233,237,0.16)] text-neutral-500 hover:text-text hover:border-[rgba(233,233,237,0.28)]"}`;
 
   const group = (

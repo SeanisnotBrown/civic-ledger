@@ -117,7 +117,7 @@ export default function Compare() {
       {/* Selection chips */}
       <div class="flex flex-wrap gap-2">
         {members.map(({ id, m }) => (
-          <span class="inline-flex items-center gap-2 rounded-md border border-accent bg-[rgba(145,132,217,0.15)] px-2.5 py-1 text-[12px] text-text">
+          <span class="inline-flex items-center gap-2 rounded-md border border-accent bg-[rgba(230,230,230,0.15)] px-2.5 py-1 text-[12px] text-text">
             <span aria-hidden="true" class="inline-block h-2 w-2 rounded-full" style={`background:var(${PARTY_COLOR[m.party]})`}></span>
             {m.name}
             <button type="button" aria-label={`Remove ${m.name}`} onClick={() => remove(id)} class="text-neutral-500 hover:text-text">✕</button>

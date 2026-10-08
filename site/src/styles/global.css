@@ -13,7 +13,7 @@
         still use light-theme utilities (text-neutral-500, bg-neutral-50, …) render as
         a coherent dark theme with zero per-file churn. Each page converts to the named
         tokens as it is redesigned. Text shades are kept >= WCAG-AA contrast on both the
-        ground (#161826) and the surface (#232532); verified by the axe e2e suite. */
+        ground (#111214) and the surface (#1c1d20); verified by the axe e2e suite. */
 
 /* --- Self-hosted Inter (§10.1). Google's css2 now serves one VARIABLE woff2 per
    subset that covers the whole weight range, so a single file backs both 400 and 500.
@@ -43,19 +43,21 @@
 
 @theme {
   /* ground + surface */
-  --color-bg: #161826;
-  --color-surface: #232532;
-  --color-section: #262a60; /* the one saturated field, once per page */
-  --color-text: #e9e9ed;
+  /* 2026-10-08 owner request: neutral graphite ground, no purple. Pre-Phase-10
+     interim; Phase 10 still owns the final palette. */
+  --color-bg: #111214;
+  --color-surface: #1c1d20;
+  --color-section: #202124; /* raised field, once per page (was the saturated indigo) */
+  --color-text: #ebebeb;
 
-  /* accent */
-  --color-accent: #9184d9;
-  --color-accent-300: #b5abfc; /* accent text at paragraph size, active headers */
-  --color-accent-700: #5d5294; /* non-primary bars, left rules */
+  /* accent: editorial near-white, so no hue collides with grade or party colors */
+  --color-accent: #e6e6e6;
+  --color-accent-300: #ffffff; /* accent text at paragraph size, active headers */
+  --color-accent-700: #5c5d62; /* non-primary bars, left rules */
 
-  /* attendance grade bands */
+  /* attendance grade bands: green -> lime -> gold -> orange -> red */
   --color-grade-a: #7fbf9a;
-  --color-grade-b: #9184d9;
+  --color-grade-b: #b5c46c;
   --color-grade-c: #c9b06a;
   --color-grade-d: #d99a6b;
   --color-grade-f: #d96b7a;
@@ -82,16 +84,16 @@
     Arial, sans-serif;
 
   /* --- neutral ramp remap: light-theme utilities -> dark theme (see header note) --- */
-  --color-neutral-50: #232532; /* surface / card (bg-neutral-50) */
-  --color-neutral-100: #2b2d3a; /* subtle chip bg + faint divide/border-neutral-100 */
-  --color-neutral-200: #363945; /* hairline border */
-  --color-neutral-300: #8f919d; /* disabled affordances (kept AA on the ground) */
-  --color-neutral-400: #9a9ca8; /* secondary dates/counts */
-  --color-neutral-500: #a8a9b4; /* muted body — the workhorse; AA on every surface */
-  --color-neutral-600: #babbc4;
-  --color-neutral-700: #cccdd4;
-  --color-neutral-800: #dcdce2;
-  --color-neutral-900: #e9e9ed; /* primary text */
+  --color-neutral-50: #1c1d20; /* surface / card (bg-neutral-50) */
+  --color-neutral-100: #25262a; /* subtle chip bg + faint divide/border-neutral-100 */
+  --color-neutral-200: #323337; /* hairline border */
+  --color-neutral-300: #8f9094; /* disabled affordances (kept AA on the ground) */
+  --color-neutral-400: #9c9da1; /* secondary dates/counts */
+  --color-neutral-500: #aaabaf; /* muted body — the workhorse; AA on every surface */
+  --color-neutral-600: #bcbcc0;
+  --color-neutral-700: #cdcdd0;
+  --color-neutral-800: #dcdcde;
+  --color-neutral-900: #ebebeb; /* primary text */
 }
 
 @layer base {
@@ -109,6 +111,6 @@
     outline-offset: 2px;
   }
   ::selection {
-    background: rgba(145, 132, 217, 0.3);
+    background: rgba(230, 230, 230, 0.25);
   }
 }

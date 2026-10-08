@@ -38,8 +38,8 @@ function contrast(a: string, b: string): number {
   return (l1 + 0.05) / (l2 + 0.05);
 }
 function inkFor(bg: string): string | null {
-  const dark = "#161826";
-  const light = "#e9e9ed";
+  const dark = "#111214";
+  const light = "#ebebeb";
   if (contrast(dark, bg) >= 4.5) return dark;
   if (contrast(light, bg) >= 4.5) return light;
   return null; // neither legible → no inline number

@@ -51,7 +51,7 @@ const fmtInt = (x: number) => x.toLocaleString("en-US");
 // that pre-filters the grid directly below it. Grade band colours mirror
 // --color-grade-* (global.css), keyed by the ratified letter.
 const GRADE_HEX: Record<string, string> = {
-  A: "#7fbf9a", B: "#9184d9", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
+  A: "#7fbf9a", B: "#b5c46c", C: "#c9b06a", D: "#d99a6b", F: "#d96b7a",
 };
 const att = getGrades().attendance;
 const bandCounts = att
@@ -80,7 +80,7 @@ const setAside = att ? Object.keys(att.exceptions).length : 0;
       id="mb-compare"
       href="/compare"
       hidden
-      class="rounded-md border border-accent bg-[rgba(145,132,217,0.15)] px-3 py-1.5 text-[13px] font-medium text-text hover:bg-[rgba(145,132,217,0.24)]"
+      class="rounded-md border border-accent bg-[rgba(230,230,230,0.15)] px-3 py-1.5 text-[13px] font-medium text-text hover:bg-[rgba(230,230,230,0.24)]"
     >Compare selected (<span data-cmp-n>0</span>)</a>
   </div>
   <p class="mt-2 max-w-[62ch] text-[15px] leading-[1.6] text-neutral-700">
@@ -255,7 +255,7 @@ const setAside = att ? Object.keys(att.exceptions).length : 0;
   /* grade cell: neutral letter (keeps AA contrast) + a subtle band tint conveying colour. */
   .gr { color: var(--color-text); }
   .gr-A { background: rgba(127,191,154,0.12); }
-  .gr-B { background: rgba(145,132,217,0.14); }
+  .gr-B { background: rgba(230,230,230,0.14); }
   .gr-C { background: rgba(201,176,106,0.12); }
   .gr-D { background: rgba(217,154,107,0.12); }
   .gr-F { background: rgba(217,107,122,0.13); }

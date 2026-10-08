@@ -129,28 +129,29 @@ const motionRows = MOTIONS.map((m) => ({
       {gradeView.map(({ cat, g, counts, maxCount, setAside }) => (
         <section id={`grade-${cat}`} data-grade={cat} aria-labelledby={`grade-h-${cat}`} class="mt-4 rounded-lg border border-line bg-surface p-5">
           <h3 id={`grade-h-${cat}`} class="text-[15px] font-medium text-text">{cap(g.category)}</h3>
-          <!-- Bands table: dot + verbatim label | range | population bar | count. Wrapped
-               in a horizontal scroller so the fixed label/range columns don't overflow the
-               page body at 380px (the mobile e2e gate) — same pattern as /federal. -->
-          <div class="mt-3 overflow-x-auto" tabindex="0" role="region" aria-label={`${cap(g.category)} grade bands`}>
-          <div class="min-w-[400px] space-y-2">
+          <!-- Bands table: dot + verbatim label | range | population bar | count.
+               AES-25: no horizontal scroller. At phone width each band stacks —
+               label and count on the first row, the range under them, the bar
+               beneath spanning both columns; the four fixed columns return at sm.
+               Column order on desktop is set with `order`, so the DOM order can be
+               the stacking order. -->
+          <div class="mt-3 space-y-3 sm:space-y-2">
             {g.bands.map((b, i) => {
               const count = counts[b.grade] ?? 0;
               return (
-                <div class="grid items-center gap-3" style="grid-template-columns:150px 128px minmax(0,1fr) 44px">
-                  <div class="flex items-center gap-2 text-[13px] text-text">
+                <div class="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1.5 sm:grid-cols-[150px_128px_minmax(0,1fr)_44px]">
+                  <div class="flex items-center gap-2 text-[13px] text-text sm:order-1">
                     <span aria-hidden="true" class="inline-block h-[10px] w-[10px] rounded-full" style={`background:${GRADE_COLOR[b.grade]}`}></span>
                     <span data-grade-label>{b.label}</span>
                   </div>
-                  <div class="text-[12px] tabular-nums text-neutral-500">{bandRange(g.bands, i)}</div>
-                  <div class="h-2 rounded" style="background:var(--color-track)">
+                  <div class="text-right text-[12px] tabular-nums text-neutral-600 sm:order-4">{n(count)}</div>
+                  <div class="col-span-2 text-[12px] tabular-nums text-neutral-500 sm:col-span-1 sm:order-2">{bandRange(g.bands, i)}</div>
+                  <div class="col-span-2 h-2 rounded sm:col-span-1 sm:order-3" style="background:var(--color-track)">
                     <div class="h-2 rounded" style={`width:${(count / maxCount) * 100}%;background:${GRADE_COLOR[b.grade]};opacity:0.9`}></div>
                   </div>
-                  <div class="text-right text-[12px] tabular-nums text-neutral-600">{n(count)}</div>
                 </div>
               );
             })}
-          </div>
           </div>
           <p class="mt-3 max-w-[62ch] text-[12px] leading-relaxed text-neutral-500">
             Members with fewer than {g.min_eligible} eligible roll calls are not graded off a

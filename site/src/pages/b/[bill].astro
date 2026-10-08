@@ -186,6 +186,9 @@ const subjectTopics = (bill.subjects ?? []).map((name) => ({
       This bill has a feed. Paste the address into any feed reader to get each new
       official action as it is published. No account.
     </p>
+    <!-- AES-20: on a phone the address took a share of one cramped row and clipped.
+         `order-first basis-full` gives it its own full-width row there and the link
+         and Copy button wrap together beneath it; at sm the single row returns. -->
     <div class="mt-2 flex flex-wrap items-center gap-2 text-sm">
       <a href={`/b/${bill.id}/feed.xml`} class="underline hover:text-neutral-800">Open the feed</a>
       <label class="sr-only" for="feed-url">Feed address for this bill</label>
@@ -195,7 +198,7 @@ const subjectTopics = (bill.subjects ?? []).map((name) => ({
         readonly
         value={feedUrl}
         data-feed-url
-        class="min-w-0 flex-1 rounded border border-neutral-700 bg-transparent px-2 py-1 font-mono text-xs text-neutral-400"
+        class="order-first min-w-0 basis-full rounded border border-neutral-700 bg-transparent px-2 py-1 font-mono text-xs text-neutral-400 sm:order-none sm:basis-auto sm:flex-1"
       />
       <button
         type="button"

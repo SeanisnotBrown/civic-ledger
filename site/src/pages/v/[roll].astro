@@ -43,7 +43,11 @@ const partyRows = PARTY.map((p) => {
     key: k, label: POSITION_LABEL[k], count: pt[k] ?? 0, color: POS_HEX[k],
   }));
   const tot = segs.reduce((s, x) => s + x.count, 0);
-  return tot === 0 ? null : { ...p, segs, tot };
+  // AES-22: the exact counts, printed beside the row. Built from the same
+  // `label count` pairs SplitBar puts in its aria-label, so the visible text and
+  // the screen-reader text cannot drift apart. Zero positions are left out.
+  const counts = segs.filter((x) => x.count > 0).map((x) => `${x.label} ${fmt(x.count)}`).join(" · ");
+  return tot === 0 ? null : { ...p, segs, tot, counts };
 }).filter((x): x is NonNullable<typeof x> => x != null);
 
 // Every individual position, grouped by position (so the colour bands cluster),
@@ -105,14 +109,26 @@ const statedAbsences = rows.filter((r) => r.absence?.stated_reason);
       {partyRows.length > 0 && (
         <div class="mt-6">
           <h3 class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">By party</h3>
-          <div class="mt-3 space-y-2.5">
+          <!-- AES-22: each bar is normalised WITHIN its own party, so a one-member
+               row fills its track. The caption says so and every row prints its
+               exact counts, so bar length can never be read as group size. -->
+          <p class="mt-1 text-[12px] text-neutral-500">
+            Each bar shows how that party's own members voted — a share within the
+            party, not of the chamber. Exact counts are beside every row.
+          </p>
+          <div class="mt-3 space-y-3">
             {partyRows.map((p) => (
-              <div class="grid grid-cols-[112px_minmax(0,1fr)] items-center gap-3">
-                <div class="flex items-center gap-2 text-[13px] text-neutral-700">
+              <div class="grid grid-cols-[minmax(0,1fr)_auto] gap-x-3 gap-y-1.5 sm:grid-cols-[112px_minmax(0,1fr)_auto] sm:items-center">
+                <div class="flex items-center gap-2 text-[13px] text-neutral-700 sm:order-1">
                   <span aria-hidden="true" class="inline-block h-2.5 w-2.5 rounded-full" style={`background:${p.color}`}></span>
                   {p.label}
                 </div>
-                <SplitBar segments={p.segs} height={22} minInline={8} />
+                <div class="whitespace-nowrap text-right text-[12px] tabular-nums text-neutral-500 sm:order-3 sm:text-left">
+                  {p.counts}
+                </div>
+                <div class="col-span-2 sm:col-span-1 sm:order-2">
+                  <SplitBar segments={p.segs} height={22} minInline={8} />
+                </div>
               </div>
             ))}
           </div>

@@ -235,12 +235,11 @@ proposals, not ratified numbers; the owner may change any of them when the phase
 8. Member page scroll 3: timeline of votes, bill actions on their bills, absences; filter by topic and type. **Built with policy area, not subject terms** (2026-10-07): 973 subject terms do not fit a usable control, and policy area is the same official vocabulary one level up. 50 rows a page (see §2).
 9. Hide the threat-model page, the footer commit hash, and the States tab (keep routes alive; remove nav links). Remove values lists and source-link banners from copy.
 **Acceptance:** build green; e2e (axe + 380px) green on `/`, a House member page, a Senate member page; `test:links`, `test:file-count`, `test:grade-labels` green; owner looks at `/` and one member page and says yes.
-**Acceptance status (2026-10-07): NOT PASSED — PENDING.** Every mechanical criterion is green
-(build 13,115 pages; all seven `test:*`; 64 e2e; ruff; `verify-recompute`). The owner has
-reviewed twice and said no twice; both rounds of fixes are applied and ratified in §2. The
-single outstanding criterion is **the owner looking at `/` and one member page and saying
-yes**. Phase 3 does not start until he does. Lighthouse is unverified locally (Windows temp-dir
-permission error) and gates CI on push; nothing is pushed.
+**Acceptance status (2026-10-07): PASSED.** Every mechanical criterion is green (build 13,115
+pages; all seven `test:*`; 64 e2e; ruff; `verify-recompute`), and **the owner looked at `/` and
+a member page and said yes** on 2026-10-07, after two rounds of fixes both ratified in §2.
+Phase 3 may start. Lighthouse is still unverified locally (Windows temp-dir permission error)
+and gates CI on push; nothing is pushed.
 **Out of scope:** new grades, AI text, statements, accounts, visual redesign beyond layout.
 **Open questions:** Q-A (homepage intro wording, owner writes or approves).
 

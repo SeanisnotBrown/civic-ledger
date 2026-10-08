@@ -254,6 +254,7 @@ and gates CI on push; nothing is pushed.
 4. Categorizer prompt: topic (official vocabulary), stance (for / against / mixed), specificity, priority signal (does the member call this a priority?), confidence word. **Prompt written with care, tested against a held-out hand-labeled set of at least 50 statements before use; record precision in `docs/data-contract.md`.**
 5. Review dashboard in the existing curation app: queue → AI suggestion + confidence → approve / edit / reject, one at a time. Approved statements export to `data/statements/`.
 6. Member page: "Stated priorities" list from approved statements; statements in the activity timeline.
+7. **Aesthetics input this phase owns** — `docs/design/2026-10-08-sol-aesthetics-audit.md` (not ratified, owner approves before anything is applied): AES-14 (the stated-priorities panel and the "not collected yet" wording, as this phase is what fills them) and AES-29 (one action-row pattern, which statements join in the timeline).
 **Acceptance:** ≥ 100 approved statements across ≥ 20 members of both parties; categorizer precision reported; archive links live (`uv run archive-links`); symmetry check green; build + e2e green.
 **Out of scope:** grading from statements (Phase 4); benefit of the doubt (Phase 6).
 **Open questions:** Q-B (minimum statements per member before anything is shown; evaluative, ratify).
@@ -268,6 +269,7 @@ and gates CI on push; nothing is pushed.
 4. Member page: five cards, overall grade large, consistency verdict line, weight sliders (client-side; defaults from config; "reset to defaults").
 5. Methods page: one section per category with the formula and the ratified bars.
 6. Symmetry: every member graded by the same `formula_version` or listed in the exceptions with a mechanical reason.
+7. **Aesthetics input this phase owns** — `docs/design/2026-10-08-sol-aesthetics-audit.md` (not ratified, owner approves before anything is applied): AES-11 (phone rows expose the grade), AES-12 (quieter desktop table), AES-14 (the grade cards themselves, once they are no longer "not yet graded"), AES-15 (identity + grade as one header), AES-16 (fixed-width bars, not wrapping dots), AES-17 (member marker in the scatter), AES-24 (/methods section index, which gains five category sections here) and AES-30 (/compare identities beside measures).
 **Acceptance:** `uv run verify-recompute` reproduces every grade; `test:grade-labels`, symmetry, build, e2e green; owner reviews three member pages (one from each party and one independent) and says yes.
 **Out of scope:** trend charts over time (later), states.
 **Open questions:** Q-C (bars per category, asked in task 1).
@@ -281,6 +283,7 @@ and gates CI on push; nothing is pushed.
 3. Summary prompt: what it does · what else is bundled · plain language. Designed with care, versioned in `ai.yaml`, tested on 30 hand-checked bills. Output goes to the review dashboard; approved summaries export to `data/bills/`.
 4. Bill page: summary (labeled "AI summary, reviewed"), bundle list, stage tracker visual, what is left, odds.
 5. Homepage middle: AI summaries fill the Phase 2 slot; upcoming items from the floor schedule source if it verifies, otherwise from scheduled actions in the record.
+6. **Aesthetics input this phase owns** — `docs/design/2026-10-08-sol-aesthetics-audit.md` (not ratified, owner approves before anything is applied): AES-18 (bill title vs metadata), AES-19 (action timeline structure), AES-21 (roll call leads with the result), AES-23 (individual positions list), AES-26 (topic browsing structure), AES-27 (scannable rows and results) and AES-28 (/congress ordering explanation behind a disclosure).
 **Acceptance:** 100% of bills with a page have a reviewed summary or show "summary pending" (never an unreviewed one); build, links, e2e green; owner reads five summaries and says yes.
 **Out of scope:** statements, accounts.
 **Open questions:** Q-D (floor schedule source, verify before use).
@@ -335,6 +338,20 @@ and gates CI on push; nothing is pushed.
 - Lean toward: editorial feel, strong typographic hierarchy; grade colors that do not overlap party red and blue; mobile-first; scroll-driven explanation for complex things.
 - Study: Our World in Data; The Pudding; GovTrack.us. The owner brings his own reference sites at this phase.
 - **Owner's visual reference (2026-10-07): opensecrets.org — AESTHETICS ONLY** (look and feel: color, type, spacing, visual weight). Do NOT take features, content, data, page structure, or subject focus from it. At this phase the builder studies it, lists the specific visual traits it would borrow, and gets the owner's approval before applying any. Not to be acted on before Phase 10.
+- **Outside audit input (2026-10-08): `docs/design/2026-10-08-sol-aesthetics-audit.md`** (GPT-6.1 Sol, live site at 1440px and 390px). Not ratified. At this phase the builder reviews each item below against the then-current site, proposes the concrete change, and gets the owner's approval before applying it. Items owned by Phases 3-5 are not repeated here; this phase re-checks only that they shipped.
+  - **Global system first** (decide palette and type before page work):
+    - AES-01 one type scale: page titles, section heads, metadata labels; small uppercase only for metadata.
+    - AES-02 fewer panels: filled containers only for the principal result, controls, and charts; supporting content uses spacing or dividers; no cards in cards.
+    - AES-03 **minus its lavender recommendation** (this phase drops purple): each color has one job: interaction, grade, party, outcome. Passed / failed / became law get distinct, labeled treatments.
+    - AES-04 meaningful secondary text (denominators, chart labels, captions) at readable size and contrast, especially on phones.
+    - AES-05 control system: primary, secondary, selected, and link treatments; ~44px phone tap targets (filter buttons measured 28px).
+    - AES-06 wordmark and active-nav state; an intentional phone header.
+    - AES-07 prose at 65-75 characters per line, wider region for tables and charts, one spacing scale.
+    - AES-31 one article template for /corrections, /privacy, /pairing.
+  - **Page items:**
+    - AES-10 Members explorer order (search and filters before the distribution chart). The chart's move to this page is ratified (Phase 2); only its position within the page is open.
+    - AES-13 histogram legibility on phones (same bins and scale).
+  - **Owner decision required, conflicts with ratified Phase 2:** AES-08 (re-compose the hero around the state picker) and AES-09 (demote the three entry-link cards) would change the homepage the owner approved 2026-10-07. Present them as options; change nothing without his yes.
 **Acceptance:** owner approves; Lighthouse ≥ 90; axe green.
 **Open questions:** Q-H (owner's reference sites).
 

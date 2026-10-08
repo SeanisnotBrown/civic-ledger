@@ -168,6 +168,12 @@ def run(argv: list[str] | None = None) -> int:
     do not un-sponsor). A genuine served-congress zero — a member who served only
     days of a congress, or a low-output leader — is a true fact and does NOT fail.
 
+    Transient per-member fetch failures are NOT regressions and do not fail the
+    run while they stay at or under `config.LEGISLATION_FETCH_FAILURE_*`
+    (max(2, 2% of the roster)): the member keeps its committed record and the next
+    run retries it. A systemic failure — a dead key, a bad window — blows through
+    the ceiling and still returns 1. A count regression returns 1 at any count.
+
     D86: without `--full`, each member costs ONE detail request; the lists are
     re-paged only when the lifetime counts moved (or the record predates D86). With
     `--full` every member is re-paged (the weekly refresh; also the recovery path)."""
@@ -192,7 +198,12 @@ def run(argv: list[str] | None = None) -> int:
     member_ids = sorted(members)
     full = "--full" in (argv or [])
 
-    failures: list[str] = []
+    # Two lists, deliberately NOT one (2026-10-07, nightly 37652899299): a fetch
+    # that timed out is transient and tolerated under a ceiling; a count regression
+    # is a truncation signal and fails at any count. Merging them is what turned
+    # three ReadTimeouts into a lost night.
+    fetch_failures: list[str] = []
+    regressions: list[str] = []
     exported = 0
     reused = 0
     for mid in member_ids:
@@ -211,7 +222,7 @@ def run(argv: list[str] | None = None) -> int:
             sponsored_raw = congress_gov.member_legislation(mid, "sponsored-legislation", congs)
             cosponsored_raw = congress_gov.member_legislation(mid, "cosponsored-legislation", congs)
         except fetch_errors as exc:
-            failures.append(f"{mid}: {type(exc).__name__}")
+            fetch_failures.append(f"{mid}: {type(exc).__name__}")
             continue
         sponsored = parse_items(sponsored_raw)
         cosponsored = parse_items(cosponsored_raw)
@@ -219,7 +230,7 @@ def run(argv: list[str] | None = None) -> int:
         # Sanity (value #1): a previously-present congress must not drop to zero on a
         # refetch (truncation). Read the prior committed record BEFORE overwriting it.
         prior_sp, prior_co = _prior_counts(leg_dir / f"{mid}.json")
-        failures.extend(_count_regressions(
+        regressions.extend(_count_regressions(
             mid, prior_sp, prior_co,
             Counter(li.congress for li in sponsored),
             Counter(li.congress for li in cosponsored),
@@ -241,8 +252,28 @@ def run(argv: list[str] | None = None) -> int:
     mode = " [--full]" if full else ""
     print(f"civic-ledger legislation: {exported} re-fetched + {reused} unchanged (kept) "
           f"of {len(member_ids)} members -> data/legislation/{mode}.")
-    if failures:
-        print(f"FAIL: {len(failures)} issue(s): {failures[:10]}")
+    # A regression is never transient — bills do not un-sponsor — so it fails the
+    # run whatever the count, and it is reported before the fetch failures so the
+    # real signal is the first thing in the log.
+    if regressions:
+        print(f"FAIL: {len(regressions)} count regression(s): {regressions[:10]}")
+        return 1
+    if fetch_failures:
+        total = len(member_ids)
+        frac = len(fetch_failures) / total if total else 0.0
+        tolerated = max(
+            config.LEGISLATION_FETCH_FAILURE_MIN_TOLERATED,
+            int(config.LEGISLATION_FETCH_FAILURE_MAX_FRACTION * total),
+        )
+        if len(fetch_failures) <= tolerated:
+            print(f"  {len(fetch_failures)} transient fetch failure(s) ({frac:.2%}), "
+                  f"at or under the ceiling of {tolerated}, not a failure "
+                  f"(config.LEGISLATION_FETCH_FAILURE_*); each member keeps its "
+                  f"committed record and is retried next run: {fetch_failures[:10]}")
+            return 0
+        print(f"FAIL: {len(fetch_failures)} member(s) failed to fetch "
+              f"({frac:.2%}, over the ceiling of {tolerated}; re-run to retry): "
+              f"{fetch_failures[:10]}")
         return 1
     return 0
 

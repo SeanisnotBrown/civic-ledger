@@ -13,7 +13,12 @@ name: nightly
 
 on:
   schedule:
-    - cron: "15 09 * * *" # 09:15 UTC daily
+    # 05:07 UTC, an odd minute well off the top of the hour. GitHub queues scheduled
+    # runs behind load and the crowded slots are hit hardest; at 09:15 every run from
+    # 2026-09-27 to 10-08 fired 5-9 h late (never once near 09:15), which is what put
+    # the --since window below under real pressure. The delay cannot be eliminated on
+    # free runners, only made less likely.
+    - cron: "07 05 * * *" # 05:07 UTC daily
   workflow_dispatch:
 
 concurrency:
@@ -99,13 +104,21 @@ jobs:
           #    are paid only by a genuinely new bill. That is SD-33 cost constraint 2 and
           #    the difference between ~5-7 min/night and ~19-29 (D88 (7)).
           #
-          #    WHY 30 h, stated explicitly rather than left to the code default: the cron
-          #    is 24 h, so 30 h carries ~6 h of slack for a late start, a retried run or a
-          #    workflow_dispatch rehearsal, and re-seeing a bill is idempotent (D90). 48 h
-          #    was considered and REJECTED on cost: D88 measured 280-435 covered bills
-          #    updated per day, so 30 h is ~350-545 bills (~6-9 min/night, ~180-270
-          #    min/month) on top of the D86 nightly's ~900-1,400, and doubling the window
-          #    would put the month against the 2,000-minute free allowance (H24).
+          #    WHY 36 h, stated explicitly rather than left to the code default (which is
+          #    still 30): the cron is 24 h, so the window is pure slack for a late start,
+          #    a retried run or a workflow_dispatch rehearsal, and re-seeing a bill is
+          #    idempotent (D90). 48 h was considered and REJECTED on cost: D88 measured
+          #    280-435 covered bills updated per day, so each extra 6 h is ~70-110 bills
+          #    on top of the D86 nightly's ~900-1,400, and doubling the window would put
+          #    the month against the 2,000-minute free allowance (H24).
+          #
+          #    WIDENED 30 -> 36 on 2026-10-08. 30 h assumed runs land ~24 h apart with
+          #    ~6 h of slack. They do not: GitHub delayed every scheduled run 5-9 h over
+          #    2026-09-27..10-08, and the measured run-to-run gaps reached 27.7 h
+          #    (10-04 14:47 -> 10-05 18:30), leaving 2.3 h of margin. One 9-h-late night
+          #    after an early one would exceed 30 h and silently skip a bill updated in
+          #    the gap — no error, no alarm. 36 h restores ~8 h of real margin for
+          #    ~70-110 extra bills a night.
           #
           #    WHY HERE, after `ingest bills` and before `ingest legislation`:
           #      * after bills, so a newly-voted bill exists before the delta refreshes it,
@@ -137,7 +150,7 @@ jobs:
           #    change almost every night, so the step-2 classify gate fires nightly and
           #    the step-4 "quiet night" branch is now rare. A commit and a Workers Builds
           #    deploy per day IS the SD-33 cadence, not a regression.
-          uv run ingest bill-activity --since 30
+          uv run ingest bill-activity --since 36
 
           #    Legislation (D86): ONE /member/{id} request per member probes the
           #    lifetime sponsored/cosponsored counts; only members whose counts moved

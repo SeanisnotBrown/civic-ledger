@@ -61,6 +61,21 @@ QUARANTINE_MAX_FRACTION: float = 0.02
 ACTIVITY_FETCH_FAILURE_MAX_FRACTION: float = 0.02
 ACTIVITY_FETCH_FAILURE_MIN_TOLERATED: int = 2
 
+# The same ceiling for the nightly `ingest legislation` member sweep. 2026-10-07
+# (nightly 37652899299): three of 639 member requests to api.congress.gov returned
+# ReadTimeout — each already retried five times with 2s->60s backoff in
+# ingest/cache.py — and `legislation` had NO ceiling at all, so one slow endpoint
+# returned 1, `set -e` stopped the night, and a whole day published nothing. That
+# is exactly the alarm-fatigue failure the ACTIVITY_* constants above exist to
+# prevent; bills and bill-activity already absorbed it and legislation did not.
+# A member whose fetch failed keeps the record it already has (export is never
+# reached), and the next run retries it. 2% of the 639-member roster is ~12.
+# IMPORTANT: this ceiling covers TRANSIENT FETCH failures only. A
+# `_count_regressions` hit — a congress that had records dropping to zero — is a
+# value-#1 truncation signal, never transient, and fails the run at any count.
+LEGISLATION_FETCH_FAILURE_MAX_FRACTION: float = 0.02
+LEGISLATION_FETCH_FAILURE_MIN_TOLERATED: int = 2
+
 # --- vote_class (§A1) -----------------------------------------------------
 # Acceptance ceiling for the `other` class (INC-5).
 MAX_OTHER_RATE: float = 0.05

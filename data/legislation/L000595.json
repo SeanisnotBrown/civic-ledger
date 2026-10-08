@@ -2784,7 +2784,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 465,
-    "sponsored": 32
+    "sponsored": 33
   },
   "member_id": "L000595",
   "source_url": "https://api.congress.gov/v3/member/L000595/sponsored-legislation",
@@ -2797,6 +2797,15 @@
       "introduced_date": "2025-02-05",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1011",
       "title": "Emergency Conservation Program Improvement Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10763-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-06",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10763",
+      "title": "Know Your Risk Act"
     },
     {
       "became_law": false,

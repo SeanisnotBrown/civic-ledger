@@ -1902,7 +1902,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 211,
-    "sponsored": 27
+    "sponsored": 28
   },
   "member_id": "H001100",
   "source_url": "https://api.congress.gov/v3/member/H001100/sponsored-legislation",
@@ -1915,6 +1915,15 @@
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10411",
       "title": "To direct the Secretary of Agriculture to consider certain acreage not planted due to a lack of irrigation water to be eligible for prevented planting payments, and for other purposes."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10758-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-06",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10758",
+      "title": "To require the Secretary of Veterans Affairs to establish a program under which the Secretary shall award grants to certain State entities to expand access to structured outdoor recreation programs for veterans that enhance veteran wellness, and for other purposes."
     },
     {
       "became_law": false,

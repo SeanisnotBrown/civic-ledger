@@ -29,9 +29,12 @@ const tiles = [
   { kicker: "Individual votes", value: Number(counts.member_votes ?? 0), note: "recorded positions" },
 ];
 
-// Chamber split → SplitBar (House / Senate). Neutral accent shades — chamber is not party.
+// Chamber split → SplitBar (House / Senate). Neutral accent shades — chamber is not
+// party, and no grade colour may stand in for one. The two literals are
+// --color-accent and --color-accent-700; SplitBar parses the hex to pick a legible
+// inline ink, so these cannot be passed as var() references.
 const chamberSegs = [
-  { key: "house", label: "House", count: byChamber.house ?? 0, color: "#b5c46c" },
+  { key: "house", label: "House", count: byChamber.house ?? 0, color: "#e6e6e6" },
   { key: "senate", label: "Senate", count: byChamber.senate ?? 0, color: "#5c5d62" },
 ];
 

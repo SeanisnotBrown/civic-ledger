@@ -59,7 +59,7 @@ Each row is the owner's choice. A builder applies it; a builder does not reopen 
 | Outreach sender | **Automated, from a `civicledger.net` address, signed as the site.** Owner approves the template once. |
 | Non-response window | **14 days.** |
 | Statement sources (first release) | **All four:** official press releases (member .gov sites), floor speeches (Congressional Record), campaign issue pages from the most recent run, official social accounts. |
-| Snapshots | **Every statement is archived** (Internet Archive capture) when collected. A statement whose capture dies is hidden until recaptured. |
+| Snapshots | **Every statement is archived** (Internet Archive capture). A statement whose capture dies is hidden until recaptured. **AMENDED 2026-10-09 (Phase 3 owner decision 8): capture happens after the pre-filter and the Haiku gate, before a statement enters the review queue — not at collection.** Dropped statements are never captured: capturing ceremonial text and office logistics would spend archive quota on material that can never publish. Nothing publishable is unarchived; only the TIMING moved. |
 | Anti-echo tools | **All four, in this order:** top-3 agree / top-3 disagree across the aisle → laddered quiz → "Challenge my stance" → periodic drift check-in. |
 | Earlier-scope features | **Keep:** PAC donation timeline beside votes; bill diff viewer. **Cut for now:** sample ballot builder; net-worth / portfolio tracking. |
 | Fact-check methodology | **Its own phase after accounts and alerts** (Phase 9). |
@@ -172,7 +172,7 @@ with Preact islands. No server code exists yet.
 
 ### 4.4 Statements (the "say" half)
 Process: collect → AI categorizes (topic, stance, specificity) with a one-word confidence → human review dashboard → **owner approves one at a time** → publish with source link and archive snapshot.
-Sources: press releases, Congressional Record floor speeches, campaign issue pages (most recent run), official social accounts. Every statement is archived on capture.
+Sources: press releases, Congressional Record floor speeches, campaign issue pages (most recent run), official social accounts. Every statement that survives both filters is archived before it reaches the review queue (owner decision 8, 2026-10-09).
 
 ### 4.5 Benefit of the doubt
 When a vote contradicts a stated priority, the site shows, as fact: *"This bill also contained X. [Name] publicly opposed X on [date]."* The X comes from the bill's actual contents; the prior position comes from the member's own published statements. Nothing is invented. If the record does not support an explanation, none is shown.
@@ -248,16 +248,69 @@ and gates CI on push; nothing is pushed.
 **Goal:** statements are collected, AI-categorized, reviewed, approved, archived, and shown on member pages.
 **Mission tie:** this is the missing half of say-vs-do. Nothing else in the mission works without it.
 **Tasks:**
-1. `data/config/ai.yaml`: model id per task, prompt version, temperature. Add the Anthropic SDK to `pyproject.toml`. All AI calls go through one module, `ingest/ai.py`, that logs model, prompt version, and input hash per call.
+1. `data/config/ai.yaml`: model id, prompt version, **effort** and max_tokens per task, plus the hard per-run dollar cap (owner decision 5 below). **Not `temperature`** — the current models reject sampling parameters with a 400; `effort` (low→max) is the knob (verified against the models doc 2026-10-09). Task keys this phase: `triage_statement` (`claude-haiku-5-5`, decision 3) and `categorize_statement` (`claude-opus-5-5` at effort `medium`; `claude-sonnet-5-5` at `high` is the fallback candidate for the task-4 bake-off). Phase 5 adds `summarize_bill`. Prompt TEXT lives in versioned files, not in the config; a test pins each file's hash to the `prompt_version` the config claims, so a prompt version is auditable. Add the Anthropic SDK to `pyproject.toml`. All AI calls go through one module, `ingest/ai.py`, that logs model, prompt version, and input hash per call.
 2. Collectors, one per source, caching raw to `data/raw/`: (a) member press pages (member .gov sites; URL list in `data/config/statement-sources.yaml`, owner-maintained); (b) Congressional Record floor speeches via the existing govinfo client; (c) campaign issue pages (URL per member, owner-maintained); (d) official social accounts (platform access must be verified first; if unavailable, record that in `STATUS.md` and ship without it).
-3. Archive capture on collect (existing `ingest/sources/archive_org.py`); a statement without a live capture does not publish.
-4. Categorizer prompt: topic (official vocabulary), stance (for / against / mixed), specificity, priority signal (does the member call this a priority?), confidence word. **Prompt written with care, tested against a held-out hand-labeled set of at least 50 statements before use; record precision in `docs/data-contract.md`.**
-5. Review dashboard in the existing curation app: queue → AI suggestion + confidence → approve / edit / reject, one at a time. Approved statements export to `data/statements/`.
+3. Archive capture (existing `ingest/sources/archive_org.py`) runs AFTER the pre-filter and the Haiku gate and BEFORE the review queue (owner decision 8, amending the §2 Snapshots row); dropped statements are never captured. A statement without a live capture does not publish.
+4. Categorizer prompt: topic (official vocabulary), stance (**for / against / mixed / none** — `none` = the statement takes no position on an identifiable policy; `mixed` = genuinely competing positions, NEVER "unclear"), **proposition** (what the stance is about; null when stance is `none`), specificity, priority signal (does the member call this a priority?), confidence word. **Every field definition is ratified HERE, at this task** — the ai.yaml output schema written at task 1 is marked provisional and carries no authority. Reference input: `docs/research/2026-10-09-categorizer-model-review.md` (outside model review, NOT ratified; the owner approves each item at this task). **Prompt written with care, tested against a held-out hand-labeled set of at least 50 statements before use; record precision in `docs/data-contract.md`.**
+5. Review dashboard in the existing curation app: queue → AI suggestion + confidence → approve / edit / reject, one at a time. **A random 1 in 10 is shown BLIND** — no AI suggestion until the owner has entered his own label — so the review log yields a running precision number that owner judgment was not anchored to. Approved statements export to `data/statements/`.
 6. Member page: "Stated priorities" list from approved statements; statements in the activity timeline.
 7. **Aesthetics input this phase owns** — `docs/design/2026-10-08-sol-aesthetics-audit.md` (not ratified, owner approves before anything is applied): AES-14 (the stated-priorities panel and the "not collected yet" wording, as this phase is what fills them) and AES-29 (one action-row pattern, which statements join in the timeline).
+**Owner decisions, 2026-10-09 — collection window, filters, and spend.** The spec had no date range, no relevance
+filter and no spend cap; these six close that gap. Mechanical and operational, not evaluative: what counts as a
+good or poor statement is still ratified at task 4.
+1. **Window: statements dated 2023-01-03 (start of the 118th) or later.** Campaign issue pages: most recent run
+   only, as already ratified. Reason: vote data starts at the 118th, so an older statement has nothing to be
+   compared against — collecting it would imply a say-vs-do comparison the record cannot support.
+2. **Free rule-based pre-filter before ANY AI call.** Drops: ceremonial items (tributes, congratulations,
+   condolences, honoring speeches), office logistics (town halls, office hours, grant-award announcements),
+   procedural floor remarks, and duplicates of the same announcement across sources. **Every drop is logged with
+   its reason** so the owner can audit what was filtered — a silent filter is a hidden editorial judgment.
+3. **Triage gate: `claude-haiku-5-5` answers one question per surviving statement** — "does this take a position
+   on a policy?" Only a yes reaches the Opus categorizer. Own `prompt_version` in `ai.yaml`, logged like every
+   other call.
+4. **Count before spend.** Collectors cache raw only. Before any AI call the run reports counts per source,
+   per member, and after each filter step, plus estimated cost — then WAITS for the owner's approval.
+   **Fairness check in the same report:** drop rates per party at EACH filter step (pre-filter, Haiku gate). If
+   either step drops one party's statements at a noticeably higher rate the run flags it and stops for owner
+   review. A filter that is even-handed on its face can still be uneven on real text — press offices write
+   differently — and an uneven filter biases the stated-priorities list no matter how accurate the categorizer is
+   (the §6 symmetry check cannot see it, because it measures what was KEPT).
+5. **Hard per-run dollar cap in `ai.yaml`.** The run stops when it hits the cap; it does not finish the batch.
+6. **First collection covers only the 40-member acceptance sample**, not all members.
+7. **First-run categorizer cap: each member's newest 25 statements only.** The rest stay cached and
+   uncategorized for later runs — collected, filtered and countable, just not yet labeled. Config value in
+   `ai.yaml`. Keeps the first spend bounded and per-member even, so no prolific press office consumes the run.
+8. **Archive timing (amends the §2 Snapshots row):** capture only statements that pass BOTH the pre-filter and
+   the Haiku gate, before they enter the review queue. Dropped statements are never captured.
+9. **Run cap stays at `per_run_cost_cap_usd: 5.00` as the default.** When the count-before-spend estimate
+   exceeds the cap the run says so plainly and waits; the owner raises it for that run. The builder never raises
+   it unasked. (Measured 2026-10-09 on four live calls: ~$0.0095-$0.014 per categorized statement, so a full
+   first run at decision 7's ceiling estimates near $10-14 and WILL stop for approval. That is the flow working.)
+10. **The 40-member pilot sample: equal by party, proportional by chamber.** 20 Democrats (16 House, 4 Senate)
+   and 20 Republicans (16 House, 4 Senate), drawn at random within each of the four cells from members
+   CURRENTLY serving in the 119th. **Eligibility is `Member.serving` AND presence in the live
+   `legislators-current.yaml`.** `serving` alone is NOT enough and must not be used alone here: it means "the
+   member's latest term overlapped the 119th", which stays true for someone who resigned or died mid-term, and
+   is deliberately wall-clock-free for §6.3 determinism. Measured 2026-10-09: 555 records carry `serving=true`
+   but the live roster holds 539 — the 16-member difference is exactly the mid-119th departures (deaths,
+   resignations, members who left for administration posts). Upstream DOES shorten the departed member's term
+   `end`, so the overlap test still passes; roster membership is the only signal that separates "served during
+   the 119th" from "in office now". No new roster logic beyond this one set-membership check. **The seed is
+   committed with the sample, together with the roster snapshot's `fetched_at`** — the roster is a live file, so
+   the seed alone does not make the draw reproducible. **The 5 non-voting delegates and the Puerto Rico
+   resident commissioner are also excluded from the pilot draw** (all 6 are House seats; detected with the
+   existing `VOTING_STATES` set, no new logic): they are constitutionally barred from final-passage roll calls,
+   so they have no full say-vs-do record to compare a statement against — the pilot's whole purpose. They remain
+   fully covered everywhere else (D61 keeps them in the roster and in vote recomputation). Measured 2026-10-09,
+   the House pool after this exclusion is 214 D / 218 R, so the 16-per-party cells still fill easily. No member
+   is ever hand-picked. Reason: equal parties give task 4's fairness measurement an equal-n base on
+   both sides, and 16:4 mirrors the real House:Senate ratio (435:100) so the §6 symmetry baseline established on
+   this 40 stays comparable when collection widens to everyone. **Independents are NOT in the pilot draw** — a
+   known gap, recorded in `STATUS.md`, to be covered when collection widens.
+
 **Acceptance:** ≥ 100 approved statements across ≥ 20 members of both parties; categorizer precision reported; archive links live (`uv run archive-links`); symmetry check green; build + e2e green.
 **Out of scope:** grading from statements (Phase 4); benefit of the doubt (Phase 6).
-**Open questions:** Q-B (minimum statements per member before anything is shown; evaluative, ratify).
+**Open questions:** Q-B **CLOSED** (ratified §2). **Q-E — a written definition of "priority"**: what in a statement's own text establishes that the member calls something a priority. **Q-F — the precision launch bar**: the minimum measured precision before a categorized statement may publish. Both are evaluative, both are needed BEFORE task 4, and nothing categorized publishes until they are ratified.
 
 ### Phase 4 — Grading: all categories, overall grade, sliders
 **Goal:** five category grades and one overall grade on every member page, with sliders and the math one click away.

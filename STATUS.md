@@ -16,15 +16,15 @@ Still absent: collectors, `statement-sources.yaml`.
 ## Live facts
 1. **LIVE at `https://civic-ledger.sun-dragster453.workers.dev` (200).** Every push is owner-approved
    individually — **ask again before the next.** Workers Builds deploys on push (~20 min, not a hang).
-2. **LIGHTHOUSE IS A REGRESSION, NOT NOISE (owner, 2026-10-09).** It has now failed the mobile perf gate on
-   TWO separate runs: 37831240611 (`/` 0.88, `/m/A000055/1` 0.89, floor 0.90) which passed on re-run, and
-   **37843065185 on `67e5291bc`, which failed and was never re-run or recorded.** So master carried a red CI
-   before any Phase 3 work. No more re-running it: diagnose the cause. Gate NOT lowered — 0.90 is ratified §6.7.
+2. **LIGHTHOUSE IS INTERMITTENT AT ~0 MARGIN — a regression, not noise (owner, 2026-10-09).** Record so far:
+   37831240611 FAILED (`/` 0.88, `/m/A000055/1` 0.89, floor 0.90) then passed on re-run; **37843065185 on
+   `67e5291bc` FAILED and was never re-run or recorded** (master carried a red CI before Phase 3); 37979980189
+   on `38c1235d5` PASSED, 27 runs over 9 URLs, no assertion failures (lhci prints no scores on a pass). A pass
+   does not mean fixed. **Do not re-run it — diagnose.** Gate NOT lowered; 0.90 is ratified §6.7.
 3. **Data publishing is NOT at risk from it:** the nightly runs build, `checks` and `verify-recompute` — **no Lighthouse** — and its bot push triggers no CI.
-4. **The nightly timeout bug is FIXED and pushed (`bd3a0f191`); nightly 37809447990 then PASSED** (139 members,
-   zero timeouts, `2ddcf3895`). Transient fetch failures tolerated at max(2, 2% of roster) and retried next run;
-   count regressions still fail at any count. Cron 09:15 -> **05:07 UTC**; `bill-activity --since` 30 -> **36 h**
-   (gaps hit 27.7 h) — `_parse_activity_args`' code default stays 30.
+4. **The nightly timeout bug is FIXED and pushed (`bd3a0f191`); 37809447990 then PASSED** (139 members, zero
+   timeouts). Transient fetch failures tolerated at max(2, 2% of roster), retried next run; count regressions
+   still fail at any count. Cron -> **05:07 UTC**; `--since` -> **36 h** (gaps hit 27.7 h; code default stays 30).
 5. Congress 119 backfill FINISHED, 0 failures: 19,524/19,536 bills have a timeline (11 have no action, D104). **Senate amendment sponsors are a documented gap** (§2).
 6. **Phase 2 wording is all ratified in §2; nothing unratified is published.** Headline B, the motion table,
    the amendment rule, the resolving-roll rule, the 14-day band, the title clamp, nav "Members", `/federal`.

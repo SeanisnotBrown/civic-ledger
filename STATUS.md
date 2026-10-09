@@ -5,15 +5,16 @@ Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never a
 **Phase 3 §5 task 2 — collector (b), Congressional Record floor speeches** via the existing
 `ingest/sources/govinfo.py`, scoped to the 40 ids in `data/config/statement-pilot.yaml`. The ONLY unblocked
 collector: (a)/(c) need `statement-sources.yaml` (owed), (d) needs platform access. **`git pull` FIRST** —
-the nightly pushes on its own. **4 commits are UNPUSHED.**
+the nightly pushes on its own. **Work is UNPUSHED — see fact 1.**
 ## Current phase
 **Phase 3 — Statements pipeline.** Task 1 DONE (`ai.yaml`, `ingest/ai.py`, verified live). Task 2: the D10
 draw is DONE (`data/config/statement-pilot.yaml` — 40 members, seed 20261009, snapshot 2026-10-09T19:53Z);
 the four collectors are NOT started. **Read §5 Phase 3's TEN owner decisions (2026-10-09) before writing a
 collector** — they set the window, filters, spend and scope.
 ## Live facts
-1. **4 commits UNPUSHED** — `2700e0056` Q-J, `69dfa3916` + `53a386bae` STATUS, `a20c19dbf` pilot draw. Live
-   through `38c1235d5`: `https://civic-ledger.sun-dragster453.workers.dev`. Pushes are owner-approved — ask.
+1. **UNPUSHED WORK EXISTS. Run `git log --oneline origin/master..HEAD`** — do not trust a number written
+   here; every edit to this file adds another commit to it. Everything through `38c1235d5` is pushed and
+   live: `https://civic-ledger.sun-dragster453.workers.dev`. Pushes are owner-approved one at a time — ask.
 2. **LIGHTHOUSE IS INTERMITTENT AT ~0 MARGIN — a regression, not noise (owner).** 37831240611 FAILED (`/`
    0.88, `/m/A000055/1` 0.89, floor 0.90) then passed on re-run; **37843065185 on `67e5291bc` FAILED and
    was never re-run** (red CI predates Phase 3); 37979980189 PASSED. A pass is not a fix. **Do not re-run

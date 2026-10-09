@@ -10,6 +10,7 @@ dependencies = [
     "tenacity>=9,<10",
     "PyYAML>=6,<7",
     "Flask>=3,<4",
+    "anthropic>=1,<2",
 ]
 
 [project.scripts]
@@ -53,11 +54,15 @@ testpaths = ["tests"]
 # 100%-branch GATE is a dedicated invocation (CI + the command in STATUS.md):
 #   uv run pytest --cov=ingest.metrics --cov=ingest.rankings \
 #       --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats \
+#       --cov=ingest.events --cov=ingest.topics --cov=ingest.ai \
 #       --cov-branch --cov-fail-under=100 --cov-report=term-missing
 # Aggregate 100% over exactly these targets ⟺ each at 100%. V2-2 seeded the gate with
 # metrics + rankings; V2-4 (D68) added scoring.py + classify.py (its live-fetch run()
 # I/O now has tmp-repo/mock tests); V2-5 added legislation_stats.py (the dashboard-
-# headline source). Add a module here when it starts deciding a published number.
+# headline source). P3 task 1 added ai.py: its branches decide what an AI call COSTS and
+# whether a model's answer becomes data at all, and the injectable completer makes 100%
+# reachable without a key or a network. Add a module here when it starts deciding a
+# published number.
 [tool.coverage.run]
 branch = true
 

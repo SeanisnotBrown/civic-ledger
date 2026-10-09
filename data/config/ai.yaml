@@ -1,0 +1,136 @@
+# data/config/ai.yaml — mechanical AI configuration (§5 Phase 3 task 1).
+#
+# What this file is: the model, prompt version, effort, token ceiling, output shape and
+# spend cap for every AI call the project makes. `ingest/ai.py` is the ONE module that
+# reads it, and the one module every AI call goes through.
+#
+# What this file is NOT: evaluative. Nothing here decides what counts as a good or poor
+# statement, what "priority" means, or what precision is good enough — those are Q-E and
+# Q-F, ratified by the owner at task 4 and recorded in thresholds.yaml / the task-4
+# sitting, never here. This file is mechanical in the same sense as ingest/config.py.
+#
+# THERE IS NO `temperature`. The current models reject sampling parameters with a 400;
+# `effort` (low | medium | high | xhigh | max) is the knob, and the spec's task-1 line was
+# amended on 2026-10-09 to say so. Thinking is adaptive and always on for Opus 5.5 — it is
+# not configured here and must not be disabled.
+#
+# Prompt TEXT is not in this file. It lives in the `prompt_file` below, and `prompt_sha256`
+# pins that file's exact bytes, so "prompt version v1" is a claim anyone can check
+# (tests/test_ai.py::test_prompt_files_match_their_recorded_hash enforces it). Change a
+# prompt and you must bump `prompt_version` and re-record the hash in the same commit.
+
+# Bumped whenever any value in this file changes, so a logged call states which
+# configuration produced it. Not bumped by a comment edit.
+config_version: 1
+
+# --- Spend ---------------------------------------------------------------------------
+# Hard per-run ceiling in USD (owner decision 5, 2026-10-09). `ingest/ai.py` refuses the
+# next call once a run's actual spend reaches this; the run STOPS, it does not finish the
+# batch. Cache hits cost nothing and never count against it.
+per_run_cost_cap_usd: 5.00
+
+# Owner decision 7, 2026-10-09. On a run, only this many of each member's NEWEST statements
+# reach the categorizer; the rest stay cached, filtered and countable but uncategorized for
+# a later run. It bounds the first spend AND keeps it per-member even, so a prolific press
+# office cannot consume the run at the expense of a quiet one — which is also what keeps the
+# §6 symmetry check meaningful on the first pass.
+max_statements_per_member_per_run: 25
+
+# Price per 1,000,000 tokens, USD, standard (non-batch) processing. Verified against
+# platform.claude.com/docs/en/about-claude/models/overview.md on 2026-10-09. These exist
+# here, not hardcoded, so a price change is a reviewable one-line diff — and so the
+# count-before-spend report (owner decision 4) estimates from the same numbers the cap
+# enforces. Billed output includes the model's own thinking tokens.
+prices:
+  claude-opus-5-5:
+    input: 4.00
+    output: 20.00
+  claude-sonnet-5-5:
+    input: 2.00
+    output: 10.00
+  claude-haiku-5-5:
+    input: 0.10
+    output: 0.50
+
+# --- Tasks ---------------------------------------------------------------------------
+tasks:
+
+  # Owner decision 3, 2026-10-09: the cheap gate. One question per statement that survived
+  # the free rule-based pre-filter; only a `true` reaches the categorizer below. At
+  # $0.10/$0.50 per MTok this screens ~40x cheaper than asking Opus the same thing.
+  triage_statement:
+    model: claude-haiku-5-5
+    prompt_version: v0-stub
+    prompt_file: ingest/prompts/triage_statement/v0-stub.md
+    prompt_sha256: b0b6a4a1294db7fc3b456493ae1e498c9a8397344b5aecddc1d4bed870b93b0f
+    effort: medium
+    max_tokens: 1024
+    output_schema:
+      type: object
+      additionalProperties: false
+      required: [takes_policy_position]
+      properties:
+        takes_policy_position:
+          type: boolean
+          description: >-
+            True only if the text takes a position on an identifiable policy. Ceremonial
+            text, office logistics, procedural remarks and pure messaging are false.
+
+  # The categorizer. Model and effort are the owner's choice of 2026-10-09; Sonnet 5.5 at
+  # effort `high` is the fallback candidate for the task-4 bake-off, scored on the same
+  # held-out set. Reference input (NOT ratified):
+  # docs/research/2026-10-09-categorizer-model-review.md
+  #
+  # OUTPUT SCHEMA IS PROVISIONAL. Stance values and the `proposition` field are the owner's
+  # 2026-10-09 decisions and are settled. Every FIELD DEFINITION — what specificity's
+  # values mean, what establishes a priority signal, what a confidence word asserts — is
+  # ratified at task 4. Nothing categorized publishes before then.
+  categorize_statement:
+    model: claude-opus-5-5
+    prompt_version: v0-stub
+    prompt_file: ingest/prompts/categorize_statement/v0-stub.md
+    prompt_sha256: ada13acb61629d14fc0dfc7b0e4ca16ac3d174c49189eb1c3a98be89806785bb
+    effort: medium
+    # 4,096 must hold the model's thinking AND the JSON. Raise only if evaluation shows
+    # real truncation (task 4).
+    max_tokens: 4096
+    output_schema:
+      type: object
+      additionalProperties: false
+      required: [topic, stance, proposition, specificity, priority_signal, confidence]
+      properties:
+        topic:
+          type: string
+          description: >-
+            One topic from the official vocabulary. The allowed set is enumerated at task
+            4; until then this is an unconstrained string and nothing publishes from it.
+        stance:
+          type: string
+          enum: [for, against, mixed, none]
+          description: >-
+            Owner decision, 2026-10-09. `none` = the text takes no position on an
+            identifiable policy. `mixed` = the text expresses genuinely COMPETING
+            positions; it NEVER means "unclear" — an unclear statement is `none` and goes
+            to a human.
+        proposition:
+          type: [string, "null"]
+          description: >-
+            Owner decision, 2026-10-09. What the stance is about, in one clause, drawn from
+            the text itself. "Against" on a topic is too broad to be checkable; opposing a
+            particular restriction is not opposing the topic. Null when stance is `none`.
+        specificity:
+          type: string
+          description: PROVISIONAL — anchored values are ratified at task 4.
+        priority_signal:
+          type: boolean
+          description: >-
+            Does the text itself present this as a priority? PROVISIONAL — what counts is
+            Q-E, ratified at task 4. One statement never establishes a member's actual
+            priorities.
+        confidence:
+          type: string
+          enum: [high, medium, low]
+          description: >-
+            The model's own assessment that every substantive label above is supported by
+            the supplied text. It is a prediction, not a measurement, and is displayed as
+            model self-assessment. Its reliability is measured at task 4 (Q-F).

@@ -7,10 +7,9 @@ Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never a
 collector: (a)/(c) need `statement-sources.yaml` (owed), (d) needs platform access. **`git pull` FIRST** —
 the nightly pushes on its own. **Work is UNPUSHED — see fact 1.**
 ## Current phase
-**Phase 3 — Statements pipeline.** Task 1 DONE (`ai.yaml`, `ingest/ai.py`, verified live). Task 2: the D10
-draw is DONE (`data/config/statement-pilot.yaml` — 40 members, seed 20261009, snapshot 2026-10-09T19:53Z);
-the four collectors are NOT started. **Read §5 Phase 3's TEN owner decisions (2026-10-09) before writing a
-collector** — they set the window, filters, spend and scope.
+**Phase 3 — Statements pipeline.** Task 1 DONE (`ai.yaml`, `ingest/ai.py`, verified live). Task 2: the D10 draw
+is DONE (`data/config/statement-pilot.yaml` — 40 members, seed 20261009, snapshot 2026-10-09T19:53Z); the four
+collectors are NOT started. **Read §5 Phase 3's TEN owner decisions first** — window, filters, spend, scope.
 ## Live facts
 1. **UNPUSHED WORK EXISTS. Run `git log --oneline origin/master..HEAD`** — do not trust a number written
    here; every edit to this file adds another commit to it. Everything through `38c1235d5` is pushed and

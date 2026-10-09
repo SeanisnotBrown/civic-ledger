@@ -54,7 +54,7 @@ testpaths = ["tests"]
 # 100%-branch GATE is a dedicated invocation (CI + the command in STATUS.md):
 #   uv run pytest --cov=ingest.metrics --cov=ingest.rankings \
 #       --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats \
-#       --cov=ingest.events --cov=ingest.topics --cov=ingest.ai \
+#       --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot \
 #       --cov-branch --cov-fail-under=100 --cov-report=term-missing
 # Aggregate 100% over exactly these targets ⟺ each at 100%. V2-2 seeded the gate with
 # metrics + rankings; V2-4 (D68) added scoring.py + classify.py (its live-fetch run()
@@ -62,7 +62,9 @@ testpaths = ["tests"]
 # headline source). P3 task 1 added ai.py: its branches decide what an AI call COSTS and
 # whether a model's answer becomes data at all, and the injectable completer makes 100%
 # reachable without a key or a network. Add a module here when it starts deciding a
-# published number.
+# published number. P3 task 2 added pilot.py: its branches decide WHOSE statements get
+# collected, which is what the §6 symmetry check measures, so a silent eligibility bug
+# would bias the published stated-priorities lists.
 [tool.coverage.run]
 branch = true
 

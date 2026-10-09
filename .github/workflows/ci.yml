@@ -41,7 +41,7 @@ jobs:
           --cov=ingest.metrics --cov=ingest.rankings
           --cov=ingest.scoring --cov=ingest.classify
           --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics
-          --cov=ingest.ai
+          --cov=ingest.ai --cov=ingest.pilot
           --cov-branch --cov-fail-under=100 --cov-report=term-missing
       - name: Verify-recompute (recompute-and-match over the dataset)
         run: uv run verify-recompute

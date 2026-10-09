@@ -1,0 +1,151 @@
+decision: IMPLEMENTATIONv3.md §5 Phase 3 owner decision 10
+ratified: '2026-10-09'
+seed: 20261009
+roster_snapshot:
+  url: https://raw.githubusercontent.com/unitedstates/congress-legislators/main/legislators-current.yaml
+  fetched_at: '2026-10-09T19:53:23.597766+00:00'
+excluded_by_decision:
+- members not in the live legislators-current.yaml (left office mid-term)
+- the 5 non-voting delegates and the PR resident commissioner
+- independents (known gap, to be covered when collection widens)
+cells:
+- party: D
+  chamber: house
+  drawn: 16
+  eligible_pool: 214
+  members:
+  - id: C001059
+    name: Jim Costa
+    state: CA
+  - id: C001066
+    name: Kathy Castor
+    state: FL
+  - id: C001119
+    name: Angie Craig
+    state: MN
+  - id: D000623
+    name: Mark DeSaulnier
+    state: CA
+  - id: D000629
+    name: Sharice Davids
+    state: KS
+  - id: F000454
+    name: Bill Foster
+    state: IL
+  - id: G000553
+    name: Al Green
+    state: TX
+  - id: H001081
+    name: Jahana Hayes
+    state: CT
+  - id: M001143
+    name: Betty McCollum
+    state: MN
+  - id: M001238
+    name: Sarah McBride
+    state: DE
+  - id: R000622
+    name: Josh Riley
+    state: NY
+  - id: S001145
+    name: Janice D. Schakowsky
+    state: IL
+  - id: S001185
+    name: Terri A. Sewell
+    state: AL
+  - id: U000040
+    name: Lauren Underwood
+    state: IL
+  - id: V000130
+    name: Juan Vargas
+    state: CA
+  - id: W000830
+    name: George Whitesides
+    state: CA
+- party: D
+  chamber: senate
+  drawn: 4
+  eligible_pool: 45
+  members:
+  - id: H001046
+    name: Martin Heinrich
+    state: NM
+  - id: K000377
+    name: Mark Kelly
+    state: AZ
+  - id: K000394
+    name: Andy Kim
+    state: NJ
+  - id: S001181
+    name: Jeanne Shaheen
+    state: NH
+- party: R
+  chamber: house
+  drawn: 16
+  eligible_pool: 218
+  members:
+  - id: B001257
+    name: Gus M. Bilirakis
+    state: FL
+  - id: D000628
+    name: Neal P. Dunn
+    state: FL
+  - id: E000235
+    name: Mike Ezell
+    state: MS
+  - id: F000482
+    name: Julie Fedorchak
+    state: ND
+  - id: H001102
+    name: Mark Harris
+    state: NC
+  - id: J000299
+    name: Mike Johnson
+    state: LA
+  - id: K000388
+    name: Trent Kelly
+    state: MS
+  - id: K000403
+    name: Mike Kennedy
+    state: UT
+  - id: L000583
+    name: Barry Loudermilk
+    state: GA
+  - id: L000585
+    name: Darin LaHood
+    state: IL
+  - id: M001184
+    name: Thomas Massie
+    state: KY
+  - id: M001194
+    name: John R. Moolenaar
+    state: MI
+  - id: M001222
+    name: Max L. Miller
+    state: OH
+  - id: P000605
+    name: Scott Perry
+    state: PA
+  - id: W000821
+    name: Bruce Westerman
+    state: AR
+  - id: Z000018
+    name: Ryan K. Zinke
+    state: MT
+- party: R
+  chamber: senate
+  drawn: 4
+  eligible_pool: 53
+  members:
+  - id: H000601
+    name: Bill Hagerty
+    state: TN
+  - id: R000605
+    name: Mike Rounds
+    state: SD
+  - id: S001232
+    name: Tim Sheehy
+    state: MT
+  - id: Y000064
+    name: Todd Young
+    state: IN

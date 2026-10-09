@@ -112,6 +112,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import vote_amendments
 
         return vote_amendments.run(args[1:])
+    if args and args[0] == "pilot-draw":
+        from ingest import pilot
+
+        return pilot.run(args[1:])
     if args and args[0] == "ms":
         from ingest import ms_legislature
 
@@ -128,6 +132,7 @@ def main(argv: list[str] | None = None) -> int:
     print("                  --skip-existing: resume a part-done backfill for free "
           "(--congress only)")
     print("  events        V2-11 project bill actions -> data/events/{YYYY-MM}.json")
+    print("  pilot-draw    P3 D10 the 40-member statement pilot sample (--force to re-draw)")
     print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")

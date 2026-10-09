@@ -1,49 +1,51 @@
 # STATUS.md — live state (keep under 50 lines)
 Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated**
-2026-10-09 (builder, Phase 3 task 1 in progress; spec amended, nothing committed).
+2026-10-09 (builder; task 1 done, the pilot draw done, collectors not started).
 ## FIRST ACTION NEXT SESSION
-**Phase 3 §5 task 2 — the collectors.** Task 1 is DONE and committed (`ai.yaml`, `ingest/ai.py`, 40 tests,
-100% branch, in the CI gate). `git pull` FIRST: the nightly commits data and pushes on its own. Owed: the
-live smoke call per task, blocked on `ANTHROPIC_API_KEY`; and the 40-member selection rule (options below).
+**Phase 3 §5 task 2 — collector (b), Congressional Record floor speeches** via the existing
+`ingest/sources/govinfo.py`, scoped to the 40 ids in `data/config/statement-pilot.yaml`. The ONLY unblocked
+collector: (a)/(c) need `statement-sources.yaml` (owed), (d) needs platform access. **`git pull` FIRST** —
+the nightly pushes on its own. **3 commits are UNPUSHED.**
 ## Current phase
-**Phase 3 — Statements pipeline. TASK 1 DONE; TASK 2 (collectors) NEXT.** §5 Phase 3 gained TEN owner
-decisions dated 2026-10-09: 118th-or-later window, rule-based pre-filter + per-party drop-rate fairness
-check, Haiku triage gate, count-before-spend, $5.00 per-run cap, 40-member pilot, newest-25-per-member
-categorizer cap, archive-after-filters (AMENDS the §2 Snapshots row), and the pilot draw (D10: 20D/20R,
-16 House + 4 Senate each, random within cells from CURRENT 119th members, seed committed).
-**KNOWN GAP: independents are not in the pilot draw** — cover them when collection widens past the 40.
-Still absent: collectors, `statement-sources.yaml`.
+**Phase 3 — Statements pipeline.** Task 1 DONE (`ai.yaml`, `ingest/ai.py`, verified live). Task 2: the D10
+draw is DONE (`data/config/statement-pilot.yaml` — 40 members, seed 20261009, snapshot 2026-10-09T19:53Z);
+the four collectors are NOT started. **Read §5 Phase 3's TEN owner decisions (2026-10-09) before writing a
+collector** — they set the window, filters, spend and scope.
 ## Live facts
-1. **LIVE at `https://civic-ledger.sun-dragster453.workers.dev` (200).** Every push is owner-approved
-   individually — **ask again before the next.** Workers Builds deploys on push (~20 min, not a hang).
-2. **LIGHTHOUSE IS INTERMITTENT AT ~0 MARGIN — a regression, not noise (owner, 2026-10-09).** Record so far:
-   37831240611 FAILED (`/` 0.88, `/m/A000055/1` 0.89, floor 0.90) then passed on re-run; **37843065185 on
-   `67e5291bc` FAILED and was never re-run or recorded** (master carried a red CI before Phase 3); 37979980189
-   on `38c1235d5` PASSED, 27 runs over 9 URLs, no assertion failures (lhci prints no scores on a pass). A pass
-   does not mean fixed. **Do not re-run it — diagnose.** Gate NOT lowered; 0.90 is ratified §6.7.
-3. **Data publishing is NOT at risk from it:** the nightly runs build, `checks` and `verify-recompute` — **no Lighthouse** — and its bot push triggers no CI.
-4. **The nightly timeout bug is FIXED and pushed (`bd3a0f191`); 37809447990 then PASSED** (139 members, zero
-   timeouts). Transient fetch failures tolerated at max(2, 2% of roster), retried next run; count regressions
-   still fail at any count. Cron -> **05:07 UTC**; `--since` -> **36 h** (gaps hit 27.7 h; code default stays 30).
-5. Congress 119 backfill FINISHED, 0 failures: 19,524/19,536 bills have a timeline (11 have no action, D104). **Senate amendment sponsors are a documented gap** (§2).
-6. **Phase 2 wording is all ratified in §2; nothing unratified is published.** Headline B, the motion table,
-   the amendment rule, the resolving-roll rule, the 14-day band, the title clamp, nav "Members", `/federal`.
-7. **The 2026-10-08 adjustment pass is DONE:** neutral palette (`c0f98ecc3`, `a891685e5`), Sol audit + phase
-   pointers (`eff14cbdc`), P2.1 phone fixes (`348c7f365`). No audit item applies until approved at its phase.
+1. **3 commits UNPUSHED** — `2700e0056` (Q-J), `69dfa3916` (STATUS), `a20c19dbf` (pilot draw). Live through
+   `38c1235d5`: `https://civic-ledger.sun-dragster453.workers.dev`. Every push is owner-approved — **ask.**
+2. **LIGHTHOUSE IS INTERMITTENT AT ~0 MARGIN — a regression, not noise (owner).** 37831240611 FAILED (`/`
+   0.88, `/m/A000055/1` 0.89, floor 0.90) then passed on re-run; **37843065185 on `67e5291bc` FAILED and
+   was never re-run** (red CI predates Phase 3); 37979980189 PASSED. A pass is not a fix. **Do not re-run
+   — DIAGNOSE `/` and `/m/A000055/1`,** propose minimal fixes. 0.90 is ratified §6.7; never lower it.
+3. **The AI gateway is verified against the LIVE API** (4 calls, $0.023376): both tasks answer,
+   `proposition: null` is accepted, stance `none` returns on ceremonial text. **~$0.0095–$0.014 per
+   categorized statement**, so decision 7's ceiling (40 × 25) estimates $10–14 and WILL stop at the $5 cap.
+4. Models verified live: `claude-opus-5-5` ($4/$20), `claude-sonnet-5-5` ($2/$10), `claude-haiku-5-5`
+   ($0.10/$0.50); Opus 5 is LEGACY. **No `temperature`** — models 400 on it; `effort` is the knob (tested).
+5. **Rule-0 bug fixed** (`38c1235d5`): the "No longer serving." note used `member.serving`, which stays TRUE
+   for a mid-term departure, so 16 departed members read as sitting. Now `holdsSeatAsOf` — ONE definition of
+   "in office" site-wide, no `serving` reader left in `site/`. 100 pages carry it, up from 84; 66 e2e.
+6. Nightly timeout bug FIXED (`bd3a0f191`): transient failures tolerated at max(2, 2% of roster), count
+   regressions still fail. Cron **05:07 UTC**, `--since` **36 h**. 119 backfill DONE; **Senate amendment
+   sponsors are a documented gap** (§2).
+7. **Q-J is RATIFIED** (§2): what a stated priority is, per-statement and per-member, with the gate that no
+   hidden priority moves a grade. Constants in `thresholds.yaml`; **`formula_version` NOT bumped — it bumps
+   in the Phase 6 commit where Consistency goes live.**
 ## Open questions (§7)
-**Q-A, Q-B CLOSED** (§2). **Q-C** arrives with Phase 4 (bars per category). **Q-D** gates the Phase 5
-upcoming-votes block (which floor-schedule source to trust; nothing claims a vote date now).
-**Q-J is ANSWERED** (§2, 2026-10-09): what counts as a "stated priority" — per-statement signals, the
-per-member rule, duration, conflict, and the gate that no hidden priority moves a grade. **Q-K is OPEN and
-gates task 4:** the precision launch bar. Options in `docs/research/2026-10-09-categorizer-model-review.md`.
+**Q-K is OPEN and gates task 4:** the precision launch bar (options in
+`docs/research/2026-10-09-categorizer-model-review.md`, not ratified). **Q-C** Phase 4 bars, **Q-D** Phase 5
+floor schedule, **Q-J ANSWERED**. Real **Q-E**/**Q-F** are Phase 7/8 — untouched (briefly mislabelled).
 ## Owed by a human (owner)
-1. **`ANTHROPIC_API_KEY` in `.env`** — MISSING today; blocks every Phase 3 AI call from task 1 onward.
-2. **archive.org keys** — Phase 3 task 3: no live capture, no published statement.
-3. **`data/config/statement-sources.yaml`** — owner-maintained press/campaign URLs per member; task 2
-   cannot collect without it. Later: Workers Paid (P6-7), Turnstile (P7).
+1. **`data/config/statement-sources.yaml`** — press/campaign URLs, now only the **40 drawn members**, not
+   540. Builder offered to draft it (roster + press-page discovery, every guess flagged); owner has not
+   answered. Task 2 (a) and (c) cannot collect without it.
+2. **archive.org keys** — task 3: no live capture, no published statement. Later: Workers Paid (P6-7).
+3. **Pending:** does the Speaker (`J000299`, drawn into R/House) stay in the 40? He customarily does not
+   vote, so his say-vs-do record is the thinnest in the sample. `ANTHROPIC_API_KEY` is DONE and working.
 ## Before any data commit or push
 `uv run ingest events && uv run ingest topics && uv run export` → `uv run verify-recompute` → `uv run ruff check .` →
-the pytest gate below (~4 GB, ~27 min, never beside a site build) → `cd site && npm run build` + its seven `test:*` scripts + `npx playwright test`.
+the pytest gate below (~4 GB, ~29 min, never beside a site build) → `cd site && npm run build` + its seven `test:*` scripts + `npx playwright test`.
 ```
-CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov-branch --cov-fail-under=100
+CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov-branch --cov-fail-under=100
 ```

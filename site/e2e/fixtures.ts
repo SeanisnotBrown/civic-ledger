@@ -139,6 +139,42 @@ export function topicPaths(): { policyArea: string; subject: string } {
 
 const topics = topicPaths();
 
+/** Rule-0 fixture (2026-10-09). A member whose terms do NOT cover the dataset's own
+ *  date — i.e. one who left mid-Congress — and one who still holds a seat. Both are
+ *  derived from the committed roster plus the manifest date so neither id can rot, and
+ *  the departed case prefers C001078 (Connolly, died in office 2025-05-21) when it is
+ *  present, since that is the case the owner named.
+ *
+ *  These exist because `member.serving` stays TRUE for a mid-term departure: it means
+ *  "the latest term overlapped the latest covered Congress". 16 members matched that on
+ *  2026-10-09, and the member page's "No longer serving." note was suppressed for every
+ *  one of them. */
+function membersBySeatStatus(): { departed: string; sitting: string } {
+  const asOf = JSON.parse(
+    fs.readFileSync(path.join(DATA, "manifest.json"), "utf-8")).generated_at.slice(0, 10);
+  const dir = path.join(DATA, "members");
+  const departed: string[] = [];
+  const sitting: string[] = [];
+  for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()) {
+    const m = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
+    if (m.jurisdiction !== "us") continue;
+    const holds = (m.terms ?? []).some((t: { start: string; end: string }) =>
+      t.start <= asOf && asOf <= t.end);
+    // Only members the page actually prints the line for (it needs an in-office-since date).
+    if ((m.terms ?? []).length === 0) continue;
+    (holds ? sitting : departed).push(m.id);
+  }
+  if (departed.length === 0 || sitting.length === 0) {
+    throw new Error("roster has no departed/sitting pair to test the seat-status note");
+  }
+  return {
+    departed: departed.includes("C001078") ? "C001078" : departed[0],
+    sitting: sitting[0],
+  };
+}
+
+export const SEAT_STATUS = membersBySeatStatus();
+
 export const PAGES: string[] = [
   "/",
   "/congress", // P2: the full ranked "In Congress" list

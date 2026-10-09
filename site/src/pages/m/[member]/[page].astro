@@ -24,7 +24,7 @@ import {
   getMemberRanks, getRankings, getMemberGrade, getManifest, getGrades,
   getGradedAttendanceByChamber, getMemberVotes, tallyPartySides, getMemberLegislation,
   byIntroducedDesc, getMemberCommittees, inOfficeSince, hasServiceGap, memberPhotoUrl,
-  votedBillIds, ACTIVITY_KIND_LABEL,
+  votedBillIds, ACTIVITY_KIND_LABEL, holdsSeatAsOf, asOfDate,
 } from "../../../lib/data";
 import type { MemberActivityItem, ActivityKind } from "../../../lib/data";
 import { STATE_NAME } from "../../../lib/states";
@@ -191,7 +191,14 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
             {since != null && (
               <p class="mt-1.5 text-[13px] text-neutral-500">
                 {gapped ? "First took office in" : "In office since"} {since}.
-                {!member.serving && " No longer serving."}
+                {/* holdsSeatAsOf, NOT `member.serving` (rule 0, 2026-10-09). `serving`
+                    means "the latest term overlapped the latest covered Congress",
+                    which stays TRUE for the 16 members who resigned or died mid-119th
+                    — so this note was suppressed for exactly the people it exists for,
+                    and their pages read as though they still held the seat. One
+                    definition of "currently in office" site-wide: the same helper the
+                    homepage state finder uses. Pinned by e2e/serving-note.spec.ts. */}
+                {!holdsSeatAsOf(member, asOfDate()) && " No longer serving."}
               </p>
             )}
           </div>

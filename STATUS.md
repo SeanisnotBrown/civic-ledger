@@ -16,16 +16,16 @@ Still absent: collectors, `statement-sources.yaml`.
 ## Live facts
 1. **LIVE at `https://civic-ledger.sun-dragster453.workers.dev` (200).** Every push is owner-approved
    individually — **ask again before the next.** Workers Builds deploys on push (~20 min, not a hang).
-2. **LIGHTHOUSE IS ON THE LINE — watch it.** CI 37831240611 FAILED mobile perf (`/` 0.88, `/m/A000055/1` 0.89,
-   floor 0.90) then PASSED unchanged — noise, but margin ~0 on the two pages the nightly grows. Nothing fixed,
-   gate NOT lowered (0.90 ratified §6.7); a repeat is a real regression.
+2. **LIGHTHOUSE IS A REGRESSION, NOT NOISE (owner, 2026-10-09).** It has now failed the mobile perf gate on
+   TWO separate runs: 37831240611 (`/` 0.88, `/m/A000055/1` 0.89, floor 0.90) which passed on re-run, and
+   **37843065185 on `67e5291bc`, which failed and was never re-run or recorded.** So master carried a red CI
+   before any Phase 3 work. No more re-running it: diagnose the cause. Gate NOT lowered — 0.90 is ratified §6.7.
 3. **Data publishing is NOT at risk from it:** the nightly runs build, `checks` and `verify-recompute` — **no Lighthouse** — and its bot push triggers no CI.
 4. **The nightly timeout bug is FIXED and pushed (`bd3a0f191`); nightly 37809447990 then PASSED** (139 members,
    zero timeouts, `2ddcf3895`). Transient fetch failures tolerated at max(2, 2% of roster) and retried next run;
    count regressions still fail at any count. Cron 09:15 -> **05:07 UTC**; `bill-activity --since` 30 -> **36 h**
    (gaps hit 27.7 h) — `_parse_activity_args`' code default stays 30.
-5. Congress 119 backfill FINISHED, 0 failures: 19,524/19,536 bills have a timeline (11 have no action on the
-   record, D104). **Senate amendment sponsors are a documented gap** (§2).
+5. Congress 119 backfill FINISHED, 0 failures: 19,524/19,536 bills have a timeline (11 have no action, D104). **Senate amendment sponsors are a documented gap** (§2).
 6. **Phase 2 wording is all ratified in §2; nothing unratified is published.** Headline B, the motion table,
    the amendment rule, the resolving-roll rule, the 14-day band, the title clamp, nav "Members", `/federal`.
 7. **The 2026-10-08 adjustment pass is DONE:** neutral palette (`c0f98ecc3`, `a891685e5`), Sol audit + phase
@@ -33,9 +33,9 @@ Still absent: collectors, `statement-sources.yaml`.
 ## Open questions (§7)
 **Q-A, Q-B CLOSED** (§2). **Q-C** arrives with Phase 4 (bars per category). **Q-D** gates the Phase 5
 upcoming-votes block (which floor-schedule source to trust; nothing claims a vote date now).
-**Q-E and Q-F are NEW (2026-10-09), evaluative, and both gate task 4 — nothing categorized publishes until they
-are ratified: (E)** what in a statement's own text establishes that the member calls something a **priority**;
-**(F)** the **precision launch bar**. Options for both in `docs/research/2026-10-09-categorizer-model-review.md`.
+**Q-J is ANSWERED** (§2, 2026-10-09): what counts as a "stated priority" — per-statement signals, the
+per-member rule, duration, conflict, and the gate that no hidden priority moves a grade. **Q-K is OPEN and
+gates task 4:** the precision launch bar. Options in `docs/research/2026-10-09-categorizer-model-review.md`.
 ## Owed by a human (owner)
 1. **`ANTHROPIC_API_KEY` in `.env`** — MISSING today; blocks every Phase 3 AI call from task 1 onward.
 2. **archive.org keys** — Phase 3 task 3: no live capture, no published statement.

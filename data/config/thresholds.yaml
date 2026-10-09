@@ -18,6 +18,33 @@
 # docstring/methodology edit — that is not a change to an evaluative value.
 formula_version: 1
 
+# --- Stated priority (Q-J, owner-ratified 2026-10-09) -----------------------------
+# The numeric constants behind the per-member rule in §2's "Q-J answered" row. The RULES
+# live in the spec; only the numbers live here, per rule 5. Nothing reads these yet: the
+# categorizer that produces priority_signal is Phase 3 task 4, the member-page list is
+# task 6, and Consistency grading is Phase 6.
+#
+# formula_version is deliberately NOT bumped for these (owner, 2026-10-09). It exists so a
+# published grade always states which formula produced it, and these values change no grade
+# published today — bumping would relabel every attendance grade as formula 2 while grading
+# was untouched, which is exactly the dishonest historical re-grade the field prevents.
+# THEY FIRST AFFECT A PUBLISHED GRADE WHEN CONSISTENCY GOES LIVE IN PHASE 6, and
+# formula_version bumps in that commit.
+stated_priority:
+  ratified: "2026-10-09"
+  citation: null
+  justification: >-
+    The owner's answer to Q-J. A single press release must not be able to declare a
+    member's priority by accident, and a run of near-identical releases published in one
+    week is one message, not a sustained position — so the repetition route requires both a
+    count and a spread in time. One statement that EXPLICITLY ranks the issue or makes a
+    concrete commitment still qualifies on its own (per-member rule 2), because that is the
+    member saying it outright rather than the site inferring it. The campaign issue page
+    route needs no count at all: it is the member's own published list of what they ran on.
+  # Per-member rule 3: repetition. Both conditions must hold together.
+  repetition_statements: 3      # approved statements sharing one topic AND one stance
+  repetition_distinct_months: 2 # spread across at least this many calendar months
+
 grades:
   attendance:
     metric: attendance          # the Tier-2 metric key this grades (data/metrics.json)

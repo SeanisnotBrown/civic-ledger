@@ -1,6 +1,40 @@
 {
   "actions": [
     {
+      "action_code": "H12410",
+      "committees": null,
+      "date": "2026-10-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Placed on the Union Calendar, Calendar No. 745.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2026-10-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Reported by the Committee on Small Business. H. Rept. 119-848.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "committees": [
+        "Small Business Committee"
+      ],
+      "date": "2026-10-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Reported by the Committee on Small Business. H. Rept. 119-848.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H19000",
       "committees": [
         "Small Business Committee"
@@ -66,8 +100,8 @@
   ],
   "id": "hr10375-119",
   "jurisdiction": "us",
-  "latest_action": "Ordered to be Reported by the Yeas and Nays: 23 - 0.",
-  "latest_action_date": "2026-09-16",
+  "latest_action": "Placed on the Union Calendar, Calendar No. 745.",
+  "latest_action_date": "2026-10-09",
   "number": 10375,
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10375",

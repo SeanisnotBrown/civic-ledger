@@ -3054,11 +3054,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 339,
-    "sponsored": 17
+    "sponsored": 18
   },
   "member_id": "S001228",
   "source_url": "https://api.congress.gov/v3/member/S001228/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10793-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10793",
+      "title": "To modify the authority of Department of Defense for installation support services and intergovernmental support agreements, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr3502-119",

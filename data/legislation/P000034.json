@@ -4368,7 +4368,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 6738,
-    "sponsored": 580
+    "sponsored": 581
   },
   "member_id": "P000034",
   "source_url": "https://api.congress.gov/v3/member/P000034/sponsored-legislation",
@@ -4381,6 +4381,15 @@
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10453",
       "title": "Communications and Technology Transparency Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10788-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10788",
+      "title": "Lower Premiums, Faster Payments Act"
     },
     {
       "became_law": false,

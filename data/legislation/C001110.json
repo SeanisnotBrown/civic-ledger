@@ -6303,7 +6303,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 1918,
-    "sponsored": 126
+    "sponsored": 127
   },
   "member_id": "C001110",
   "source_url": "https://api.congress.gov/v3/member/C001110/sponsored-legislation",
@@ -6649,6 +6649,15 @@
       "introduced_date": "2026-09-14",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1533",
       "title": "Honoring the life and legacy of John Seymour, the late Senator for the State of California."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1621-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1621",
+      "title": "Expressing profound sorrow over the death of Alexander Michel Odeh."
     },
     {
       "became_law": false,

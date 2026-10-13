@@ -26,8 +26,8 @@ members:
   chamber: house
   state: FL
   official_site: https://bilirakis.house.gov
-  press_page: https://bilirakis.house.gov/media
-  press_page_source: http-200
+  press_page: https://bilirakis.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://bilirakis.house.gov/index.php?format=feed&type=rss
   campaign_site: null
   campaign_issues_page: null
@@ -38,8 +38,8 @@ members:
   chamber: house
   state: CA
   official_site: https://costa.house.gov
-  press_page: https://costa.house.gov/media
-  press_page_source: http-200
+  press_page: https://costa.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://costa.house.gov/index.php?format=feed&type=rss
   campaign_site: null
   campaign_issues_page: null
@@ -62,8 +62,8 @@ members:
   chamber: house
   state: MN
   official_site: https://craig.house.gov
-  press_page: https://craig.house.gov/media
-  press_page_source: http-200
+  press_page: https://craig.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -98,8 +98,8 @@ members:
   chamber: house
   state: KS
   official_site: https://davids.house.gov
-  press_page: https://davids.house.gov/media
-  press_page_source: http-200
+  press_page: https://davids.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -122,8 +122,8 @@ members:
   chamber: house
   state: IL
   official_site: https://foster.house.gov
-  press_page: https://foster.house.gov/media
-  press_page_source: http-200
+  press_page: https://foster.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://foster.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
@@ -134,8 +134,8 @@ members:
   chamber: house
   state: ND
   official_site: https://fedorchak.house.gov
-  press_page: https://fedorchak.house.gov/media
-  press_page_source: http-200
+  press_page: https://fedorchak.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -146,8 +146,8 @@ members:
   chamber: house
   state: TX
   official_site: https://algreen.house.gov
-  press_page: https://algreen.house.gov/media
-  press_page_source: http-200
+  press_page: https://algreen.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://algreen.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
@@ -194,8 +194,8 @@ members:
   chamber: house
   state: NC
   official_site: https://markharris.house.gov
-  press_page: https://markharris.house.gov/media
-  press_page_source: http-200
+  press_page: https://markharris.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -242,8 +242,9 @@ members:
   chamber: senate
   state: NJ
   official_site: https://www.kim.senate.gov
-  press_page: https://www.kim.senate.gov/press_release/news-500-pmf-members-and-alumni-urge-passage-of-senators-kim-and-merkleys-bill-to-revive-civil-service-pipeline-program/
-  press_page_source: http-200
+  press_page: https://www.kim.senate.gov/press-releases/
+  press_page_source: owner-supplied, verified release list; 403 from this machine, browser loads it.
+    /feed/ and /rss answer 200 but carry 1 item dated 2026-03-31, so the feed is not a usable substitute.
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -254,8 +255,8 @@ members:
   chamber: house
   state: UT
   official_site: https://mikekennedy.house.gov
-  press_page: https://mikekennedy.house.gov/media
-  press_page_source: http-200
+  press_page: https://mikekennedy.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -266,8 +267,8 @@ members:
   chamber: house
   state: GA
   official_site: https://loudermilk.house.gov
-  press_page: https://loudermilk.house.gov/2015/03/24/media-advisory-rep-barry-loudermilk-to-announce-the-winners-of-the-2015-congressional-art-competition/
-  press_page_source: http-200
+  press_page: https://loudermilk.house.gov/category/press-releases/
+  press_page_source: owner-supplied from the site menu, unverified
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -290,8 +291,8 @@ members:
   chamber: house
   state: MN
   official_site: https://mccollum.house.gov
-  press_page: https://mccollum.house.gov/media
-  press_page_source: http-200
+  press_page: https://mccollum.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://mccollum.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
@@ -338,8 +339,8 @@ members:
   chamber: house
   state: DE
   official_site: https://mcbride.house.gov
-  press_page: https://mcbride.house.gov/media
-  press_page_source: http-200
+  press_page: https://mcbride.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -362,8 +363,8 @@ members:
   chamber: senate
   state: SD
   official_site: https://www.rounds.senate.gov
-  press_page: https://www.rounds.senate.gov/newsroom
-  press_page_source: http-200
+  press_page: https://www.rounds.senate.gov/newsroom/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -386,8 +387,8 @@ members:
   chamber: house
   state: IL
   official_site: https://schakowsky.house.gov
-  press_page: https://schakowsky.house.gov/media
-  press_page_source: http-200
+  press_page: https://schakowsky.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://schakowsky.house.gov/index.php?format=feed&type=rss
   campaign_site: null
   campaign_issues_page: null
@@ -410,8 +411,8 @@ members:
   chamber: house
   state: AL
   official_site: https://sewell.house.gov
-  press_page: https://sewell.house.gov/media
-  press_page_source: http-200
+  press_page: https://sewell.house.gov/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://sewell.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
@@ -434,8 +435,8 @@ members:
   chamber: house
   state: IL
   official_site: https://underwood.house.gov
-  press_page: https://underwood.house.gov/media
-  press_page_source: http-200
+  press_page: https://underwood.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -446,8 +447,8 @@ members:
   chamber: house
   state: CA
   official_site: https://vargas.house.gov
-  press_page: https://vargas.house.gov/media
-  press_page_source: http-200
+  press_page: https://vargas.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://vargas.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
@@ -470,8 +471,8 @@ members:
   chamber: house
   state: CA
   official_site: https://whitesides.house.gov
-  press_page: https://whitesides.house.gov/contact/newsletter-subscribe/
-  press_page_source: http-200
+  press_page: https://whitesides.house.gov/category/press-releases/
+  press_page_source: found in the site's own navigation menu (WordPress category list)
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -494,8 +495,8 @@ members:
   chamber: house
   state: MT
   official_site: https://zinke.house.gov
-  press_page: https://zinke.house.gov/media
-  press_page_source: http-200
+  press_page: https://zinke.house.gov/media/press-releases
+  press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
   campaign_site: null
   campaign_issues_page: null

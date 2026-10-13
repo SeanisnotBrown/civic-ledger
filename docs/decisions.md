@@ -3396,3 +3396,34 @@ under the 20,000 Workers-Free limit, H14) · `npm run test:links` (7,104 pages c
   The guard could therefore **never** have passed for a genuine bill quarantine — exactly what
   D87 added bill ids to the accept-list for. It had never been exercised because no bill had
   ever been quarantined before today. The test now strips the `bill-` prefix before comparing.
+
+- **D105 (2026-10-13) — the repo goes public; D59 is reversed by the owner.** D59
+  (2026-08-13) chose to keep `civic-ledger` private and rewrote the site copy to match,
+  rather than flip visibility. The reason it is reversed: GitHub bills Actions minutes
+  only for private repos, the free 2,000/month ran out, and from **2026-10-12** every
+  workflow — the nightly refresh, the weekly archive-link sweep, and CI — failed in
+  three seconds with "recent account payments have failed or your spending limit needs
+  to be increased." H24 had named "make the repo public (unlimited minutes)" as the
+  escape hatch D59 declined; the outage is the day it stopped being hypothetical. Public
+  also restores what the site already promises: `site/src/pages/methods.astro` links
+  readers to `docs/data-contract.md` in this repo, which 404s for everyone while it is
+  private.
+
+  **Checked before the flip, read-only:** gitleaks 8.30.1 over `--log-opts="--all"` (205
+  non-merge commits, 588.9 MB) plus a full-object scan of all **108,921 blobs** across
+  all 208 commits — vendor-prefix patterns, private-key blocks, JWTs, literal matches of
+  the live `.env` values, and a high-entropy pass over every text blob outside `data/`.
+  **No credential in any commit.** `.env` has never been committed; only `.env.example`,
+  with empty placeholders. gitleaks' single hit is `secret = "SECRETXYZ0123456789"` in
+  `tests/test_ingest_hardening_d87.py`, the dummy value that test looks for — a false
+  positive. Commit history carries only the GitHub noreply address, never a real email.
+  The three workflows contain no line that could echo a secret into a log, which matters
+  because Actions logs are world-readable on a public repo.
+
+  **Known, not done here:** D59's remediation stripped the "public repository" claims
+  from `/privacy` and `/corrections` and deleted the GitHub issue/commit links that 404
+  while private. Those pages are now conservative rather than wrong, so nothing false
+  publishes — but the links and the claims could be restored in a later pass, as a
+  deliberate copy decision rather than a side effect of this one. `MISSION.md` §4–§5
+  state the owner's own political framing in the first person and become publicly
+  attributable on the flip; the owner was shown this before deciding.

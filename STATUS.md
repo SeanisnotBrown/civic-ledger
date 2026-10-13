@@ -1,49 +1,29 @@
 # STATUS.md — live state (keep under 50 lines)
-Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated**
-2026-10-09 (builder; task 1 done, the pilot draw done, collectors not started).
+Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated** 2026-10-13 (builder; collector (b) done and pushed, its text pull still running).
 ## FIRST ACTION NEXT SESSION
-**Phase 3 §5 task 2 — collector (b), Congressional Record floor speeches** via the existing
-`ingest/sources/govinfo.py`, scoped to the 40 ids in `data/config/statement-pilot.yaml`. The ONLY unblocked
-collector: (a)/(c) need `statement-sources.yaml` (owed), (d) needs platform access. **`git pull` FIRST** —
-the nightly pushes on its own. **Work is UNPUSHED — see fact 1.**
+**1. Is Actions billing fixed (fact 1)? If yes, do the bill-activity backfill FIRST**, locally, the same day Actions returns: compute the window as the hours from **2026-10-11 11:21 UTC** to now, round up, add a few hours' margin, then `uv run ingest bill-activity --since <that>` → `ingest events` → `ingest topics` → `export` → `verify-recompute` → gates → commit. Locally, NOT CI: ~1,400-2,200 bills for a 5-day window, ~25-40 min at 1 req/s, **zero Actions minutes**. **2. Re-run `archive-links`** (workflow_dispatch). **3. Then task 2 (a)/(c)**, once the owner has verified `statement-sources.yaml`.
 ## Current phase
-**Phase 3 — Statements pipeline.** Task 1 DONE (`ai.yaml`, `ingest/ai.py`, verified live). Task 2: the D10 draw
-is DONE (`data/config/statement-pilot.yaml` — 40 members, seed 20261009, snapshot 2026-10-09T19:53Z); the four
-collectors are NOT started. **Read §5 Phase 3's TEN owner decisions first** — window, filters, spend, scope.
+**Phase 3 — Statements pipeline.** Task 1 DONE. Task 2: the D10 draw DONE; **collector (b) DONE and pushed** (`ingest statements-crec`, 100% branch, in the CI cov gate); `statement-sources.yaml` DRAFTED, 40 rows, `owner_checked: false` on every one, so (a)/(c) wait on the owner; (d) needs platform access. Task 3 blocked (no archive.org keys). **Read §5 Phase 3's TEN owner decisions first.**
 ## Live facts
-1. **UNPUSHED WORK EXISTS. Run `git log --oneline origin/master..HEAD`** — do not trust a number written
-   here; every edit to this file adds another commit to it. Everything through `38c1235d5` is pushed and
-   live: `https://civic-ledger.sun-dragster453.workers.dev`. Pushes are owner-approved one at a time — ask.
-2. **LIGHTHOUSE IS INTERMITTENT AT ~0 MARGIN — a regression, not noise (owner).** 37831240611 FAILED (`/`
-   0.88, `/m/A000055/1` 0.89, floor 0.90) then passed on re-run; **37843065185 on `67e5291bc` FAILED and
-   was never re-run** (red CI predates Phase 3); 37979980189 PASSED. A pass is not a fix. **Do not re-run
-   — DIAGNOSE `/` and `/m/A000055/1`,** propose minimal fixes. 0.90 is ratified §6.7; never lower it.
-3. **The AI gateway is verified against the LIVE API** (4 calls, $0.023376): both tasks answer,
-   `proposition: null` is accepted, stance `none` returns on ceremonial text. **~$0.0095–$0.014 per
-   categorized statement**, so decision 7's ceiling (40 × 25) estimates $10–14 and WILL stop at the $5 cap.
-4. Models verified live: `claude-opus-5-5` ($4/$20), `claude-sonnet-5-5` ($2/$10), `claude-haiku-5-5`
-   ($0.10/$0.50); Opus 5 is LEGACY. **No `temperature`** — models 400 on it; `effort` is the knob (tested).
-5. **Rule-0 bug fixed** (`38c1235d5`): the "No longer serving." note used `member.serving`, which stays TRUE
-   for a mid-term departure, so 16 departed members read as sitting. Now `holdsSeatAsOf` — ONE definition of
-   "in office" site-wide, no `serving` reader left in `site/`. 100 pages carry it, up from 84; 66 e2e.
-6. Nightly timeout bug FIXED (`bd3a0f191`): transient failures tolerated at max(2, 2% of roster), count
-   regressions still fail. Cron **05:07 UTC**, `--since` **36 h**. **Senate amendment sponsors: gap** (§2).
-7. **Q-J is RATIFIED** (§2): what a stated priority is, per-statement and per-member, with the gate that no
-   hidden priority moves a grade. Constants in `thresholds.yaml`; **`formula_version` NOT bumped — it bumps
-   in the Phase 6 commit where Consistency goes live.**
+1. **GITHUB ACTIONS IS BLOCKED BY BILLING since 2026-10-12** ("recent account payments have failed or your spending limit needs to be increased"; jobs die in 3 s without starting). So the nightly has not run since **2026-10-11 11:21 UTC** (data 2 days stale and aging), the weekly archive sweep has not run, and **the 11 commits pushed 2026-10-13 are unverified by CI** — all four gates passed locally. Owner-owed; nothing in the repo works around it.
+2. **LIGHTHOUSE IS INTERMITTENT AT ~0 MARGIN — a regression, not noise (owner).** Separate from fact 1: 37843065185 (2026-10-08, `67e5291bc`) failed on Lighthouse and was never re-run; every failure since 10-12 is billing. **Do not re-run — DIAGNOSE `/` and `/m/A000055/1`.** 0.90 is ratified §6.7.
+3. **A TEXT PULL MAY STILL BE RUNNING** (`ingest statements-crec`, started 2026-10-13 ~15:00 CDT, ~4.5 h for 4,630 granules). It writes gitignored `data/raw/` (~2 GB) **except** it rewrites `docs/research/2026-10-13-crec-collection-counts.md` when it finishes — that file modified is the pull completing, not abandoned work. **Never commit a half-filled report**: re-run the command (all fetches are cached, a re-run resumes free) and commit the finished one.
+4. **Collector (b) measured:** 790 issues, **0 failures**, **4,630 speaking granules** across all 40 (1,742 House / 1,519 Senate / 1,369 Extensions; D 2,586 / R 2,044). Per-member table is in the committed report. The D-R gap is Senate-shaped and broad — every pilot D senator outranks every pilot R, while the House runs R 1,600 / D 1,474 — **a fact about the record, not a defect** (owner). `none`-attribution at 26/40 members: D 1.1%, R 0.8%, even. Speaker `J000299` is visible (53 granules); attribution is MODS `role="SPEAKING"`, never a name match.
+5. **INSERTED MATERIAL IS NOT HANDLED — fix it in the pre-filter BEFORE ANY CATEGORIZER RUN, not after.** "I include in the Record ..." is followed by text the member did not write and it is stored as their words: 3.6% of rows but **18.2% of stored characters** (302-row sample). **Cut at the member's own marker sentence, keeping everything up to and including it** (owner, 2026-10-13); what follows is someone else's.
+6. **The archive sweep is stale (fact 1), so NO statement may be treated as publishable** until `archive-links` runs again and refreshes `data/quality/archive-status.json`.
+7. **The AI gateway is verified against the LIVE API** (4 calls, $0.023376); **~$0.0095-$0.014 per categorized statement**, so decision 7's ceiling (40 x 25) estimates $10-14 and WILL stop at the $5 cap. Models live: `claude-opus-5-5` ($4/$20), `claude-sonnet-5-5`, `claude-haiku-5-5`. **No `temperature`** — models 400 on it; `effort` is the knob.
+8. **Q-J is RATIFIED** (§2); constants in `thresholds.yaml`; **`formula_version` NOT bumped** — it bumps in the Phase 6 commit where Consistency goes live. Nightly cron **05:07 UTC**, `--since` **36 h**. **Senate amendment sponsors: gap** (§2).
+9. **PROPOSAL, owner to decide later (not this session):** `bill-activity` should record its last successful run and fetch from there instead of a fixed 36 h window, so an outage can never silently drop data again.
 ## Open questions (§7)
-**Q-K is OPEN and gates task 4:** the precision launch bar (options in
-`docs/research/2026-10-09-categorizer-model-review.md`, not ratified). **Q-C** Phase 4 bars, **Q-D** Phase 5
-floor schedule, **Q-J ANSWERED**. Real **Q-E**/**Q-F** are Phase 7/8 — untouched (briefly mislabelled).
+**Q-K is OPEN and gates task 4:** the precision launch bar (options in `docs/research/2026-10-09-categorizer-model-review.md`). **NEW, owner to answer:** do Extensions of Remarks (written insertions, 1,369 of the 4,630) count as statements for grading, or floor speech only? Collected and class-tagged either way. **Q-C** Phase 4 bars, **Q-D** Phase 5 floor schedule.
 ## Owed by a human (owner)
-1. **`data/config/statement-sources.yaml`** — press/campaign URLs for the **40 drawn members**, not 540.
-   Builder offered to draft it (every guess flagged), unanswered. Task 2 (a)/(c) blocked without it.
-2. **archive.org keys** — task 3: no live capture, no published statement. Later: Workers Paid (P6-7).
-3. **Pending:** does the Speaker (`J000299`, drawn into R/House) stay in the 40? He customarily does not
-   vote, so his say-vs-do record is the thinnest in the sample. `ANTHROPIC_API_KEY` is DONE and working.
+1. **GitHub Actions billing** (fact 1) — blocks the nightly, the archive sweep and all CI.
+2. **Verify `data/config/statement-sources.yaml`** — 40 press pages (37 path-guessed then GET 200, 3 owner-supplied); set `owner_checked: true` per row. Campaign URLs are null, so (c) stays off until they are filled.
+3. **archive.org keys** — task 3: no live capture, no published statement. Later: Workers Paid (P6-7).
+4. **ANSWERED 2026-10-13:** the Speaker (`J000299`) STAYS in the 40 — removing a randomly drawn member would be a hand-pick, and a thin record is a real result. `ANTHROPIC_API_KEY` is DONE and working.
 ## Before any data commit or push
 `uv run ingest events && uv run ingest topics && uv run export` → `uv run verify-recompute` → `uv run ruff check .` →
-the pytest gate below (~4 GB, ~29 min, never beside a site build) → `cd site && npm run build` + its seven `test:*` scripts + `npx playwright test`.
+the pytest gate below (~4 GB, ~32 min, never beside a site build) → `cd site && npm run build` + its seven `test:*` scripts + `npx playwright test`.
 ```
-CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov-branch --cov-fail-under=100
+CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov=ingest.statements_crec --cov-branch --cov-fail-under=100
 ```

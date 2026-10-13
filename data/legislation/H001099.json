@@ -191,6 +191,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10789-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10789",
+      "title": "To establish a moratorium on oil and gas production and exploration activities in the Eglin Gulf Test and Training Range, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1167-119",
       "congress": 119,
       "enacted_action": null,
@@ -2378,12 +2387,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 264,
-    "sponsored": 5
+    "cosponsored": 265,
+    "sponsored": 6
   },
   "member_id": "H001099",
   "source_url": "https://api.congress.gov/v3/member/H001099/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10781-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10781",
+      "title": "To amend title 36, United States Code, to request the President to designate a month each year as National American History and Founders Month."
+    },
     {
       "became_law": false,
       "bill_id": "hr3343-119",

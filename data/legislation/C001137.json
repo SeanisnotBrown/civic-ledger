@@ -1281,7 +1281,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 142,
-    "sponsored": 12
+    "sponsored": 13
   },
   "member_id": "C001137",
   "source_url": "https://api.congress.gov/v3/member/C001137/sponsored-legislation",
@@ -1302,7 +1302,16 @@
       "enacted_action": null,
       "introduced_date": "2026-10-01",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10657",
-      "title": "To amend the Internal Revenue Code of 1986 to allow a special depreciation allowance for qualified early childhood education centers."
+      "title": "SPROUT Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10773-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10773",
+      "title": "To amend the Internal Revenue Code of 1986 to prevent governmental interference in the operation of private and religious schools."
     },
     {
       "became_law": false,

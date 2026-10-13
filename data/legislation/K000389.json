@@ -9390,11 +9390,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 3726,
-    "sponsored": 200
+    "sponsored": 201
   },
   "member_id": "K000389",
   "source_url": "https://api.congress.gov/v3/member/K000389/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hconres124-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/124",
+      "title": "Directing the President pursuant to section 5(c) of the War Powers Resolution to remove United States Armed Forces from hostilities against the Houthis in Yemen that have not been authorized by Congress."
+    },
     {
       "became_law": false,
       "bill_id": "hconres70-119",

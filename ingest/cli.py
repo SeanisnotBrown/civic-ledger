@@ -116,6 +116,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import pilot
 
         return pilot.run(args[1:])
+    if args and args[0] == "statements-crec":
+        from ingest import statements_crec
+
+        return statements_crec.run(args[1:])
     if args and args[0] == "ms":
         from ingest import ms_legislature
 
@@ -133,6 +137,9 @@ def main(argv: list[str] | None = None) -> int:
           "(--congress only)")
     print("  events        V2-11 project bill actions -> data/events/{YYYY-MM}.json")
     print("  pilot-draw    P3 D10 the 40-member statement pilot sample (--force to re-draw)")
+    print("  statements-crec P3 task 2b Congressional Record speeches for the pilot 40")
+    print("                  --index-only: the count report with no granule text")
+    print("                  --keep-limit N (default 60) | --limit-issues N | --members IDS")
     print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")

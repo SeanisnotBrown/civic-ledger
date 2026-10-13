@@ -102,3 +102,64 @@ def granule_url(package_id: str, granule_id: str) -> str:
     """The stable PUBLIC citation for a granule (verified 200): the govinfo details
     page. This is what a published `stated_reason_source` points a reader to."""
     return f"https://www.govinfo.gov/app/details/{package_id}/{granule_id}"
+
+
+# --- Congressional Record issues and their MODS metadata (P3 task 2b) ----------------
+#
+# Why the collector reads PACKAGE-level MODS instead of searching per member:
+#
+# `/search` with `member:<bioguide>` does find a member's granules — the field accepts a
+# bioguide id and a bogus id returns 0, so a typo surfaces as nothing rather than as
+# everything (measured 2026-10-13). But the index matches a member's NAME ANYWHERE in the
+# granule, and every roll-call tally lists all 435 names, so ~90% of the hits for a
+# sitting member are vote rosters they never spoke in: 1,066 hits for one House member
+# over the 118th-onward window, 199 of them once `-"Roll No."` is excluded. That
+# exclusion is also chamber-shaped — the Senate prints "Rollcall Vote No.", so the same
+# filter moved a senator's count not at all (1,484 → 1,484) — and a phrase exclusion
+# silently drops any real speech that happens to share the granule with a vote.
+#
+# Package MODS has the authoritative answer instead: each granule carries
+# `<congMember bioGuideId=... role="SPEAKING">` (versus "VOTED YES"/"VOTED NO"), so
+# "did this member speak here" needs no heuristic at all. It is also cheaper: one fetch
+# per ISSUE (790 across the window) rather than per member or per granule, and the
+# member's own `<name type="parsed">` ("Mr. BISHOP") comes with it — which is the exact
+# string the Record uses to open their remarks.
+PUBLISHED_URL = "https://api.govinfo.gov/published/{start}/{end}"
+PACKAGE_MODS = "https://api.govinfo.gov/packages/{pkg}/mods"
+
+# A published Record issue is archival: GPO does not revise it. Re-reading it every 20
+# hours (the cache default) would re-download ~800 MB to learn nothing, so these two
+# calls hold for a year and a second run of the collector is free.
+ARCHIVAL_TTL_HOURS = 24 * 365
+
+
+def published_packages(start: str, end: str, collection: str = "CREC") -> list[dict]:
+    """Every `collection` package ISSUED between `start` and `end` (YYYY-MM-DD), newest
+    first. Paged through `nextPage`, which govinfo returns credential-free (auth is the
+    X-Api-Key header), so the page URL is safe to use as a cache key."""
+    url = PUBLISHED_URL.format(start=start, end=end)
+    params: dict | None = {"collection": collection, "pageSize": 1000, "offsetMark": "*"}
+    out: list[dict] = []
+    seen: set[str] = set()
+    while True:
+        page = fetch(
+            SOURCE, url, params=params, headers=_headers(), ttl_hours=ARCHIVAL_TTL_HOURS
+        ).json()
+        for pkg in page.get("packages") or []:
+            pid = pkg.get("packageId")
+            if pid and pid not in seen:  # a repeated id would loop the pager forever
+                seen.add(pid)
+                out.append(pkg)
+        nxt = page.get("nextPage")
+        if not nxt or len(out) >= (page.get("count") or 0):
+            return out
+        url, params = nxt, None
+
+
+def package_mods(package_id: str) -> str:
+    """The issue's MODS XML: every granule in it, with granule class, title, date and the
+    members recorded in it with their ROLE (SPEAKING / VOTED YES / ...)."""
+    url = PACKAGE_MODS.format(pkg=package_id)
+    return fetch(
+        SOURCE, url, ext="xml", headers=_headers(), ttl_hours=ARCHIVAL_TTL_HOURS
+    ).text

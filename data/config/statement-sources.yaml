@@ -31,7 +31,7 @@ members:
   rss: http://bilirakis.house.gov/index.php?format=feed&type=rss
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: C001059
   name: Jim Costa
   party: D
@@ -43,19 +43,19 @@ members:
   rss: http://costa.house.gov/index.php?format=feed&type=rss
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: C001066
   name: Kathy Castor
   party: D
   chamber: house
   state: FL
   official_site: https://castor.house.gov
-  press_page: https://castor.house.gov/news/
-  press_page_source: http-200
+  press_page: https://castor.house.gov/news/documentquery.aspx?DocumentTypeID=821
+  press_page_source: 'owner-directed: the Press Releases document type, not the mixed /news feed'
   rss: http://castor.house.gov/news/rss.aspx
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: C001119
   name: Angie Craig
   party: D
@@ -67,7 +67,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: D000623
   name: Mark DeSaulnier
   party: D
@@ -79,19 +79,19 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: D000628
   name: Neal P. Dunn
   party: R
   chamber: house
   state: FL
   official_site: https://dunn.house.gov
-  press_page: https://dunn.house.gov/news/
-  press_page_source: http-200
+  press_page: https://dunn.house.gov/news/documentquery.aspx?DocumentTypeID=27
+  press_page_source: 'the site''s own menu: Press Releases (DocumentTypeID=27)'
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: D000629
   name: Sharice Davids
   party: D
@@ -103,19 +103,19 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: E000235
   name: Mike Ezell
   party: R
   chamber: house
   state: MS
   official_site: https://ezell.house.gov
-  press_page: https://ezell.house.gov/news/
-  press_page_source: http-200
+  press_page: https://ezell.house.gov/news/documentquery.aspx?DocumentTypeID=27
+  press_page_source: 'the site''s own menu: Press Releases (DocumentTypeID=27)'
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: F000454
   name: Bill Foster
   party: D
@@ -127,7 +127,7 @@ members:
   rss: http://foster.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: F000482
   name: Julie Fedorchak
   party: R
@@ -139,7 +139,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: G000553
   name: Al Green
   party: D
@@ -151,7 +151,7 @@ members:
   rss: http://algreen.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: H000601
   name: Bill Hagerty
   party: R
@@ -163,15 +163,15 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: H001046
   name: Martin Heinrich
   party: D
   chamber: senate
   state: NM
   official_site: https://www.heinrich.senate.gov
-  press_page: https://www.heinrich.senate.gov/newsroom
-  press_page_source: http-200
+  press_page: https://www.heinrich.senate.gov/newsroom/press-releases
+  press_page_source: 'owner-directed: the dedicated list behind the newsroom hub (renders client-side)'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -187,7 +187,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: H001102
   name: Mark Harris
   party: R
@@ -199,7 +199,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: J000299
   name: Mike Johnson
   party: R
@@ -223,19 +223,20 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: K000388
   name: Trent Kelly
   party: R
   chamber: house
   state: MS
   official_site: https://trentkelly.house.gov
-  press_page: https://trentkelly.house.gov/newsroom/default.aspx
-  press_page_source: http-200
+  press_page: https://trentkelly.house.gov/newsroom/documentquery.aspx?DocumentTypeID=27
+  press_page_source: 'owner-directed: the Press Releases document type; stored as the canonical /newsroom/
+    path the server redirects to'
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: K000394
   name: Andy Kim
   party: D
@@ -260,7 +261,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: L000583
   name: Barry Loudermilk
   party: R
@@ -272,7 +273,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: L000585
   name: Darin LaHood
   party: R
@@ -296,7 +297,7 @@ members:
   rss: http://mccollum.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: M001184
   name: Thomas Massie
   party: R
@@ -320,7 +321,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: M001222
   name: Max L. Miller
   party: R
@@ -332,7 +333,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: M001238
   name: Sarah McBride
   party: D
@@ -344,19 +345,19 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: P000605
   name: Scott Perry
   party: R
   chamber: house
   state: PA
   official_site: https://perry.house.gov
-  press_page: https://perry.house.gov/news/
-  press_page_source: http-200
+  press_page: https://perry.house.gov/news/documentquery.aspx?DocumentTypeID=2608
+  press_page_source: 'the site''s own menu: Press Releases (DocumentTypeID=2608)'
   rss: http://perry.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: R000605
   name: Mike Rounds
   party: R
@@ -376,11 +377,12 @@ members:
   state: NY
   official_site: https://riley.house.gov
   press_page: https://riley.house.gov/news/
-  press_page_source: http-200
+  press_page_source: 'unchanged: his own menu labels /news as Press Releases and offers no separate
+    list'
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: S001145
   name: Janice D. Schakowsky
   party: D
@@ -392,7 +394,7 @@ members:
   rss: http://schakowsky.house.gov/index.php?format=feed&type=rss
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: S001181
   name: Jeanne Shaheen
   party: D
@@ -428,7 +430,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: U000040
   name: Lauren Underwood
   party: D
@@ -440,7 +442,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: V000130
   name: Juan Vargas
   party: D
@@ -452,7 +454,7 @@ members:
   rss: http://vargas.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: W000821
   name: Bruce Westerman
   party: R
@@ -464,7 +466,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: W000830
   name: George Whitesides
   party: D
@@ -476,7 +478,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: Y000064
   name: Todd Young
   party: R
@@ -488,7 +490,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: Z000018
   name: Ryan K. Zinke
   party: R
@@ -500,4 +502,4 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true

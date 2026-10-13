@@ -9,7 +9,11 @@ provenance:
   rss: the roster's own terms[-1].rss_url where it has one — source-backed
   press_page: 'GUESS: official_site + one of the usual press paths, kept only when a live GET returned
     200. press_page_source records how it was found. A 200 proves the page exists, NOT that it is the
-    member''s press release index.'
+    member''s press release index. The three rows that did not resolve on 2026-10-13 (DeSaulnier, Moolenaar,
+    Westerman) were supplied by the owner and verified 200 with this project''s own User-Agent: they
+    live at /media-center/press-releases, a path the draft''s candidate list did not try. No 403, no
+    bot block, no difference between the project UA and a browser UA — so a future draft should try
+    /media-center/press-releases too.'
   campaign_site / campaign_issues_page: left null deliberately. No official dataset carries a campaign
     domain, and a wrong guess would point the collector at a different person. The owner fills these,
     or collector (c) stays off.
@@ -70,8 +74,8 @@ members:
   chamber: house
   state: CA
   official_site: https://desaulnier.house.gov
-  press_page: null
-  press_page_source: none-resolved
+  press_page: https://desaulnier.house.gov/media-center/press-releases
+  press_page_source: owner-supplied, GET 200
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -310,8 +314,8 @@ members:
   chamber: house
   state: MI
   official_site: https://moolenaar.house.gov
-  press_page: null
-  press_page_source: none-resolved
+  press_page: https://moolenaar.house.gov/media-center/press-releases
+  press_page_source: owner-supplied, GET 200
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -454,8 +458,8 @@ members:
   chamber: house
   state: AR
   official_site: https://westerman.house.gov
-  press_page: null
-  press_page_source: none-resolved
+  press_page: https://westerman.house.gov/media-center/press-releases
+  press_page_source: owner-supplied, GET 200
   rss: null
   campaign_site: null
   campaign_issues_page: null

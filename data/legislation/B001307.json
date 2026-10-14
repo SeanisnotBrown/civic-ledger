@@ -5403,11 +5403,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 1112,
-    "sponsored": 44
+    "sponsored": 45
   },
   "member_id": "B001307",
   "source_url": "https://api.congress.gov/v3/member/B001307/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10795-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-13",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10795",
+      "title": "Sudan IMPACT Act"
+    },
     {
       "became_law": false,
       "bill_id": "hr1516-119",

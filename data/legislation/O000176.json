@@ -2685,7 +2685,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 298,
-    "sponsored": 18
+    "sponsored": 19
   },
   "member_id": "O000176",
   "source_url": "https://api.congress.gov/v3/member/O000176/sponsored-legislation",
@@ -2725,6 +2725,15 @@
       "introduced_date": "2026-08-13",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10101",
       "title": "Open Doors to Diplomacy Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10802-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-13",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10802",
+      "title": "To direct heads of Federal agencies to support increased access to voting, and for other purposes."
     },
     {
       "became_law": false,

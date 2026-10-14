@@ -912,7 +912,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 101,
-    "sponsored": 8
+    "sponsored": 9
   },
   "member_id": "V000139",
   "source_url": "https://api.congress.gov/v3/member/V000139/sponsored-legislation",
@@ -925,6 +925,15 @@
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10470",
       "title": "SHIELD for Victims Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10808-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-13",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10808",
+      "title": "STORK Act"
     },
     {
       "became_law": false,

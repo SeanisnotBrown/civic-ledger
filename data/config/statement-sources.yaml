@@ -19,6 +19,11 @@ provenance:
     or collector (c) stays off.
   owner_checked: false on every row until a human verifies it. Collector (a) and (c) must refuse a row
     that still says false.
+  no_press_source: 'owner-set, 2026-10-14. The member publishes no press-release list at all, so
+    there is nothing to collect and nothing to fix. no_press_reason and no_press_urls_tried record
+    what was looked for. A row carrying this must report as "no list exists", never as empty or
+    failed. NO CODE READS THIS YET: until it does, owner_checked: false is what keeps the collector
+    off the row.'
 members:
 - id: B001257
   name: Gus M. Bilirakis
@@ -175,7 +180,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: H001081
   name: Jahana Hayes
   party: D
@@ -206,12 +211,12 @@ members:
   chamber: house
   state: LA
   official_site: https://mikejohnson.house.gov
-  press_page: https://mikejohnson.house.gov/media/
-  press_page_source: http-200
+  press_page: https://mikejohnson.house.gov/media/press-releases
+  press_page_source: 'owner-directed: /media/ is the hub; the canonical press-release list is /media/press-releases'
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: K000377
   name: Mark Kelly
   party: D
@@ -285,7 +290,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: M001143
   name: Betty McCollum
   party: D
@@ -304,12 +309,12 @@ members:
   chamber: house
   state: KY
   official_site: https://massie.house.gov
-  press_page: https://massie.house.gov/media/
-  press_page_source: http-200
+  press_page: https://massie.house.gov/media/press-releases
+  press_page_source: 'owner-directed: /media/ is the hub; the canonical press-release list is /media/press-releases'
   rss: http://massie.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: M001194
   name: John R. Moolenaar
   party: R
@@ -333,7 +338,14 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: true
+  owner_checked: false
+  no_press_source: true
+  no_press_reason: site has no press-release list
+  no_press_urls_tried:
+  - https://maxmiller.house.gov/press-releases
+  - https://maxmiller.house.gov/media/press-releases
+  - https://maxmiller.house.gov/media
+  - https://maxmiller.house.gov/news
 - id: M001238
   name: Sarah McBride
   party: D
@@ -369,7 +381,7 @@ members:
   rss: null
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: R000622
   name: Josh Riley
   party: D
@@ -406,7 +418,7 @@ members:
   rss: http://www.shaheen.senate.gov/rss/
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: S001185
   name: Terri A. Sewell
   party: D
@@ -418,7 +430,7 @@ members:
   rss: http://sewell.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
-  owner_checked: false
+  owner_checked: true
 - id: S001232
   name: Tim Sheehy
   party: R

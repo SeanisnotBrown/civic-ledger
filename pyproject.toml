@@ -64,7 +64,10 @@ testpaths = ["tests"]
 # reachable without a key or a network. Add a module here when it starts deciding a
 # published number. P3 task 2 added pilot.py: its branches decide WHOSE statements get
 # collected, which is what the §6 symmetry check measures, so a silent eligibility bug
-# would bias the published stated-priorities lists.
+# would bias the published stated-priorities lists. P3 task 2 also added prefilter.py:
+# its branches decide which statements are THROWN AWAY before anything is read or
+# categorized, and an uneven filter biases the stated-priorities list no matter how
+# accurate the categorizer is (decision 4's fairness check).
 [tool.coverage.run]
 branch = true
 

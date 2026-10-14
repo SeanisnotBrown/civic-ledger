@@ -116,6 +116,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import random
 import re
 from collections import Counter, defaultdict
 from datetime import UTC, datetime
@@ -566,6 +567,19 @@ def sub_rule_counts(drops: list[dict], parties: dict[str, str]) -> list[dict[str
     return rows
 
 
+def judged_units(record: dict[str, Any]) -> int:
+    """How many things the filter judged in one statement — its denominator share.
+
+    Normally this is the number of turns. A statement with NO turns still gets judged
+    once, as `no-attributable-text`, so it counts as one: with `len(segments)` alone such
+    a record contributes 1 to a rule's numerator and 0 to the denominator, and the rate
+    goes above 100%. Measured 2026-10-14 on a part-collected corpus, the
+    `no-attributable-text` row read **112.8%** for Democrats — a number that cannot mean
+    anything, in the table the owner is asked to judge fairness by.
+    """
+    return len(record.get("segments") or []) or 1
+
+
 def fairness(
     records: list[dict[str, Any]],
     drops: list[dict],
@@ -594,7 +608,7 @@ def fairness(
         drops = [d for d in drops if d.get("source") == source]
     pool: dict[str, int] = defaultdict(int)
     for record in records:
-        pool[parties.get(record.get("member_id", ""), "?")] += len(record.get("segments") or [])
+        pool[parties.get(record.get("member_id", ""), "?")] += judged_units(record)
     rows: list[dict[str, Any]] = []
     for rule in DROP_RULES:
         hits = Counter(
@@ -775,12 +789,340 @@ def estimate_spend(
     }
 
 
+# The seed for the audit sample below. Committed with the report so the owner can re-draw
+# the identical 20 turns and satisfy himself that nothing was curated into the sample.
+PROCEDURAL_AUDIT_SEED = 20261014
+PROCEDURAL_AUDIT_SIZE = 20
+
+# A surviving statement this short is a one-liner: a bare vote urge with no reasoning
+# behind it. Same threshold as R2's length guard, measured the same way, so "the
+# procedural rule kept it" and "it is a one-liner" are the same measurement.
+SHORT_STATEMENT_CHARS = PROCEDURAL_MAX_CHARS
+
+
+def statement_content_chars(statement: dict[str, Any]) -> int:
+    """How much the member actually said in this statement, measured the way the rules
+    measure a turn — speaker name and salutation stripped, line wraps flattened."""
+    return sum(len(content(segment)) for segment in statement.get("segments") or [])
+
+
+def sample_procedural_drops(
+    records: list[dict[str, Any]],
+    drops: list[dict],
+    parties: dict[str, str],
+    *,
+    party: str = "R",
+    seed: int = PROCEDURAL_AUDIT_SEED,
+    size: int = PROCEDURAL_AUDIT_SIZE,
+) -> list[dict[str, Any]]:
+    """A seeded random sample of procedural drops from one party, with the FULL text.
+
+    This is the owner's own check on the R4 ruling he made on 2026-10-14. He accepted a
+    procedural drop rate roughly 2.3x higher for Republicans on the explanation that the
+    majority party's floor managers make the housekeeping requests. The explanation is
+    checkable only if he can read the turns themselves: **if any of these argue policy,
+    the rule is too wide and the ruling should be revisited.**
+
+    Random and seeded, not "the first 20" and not hand-picked: a curated sample would
+    prove nothing, and an unseeded one could not be re-drawn to check that it wasn't.
+    The excerpt in the drop log is capped for readability, so the text here is read back
+    from the corpus and is the whole turn.
+    """
+    by_key = {
+        (r.get("member_id", ""), r.get("granule_id", "")): r for r in records
+    }
+    pool = [
+        d
+        for d in drops
+        if d["rule"] == "procedural" and parties.get(d["member_id"]) == party
+    ]
+    pool.sort(key=lambda d: (d["member_id"], d["date"], d["statement_id"], d["turn"]))
+    drawn = random.Random(seed).sample(pool, min(size, len(pool)))
+    drawn.sort(key=lambda d: (d["member_id"], d["date"], d["statement_id"], d["turn"]))
+
+    out: list[dict[str, Any]] = []
+    for drop in drawn:
+        record = by_key.get((drop["member_id"], drop["statement_id"]))
+        segments = (record or {}).get("segments") or []
+        turn = drop["turn"]
+        text = (
+            content(cut_inserted_material(segments[turn])[0])
+            if 0 <= turn < len(segments)
+            else drop["excerpt"]
+        )
+        out.append(
+            {
+                "member_id": drop["member_id"],
+                "date": drop["date"],
+                "statement_id": drop["statement_id"],
+                "sub_rule": drop.get("sub_rule", ""),
+                "title": drop.get("title", ""),
+                "text": text,
+            }
+        )
+    return out
+
+
+def short_statement_load(
+    survivors: list[dict[str, Any]], cap: int
+) -> list[dict[str, Any]]:
+    """Per member, how much of decision 7's first-run allowance is spent on one-liners.
+
+    Decision 7 sends each member's NEWEST `cap` surviving statements to the categorizer.
+    A member whose newest statements are mostly bare vote urges — "I encourage a yes vote
+    on this bill, and I yield back" — spends that allowance on text with no reasoning in
+    it, and the run buys far less for them than for a member with argued speeches. R2
+    keeps those one-liners on purpose (a vote urge IS a position), so this does not
+    propose dropping them; it says plainly where the first run's money is going.
+    """
+    per_member: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for statement in survivors:
+        if statement.get("ai_eligible", True):
+            per_member[statement["member_id"]].append(statement)
+    rows: list[dict[str, Any]] = []
+    for member_id, items in per_member.items():
+        items.sort(key=lambda s: (s.get("date", ""), s.get("granule_id", "")), reverse=True)
+        newest = items[:cap]
+        short = [s for s in newest if statement_content_chars(s) < SHORT_STATEMENT_CHARS]
+        rows.append(
+            {
+                "member_id": member_id,
+                "to_categorizer": len(newest),
+                "short": len(short),
+                # "More than half" of what the member actually brings, not of the cap:
+                # a member with 6 statements is not flagged for having 4 short ones out
+                # of a 25 allowance they never filled.
+                "majority_short": len(newest) > 0 and len(short) * 2 > len(newest),
+            }
+        )
+    return sorted(rows, key=lambda r: r["member_id"])
+
+
+def press_coverage(data_dir: Path) -> dict[str, Any]:
+    """Press-release coverage per pilot cell (party x chamber), and every row that is not
+    collecting, by id.
+
+    The pilot was drawn equal by party and proportional by chamber precisely so the
+    fairness measurement has an equal-n base (decision 10). Press coverage can undo that
+    after the draw, silently: a cell whose rows all fail to collect has its say-vs-do
+    comparison resting on the Congressional Record alone, and no per-party drop rate
+    computed over collected text can show it — the rate is computed over what WAS
+    collected. So it goes at the top of the report.
+    """
+    pilot_path = data_dir / "config" / "statement-pilot.yaml"
+    index_path = data_dir / "raw" / "press" / "index.json"
+    if not pilot_path.exists() or not index_path.exists():
+        return {"cells": [], "non_collecting": [], "available": False}
+
+    pilot = yaml.safe_load(pilot_path.read_text(encoding="utf-8"))
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    walks = {w["member_id"]: w for w in index.get("walks", [])}
+    refused = {r["id"]: r for r in index.get("refused", [])}
+
+    cells: list[dict[str, Any]] = []
+    non_collecting: list[dict[str, Any]] = []
+    for cell in pilot["cells"]:
+        counts = {"collected": 0, "single_page": 0, "empty": 0, "refused": 0, "other": 0}
+        releases = 0
+        for member in cell["members"]:
+            member_id = member["id"]
+            walk = walks.get(member_id)
+            if member_id in refused:
+                counts["refused"] += 1
+                reason = f"refused — {refused[member_id]['reason']}"
+            elif walk is None:
+                counts["other"] += 1
+                reason = "not walked in this run"
+            elif walk["stopped"] == "empty":
+                counts["empty"] += 1
+                reason = "empty — the release list is not in the HTML a plain GET returns"
+            elif walk["stopped"] == "single-page":
+                counts["single_page"] += 1
+                releases += walk["releases"]
+                reason = ""
+            elif walk["stopped"] in ("window", "exhausted"):
+                counts["collected"] += 1
+                releases += walk["releases"]
+                reason = ""
+            else:
+                counts["other"] += 1
+                releases += walk["releases"]
+                reason = f"{walk['stopped']} — {walk.get('detail', '')}"
+            if reason:
+                non_collecting.append(
+                    {
+                        "id": member_id,
+                        "name": member["name"],
+                        "party": cell["party"],
+                        "chamber": cell["chamber"],
+                        "reason": reason,
+                    }
+                )
+        cells.append(
+            {
+                "party": cell["party"],
+                "chamber": cell["chamber"],
+                "members": len(cell["members"]),
+                "releases": releases,
+                **counts,
+                "zero_coverage": releases == 0,
+            }
+        )
+    return {
+        "cells": cells,
+        "non_collecting": sorted(non_collecting, key=lambda r: r["id"]),
+        "available": True,
+    }
+
+
+def _coverage_section(coverage: dict[str, Any] | None) -> list[str]:
+    """Press coverage per pilot cell, at the TOP, because a cell with none of it has a
+    say-vs-do comparison the rest of this report cannot see."""
+    if not coverage or not coverage.get("available"):
+        return [
+            "## Press coverage per pilot cell",
+            "",
+            "Not available: collector (a) has not run, so there is no press index to read.",
+            "",
+        ]
+    cells = coverage["cells"]
+    lines = [
+        "## Press coverage per pilot cell — read this first",
+        "",
+        "The pilot was drawn equal by party and proportional by chamber (decision 10) so "
+        "the fairness measurement has an equal-n base on both sides. **Press coverage can "
+        "undo that after the draw, and no drop rate in this report can show it** — every "
+        "rate below is computed over text that WAS collected.",
+        "",
+        "| Cell | Rows | Collected | Single-page | Empty by markup | Refused | Releases |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for cell in cells:
+        lines.append(
+            f"| {cell['party']} {cell['chamber']} | {cell['members']} "
+            f"| {cell['collected']} | {cell['single_page']} | {cell['empty']} "
+            f"| {cell['refused']} | {cell['releases']} |"
+        )
+    zero = [c for c in cells if c["zero_coverage"]]
+    lines.append("")
+    if zero:
+        for cell in zero:
+            lines.append(
+                f"**The {cell['party']} {cell['chamber']} cell has ZERO press coverage.** "
+                f"All {cell['members']} of its rows fail to collect "
+                f"({cell['refused']} refused, {cell['empty']} empty by markup), so for "
+                f"these members the \"say\" side of say-vs-do rests on the Congressional "
+                f"Record alone. Anything the pilot concludes about them is a conclusion "
+                f"about their floor speech, not about what their offices publish — and a "
+                f"press office and a floor speech are not the same voice."
+            )
+            lines.append("")
+    else:
+        lines += ["Every cell has some press coverage.", ""]
+
+    lines += ["### Every row that is not collecting", ""]
+    if coverage["non_collecting"]:
+        lines += [
+            "| Member | Party | Chamber | Reason |",
+            "| --- | --- | --- | --- |",
+        ]
+        for row in coverage["non_collecting"]:
+            lines.append(
+                f"| {row['name']} (`{row['id']}`) | {row['party']} | {row['chamber']} "
+                f"| {row['reason']} |"
+            )
+    else:
+        lines.append("None: every row in the pilot collects.")
+    lines.append("")
+    return lines
+
+
+def _short_statement_section(
+    rows: list[dict[str, Any]], names: dict[str, str], parties: dict[str, str], cap: int
+) -> list[str]:
+    """Where decision 7's first-run allowance actually goes, per member."""
+    flagged = [r for r in rows if r["majority_short"]]
+    lines = [
+        "",
+        f"## One-liners in the first run's allowance (under {SHORT_STATEMENT_CHARS} "
+        f"characters)",
+        "",
+        f"Decision 7 sends each member's newest **{cap}** surviving statements to the "
+        f"categorizer. R2 deliberately KEEPS a bare vote urge — \"I encourage a yes vote "
+        f"on this bill, and I yield back the balance of my time\" — because a vote urge is "
+        f"a position. This is not a proposal to drop them. It is where the first run's "
+        f"money goes: a member whose allowance is mostly one-liners buys far less "
+        f"analysis than a member with argued speeches, and that is worth knowing before "
+        f"the run rather than after it.",
+        "",
+        "| Member | Party | To the categorizer | Under the threshold | Flag |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    for row in rows:
+        flag = "**MOSTLY ONE-LINERS**" if row["majority_short"] else ""
+        lines.append(
+            f"| {names.get(row['member_id'], '?')} (`{row['member_id']}`) "
+            f"| {parties.get(row['member_id'], '?')} | {row['to_categorizer']} "
+            f"| {row['short']} | {flag} |"
+        )
+    lines.append("")
+    if flagged:
+        lines.append(
+            f"**{len(flagged)} member(s) flagged**: more than half of what they send to "
+            f"the categorizer is under {SHORT_STATEMENT_CHARS} characters. The threshold "
+            f"is \"more than half of what they actually bring\", not of the {cap} "
+            f"allowance — a member with six statements is not flagged for having four "
+            f"short ones out of an allowance they never filled."
+        )
+    else:
+        lines.append(
+            "No member is flagged: nobody's allowance is mostly one-liners."
+        )
+    lines.append("")
+    return lines
+
+
+def _audit_sample_section(
+    sample: list[dict[str, Any]], names: dict[str, str]
+) -> list[str]:
+    """The owner's own check on the R4 ruling, in full text."""
+    lines = [
+        "",
+        f"## Audit sample — {len(sample)} Republican procedural drops, at random, in full",
+        "",
+        "On 2026-10-14 the owner accepted a procedural drop rate roughly 2.3x higher for "
+        "Republicans, on the explanation that the majority party's floor managers make "
+        "the housekeeping requests. **This is the check on that.** Read them: *if any of "
+        "these argue policy, the rule is too wide and the ruling should be revisited.*",
+        "",
+        f"Drawn at random with seed `{PROCEDURAL_AUDIT_SEED}`, committed here so the same "
+        f"20 can be re-drawn — a hand-picked sample would prove nothing, and an unseeded "
+        f"one could not be checked for having been picked. The text is the WHOLE turn, "
+        f"read back from the corpus, not the drop log's shortened excerpt.",
+        "",
+    ]
+    if not sample:
+        lines += ["No Republican procedural drops in this corpus.", ""]
+        return lines
+    for n, drop in enumerate(sample, start=1):
+        lines += [
+            f"{n}. **{names.get(drop['member_id'], drop['member_id'])}** "
+            f"(`{drop['member_id']}`), {drop['date']} — `{drop['sub_rule']}` — "
+            f"{drop['title']}",
+            "",
+            f"   > {drop['text']}",
+            "",
+        ]
+    return lines
+
+
 def render_spend_report(
     records: list[dict[str, Any]],
     result: dict[str, Any],
     parties: dict[str, str],
     names: dict[str, str],
     estimate: dict[str, Any],
+    coverage: dict[str, Any] | None = None,
 ) -> str:
     """The count-before-spend report (owner decision 4).
 
@@ -788,6 +1130,12 @@ def render_spend_report(
     counts per source, per member and after each filter step, the per-party drop rate at
     each step with an explicit flag, and the estimated bill against the cap. **Nothing in
     this repository may make an AI call until the owner has read it and said yes.**
+
+    Three sections exist because the owner asked for them on 2026-10-14, each one a check
+    on a decision he had already made rather than a restatement of it: press coverage per
+    pilot cell (which can undo decision 10's equal-n draw after the fact), the seeded
+    audit sample of Republican procedural drops (his check on the R4 ruling), and the
+    one-liner load on decision 7's first-run allowance.
     """
     survivors = result["statements"]
     by_source_in = Counter(r.get("source", "?") for r in records)
@@ -802,6 +1150,11 @@ def render_spend_report(
         "**No AI call has been made. Nothing in this repository has spent a cent.** The "
         "pre-filter is free and rule-based; the two gates below are priced, not run.",
         "",
+    ]
+
+    lines += _coverage_section(coverage)
+
+    lines += [
         "## The funnel",
         "",
         "| Step | Statements | Member turns |",
@@ -915,6 +1268,16 @@ def render_spend_report(
             f"| {capped} |"
         )
 
+    lines += _short_statement_section(
+        short_statement_load(survivors, estimate["per_member_cap"]),
+        names,
+        parties,
+        estimate["per_member_cap"],
+    )
+    lines += _audit_sample_section(
+        sample_procedural_drops(records, result["drops"], parties), names
+    )
+
     verdict = (
         "**OVER THE CAP.** The run would stop part-way. The owner raises the cap for a "
         "run, or the builder does not run it — the builder never raises it unasked "
@@ -1004,11 +1367,13 @@ def run(argv: list[str] | None = None) -> int:
     if args.report:
         config = yaml.safe_load((data_dir / "config" / "ai.yaml").read_text(encoding="utf-8"))
         estimate = estimate_spend(result["statements"], config)
+        coverage = press_coverage(data_dir)
         report_dir = root / "docs" / "research"
         report_dir.mkdir(parents=True, exist_ok=True)
         report = report_dir / f"{datetime.now(UTC).date().isoformat()}-count-before-spend.md"
         atomic_write_text(
-            report, render_spend_report(records, result, parties, names, estimate)
+            report,
+            render_spend_report(records, result, parties, names, estimate, coverage),
         )
         print(
             f"  estimate: ${estimate['total_usd']:.2f} against a "

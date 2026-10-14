@@ -106,6 +106,13 @@ const ENTRY_LINKS = [
         {" "}<a href="/federal" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">search every member by name →</a>
       </p>
 
+      <!-- With JavaScript off the panels must all show, which is what makes this page
+           usable without it. `global.css` hides them by default so the browser never
+           lays out 539 links to paint a headline; this restores them for the reader
+           who has no script to reveal one. `set:html` keeps Astro from treating the
+           nested <style> as one of the page's own style blocks. -->
+      <noscript set:html={"<style>[data-reps-panels] > [data-state] { display: block; }</style>"} />
+
       <div class="mt-4" data-reps-panels>
         {delegations.map((d) => (
           <div data-state={d.state} class="mb-5 last:mb-0">
@@ -227,7 +234,15 @@ const ENTRY_LINKS = [
   if (select && panels.length) {
     const apply = () => {
       const want = select.value;
-      for (const p of panels) p.hidden = want !== p.dataset.state;
+      for (const p of panels) {
+        const show = want === p.dataset.state;
+        // `hidden` for semantics and assistive tech; the inline `display` because
+        // global.css hides these by default and an attribute would not beat it
+        // (D73: a class in the cascade silently outranking `[hidden]`). Clearing the
+        // inline value hands the element back to that default rather than fighting it.
+        p.hidden = !show;
+        p.style.display = show ? "block" : "";
+      }
     };
     apply();
     select.addEventListener("change", apply);

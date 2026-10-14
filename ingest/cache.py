@@ -234,3 +234,44 @@ def fetch(
     return CachedResponse(
         path=data_path, text=resp.text, status=resp.status_code, from_cache=False, ext=ext
     )
+
+
+def store(
+    source: str,
+    url: str,
+    text: str,
+    *,
+    params: dict | None = None,
+    ext: str = "json",
+    status: int = 200,
+    renderer: str | None = None,
+) -> Path:
+    """Write a body into the cache as if `fetch()` had retrieved it.
+
+    The one caller is the rendered-fetch path (`ingest/press_render.py`): eleven pilot
+    rows publish their release list from JavaScript, so a plain GET returns a page with
+    zero dated items (STATUS fact 7). A browser renders those pages and the body lands
+    here, which is what lets `statements_press.py` consume them UNCHANGED — it still
+    only ever reads through `fetch()`, and finds a fresh entry waiting.
+
+    `renderer` is recorded in the sidecar so a rendered entry is distinguishable from a
+    plain GET by looking at the cache, not by remembering. `_fresh()` reads only
+    `fetched_at`, so the extra key costs nothing.
+
+    Same write order and atomicity as `fetch()`: body first, sidecar second, both
+    atomic, so an interrupted run never leaves a torn body under a fresh sidecar.
+    """
+    key = _cache_key(url, params)
+    data_path, meta_path = _paths(source, key, ext)
+    atomic_write_text(data_path, text)
+    meta = {
+        "url": url,
+        "params": params or {},
+        "fetched_at": datetime.now(UTC).isoformat(),
+        "status": status,
+        "ext": ext,
+    }
+    if renderer:
+        meta["renderer"] = renderer
+    atomic_write_text(meta_path, json.dumps(meta, indent=2, sort_keys=True))
+    return data_path

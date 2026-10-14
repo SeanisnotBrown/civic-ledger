@@ -124,6 +124,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import statements_press
 
         return statements_press.run(args[1:])
+    if args and args[0] == "press-render":
+        from ingest import press_render
+
+        return press_render.run(args[1:])
     if args and args[0] == "prefilter":
         from ingest import prefilter
 
@@ -150,6 +154,7 @@ def main(argv: list[str] | None = None) -> int:
     print("                  --keep-limit N (default 60) | --limit-issues N | --members IDS")
     print("  statements-press P3 task 2a member press releases for the pilot 40")
     print("                  --index-only | --limit-pages N | --members IDS")
+    print("  press-render  P3 task 2a rendered fetch for the 11 client-side press lists")
     print("  prefilter     P3 decision 2 the free rule-based pre-filter (no AI, no network)")
     print("                  --dry-run: counts only, writes no drop log")
     print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")

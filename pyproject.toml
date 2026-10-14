@@ -70,7 +70,10 @@ testpaths = ["tests"]
 # accurate the categorizer is (decision 4's fairness check). And statements_press.py:
 # its branches decide whether a row the owner has NOT checked gets fetched anyway, and
 # whether a page a plain GET cannot read is reported as a failure or as a member who
-# published nothing.
+# published nothing. And press_render.py, for the same reason one level down: it reads
+# the seven rows the owner has not accepted in order to render them, so its branches are
+# what keep "read the row" from becoming "accept the row", and its cache-write branch
+# decides whether a FAILED render gets stored as a member's empty press archive.
 [tool.coverage.run]
 branch = true
 

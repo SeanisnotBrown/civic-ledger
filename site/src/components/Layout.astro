@@ -90,9 +90,23 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
       // with JavaScript off every title renders in full, which is the content.
       // The button is added only where the text really overflows two lines, so a
       // short title never grows a pointless control.
-      for (const el of document.querySelectorAll<HTMLElement>("[data-clamp]")) {
-        el.classList.add("line-clamp-2");
-        if (el.scrollHeight <= el.clientHeight + 1) {
+      //
+      // THREE PASSES, NOT ONE, and the reason is the Lighthouse gate. The original
+      // loop added the class and then read `scrollHeight` on the SAME element before
+      // moving on. A style write followed by a layout read forces the browser to
+      // recompute layout synchronously, every iteration — and `/m/A000055/1` carries
+      // 283 of these, so it was 283 full layouts of a 5,474-element document on the
+      // main thread, which is Total Blocking Time and 30% of the performance score.
+      // Writing all the classes, then reading all the measurements, then writing all
+      // the results costs ONE layout: the first read in pass two forces it, and the
+      // rest are free because nothing invalidates it in between. The decision each
+      // element gets, and therefore the rendered result, is identical.
+      const clamped = [...document.querySelectorAll<HTMLElement>("[data-clamp]")];
+      for (const el of clamped) el.classList.add("line-clamp-2");
+      // One forced layout happens here, on the first read, and serves all of them.
+      const overflowing = clamped.map((el) => el.scrollHeight > el.clientHeight + 1);
+      for (const [i, el] of clamped.entries()) {
+        if (!overflowing[i]) {
           el.classList.remove("line-clamp-2");
           continue;
         }

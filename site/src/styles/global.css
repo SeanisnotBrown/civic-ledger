@@ -114,3 +114,19 @@
     background: rgba(230, 230, 230, 0.25);
   }
 }
+
+/* The homepage's state delegations: hidden BEFORE first paint, not after it.
+   `/` ships every delegation so the page works with JavaScript off — 56 panels and
+   539 member links, 237 KB of HTML — and the picker script then collapses them to the
+   one state the reader picks. Collapsing in script meant the browser laid out and
+   painted all 539 links first and threw them away a moment later, on a throttled
+   mobile CPU, to show a headline and a dropdown. Hiding them here costs nothing: the
+   layout never happens.
+
+   The no-JS path is preserved exactly by the <noscript> override on the page itself,
+   which un-hides all of them, and the script sets an inline `display` to reveal the
+   picked one — an inline style rather than the `hidden` attribute because this rule
+   would otherwise beat it in the cascade (the D73 lesson). */
+[data-reps-panels] > [data-state] {
+  display: none;
+}

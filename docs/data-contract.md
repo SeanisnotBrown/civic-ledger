@@ -293,6 +293,20 @@ Sorted by (member, date, statement, turn, rule) with no wall-clock anywhere, so 
 re-run over an unchanged corpus is byte-identical. The ratified rules it implements are
 §2's four rulings of 2026-10-14; `ingest/prefilter.py` records each one and why.
 
+**Rendered cache entries (P3 task 2a).** `data/raw/press/{key}.html` is normally a
+plain GET, but eleven pilot rows publish their release list from JavaScript and a plain
+GET returns a page with zero dated items (STATUS fact 7). For those,
+`ingest/press_render.py` drives Playwright (via `site/scripts/render-press-pages.mjs`)
+and stores the rendered body through `cache.store`, which writes the SAME key and
+sidecar shape `cache.fetch` reads — so `statements_press.py` consumes a rendered page
+without knowing it was rendered. The sidecar carries one extra field, `"renderer":
+"playwright"`, which is how a rendered entry is told apart from a fetched one by looking
+at the cache rather than by remembering. A render that FAILED is never stored: a cached
+empty list would tell the collector the member published nothing and stay fresh for the
+7-day press TTL. **CI cannot produce these** (the `python` job has no Node, and the
+pages are live third-party sites), so they are refreshed by hand and expire on that
+same 7-day TTL.
+
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
 counts. The site build reads `dead_statement_ids` and excludes those statements until

@@ -282,6 +282,17 @@ D9 short-title → bill-id map: the one sanctioned exception to "pair by bill id
 only". Keys match statement titles case-insensitively; values must be valid bill
 ids. After editing it, run `curate statements repair` to re-resolve existing records.
 
+`data/quality/statement-prefilter-drops.json` (P3 decision 2) is the pre-filter's
+committed audit: every member TURN the free rule-based filter threw away before any
+AI call, with the rule that dropped it, the `sub_rule` where it has one, and an
+excerpt to check the decision against. The decision's own words are why it exists —
+"a silent filter is a hidden editorial judgment." Header fields carry the funnel
+(`statements_in`/`statements_kept`, `turns_in`/`turns_kept`), the fixed `rule_order`
+(first match wins, so the per-rule counts are reproducible) and `procedural_max_chars`.
+Sorted by (member, date, statement, turn, rule) with no wall-clock anywhere, so a
+re-run over an unchanged corpus is byte-identical. The ratified rules it implements are
+§2's four rulings of 2026-10-14; `ingest/prefilter.py` records each one and why.
+
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
 counts. The site build reads `dead_statement_ids` and excludes those statements until

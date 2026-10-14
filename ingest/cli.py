@@ -120,6 +120,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import statements_crec
 
         return statements_crec.run(args[1:])
+    if args and args[0] == "statements-press":
+        from ingest import statements_press
+
+        return statements_press.run(args[1:])
     if args and args[0] == "prefilter":
         from ingest import prefilter
 
@@ -144,6 +148,8 @@ def main(argv: list[str] | None = None) -> int:
     print("  statements-crec P3 task 2b Congressional Record speeches for the pilot 40")
     print("                  --index-only: the count report with no granule text")
     print("                  --keep-limit N (default 60) | --limit-issues N | --members IDS")
+    print("  statements-press P3 task 2a member press releases for the pilot 40")
+    print("                  --index-only | --limit-pages N | --members IDS")
     print("  prefilter     P3 decision 2 the free rule-based pre-filter (no AI, no network)")
     print("                  --dry-run: counts only, writes no drop log")
     print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")

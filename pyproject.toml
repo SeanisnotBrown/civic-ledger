@@ -67,7 +67,10 @@ testpaths = ["tests"]
 # would bias the published stated-priorities lists. P3 task 2 also added prefilter.py:
 # its branches decide which statements are THROWN AWAY before anything is read or
 # categorized, and an uneven filter biases the stated-priorities list no matter how
-# accurate the categorizer is (decision 4's fairness check).
+# accurate the categorizer is (decision 4's fairness check). And statements_press.py:
+# its branches decide whether a row the owner has NOT checked gets fetched anyway, and
+# whether a page a plain GET cannot read is reported as a failure or as a member who
+# published nothing.
 [tool.coverage.run]
 branch = true
 

@@ -107,8 +107,9 @@ through, which would have truncated hundreds of real speeches at their opening s
   * the surviving statements, returned to the caller, for the count report and the
     triage gate to read.
 
-    uv run ingest prefilter             # over the CREC corpus, writes the drop log
+    uv run ingest prefilter             # every collector's output, writes the drop log
     uv run ingest prefilter --dry-run   # counts only, writes nothing
+    uv run ingest prefilter --report    # and the count-before-spend report (decision 4)
 """
 
 from __future__ import annotations
@@ -117,8 +118,11 @@ import argparse
 import json
 import re
 from collections import Counter, defaultdict
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
+
+import yaml
 
 from ingest.cache import atomic_write_text, repo_root
 
@@ -630,22 +634,281 @@ def write_drop_log(result: dict[str, Any], data_dir: Path) -> Path:
 # --- the run --------------------------------------------------------------------------
 
 
-def load_crec(data_dir: Path) -> tuple[list[dict[str, Any]], dict[str, str]]:
-    """The collected Congressional Record corpus, with each member's party from the
-    committed pilot sample rather than re-derived."""
-    statements_dir = data_dir / "raw" / "crec" / "statements"
-    if not statements_dir.is_dir():
-        raise PrefilterError(
-            f"no collected corpus at {statements_dir}; run `uv run ingest statements-crec`"
-        )
+def _load_dir(statements_dir: Path) -> tuple[list[dict[str, Any]], dict[str, str], dict[str, str]]:
+    """Every collected statement under one collector's output directory, with each
+    member's party and name as that collector recorded them."""
     records: list[dict[str, Any]] = []
     parties: dict[str, str] = {}
+    names: dict[str, str] = {}
     for path in sorted(statements_dir.glob("*.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
         member = payload["member"]
         parties[member["id"]] = member["party"]
+        names[member["id"]] = member["name"]
         records.extend(payload["statements"])
-    return records, parties
+    return records, parties, names
+
+
+def load_all(data_dir: Path) -> tuple[list[dict[str, Any]], dict[str, str], dict[str, str]]:
+    """Every collected statement from EVERY collector that has run, in one list.
+
+    The pre-filter is source-agnostic and the cross-source duplicate rule only works if
+    both sources are in the same pass, so the count-before-spend report reads them
+    together. A collector that has not run yet contributes nothing and is not an error:
+    (c) waits on campaign URLs and (d) on platform access.
+    """
+    raw = data_dir / "raw"
+    records: list[dict[str, Any]] = []
+    parties: dict[str, str] = {}
+    names: dict[str, str] = {}
+    found = False
+    for subdir in ("crec", "press"):
+        statements_dir = raw / subdir / "statements"
+        if not statements_dir.is_dir():
+            continue
+        found = True
+        more, more_parties, more_names = _load_dir(statements_dir)
+        records.extend(more)
+        parties.update(more_parties)
+        names.update(more_names)
+    if not found:
+        raise PrefilterError(
+            f"no collected corpus under {raw}; run `uv run ingest statements-crec` "
+            "and `uv run ingest statements-press`"
+        )
+    return records, parties, names
+
+
+# A rough characters-per-token for English prose, used ONLY to estimate a bill before it
+# is incurred. The cap in `ai.yaml` is enforced on MEASURED spend by `ingest/ai.py`, so an
+# estimate that is off by a fifth cannot overspend anything — it can only mis-advise the
+# owner about whether to raise the cap.
+CHARS_PER_TOKEN = 4
+
+# What one call adds beyond the statement itself: the prompt, the schema, and the model's
+# own thinking plus JSON on the way out. Measured against the four live calls of
+# 2026-10-09 (STATUS fact 8), which came to $0.0095-$0.014 per categorized statement.
+PROMPT_OVERHEAD_TOKENS = 900
+TRIAGE_OUTPUT_TOKENS = 30
+CATEGORIZE_OUTPUT_TOKENS = 700
+
+
+def _cost(prices: dict[str, float], in_tokens: int, out_tokens: int) -> float:
+    return (in_tokens * prices["input"] + out_tokens * prices["output"]) / 1_000_000
+
+
+def estimate_spend(
+    survivors: list[dict[str, Any]], config: dict[str, Any]
+) -> dict[str, Any]:
+    """What the next run would cost, from the same prices the cap enforces.
+
+    Two stages, each priced on what actually reaches it:
+
+      * the Haiku triage gate (decision 3) reads every surviving statement EXCEPT the
+        vote explanations R3 marks ineligible;
+      * the Opus categorizer reads only each member's newest
+        `max_statements_per_member_per_run` (decision 7) of those that a triage `true`
+        would pass — and because the triage verdict is not knowable before the run, this
+        prices the WORST case, every one passing.
+    """
+    cap = int(config["max_statements_per_member_per_run"])
+    eligible = [s for s in survivors if s.get("ai_eligible", True)]
+
+    triage_in = sum(
+        len("".join(s["segments"])) // CHARS_PER_TOKEN + PROMPT_OVERHEAD_TOKENS
+        for s in eligible
+    )
+    triage = _cost(
+        config["prices"][config["tasks"]["triage_statement"]["model"]],
+        triage_in,
+        TRIAGE_OUTPUT_TOKENS * len(eligible),
+    )
+
+    # Newest first, per member, then the cap — decision 7's own order.
+    per_member: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    for statement in eligible:
+        per_member[statement["member_id"]].append(statement)
+    categorized: list[dict[str, Any]] = []
+    for items in per_member.values():
+        items.sort(key=lambda s: (s.get("date", ""), s.get("granule_id", "")), reverse=True)
+        categorized.extend(items[:cap])
+
+    categorize_in = sum(
+        len("".join(s["segments"])) // CHARS_PER_TOKEN + PROMPT_OVERHEAD_TOKENS
+        for s in categorized
+    )
+    categorize = _cost(
+        config["prices"][config["tasks"]["categorize_statement"]["model"]],
+        categorize_in,
+        CATEGORIZE_OUTPUT_TOKENS * len(categorized),
+    )
+
+    total = triage + categorize
+    cap_usd = float(config["per_run_cost_cap_usd"])
+    return {
+        "triage_statements": len(eligible),
+        "triage_usd": round(triage, 4),
+        "categorize_statements": len(categorized),
+        "categorize_usd": round(categorize, 2),
+        "total_usd": round(total, 2),
+        "cap_usd": cap_usd,
+        "over_cap": total > cap_usd,
+        "per_member_cap": cap,
+        "ineligible": len(survivors) - len(eligible),
+    }
+
+
+def render_spend_report(
+    records: list[dict[str, Any]],
+    result: dict[str, Any],
+    parties: dict[str, str],
+    names: dict[str, str],
+    estimate: dict[str, Any],
+) -> str:
+    """The count-before-spend report (owner decision 4).
+
+    Its whole job is to be the thing the owner approves spend against, so it carries the
+    counts per source, per member and after each filter step, the per-party drop rate at
+    each step with an explicit flag, and the estimated bill against the cap. **Nothing in
+    this repository may make an AI call until the owner has read it and said yes.**
+    """
+    survivors = result["statements"]
+    by_source_in = Counter(r.get("source", "?") for r in records)
+    by_source_out = Counter(s.get("source", "?") for s in survivors)
+    lines = [
+        "# Count before spend — the report the owner approves an AI run against",
+        "",
+        "Owner decision 4 (§5 Phase 3): *\"Collectors cache raw only. Before any AI call "
+        "the run reports counts per source, per member, and after each filter step, plus "
+        "estimated cost — then WAITS for the owner's approval.\"*",
+        "",
+        "**No AI call has been made. Nothing in this repository has spent a cent.** The "
+        "pre-filter is free and rule-based; the two gates below are priced, not run.",
+        "",
+        "## The funnel",
+        "",
+        "| Step | Statements | Member turns |",
+        "| --- | --- | --- |",
+        f"| Collected | {result['statements_in']} | {result['turns_in']} |",
+        f"| After the free pre-filter (decision 2) | {result['statements_kept']} "
+        f"| {result['turns_kept']} |",
+        f"| Of those, eligible for the AI | {estimate['triage_statements']} | — |",
+        f"| Reaching the Haiku triage gate (decision 3) | {estimate['triage_statements']} "
+        f"| — |",
+        f"| Reaching the Opus categorizer (decision 7 cap: "
+        f"{estimate['per_member_cap']}/member) | {estimate['categorize_statements']} | — |",
+        "",
+        f"{estimate['ineligible']} surviving statements are marked **ineligible for the "
+        f"AI** and are never priced: they are the vote explanations the owner ruled on "
+        f"(R3, 2026-10-14) — kept as record, matched to their roll call mechanically, "
+        f"never categorized.",
+        "",
+        "## Per source",
+        "",
+        "| Source | Collected | Kept | Dropped |",
+        "| --- | --- | --- | --- |",
+    ]
+    for source in sorted(by_source_in):
+        kept = by_source_out.get(source, 0)
+        lines.append(
+            f"| `{source}` | {by_source_in[source]} | {kept} "
+            f"| {by_source_in[source] - kept} |"
+        )
+
+    lines += [
+        "",
+        "## Fairness at each filter step (decision 4)",
+        "",
+        "Rates are per party, over the turns that party brought to the filter — the pilot "
+        "is equal by party in MEMBERS, not in turns. A step is flagged when the party "
+        "rates differ by 1.5x or more over at least "
+        f"{UNEVEN_MIN_TURNS} dropped turns.",
+        "",
+        "| Rule | Turns dropped | D | R | D rate | R rate | Flag |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    rows = fairness(records, result["drops"], parties)
+    for row in rows:
+        flag = "**UNEVEN**" if row["uneven"] else "even"
+        lines.append(
+            f"| `{row['rule']}` | {row['turns']} | {row['D']} | {row['R']} "
+            f"| {row['D_rate']}% | {row['R_rate']}% | {flag} |"
+        )
+
+    flagged = [row for row in rows if row["uneven"]]
+    lines += ["", "### The flagged step, broken down to each sub-rule", ""]
+    if flagged:
+        lines += [
+            "The owner accepted the procedural gap on 2026-10-14 **on condition that the "
+            "drop log and this report break it down to each sub-rule**, so the structural "
+            "explanation is checkable rather than asserted (R4). The cause is that the "
+            "majority party's floor managers make the housekeeping requests.",
+            "",
+            "| Sub-rule | Turns | D | R |",
+            "| --- | --- | --- | --- |",
+        ]
+        for row in sub_rule_counts(result["drops"], parties):
+            lines.append(f"| `{row['sub_rule']}` | {row['turns']} | {row['D']} | {row['R']} |")
+    else:
+        lines.append("No step is flagged.")
+
+    lines += [
+        "",
+        "## Per member",
+        "",
+        "| Member | Party | Collected | Kept | To the categorizer |",
+        "| --- | --- | --- | --- | --- |",
+    ]
+    collected_by_member = Counter(r.get("member_id", "?") for r in records)
+    kept_by_member = Counter(s["member_id"] for s in survivors)
+    eligible_by_member = Counter(
+        s["member_id"] for s in survivors if s.get("ai_eligible", True)
+    )
+    for member_id in sorted(collected_by_member):
+        capped = min(eligible_by_member.get(member_id, 0), estimate["per_member_cap"])
+        lines.append(
+            f"| {names.get(member_id, '?')} ({member_id}) | {parties.get(member_id, '?')} "
+            f"| {collected_by_member[member_id]} | {kept_by_member.get(member_id, 0)} "
+            f"| {capped} |"
+        )
+
+    verdict = (
+        "**OVER THE CAP.** The run would stop part-way. The owner raises the cap for a "
+        "run, or the builder does not run it — the builder never raises it unasked "
+        "(decision 9)."
+        if estimate["over_cap"]
+        else "**Under the cap.** The run would complete without stopping on spend."
+    )
+    lines += [
+        "",
+        "## Estimated cost",
+        "",
+        "| Stage | Statements | Estimated |",
+        "| --- | --- | --- |",
+        f"| Haiku triage gate | {estimate['triage_statements']} "
+        f"| ${estimate['triage_usd']:.4f} |",
+        f"| Opus categorizer | {estimate['categorize_statements']} "
+        f"| ${estimate['categorize_usd']:.2f} |",
+        f"| **Total** | | **${estimate['total_usd']:.2f}** |",
+        f"| Cap (`per_run_cost_cap_usd`) | | ${estimate['cap_usd']:.2f} |",
+        "",
+        verdict,
+        "",
+        "Priced from `data/config/ai.yaml` — the same prices `ingest/ai.py` enforces the "
+        "cap on — at roughly four characters per token, plus prompt and schema overhead "
+        "and the model's own thinking tokens on the way out. The categorizer line prices "
+        "the WORST case: every statement passing the triage gate. Measured against four "
+        "live calls on 2026-10-09, a categorized statement ran $0.0095-$0.014.",
+        "",
+        "## What a yes authorises, and what it does not",
+        "",
+        "A yes here authorises **one run** of the triage gate and the categorizer under "
+        "the cap above. It does not authorise publishing anything: Q-K, the precision "
+        "launch bar, is still open, and nothing categorized publishes before it is "
+        "answered. Archive capture (decision 8) happens after both gates and before the "
+        "review queue, and the archive sweep's own keys are still owed.",
+    ]
+    return "\n".join(lines) + "\n"
 
 
 def run(argv: list[str] | None = None) -> int:
@@ -656,10 +919,21 @@ def run(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--dry-run", action="store_true", help="counts only; write no drop log"
     )
+    parser.add_argument(
+        "--report",
+        action="store_true",
+        help="read EVERY collector's output and write the count-before-spend report "
+        "(decision 4) to docs/research/",
+    )
     args = parser.parse_args(argv)
 
-    data_dir = repo_root() / "data"
-    records, parties = load_crec(data_dir)
+    root = repo_root()
+    data_dir = root / "data"
+    # ALWAYS every collector, report or not: the drop log is one committed file, so a
+    # CREC-only pass and a combined pass would overwrite each other with different
+    # `rule_counts` depending on which command ran last. `load_all` tolerates a collector
+    # that has not run yet, so there is no reason for a narrower path.
+    records, parties, names = load_all(data_dir)
     result = run_prefilter(records)
 
     print(
@@ -682,7 +956,24 @@ def run(argv: list[str] | None = None) -> int:
         print("  --dry-run: no drop log written")
         return 0
     path = write_drop_log(result, data_dir)
-    print(f"  drop log: {path.relative_to(repo_root())}")
+    print(f"  drop log: {path.relative_to(root)}")
+
+    if args.report:
+        config = yaml.safe_load((data_dir / "config" / "ai.yaml").read_text(encoding="utf-8"))
+        estimate = estimate_spend(result["statements"], config)
+        report_dir = root / "docs" / "research"
+        report_dir.mkdir(parents=True, exist_ok=True)
+        report = report_dir / f"{datetime.now(UTC).date().isoformat()}-count-before-spend.md"
+        atomic_write_text(
+            report, render_spend_report(records, result, parties, names, estimate)
+        )
+        print(
+            f"  estimate: ${estimate['total_usd']:.2f} against a "
+            f"${estimate['cap_usd']:.2f} cap"
+            + ("  <-- OVER THE CAP" if estimate["over_cap"] else "")
+        )
+        print(f"  report:   {report.relative_to(root)}")
+        print("  NO AI CALL MADE. Nothing runs until the owner approves this report.")
     return 0
 
 

@@ -643,16 +643,16 @@ def _corpus(data_dir: Path) -> None:
         )
 
 
-def test_load_crec_reads_the_corpus_and_each_members_party_from_the_sample(tmp_path: Path):
+def test_the_corpus_carries_each_members_party_from_the_committed_sample(tmp_path: Path):
     _corpus(tmp_path / "data")
-    records, parties = prefilter.load_crec(tmp_path / "data")
+    records, parties, _ = prefilter.load_all(tmp_path / "data")
     assert len(records) == 2
     assert parties == {"D000001": "D", "R000002": "R"}
 
 
-def test_load_crec_says_what_to_run_when_nothing_has_been_collected(tmp_path: Path):
+def test_nothing_collected_at_all_says_what_to_run(tmp_path: Path):
     with pytest.raises(prefilter.PrefilterError, match="ingest statements-crec"):
-        prefilter.load_crec(tmp_path / "data")
+        prefilter.load_all(tmp_path / "data")
 
 
 def test_the_runner_writes_the_drop_log_and_reports(tmp_path: Path, capsys, monkeypatch):

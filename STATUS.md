@@ -27,5 +27,5 @@ Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never a
 `uv run ingest events && uv run ingest topics && uv run export` → `uv run verify-recompute` → `uv run ruff check .` →
 the pytest gate below (~4 GB, ~22-32 min, never beside a site build) → `cd site && npm run build` + its seven `test:*` scripts + `npx playwright test`.
 ```
-CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov=ingest.statements_crec --cov-branch --cov-fail-under=100
+CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov=ingest.statements_crec --cov=ingest.prefilter --cov=ingest.statements_press --cov-branch --cov-fail-under=100
 ```

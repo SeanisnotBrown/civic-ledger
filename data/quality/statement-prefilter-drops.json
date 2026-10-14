@@ -7,16 +7,16 @@
     "duplicate"
   ],
   "procedural_max_chars": 200,
-  "statements_in": 4630,
-  "statements_kept": 3104,
-  "turns_in": 7611,
-  "turns_kept": 5744,
+  "statements_in": 10810,
+  "statements_kept": 9042,
+  "turns_in": 13731,
+  "turns_kept": 11682,
   "rule_counts": {
-    "no-attributable-text": 48,
+    "no-attributable-text": 108,
     "procedural": 382,
-    "ceremonial": 1466,
-    "office-logistics": 2,
-    "duplicate": 17
+    "ceremonial": 1593,
+    "office-logistics": 45,
+    "duplicate": 29
   },
   "drops": [
     {
@@ -311,6 +311,17 @@
     },
     {
       "member_id": "B001257",
+      "date": "2023-07-05",
+      "statement_id": "/media/press-releases/bilirakis-fights-parental-rights",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Bilirakis FIghts for Parental Rights",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "B001257",
       "date": "2023-07-17",
       "statement_id": "CREC-2023-07-17-pt1-PgH3620",
       "source": "congressional_record",
@@ -335,6 +346,28 @@
     },
     {
       "member_id": "B001257",
+      "date": "2023-07-26",
+      "statement_id": "/media/press-releases/bilirakis-named-veterans-advisor-speaker-mccarthy",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Bilirakis Named Veterans\u2019 Advisor to Speaker McCarthy",
+      "chars": 2650,
+      "excerpt": "Washington: Earlier today, House Speaker Kevin McCarthy appointed Representative Gus Bilirakis to serve as Veterans\u2019 Advisorto the Speaker. Bilirakis, who served for more than fourteen years as the Vice-Chairman of the House Veterans Affair"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2023-08-22",
+      "statement_id": "/media/press-releases/bilirakis-host-town-hall-local-veterans-and-their-families",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Bilirakis to Host Town Hall for Local Veterans and Their Families",
+      "chars": 990,
+      "excerpt": "On August 29, 2023, Congressman Gus Bilirakis will host a town hall for Veterans and their families from Hernando, Citrus and Pasco counties. During this public forum, Bilirakis will be joined by senior leaders from the James A. Haley Veter"
+    },
+    {
+      "member_id": "B001257",
       "date": "2023-09-08",
       "statement_id": "CREC-2023-09-08-pt1-PgE816-3",
       "source": "congressional_record",
@@ -354,6 +387,28 @@
       "title": "HONORING WORLD-RENOWN CONSERVATIONIST, THEO PAGEL WITH AMERICAN HUMANE/ GLOBAL HUMANE'S KIESSLING INTERNATIONAL PRIZE FOR SPECIES CONSERVATION",
       "chars": 2077,
       "excerpt": "I rise today to recognize heroic efforts on behalf of wildlife worldwide. American Humane, the first and most experienced national humane organization, which was created in 1877 to ensure the safety, welfare, and well-being of animals, has "
+    },
+    {
+      "member_id": "B001257",
+      "date": "2023-09-17",
+      "statement_id": "/media/press-releases/bilirakis-wins-another-award-constituent-communication",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Bilirakis Wins Another Award for Constituent Communication",
+      "chars": 1568,
+      "excerpt": "WASHINGTON, D.C., Earlier today, Congressman Gus Bilirakis was declared the 2023 winner for the Constituent Communications award within the House Republican Conference. As part of this annual competition, Members of Congress seek to increas"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2023-10-12",
+      "statement_id": "/media/press-releases/bilirakis-urges-biden-administration-protect-jewish-students-against",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Bilirakis Urges Biden Administration to Protect Jewish Students Against Harassment and Anti-Semitic Behavior",
+      "chars": 1537,
+      "excerpt": "Washington, DC: Earlier today, Congressman Gus Bilirakis joined with many of his colleagues to urge U.S. Department of Education Secretary Miguel Cardona to take swift action to protect Jewish students on college and university campuses fro"
     },
     {
       "member_id": "B001257",
@@ -424,6 +479,28 @@
       "chars": 33,
       "excerpt": "I reserve the balance of my time.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2023-12-14",
+      "statement_id": "/media/press-releases/dr-emmanuel-bilirakis-and-honorable-jennifer-wexton-national-plan-end",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Dr. Emmanuel Bilirakis and Honorable Jennifer Wexton National Plan to End Parkinson's Act Passes House",
+      "chars": 6260,
+      "excerpt": "WASHINGTON, D.C. \u2013 U.S. Representatives Gus Bilirakis (R-FL) and Paul Tonko (D-N.Y.) are celebrating the fact that their landmark Parkinson\u2019s legislation passed the House of Representatives today. This no-cost legislation will, for the firs"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2023-12-18",
+      "statement_id": "/media/press-releases/bilirakis-named-veterans-advisor-speaker-johnson",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Bilirakis Named Veterans\u2019 Advisor to Speaker Johnson",
+      "chars": 3227,
+      "excerpt": "Washington: Earlier today, House Speaker Mike Johnson appointed Representative Gus Bilirakis to serve as Veterans\u2019 Advisor to the Speaker. Bilirakis, who served for 14 years on the House Veterans Affairs Committee, including multiple years "
     },
     {
       "member_id": "B001257",
@@ -1077,6 +1154,17 @@
     {
       "member_id": "B001257",
       "date": "2024-05-10",
+      "statement_id": "/media/press-releases/rep-gus-bilirakis-named-finalist-two-democracy-awards",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Rep. Gus Bilirakis Named As Finalist for Two Democracy Awards",
+      "chars": 3881,
+      "excerpt": "WASHINGTON, D.C.: Today, The Congressional Management Foundation (CMF) announced that Rep. Gus Bilirakis is a finalist for two different Democracy Awards. Through its annual Democracy Awards, CMF recognizes non-legislative achievement and p"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2024-05-10",
       "statement_id": "CREC-2024-05-10-pt1-PgE473-3",
       "source": "congressional_record",
       "turn": 0,
@@ -1606,6 +1694,17 @@
     },
     {
       "member_id": "B001257",
+      "date": "2024-05-29",
+      "statement_id": "/media/press-releases/dr-emmanuel-bilirakis-and-honorable-jennifer-wexton-national-plan-end-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Dr. Emmanuel Bilirakis and Honorable Jennifer Wexton National Plan to End Parkinson's Act Clears House and Senate, Headed to the President\u2019s Desk to Become Law",
+      "chars": 5508,
+      "excerpt": "Washington, DC: U.S. Representatives Gus Bilirakis (R-FL) and Paul Tonko (D-N.Y.) are celebrating the fact that their landmark Parkinson\u2019s legislation passed out of the United States Senate today. This no-cost legislation will, for the firs"
+    },
+    {
+      "member_id": "B001257",
       "date": "2024-06-11",
       "statement_id": "CREC-2024-06-11-pt1-PgH3704",
       "source": "congressional_record",
@@ -1639,6 +1738,28 @@
       "chars": 169,
       "excerpt": "I ask unanimous consent that all Members may have 5 legislative days in which to revise and extend their remarks and include extraneous material on this particular bill.",
       "sub_rule": "leave-to-revise-and-extend"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2024-07-02",
+      "statement_id": "/media/press-releases/dr-emmanuel-bilirakis-and-honorable-jennifer-wexton-national-plan-end-1",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Dr. Emmanuel Bilirakis and Honorable Jennifer Wexton National Plan to End Parkinson's Act Becomes Law",
+      "chars": 5699,
+      "excerpt": "Washington, DC: U.S. Representatives Gus Bilirakis (R-FL) and Paul Tonko (D-N.Y.) are celebrating the fact that their landmark Parkinson\u2019s legislation was signed into law earlier today. This no-cost legislation will, for the first time, uni"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2024-07-02",
+      "statement_id": "/media/press-releases/rep-gus-bilirakis-wins-two-national-awards-constituent-service-accessibility",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Rep. Gus Bilirakis Wins Two National Awards for Constituent Service, Accessibility and Communication",
+      "chars": 5822,
+      "excerpt": "WASHINGTON, D.C., July 2, 2024 \u2013 Every year, the Congressional Management Foundation (CMF) recognizes non-legislative achievement and outstanding performance of congressional offices through its Democracy Awards. One Democrat and one Republ"
     },
     {
       "member_id": "B001257",
@@ -1700,6 +1821,17 @@
     },
     {
       "member_id": "B001257",
+      "date": "2024-12-04",
+      "statement_id": "/media/press-releases/bilirakis-leads-bipartisan-push-bring-major-richard-star-act-floor",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Bilirakis Leads Bipartisan Push to Bring Major Richard Star Act to Floor",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "B001257",
       "date": "2025-02-21",
       "statement_id": "CREC-2025-02-21-pt1-PgE149-2",
       "source": "congressional_record",
@@ -1708,6 +1840,17 @@
       "title": "RECOGNIZING BRIAN DILLON",
       "chars": 1657,
       "excerpt": "I rise today to honor and recognize the exceptional dedication and hard work of one of my outstanding constituents, Brian Dillon. Brian has recently completed an internship in the Office of the Clerk for the House of Representatives, where "
+    },
+    {
+      "member_id": "B001257",
+      "date": "2025-03-25",
+      "statement_id": "/media/press-releases/bilirakis-pappas-malliotakis-titus-smith-pallone-magaziner-meng-and-amo",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Bilirakis, Pappas, Malliotakis, Titus, Smith, Pallone, Magaziner, Meng, and Amo Celebrate 204th Anniversary of Greek Independence",
+      "chars": 3220,
+      "excerpt": "Washington, D.C. \u2013Nearly two million Americans claim Greek ancestry. Representatives Bilirakis and Pappas who serve as Co-Chairs of the Hellenic Caucus are joined by their colleagues, including: Representatives Nicole Malliotakis, Chris Smi"
     },
     {
       "member_id": "B001257",
@@ -3472,6 +3615,17 @@
     },
     {
       "member_id": "B001257",
+      "date": "2025-10-07",
+      "statement_id": "/media/press-releases/bilirakis-condemns-hamas-delays-calls-immediate-release-hostages-second",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Bilirakis Condemns Hamas Delays, Calls for Immediate Release of Hostages on Second Anniversary of October 7 Attacks",
+      "chars": 791,
+      "excerpt": "Washington, D.C. \u2013 Congressman Gus Bilirakis, Co-Chair of the Congressional Hellenic Israel Alliance and of the International Religious Freedom Caucus in the House of Representatives, issued the following statement marking the second annive"
+    },
+    {
+      "member_id": "B001257",
       "date": "2025-10-17",
       "statement_id": "CREC-2025-10-17-pt1-PgE966",
       "source": "congressional_record",
@@ -4286,6 +4440,28 @@
     },
     {
       "member_id": "B001257",
+      "date": "2026-04-29",
+      "statement_id": "/media/press-releases/bilirakis-pappas-malliotakis-and-titus-introduce-resolution-commemorating",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Bilirakis, Pappas, Malliotakis and Titus Introduce Resolution Commemorating the 200th Anniversary of the Exodus of Missolonghi",
+      "chars": 2745,
+      "excerpt": "WASHINGTON, D.C. - U.S. Representatives Gus Bilirakis (R-FL),Chris Pappas (D-NH), Nicole Malliotakis (R-NY) and Dina Titus (D-NV) have introduced a resolution commemorating the 200th anniversary of the Exodus of Missolonghi, a defining and "
+    },
+    {
+      "member_id": "B001257",
+      "date": "2026-04-29",
+      "statement_id": "/media/press-releases/bilirakis-plans-seek-re-election-us-house-representatives",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Bilirakis Plans to Seek Re-Election to U.S. House of Representatives",
+      "chars": 929,
+      "excerpt": "Earlier today, U.S. Congressman Gus Bilirakis issued the statement below regarding his plans to seek re-election to the U.S. House of Representatives. \u201cI\u2019m proud of what I\u2019ve accomplished for Florida families this term, and I look forward t"
+    },
+    {
+      "member_id": "B001257",
       "date": "2026-05-13",
       "statement_id": "CREC-2026-05-13-pt1-PgE437-2",
       "source": "congressional_record",
@@ -4473,6 +4649,17 @@
     },
     {
       "member_id": "B001257",
+      "date": "2026-06-17",
+      "statement_id": "/media/press-releases/bilirakis-condemns-antisemitic-behavior-following-jerusalem-day-event-urges",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Bilirakis Condemns Antisemitic Behavior Following Jerusalem Day Event, Urges Leaders to Stand Firm Against Hate",
+      "chars": 2844,
+      "excerpt": "As Chairman of the International Religious Freedom Caucus, Congressman Gus Bilirakis has long been a steadfast supporter of Israel and the Jewish community. In recent remarks delivered at a Washington, DC forum held in conjunction with Jeru"
+    },
+    {
+      "member_id": "B001257",
       "date": "2026-06-25",
       "statement_id": "CREC-2026-06-25-pt1-PgH4252",
       "source": "congressional_record",
@@ -4482,6 +4669,17 @@
       "chars": 185,
       "excerpt": "I ask unanimous consent that when the House adjourns today, it adjourn to meet on Monday next, when it shall convene at noon for morning-hour debate and 2 p.m. for legislative business.",
       "sub_rule": "adjournment-and-meeting-hour"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2026-07-09",
+      "statement_id": "/media/press-releases/congressman-bilirakis-announces-136-million-federal-investment-strengthen",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman Bilirakis Announces $13.6 Million Federal Investment to Strengthen Brooksville-Tampa Bay Regional Airport",
+      "chars": 2706,
+      "excerpt": "BROOKSVILLE, FL \u2014 Congressman Gus Bilirakis (FL-12) today announced that Hernando County has been awarded $13.6 million in federal grant funding to support critical infrastructure improvements at the Brooksville-Tampa Bay Regional Airport. "
     },
     {
       "member_id": "B001257",
@@ -4529,6 +4727,17 @@
     },
     {
       "member_id": "B001257",
+      "date": "2026-08-18",
+      "statement_id": "/media/press-releases/roberto-clementes-birthday-bilirakis-soto-and-valazquez-announce-bipartisan",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "On Roberto Clemente\u2019s Birthday, Bilirakis, Soto and Valazquez Announce Bipartisan Bill to Honor Baseball Legend at U.S. Capitol",
+      "chars": 4473,
+      "excerpt": "WASHINGTON, D.C. \u2014 On what would have been Roberto Clemente\u2019s 92nd birthday, U.S. Representatives Gus Bilirakis (R-FL), Darren Soto (D-FL), and Nydia Vel\u00e1zquez (D-NY) announced bipartisan legislation that would authorize the creation and pr"
+    },
+    {
+      "member_id": "B001257",
       "date": "2026-08-31",
       "statement_id": "CREC-2026-08-31-pt1-PgE815-3",
       "source": "congressional_record",
@@ -4537,6 +4746,17 @@
       "title": "HONORING THE LIFE AND LEGACY OF COMMUNITY LEADER GEORGE ROMAGNOLI",
       "chars": 3454,
       "excerpt": "I rise today to honor the life and legacy of an extraordinary public servant, community leader, affordable housing advocate, and Scouter, George Romagnoli. George devoted his life and career to serving others and strengthening the communiti"
+    },
+    {
+      "member_id": "B001257",
+      "date": "2026-09-17",
+      "statement_id": "/media/press-releases/bilirakis-host-20th-annual-veterans-resource-fair-senators-scott-and-moody",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Bilirakis to Host 20th Annual Veterans Resource Fair with Senators Scott and Moody",
+      "chars": 3600,
+      "excerpt": "PASCO COUNTY, - Congressman Gus Bilirakis (FL-12) will host his 20th Annual Veterans Resource Fair on Saturday, September 26, 2026. This year\u2019s event will be jointly hosted by U.S. Senators Rick Scott and Ashley Moody. For two decades, this"
     },
     {
       "member_id": "B001257",
@@ -4782,6 +5002,28 @@
     },
     {
       "member_id": "C001059",
+      "date": "2023-02-14",
+      "statement_id": "/media/press-releases/costa-statement-senator-feinstein-decision-not-seek-re-election",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa Statement on Senator Feinstein Decision to Not Seek Re-Election",
+      "chars": 928,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 FRESNO, Calif. \u2013 Congressman Jim Costa (CA-21) released the following statement after U.S. Senator Dianne Feinstein annoucned that she that she will not be seek"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2023-04-26",
+      "statement_id": "/media/press-releases/costa-desposito-host-congressional-crime-survivors-and-justice-caucus-awards",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa, D'Esposito host Congressional Crime Survivors and Justice Caucus Awards Ceremony",
+      "chars": 5908,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON \u2013 U.S. Representatives Jim Costa (CA-21) and Anthony D\u2019Esposito (NY-04), Co-Chairs of the Congressional Crime Survivors and Justice Caucus, hosted th"
+    },
+    {
+      "member_id": "C001059",
       "date": "2023-06-14",
       "statement_id": "CREC-2023-06-14-pt1-PgH2889-5",
       "source": "congressional_record",
@@ -4936,6 +5178,17 @@
     },
     {
       "member_id": "C001059",
+      "date": "2023-09-29",
+      "statement_id": "/media/press-releases/costa-statement-passing-us-senator-dianne-feinstein",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa Statement on the Passing of U.S. Senator Dianne Feinstein",
+      "chars": 842,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON - Congressman Jim Costa (CA-21) released the following statement on the passing of U.S. Senator Dianne Feinstein. \u201cSenator Dianne Feinstein was a pat"
+    },
+    {
+      "member_id": "C001059",
       "date": "2023-11-09",
       "statement_id": "CREC-2023-11-09-pt1-PgH5657",
       "source": "congressional_record",
@@ -4944,6 +5197,17 @@
       "title": "HAPPY DIWALI",
       "chars": 893,
       "excerpt": "I rise today to celebrate the beginning of Diwali. Diwali is an anniversary of lights for the Sikhs, Jains, and Hindus here in our country and around the world. It represents times for new beginnings, and what a joyous occasion it is for ne"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2023-12-05",
+      "statement_id": "/media/press-releases/costa-federally-funded-f3-initiative-fueling-innovation-and-job-growth-central",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa: Federally funded F3 Initiative is Fueling Innovation and Job Growth in the Central Valley",
+      "chars": 2205,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON - Congressman Jim Costa (CA-21) released the following statement celebrating the first anniversary of the Farm Food Future (F3) Initiative, a critica"
     },
     {
       "member_id": "C001059",
@@ -4966,6 +5230,17 @@
       "title": "HONORING THE LIFE OF JIMMY JOHNSON",
       "chars": 1058,
       "excerpt": "I rise today with great pride to honor the life of Jimmy Johnson, one of the greatest cornerbacks in NFL history. A product of Kingsburg High School in my California district, Jimmy was a gifted athlete and rose quickly through the ranks. H"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2024-05-30",
+      "statement_id": "/media/press-releases/costa-announces-13-million-clean-school-buses-across-central-valley",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Costa Announces $13 Million for Clean School Buses Across the Central Valley",
+      "chars": 1686,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 FRESNO, Calif \u2013 Congressman Jim Costa (CA-21) announced $13 million in federal funding to purchase new clean school buses for School Districts across the Centra"
     },
     {
       "member_id": "C001059",
@@ -5475,6 +5750,17 @@
     },
     {
       "member_id": "C001059",
+      "date": "2024-12-17",
+      "statement_id": "/media/press-releases/costa-statement-ag-ranking-member-race",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa Statement on Ag Ranking Member Race",
+      "chars": 593,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON \u2013 Congressman Jim Costa (CA-21) released the following statement:\u201cI\u2019d like to thank Congressman David Scott for his service and leadership to America"
+    },
+    {
+      "member_id": "C001059",
       "date": "2025-01-06",
       "statement_id": "CREC-2025-01-06-pt1-PgE3-2",
       "source": "congressional_record",
@@ -5538,6 +5824,28 @@
       "title": "HONORING THE LEGACY OF LUE N. YANG",
       "chars": 3346,
       "excerpt": "I rise today to honor the legacy of Mr. Lue N. Yang, an extraordinary advocate, organizer, teacher, and public figure. Born on April 10, 1955, in Xieng Khouang, Laos, Mr. Yang has been a pillar for the Hmong community. At the age of 14, he "
+    },
+    {
+      "member_id": "C001059",
+      "date": "2025-04-21",
+      "statement_id": "/media/press-releases/rep-jim-costa-statement-passing-pope-francis",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Jim Costa Statement on the Passing of Pope Francis",
+      "chars": 565,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 FRESNO, Calif. \u2013 Congressman Jim Costa (CA-21) released the following statement on the passing of His Holiness, Pope Francis. \u201cThe world has lost a spiritual le"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2025-04-28",
+      "statement_id": "/media/press-releases/watch-rep-jim-costa-honors-central-valley-heroes",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "WATCH: Rep. Jim Costa Honors Central Valley Heroes",
+      "chars": 1168,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON \u2013 Congressman Jim Costa (CA-21) took to the floor of the U.S. House of Representatives to pay tribute to the lives and service of two Central Valley "
     },
     {
       "member_id": "C001059",
@@ -5641,6 +5949,17 @@
     {
       "member_id": "C001059",
       "date": "2025-07-21",
+      "statement_id": "/media/press-releases/rep-jim-costa-honors-life-john-harris-floor-us-house-representatives",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Jim Costa Honors the Life of John Harris on the Floor of the U.S. House of Representatives",
+      "chars": 1879,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON - In a heartfelt tribute, Congressman Jim Costa (CA-21) honored the life and legacy of John C. Harris on the floor of the U.S. House of Representativ"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2025-07-21",
       "statement_id": "CREC-2025-07-21-pt1-PgH3482",
       "source": "congressional_record",
       "turn": 0,
@@ -5681,6 +6000,17 @@
       "title": "HONORING THE LIFE OF IAN KALVINSKAS",
       "chars": 2667,
       "excerpt": "I rise today to honor the life of an intern in my office, and a University of California, Los Angeles (UCLA) student, Mr. Ian Kalvinskas, who recently passed away at the age of 20. He was a son, student, and friend. Kalvinskas was a Pasaden"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2025-08-25",
+      "statement_id": "/media/press-releases/costa-statement-passing-dr-joseph-i-castro-former-csu-chancellor-and-fresno",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa Statement on the Passing of Dr. Joseph I. Castro, Former CSU Chancellor and Fresno State President",
+      "chars": 1722,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 FRESNO, Calif. - Congressman Jim Costa (CA-21) released the following statement on the passing of Dr. Joseph I. Castro, former President of Fresno State, and Ch"
     },
     {
       "member_id": "C001059",
@@ -5805,6 +6135,17 @@
     },
     {
       "member_id": "C001059",
+      "date": "2026-04-17",
+      "statement_id": "/media/press-releases/costa-statement-passing-nancy-osborne",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa Statement on the Passing of Nancy Osborne",
+      "chars": 759,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON, D.C. \u2014 Congressman Jim Costa (CA-21) released the following statement on the passing of longtime Central Valley news anchor Nancy Osborne: \u201cNancy Os"
+    },
+    {
+      "member_id": "C001059",
       "date": "2026-04-30",
       "statement_id": "CREC-2026-04-30-pt1-PgE393-3",
       "source": "congressional_record",
@@ -5846,6 +6187,17 @@
       "title": "HONORING THE LEGACY OF MAX RODRIGUEZ",
       "chars": 2805,
       "excerpt": "I rise today to honor and remember the life of Max Rodriguez, a devoted public servant, community leader, and lifelong resident of Madera, California, who passed away on April 24, 2026, at the age of 86. Born on November 3, 1939, to Josephi"
+    },
+    {
+      "member_id": "C001059",
+      "date": "2026-06-10",
+      "statement_id": "/media/press-releases/costa-valadao-introduce-resolution-honoring-portugal-day-and-portuguese",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Costa, Valadao Introduce Resolution Honoring Portugal Day and Portuguese American Community",
+      "chars": 1727,
+      "excerpt": "2081 Rayburn House Office Building Washington, DC 20515 Email Me (202) 225-3341 WASHINGTON, D.C. \u2014 Congressman Jim Costa (CA-21), joined by Congressman David Valadao (CA-22), introduced a bipartisan resolution commemorating the Day of Portu"
     },
     {
       "member_id": "C001059",
@@ -5970,6 +6322,17 @@
     },
     {
       "member_id": "C001066",
+      "date": "2023-06-23",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "U.S. Rep. Castor Attends Indian Prime Minister\u2019s Address to Congress with Special Guest",
+      "chars": 1238,
+      "excerpt": "WASHINGTON, D.C. \u2013 Yesterday, U.S. Rep. Kathy Castor (FL-14) welcomed Mrs. Kamakshi Shete, President of the Federation of Indian Association of Tampa Bay (FIA), as her guest for the Joint Session of the Congress with India\u2019s Prime Minister "
+    },
+    {
+      "member_id": "C001066",
       "date": "2023-09-14",
       "statement_id": "CREC-2023-09-14-pt1-PgE850-3",
       "source": "congressional_record",
@@ -5989,6 +6352,17 @@
       "title": "RECOGNIZING BISHOP THOMAS SCOTT AND HIS LIFETIME OF PUBLIC SERVICE",
       "chars": 3604,
       "excerpt": "I rise today to celebrate a faithful and impactful leader for the Tampa Bay community and our country, Bishop Thomas Scott. Bishop Scott has made an extraordinary contribution to the lives of our neighbors as a pastor, public servant and co"
+    },
+    {
+      "member_id": "C001066",
+      "date": "2023-10-03",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Castor Statement on Motion to Vacate Speaker of the House",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "C001066",
@@ -6091,6 +6465,17 @@
     },
     {
       "member_id": "C001066",
+      "date": "2024-04-17",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "U.S. Rep. Kathy Castor Statement on Passing of Former Gov. Bob Graham",
+      "chars": 622,
+      "excerpt": "TAMPA, FL \u2013 U.S. Rep. Kathy Castor (FL-14) released the following statement on the passing of former Florida Governor and U.S. Senator Bob Graham: \u201cBob Graham will always be \u201cMr. Florida\u201d. He remained our beloved \u201cGovernor\u201d even through his"
+    },
+    {
+      "member_id": "C001066",
       "date": "2024-05-01",
       "statement_id": "CREC-2024-05-01-pt1-PgH2804",
       "source": "congressional_record",
@@ -6139,6 +6524,17 @@
     },
     {
       "member_id": "C001066",
+      "date": "2024-07-23",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "VIDEO: CASTOR CALLS PROJECT 2025 INFLUENCE IN REPUBLICAN APPROPRIATION BILLS A \u2018GIFT TO CHINA\u2019",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
       "date": "2024-09-17",
       "statement_id": "CREC-2024-09-17-pt1-PgE908-2",
       "source": "congressional_record",
@@ -6183,6 +6579,17 @@
     },
     {
       "member_id": "C001066",
+      "date": "2024-10-23",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "U.S. Rep. Kathy Castor Announces $40M Grant for New State-of-the-Art Terminal at TPA",
+      "chars": 2168,
+      "excerpt": "TAMPA, FL \u2013 U.S. Rep. Kathy Castor (FL-14) announced that Tampa International Airport (TPA) will receive $40,000,000 in federal grant funding through the Federal Aviation Administration\u2019s (FAA) Airport Terminal Program. The funding will sup"
+    },
+    {
+      "member_id": "C001066",
       "date": "2024-11-01",
       "statement_id": "CREC-2024-11-01-pt1-PgE1106-4",
       "source": "congressional_record",
@@ -6217,6 +6624,17 @@
     },
     {
       "member_id": "C001066",
+      "date": "2025-06-10",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "U.S. Rep. Kathy Castor Statement on the Passing of Councilwoman Gwendolyn Henderson",
+      "chars": 1252,
+      "excerpt": "WASHINGTON, D.C. \u2013 U.S. Rep. Kathy Castor (FL-14) released the following statement today on the passing of Tampa City Councilwoman Gwendolyn Henderson: \u201cI am deeply saddened to learn of the sudden loss of Councilwoman Gwen Henderson. Gwen w"
+    },
+    {
+      "member_id": "C001066",
       "date": "2025-07-02",
       "statement_id": "CREC-2025-07-02-pt1-PgH3039-8",
       "source": "congressional_record",
@@ -6240,6 +6658,17 @@
     },
     {
       "member_id": "C001066",
+      "date": "2025-08-28",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "U.S. Rep. Kathy Castor Demands HHS Secretary Kennedy Resigns",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
       "date": "2025-09-19",
       "statement_id": "CREC-2025-09-19-pt1-PgE881-3",
       "source": "congressional_record",
@@ -6251,6 +6680,50 @@
     },
     {
       "member_id": "C001066",
+      "date": "2025-11-06",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "CASTOR CELEBRATES THE POWERFUL LEGACY OF SPEAKER EMERITA PELOSI",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2025-11-07",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "CASTOR ANNOUNCES LOCAL VETERAN NONPROFITS GET A BOOST AHEAD OF VETERANS DAY",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2025-11-13",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "U.S. Rep. Kathy Castor Statement on Congressional Republicans\u2019 Unaffordable, Partisan Spending Bill",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2025-11-20",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Castor Blasts Trump Administration\u2019s Illegal Plan to Open Florida\u2019s Coast to Offshore Drilling",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
       "date": "2025-12-05",
       "statement_id": "CREC-2025-12-05-pt1-PgE1157-4",
       "source": "congressional_record",
@@ -6259,6 +6732,39 @@
       "title": "CELEBRATING THE SOUTH TAMPA CHAMBER'S 100TH ANNIVERSARY",
       "chars": 2960,
       "excerpt": "I rise today to honor the South Tampa Chamber on its 100th anniversary. The South Tampa Chamber is a leader and positive force for the entire Tampa Bay area particularly small business owners and the military families who serve at MacDill A"
+    },
+    {
+      "member_id": "C001066",
+      "date": "2025-12-10",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Castor Votes for Pay Raise for Service Members, Families & Investments in MacDill AFB",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2025-12-11",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Reps. Castor, Salazar Reintroduce Bipartisan Legislation to Lower Flood Insurance Costs",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2025-12-15",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "U.S. Rep. Castor Announces 2025 Congressional App Challenge Winner",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "C001066",
@@ -6283,6 +6789,39 @@
       "chars": 33,
       "excerpt": "I reserve the balance of my time.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "C001066",
+      "date": "2026-01-03",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Castor Statement on Trump Administration\u2019s Unauthorized Actions Towards Venezuela",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2026-01-08",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "CASTOR STATEMENT ON HOUSE PASSAGE OF DEMOCRATS' AFFORDABLE CARE ACT THREE-YEAR TAX CREDIT EXTENSION",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2026-02-03",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Castor Stands Firmly Against the Trump Administration's ICE and CBP Brutality",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "C001066",
@@ -6352,6 +6891,28 @@
     },
     {
       "member_id": "C001066",
+      "date": "2026-04-07",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Castor: [Trump] is unfit to lead our great country",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
+      "date": "2026-04-17",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "ICYMI: U.S. Rep. Castor Channels Popular Anger at Energy Sec. Wright for Sky-High Electric and Fuel Bills",
+      "chars": 6239,
+      "excerpt": "WASHINGTON, D.C. \u2013 Today, U.S. Rep. Kathy Castor (FL-14) grilled Trump-appointed Energy Secretary Chris Wright on policies that are costing Americans. Trump and GOP policies and their war with Iran are driving massive price hikes and inflat"
+    },
+    {
+      "member_id": "C001066",
       "date": "2026-04-21",
       "statement_id": "CREC-2026-04-21-pt1-PgE348-2",
       "source": "congressional_record",
@@ -6397,6 +6958,28 @@
     },
     {
       "member_id": "C001066",
+      "date": "2026-08-04",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "U.S. Rep. Kathy Castor Fights to Protect 700+ TPA Security Officers\u2019 Jobs, Pay & Earned Benefits",
+      "chars": 6983,
+      "excerpt": "TAMPA, Fla. \u2014 Today, U.S. Rep. Kathy Castor (FL-14) urged Tampa International Airport (TPA) CEO Michael Stephens and Hillsborough County Aviation Authority (HCAA) Chair Chip Diehl to reverse plans to privatize the airport\u2019s passenger-screen"
+    },
+    {
+      "member_id": "C001066",
+      "date": "2026-08-27",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "U.S. Rep. Castor takes aim at High Rents and Predatory Housing Practices",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "C001066",
       "date": "2026-09-16",
       "statement_id": "CREC-2026-09-16-pt1-PgE938-3",
       "source": "congressional_record",
@@ -6405,6 +6988,17 @@
       "title": "HONORING THE 2026 INDUCTEES TO THE FLORIDA INVENTORS HALL OF FAME",
       "chars": 2960,
       "excerpt": "as our Nation commemorates the 250th anniversary of its founding, I rise today to honor the ten inventors selected as the 2026 Inductees to the Florida Inventors Hall of Fame. The 2026 Inductees are inventors who were nominated by their pee"
+    },
+    {
+      "member_id": "C001066",
+      "date": "2026-10-01",
+      "statement_id": "/news/documentquery.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Speeches and Floor Statements",
+      "chars": 3987,
+      "excerpt": "I rise today to celebrate the retirement of Dr. Michael A. Tomor after 40 years of working at and leading art museums across the nation, including more than a decade as Executive Director at the Tampa Museum of Art. Dr. Tomor has left a las"
     },
     {
       "member_id": "C001119",
@@ -6419,6 +7013,17 @@
     },
     {
       "member_id": "C001119",
+      "date": "2023-01-12",
+      "statement_id": "/media/press-releases/rep-angie-craig-secures-over-3-million-make-west-st-paul-intersection-safer",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Angie Craig Secures Over $3 Million to Make West St. Paul Intersection Safer",
+      "chars": 1287,
+      "excerpt": "WASHINGTON, DC \u2013 U.S. Representative Angie Craig secured $3.1 million to upgrade the Smith Avenue and Dodd Road intersection in West St. Paul. The intersection handles more than 10,000 vehicles per day and is unsafe for vehicles, bicycles a"
+    },
+    {
+      "member_id": "C001119",
       "date": "2023-01-30",
       "statement_id": "CREC-2023-01-30-pt1-PgE71",
       "source": "congressional_record",
@@ -6430,6 +7035,19 @@
     },
     {
       "member_id": "C001119",
+      "date": "2023-03-20",
+      "statement_id": "/media/press-releases/us-rep-angie-craig-returns-over-3-million-constituents-mn-02-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "U.S. Rep. Angie Craig Returns Over $3 Million to Constituents in MN-02",
+      "chars": 1020,
+      "excerpt": "BURNSVILLE, MN \u2013 Today, U.S. Representative Angie Craig announced that she has returned more than $3 million to constituents in the Second Congressional District through her constituent services work. Since coming to Congress in 2019, Rep. ",
+      "duplicate_of": "/media/press-releases/us-rep-angie-craig-returns-over-3-million-constituents-mn-02",
+      "duplicate_of_date": "2023-03-20"
+    },
+    {
+      "member_id": "C001119",
       "date": "2023-03-28",
       "statement_id": "CREC-2023-03-28-pt1-PgE267-4",
       "source": "congressional_record",
@@ -6438,6 +7056,28 @@
       "title": "HONORING MARIA FERRARA'S SERVICE AS DIRECTOR OF OPERATIONS",
       "chars": 904,
       "excerpt": "I rise today to thank and congratulate Maria Ferrara for four years and two plus Congresses as my Director of Operations. Maria has been with my office since the early days of my first term starting first as my scheduler and elevating to th"
+    },
+    {
+      "member_id": "C001119",
+      "date": "2023-04-01",
+      "statement_id": "/media/press-releases/us-rep-angie-craig-honors-second-district-educators",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "U.S. Rep. Angie Craig Honors Second District Educators",
+      "chars": 1440,
+      "excerpt": "ROSEMOUNT, MN \u2013 Today, U.S. Representative Angie Craig hosted a luncheon to congratulate each of the eleven Second District educators nominated for the Minnesota Teacher of the Year Award. During the event, Rep. Craig spent time discussing "
+    },
+    {
+      "member_id": "C001119",
+      "date": "2023-07-14",
+      "statement_id": "/media/press-releases/rep-angie-craig-continues-bipartisan-push-resolve-passport-delays-minnesotans",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Rep. Angie Craig Continues Bipartisan Push to Resolve Passport Delays for Minnesotans",
+      "chars": 3996,
+      "excerpt": "WASHINGTON, DC \u2013 This week, U.S. Representative Angie Craig called on House leadership to invest in technology that will help the U.S. State Department process passport applications more quickly. Rep. Craig joined more than 100 Members of b"
     },
     {
       "member_id": "C001119",
@@ -6849,6 +7489,17 @@
     {
       "member_id": "C001119",
       "date": "2025-06-24",
+      "statement_id": "/media/press-releases/rep-craig-memorializes-melissa-and-mark-hortman-speech-house-floor",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Craig Memorializes Melissa and Mark Hortman in Speech on House Floor",
+      "chars": 1305,
+      "excerpt": "WASHINGTON, DC \u2013 Today, U.S. Representative Angie Craig took to the House floor to honor the late Speaker Melissa Hortman and her husband Mark Hortman, who were killed in Minnesota earlier this month in a politically motivated attack. Rep. "
+    },
+    {
+      "member_id": "C001119",
+      "date": "2025-06-24",
       "statement_id": "CREC-2025-06-24-pt1-PgH2909-4",
       "source": "congressional_record",
       "turn": 0,
@@ -6879,6 +7530,17 @@
       "chars": 61,
       "excerpt": "I am prepared to close, and I reserve the balance of my time.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "C001119",
+      "date": "2025-07-22",
+      "statement_id": "/media/press-releases/rep-craig-takes-house-floor-challenge-wnba-leadership-and-call-pay-raises",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Craig Takes to House Floor to Challenge WNBA Leadership and Call for Pay Raises for Female Athletes",
+      "chars": 1911,
+      "excerpt": "WASHINGTON, DC \u2013 Today, following the WNBA All-Stars game this past weekend and ahead of the Minnesota Lynx-New York Liberty game, U.S. Representative Angie Craig took to the House floor to condemn the circumstances around the Lynx-Liberty "
     },
     {
       "member_id": "C001119",
@@ -6937,6 +7599,17 @@
     },
     {
       "member_id": "C001119",
+      "date": "2025-10-03",
+      "statement_id": "/media/press-releases/rep-craig-secures-more-26-million-federal-funding-shakopee-fire",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Rep. Craig Secures More than $2.6 Million in Federal Funding for Shakopee Fire",
+      "chars": 2035,
+      "excerpt": "WASHINGTON, DC \u2013 Today, U.S. Representative Angie Craig announced that Shakopee Fire will receive $2,632,890 in federal funding through the Federal Emergency Management Administration\u2019s (FEMA) Staffing for Adequate Fire and Emergency Respon"
+    },
+    {
+      "member_id": "C001119",
       "date": "2025-10-17",
       "statement_id": "CREC-2025-10-17-pt1-PgE968-3",
       "source": "congressional_record",
@@ -6967,6 +7640,19 @@
       "title": "CONGRATULATING CHIEF HUGO SEARLE ON HIS RETIREMENT",
       "chars": 1556,
       "excerpt": "I rise today to congratulate my friend, Chief Hugo Searle, on his retirement after 34 years with the fire service. Chief Searle is a dedicated public servant and an outstanding leader who has served Minnesotans with courage and commitment. "
+    },
+    {
+      "member_id": "C001119",
+      "date": "2026-04-09",
+      "statement_id": "/media/press-releases/rep-craig-joins-minnesota-valley-transit-authority-burnsville-bus-garage",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Rep. Craig Joins Minnesota Valley Transit Authority for Burnsville Bus Garage Renovation Ribbon Cutting",
+      "chars": 1688,
+      "excerpt": "BURNSVILLE, MN \u2013 Today, U.S. Representative Angie Craig joined the ribbon cutting ceremony for the new Minnesota Valley Transit Authority (MVTA) Bus Garage in Burnsville. Rep. Craig offered remarks and received the Burnsville Bus Garage Mod",
+      "duplicate_of": "/media/press-releases/rep-craig-joins-farmers-mental-health-professionals-educators-ag-leaders",
+      "duplicate_of_date": "2026-04-08"
     },
     {
       "member_id": "C001119",
@@ -7084,6 +7770,28 @@
       "title": "HONORING THE LIFE AND LEGACY OF MICHAEL COY",
       "chars": 1223,
       "excerpt": "I rise today to honor the life and legacy of a Minnesota hero, Michael Coy of St. Paul Park, Minnesota, who passed away on April 21, 2026. Mr. Coy served his community for more than 35 years as a UPS delivery driver and was a committed memb"
+    },
+    {
+      "member_id": "C001119",
+      "date": "2026-06-15",
+      "statement_id": "/media/press-releases/rep-craigs-office-recognized-exceptional-constituent-services",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Rep. Craig's Office Recognized for Exceptional Constituent Services",
+      "chars": 2163,
+      "excerpt": "EAGAN, MN \u2013 The Congressional Management Foundation awarded the office of U.S. Representative Angie Craig a \u201cCertificate of Excellence in Constituent Service\u201d for its exceptional work serving Minnesotans navigating issues with federal agenc"
+    },
+    {
+      "member_id": "C001119",
+      "date": "2026-07-09",
+      "statement_id": "/media/press-releases/rep-craigs-office-puts-more-10-million-back-minnesotans-pockets-through",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Rep. Craig's Office Puts More Than $10 Million Back into Minnesotans\u2019 Pockets Through Constituent Services",
+      "chars": 2083,
+      "excerpt": "EAGAN, MN \u2013 Today, U.S. Representative Angie Craig announced that her office has officially returned more than $10 million to constituents in Minnesota\u2019s Second Congressional District. Through her office\u2019s constituent services operation, Re"
     },
     {
       "member_id": "C001119",
@@ -7230,6 +7938,17 @@
     },
     {
       "member_id": "D000623",
+      "date": "2023-01-20",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-announces-2022-congressional-app-challenge-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman DeSaulnier Announces 2022 Congressional App Challenge Winner",
+      "chars": 2249,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman DeSaulnier (CA-10) announced that Krisha Singhani of San Ramon is the winner of the 2022 Congressional App Challenge (CAC) for California's 11th Congressional District, which Congressman DeSaulnier repr"
+    },
+    {
+      "member_id": "D000623",
       "date": "2023-01-25",
       "statement_id": "CREC-2023-01-25-pt1-PgH315",
       "source": "congressional_record",
@@ -7293,6 +8012,17 @@
       "title": "HONORING THE CONTRA COSTA SPECIAL DISTRICTS ASSOCIATION'S 30TH ANNIVERSARY",
       "chars": 1843,
       "excerpt": "I rise today to recognize the contributions of the Contra Costa Special Districts Association (CCSDA) on its 30th anniversary. Since 1993, CCSDA has provided a space for Contra Costa's independent special districts to exchange ideas and inf"
+    },
+    {
+      "member_id": "D000623",
+      "date": "2023-05-17",
+      "statement_id": "/media-center/press-releases/us-representative-mark-desaulnier-named-finalist-democracy-awards",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "U.S. Representative Mark DeSaulnier Named Finalist for Democracy Awards",
+      "chars": 3589,
+      "excerpt": "Washington, D.C. \u2013 Today Representative Mark DeSaulnier (CA-10) announced he has been named a finalist for The Congressional Management Foundation\u2019s (CMF) Democracy Award for outstanding achievement in the category of Constituent Accountabi"
     },
     {
       "member_id": "D000623",
@@ -7381,6 +8111,17 @@
       "title": "HONORING THE LIFE AND SERVICE OF KAREN MANGINI",
       "chars": 1506,
       "excerpt": "I rise today to honor the life and service of Karen Mangini. Karen was born and raised in Concord, California, as a fourth- generation native of Contra Costa County. Throughout her life, Karen dedicated herself to serving the students and f"
+    },
+    {
+      "member_id": "D000623",
+      "date": "2023-08-09",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-wins-democracy-award-outstanding-public-service",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier Wins Democracy Award for Outstanding Public Service",
+      "chars": 3834,
+      "excerpt": "Washington, DC \u2013 Today, the Congressional Management Foundation (CMF) announced that Congressman Mark DeSaulnier(CA-10) is a winner for the 2023 Democracy Awards, CMF\u2019s award recognizing non-legislative achievement and performance in congre"
     },
     {
       "member_id": "D000623",
@@ -7814,6 +8555,17 @@
     },
     {
       "member_id": "D000623",
+      "date": "2025-02-12",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-host-town-hall-st-marys-college-moraga",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier to Host Town Hall at St. Mary\u2019s College in Moraga",
+      "chars": 971,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced that he will host a town hall in Moraga to discuss the new Administration & DOGE head Elon Musk\u2019s recent threats to programs that tens of millions of Americans rely on,"
+    },
+    {
+      "member_id": "D000623",
       "date": "2025-03-10",
       "statement_id": "CREC-2025-03-10-pt1-PgE194-4",
       "source": "congressional_record",
@@ -7869,6 +8621,17 @@
     },
     {
       "member_id": "D000623",
+      "date": "2025-03-13",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-announces-town-hall-concord",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier Announces Town Hall in Concord",
+      "chars": 907,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced that he will host a town hall in Concord to discuss how he and his Democratic colleagues are fighting back in Congress against the actions of the Trump Administration, "
+    },
+    {
+      "member_id": "D000623",
       "date": "2025-03-21",
       "statement_id": "CREC-2025-03-21-pt1-PgE234",
       "source": "congressional_record",
@@ -7877,6 +8640,17 @@
       "title": "HONORING THE SERVICE OF SHANNON STARZYK",
       "chars": 1665,
       "excerpt": "I rise today to honor and recognize Shannon Starzyk for her years of tireless service and unwavering dedication to survivors of domestic violence, sexual assault, and human trafficking. As she retires from her role at the Contra Costa Famil"
+    },
+    {
+      "member_id": "D000623",
+      "date": "2025-04-18",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-announces-town-hall-lafayette",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier Announces Town Hall in Lafayette",
+      "chars": 941,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced he will host a town hall in Lafayette to share the latest on his efforts to fight back against Trump Administration actions that are hurting the American people, like c"
     },
     {
       "member_id": "D000623",
@@ -8024,6 +8798,17 @@
     },
     {
       "member_id": "D000623",
+      "date": "2025-10-28",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-host-town-hall-martinez",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier to Host Town Hall in Martinez",
+      "chars": 927,
+      "excerpt": "Washington, D.C. \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced he will host a town hall in Martinez on Thursday, October 30th from 6:30 p.m. \u2013 7:30 p.m. to provide updates on Democrats\u2019 efforts to reopen the government, recent Admi"
+    },
+    {
+      "member_id": "D000623",
       "date": "2025-11-07",
       "statement_id": "CREC-2025-11-07-pt1-PgE1043-4",
       "source": "congressional_record",
@@ -8090,6 +8875,17 @@
     },
     {
       "member_id": "D000623",
+      "date": "2025-11-25",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-host-town-hall-san-ramon-improving",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier to Host Town Hall in San Ramon on Improving Transportation and Education in the East Bay",
+      "chars": 1090,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced that he will host a town hall in San Ramon to discuss improving transportation and education in the East Bay on Saturday, December 6th from 11:00 a.m. \u2013 12:00 p.m. PT. "
+    },
+    {
+      "member_id": "D000623",
       "date": "2025-12-03",
       "statement_id": "CREC-2025-12-03-pt1-PgH5004-8",
       "source": "congressional_record",
@@ -8131,6 +8927,28 @@
       "title": "HONORING THE SERVICE OF JIM WUNDERMAN",
       "chars": 2235,
       "excerpt": "I rise today to recognize and honor the distinguished tenure of Jim Wunderman after 22 years of service as the CEO of the Bay Area Council. For over two decades, Jim has built a legacy of leadership and dedicated service. Jim's career in se"
+    },
+    {
+      "member_id": "D000623",
+      "date": "2026-01-30",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-host-town-hall-pleasant-hill",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier to Host Town Hall in Pleasant Hill",
+      "chars": 904,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced he will host a town hall in Pleasant Hill on Saturday, February 7th from 12:30 \u2013 1:30 p.m. PT. At this event, the Congressman will speak to his efforts to rein in illeg"
+    },
+    {
+      "member_id": "D000623",
+      "date": "2026-02-27",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-host-town-hall-advancing-womens-equality",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier to Host Town Hall on Advancing Women\u2019s Equality",
+      "chars": 797,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced he will host a Town Hall on Advancing Women\u2019s Equality in Orinda on Thursday, March 12th from 6:30 \u2013 7:30 p.m. The Congressman will be joined by expert special guests f"
     },
     {
       "member_id": "D000623",
@@ -8208,6 +9026,39 @@
       "title": "HONORING THE LIFE AND SERVICE OF STEVEN ALFRED ROBERTI",
       "chars": 2034,
       "excerpt": "I rise today to recognize the life and service of Steven Alfred Roberti. Throughout his life, Steven demonstrated his commitment to service and advocacy. Steven was a lifelong member of International Brotherhood of Electrical Workers Local "
+    },
+    {
+      "member_id": "D000623",
+      "date": "2026-05-04",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-host-town-hall-lafayette-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier to Host Town Hall in Lafayette",
+      "chars": 809,
+      "excerpt": "Walnut Creek, CA \u2013Congressman Mark DeSaulnier (CA-10) announced today that he will host a town hall in Lafayette on Tuesday, May 5th from 6:30 \u2013 7:30 p.m. PT to discuss House Democrats\u2019 work in Congress to hold President Trump accountable, "
+    },
+    {
+      "member_id": "D000623",
+      "date": "2026-05-12",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-secures-over-16-million-projects-benefit-contra",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman DeSaulnier Secures Over $16 Million for Projects to Benefit Contra Costa and Alameda Counties",
+      "chars": 8845,
+      "excerpt": "Washington, D.C. \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced that he secured over $16 million for community projects across Contra Costa and Alameda Counties. These projects will support public health and safety, transportation a"
+    },
+    {
+      "member_id": "D000623",
+      "date": "2026-05-14",
+      "statement_id": "/media-center/press-releases/congressman-desaulnier-announces-town-hall-san-ramon",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman DeSaulnier Announces Town Hall in San Ramon",
+      "chars": 940,
+      "excerpt": "Walnut Creek, CA \u2013 Today, Congressman Mark DeSaulnier (CA-10) announced that he will host a town hall in San Ramon on Thursday, May 28th from 6:30 \u2013 7:30 p.m. PT to provide updates on his work to improve regional transportation, including i"
     },
     {
       "member_id": "D000623",
@@ -8344,6 +9195,17 @@
     },
     {
       "member_id": "D000628",
+      "date": "2024-01-06",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Dunn Welcomes JetBlue to Tallahassee",
+      "chars": 1393,
+      "excerpt": "TALLAHASSEE, FL \u2013 Today, Congressman Neal Dunn, M.D. (Florida-02) joined the City of Tallahassee Mayor John Dailey, JetBlue, and Tallahassee Airport officials in celebrating the official launch of daily intrastate service between Hollywood "
+    },
+    {
+      "member_id": "D000628",
       "date": "2024-01-17",
       "statement_id": "CREC-2024-01-17-pt1-PgE47-4",
       "source": "congressional_record",
@@ -8378,6 +9240,17 @@
     },
     {
       "member_id": "D000628",
+      "date": "2024-11-14",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Dunn Congratulates House Leadership on Conference Vote Victories",
+      "chars": 993,
+      "excerpt": "Today, Congressman Neal Dunn (Florida-02) congratulated Speaker Mike Johnson (LA-04), Majority Leader Steve Scalise (LA-01), Majority Whip Tom Emmer (MN-06), and Republican Conference Chair-elect Lisa McClain (MI-09) for their election to p"
+    },
+    {
+      "member_id": "D000628",
       "date": "2025-01-15",
       "statement_id": "CREC-2025-01-15-pt1-PgH171-4",
       "source": "congressional_record",
@@ -8398,6 +9271,50 @@
       "title": "RECOGNIZING JOHN THRASHER",
       "chars": 964,
       "excerpt": "I rise today to recognize a truly outstanding man, a man who served all of the people in Florida honorably, with wisdom, and admirable class. My dear friend, John Thrasher, passed away on May 30 at the age of 81. John Thrasher was a highly "
+    },
+    {
+      "member_id": "D000628",
+      "date": "2025-12-18",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Dunn and Rep. Carter Introduce Legislation to Designate Fentanyl as a Weapon of Mass Destruction",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "D000628",
+      "date": "2026-01-03",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Dunn Releases Statement on Operation Absolute Resolve",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "D000628",
+      "date": "2026-01-12",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Dunn Applauds Approval of Broadband Funding for Florida",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "D000628",
+      "date": "2026-02-10",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Bill to Re-Authorize FirstNet Clears Subcommittee Markup",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "D000628",
@@ -8456,6 +9373,28 @@
     },
     {
       "member_id": "D000629",
+      "date": "2023-08-08",
+      "statement_id": "/media/press-releases/davids-local-veterans-celebrate-one-year-anniversary-historic-expansion",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Davids, Local Veterans Celebrate One-Year Anniversary of Historic Expansion of Veterans Health Care",
+      "chars": 4658,
+      "excerpt": "LENEXA, KS - Today, Representative Sharice Davids celebrated the one-year anniversary of the bipartisan Honoring our PACT Act, a Davids-supported law that expands Department of Veterans Affairs (VA) health care eligibility to five million A"
+    },
+    {
+      "member_id": "D000629",
+      "date": "2023-08-15",
+      "statement_id": "/media/press-releases/davids-helps-us-sba-administrator-celebrate-70-years-supporting-kansas-small",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Davids Helps U.S. SBA Administrator Celebrate 70 Years of Supporting Kansas Small Businesses",
+      "chars": 3564,
+      "excerpt": "ABILENE, KS \u2013 Today, Representative Sharice Davids joined the U.S. Small Business Administrator Isabel Guzman at the Dwight D. Eisenhower Presidential Library to celebrate the Small Business Administration\u2019s (SBA) 70th anniversary. Presiden"
+    },
+    {
+      "member_id": "D000629",
       "date": "2023-12-05",
       "statement_id": "CREC-2023-12-05-pt1-PgE1166-6",
       "source": "congressional_record",
@@ -8464,6 +9403,17 @@
       "title": "HONORING THE CAREER OF MS. JOYCE ALLEGRUCCI",
       "chars": 951,
       "excerpt": "I rise today to celebrate the career of Ms. Joyce Allegrucci, a dedicated public servant for the state of Kansas. Over a long and lasting career, Ms. Allegrucci served as Assistant Secretary of the Kansas Department of Social and Rehabilita"
+    },
+    {
+      "member_id": "D000629",
+      "date": "2024-02-02",
+      "statement_id": "/media/press-releases/davids-helps-announce-aviation-manufacturing-facility-expansion-olathe",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Davids Helps Announce Aviation Manufacturing Facility Expansion in Olathe",
+      "chars": 3182,
+      "excerpt": "OLATHE, KS \u2013 Today, Representative Sharice Davids joined Honeywell to announce a major investment to expand its Olathe manufacturing facility. The project will contribute $18.3 million to the local economy within the first six years and cre"
     },
     {
       "member_id": "D000629",
@@ -8489,6 +9439,28 @@
     },
     {
       "member_id": "D000629",
+      "date": "2024-05-13",
+      "statement_id": "/media/press-releases/after-record-submissions-davids-announces-winners-2024-congressional-art",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "After Record Submissions, Davids Announces Winners of 2024 Congressional Art Competition",
+      "chars": 2777,
+      "excerpt": "This weekend, Representative Sharice Davids hosted a reception honoring the student applicants who participated in her 2024 Congressional Art Competition. This year, Davids\u2019 office received a record-breaking 35 student submissions, doubling"
+    },
+    {
+      "member_id": "D000629",
+      "date": "2024-06-03",
+      "statement_id": "/media/press-releases/icymi-guest-column-davids-highlights-century-native-american-citizenship",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "ICYMI: In Guest Column, Davids Highlights a Century of Native American Citizenship",
+      "chars": 5729,
+      "excerpt": "Yesterday, on the 100-year anniversary of the Indian Citizenship Act, Representative Sharice Davids penned a guest column for ICT News, highlighting the strides our country has made in the last 100 years towards tribal sovereignty. She also"
+    },
+    {
+      "member_id": "D000629",
       "date": "2024-06-07",
       "statement_id": "CREC-2024-06-07-pt1-PgE599-4",
       "source": "congressional_record",
@@ -8508,6 +9480,17 @@
       "title": "CELEBRATING THE CAREER OF DR. ROBERT SIMARI",
       "chars": 1714,
       "excerpt": "I rise today to celebrate the career of Dr. Robert Simari, executive vice chancellor for the University of Kansas Medical Center, who will be retiring from the University of Kansas on June 30, 2024. Dr. Simari's career has been marked by a "
+    },
+    {
+      "member_id": "D000629",
+      "date": "2024-06-24",
+      "statement_id": "/media/press-releases/two-years-after-fall-roe-davids-champions-reproductive-freedoms-demands-action",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Two Years After the Fall of Roe, Davids Champions Reproductive Freedoms, Demands Action",
+      "chars": 4704,
+      "excerpt": "Today, two years after the Supreme Court overturned Roe v. Wade, Representative Sharice Davids hosted Planned Parenthood Great Plains leaders, health care providers, and other Kansans to discuss the importance of protecting reproductive rig"
     },
     {
       "member_id": "D000629",
@@ -8563,6 +9546,17 @@
       "title": "CELEBRATING THE LIFE OF SuELLEN FRIED",
       "chars": 2643,
       "excerpt": "I rise today to honor the memory of SuEllen Fried. A shining example of a public servant, SuEllen made the lives of everyone around her brighter, particularly those who often went unseen. SuEllen began dancing in the St. Louis Muny Opera wh"
+    },
+    {
+      "member_id": "D000629",
+      "date": "2025-01-23",
+      "statement_id": "/media/press-releases/davids-votes-against-extreme-bill-threatening-reproductive-health-care-access",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Davids Votes Against Extreme Bill Threatening Reproductive Health Care Access",
+      "chars": 3801,
+      "excerpt": "Today, Representative Sharice Davids voted against a harmful bill that would criminalize reproductive health care providers and jeopardize access to life-saving care \u2014 particularly for patients needing abortion care in dire circumstances. D"
     },
     {
       "member_id": "D000629",
@@ -8676,6 +9670,17 @@
     },
     {
       "member_id": "D000629",
+      "date": "2026-02-24",
+      "statement_id": "/media/press-releases/davids-statement-rotor-act-vote",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Davids Statement on the ROTOR Act Vote",
+      "chars": 1780,
+      "excerpt": "Today, Representative Sharice Davids issued the following statement after the Rotorcraft Operations Transparency and Oversight Reform (ROTOR) Act \u2013 a bipartisan bill aimed at improving aviation safety standards \u2013 failed on a vote before the"
+    },
+    {
+      "member_id": "D000629",
       "date": "2026-03-03",
       "statement_id": "CREC-2026-03-03-pt1-PgE179",
       "source": "congressional_record",
@@ -8731,6 +9736,28 @@
     },
     {
       "member_id": "E000235",
+      "date": "2023-01-18",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Mike Ezell Announces Committee Assignments",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-01-19",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Mike Ezell Stands with Gulf Coast Shrimpers",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
       "date": "2023-01-27",
       "statement_id": "CREC-2023-01-27-pt1-PgE65-2",
       "source": "congressional_record",
@@ -8753,6 +9780,61 @@
     },
     {
       "member_id": "E000235",
+      "date": "2023-02-27",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Mike Ezell Returns From Trip to Southern Border",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-03-30",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Wicker, Hyde-Smith, Ezell Welcome Distribution of $51.8 Million in GOMESA Funds to Miss.",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-03-30",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "House Passes H.R. 1, Including Amendment from Congressman Mike Ezell",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-04-17",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman Mike Ezell Marks 100 Days of Delivering for South Mississippi",
+      "chars": 1734,
+      "excerpt": "Today marks 100 days since Congressman Mike Ezell was sworn in as a part of the new Republican majority in the United States House of Representatives. \"It's been a productive first 100 days,\" said Congressman Ezell. \"The people of South Mis"
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-06-13",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Ezell Joins Reps. Cammack, Case In Support Of Domestic Aquaculture",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
       "date": "2023-06-21",
       "statement_id": "CREC-2023-06-21-pt1-PgH3054",
       "source": "congressional_record",
@@ -8761,6 +9843,17 @@
       "title": "HONORING MIKE MULLINS",
       "chars": 835,
       "excerpt": "I rise today to recognize and honor Mike Mullins for his service to the citizens of D'Iberville, Mississippi, for the last 23 years. Mike moved to D'Iberville in 1969 with his family. Mike was named the first parks and recreation director f"
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-06-22",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Ezell Questions Army Corps Leadership About Bonnet Carr\u00e9 Spillway",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "E000235",
@@ -8775,6 +9868,50 @@
     },
     {
       "member_id": "E000235",
+      "date": "2023-09-22",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Ezell Welcomes Grant to Bring Amtrak Back to Mississippi Gulf Coast",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-09-27",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Hyde-Smith & Ezell Announce $365,000 Grant to Help Establish Nonstop Miss. Gulf Coast\u2013Washington, D.C. Flights",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-09-28",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Ezell Cosponsors Legislation to Pay Troops During Potential Shutdown",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
+      "date": "2023-09-29",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Ezell Speaks on Ongoing Spending Negotiations",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "E000235",
       "date": "2023-11-07",
       "statement_id": "CREC-2023-11-07-pt1-PgH5478",
       "source": "congressional_record",
@@ -8783,6 +9920,17 @@
       "title": "HONORING COMMANDER JAMES CHRISTIAN DUNCAN",
       "chars": 998,
       "excerpt": "I rise today to recognize and honor Commander James Christian Duncan of the 31st Combat Training Squadron of the United States Air Force. Lieutenant Colonel Duncan joined the Air Force in 2003 and trained at Columbus Air Force Base where he"
+    },
+    {
+      "member_id": "E000235",
+      "date": "2024-01-18",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Ezell Statement on Vote Against Continuing Resolution",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "E000235",
@@ -8808,6 +9956,17 @@
     },
     {
       "member_id": "E000235",
+      "date": "2024-09-11",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ezell Statement on the Anniversary of the 9/11 Attacks",
+      "chars": 913,
+      "excerpt": "Today, Congressman Mike Ezell (MS-04) released the following statement reflecting on the September 11, 2001, terrorist attacks on the United States of America: \"As we mark the anniversary of one of the worst days in American history, the Se"
+    },
+    {
+      "member_id": "E000235",
       "date": "2024-09-17",
       "statement_id": "CREC-2024-09-17-pt1-PgH5245-8",
       "source": "congressional_record",
@@ -8816,6 +9975,17 @@
       "title": "BAY ST. LOUIS, MISSISSIPPI",
       "chars": 1151,
       "excerpt": "I am excited to share that Bay St. Louis, Mississippi, has recently been named one of the best places to live in 2024. This charming Mississippi Gulf Coast town, often referred to as part of the secret coast, has gained national attention f"
+    },
+    {
+      "member_id": "E000235",
+      "date": "2024-10-17",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ezell Presents Congressional Award Gold Medal to Petal Native",
+      "chars": 1621,
+      "excerpt": "Today, Congressman Mike Ezell (MS-04) presented Colt Bergman with a Congressional Award Gold Medal, the highest Congressional honor for America's youth. Bergman completed 400 hours of voluntary public service, 200 hours of personal developm"
     },
     {
       "member_id": "E000235",
@@ -9032,6 +10202,28 @@
     },
     {
       "member_id": "E000235",
+      "date": "2025-09-11",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ezell Honors the Memory of 9/11 on Anniversary of the Tragic Attacks",
+      "chars": 799,
+      "excerpt": "Today, on the solemn anniversary of the attacks on September 11, 2001, Representative Mike Ezell (MS-04) joins the nation in remembering the nearly 3,000 innocent lives lost and honoring the bravery of first responders, military personnel, "
+    },
+    {
+      "member_id": "E000235",
+      "date": "2025-09-12",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ezell Reinstitutes the Congressional Bipartisan Flood Resilience Caucus; Sends Letter Urging Reauthorization of the National Flood Insurance Program",
+      "chars": 4710,
+      "excerpt": "Today, Congressman Mike Ezell (MS-04) announced that he will be reinstituting the Bipartisan Flood Resilience Caucus for the 119th Congress. Joining him as co-chairs are Reps. Lizzie Fletcher (D-TX), Randy Weber (R-TX), and Troy Carter (D-L"
+    },
+    {
+      "member_id": "E000235",
       "date": "2025-09-16",
       "statement_id": "CREC-2025-09-16-pt1-PgH4319-8",
       "source": "congressional_record",
@@ -9084,6 +10276,17 @@
       "title": "RECOGNIZING BILOXI CHIEF OF POLICE JOHN MILLER",
       "chars": 1223,
       "excerpt": "I rise today to recognize the outstanding career and well-earned retirement of the chief of police for the Biloxi Police Department, John Miller. A coast native, Chief Miller dedicated more than three decades of his life to protecting the p"
+    },
+    {
+      "member_id": "E000235",
+      "date": "2026-01-14",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ezell Introduces Legislation to Honor Fallen Deputy Jeremy Malone",
+      "chars": 1795,
+      "excerpt": "Congressman Mike Ezell (MS-04) today introduced legislation to redesignate the United States Postal Service facility located at 825 Highway 198 in Beaumont, Mississippi, as the Jeremy Malone Post Office, honoring the life and legacy of Geor"
     },
     {
       "member_id": "E000235",
@@ -9142,6 +10345,28 @@
     },
     {
       "member_id": "E000235",
+      "date": "2026-05-01",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Ezell Applauds Federal Grant Award to Port of Gulfport to Strengthen Infrastructure and Supply Chains",
+      "chars": 2186,
+      "excerpt": "Today, Congressman Mike Ezell (MS-04) announced that the Mississippi State Port Authority at Gulfport has been awarded $11.25 million in funding through the U.S. Department of Transportation\u2019s Port Infrastructure Development Program (PIDP) "
+    },
+    {
+      "member_id": "E000235",
+      "date": "2026-05-06",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ezell Honors Student Artists at 2026 Congressional Art Competition Reception",
+      "chars": 1032,
+      "excerpt": "Congressman Mike Ezell (MS-04) recognized the outstanding artistic talent of students from across Mississippi\u2019s Fourth District during this year\u2019s Congressional Art Competition Reception, celebrating the creativity and hard work of local hi"
+    },
+    {
+      "member_id": "E000235",
       "date": "2026-07-23",
       "statement_id": "CREC-2026-07-23-pt1-PgH5189-4",
       "source": "congressional_record",
@@ -9150,6 +10375,17 @@
       "title": "RECOGNIZING COAST GUARD PORT SECURITY UNIT 308",
       "chars": 1631,
       "excerpt": "I rise today to recognize the outstanding men and women of the United States Coast Guard Port Security Unit 308, proudly headquartered in Pascagoula, Mississippi, for receiving the Rear Admiral Bennett ``Bud'' Sparks Award, one of the highe"
+    },
+    {
+      "member_id": "F000454",
+      "date": "2023-01-26",
+      "statement_id": "/media/press-releases/foster-statement-appointment-house-financial-services-committee",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on Appointment to the House Financial Services Committee",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "F000454",
@@ -9194,6 +10430,17 @@
       "title": "CELEBRATING THE LIFE OF FRED RODGERS",
       "chars": 1375,
       "excerpt": "I rise today to celebrate the life and legacy of Mr. Fred Rodgers, a fierce champion and advocate who helped guide the City of Aurora's young people onto a path of success. Mr. Rodgers was the City of Aurora's first ever youth services dire"
+    },
+    {
+      "member_id": "F000454",
+      "date": "2023-03-15",
+      "statement_id": "/media/press-releases/foster-statement-meeting-mayor-lemont",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on Meeting with Mayor of Lemont",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "F000454",
@@ -9263,6 +10510,30 @@
     },
     {
       "member_id": "F000454",
+      "date": "2023-07-20",
+      "statement_id": "/media/press-releases/foster-statement-faa-reauthorization",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on FAA Reauthorization",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2023-09-15",
+      "statement_id": "/media/press-releases/foster-announces-1-million-usda-forest-service-award-aurora-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Foster Announces $1 Million USDA Forest Service Award for Aurora",
+      "chars": 1847,
+      "excerpt": "Aurora, IL \u2013 Today, Congressman Bill Foster (D-IL) announced that the City of Aurora will receive a funding award through the U.S. Department of Agriculture (USDA) Forest Service\u2019s Urban and Community Forestry Program totaling $1,000,000. M",
+      "duplicate_of": "/media/press-releases/foster-announces-1-million-usda-forest-service-award-aurora",
+      "duplicate_of_date": "2023-09-15"
+    },
+    {
+      "member_id": "F000454",
       "date": "2023-10-10",
       "statement_id": "CREC-2023-10-10-pt1-PgE944",
       "source": "congressional_record",
@@ -9293,6 +10564,30 @@
       "title": "CONSTITUITONAL AUIHORITY AND SINGLE SUBJECT STATEMENTS",
       "chars": 0,
       "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2024-02-15",
+      "statement_id": "/media/press-releases/foster-statement-five-year-anniversary-henry-pratt-shooting-aurora",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Foster Statement on Five Year Anniversary of Henry Pratt Shooting in Aurora",
+      "chars": 973,
+      "excerpt": "Washington, DC \u2013 Today, Congressman Bill Foster (D-IL) released the following statement on the fifth anniversary of the mass shooting that took place at the Henry Pratt Company in Aurora, Illinois: \u201cToday is a somber one for the Aurora comm"
+    },
+    {
+      "member_id": "F000454",
+      "date": "2024-03-12",
+      "statement_id": "/media/press-releases/foster-secures-nearly-11-million-11th-district-first-round-community-project-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Foster Secures Nearly $11 Million for 11th District in First Round of Community Project Funding",
+      "chars": 6321,
+      "excerpt": "Washington, DC \u2013 Today, Congressman Bill Foster (D-IL) announced that 12 of the Community Project Funding (CPF) requests he made on behalf of the 11th Congressional District of Illinois were included in the appropriations \u201cminibus\u201d that pas",
+      "duplicate_of": "/media/press-releases/foster-secures-nearly-11-million-11th-district-first-round-community-project",
+      "duplicate_of_date": "2024-03-12"
     },
     {
       "member_id": "F000454",
@@ -9494,6 +10789,17 @@
     },
     {
       "member_id": "F000454",
+      "date": "2025-02-03",
+      "statement_id": "/media/press-releases/foster-statement-team-musks-access-us-treasury-payments",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on Team Musk's Access to U.S. Treasury Payments",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
       "date": "2025-02-27",
       "statement_id": "CREC-2025-02-27-pt1-PgE170-2",
       "source": "congressional_record",
@@ -9588,6 +10894,39 @@
     },
     {
       "member_id": "F000454",
+      "date": "2025-03-21",
+      "statement_id": "/media/press-releases/foster-statement-dismantling-department-education",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on the Dismantling of the Department of Education",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2025-04-07",
+      "statement_id": "/media/press-releases/foster-leads-bipartisan-effort-keep-stem-graduates-america-0",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Leads Bipartisan Effort to Keep STEM Graduates in America",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2025-04-10",
+      "statement_id": "/media/press-releases/foster-votes-against-republicans-attempt-disenfranchise-americans",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Votes Against Republicans\u2019 Attempt to Disenfranchise Americans",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
       "date": "2025-04-24",
       "statement_id": "CREC-2025-04-24-pt1-PgE333-3",
       "source": "congressional_record",
@@ -9676,6 +11015,39 @@
     },
     {
       "member_id": "F000454",
+      "date": "2025-05-09",
+      "statement_id": "/media/press-releases/foster-leads-over-100-colleagues-demanding-answers-national-science-foundation",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Leads over 100 Colleagues in Demanding Answers on National Science Foundation Funding Freeze",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2025-05-21",
+      "statement_id": "/media/press-releases/foster-obernolte-introduce-crisis-act-capitalize-russian-brain-drain",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster, Obernolte Introduce CRISIS Act to Capitalize on Russian Brain Drain",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2025-05-22",
+      "statement_id": "/media/press-releases/foster-statement-gop-reconciliation-bill",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on GOP Reconciliation Bill",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
       "date": "2025-06-03",
       "statement_id": "CREC-2025-06-03-pt1-PgH2406-6",
       "source": "congressional_record",
@@ -9742,6 +11114,28 @@
     },
     {
       "member_id": "F000454",
+      "date": "2025-09-30",
+      "statement_id": "/media/press-releases/foster-statement-government-shutdown-republican-health-care-crisis",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on Government Shutdown, Republican Health Care Crisis",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2025-10-09",
+      "statement_id": "/media/press-releases/foster-statement-israel-hamas-ceasefire-agreement-0",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on Israel-Hamas Ceasefire Agreement",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
       "date": "2025-10-17",
       "statement_id": "CREC-2025-10-17-pt1-PgE974-2",
       "source": "congressional_record",
@@ -9750,6 +11144,28 @@
       "title": "HONORING THE 50TH ANNIVERSARY OF THE AURORA ACTIONAIRES",
       "chars": 2291,
       "excerpt": "I rise today to celebrate the 50th anniversary of the Aurora Actionaires, a remarkable milestone for an organization that has stood as a beacon of service, leadership, and community empowerment in Aurora, Illinois, for half a century. Since"
+    },
+    {
+      "member_id": "F000454",
+      "date": "2026-01-03",
+      "statement_id": "/media/press-releases/statement-us-military-operation-venezuela",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Statement on U.S. Military Operation in Venezuela",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000454",
+      "date": "2026-01-12",
+      "statement_id": "/media/press-releases/foster-statement-trumps-investigation-federal-reserve",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on Trump's \"Investigation\" of the Federal Reserve",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "F000454",
@@ -9762,6 +11178,17 @@
       "chars": 158,
       "excerpt": "I ask unanimous consent that all Members may have 5 legislative days in which to revise and extend their remarks and submit extraneous material to the Record.",
       "sub_rule": "leave-to-revise-and-extend"
+    },
+    {
+      "member_id": "F000454",
+      "date": "2026-02-20",
+      "statement_id": "/media/press-releases/foster-statement-supreme-courts-tariff-decision",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Foster Statement on the Supreme Court's Tariff Decision",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "F000454",
@@ -9919,6 +11346,28 @@
     },
     {
       "member_id": "F000482",
+      "date": "2025-01-13",
+      "statement_id": "/media/press-releases/congresswoman-julie-fedorchak-introduces-first-resolution-honoring-ndsu",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congresswoman Julie Fedorchak introduces first resolution honoring NDSU football\u2019s historic achievement",
+      "chars": 1319,
+      "excerpt": "Washington, D.C. \u2014 Congresswoman Julie Fedorchak (R-ND) introduced her first resolution in the U.S. House of Representatives today. Her resolution celebrates the North Dakota State University (NDSU) Bison football team winning their 10th na"
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-01-30",
+      "statement_id": "/media/press-releases/congresswoman-fedorchak-celebrates-doug-burgums-senate-confirmation",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congresswoman Fedorchak celebrates Doug Burgum\u2019s Senate confirmation",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "F000482",
       "date": "2025-02-13",
       "statement_id": "CREC-2025-02-13-pt1-PgH700",
       "source": "congressional_record",
@@ -9928,6 +11377,28 @@
       "chars": 113,
       "excerpt": "I ask unanimous consent that all Members may have 5 legislative days in which to revise and extend their remarks.",
       "sub_rule": "leave-to-revise-and-extend"
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-02-19",
+      "statement_id": "/media/press-releases/congresswoman-julie-fedorchak-offers-condolences-passing-josh-christy",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congresswoman Julie Fedorchak offers condolences on the passing of Josh Christy",
+      "chars": 1189,
+      "excerpt": "Bismarck, ND \u2013 Congresswoman Julie Fedorchak (R-ND) issued the following statement on the passing of Josh Christy, husband of Mary Christy, her dedicated Deputy State Director. \u201cMy heart is heavy with the news of Josh\u2019s passing. Mary\u2019s dedi"
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-03-20",
+      "statement_id": "/media/press-releases/fedorchak-host-telephone-town-hall-tuesday-march-25",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Fedorchak to host Telephone Town Hall on Tuesday, March 25",
+      "chars": 1157,
+      "excerpt": "Washington D.C. \u2013 Congresswoman Julie Fedorchak (R-ND) will host a telephone town hall on Tuesday, March 25, at 6:30pm CT (5:30pm MT), providing thousands of North Dakotans the opportunity to engage in a productive discussion about the issu"
     },
     {
       "member_id": "F000482",
@@ -9942,6 +11413,28 @@
     },
     {
       "member_id": "F000482",
+      "date": "2025-03-28",
+      "statement_id": "/media/press-releases/house-floor-fedorchak-celebrates-else-rikes-101st-birthday",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "On the House Floor: Fedorchak celebrates Else Rike\u2019s 101st birthday",
+      "chars": 1032,
+      "excerpt": "Washington, D.C. \u2013 Congresswoman Julie Fedorchak (R-ND) spoke on the House Floor to congratulate our first Notable North Dakotan, Else Rike of Grand Forks, who celebrated her 101st birthday this week. Mr. Speaker, I rise today to recognize "
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-04-23",
+      "statement_id": "/media/press-releases/fedorchak-host-telephone-town-hall-thursday-may-1",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Fedorchak to host Telephone Town Hall on Thursday, May 1",
+      "chars": 1115,
+      "excerpt": "Bismarck, ND \u2013 Congresswoman Julie Fedorchak (R-ND) will host a telephone town hall on Thursday, May 1, at 7:00pm CT (6:00pm MT). This is the second in a series of telephone town halls to connect with North Dakotans across the state, answer"
+    },
+    {
+      "member_id": "F000482",
       "date": "2025-05-06",
       "statement_id": "CREC-2025-05-06-pt1-PgH1870-7",
       "source": "congressional_record",
@@ -9950,6 +11443,17 @@
       "title": "MINOT, NORTH DAKOTA NAMED A 2025 GREAT AMERICAN DEFENSE COMMUNITY",
       "chars": 901,
       "excerpt": "I rise today to recognize Minot, North Dakota, my husband's hometown, named one of the 2025 Great American Defense Communities. Only three cities across the Nation received this honor, reflecting the remarkable commitment the people of Mino"
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-05-07",
+      "statement_id": "/media/press-releases/house-floor-fedorchak-celebrates-minot-its-commitment-service-members",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "On the House Floor: Fedorchak celebrates Minot for its commitment to service members",
+      "chars": 1187,
+      "excerpt": "Washington, D.C. \u2013 Congresswoman Julie Fedorchak (R-ND) spoke on the House Floor to congratulate the Minot community for being named one of the 2025 Great American Defense Communities. The speech comes ahead of her visit to Minot Air Force "
     },
     {
       "member_id": "F000482",
@@ -9972,6 +11476,28 @@
       "title": "CONGRATULATING JOHN WHEELER ON HIS RETIREMENT",
       "chars": 1004,
       "excerpt": "I rise today to recognize WDAY Chief Meteorologist John Wheeler. On May 16, tomorrow, John will deliver his final forecast, sunsetting a memorable 40-year broadcasting career. John joined WDAY in 1985 as the station's first on-air meteorolo"
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-05-16",
+      "statement_id": "/media/press-releases/fedorchak-congratulates-wday-chief-meteorologist-john-wheeler-his-retirement",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Fedorchak congratulates WDAY Chief Meteorologist John Wheeler on his retirement",
+      "chars": 1019,
+      "excerpt": "Washington, D.C. \u2013 Congresswoman Julie Fedorchak (R-ND) spoke on the House Floor yesterday to congratulate WDAY Chief Meteorologist John Wheeler on his retirement after a remarkable 40-year career. Mr. Speaker, I rise today to recognize WDA"
+    },
+    {
+      "member_id": "F000482",
+      "date": "2025-05-28",
+      "statement_id": "/media/press-releases/fedorchak-named-congressional-biofuels-caucus-co-chair",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Fedorchak named Congressional Biofuels Caucus Co-Chair",
+      "chars": 4112,
+      "excerpt": "Beulah, ND \u2013 Congressional Biofuels Caucus Co-Chairs Julie Fedorchak (R-ND), Adrian Smith (R-NE), Angie Craig (D-MN), Ashley Hinson (R-IA), Mark Pocan (D-WI), and Nikki Budzinski (D-IL) released the following statements celebrating the laun"
     },
     {
       "member_id": "F000482",
@@ -10129,6 +11655,17 @@
     },
     {
       "member_id": "F000482",
+      "date": "2026-02-10",
+      "statement_id": "/media/press-releases/house-floor-fedorchak-celebrates-ray-curtiss-109th-birthday",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "On the House Floor: Fedorchak celebrates Ray Curtis\u2019s 109th birthday",
+      "chars": 985,
+      "excerpt": "Washington, D.C. \u2013 Congresswoman Julie Fedorchak (R-ND) spoke on the House Floor to congratulate a Notable North Dakotan, Ray Curtis of Minot, who celebrates his 109th birthday this week. Ray is the oldest living World War II Veteran in Nor"
+    },
+    {
+      "member_id": "F000482",
       "date": "2026-03-17",
       "statement_id": "CREC-2026-03-17-pt1-PgH2549",
       "source": "congressional_record",
@@ -10203,6 +11740,17 @@
       "title": "RECOGNIZING VANCE TAYLOR ON HIS RETIREMENT",
       "chars": 824,
       "excerpt": "I rise today to recognize an outstanding young North Dakotan, Casia Steinhaus. Casia recently earned the prestigious Goldwater Scholarship, one of the Nation's highest honors for undergraduate students pursuing careers in science, math, or "
+    },
+    {
+      "member_id": "F000482",
+      "date": "2026-09-22",
+      "statement_id": "/media/press-releases/nd-delegation-more-1-million-awarded-transportation-improvements-supporting",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "ND delegation: More than $1 million awarded for transportation improvements supporting Minot Air Force Base",
+      "chars": 1021,
+      "excerpt": "WASHINGTON \u2013 Senators John Hoeven and Kevin Cramer and Congresswoman Julie Fedorchak today announced that the North Dakota Department of Transportation (NDDOT) has been awarded $1.04 million through the Defense Community Infrastructure Prog"
     },
     {
       "member_id": "G000553",
@@ -10283,6 +11831,17 @@
     },
     {
       "member_id": "G000553",
+      "date": "2024-09-07",
+      "statement_id": "/media/press-releases/congressman-al-green-will-host-hobby-airport-area-resource-fair-public",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congressman Al Green Will Host Hobby Airport Area Resource Fair with Public Officials and Agencies Offering Local, State, and Federal Services",
+      "chars": 1283,
+      "excerpt": "(Houston, TX) \u2014 On Saturday, September 7, 2024, Congressman Al Green together with Texas Senator Carol Alvarado, Texas State Representative Christina Morales, and Harris County Commissioner Adrian Garcia will host a resource fair. The purpo"
+    },
+    {
+      "member_id": "G000553",
       "date": "2024-12-11",
       "statement_id": "CREC-2024-12-11-pt1-PgH6827-3",
       "source": "congressional_record",
@@ -10291,6 +11850,17 @@
       "title": "WILDLIFE INNOVATION AND LONGEVITY DRIVER REAUTHORIZATION ACT",
       "chars": 0,
       "excerpt": ""
+    },
+    {
+      "member_id": "G000553",
+      "date": "2024-12-24",
+      "statement_id": "/media/press-releases/congressman-al-green-issues-statement-recent-shootings-sunnyside-resulting",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Al Green Issues Statement on the Recent Shootings in Sunnyside, Resulting in the Loss of Lives",
+      "chars": 1083,
+      "excerpt": "(Houston, TX) \u2014 On Monday, December 23, 2024, Congressman Al Green issued a statement regarding the recent shootings as reported by news sources that resulted in the death of two men on Sunday night in Sunnyside, located in Congressman Gree"
     },
     {
       "member_id": "G000553",
@@ -10304,6 +11874,17 @@
       "excerpt": "and still I rise, to oppose a Continuing Resolution that will allow a chainsaw to, among other things: minimize Medicaid with underfunded block grants to states, marginalize Medicare's ``Dual Eligibles'' long-term Medicaid care, and privati",
       "duplicate_of": "CREC-2025-03-11-pt1-PgH1102",
       "duplicate_of_date": "2025-03-11"
+    },
+    {
+      "member_id": "G000553",
+      "date": "2025-05-10",
+      "statement_id": "/media/press-releases/congressman-al-green-attend-111th-birthday-celebration-mother-viola-ford",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Al Green to Attend 111th Birthday Celebration of Mother Viola Ford Fletcher, Oldest Survivor of the 1921 Tulsa Race Massacre",
+      "chars": 973,
+      "excerpt": "(Tulsa, Oklahoma)\u2014 On Saturday, May 10, 2025, Congressman Al Green will join the Tulsa community in honoring a cherished matriarch of American history at the 111th birthday celebration of Viola Ford Fletcher, affectionately known as, \u201cMothe"
     },
     {
       "member_id": "G000553",
@@ -10331,6 +11912,17 @@
     },
     {
       "member_id": "G000553",
+      "date": "2026-02-07",
+      "statement_id": "/media/press-releases/congressman-al-greens-black-history-month-legislative-breakfast-meeting",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Al Green's Black History Month Legislative Breakfast Meeting on February 7, 2026, at 9:00 AM CT",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "G000553",
       "date": "2026-02-12",
       "statement_id": "CREC-2026-02-12-pt1-PgH2211-3",
       "source": "congressional_record",
@@ -10339,6 +11931,52 @@
       "title": "BLACK HISTORY: STOLEN LEGACIES",
       "chars": 25475,
       "excerpt": "and still I rise, a proud, liberated, unbought, unbossed, and unafraid Democrat. Mr. Speaker, I rise today because this is Black History Month, and I have been accorded the honor of presenting annually the original Black history resolution."
+    },
+    {
+      "member_id": "G000553",
+      "date": "2026-05-20",
+      "statement_id": "/media/press-releases/rep-al-green-says-congress-should-not-receive-pay-while-federal-workers-go",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Rep. Al Green Says Congress Should Not Receive Pay While Federal Workers Go Unpaid During Shutdowns",
+      "chars": 548,
+      "excerpt": "(Washington, DC) \u2014 On Wednesday, May 20, 2026, Congressman Al Green, a Member of the House Committee on Homeland Security, shared remarks during a Homeland Security Committee hearing entitled, \u201cTSA Modernization: Industry Perspectives on Ke",
+      "duplicate_of": "/media/press-releases/rep-al-green-introduces-bills-increased-tsa-pay-federal-employee-back-pay",
+      "duplicate_of_date": "2026-05-20"
+    },
+    {
+      "member_id": "G000553",
+      "date": "2026-06-23",
+      "statement_id": "/media/press-releases/rep-al-green-celebrates-inclusion-his-historic-disaster-recovery-funding-bill",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Al Green Celebrates Inclusion of His Historic Disaster Recovery Funding Bill in Housing Package",
+      "chars": 467,
+      "excerpt": "(Washington, DC) \u2014 On Tuesday, June 23, 2026, Congressman Al Green delivered remarks on the House floor celebrating the inclusion of his historic Disaster Recovery Funding bill in the housing package. You can access and listen to Congressma"
+    },
+    {
+      "member_id": "G000553",
+      "date": "2026-07-30",
+      "statement_id": "/media/press-releases/congressman-al-green-host-press-conference-medicare-all-day-action-honoring",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Al Green to Host Press Conference for Medicare for All Day of Action Honoring the Legacy of Medicare and Medicaid",
+      "chars": 1489,
+      "excerpt": "(Houston, TX) \u2014 On Thursday, July 30, 2026, Congressman Al Green will host a press conference in recognition of the Medicare for All Day of Action and the 61st anniversary of the signing of the Medicare and Medicaid Act into law. Congressma"
+    },
+    {
+      "member_id": "G000553",
+      "date": "2026-08-22",
+      "statement_id": "/media/press-releases/youre-invited-congressman-al-greens-5th-annual-slavery-remembrance-legislative",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "YOU'RE INVITED TO CONGRESSMAN AL GREEN'S 5TH ANNUAL SLAVERY REMEMBRANCE LEGISLATIVE UPDATE BREAKFAST MEETING ON SATURDAY, AUGUST 22, 2026, AT 9:00 A.M. CT",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "H000601",
@@ -10376,6 +12014,17 @@
     },
     {
       "member_id": "H000601",
+      "date": "2023-03-17",
+      "statement_id": "/press-releases/2023/03/17/hagerty-delivers-opening-statement-at-foreign-relations-committee-nominations-hearing-questions-nominees",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Hagerty Delivers Opening Statement at Foreign Relations Committee Nominations Hearing, Questions Nominees",
+      "chars": 3207,
+      "excerpt": "WASHINGTON\u2014United States Senator Bill Hagerty (R-TN), a member of the Senate Foreign Relations Committee and former U.S. Ambassador to Japan, yesterday served as Ranking Member at a hearing on foreign service and State Department nomination"
+    },
+    {
+      "member_id": "H000601",
       "date": "2023-04-19",
       "statement_id": "CREC-2023-04-19-pt1-PgS1227",
       "source": "congressional_record",
@@ -10385,6 +12034,17 @@
       "chars": 18,
       "excerpt": "I yield the floor.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "H000601",
+      "date": "2023-05-17",
+      "statement_id": "/press-releases/2023/05/17/hagerty-statement-on-bidens-visit-to-japan",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Hagerty Statement on Biden\u2019s Visit to Japan",
+      "chars": 1514,
+      "excerpt": "WASHINGTON\u2014United States Senator Bill Hagerty (R-TN), a member of the Senate Foreign Relations Committee and former U.S. Ambassador to Japan, today released the following statement ahead of President Joe Biden\u2019s trip to Japan and the 49th G"
     },
     {
       "member_id": "H000601",
@@ -10419,6 +12079,28 @@
       "title": "Gun Violence (Executive Calendar)",
       "chars": 0,
       "excerpt": ""
+    },
+    {
+      "member_id": "H000601",
+      "date": "2023-08-16",
+      "statement_id": "/press-releases/2023/08/16/icymi-hagerty-joins-mornings-with-maria-on-fox-business-to-discuss-biden-administrations-weakness-toward-communist-china-hunter-biden-investigation-failed-inflation-reduction-act",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "ICYMI\u2014Hagerty Joins Mornings With Maria on Fox Business to Discuss Biden Administration\u2019s Weakness Toward Communist China, Hunter Biden Investigation, Failed Inflation Reduction Act",
+      "chars": 4723,
+      "excerpt": "NASHVILLE, TN\u2014United States Senator Bill Hagerty (R-TN), a member of the Senate Foreign Relations, Appropriations, and Banking Committees, today joined Mornings With Maria on Fox Business to discuss the Biden Administration\u2019s refusal to dea"
+    },
+    {
+      "member_id": "H000601",
+      "date": "2023-11-01",
+      "statement_id": "/press-releases/2023/11/01/tennessean-nominated-by-hagerty-chosen-as-angels-in-adoption-honoree",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Tennessean Nominated by Hagerty Chosen as Angels in Adoption Honoree",
+      "chars": 1657,
+      "excerpt": "WASHINGTON\u2014United States Senator Bill Hagerty (R-TN) in August nominated John Thomas \u201cJ.T.\u201d Harding for the 2023 Congressional Coalition on Adoption Institute\u2019s Angels in Adoption program. Last month, J.T. was selected as an Angels in Adopt"
     },
     {
       "member_id": "H000601",
@@ -10500,6 +12182,17 @@
       "chars": 91,
       "excerpt": "I ask unanimous consent for Senator Schatz and I to conclude our remarks prior to the vote.",
       "sub_rule": "unanimous-consent-request"
+    },
+    {
+      "member_id": "H000601",
+      "date": "2024-09-16",
+      "statement_id": "/press-releases/2024/09/16/icymi-hagerty-joins-mornings-with-maria-to-discuss-second-trump-assassination-attempt-houthis-ongoing-attacks-on-israel-u-s-budget-deficit-looming-government-shutdown",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "ICYMI\u2014Hagerty Joins Mornings with Maria to Discuss Second Trump Assassination Attempt, Houthis\u2019 Ongoing Attacks on Israel, U.S. Budget Deficit, Looming Government Shutdown",
+      "chars": 5794,
+      "excerpt": "NASHVILLE, TN \u2013 United States Senator Bill Hagerty (R-TN), a member of the Senate Foreign Relations, Banking, and Appropriations Committees, today joined Mornings with Maria on Fox Business to discuss the second failed assassination attempt"
     },
     {
       "member_id": "H000601",
@@ -10632,6 +12325,17 @@
     },
     {
       "member_id": "H000601",
+      "date": "2026-02-05",
+      "statement_id": "/press-releases/2026/02/05/hagerty-praises-governor-lees-state-of-the-state-address-on-senate-floor",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Hagerty Praises Governor Lee\u2019s State of the State Address on Senate Floor",
+      "chars": 3050,
+      "excerpt": "WASHINGTON\u2014 Yesterday, United States Senator Bill Hagerty (R-TN) spoke on the Senate floor praising Governor Bill Lee\u2019s State of the State Address and his leadership as Governor of Tennessee. Mr. President, I rise today to acknowledge my ho"
+    },
+    {
+      "member_id": "H000601",
       "date": "2026-03-05",
       "statement_id": "CREC-2026-03-05-pt1-PgS855-6",
       "source": "congressional_record",
@@ -10688,6 +12392,17 @@
       "chars": 72,
       "excerpt": "I ask unanimous consent that the order for the quorum call be rescinded.",
       "sub_rule": "quorum-call"
+    },
+    {
+      "member_id": "H000601",
+      "date": "2026-09-18",
+      "statement_id": "/press-releases/2026/09/18/hagerty-colleagues-lead-passage-of-resolution-honoring-the-life-and-legacy-of-dolly-parton",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Hagerty, Colleagues Lead Passage of Resolution Honoring the Life and Legacy of Dolly Parton",
+      "chars": 3477,
+      "excerpt": "WASHINGTON\u2014United States Senators Bill Hagerty (R-TN), Marsha Blackburn (R-TN), and Catherine Cortez Masto (D-NV) led passage of a resolution honoring the life and legacy of country music star Dolly Parton. Representative Diana Harshbarger "
     },
     {
       "member_id": "H001046",
@@ -10971,6 +12686,17 @@
     },
     {
       "member_id": "H001081",
+      "date": "2024-12-29",
+      "statement_id": "/press-releases",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Hayes Statement on the Passing of Former President Jimmy Carter",
+      "chars": 749,
+      "excerpt": "WATERBURY, CT \u2013 Today, Congresswoman Jahana Hayes (CT-05) released the following statement on the passing of former President Jimmy Carter: \u201cToday, our nation mourns the passing of Nobel laureate and former President Jimmy Carter. During hi"
+    },
+    {
+      "member_id": "H001081",
       "date": "2025-03-11",
       "statement_id": "CREC-2025-03-11-pt1-PgH1130-3",
       "source": "congressional_record",
@@ -11054,6 +12780,17 @@
     },
     {
       "member_id": "H001102",
+      "date": "2025-02-25",
+      "statement_id": "/media/press-releases/rep-mark-harris-issues-statement-passing-house-budget-resolution",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Mark Harris issues statement on the passing of the House Budget Resolution",
+      "chars": 618,
+      "excerpt": "WASHINGTON, DC \u2014 On Tuesday, Representative Mark Harris (NC-08) issued the following statement on the passing of the House Budget Resolution: Representative Harris said, \"By passing this budget resolution that puts us on a path to unprecede"
+    },
+    {
+      "member_id": "H001102",
       "date": "2025-04-30",
       "statement_id": "CREC-2025-04-30-pt1-PgH1760-4",
       "source": "congressional_record",
@@ -11062,6 +12799,28 @@
       "title": "RETIREMENT OF CHIEF BRYAN GILLIARD",
       "chars": 776,
       "excerpt": "whether they wear scrubs, a firefighter's helmet, or a badge, every town in America has real-life heroes, familiar faces who serve their communities. Mr. Speaker, I rise today to honor a true hometown hero, Chief Bryan Gilliard of North Car"
+    },
+    {
+      "member_id": "H001102",
+      "date": "2025-05-01",
+      "statement_id": "/media/press-releases/congressman-mark-harris-honors-retiring-monroe-police-chief-bryan-gilliard",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Mark Harris honors retiring Monroe Police Chief Bryan Gilliard",
+      "chars": 1271,
+      "excerpt": "WASHINGTON, DC \u2014 On Wednesday, Congressman Mark Harris (NC-08) gave a speech on the floor of the U.S. House of Representatives to honor Monroe Police Department Chief Bryan Gilliard for his three decades of service in law enforcement, inclu"
+    },
+    {
+      "member_id": "H001102",
+      "date": "2025-05-15",
+      "statement_id": "/media/press-releases/rep-mark-harris-advances-house-agriculture-reconciliation-package",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Mark Harris Advances House Agriculture Reconciliation Package",
+      "chars": 1243,
+      "excerpt": "WASHINGTON, DC \u2014 On Thursday, Representative Mark Harris (NC-08) issued the following statement after voting in favor of the House Agriculture Committee\u2019s Budget Reconciliation Package: Representative Harris said, \"As a proud member of the "
     },
     {
       "member_id": "H001102",
@@ -11087,6 +12846,28 @@
     },
     {
       "member_id": "H001102",
+      "date": "2025-09-03",
+      "statement_id": "/media/press-releases/congressman-mark-harris-honors-afghanistan-hero-michael-verardo",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Mark Harris Honors Afghanistan Hero Michael Verardo",
+      "chars": 1150,
+      "excerpt": "WASHINGTON, DC \u2014 On Tuesday, Congressman Mark Harris (NC-08) honored the life and legacy of Army Sergeant Michael Verardo from the House floor. Verardo passed away on August 26 after a 15-year battle with injuries sustained in combat. Congr"
+    },
+    {
+      "member_id": "H001102",
+      "date": "2025-09-24",
+      "statement_id": "/media/press-releases/congressman-mark-harris-vp-jd-vance-fight-safer-america",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Mark Harris & VP JD Vance Fight for a Safer America",
+      "chars": 3613,
+      "excerpt": "CONCORD, NC \u2014 On Wednesday, Congressman Mark Harris (NC-08) joined Vice President JD Vance to highlight how Republicans are leading the fight to create a safer America. Congressman Harris serves on the House Judiciary Committee, and his dis"
+    },
+    {
+      "member_id": "H001102",
       "date": "2026-01-13",
       "statement_id": "CREC-2026-01-13-pt1-PgH711",
       "source": "congressional_record",
@@ -11099,6 +12880,17 @@
     },
     {
       "member_id": "H001102",
+      "date": "2026-04-21",
+      "statement_id": "/media/press-releases/harris-honors-life-former-union-county-commissioner-gary-sides",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Harris Honors the Life of Former Union County Commissioner Gary Sides",
+      "chars": 2140,
+      "excerpt": "WASHINGTON, DC - Yesterday, Congressman Mark Harris (NC-08) spoke on the House floor to honor the life of Gary Sides, a former Union County Commissioner and longtime public servant. In his remarks, Rep. Harris spoke of Sides' years of tirel"
+    },
+    {
+      "member_id": "H001102",
       "date": "2026-05-14",
       "statement_id": "CREC-2026-05-14-pt1-PgH3471-3",
       "source": "congressional_record",
@@ -11108,6 +12900,28 @@
       "chars": 89,
       "excerpt": "I have no further speakers, and I am prepared to close. I reserve the balance of my time.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "H001102",
+      "date": "2026-07-02",
+      "statement_id": "/media/press-releases/harris-earns-2025-club-growth-defender-economic-freedom-award",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Harris Earns 2025 Club for Growth Defender of Economic Freedom Award",
+      "chars": 1242,
+      "excerpt": "WASHINGTON, D.C. \u2014 Congressman Mark Harris (NC-08) earned the 2025 Club for Growth Defender of Economic Freedom Award, recognizing his voting record in support of limited government and economic freedom. The award is based on the Club for G"
+    },
+    {
+      "member_id": "H001102",
+      "date": "2026-07-12",
+      "statement_id": "/media/press-releases/congressman-harris-statement-passing-senator-lindsey-graham",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Harris Statement on the Passing of Senator Lindsey Graham",
+      "chars": 1077,
+      "excerpt": "WASHINGTON, D.C. \u2014 Today, Congressman Mark Harris (NC-08) released the following statement on the passing of Senator Lindsey Graham:\u201cFor decades, Senator Lindsey Graham devoted his life to serving the people of South Carolina and our nation"
     },
     {
       "member_id": "J000299",
@@ -12800,6 +14614,17 @@
     },
     {
       "member_id": "K000403",
+      "date": "2025-11-17",
+      "statement_id": "/media/press-releases/rep-kennedy-introduces-legislation-rename-moab-federal-building-honor-second",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Kennedy Introduces Legislation to Rename Moab Federal Building in Honor of Second Lieutenant Mitchell Williams",
+      "chars": 1300,
+      "excerpt": "Washington, D.C. \u2013 Congressman Mike Kennedy (UT-03) introduced legislation to designate the United States Post Office located at 50 E 100 N in Moab, Utah, as the \u201cSecond Lieutenant Mitchell Williams Post Office Building.\u201d The bill recognize"
+    },
+    {
+      "member_id": "K000403",
       "date": "2025-11-19",
       "statement_id": "CREC-2025-11-19-pt1-PgH4813-2",
       "source": "congressional_record",
@@ -12819,6 +14644,17 @@
       "title": "CONGRATULATING CORNER CANYON AND LONE PEAK HIGH SCHOOL FOOTBALL TEAMS",
       "chars": 1179,
       "excerpt": "today I rise to congratulate both the Corner Canyon and the Lone Peak High School football teams who recently faced off in the Utah 6A State Championship. Their matchup showcased exactly what Utah embodies: determination, grit, and exceptio"
+    },
+    {
+      "member_id": "K000403",
+      "date": "2026-01-20",
+      "statement_id": "/media/press-releases/rep-kennedy-co-leads-legislation-protect-utahs-public-lands-foreign",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Kennedy co-leads Legislation to Protect Utah\u2019s Public Lands from Foreign Adversaries",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "K000403",
@@ -12896,6 +14732,32 @@
       "title": "RECOGNIZING CARL BOLCH, JR. FOR HIS SERVICE TO RACETRAC, INC. AND THE STATE OF GEORGIA",
       "chars": 2300,
       "excerpt": "I rise today to recognize and honor one of Georgia's finest business leaders and an outstanding individual, Carl Bolch, Jr., Executive Chairman of the Board of RaceTrac, Inc. Throughout his career, Carl has been a pioneer in the convenience"
+    },
+    {
+      "member_id": "L000583",
+      "date": "2023-06-30",
+      "statement_id": "/2023/06/30/rep-loudermilk-calls-out-biden-administration-for-pursuing-bad-nuclear-deal-with-iran",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Rep. Loudermilk Calls Out Biden Administration for Pursuing Bad Nuclear Deal with Iran",
+      "chars": 1419,
+      "excerpt": "We Will Not Forget Washington, D.C. (September 11, 2026) | Rep. Barry Loudermilk (GA-11), issued the following... Friends, I hope you have had a great week! As your Representative in Congress, it\u2019s a priority to keep you informed... Friends",
+      "duplicate_of": "/2023/06/16/rep-loudermilk-re-introduces-balanced-budget-amendment-2",
+      "duplicate_of_date": "2023-06-16"
+    },
+    {
+      "member_id": "L000583",
+      "date": "2023-07-19",
+      "statement_id": "/2023/07/19/rep-loudermilk-on-bipartisan-member-screening-of-the-sound-of-freedom",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Rep. Loudermilk on Bipartisan Member Screening of the Sound of Freedom",
+      "chars": 1419,
+      "excerpt": "We Will Not Forget Washington, D.C. (September 11, 2026) | Rep. Barry Loudermilk (GA-11), issued the following... Friends, I hope you have had a great week! As your Representative in Congress, it\u2019s a priority to keep you informed... Friends",
+      "duplicate_of": "/2023/06/16/rep-loudermilk-re-introduces-balanced-budget-amendment-2",
+      "duplicate_of_date": "2023-06-16"
     },
     {
       "member_id": "L000583",
@@ -12989,6 +14851,28 @@
     },
     {
       "member_id": "L000583",
+      "date": "2024-11-21",
+      "statement_id": "/2024/11/21/georgia-retains-influence-on-steering-committee",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Georgia Retains Influence on Steering Committee",
+      "chars": 2876,
+      "excerpt": "Washington D.C. (November 21, 2024) | Rep. Barry Loudermilk (GA-11) has released the following statement following his unanimous reelection to the House Republican Conference\u2019s Steering Committee. In the 119th Congress, Rep. Loudermilk will"
+    },
+    {
+      "member_id": "L000583",
+      "date": "2024-12-12",
+      "statement_id": "/2024/12/12/rep-loudermilk-announces-2024-congressional-app-challenge-winners",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Loudermilk Announces 2024 Congressional App Challenge Winners",
+      "chars": 4467,
+      "excerpt": "Washington D.C. (December 13, 2024) | Rep. Barry Loudermilk (GA-11) released the following statement announcing the winners of the 2024 Congressional App Challenge for Georgia\u2019s 11th Congressional District. The competition is designed for s"
+    },
+    {
+      "member_id": "L000583",
       "date": "2025-05-23",
       "statement_id": "CREC-2025-05-23-pt1-PgE474",
       "source": "congressional_record",
@@ -13008,6 +14892,17 @@
       "title": "RECOGNIZING MAJOR GENERAL MELISSA COBURN FOR HER SERVICE TO THE 22ND AIR FORCE",
       "chars": 1525,
       "excerpt": "I rise today to recognize Major General Melissa Coburn for her service to the 22nd Air Force at Dobbins Air Reserve Base in Marietta, Georgia. Major General Coburn commissioned through the United States Air Force Academy in 1992 and served "
+    },
+    {
+      "member_id": "L000583",
+      "date": "2025-12-10",
+      "statement_id": "/2025/12/10/rep-loudermilk-announces-2025-congressional-app-challenge-winners",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Loudermilk Announces 2025 Congressional App Challenge Winners",
+      "chars": 3827,
+      "excerpt": "Washington, D.C. (December 10, 2025) | \u2013 Rep. Barry Loudermilk (GA-11) issued the following statement announcing the winners of the 2025 Congressional App Challenge for Georgia\u2019s 11th Congressional District. The competition is designed for "
     },
     {
       "member_id": "L000583",
@@ -13772,6 +15667,17 @@
     },
     {
       "member_id": "M001143",
+      "date": "2023-01-13",
+      "statement_id": "/media/press-releases/mccollum-statement-dr-martin-luther-king-jr-day-2023",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "McCollum Statement on Dr. Martin Luther King Jr. Day 2023",
+      "chars": 1231,
+      "excerpt": "Congresswoman Betty McCollum (DFL-Minn.) released the following statement today ahead of Monday's observance of Martin Luther King, Jr. Day: \"Today we celebrate and honor the legacy of Dr. Martin Luther King Jr. and his work for justice. Dr"
+    },
+    {
+      "member_id": "M001143",
       "date": "2023-01-31",
       "statement_id": "CREC-2023-01-31-pt1-PgE77-4",
       "source": "congressional_record",
@@ -13780,6 +15686,17 @@
       "title": "HONORING THE 50TH ANNUAL NORWEGIAN RECIPROCAL TROOPS EXCHANGE",
       "chars": 3415,
       "excerpt": "I rise today to honor the 50th annual Norwegian Reciprocal Troops Exchange between the Minnesota National Guard and the Norwegian Home Guard. Known as NOREX, this annual exchange between the United States of America and the Kingdom of Norwa"
+    },
+    {
+      "member_id": "M001143",
+      "date": "2023-02-21",
+      "statement_id": "/media/press-releases/mccollum-statement-black-history-month-2023",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "McCollum Statement on Black History Month 2023",
+      "chars": 3514,
+      "excerpt": "Congresswoman Betty McCollum (DFL-Minn.) released the following statement commemorating Black History Month: \"Every February we commemorate Black History Month to celebrate and honor the contributions of Black Americans in our history and l"
     },
     {
       "member_id": "M001143",
@@ -13802,6 +15719,17 @@
       "title": "HONORING MARY ZAHASKY AND DOUG BOISVERT, OWNERS OF BON VIE BISTRO & A PIECE OF CAKE BAKERY",
       "chars": 1401,
       "excerpt": "I rise today to honor Mary Zahasky and Doug Boisvert, owners of Bon Vie Bistro and A Piece of Cake bakery on the occasion of their retirement this Saturday, April 8, 2023 after over three decades of operation in St. Paul, Minnesota. Mary an"
+    },
+    {
+      "member_id": "M001143",
+      "date": "2023-05-09",
+      "statement_id": "/media/press-releases/mccollum-announces-winners-2023-congressional-art-competition",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "McCollum Announces Winners of 2023 Congressional Art Competition",
+      "chars": 1192,
+      "excerpt": "Congresswoman Betty McCollum (MN-04) celebrates the winners of the 2023 Congressional Art Competition in Minnesota\u2019s Fourth Congressional District: Karin Hoyt of Mounds View High School took first place for her artwork \u201cFlyaways.\u201d Evelyn Li"
     },
     {
       "member_id": "M001143",
@@ -13988,6 +15916,17 @@
     },
     {
       "member_id": "M001143",
+      "date": "2024-01-12",
+      "statement_id": "/media/press-releases/mccollum-statement-dr-martin-luther-king-jr-day-2024",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "McCollum Statement on Dr. Martin Luther King Jr. Day 2024",
+      "chars": 1671,
+      "excerpt": "Congresswoman Betty McCollum (DFL-Minn.) released the following statement today ahead of Monday's observance of Martin Luther King, Jr. Day: \u201cToday we celebrate and honor the legacy of Dr. Martin Luther King Jr. and his work for justice. Dr"
+    },
+    {
+      "member_id": "M001143",
       "date": "2024-02-28",
       "statement_id": "CREC-2024-02-28-pt1-PgE186-4",
       "source": "congressional_record",
@@ -14103,6 +16042,17 @@
     },
     {
       "member_id": "M001143",
+      "date": "2024-07-22",
+      "statement_id": "/media/press-releases/congresswoman-mccollum-statement-biden-harris-administration-historic-200",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Congresswoman McCollum Statement on Biden-Harris Administration historic $200 Million for Minnesota to combat Climate Pollution",
+      "chars": 1369,
+      "excerpt": "(WASHINGTON, D.C.) \u2013 Today, as part of the Biden-Harris Administration\u2019s Investing in America agenda, the U.S. Environmental Protection Agency announced that the State of Minnesota will receive a $200 million Climate Pollution Reduction Gra"
+    },
+    {
+      "member_id": "M001143",
       "date": "2024-07-23",
       "statement_id": "CREC-2024-07-23-pt1-PgH4798-2",
       "source": "congressional_record",
@@ -14212,6 +16162,17 @@
       "title": "HONORING PETER YARROW",
       "chars": 3265,
       "excerpt": "I rise to pay tribute to the life of an extraordinary man, Peter Yarrow, of the legendary folk trio, Peter, Paul and Mary. Peter passed away at home in New York City on January 7, 2025, at the age of 86. He is survived by his spouse, Mary B"
+    },
+    {
+      "member_id": "M001143",
+      "date": "2025-01-17",
+      "statement_id": "/media/press-releases/rep-mccollum-congratulates-congressional-app-challenge-winner-idrees-ahmad",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. McCollum Congratulates Congressional App Challenge Winner Idrees Ahmad",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "M001143",
@@ -14446,6 +16407,30 @@
     },
     {
       "member_id": "M001143",
+      "date": "2026-01-27",
+      "statement_id": "/media/press-releases/mccollum-announces-winners-2025-congressional-app-challenge",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "McCollum Announces Winners of 2025 Congressional App Challenge",
+      "chars": 2784,
+      "excerpt": "WASHINGTON, D.C. \u2014 On Monday, Congresswoman Betty McCollum (MN-04) held a virtual event to congratulate Riddhi Singhvi of Stillwater Area High School for winning the 2025 Fourth Congressional District App Challenge. Singhvi\u2019s app, Bite Bala"
+    },
+    {
+      "member_id": "M001143",
+      "date": "2026-02-25",
+      "statement_id": "/media/press-releases/congresswoman-mccollum-statement-state-union-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Congresswoman McCollum Statement on the State of the Union",
+      "chars": 1997,
+      "excerpt": "WASHINGTON, D.C. \u2014 Congresswoman Betty McCollum, Dean of the Minnesota Congressional delegation, issued the following statement after the State of the Union: \u201cTeam USA made us proud as Americans \u2013 especially our fellow Minnesotans who led t",
+      "duplicate_of": "/media/press-releases/congresswoman-mccollum-statement-state-union",
+      "duplicate_of_date": "2026-02-24"
+    },
+    {
+      "member_id": "M001143",
       "date": "2026-04-16",
       "statement_id": "CREC-2026-04-16-pt1-PgE334-2",
       "source": "congressional_record",
@@ -14476,6 +16461,17 @@
       "title": "HONORING THE LIFE AND SACRIFICE OF SAINT PAUL POLICE OFFICER FELICIA D. REILLY",
       "chars": 1671,
       "excerpt": "I rise to honor the life and service of Saint Paul Police Officer Felicia D. Reilly, who died in March 2025 after she sustained life-altering injuries in the line of duty in 2010. It was an honor to meet with the family of Officer Reilly an"
+    },
+    {
+      "member_id": "M001143",
+      "date": "2026-06-15",
+      "statement_id": "/media/press-releases/statement-b-52-crash-edwards-air-force-base",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Statement on B-52 Crash at Edwards Air Force Base",
+      "chars": 533,
+      "excerpt": "SAINT PAUL, Minn. \u2014 Congresswoman Betty McCollum, the Ranking Member of the House Appropriations Subcommittee on Defense, issued the following statement on Monday evening: \u201cToday, eight of our fellow Americans tragically lost their lives in"
     },
     {
       "member_id": "M001143",
@@ -14937,6 +16933,28 @@
     },
     {
       "member_id": "M001194",
+      "date": "2023-07-19",
+      "statement_id": "/media-center/press-releases/moolenaar-applauds-israeli-president-herzogs-address-congress",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Applauds Israeli President Herzog\u2019s Address to Congress",
+      "chars": 858,
+      "excerpt": "Today, Israeli President Isaac Herzog addressed a joint session of Congress to commemorate the 75th anniversary of Israel\u2019s statehood, and to recognize the relationship between Israel and the United States. The joint address came a day afte"
+    },
+    {
+      "member_id": "M001194",
+      "date": "2023-08-18",
+      "statement_id": "/media-center/press-releases/moolenaar-pledges-more-action-prevent-bone-graft-infections",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Pledges More Action to Prevent Bone Graft Infections",
+      "chars": 937,
+      "excerpt": "Marion Resident Shandra Eisenga passed away on August 10 from tuberculosis that was contracted through a bone graft that was used in an elective back surgery she underwent this past spring. The material that infected Eisenga has now been re"
+    },
+    {
+      "member_id": "M001194",
       "date": "2023-09-28",
       "statement_id": "CREC-2023-09-28-pt1-PgE905-5",
       "source": "congressional_record",
@@ -14959,6 +16977,50 @@
     },
     {
       "member_id": "M001194",
+      "date": "2024-03-22",
+      "statement_id": "/media-center/press-releases/moolenaar-statement-granger-stepping-down-chair-appropriations",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Statement on Granger Stepping Down as Chair of the Appropriations Committee",
+      "chars": 719,
+      "excerpt": "Today, Congresswoman Kay Granger, the Chair of the House Appropriations Committee, announced she is stepping down as the chair of the committee. Granger has served in the House of Representatives since 1997. Congressman John Moolenaar, a me"
+    },
+    {
+      "member_id": "M001194",
+      "date": "2024-03-22",
+      "statement_id": "/media-center/press-releases/moolenaar-statement-retirement-select-committee-chairman-mike-gallagher",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Statement on the Retirement of Select Committee Chairman Mike Gallagher",
+      "chars": 795,
+      "excerpt": "Today, Congressman Mike Gallagher (R-WI), the Chairman of the Select Committee on the Strategic Competition Between the United States and the CCP, announced he is resigning from the House of Representatives effective April 19. Congressman J"
+    },
+    {
+      "member_id": "M001194",
+      "date": "2024-06-17",
+      "statement_id": "/media-center/press-releases/moolenaar-presents-military-honors-family-captain-william-coombs",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Presents Military Honors to Family of Captain William Coombs",
+      "chars": 1684,
+      "excerpt": "Today, Congressman John Moolenaar presented military honors to the family of the late William Coombs. The ceremony took place at VFW Post 3055 in Saint Louis. Moolenaar presented the four medals earned by Coombs to Coombs's nephew, Jeff Bar"
+    },
+    {
+      "member_id": "M001194",
+      "date": "2024-12-29",
+      "statement_id": "/media-center/press-releases/moolenaar-statement-former-president-jimmy-carters-passing",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Statement on Former President Jimmy Carter's Passing",
+      "chars": 527,
+      "excerpt": "Congressman John Moolenaar made the following statement on the passing of former President Jimmy Carter: \"Jimmy Carter sought to humbly serve others each day. After serving in the Navy, he returned home, and like many Americans, he became i"
+    },
+    {
+      "member_id": "M001194",
       "date": "2025-01-21",
       "statement_id": "CREC-2025-01-21-pt1-PgE51-5",
       "source": "congressional_record",
@@ -14967,6 +17029,17 @@
       "title": "HONORING THE LIFE OF PAUL OREFFICE",
       "chars": 2597,
       "excerpt": "I rise today to honor the remarkable life and legacy of Paul Oreffice, the former Chairman of the Board of The Dow Chemical Company, who passed away on December 26, 2024, at the age of 97. Paul was born in Venice, Italy and came to the Unit"
+    },
+    {
+      "member_id": "M001194",
+      "date": "2025-04-15",
+      "statement_id": "/media-center/press-releases/moolenaar-announces-winners-2025-congressional-art-competition",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Moolenaar Announces Winners of 2025 Congressional Art Competition",
+      "chars": 1650,
+      "excerpt": "Congressman John Moolenaar announced the winner of the 2025 Congressional Art Competition last week at a reception held at the Green Charter Township Hall. Nevada Draper, a 12th grade home schooled student from Hesperia, won the competition"
     },
     {
       "member_id": "M001194",
@@ -15432,6 +17505,17 @@
     },
     {
       "member_id": "M001238",
+      "date": "2025-01-24",
+      "statement_id": "/media/press-releases/coons-blunt-rochester-mcbride-announce-8-million-bolster-delawares-stem",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Coons, Blunt Rochester, McBride Announce $8 Million to Bolster Delaware\u2019s STEM Research Capacity and Workforce Development",
+      "chars": 5734,
+      "excerpt": "Wilmington, Del. \u2014 Today, U.S. Senators Chris Coons and Lisa Blunt Rochester, and Congresswoman Sarah McBride (all D-Del.) announced that Delaware will receive a federal investment of approximately $8 million from the U.S. National Science "
+    },
+    {
+      "member_id": "M001238",
       "date": "2025-02-12",
       "statement_id": "CREC-2025-02-12-pt1-PgH648-2",
       "source": "congressional_record",
@@ -15451,6 +17535,17 @@
       "title": "CONGRATULATING THE DOVER POLICE DEPARTMENT ON 100 YEARS OF SERVICE",
       "chars": 1574,
       "excerpt": "I rise today to recognize the commitment of a dedicated community leader, Paul Calistro, to the State of Delaware. A former mayor of Newport, Delaware, Paul has been the executive director of West End Neighborhood House in Wilmington since "
+    },
+    {
+      "member_id": "M001238",
+      "date": "2025-03-05",
+      "statement_id": "/media/press-releases/rep-mcbride-joins-original-co-sponsor-bipartisan-protecting-right-organize-act",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride Joins as Original Co-Sponsor of the Bipartisan Protecting the Right to Organize Act",
+      "chars": 1894,
+      "excerpt": "WASHINGTON, D.C.\u2014 Today Delaware\u2019s Congresswoman Sarah McBride joined her colleagues in reintroducing the bipartisan Richard L. Trumka Protecting the Right to Organize Act (PRO Act) in the 119th Congress. The PRO Act expands and strengthens"
     },
     {
       "member_id": "M001238",
@@ -15475,6 +17570,17 @@
       "title": "FOOD BANKS FACING URGENT CRISIS",
       "chars": 1940,
       "excerpt": "I rise today to celebrate the transformation happening in Seaford, Delaware, an investment in economic growth, opportunity, and the future of western Sussex County. Seaford is a small city rich in history. Just last week, I had the privileg"
+    },
+    {
+      "member_id": "M001238",
+      "date": "2025-03-26",
+      "statement_id": "/media/press-releases/delawares-congresswoman-mcbride-celebrates-seafords-revitalization",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Delaware\u2019s Congresswoman McBride Celebrates Seaford\u2019s Revitalization",
+      "chars": 2323,
+      "excerpt": "Delaware\u2019s Congresswoman McBride Celebrates Seaford\u2019s Revitalization Washington, D.C. \u2014 Congresswoman Sarah McBride (DE-AL) celebrated local, state, federal, and private investments to Seaford, Delaware that have contributed to an incredibl"
     },
     {
       "member_id": "M001238",
@@ -15522,6 +17628,17 @@
     },
     {
       "member_id": "M001238",
+      "date": "2025-06-16",
+      "statement_id": "/media/press-releases/rep-mcbride-recognizes-separation-day-house-floor",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride Recognizes Separation Day on House Floor",
+      "chars": 2531,
+      "excerpt": "WASHINGTON, D.C. \u2014 Congresswoman Sarah McBride (D-DE) took to the floor of the United States House of Representatives to commemorate the 249th anniversary of Delaware\u2019s longest running tradition: Separation Day. The occasion marks Delaware\u2019"
+    },
+    {
+      "member_id": "M001238",
       "date": "2025-07-02",
       "statement_id": "CREC-2025-07-02-pt1-PgH3039-8",
       "source": "congressional_record",
@@ -15557,6 +17674,17 @@
     {
       "member_id": "M001238",
       "date": "2025-07-21",
+      "statement_id": "/media/press-releases/rep-mcbride-denounces-trump-administrations-discharge-transgender-troops-house",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride Denounces Trump Administration\u2019s Discharge of Transgender Troops on House Floor",
+      "chars": 6895,
+      "excerpt": "WASHINGTON, D.C. \u2014 Today, Delaware\u2019s Congresswoman Sarah McBride (D-DE) delivered a speech on the House floor condemning the Trump Administration\u2019s removal of transgender service members from military service. \u201cThese are Americans who have "
+    },
+    {
+      "member_id": "M001238",
+      "date": "2025-07-21",
       "statement_id": "CREC-2025-07-21-pt1-PgH3479-5",
       "source": "congressional_record",
       "turn": 0,
@@ -15575,6 +17703,17 @@
       "title": "RECOGNIZING EMILY GREEN",
       "chars": 1000,
       "excerpt": "I rise today to recognize the extraordinary work of Ms. Emily Green, a teacher in the POLYTECH School District in Woodside, Delaware. Through her participation in National History Day, Ms. Green has worked with her students to preserve the "
+    },
+    {
+      "member_id": "M001238",
+      "date": "2025-08-14",
+      "statement_id": "/media/press-releases/rep-mcbride-passing-mike-castle",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride on the Passing of Mike Castle",
+      "chars": 850,
+      "excerpt": "WILMINGTON, DE \u2014 Today, Congresswoman Sarah McBride (D-DE) issued the following statement on the passing of former Delaware Congressman and Governor Mike Castle: \"Mike Castle was a giant in Delaware politics\u2014having served in the state House"
     },
     {
       "member_id": "M001238",
@@ -15699,6 +17838,17 @@
     },
     {
       "member_id": "M001238",
+      "date": "2026-03-03",
+      "statement_id": "/media/press-releases/photo-release-rep-mcbride-delaware-highlighting-health-care-access-recover",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "PHOTO RELEASE: Rep. McBride in Delaware Highlighting Health Care Access, Recover, Reentry, and Community",
+      "chars": 4583,
+      "excerpt": "Wilmington, DE \u2014 This weekend and Monday, Congresswoman Sarah McBride traveled across New Castle County to meet with health care providers, recovery advocates, reentry leaders, and community organizations \u2014 underscoring her commitment to ex"
+    },
+    {
+      "member_id": "M001238",
       "date": "2026-03-17",
       "statement_id": "CREC-2026-03-17-pt1-PgH2534",
       "source": "congressional_record",
@@ -15751,6 +17901,28 @@
       "title": "AMERICA IS GREAT BECAUSE AMERICA CAN CHANGE",
       "chars": 1470,
       "excerpt": "I rise today to commemorate the 120th anniversary of Congregation Beth Emeth, a generational cornerstone of the Jewish community in Wilmington and the surrounding areas. A welcoming, inclusive, and engaging congregation, Beth Emeth has been"
+    },
+    {
+      "member_id": "M001238",
+      "date": "2026-04-23",
+      "statement_id": "/media/press-releases/rep-mcbride-statement-state-rep-debra-heffernans-retirement",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride Statement on State Rep. Debra Heffernan\u2019s Retirement",
+      "chars": 1065,
+      "excerpt": "WILMINGTON, Del. \u2014 Delaware\u2019s Congresswoman Sarah McBride (D-Del.) released the following statement on State Representative Debra Heffernan\u2019s announcement that she will retire after 16 years of service: \u201cRepresentative Debra Heffernan has b"
+    },
+    {
+      "member_id": "M001238",
+      "date": "2026-05-19",
+      "statement_id": "/media/press-releases/rep-mcbride-statement-passing-former-wilmington-mayor-purzycki",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride Statement on the Passing of Former Wilmington Mayor Purzycki",
+      "chars": 1528,
+      "excerpt": "WILMINGTON, Del. \u2014 Today, U.S. Rep. Sarah McBride (D-Del.) released the following statement on the passing of former Wilmington Mayor Michael \u201cMike\u201d Purzycki: \u201cMayor Mike Purzycki was a deeply dedicated public servant who spent years of his"
     },
     {
       "member_id": "M001238",
@@ -15810,6 +17982,17 @@
     {
       "member_id": "M001238",
       "date": "2026-06-24",
+      "statement_id": "/media/press-releases/after-returning-nearly-65-million-delawareans-rep-sarah-mcbrides-office-named",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "After Returning Nearly $6.5 Million to Delawareans, Rep. Sarah McBride\u2019s Office Named Best Constituent Service in Congress",
+      "chars": 3394,
+      "excerpt": "WASHINGTON, D.C. \u2014 After helping more than 1,500 Delawareans navigate federal agencies and returning nearly $6.5 million in backlogged benefits, the Office of U.S. Representative Sarah McBride (D-Del.) has been awarded the 2026 Democracy Aw"
+    },
+    {
+      "member_id": "M001238",
+      "date": "2026-06-24",
       "statement_id": "CREC-2026-06-24-pt1-PgH4213-2",
       "source": "congressional_record",
       "turn": 0,
@@ -15828,6 +18011,17 @@
       "title": "RECOGNIZING CHARLOTTE KING",
       "chars": 2694,
       "excerpt": "I rise today to recognize an incredible Delawarean whose impact has long shaped the work of racial justice in Sussex County and across Delaware. Charlotte King, who founded the Southern Delaware Alliance for Racial Justice in 2015, has comm"
+    },
+    {
+      "member_id": "M001238",
+      "date": "2026-08-24",
+      "statement_id": "/media/press-releases/icymi-rep-mcbride-hosts-info-session-help-delawareans-prepare-retirement",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "ICYMI: Rep. McBride Hosts Info Session to Help Delawareans Prepare for Retirement",
+      "chars": 2031,
+      "excerpt": "GEORGETOWN, Del. \u2014 Last week, U.S. Representative Sarah McBride (D-Del.) hosted an informational session, \u201cReady, Set, Retire! Financial Must Knows for Those 55 and Up,\u201d in Sussex County. The event connected Delawareans preparing for retire"
     },
     {
       "member_id": "M001238",
@@ -15861,6 +18055,17 @@
       "title": "HONORING THE FOOD BANK OF DELAWARE",
       "chars": 2641,
       "excerpt": "today, in recognition of Hunger Action Month, I rise to honor the Food Bank of Delaware for the extraordinary work they do every day on behalf of Delawareans. We often call Delaware a state of neighbors. To me, that means more than simply l"
+    },
+    {
+      "member_id": "M001238",
+      "date": "2026-10-07",
+      "statement_id": "/media/press-releases/rep-mcbride-statement-passing-former-delaware-senate-president-pro-tempore",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. McBride Statement on the Passing of Former Delaware Senate President Pro Tempore Patricia \"Patti\" Blevins",
+      "chars": 968,
+      "excerpt": "WILMINGTON, Del. \u2014 Today, Congresswoman Sarah McBride (D-Del.) issued the following statement on the passing of Former Delaware Senate President Pro Tempore Patricia \"Patti\" Blevins: \"I am deeply saddened by the news of Patti Blevins\u2019s pass"
     },
     {
       "member_id": "P000605",
@@ -16066,6 +18271,28 @@
     },
     {
       "member_id": "P000605",
+      "date": "2024-05-20",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Scott Perry Introduces the Student Loan Reform Act",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "P000605",
+      "date": "2024-05-30",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Congressman Perry\u2019s Statement on the Trump Trial Ruling",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "P000605",
       "date": "2024-06-03",
       "statement_id": "CREC-2024-06-03-pt1-PgE579-3",
       "source": "congressional_record",
@@ -16077,6 +18304,17 @@
     },
     {
       "member_id": "P000605",
+      "date": "2024-06-27",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Scott Perry Congratulates 10th District 2024 Art Competition Winner",
+      "chars": 1326,
+      "excerpt": "Today in D.C., U.S. Representative Scott Perry (PA-10) hosted this year\u2019s Congressional Art Competition winner, Grisheela Baniya, to celebrate her artistic talent and that of other students in Pennsylvania\u2019s 10th Congressional District. \"So"
+    },
+    {
+      "member_id": "P000605",
       "date": "2024-07-22",
       "statement_id": "CREC-2024-07-22-pt1-PgH4720",
       "source": "congressional_record",
@@ -16085,6 +18323,17 @@
       "title": "HONORING THE LIFE OF COREY COMPERATORE",
       "chars": 1577,
       "excerpt": "I thank my friend, Mike Kelly, for yielding. It is sad that we have to be here. Corey Comperatore is now a hero, but we would sure rather have Corey back in our lives. I didn't know Corey, but I have come, like many, to learn something abou"
+    },
+    {
+      "member_id": "P000605",
+      "date": "2024-07-23",
+      "statement_id": "/news/documentsingle.aspx",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Chairman Perry Statement from Hearing on Effectiveness of the Federal Protective Service",
+      "chars": 0,
+      "excerpt": ""
     },
     {
       "member_id": "P000605",
@@ -16746,6 +18995,28 @@
     },
     {
       "member_id": "S001145",
+      "date": "2023-03-02",
+      "statement_id": "/media/press-releases/schakowsky-announces-move-new-skokie-district-office-location-neighborhood",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Schakowsky Announces Move to New Skokie District Office Location, Neighborhood Office Hours",
+      "chars": 3936,
+      "excerpt": "SKOKIE \u2013 Today, Congresswoman Jan Schakowsky (IL-09), a Chief Deputy Whip and Ranking Member on the Innovation, Data, and Commerce Subcommittee of the Energy and Commerce Committee, announced the closure of her district office locations in "
+    },
+    {
+      "member_id": "S001145",
+      "date": "2023-04-08",
+      "statement_id": "/media/press-releases/schakowsky-statement-district-court-decision-suspend-fda-approval-mifepristone",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Schakowsky Statement on District Court Decision to Suspend FDA Approval of Mifepristone",
+      "chars": 2685,
+      "excerpt": "WASHINGTON \u2013 Today, Congresswoman Jan Schakowsky (IL-09), Chair of the Congressional Pro-Choice Caucus Providers and Clinics Task Force, issued the following statement on the decision in the case Alliance for Hippocratic Medicine v. FDA, in"
+    },
+    {
+      "member_id": "S001145",
       "date": "2023-05-10",
       "statement_id": "CREC-2023-05-10-pt1-PgE413-4",
       "source": "congressional_record",
@@ -16790,6 +19061,17 @@
     },
     {
       "member_id": "S001145",
+      "date": "2023-05-29",
+      "statement_id": "/media/press-releases/schakowsky-statement-observance-memorial-day",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Schakowsky Statement in Observance of Memorial Day",
+      "chars": 1334,
+      "excerpt": "EVANSTON \u2013 Today, U.S. Representative Jan Schakowsky (IL-09), a Chief Deputy Whip and Ranking Member of the Innovation, Data, and Commerce Subcommittee of the House Energy and Commerce Committee, released the following statement in honor of"
+    },
+    {
+      "member_id": "S001145",
       "date": "2023-06-23",
       "statement_id": "CREC-2023-06-23-pt1-PgE608-2",
       "source": "congressional_record",
@@ -16801,6 +19083,19 @@
     },
     {
       "member_id": "S001145",
+      "date": "2023-07-20",
+      "statement_id": "/media/press-releases/schakowsky-statement-2023-faa-reauthorization-bill",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Schakowsky Statement on 2023 FAA Reauthorization Bill",
+      "chars": 1215,
+      "excerpt": "If you have any difficulty viewing any page with assistive technology or experience any issues accessing this website, please contact us so that we can improve this website. Please be as specific as possible in your description of the issue",
+      "duplicate_of": "/media/press-releases/schakowsky-reintroduces-legislation-guarantee-home-use-medical-devices-are",
+      "duplicate_of_date": "2023-03-01"
+    },
+    {
+      "member_id": "S001145",
       "date": "2023-07-27",
       "statement_id": "CREC-2023-07-27-pt1-PgE738-5",
       "source": "congressional_record",
@@ -16809,6 +19104,17 @@
       "title": "HONORING COLLEEN DOLAN",
       "chars": 2812,
       "excerpt": "I rise today to honor my constituent Colleen Dolan, from Chicago, for a successful career and to congratulate her on her much-deserved retirement. Graduating from Lewis University with a degree in sociology and psychology, Colleen Dolan ent"
+    },
+    {
+      "member_id": "S001145",
+      "date": "2023-09-11",
+      "statement_id": "/media/press-releases/schakowsky-statement-marking-22-years-september-11th-attacks",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Schakowsky Statement Marking 22 Years Since September 11th Attacks",
+      "chars": 2415,
+      "excerpt": "EVANSTON \u2013 Today, U.S. Representative Jan Schakowsky (IL-09), a Chief Deputy Whip and the Ranking Member of the Innovation, Data, and Commerce Subcommittee of the House Energy and Commerce Committee, issued the following statement marking 2"
     },
     {
       "member_id": "S001145",
@@ -16878,6 +19184,19 @@
     },
     {
       "member_id": "S001145",
+      "date": "2024-07-26",
+      "statement_id": "/media/press-releases/34th-anniversary-ada-schakowsky-reintroduces-legislation-ensure-new-homes-meet",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "On 34th Anniversary of ADA, Schakowsky Reintroduces Legislation to Ensure New Homes Meet Accessibility Standards",
+      "chars": 1215,
+      "excerpt": "If you have any difficulty viewing any page with assistive technology or experience any issues accessing this website, please contact us so that we can improve this website. Please be as specific as possible in your description of the issue",
+      "duplicate_of": "/media/press-releases/schakowsky-reintroduces-legislation-guarantee-home-use-medical-devices-are",
+      "duplicate_of_date": "2023-03-01"
+    },
+    {
+      "member_id": "S001145",
       "date": "2024-11-13",
       "statement_id": "CREC-2024-11-13-pt1-PgE1134-4",
       "source": "congressional_record",
@@ -16900,6 +19219,19 @@
     },
     {
       "member_id": "S001145",
+      "date": "2025-01-13",
+      "statement_id": "/media/press-releases/schakowsky-merkley-40-members-join-americas-youth-climate-rights-lawsuit-us-0",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Schakowsky, Merkley, 40+ Members Join America\u2019s Youth in Climate Rights Lawsuit Before U.S. Supreme Court",
+      "chars": 3175,
+      "excerpt": "WASHINGTON - Today, U.S. Representative Jan Schakowsky (IL-09) and U.S. Senator Jeff Merkley (D-OR) led over 40 of their colleagues in filing an amicus brief with the U.S. Supreme Court in support of the 21 youth plaintiffs in Juliana v. Un",
+      "duplicate_of": "/media/press-releases/schakowsky-merkley-40-members-join-americas-youth-climate-rights-lawsuit-us",
+      "duplicate_of_date": "2025-01-13"
+    },
+    {
+      "member_id": "S001145",
       "date": "2025-03-14",
       "statement_id": "CREC-2025-03-14-pt1-PgE213-4",
       "source": "congressional_record",
@@ -16919,6 +19251,17 @@
       "title": "RECOGNIZING THE CAREER OF SKOKIE MAYOR GEORGE VAN DUSEN",
       "chars": 3040,
       "excerpt": "I rise today to recognize the accomplishments and long career of my dear friend, George Van Dusen. George is retiring after serving as an excellent Mayor of Skokie for 25 years. I have had the privilege of representing the Village of Skokie"
+    },
+    {
+      "member_id": "S001145",
+      "date": "2025-05-05",
+      "statement_id": "/media/press-releases/schakowsky-announces-she-will-not-seek-re-election-2026",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Schakowsky Announces She Will Not Seek Re-election in 2026",
+      "chars": 4399,
+      "excerpt": "CHICAGO \u2013 Today, U.S. Representative Jan Schakowsky (IL-09), a Chief Deputy Whip and Ranking Member of the House Energy and Commerce Subcommittee on Commerce, Manufacturing, and Trade, released the following statement announcing her decisio"
     },
     {
       "member_id": "S001145",
@@ -16963,6 +19306,17 @@
       "title": "RECOGNIZING THE SERVICE OF KATHRYN ANGELL",
       "chars": 2329,
       "excerpt": "I rise today to recognize Kathryn Angell, a dedicated public servant who has spent years serving the residents of Illinois' 9th Congressional District with skill, compassion, and professionalism. Kathryn has been a member of my staff since "
+    },
+    {
+      "member_id": "S001145",
+      "date": "2026-02-17",
+      "statement_id": "/media/press-releases/schakowsky-statement-passing-rev-jesse-jackson",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Schakowsky Statement on the Passing of Rev. Jesse Jackson",
+      "chars": 753,
+      "excerpt": "EVANSTON - Today, U.S. Representative Jan Schakowsky (IL-09) released the following statement on the passing of Rev. Jesse Jackson: \"My dear friend Rev. Jesse Jackson devoted his entire life to fighting for dignity, equality, and opportunit"
     },
     {
       "member_id": "S001145",
@@ -18366,6 +20720,17 @@
     },
     {
       "member_id": "S001232",
+      "date": "2025-04-14",
+      "statement_id": "/news/press-releases/sheehy-speaks-with-montana-students-about-leadership-and-service",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Sheehy Speaks with Montana Students About Leadership and Service     FOR IMMEDIATE RELEASE April 14, 2025 Sheehy Speaks with Montana Students About Leadership and Service...               Continue Reading",
+      "chars": 2800,
+      "excerpt": "Sheehy Speaks with Montana Students About Leadership and Service Sheehy is Encouraging Students to Consider Attending a U.S. Service Academy MILES CITY, Mont. \u2013 U.S. Senator Tim Sheehy (R \u2013 Mont.) today visited Lewistown and Miles City to t"
+    },
+    {
+      "member_id": "S001232",
       "date": "2025-08-01",
       "statement_id": "CREC-2025-08-01-pt1-PgS5204",
       "source": "congressional_record",
@@ -18443,6 +20808,17 @@
     },
     {
       "member_id": "S001232",
+      "date": "2025-09-24",
+      "statement_id": "/news/press-releases/sheehy-promotes-service-academies-for-montana-students",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Sheehy Promotes Service Academies for Montana Students     FOR IMMEDIATE RELEASE September 24, 2025 Sheehy Promotes Service Academies for Montana StudentsSheehy Speaks with...               Continue Reading",
+      "chars": 2520,
+      "excerpt": "Sheehy Promotes Service Academies for Montana StudentsSheehy Speaks with Montana Students About Leadership and Service MANHATTAN, Mont. \u2013 U.S. Senator Tim Sheehy (R \u2013 Mont.) yesterday visited Three Forks and Manhattan to hold town halls and"
+    },
+    {
+      "member_id": "S001232",
       "date": "2025-10-07",
       "statement_id": "CREC-2025-10-07-pt1-PgS6967-3",
       "source": "congressional_record",
@@ -18451,6 +20827,28 @@
       "title": "EN BLOC NOMINATIONS--Continued",
       "chars": 452,
       "excerpt": "first, I want to congratulate the Presiding Officer on the momentous occasion of becoming a golden gavel recipient. That is the achievement of a lifetime. Unanimous Consent Agreement--Executive Calendar Mr. President, I ask unanimous consen"
+    },
+    {
+      "member_id": "S001232",
+      "date": "2025-11-03",
+      "statement_id": "/news/press-releases/icymi-helena-city-commission-candidate-wished-cancer-on-senator-sheehy-in-threatening-voicemail-i-hope-you-die",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "ICYMI: Helena City Commission Candidate Wished Cancer on Senator Sheehy in Threatening Voicemail: \u2018I Hope You Die\u2019     FOR IMMEDIATE RELEASE November 3, 2025 ICYMI: Helena City Commission Candidate Wished Cancer on Senator...               Continue Reading",
+      "chars": 6610,
+      "excerpt": "ICYMI: Helena City Commission Candidate Wished Cancer on Senator Sheehy in Threatening Voicemail: \u2018I Hope You Die\u2019 National Review published a story on a voicemail left for Senator Sheehy by Haley McKnight, a liberal candidate for Helena Ci"
+    },
+    {
+      "member_id": "S001232",
+      "date": "2025-11-19",
+      "statement_id": "/news/press-releases/sheehy-introduces-strengthening-resources-for-our-schools-act",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Sheehy Introduces Strengthening Resources for Our Schools Act     FOR IMMEDIATE RELEASE November 19, 2025 Sheehy Introduces Strengthening Resources for Our Schools ActSROs Act...               Continue Reading",
+      "chars": 3283,
+      "excerpt": "Sheehy Introduces Strengthening Resources for Our Schools ActSROs Act Supports School Safety, Veterans, and Law Enforce U.S. SENATE \u2013 Senator Sheehy (R \u2013 Mont.) introduced the Strengthening Resources for Our Schools (SROs) Act to protect st"
     },
     {
       "member_id": "S001232",
@@ -18685,6 +21083,39 @@
     },
     {
       "member_id": "U000040",
+      "date": "2023-08-10",
+      "statement_id": "/media/press-releases/underwood-recognized-2023-democracy-award-constituent-service",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Underwood Recognized With 2023 Democracy Award for Constituent Service",
+      "chars": 1895,
+      "excerpt": "WASHINGTON, D.C. \u2013 Representative Lauren Underwood (IL-14) was announced as the 2023 winner of the Congressional Management Foundation (CMF)\u2019s Democracy Award for Constituent Service. CMF\u2019s Constituent Service Award honors Congressional off"
+    },
+    {
+      "member_id": "U000040",
+      "date": "2023-08-11",
+      "statement_id": "/media/press-releases/underwood-announces-713000-federal-funding-ottawa-first-responders-affected-st",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Underwood Announces $713,000 in Federal Funding for Ottawa First Responders Affected by St. Margaret\u2019s Closures",
+      "chars": 1577,
+      "excerpt": "WASHINGTON, D.C. \u2014 Today, Representative Lauren Underwood (IL-14) announced that the Ottawa Fire Department will receive $713,849 through the Federal Emergency Management Agency\u2019s Staffing for Adequate Fire and Emergency Response (SAFER) Pr"
+    },
+    {
+      "member_id": "U000040",
+      "date": "2023-12-15",
+      "statement_id": "/media/press-releases/underwood-announces-889855-federal-funding-illinois-valley-community-college",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Underwood Announces $889,855 in Federal Funding for Illinois Valley Community College to Provide Telehealth and Virtual Learning, Benefiting Over 6,500 Students",
+      "chars": 1946,
+      "excerpt": "JOLIET \u2013 Today, Representative Lauren Underwood (IL-14) announced that Illinois Valley Community College (IVCC) will receive $889,855 in grant funding from the U.S. Department of Agriculture\u2019s Distance Learning and Telemedicine Grants Progr"
+    },
+    {
+      "member_id": "U000040",
       "date": "2024-06-26",
       "statement_id": "CREC-2024-06-26-pt1-PgH4167-3",
       "source": "congressional_record",
@@ -18697,6 +21128,39 @@
     },
     {
       "member_id": "U000040",
+      "date": "2024-10-18",
+      "statement_id": "/media/press-releases/underwood-announces-town-hall-meeting-illinois-valley",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Underwood Announces Town Hall Meeting In Illinois Valley",
+      "chars": 1170,
+      "excerpt": "SANDWICH \u2014 Congresswoman Lauren Underwood (IL-14) will host a Town Hall Meeting for constituents in the Illinois Valley at Putnam County High School this Friday, October 18th at 6:00 p.m. Town hall meetings are an opportunity for Underwood "
+    },
+    {
+      "member_id": "U000040",
+      "date": "2025-01-13",
+      "statement_id": "/media/press-releases/underwoods-bipartisan-legislation-strengthen-oversight-veterans-care-signed",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Underwood\u2019s Bipartisan Legislation to Strengthen Oversight of Veterans\u2019 Care Signed Into Law",
+      "chars": 3346,
+      "excerpt": "WASHINGTON\u2014Representatives Lauren Underwood (IL-14), Steve Womack (AR-03), Chris Pappas (NH-01), and Dave Joyce (OH-14), are celebrating the passage of their legislation to strengthen oversight and accountability at the U.S. Department of V"
+    },
+    {
+      "member_id": "U000040",
+      "date": "2025-01-15",
+      "statement_id": "/media/press-releases/underwood-statement-following-ceasefire-israel-hamas-conflict",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Underwood Statement Following Ceasefire Of Israel-Hamas Conflict",
+      "chars": 964,
+      "excerpt": "WASHINGTON\u2014Representative Lauren Underwood (IL-14) released the following statement regarding the hostage release and ceasefire agreement between Israel and Hamas: \u201cToday I join the many families across IL-14 and around the world in celebra"
+    },
+    {
+      "member_id": "U000040",
       "date": "2025-04-07",
       "statement_id": "CREC-2025-04-07-pt1-PgH1428-7",
       "source": "congressional_record",
@@ -18705,6 +21169,30 @@
       "title": "HONORING THE LIFE OF SERGEANT JOSE DUENEZ, JR.",
       "chars": 764,
       "excerpt": "I rise today to honor the life of my constituent Sergeant Jose Duenez, Jr. Sergeant Duenez was described by his family as someone who always wanted to protect people. He enlisted right after high school and served with his whole heart. His "
+    },
+    {
+      "member_id": "U000040",
+      "date": "2026-03-18",
+      "statement_id": "/media/press-releases/underwood-adams-booker-reintroduce-momnibus-bills-end-americas-maternal-health",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Underwood, Adams, Booker Reintroduce Momnibus Bills to End America\u2019s Maternal Health Crisis",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "U000040",
+      "date": "2026-04-16",
+      "statement_id": "/media/press-releases/reps-adams-underwood-sen-booker-reintroduce-bicameral-black-maternal-health",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "duplicate",
+      "title": "Reps. Adams, Underwood, Sen. Booker Reintroduce Bicameral Black Maternal Health Week Resolution",
+      "chars": 4129,
+      "excerpt": "WASHINGTON \u2013 Today, U.S. Representatives Lauren Underwood, Alma Adams (D-NC-12), and Senator Cory Booker (D-NJ), introduced the bicameral resolution recognizing April 11 through April 17 as Black Maternal Health Week. This resolution serves",
+      "duplicate_of": "/media/press-releases/reps-adams-underwood-sen-booker-reintroduce-bicameral-black-maternal-health-0",
+      "duplicate_of_date": "2026-04-15"
     },
     {
       "member_id": "V000130",
@@ -18862,6 +21350,17 @@
     },
     {
       "member_id": "V000130",
+      "date": "2024-01-25",
+      "statement_id": "/media/press-releases/sustainable-investment-caucus-celebrates-one-year-of-protecting-investor-freedom",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Sustainable Investment Caucus Celebrates One-Year of Protecting Investor Freedom",
+      "chars": 958,
+      "excerpt": "Media Contact: Anzueth Barela | (202) 225-8045 | Anzueth.Barela@mail.house.gov Washington, D.C. (January 25, 2024) - Today, Congressman Juan Vargas (CA-52) and Congressman Sean Casten (IL-06), co-chairs of the Congressional Sustainable Inve"
+    },
+    {
+      "member_id": "V000130",
       "date": "2024-01-31",
       "statement_id": "CREC-2024-01-31-pt1-PgE98-6",
       "source": "congressional_record",
@@ -18939,6 +21438,28 @@
     },
     {
       "member_id": "V000130",
+      "date": "2024-06-12",
+      "statement_id": "/media/press-releases/rep-vargas-statement-on-philippine-independence-day",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Vargas Statement on Philippine Independence Day",
+      "chars": 1118,
+      "excerpt": "WASHINGTON - U.S. Representative Juan Vargas (CA-52) released the following statement celebrating Philippine Independence Day on June 12, 2024. \"I want to send my best wishes to everyone celebrating the 126th Philippine Independence Day her"
+    },
+    {
+      "member_id": "V000130",
+      "date": "2024-07-05",
+      "statement_id": "/media/press-releases/rep-vargas-reintroduces-resolution-to-honor-life-of-jesuit-father-stan-swamy",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Rep. Vargas Reintroduces Resolution to Honor Life of Jesuit Father Stan Swamy",
+      "chars": 837,
+      "excerpt": "WASHINGTON - U.S. Representative Juan Vargas (CA-52) reintroduced a resolution to honor the life and legacy of Father Stan, an Indian Jesuit priest and prominent human rights activist who died while in police custody on July 5, 2021, and to"
+    },
+    {
+      "member_id": "V000130",
       "date": "2024-07-23",
       "statement_id": "CREC-2024-07-23-pt1-PgE751-4",
       "source": "congressional_record",
@@ -18993,6 +21514,17 @@
       "chars": 144,
       "excerpt": "I have no further speakers. I am prepared to close if the gentleman from Arkansas has no further speakers, and I reserve the balance of my time.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "V000130",
+      "date": "2025-03-04",
+      "statement_id": "/media/press-releases/ranking-member-juan-vargas-s-opening-statement-at-task-force-on-monetary-policy-treasury-market-resilience-and-economic-prosperity-hearing",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Ranking Member Juan Vargas\u2019s Opening Statement at Task Force on Monetary Policy, Treasury Market Resilience, and Economic Prosperity Hearing",
+      "chars": 5015,
+      "excerpt": "WASHINGTON - Today, U.S. Representative Juan Vargas (CA-52), Ranking Member of the House Financial Services Committee\u2019s Task Force on Monetary Policy, Treasury Market Resilience, and Economic Prosperity, delivered opening remarks at the Tas"
     },
     {
       "member_id": "V000130",
@@ -19239,6 +21771,17 @@
     {
       "member_id": "W000821",
       "date": "2023-02-01",
+      "statement_id": "/media-center/press-releases/westerman-celebrates-transportation-infrastructure-subcommittee",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Westerman Celebrates Transportation & Infrastructure Subcommittee Assignments",
+      "chars": 2072,
+      "excerpt": "WASHINGTON \u2013 Today, Congressman Bruce Westerman celebrated his subcommittee assignments for the Transportation and Infrastructure Committee for the 118th Congress. Rep. Westerman was assigned to the Aviation, Water Resources and Environment"
+    },
+    {
+      "member_id": "W000821",
+      "date": "2023-02-01",
       "statement_id": "CREC-2023-02-01-pt1-PgE82-2",
       "source": "congressional_record",
       "turn": 0,
@@ -19246,6 +21789,17 @@
       "title": "REMEMBERING THE 1973 VASTER HIGH SCHOOL BASKETBALL TEAM",
       "chars": 2058,
       "excerpt": "I rise today to remember the 1973 Vaster High School Basketball Team. Vaster High School was in Moscow, Arkansas, in Jefferson County, and at the time, had a population of around 600 people. Although a small community and school, this team "
+    },
+    {
+      "member_id": "W000821",
+      "date": "2023-02-03",
+      "statement_id": "/media-center/press-releases/governor-sarah-huckabee-sanders-deliver-republican-address-nation",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Governor Sarah Huckabee Sanders to Deliver Republican Address to the Nation",
+      "chars": 593,
+      "excerpt": "WASHINGTON \u2013 Today, Speaker of the House Kevin McCarthy (R-CA) and Senate Republican Leader Mitch McConnell (R-KY) announced Governor Sarah Huckabee Sanders will deliver the Republican Address to the Nation from the Arkansas Capitol, follow"
     },
     {
       "member_id": "W000821",
@@ -19355,6 +21909,17 @@
     {
       "member_id": "W000821",
       "date": "2023-05-11",
+      "statement_id": "/media-center/press-releases/westerman-participates-third-annual-back-blue-bike-tour",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Westerman Participates in Third Annual Back the Blue Bike Tour",
+      "chars": 487,
+      "excerpt": "WASHINGTON DC \u2013 This morning, Congressman Bruce Westerman participated in the Third Annual Back the Blue bike tour hosted by Speaker Kevin McCarthy. Westerman rode alongside House Republicans and law enforcement officers on the bike ride th"
+    },
+    {
+      "member_id": "W000821",
+      "date": "2023-05-11",
       "statement_id": "CREC-2023-05-11-pt1-PgE430",
       "source": "congressional_record",
       "turn": 0,
@@ -19362,6 +21927,17 @@
       "title": "RECOGNIZING PASTOR AMELIO HOWARD FOR 30 YEARS OF SERVICE TO GRACE TEMPLE MISSIONARY BAPTIST CHURCH",
       "chars": 1422,
       "excerpt": "I rise today to honor the service of Pastor Amelio P. Howard of Pine Bluff, Arkansas. Pastor Howard received his calling to the ministry in March 1989 and has served as Pastor of Grace Temple Missionary Baptist Church since being installed "
+    },
+    {
+      "member_id": "W000821",
+      "date": "2023-05-20",
+      "statement_id": "/media-center/press-releases/westerman-statement-passing-former-arkansas-congressman-marion-berry",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "WESTERMAN STATEMENT ON PASSING OF FORMER ARKANSAS CONGRESSMAN MARION BERRY",
+      "chars": 765,
+      "excerpt": "WASHINGTON - Congressman Bruce Westerman released the following statement on the passing of former Arkansas 1st District Representative Marion Berry: \"My condolences and prayers go out to the family of former Arkansas 1st District Represent"
     },
     {
       "member_id": "W000821",
@@ -19779,6 +22355,17 @@
       "title": "RECOGNIZING CAPTAIN DAVID ROBERT WITTE",
       "chars": 1896,
       "excerpt": "I rise to recognize Captain David Robert Witte for his exceptional service to Arkansas' Fourth Congressional District and to extend my heartfelt congratulations on his upcoming new role with the Arkansas Air National Guard as Chaplain for t"
+    },
+    {
+      "member_id": "W000821",
+      "date": "2024-06-11",
+      "statement_id": "/media-center/press-releases/fourth-district-students-appointed-us-service-academies",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "FOURTH DISTRICT STUDENTS APPOINTED TO U.S. SERVICE ACADEMIES",
+      "chars": 934,
+      "excerpt": "HOT SPRINGS \u2013 Three students from Arkansas\u2019 Fourth Congressional District have accepted U.S. Service Academy appointments. Congressman Bruce Westerman (AR-04) hosted a send-off for the students and their families at his Hot Springs office. "
     },
     {
       "member_id": "W000821",
@@ -20465,6 +23052,17 @@
       "chars": 33,
       "excerpt": "I reserve the balance of my time.",
       "sub_rule": "yielding-time"
+    },
+    {
+      "member_id": "W000821",
+      "date": "2026-01-06",
+      "statement_id": "/media-center/press-releases/westerman-statement-passing-representative-doug-lamalfa",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "WESTERMAN STATEMENT ON THE PASSING OF REPRESENTATIVE DOUG LAMALFA",
+      "chars": 956,
+      "excerpt": "Congressman Bruce Westerman (AR-04) released the following statement on the passing of Representative Doug LaMalfa (CA-01). \u201cI am deeply saddened to hear of the passing of my good friend, Doug LaMalfa. We have lost a great friend and champi"
     },
     {
       "member_id": "W000821",
@@ -21303,6 +23901,39 @@
     },
     {
       "member_id": "Z000018",
+      "date": "2023-02-28",
+      "statement_id": "/media/press-releases/congressman-zinke-introduces-bill-delist-gye-grizzly-bears-endangered-species",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Zinke Introduces Bill to Delist GYE Grizzly Bears as Endangered Species",
+      "chars": 1066,
+      "excerpt": "(WASHINGTON, D.C) - Today, Western Montana Congressman Ryan Zinke and Wyoming Congresswoman Harriett Hageman introduced the Grizzly Bear State Management Act of 2023. The bill requires the DOI to reinstate the 2017 final rule removing grizz"
+    },
+    {
+      "member_id": "Z000018",
+      "date": "2023-06-13",
+      "statement_id": "/media/press-releases/rep-zinke-and-colleagues-send-letter-va-secretary-regarding-change-ambulance",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Rep. Zinke and colleagues send letter to VA Secretary regarding change in ambulance reimbursement",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "Z000018",
+      "date": "2023-07-20",
+      "statement_id": "/media/press-releases/zinke-amendment-delist-grizzlies-around-yellowstone-advances-house-floor",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Zinke Amendment to Delist Grizzlies Around Yellowstone Advances to House Floor",
+      "chars": 1745,
+      "excerpt": "(WASHINGTON, D.C.) - Yesterday the House Appropriations Committee approved by a voice vote Congressman Ryan Zinke\u2019s amendment to delist the Greater Yellowstone Ecosystem (GYE) Grizzly from the Endangered Species Act (ESA) and return to the "
+    },
+    {
+      "member_id": "Z000018",
       "date": "2023-12-13",
       "statement_id": "CREC-2023-12-13-pt1-PgH6924-3",
       "source": "congressional_record",
@@ -21348,6 +23979,28 @@
     },
     {
       "member_id": "Z000018",
+      "date": "2025-07-01",
+      "statement_id": "/media/press-releases/zinke-announces-4-million-apprenticeship-expansion-montana",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "office-logistics",
+      "title": "Zinke Announces $4 Million for Apprenticeship Expansion in Montana",
+      "chars": 1339,
+      "excerpt": "Washington, D.C. \u2013 Today, Western Montana Congressman Ryan Zinke announced that the Montana Department of Labor and Industry has been awarded $4 million in federal funding through the U.S. Department of Labor\u2019s State Apprenticeship Expansio"
+    },
+    {
+      "member_id": "Z000018",
+      "date": "2025-10-15",
+      "statement_id": "/media/press-releases/zinke-statement-president-trump-stepping-pay-americas-servicemembers",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Zinke Statement on President Trump Stepping in to Pay America\u2019s Servicemembers",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "Z000018",
       "date": "2025-12-11",
       "statement_id": "CREC-2025-12-11-pt1-PgE1178-3",
       "source": "congressional_record",
@@ -21367,6 +24020,17 @@
       "title": "CELEBRATING A HISTORIC MOMENT FOR MONTANA COLLEGE FOOTBALL",
       "chars": 2578,
       "excerpt": "I rise today to recognize and celebrate an extraordinary moment for not only Montana college football, but for our entire state. This Saturday, the Montana State Bobcats and the University of Montana Grizzlies will face off in the semifinal"
+    },
+    {
+      "member_id": "Z000018",
+      "date": "2026-01-30",
+      "statement_id": "/media/press-releases/zinke-honors-montana-world-war-ii-home-front-pioneer-donna-roberts",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Zinke Honors Montana World War II Home Front Pioneer Donna Roberts in Congressional Record",
+      "chars": 3567,
+      "excerpt": "Washington, D.C. - Each month of 2026, the 250th year after the signing of the Declaration of Independence, Western Montana Congressman Ryan Zinke will join the rest of the Montana delegation and the Montana 250th Commission in honoring ind"
     },
     {
       "member_id": "Z000018",
@@ -21393,6 +24057,17 @@
     {
       "member_id": "Z000018",
       "date": "2026-02-24",
+      "statement_id": "/media/press-releases/zinke-releases-statement-following-state-union-address",
+      "source": "member_press",
+      "turn": -1,
+      "rule": "no-attributable-text",
+      "title": "Zinke Releases Statement Following the State of the Union Address",
+      "chars": 0,
+      "excerpt": ""
+    },
+    {
+      "member_id": "Z000018",
+      "date": "2026-02-24",
       "statement_id": "CREC-2026-02-24-pt1-PgE158-4",
       "source": "congressional_record",
       "turn": 0,
@@ -21400,6 +24075,17 @@
       "title": "RECOGNIZING THE WORLD MUSEUM OF MINING IN BUTTE, MONTANA IN CELEBRATION OF AMERICA'S 250TH",
       "chars": 2436,
       "excerpt": "I rise today to honor the 250th year since our Nation's founding by recognizing the legacy of the World Museum of Mining in Butte, Montana. The World Museum of Mining has been in operation since 1956 and is one of the world's only museums t"
+    },
+    {
+      "member_id": "Z000018",
+      "date": "2026-03-12",
+      "statement_id": "/media/press-releases/congressman-zinke-delivers-over-23-million-federal-funding-public-safety-and",
+      "source": "member_press",
+      "turn": 0,
+      "rule": "ceremonial",
+      "title": "Congressman Zinke Delivers Over $2.3 Million in Federal Funding for Public Safety and Water Infrastructure in Powell and Granite Counties",
+      "chars": 2845,
+      "excerpt": "DEER LODGE, MT \u2013 Today, Western Montana Congressman Ryan Zinke traveled to Philipsburg and Deer Lodge to deliver ceremonial checks celebrating the more than $2.3 million in federal funding for public safety and water infrastructure projects"
     },
     {
       "member_id": "Z000018",

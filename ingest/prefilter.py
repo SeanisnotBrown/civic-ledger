@@ -567,14 +567,31 @@ def sub_rule_counts(drops: list[dict], parties: dict[str, str]) -> list[dict[str
 
 
 def fairness(
-    records: list[dict[str, Any]], drops: list[dict], parties: dict[str, str]
+    records: list[dict[str, Any]],
+    drops: list[dict],
+    parties: dict[str, str],
+    *,
+    source: str | None = None,
 ) -> list[dict[str, Any]]:
     """Drop rate per party per rule — decision 4's fairness check.
 
     The denominator is the turns that party brought to the filter, so the rates compare
     like with like: the pilot is equal by party in MEMBERS, not in turns, and the
     Democratic Senate rows alone are a 1,519-to-1,742 difference.
+
+    `source` narrows both the numerator and the denominator to one collector, which the
+    report needs because the rules do not bite equally on the two sources and the two
+    sources are not equally distributed between the parties. The Congressional Record
+    speaks in the first person ("I rise today to recognize"), which is what the ceremonial
+    patterns match; a press office writes in the third ("Rep. X Honors a Local Lineman"),
+    so the same rule fires far less there. Press VOLUMES also differ sharply by member —
+    one member of the 40 published 604 releases — so a combined rate can show a party
+    skew that is really a source skew, and that would be read as bias in the one report
+    the owner approves spend against.
     """
+    if source is not None:
+        records = [r for r in records if r.get("source") == source]
+        drops = [d for d in drops if d.get("source") == source]
     pool: dict[str, int] = defaultdict(int)
     for record in records:
         pool[parties.get(record.get("member_id", ""), "?")] += len(record.get("segments") or [])
@@ -834,6 +851,32 @@ def render_spend_report(
             f"| `{row['rule']}` | {row['turns']} | {row['D']} | {row['R']} "
             f"| {row['D_rate']}% | {row['R_rate']}% | {flag} |"
         )
+
+    sources = sorted({r.get("source", "?") for r in records})
+    if len(sources) > 1:
+        lines += [
+            "",
+            "### The same rates, per source",
+            "",
+            "The rules do not bite equally on the two sources and the two sources are not "
+            "equally distributed between the parties, so the combined table above can "
+            "show a party skew that is really a source skew. The Congressional Record "
+            "speaks in the first person (\"I rise today to recognize\"), which is what the "
+            "ceremonial patterns match; a press office writes in the third (\"Rep. X "
+            "Honors a Local Lineman\"), so the same rule fires far less there. Press "
+            "volumes also differ sharply by member. Both tables are here so the two "
+            "effects cannot be mistaken for each other.",
+            "",
+            "| Source | Rule | Turns | D rate | R rate | Flag |",
+            "| --- | --- | --- | --- | --- | --- |",
+        ]
+        for source in sources:
+            for row in fairness(records, result["drops"], parties, source=source):
+                flag = "**UNEVEN**" if row["uneven"] else "even"
+                lines.append(
+                    f"| `{source}` | `{row['rule']}` | {row['turns']} "
+                    f"| {row['D_rate']}% | {row['R_rate']}% | {flag} |"
+                )
 
     flagged = [row for row in rows if row["uneven"]]
     lines += ["", "### The flagged step, broken down to each sub-rule", ""]

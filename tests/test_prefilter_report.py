@@ -259,3 +259,46 @@ def test_the_report_run_flags_an_over_cap_estimate_in_its_own_output(
     monkeypatch.setattr(prefilter, "repo_root", lambda: tmp_path)
     assert prefilter.run(["--report"]) == 0
     assert "OVER THE CAP" in capsys.readouterr().out
+
+
+def test_the_report_splits_the_fairness_table_by_source():
+    """The rules do not bite equally on the two sources, and press volumes differ sharply
+    by member, so a combined rate can show a party skew that is really a source skew."""
+    records = [
+        _record(TRIBUTE, member_id="D000001", granule_id=f"G{i}") for i in range(30)
+    ] + [
+        _press(_record(f"{SUBSTANTIVE} press {i}", member_id="R000002", granule_id=f"/p/{i}"))
+        for i in range(30)
+    ]
+    result = prefilter.run_prefilter(records)
+    estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
+    text = prefilter.render_spend_report(
+        records, result, {"D000001": "D", "R000002": "R"}, {}, estimate
+    )
+    assert "### The same rates, per source" in text
+    assert "| `congressional_record` | `ceremonial` |" in text
+    assert "| `member_press` | `ceremonial` |" in text
+
+
+def test_a_single_source_corpus_gets_no_per_source_table():
+    """One source needs no split, and an extra table of the same numbers is noise."""
+    records = [_record(SUBSTANTIVE, member_id="D000001", granule_id="G1")]
+    result = prefilter.run_prefilter(records)
+    estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
+    text = prefilter.render_spend_report(records, result, {"D000001": "D"}, {}, estimate)
+    assert "### The same rates, per source" not in text
+
+
+def test_the_per_source_rates_count_only_that_sources_turns():
+    records = [_record(TRIBUTE, member_id="D000001", granule_id="G1")] + [
+        _press(_record(SUBSTANTIVE, member_id="D000001", granule_id="/p/a"))
+    ]
+    result = prefilter.run_prefilter(records)
+    crec = prefilter.fairness(
+        records, result["drops"], {"D000001": "D"}, source="congressional_record"
+    )
+    press = prefilter.fairness(
+        records, result["drops"], {"D000001": "D"}, source="member_press"
+    )
+    assert next(r for r in crec if r["rule"] == "ceremonial")["D_rate"] == 100.0
+    assert next(r for r in press if r["rule"] == "ceremonial")["D_rate"] == 0.0

@@ -101,3 +101,16 @@ jobs:
       - name: Lighthouse (mobile perf + a11y >= 90)
         working-directory: site
         run: npm run test:lighthouse
+      # Keep the Lighthouse reports. `lhci` prints only the category score, and
+      # nothing on a pass, so without these a fix to a page that sits on the
+      # ~0 margin (fact 2: `/` and `/m/A000055/1`) can only be judged pass/fail —
+      # which is re-running and hoping. `if: always()` because the reports matter
+      # MOST on the run that failed the assertion.
+      - name: Keep the Lighthouse reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: lighthouse-${{ github.run_id }}-${{ github.run_attempt }}
+          path: site/.lighthouseci/
+          if-no-files-found: warn
+          retention-days: 30

@@ -212,8 +212,11 @@ members:
   chamber: house
   state: LA
   official_site: https://mikejohnson.house.gov
-  press_page: https://mikejohnson.house.gov/media/press-releases
-  press_page_source: 'owner-directed: /media/ is the hub; the canonical press-release list is /media/press-releases'
+  press_page: https://mikejohnson.house.gov/news/documentquery.aspx?DocumentTypeID=27
+  press_page_source: 'owner-ratified 2026-10-15: /media/press-releases is a 15-item landing page
+    with no pager — the paginated list is the ASPX query the page itself links as "Press Releases",
+    DocumentTypeID=27. Previously /media/press-releases (owner-directed 2026-10-14), and before that
+    /media/.'
   rss: null
   campaign_site: null
   campaign_issues_page: null
@@ -310,8 +313,11 @@ members:
   chamber: house
   state: KY
   official_site: https://massie.house.gov
-  press_page: https://massie.house.gov/media/press-releases
-  press_page_source: 'owner-directed: /media/ is the hub; the canonical press-release list is /media/press-releases'
+  press_page: https://massie.house.gov/news/documentquery.aspx?DocumentTypeID=2362
+  press_page_source: 'owner-ratified 2026-10-15: /media/press-releases is a 15-item landing page
+    with no pager — the paginated list is the ASPX query the page itself labels "Press Releases",
+    DocumentTypeID=2362. NOT 2365 ("Speeches and Floor Statements"), which the Congressional Record
+    already collects. Previously /media/press-releases (owner-directed 2026-10-14).'
   rss: http://massie.house.gov/rss.xml
   campaign_site: null
   campaign_issues_page: null
@@ -414,8 +420,10 @@ members:
   chamber: senate
   state: NH
   official_site: https://www.shaheen.senate.gov
-  press_page: https://www.shaheen.senate.gov/news
-  press_page_source: http-200
+  press_page: https://www.shaheen.senate.gov/news/press
+  press_page_source: 'owner-ratified 2026-10-15: /news is a landing page carrying ten items and no
+    pager, and it links /news/press as the press-release list (beside /news/in-the-news and
+    /news/multimedia). Previously /news (http-200).'
   rss: http://www.shaheen.senate.gov/rss/
   campaign_site: null
   campaign_issues_page: null

@@ -121,13 +121,22 @@ def _row(member_id: str = "R000622", **over) -> dict:
 # --- which rows may be rendered -------------------------------------------------------
 
 
-def test_the_eleven_approved_rows_are_read_including_the_seven_unchecked(tmp_path: Path):
-    """The seven are unchecked BECAUSE a plain fetch could not read them. Reading a
+def test_the_approved_rows_are_read_including_the_unchecked_ones(tmp_path: Path):
+    """An unchecked row is unchecked BECAUSE a plain fetch could not read it. Reading a
     row's URL is not accepting the row."""
     rows = press_render.rows_to_render(_sources(tmp_path))
     assert [r["id"] for r in rows] == list(press_render.RENDER_ROWS)
-    assert len(rows) == 11
-    assert sum(1 for r in rows if not r["owner_checked"]) == 7
+    assert len(rows) == 8
+    assert sum(1 for r in rows if not r["owner_checked"]) == 4
+
+
+def test_the_rows_that_left_the_render_set_are_recorded_rather_than_deleted():
+    """Three rows left on 2026-10-15 because the owner ratified a URL whose page is plain
+    HTML — they never needed a browser, they needed the right URL. The record stays so a
+    future session can see this was measured."""
+    assert set(press_render.LEFT_THE_RENDER_SET) == {"J000299", "M001184", "S001181"}
+    assert not set(press_render.LEFT_THE_RENDER_SET) & set(press_render.RENDER_ROWS)
+    assert all("2026-10-15" in why for why in press_render.LEFT_THE_RENDER_SET.values())
 
 
 def test_a_row_with_no_press_release_list_leaves_the_render_set(tmp_path: Path):
@@ -136,7 +145,7 @@ def test_a_row_with_no_press_release_list_leaves_the_render_set(tmp_path: Path):
     owner's own file, so a row marked tomorrow needs no edit in that module."""
     rows = press_render.rows_to_render(_sources(tmp_path, no_list=("M001222",)))
     assert "M001222" not in [r["id"] for r in rows]
-    assert len(rows) == 10
+    assert len(rows) == 7
 
 
 def test_asking_by_name_for_a_row_with_no_press_release_list_is_refused_out_loud(
@@ -843,7 +852,7 @@ def test_the_run_names_the_row_it_did_not_render_and_leaves_it_out_of_the_report
     monkeypatch.setattr(press_render, "Renderer", lambda *a, **k: _FakeRenderer({}))
     assert press_render.run([]) == 0
     out = capsys.readouterr().out
-    assert "rendered fetch: 10 row(s)" in out
+    assert "rendered fetch: 7 row(s)" in out
     assert "not rendered, no press-release list exists: M001222" in out
     text = next((tmp_path / "docs" / "research").glob("*-rendered-press.md")).read_text(
         encoding="utf-8"
@@ -851,11 +860,11 @@ def test_the_run_names_the_row_it_did_not_render_and_leaves_it_out_of_the_report
     assert "M001222" not in text
 
 
-def test_the_full_run_defaults_to_all_eleven_rows(tmp_path, monkeypatch, capsys):
+def test_the_full_run_defaults_to_every_row_in_the_render_set(tmp_path, monkeypatch, capsys):
     _runner(tmp_path, monkeypatch, {})
     assert press_render.run([]) == 0
     out = capsys.readouterr().out
-    assert "11 row(s)" in out
+    assert "8 row(s)" in out
 
 
 def test_the_run_honours_refresh_and_a_page_limit(tmp_path, monkeypatch, capsys):

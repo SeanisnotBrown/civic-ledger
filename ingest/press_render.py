@@ -11,10 +11,17 @@ fetch could not read them — not because their content was screened and failed.
 Owner decision, 2026-10-14: render all eleven; `K000394` Kim stays out (a 403 to our
 User-Agent AND to a browser one, so it is a bot wall, and no workaround is in scope).
 
-`M001222` Miller has since left that set: the owner's screening found his site publishes
-no press-release list at all, so `rows_to_render` honours his `no_press_source` flag and
-drops him. There is nothing to render, and "STILL EMPTY" beside a member with no list is
-the one label the ruling forbids.
+FOUR of those eleven have since left the set, and both reasons are worth keeping:
+
+  * `M001222` Miller — the owner's screening found his site publishes no press-release
+    list at all, so `rows_to_render` honours his `no_press_source` flag and drops him.
+    There is nothing to render, and "STILL EMPTY" beside a member with no list is the one
+    label the ruling forbids.
+  * `J000299`, `M001184` and `S001181` — the owner ratified a different URL for each on
+    2026-10-15, and the new page is PLAIN HTML. A plain GET now reads all three: 10, 11
+    and 20 release-shaped anchors on page one, and page two by the site's own link. They
+    never needed a browser; they needed the right URL, and what a render was standing in
+    for was a landing page with no pager. See `LEFT_THE_RENDER_SET`.
 
 HOW THIS FITS TOGETHER, and why the split is where it is:
 
@@ -101,15 +108,29 @@ from ingest.statements_press import (
 # accepted and came back `empty`; seven are unchecked because a plain fetch could not
 # read them. K000394 (Kim) is deliberately absent: bot wall, not a rendering problem.
 EMPTY_BY_MARKUP = ("K000377", "M001222", "R000622", "W000830")
-CLIENT_SIDE_UNCHECKED = (
-    "H001046",
-    "J000299",
-    "L000585",
-    "M001184",
-    "R000605",
-    "S001181",
-    "S001185",
-)
+CLIENT_SIDE_UNCHECKED = ("H001046", "L000585", "R000605", "S001185")
+
+# Rows that have LEFT the render set, with the date and the reason. A record rather than
+# a deletion: "a plain GET cannot read this list" was TRUE of each of them, and what
+# changed is which URL they point at — so a future session that finds one of these back
+# in a client-rendered state can see that this was measured, not assumed.
+LEFT_THE_RENDER_SET = {
+    "J000299": (
+        "owner-ratified 2026-10-15 — /news/documentquery.aspx?DocumentTypeID=27 is plain "
+        "HTML: a plain GET extracts 10 dated releases on page one and follows the site's "
+        "own 'Next »' to &Page=2 for 10 more"
+    ),
+    "M001184": (
+        "owner-ratified 2026-10-15 — /news/documentquery.aspx?DocumentTypeID=2362 is "
+        "plain HTML: 11 dated releases on page one, page two by the site's own link"
+    ),
+    "S001181": (
+        "owner-ratified 2026-10-15 — /news/press is plain HTML: 20 release-shaped "
+        "anchors on page one, page two by the site's own link to ?pagenum_rs=2. The "
+        "anchors are dated from their own release pages, as `R000605`'s are"
+    ),
+}
+
 RENDER_ROWS = tuple(sorted(EMPTY_BY_MARKUP + CLIENT_SIDE_UNCHECKED))
 OUT_OF_SCOPE = {"K000394": "403 to our User-Agent and to a browser one — a bot wall"}
 

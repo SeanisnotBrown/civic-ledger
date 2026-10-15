@@ -22,8 +22,9 @@ provenance:
   no_press_source: 'owner-set, 2026-10-14. The member publishes no press-release list at all, so
     there is nothing to collect and nothing to fix. no_press_reason and no_press_urls_tried record
     what was looked for. A row carrying this must report as "no list exists", never as empty or
-    failed. NO CODE READS THIS YET: until it does, owner_checked: false is what keeps the collector
-    off the row.'
+    failed. Read by statements_press.sources(), which tests it before owner_checked, and by the
+    count-before-spend report''s coverage table, which gives it its own column and never counts it
+    as a collection failure; press_render refuses such a row too, since there is no list to render.'
 members:
 - id: B001257
   name: Gus M. Bilirakis

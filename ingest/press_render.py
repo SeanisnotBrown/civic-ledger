@@ -11,6 +11,11 @@ fetch could not read them — not because their content was screened and failed.
 Owner decision, 2026-10-14: render all eleven; `K000394` Kim stays out (a 403 to our
 User-Agent AND to a browser one, so it is a bot wall, and no workaround is in scope).
 
+`M001222` Miller has since left that set: the owner's screening found his site publishes
+no press-release list at all, so `rows_to_render` honours his `no_press_source` flag and
+drops him. There is nothing to render, and "STILL EMPTY" beside a member with no list is
+the one label the ruling forbids.
+
 HOW THIS FITS TOGETHER, and why the split is where it is:
 
   * `site/scripts/render-press-pages.mjs` renders ONE URL at a time and returns the
@@ -240,6 +245,13 @@ def rows_to_render(data_dir: Path, ids: Iterable[str] | None = None) -> list[dic
     `owner_checked: false` row, which is seven of the eleven here. Reading a row's URL
     is not accepting the row — nothing in this module writes `owner_checked`, and the
     seven stay refused to the plain collector until the owner flips them by hand.
+
+    One flag IS honoured, the same way `OUT_OF_SCOPE` honours the owner's ruling on
+    `K000394`: a row marked `no_press_source` has no press-release list to render.
+    Asked for by name it is refused out loud; present only in the default set
+    (`M001222` is one of the historical eleven) it is dropped, and `run` names it — a
+    rendered report that printed "STILL EMPTY" beside a member whose site has no list
+    is the one label the owner's ruling forbids.
     """
     path = data_dir / "config" / "statement-sources.yaml"
     if not path.exists():
@@ -250,6 +262,18 @@ def rows_to_render(data_dir: Path, ids: Iterable[str] | None = None) -> list[dic
         named = ", ".join(f"{i} ({OUT_OF_SCOPE[i]})" for i in sorted(out_of_scope))
         raise RenderError(f"out of scope by owner decision: {named}")
     rows = yaml.safe_load(path.read_text(encoding="utf-8"))["members"]
+    # Read from the owner's own file rather than listed here, so a row marked tomorrow
+    # needs no second edit in this module to be honoured.
+    no_list = {
+        r["id"]: (r.get("no_press_reason") or "no press-release list")
+        for r in rows
+        if r.get("no_press_source")
+    }
+    asked_by_name = (set(ids) if ids else set()) & set(no_list)
+    if asked_by_name:
+        named = ", ".join(f"{i} ({no_list[i]})" for i in sorted(asked_by_name))
+        raise RenderError(f"no press-release list exists, so there is nothing to render: {named}")
+    wanted -= set(no_list)
     found = [r for r in sorted(rows, key=lambda r: r["id"]) if r["id"] in wanted]
     missing = wanted - {r["id"] for r in found}
     if missing:
@@ -762,6 +786,13 @@ def run(argv: list[str] | None = None) -> int:
     stats = RenderStats()
 
     print(f"rendered fetch: {len(rows)} row(s)" + (" — smoke, page one only" if args.smoke else ""))
+    dropped = sorted(set(ids or RENDER_ROWS) - {r["id"] for r in rows})
+    if dropped:
+        # Never silent: a row that leaves the render set says why it left.
+        print(
+            f"  not rendered, no press-release list exists: {', '.join(dropped)} "
+            "— the count report accounts for these as 'no list exists'"
+        )
     clicked: dict[str, LoadMore] = {}
     with Renderer() as renderer:
         if not args.smoke:

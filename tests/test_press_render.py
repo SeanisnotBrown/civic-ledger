@@ -78,7 +78,9 @@ def _stub_command(table: dict[str, dict]) -> list[str]:
     return [sys.executable, "-c", STUB, json.dumps(table)]
 
 
-def _sources(tmp_path: Path, rows: list[dict] | None = None) -> Path:
+def _sources(
+    tmp_path: Path, rows: list[dict] | None = None, *, no_list: tuple[str, ...] = ()
+) -> Path:
     """A minimal `statement-sources.yaml` carrying the eleven approved rows."""
     data_dir = tmp_path / "data"
     (data_dir / "config").mkdir(parents=True, exist_ok=True)
@@ -94,6 +96,10 @@ def _sources(tmp_path: Path, rows: list[dict] | None = None) -> Path:
             }
             for member_id in press_render.RENDER_ROWS
         ]
+    for row in rows:
+        if row["id"] in no_list:
+            row["no_press_source"] = True
+            row["no_press_reason"] = "site has no press-release list"
     (data_dir / "config" / "statement-sources.yaml").write_text(
         yaml.safe_dump({"members": rows}), encoding="utf-8"
     )
@@ -122,6 +128,25 @@ def test_the_eleven_approved_rows_are_read_including_the_seven_unchecked(tmp_pat
     assert [r["id"] for r in rows] == list(press_render.RENDER_ROWS)
     assert len(rows) == 11
     assert sum(1 for r in rows if not r["owner_checked"]) == 7
+
+
+def test_a_row_with_no_press_release_list_leaves_the_render_set(tmp_path: Path):
+    """`M001222` Miller. There is no list to render, and a rendered report that printed
+    "STILL EMPTY" beside him is the one label the owner's ruling forbids. Read from the
+    owner's own file, so a row marked tomorrow needs no edit in that module."""
+    rows = press_render.rows_to_render(_sources(tmp_path, no_list=("M001222",)))
+    assert "M001222" not in [r["id"] for r in rows]
+    assert len(rows) == 10
+
+
+def test_asking_by_name_for_a_row_with_no_press_release_list_is_refused_out_loud(
+    tmp_path: Path,
+):
+    """Refused the way `K000394` is refused: by name, with the reason, rather than
+    quietly handed back an empty list of rows."""
+    data_dir = _sources(tmp_path, no_list=("M001222",))
+    with pytest.raises(press_render.RenderError, match="nothing to render: M001222"):
+        press_render.rows_to_render(data_dir, ["M001222"])
 
 
 def test_kim_cannot_be_rendered_even_when_asked_for_by_id(tmp_path: Path):
@@ -805,6 +830,25 @@ def test_the_run_clicks_the_load_more_rows_and_reports_what_it_found(
     assert "stopped on (a) the oldest item shown is older than the window's start" in text
     assert "**Failure: the page has no load-more control to click**" in text
     assert "What the page has instead, or alongside:" in text
+
+
+def test_the_run_names_the_row_it_did_not_render_and_leaves_it_out_of_the_report(
+    tmp_path, monkeypatch, capsys
+):
+    """Never silent: a row that leaves the render set says why, and the screening report
+    does not carry it at all — the count report accounts for it instead."""
+    _sources(tmp_path, no_list=("M001222",))
+    monkeypatch.setattr(cache, "RAW_DIR", tmp_path / "raw")
+    monkeypatch.setattr(press_render, "repo_root", lambda: tmp_path)
+    monkeypatch.setattr(press_render, "Renderer", lambda *a, **k: _FakeRenderer({}))
+    assert press_render.run([]) == 0
+    out = capsys.readouterr().out
+    assert "rendered fetch: 10 row(s)" in out
+    assert "not rendered, no press-release list exists: M001222" in out
+    text = next((tmp_path / "docs" / "research").glob("*-rendered-press.md")).read_text(
+        encoding="utf-8"
+    )
+    assert "M001222" not in text
 
 
 def test_the_full_run_defaults_to_all_eleven_rows(tmp_path, monkeypatch, capsys):

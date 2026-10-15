@@ -145,11 +145,15 @@ DATE_WINDOW_CHARS = 400
 DATE_LOOKBACK_CHARS = 700
 
 # A date the publisher printed INSIDE the title anchor, which is already a field of its
-# own on the record.
+# own on the record. The ordinal suffix is optional and is not checked against the day:
+# the day is read from the digits, so "October 13th" and a publisher's stray "13st" both
+# give 13, and refusing the second would drop a real release over a typo. Measured
+# 2026-10-14, `H001046` Heinrich prints every date as "October 13th, 2026", so without
+# this his titles ship with the date glued to the front.
 _LEADING_DATE = re.compile(
     r"^\s*(?:(?:Mon|Tues|Wednes|Thurs|Fri|Satur|Sun)day,?\s*)?"
     r"(?:January|February|March|April|May|June|July|August|September|October|November"
-    r"|December)\.?\s+\d{1,2},?\s+20\d\d\s*",
+    r"|December)\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+20\d\d\s*",
     re.IGNORECASE,
 )
 
@@ -182,8 +186,11 @@ _MONTHS = (
     "December",
 )
 _MONTH_NUMBER = {name.lower()[:3]: i for i, name in enumerate(_MONTHS, start=1)}
+# The ordinal suffix sits OUTSIDE group 2: `_iso_from_long` reads the day with `int()`,
+# which cannot parse "13th". Optional and unchecked, as in `_LEADING_DATE` above.
 _DATE_LONG = re.compile(
-    rf"\b({'|'.join(_MONTHS)})\.?\s+(\d{{1,2}}),?\s+(20\d\d)\b", re.IGNORECASE
+    rf"\b({'|'.join(_MONTHS)})\.?\s+(\d{{1,2}})(?:st|nd|rd|th)?,?\s+(20\d\d)\b",
+    re.IGNORECASE,
 )
 _DATE_ISO = re.compile(r"\b(20\d\d)-(\d\d)-(\d\d)\b")
 

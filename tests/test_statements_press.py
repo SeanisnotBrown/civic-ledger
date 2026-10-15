@@ -303,6 +303,81 @@ def test_html_entities_in_a_title_are_resolved():
     assert "&" in releases[0].title and "&amp;" not in releases[0].title
 
 
+# --- ordinal days -------------------------------------------------------------------
+
+# The sixth family, measured 2026-10-14 on `H001046` Heinrich: the date and the title sit
+# INSIDE one anchor, and the date carries an ordinal suffix. Real markup, trimmed.
+SENATE_ORDINAL = """
+<ul class="PageList"><li class="PageList__item"><div class="ArticleBlock">
+ <div class="ArticleBlock__titleContainer"><a target="_self"
+ href="https://www.heinrich.senate.gov/newsroom/press-releases/heinrich-demands-answers"
+ class="ArticleBlock__link"><div>
+ <p class="Heading Heading--time mb-1">October 13th, 2026</p></div>
+ <h2 class=" ArticleTitle">Heinrich Demands Answers on Trump Administration Draining
+ Strategic Petroleum Reserves to Dangerous Low Levels</h2></a></div></div></li>
+<li class="PageList__item"><div class="ArticleBlock">
+ <div class="ArticleBlock__titleContainer"><a target="_self"
+ href="https://www.heinrich.senate.gov/newsroom/press-releases/indigenous-peoples-day"
+ class="ArticleBlock__link"><div>
+ <p class="Heading Heading--time mb-1">October 1st, 2026</p></div>
+ <h2 class=" ArticleTitle">Heinrich Leads Resolution Recognizing Indigenous
+ Peoples Day</h2></a></div></div></li></ul>
+"""
+
+
+@pytest.mark.parametrize(
+    ("day", "iso_day"),
+    [
+        ("1st", "01"),
+        ("2nd", "02"),
+        ("3rd", "03"),
+        ("4th", "04"),
+        ("11th", "11"),
+        ("12th", "12"),
+        ("13th", "13"),
+        ("21st", "21"),
+        ("22nd", "22"),
+        ("23rd", "23"),
+        ("31st", "31"),
+    ],
+)
+def test_an_ordinal_day_is_read_by_both_date_patterns(day, iso_day):
+    """Every suffix form, in both patterns. `_first_date` carries `_DATE_LONG` through
+    `_iso_from_long`, which reads the day with `int()` — so a suffix captured inside the
+    day group would raise here rather than simply fail to match."""
+    assert press._first_date(f"October {day}, 2026") == (0, f"2026-10-{iso_day}")
+    assert press._last_date(f"filler October {day}, 2026")[1] == f"2026-10-{iso_day}"
+    assert press._LEADING_DATE.sub("", f"October {day}, 2026 A Title") == "A Title"
+
+
+def test_an_ordinal_date_is_read_with_a_weekday_and_without_a_comma():
+    """The shapes the two patterns already allowed around the day, now with a suffix."""
+    assert press._LEADING_DATE.sub("", "Monday, October 13th, 2026 A Title") == "A Title"
+    assert press._LEADING_DATE.sub("", "October 13th 2026 A Title") == "A Title"
+    assert press._first_date("October 13th 2026")[1] == "2026-10-13"
+    # Unchecked on purpose: the day comes from the digits, so a publisher's stray suffix
+    # costs a real release nothing.
+    assert press._first_date("October 13st, 2026")[1] == "2026-10-13"
+
+
+def test_a_plain_day_still_reads_with_the_suffix_optional():
+    assert press._first_date("October 13, 2026")[1] == "2026-10-13"
+    assert press._LEADING_DATE.sub("", "October 13, 2026 A Title") == "A Title"
+
+
+def test_heinrichs_ordinal_dates_are_read_and_stripped_from_his_titles():
+    """`H001046`, the row this change exists for: 0 releases before it, because every
+    date on his page carries a suffix. The leading date must come off the title too —
+    both sit inside the same anchor, so the title text starts with the date."""
+    releases = press.extract_releases(
+        SENATE_ORDINAL, "https://www.heinrich.senate.gov/newsroom/press-releases", "H001046"
+    )
+    assert [r.date for r in releases] == ["2026-10-13", "2026-10-01"]
+    assert releases[0].title.startswith("Heinrich Demands Answers on Trump Administration")
+    assert releases[1].title.startswith("Heinrich Leads Resolution Recognizing Indigenous")
+    assert not any("2026" in r.title for r in releases)
+
+
 # --- which hrefs are releases ---------------------------------------------------------
 
 

@@ -1004,6 +1004,27 @@ def test_press_office_attribution_is_not_the_no_words_drop():
     assert prefilter.apply_to_statement(record, {})[0] is not None
 
 
+def test_the_record_carries_its_dates_precision_explicitly():
+    """Owner decision 5 is a Phase 6 rule — a month-only date is never matched against a
+    single day's vote — so the precision is a field rather than something a reader has to
+    work out by counting the characters of `date`."""
+    month = press.Release(
+        "L000585",
+        "2026-09",
+        "A Release Dated Only To Its Month",
+        "https://lahood.house.gov/2026/9/a-slug",
+        date_precision="month",
+        date_source="permalink",
+    )
+    record = press.statement_record(month, "A long enough body of real text here.")
+    assert (record["date"], record["date_precision"]) == ("2026-09", "month")
+    # And the pre-filter still reads the shape, with the new field on it.
+    assert prefilter.apply_to_statement(record, {})[0] is not None
+
+    day = press.Release("B001257", "2026-09-28", "A Title", "https://x.house.gov/p/s")
+    assert press.statement_record(day, "body")["date_precision"] == "day"
+
+
 def test_a_release_with_no_body_carries_no_segments():
     release = press.Release("B001257", "2026-10-13", "A Title", "https://x.house.gov/p/s")
     record = press.statement_record(release, "")

@@ -307,6 +307,28 @@ empty list would tell the collector the member published nothing and stay fresh 
 pages are live third-party sites), so they are refreshed by hand and expire on that
 same 7-day TTL.
 
+**Candidate statement dates (P3 task 2a).** `data/raw/press/statements/{member}.json`
+carries the collector's candidate statements in the shape `ingest/prefilter.py` reads.
+Two fields of that shape are the collector's own, and both exist because a press release
+is dated by its publisher rather than by a roll call: `date` is the date as the publisher
+printed it — `2026-10-07`, or `2026-09` where a month is ALL they printed — and
+`date_precision` is `"day"` or `"month"` for exactly that reason. Owner decision 5
+(2026-10-14): a month-only date is stored verbatim and **never padded to the 1st**, it
+counts toward stated-priority detection, and it is **never matched against a single day's
+vote** — a Phase 6 constraint recorded here, not yet implemented. `date_precision` is
+carried explicitly rather than inferred from the length of `date`, because a rule that
+depends on counting characters is a rule that gets missed. **CREC records
+(`statements_crec.statement_record`) do not carry the field at all and are always
+day-precision**, so a consumer reading both sources must treat its absence as `"day"`.
+The date comes from the list page's own text where there is one, else the publisher's
+permalink (`/2026/9/…`), and the release page's own date wins over the permalink where
+the two agree — which is what upgrades a month to a day. Where they DISAGREE nothing is
+resolved: the stored date stays as it was and the conflict is printed in the collection
+report by row and URL, because a disagreement can mean the wrong page was attached to a
+title. `index.json` carries those conflicts (`date_conflicts`), the releases that no page
+could date (`date_failures`), and what the dating cost in fetches
+(`release_page_fetches`).
+
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
 counts. The site build reads `dead_statement_ids` and excludes those statements until

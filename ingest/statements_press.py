@@ -665,6 +665,11 @@ def statement_record(release: Release, text: str) -> dict[str, Any]:
     return {
         "member_id": release.member_id,
         "date": release.date,
+        # Explicit rather than inferred from `len(date)`: owner decision 5 is that a
+        # month-only date is never matched against a single day's vote, and a Phase 6
+        # rule that depends on counting characters is a rule that gets missed. CREC
+        # records do not carry this field at all and are always day-precision.
+        "date_precision": release.date_precision,
         "granule_id": urlparse(release.url).path.rstrip("/") or release.url,
         "package_id": "",
         "granule_class": "",

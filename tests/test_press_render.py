@@ -79,9 +79,13 @@ def _stub_command(table: dict[str, dict]) -> list[str]:
 
 
 def _sources(
-    tmp_path: Path, rows: list[dict] | None = None, *, no_list: tuple[str, ...] = ()
+    tmp_path: Path,
+    rows: list[dict] | None = None,
+    *,
+    no_list: tuple[str, ...] = (),
+    sitemap: tuple[str, ...] = (),
 ) -> Path:
-    """A minimal `statement-sources.yaml` carrying the eleven approved rows."""
+    """A minimal `statement-sources.yaml` carrying the rows in the render set."""
     data_dir = tmp_path / "data"
     (data_dir / "config").mkdir(parents=True, exist_ok=True)
     if rows is None:
@@ -100,6 +104,8 @@ def _sources(
         if row["id"] in no_list:
             row["no_press_source"] = True
             row["no_press_reason"] = "site has no press-release list"
+        if row["id"] in sitemap:
+            row["press_sitemap"] = ["https://example.senate.gov/press-sitemap.xml"]
     (data_dir / "config" / "statement-sources.yaml").write_text(
         yaml.safe_dump({"members": rows}), encoding="utf-8"
     )
@@ -131,12 +137,23 @@ def test_the_approved_rows_are_read_including_the_unchecked_ones(tmp_path: Path)
 
 
 def test_the_rows_that_left_the_render_set_are_recorded_rather_than_deleted():
-    """Three rows left on 2026-10-15 because the owner ratified a URL whose page is plain
-    HTML — they never needed a browser, they needed the right URL. The record stays so a
-    future session can see this was measured."""
-    assert set(press_render.LEFT_THE_RENDER_SET) == {"J000299", "M001184", "S001181"}
-    assert not set(press_render.LEFT_THE_RENDER_SET) & set(press_render.RENDER_ROWS)
+    """Four rows left on 2026-10-15: three because the owner ratified a URL whose page is
+    plain HTML — they never needed a browser, they needed the right URL — and `K000377`
+    because his releases come from his own site's sitemap. The record stays so a future
+    session can see this was measured."""
+    assert set(press_render.LEFT_THE_RENDER_SET) == {
+        "J000299",
+        "K000377",
+        "M001184",
+        "S001181",
+    }
+    assert "press_sitemap" in press_render.LEFT_THE_RENDER_SET["K000377"]
     assert all("2026-10-15" in why for why in press_render.LEFT_THE_RENDER_SET.values())
+    # The three URL-fixed rows are out of the tuple outright. `K000377` leaves the way
+    # `M001222` does — on a flag in the owner's own file, read at `rows_to_render` time —
+    # so he is still in the historical tuple, and that is the record rather than a leak.
+    assert not {"J000299", "M001184", "S001181"} & set(press_render.RENDER_ROWS)
+    assert "K000377" in press_render.RENDER_ROWS
 
 
 def test_a_row_with_no_press_release_list_leaves_the_render_set(tmp_path: Path):
@@ -148,13 +165,24 @@ def test_a_row_with_no_press_release_list_leaves_the_render_set(tmp_path: Path):
     assert len(rows) == 7
 
 
+def test_a_row_collected_from_its_own_sitemap_leaves_the_render_set(tmp_path: Path):
+    """`K000377`. His releases come from the sitemap his own site publishes, so rendering
+    the list page whose filter widget has no pager would spend fourteen seconds on a page
+    nobody collects from — and then print STILL EMPTY about it."""
+    rows = press_render.rows_to_render(_sources(tmp_path, sitemap=("K000377",)))
+    assert "K000377" not in [r["id"] for r in rows]
+    assert len(rows) == 7
+    with pytest.raises(press_render.RenderError, match="nothing to render for: K000377"):
+        press_render.rows_to_render(_sources(tmp_path, sitemap=("K000377",)), ["K000377"])
+
+
 def test_asking_by_name_for_a_row_with_no_press_release_list_is_refused_out_loud(
     tmp_path: Path,
 ):
     """Refused the way `K000394` is refused: by name, with the reason, rather than
     quietly handed back an empty list of rows."""
     data_dir = _sources(tmp_path, no_list=("M001222",))
-    with pytest.raises(press_render.RenderError, match="nothing to render: M001222"):
+    with pytest.raises(press_render.RenderError, match="nothing to render for: M001222"):
         press_render.rows_to_render(data_dir, ["M001222"])
 
 
@@ -602,7 +630,15 @@ def test_a_clean_stop_has_no_failure_reason():
 
 def test_the_click_ceiling_is_a_named_config_value_not_a_number_in_the_loop():
     assert press_render.MAX_LOAD_MORE_CLICKS == 40
-    assert press_render.LOAD_MORE_ROWS == ("J000299", "K000377", "M001184", "S001181")
+
+
+def test_no_row_is_walked_by_clicking_today_and_that_is_the_measurement():
+    """All four rows screened for a load-more control on 2026-10-15 had none, and each
+    has since been given the source it actually needed — none of them a clicked list
+    page. The capability stays built and tested; the next row that needs it needs only
+    this tuple."""
+    assert press_render.LOAD_MORE_ROWS == ()
+    assert not set(press_render.LOAD_MORE_ROWS) & set(press_render.RENDER_ROWS)
 
 
 def test_advance_speaks_the_same_protocol_as_render():
@@ -815,15 +851,20 @@ def test_the_full_run_writes_the_screening_report(tmp_path, monkeypatch, capsys)
 def test_the_run_clicks_the_load_more_rows_and_reports_what_it_found(
     tmp_path, monkeypatch, capsys
 ):
-    """End to end on the four rows that have no pager URL at all: the clicking owns page
-    one, the walk reads the accumulated page back, and the report says per row how many
-    clicks, why it stopped, and what the page has instead of a control."""
+    """End to end on a row walked by clicking: the clicking owns page one, the walk reads
+    the accumulated page back, and the report says per row how many clicks, why it
+    stopped, and what the page has instead of a control.
+
+    `LOAD_MORE_ROWS` is empty today — all four rows screened for a control had none and
+    have since been given a real source — so the rows under test are named here. The
+    capability is what is pinned, for the next row that needs it."""
     rows = [
         _row("K000377", press_page="https://y/news/", owner_checked=True),
         _row("S001181", press_page="https://x/news/", owner_checked=True),
     ]
     pages = {"https://x/news/": CLICK_PAGE_1, "https://y/news/": CLICK_PAGE_2}
     _runner(tmp_path, monkeypatch, pages, rows)
+    monkeypatch.setattr(press_render, "LOAD_MORE_ROWS", ("K000377", "S001181"))
     assert press_render.run(["--members", "K000377,S001181"]) == 0
     out = capsys.readouterr().out
     assert "S001181   load-more:   0 click(s), no-control" in out
@@ -853,7 +894,7 @@ def test_the_run_names_the_row_it_did_not_render_and_leaves_it_out_of_the_report
     assert press_render.run([]) == 0
     out = capsys.readouterr().out
     assert "rendered fetch: 7 row(s)" in out
-    assert "not rendered, no press-release list exists: M001222" in out
+    assert "not rendered, this page is not their source: M001222" in out
     text = next((tmp_path / "docs" / "research").glob("*-rendered-press.md")).read_text(
         encoding="utf-8"
     )

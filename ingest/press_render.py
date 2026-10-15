@@ -22,6 +22,10 @@ FOUR of those eleven have since left the set, and both reasons are worth keeping
     and 20 release-shaped anchors on page one, and page two by the site's own link. They
     never needed a browser; they needed the right URL, and what a render was standing in
     for was a landing page with no pager. See `LEFT_THE_RENDER_SET`.
+  * `K000377` — his releases come from the press-release sitemap his own site publishes
+    (`press_sitemap`, owner-ratified 2026-10-15), not from the list page whose filter
+    widget renders no pager. Rendering that page would spend fourteen seconds on a list
+    nobody collects from.
 
 HOW THIS FITS TOGETHER, and why the split is where it is:
 
@@ -129,6 +133,12 @@ LEFT_THE_RENDER_SET = {
         "anchors on page one, page two by the site's own link to ?pagenum_rs=2. The "
         "anchors are dated from their own release pages, as `R000605`'s are"
     ),
+    "K000377": (
+        "owner-ratified 2026-10-15 — collected from `press_sitemap`, the two "
+        "press-release sitemaps his own site publishes (1,495 URLs, 1,082 inside the "
+        "window), because his list page's filter widget renders no pager to click and "
+        "no pager URL to follow"
+    ),
 }
 
 RENDER_ROWS = tuple(sorted(EMPTY_BY_MARKUP + CLIENT_SIDE_UNCHECKED))
@@ -145,11 +155,18 @@ RENDER_TIMEOUT_S = 120.0
 EXIT_TIMEOUT_S = 30.0
 SAMPLE_TITLES = 5
 
-# The rows whose list has no pager URL to follow at all, so the only way deeper is the
-# page's own load-more control (STATUS build-order step 5). `S001181` and `K000377` were
-# named there; `J000299` and `M001184` were added by the step-4 measurement, which found
-# `page_url`'s guess re-serving page one for both.
-LOAD_MORE_ROWS = ("J000299", "K000377", "M001184", "S001181")
+# The rows whose list page is walked by CLICKING its own load-more control, because it
+# publishes no pager URL to follow (STATUS build-order step 5).
+#
+# EMPTY TODAY, and that is the measurement rather than an omission. Four rows were
+# screened this way on 2026-10-15 — `J000299`, `K000377`, `M001184`, `S001181` — and not
+# one of them had a control to click: 0 clicks, `no-control`, anchors unchanged on all
+# four. Each has since been given the source it actually needed, and none of them is a
+# clicked list page: the ASPX query list for Johnson and Massie, `/news/press` for
+# Shaheen, and the sitemap his own site publishes for Kelly. The clicking stays built and
+# tested because the next row that needs it needs only this tuple, and because a
+# measurement that found nothing is worth keeping where the next session can see it.
+LOAD_MORE_ROWS: tuple[str, ...] = ()
 
 # How many times one row's load-more control may be clicked in a single run. Not a
 # magic number and not a limit on the archive: it is how deep a by-hand render goes
@@ -267,12 +284,15 @@ def rows_to_render(data_dir: Path, ids: Iterable[str] | None = None) -> list[dic
     is not accepting the row — nothing in this module writes `owner_checked`, and the
     seven stay refused to the plain collector until the owner flips them by hand.
 
-    One flag IS honoured, the same way `OUT_OF_SCOPE` honours the owner's ruling on
-    `K000394`: a row marked `no_press_source` has no press-release list to render.
-    Asked for by name it is refused out loud; present only in the default set
-    (`M001222` is one of the historical eleven) it is dropped, and `run` names it — a
-    rendered report that printed "STILL EMPTY" beside a member whose site has no list
-    is the one label the owner's ruling forbids.
+    Two flags ARE honoured, the same way `OUT_OF_SCOPE` honours the owner's ruling on
+    `K000394`, because for both of them this module's own page is no longer the row's
+    source: `no_press_source` (`M001222` — the site publishes no list at all) and
+    `press_sitemap` (`K000377` — his releases come from the sitemap his site publishes,
+    not from the list page whose filter widget renders no pager). Asked for by name,
+    such a row is refused out loud; present only in the default set — both are among the
+    historical eleven — it is dropped, and `run` names it. A rendered report that printed
+    "STILL EMPTY" beside either of them would be reporting on a page nobody collects
+    from.
     """
     path = data_dir / "config" / "statement-sources.yaml"
     if not path.exists():
@@ -285,16 +305,20 @@ def rows_to_render(data_dir: Path, ids: Iterable[str] | None = None) -> list[dic
     rows = yaml.safe_load(path.read_text(encoding="utf-8"))["members"]
     # Read from the owner's own file rather than listed here, so a row marked tomorrow
     # needs no second edit in this module to be honoured.
-    no_list = {
-        r["id"]: (r.get("no_press_reason") or "no press-release list")
+    not_ours = {
+        r["id"]: (
+            r.get("no_press_reason") or "no press-release list"
+            if r.get("no_press_source")
+            else "its releases come from the sitemap its own site publishes"
+        )
         for r in rows
-        if r.get("no_press_source")
+        if r.get("no_press_source") or r.get("press_sitemap")
     }
-    asked_by_name = (set(ids) if ids else set()) & set(no_list)
+    asked_by_name = (set(ids) if ids else set()) & set(not_ours)
     if asked_by_name:
-        named = ", ".join(f"{i} ({no_list[i]})" for i in sorted(asked_by_name))
-        raise RenderError(f"no press-release list exists, so there is nothing to render: {named}")
-    wanted -= set(no_list)
+        named = ", ".join(f"{i} ({not_ours[i]})" for i in sorted(asked_by_name))
+        raise RenderError(f"nothing to render for: {named}")
+    wanted -= set(not_ours)
     found = [r for r in sorted(rows, key=lambda r: r["id"]) if r["id"] in wanted]
     missing = wanted - {r["id"] for r in found}
     if missing:
@@ -811,8 +835,8 @@ def run(argv: list[str] | None = None) -> int:
     if dropped:
         # Never silent: a row that leaves the render set says why it left.
         print(
-            f"  not rendered, no press-release list exists: {', '.join(dropped)} "
-            "— the count report accounts for these as 'no list exists'"
+            f"  not rendered, this page is not their source: {', '.join(dropped)} "
+            "— the count report accounts for these"
         )
     clicked: dict[str, LoadMore] = {}
     with Renderer() as renderer:

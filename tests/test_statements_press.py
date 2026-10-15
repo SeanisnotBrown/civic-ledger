@@ -1141,9 +1141,169 @@ def test_a_walk_with_nothing_refused_reports_nothing_refused():
     ],
 )
 def test_each_family_pages_in_its_own_scheme(list_url, page, expected):
-    """Detected from the list URL, so a redesigned pager cannot silently restart the walk
-    at page 1 and collect the newest page over and over."""
+    """The FALLBACK, for a list that publishes no pager link of its own. Detected from the
+    list URL, so a redesigned pager cannot silently restart the walk at page 1 and collect
+    the newest page over and over."""
     assert press.page_url(list_url, page) == expected
+
+
+# --- the site's own next link (step 4b) -----------------------------------------------
+
+# The real pager markup of every family, measured 2026-10-15 off the cached pages. The
+# `page_url` guess is wrong for three of these five.
+DRUPAL_PAGER = (
+    '<a href="?page=0">Current page 1</a><a href="?page=1">Page 2</a>'
+    '<a href="?page=1" title="Go to next page" rel="next" class="page-link">Next page››</a>'
+    '<a href="?page=154">Last pageLast »</a>'
+)
+ASPX_PAGER = (
+    '<a href="/news/documentquery.aspx?DocumentTypeID=821&amp;Page=2">Next »</a>'
+)
+WORDPRESS_PAGER = (
+    '<link rel="next" href="https://www.hagerty.senate.gov/press-releases/page/2/" />'
+    '<a class="nextpostslink" rel="next" aria-label="Next Page"'
+    ' href="https://www.hagerty.senate.gov/press-releases/page/2/?et_blog"></a>'
+    '<a href="https://www.hagerty.senate.gov/press-releases/page/251/?et_blog">Last »</a>'
+)
+PAGENUM_PAGER = '<a href="?pagenum_rs=2">Next</a>'
+NUMBERED_PAGER = (
+    '<a href="/press-releases?page=1">1</a><a href="/press-releases?page=2">2</a>'
+    '<a href="/press-releases?page=55">Last</a>'
+)
+
+
+@pytest.mark.parametrize(
+    ("html", "current", "expected", "row"),
+    [
+        (
+            DRUPAL_PAGER,
+            "https://bilirakis.house.gov/media/press-releases",
+            "https://bilirakis.house.gov/media/press-releases?page=1",
+            "`B001257` and 21 other House Drupal rows: rel=next, and 0-based",
+        ),
+        (
+            ASPX_PAGER,
+            "https://castor.house.gov/news/documentquery.aspx?DocumentTypeID=821",
+            "https://castor.house.gov/news/documentquery.aspx?DocumentTypeID=821&Page=2",
+            "`C001066` and 4 other ASPX rows: no rel=next, the word 'Next »'",
+        ),
+        (
+            WORDPRESS_PAGER,
+            "https://www.hagerty.senate.gov/press-releases/",
+            "https://www.hagerty.senate.gov/press-releases/page/2/",
+            "`H000601`, `L000583`, `R000622`, `W000830`: the head's own <link rel=next>",
+        ),
+        (
+            PAGENUM_PAGER,
+            "https://www.rounds.senate.gov/newsroom/press-releases",
+            "https://www.rounds.senate.gov/newsroom/press-releases?pagenum_rs=2",
+            "`R000605` and `H001046`: a param no guess would have produced",
+        ),
+        (
+            NUMBERED_PAGER,
+            "https://hayes.house.gov/press-releases",
+            "https://hayes.house.gov/press-releases?page=2",
+            "`H001081`: numbered only, and 1-based — the site settles that itself",
+        ),
+    ],
+)
+def test_the_sites_own_next_link_is_followed_in_every_measured_family(
+    html, current, expected, row
+):
+    assert press.next_page_url(html, current, 2) == expected, row
+
+
+def test_the_word_next_beats_a_number_printed_before_it():
+    """A numbered pager prints "1 2 3 … Next >", so the numbers come first. A word the
+    site itself calls "next" is the better evidence of what it considers next."""
+    html = '<a href="?page=9">2</a><a href="?page=2">Next ></a>'
+    assert press.next_page_url(html, "https://x.house.gov/p", 2) == "https://x.house.gov/p?page=2"
+
+
+def test_the_last_link_is_not_the_next_link():
+    """`R000622` prints "Last »" pointing at page 6 of 6. Reduced to its letters that is
+    "last", which is not "next" — and following it would skip four pages of releases."""
+    html = '<a href="/news/page/6/?et_blog">Last »</a>'
+    assert press.next_page_url(html, "https://riley.house.gov/news/", 2) is None
+
+
+@pytest.mark.parametrize(
+    ("html", "why"),
+    [
+        ("<html><body><p>No pager at all.</p></body></html>", "nothing to follow"),
+        ('<a href="/p">3</a>', "the wrong number: page 3 is not page 2"),
+        ('<a rel="next" href="https://elsewhere.com/p/2">Next</a>', "off-host"),
+        ('<a rel="next" href="">Next</a>', "an empty href"),
+        ('<link rel="prefetch" href="/p?page=2">', "rel is not next"),
+    ],
+)
+def test_what_is_not_a_next_link(html, why):
+    assert press.next_page_url(html, "https://x.house.gov/p", 2) is None, why
+
+
+def test_a_next_link_that_points_at_the_page_we_are_on_is_not_followed():
+    """The last page of some archives keeps rendering a "next" that points at itself.
+    Following it would re-read the page and read that as the end of the archive."""
+    html = '<a rel="next" href="/press-releases">Next</a><a href="/press-releases">2</a>'
+    assert press.next_page_url(html, "https://x.house.gov/press-releases", 2) is None
+    assert press.next_page_url(html, "https://x.house.gov/press-releases/", 2) is None
+
+
+def test_a_numbered_link_that_points_at_the_page_we_are_on_falls_through():
+    html = '<a href="/press-releases">2</a>'
+    assert press.next_page_url(html, "https://x.house.gov/press-releases", 2) is None
+
+
+def test_the_walk_follows_the_link_and_records_that_it_did():
+    served: list[str] = []
+
+    def read(url: str) -> str:
+        served.append(url)
+        if url.endswith("?pagenum_rs=2"):
+            return HOUSE_ASPX_PAGE_2
+        return HOUSE_DRUPAL.replace('<a href="?page=1" rel="next">Next page</a>', PAGENUM_PAGER)
+
+    row = _row("R000605", press_page="https://www.rounds.senate.gov/newsroom/press-releases")
+    result = press.walk_member(row, read_page=read)
+    assert served[1] == "https://www.rounds.senate.gov/newsroom/press-releases?pagenum_rs=2"
+    assert result.page2_method == "link"
+    assert result.page2_url == served[1]
+    assert len(result.releases) == 3
+
+
+def test_a_row_with_no_link_of_its_own_falls_back_to_the_guess_and_says_so():
+    """`page_url`'s guess is not removed — it is what is left for a list that publishes no
+    pager link, and the report names the rows resting on it."""
+    plain = HOUSE_DRUPAL.replace('<a href="?page=1" rel="next">Next page</a>', "")
+    result = press.walk_member(_row(), read_page=_pages(plain, HOUSE_ASPX_PAGE_2, "<html></html>"))
+    assert result.page2_method == "page_url"
+    assert result.page2_url == "https://bilirakis.house.gov/media/press-releases?page=2"
+    assert len(result.releases) == 3
+
+
+def test_a_walk_that_ends_on_page_one_asked_for_no_page_two():
+    result = press.walk_member(_row(), read_page=_pages(CLIENT_SIDE))
+    assert (result.page2_method, result.page2_url) == ("none", "")
+
+
+def test_a_site_that_stops_linking_has_reached_the_end_of_its_archive():
+    """The pager's own evidence, in both directions: page 1 links page 2, page 2 links
+    nothing, so the archive ends at page 2. Guessing `?page=2` here would ask for a page
+    the site says is not there — and a Drupal pager that clamps to its last page would
+    answer with a page already read, printing INCOMPLETE beside a member collected in
+    full."""
+    served: list[str] = []
+
+    def read(url: str) -> str:
+        served.append(url)
+        return HOUSE_DRUPAL if len(served) == 1 else HOUSE_ASPX_PAGE_2
+
+    result = press.walk_member(_row(), read_page=read)
+    assert len(served) == 2
+    assert result.stopped == "exhausted"
+    assert result.detail == "archive ends at page 2"
+    assert result.complete is True
+    assert len(result.releases) == 3
 
 
 # --- the body -------------------------------------------------------------------------
@@ -1345,14 +1505,16 @@ def test_the_pager_offset_is_asked_of_the_site_itself():
 
 
 def test_a_one_based_pager_is_walked_without_re_reading_the_first_page():
-    """The H001081 regression, end to end: page 0 advertises a 1-based pager, so the
-    walk must ask for `?page=2` second and find new releases."""
+    """The H001081 regression, end to end, on the FALLBACK path: this page publishes no
+    `rel="next"`, no "Next" and no link numbered 2, so the URL is guessed — and page 0
+    advertises a 1-based pager, so the guess must be `?page=2` and not `?page=1`."""
     served: list[str] = []
+    no_next = HOUSE_DRUPAL.replace('<a href="?page=1" rel="next">Next page</a>', "")
 
     def read(url: str) -> str:
         served.append(url)
         if "page=" not in url:
-            return HOUSE_DRUPAL + '<a href="?page=1">1</a><a href="?page=9">9</a>'
+            return no_next + '<a href="?page=1">1</a><a href="?page=9">9</a>'
         if "page=2" in url:
             return HOUSE_ASPX_PAGE_2
         return "<html></html>"
@@ -1564,6 +1726,33 @@ def test_the_report_names_what_the_dating_cost_and_every_undatable_release():
 
 def test_the_report_says_so_plainly_when_no_date_conflicted():
     assert "None: where a release page published its own date it agreed" in _report([], [], [])
+
+
+def test_the_report_names_how_page_two_was_found_for_every_row():
+    """The guess is wrong on three of the four rows it was measured against, so a row
+    still resting on it is a row whose deeper pages are not proven — and the owner reads
+    that per row, not as a footnote."""
+    linked = press.MemberResult(
+        "R000605",
+        [],
+        2,
+        "window",
+        page2_method="link",
+        page2_url="https://www.rounds.senate.gov/newsroom/press-releases?pagenum_rs=2",
+    )
+    guessed = press.MemberResult("B001257", [], 2, "window", page2_method="page_url",
+                                 page2_url="https://bilirakis.house.gov/p?page=2")
+    never = press.MemberResult("H001081", [], 1, "empty", "no dated releases")
+    rows = [
+        _row("R000605", name="Mike Rounds"),
+        _row(),
+        _row("H001081", name="Jahana Hayes"),
+    ]
+    text = _report([linked, guessed, never], rows, [])
+    assert "## How page 2 was found, per row" in text
+    assert "| Mike Rounds (R000605) | `link` | <https://www.rounds.senate.gov" in text
+    assert "| Gus M. Bilirakis (B001257) | `page_url` | <https://bilirakis.house.gov" in text
+    assert "| Jahana Hayes (H001081) | `none` | — |" in text
 
 
 def test_the_report_prints_every_refused_url_with_its_reason():

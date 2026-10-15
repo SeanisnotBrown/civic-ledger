@@ -70,6 +70,12 @@ Window start is 2023-01-03 (owner decision 1), the same as collector (b). Press 
 reverse-chronological, so pagination stops at the first page whose newest item predates
 the window.
 
+Page two onwards is the page the SITE links to — its own `rel="next"`, its own "Next",
+or its own numbered link (`next_page_url`). A URL guessed from the list URL (`page_url`)
+is the fallback for a list that publishes no link at all, and the report names every row
+still resting on it: measured 2026-10-14, the guess is wrong on three of the four rows it
+was checked against, and a wrong pager URL does not fail loudly — it re-serves page one.
+
 Six stop reasons are recorded per member, because they do not mean the same thing and the
 report must not print one as the other (see `MemberResult.complete`):
 
@@ -630,12 +636,18 @@ def zero_based_pager(html: str) -> bool:
 
 
 def page_url(list_url: str, page: int, *, zero_based: bool = True) -> str:
-    """The `page`-th list page, counting from 0 for the first one, in whichever scheme
-    this family uses.
+    """The `page`-th list page GUESSED from the list URL, counting from 0 for the first
+    one, in whichever scheme this family uses. The fallback for a list that publishes no
+    pager link of its own — `next_page_url` is tried first and wins.
 
     The SCHEME comes from the list URL, so a redesigned pager cannot silently restart the
     walk at page 1. The `?page=` OFFSET comes from the first page's own links, because
     the two Drupal-shaped families disagree about it — see `zero_based_pager`.
+
+    Measured 2026-10-14, this guess is WRONG on three of the four rows it was checked
+    against: `H001046` and `R000605` page by `?pagenum_rs=`, `R000622` by
+    `/page/2/?et_blog`, and only `S001185`'s `?page=2` matches. That is what
+    `next_page_url` exists for; this stays for the rows that print no link at all.
     """
     if page == 0:
         return list_url
@@ -649,6 +661,76 @@ def page_url(list_url: str, page: int, *, zero_based: bool = True) -> str:
         return f"{list_url.rstrip('/')}/page/{page + 1}/"
     joiner = "&" if parsed.query else "?"
     return f"{list_url}{joiner}page={page if zero_based else page + 1}"
+
+
+# A tag that can carry `rel="next"`: the `<a>` the reader clicks, and the `<link>` in the
+# head that WordPress writes for the same page (`H000601` Hagerty publishes both).
+_REL_TAG = re.compile(r"<(?:a|link)\b[^>]*>", re.IGNORECASE)
+# An anchor's text reduced to its letters, so "Next >", "Next »" and "Next page››" are
+# one word and "Last »" is a different one. Deliberately only these two words: "older"
+# and the bare arrows are not on any row measured, and `page_url` already covers a row
+# with no link at all, so a guess here would be a guess with nothing behind it.
+_LETTERS_ONLY = re.compile(r"[^a-z]+")
+_NEXT_WORDS = frozenset({"next", "nextpage"})
+
+
+def _pager_target(href: str, current_url: str) -> str | None:
+    """One pager href as an absolute URL, or None where it cannot be followed: empty,
+    off-host, or the page we are already on (which every "next" link on the LAST page of
+    an archive is, on the families that keep rendering one)."""
+    if not href:
+        return None
+    url = urljoin(current_url, html_lib.unescape(href))
+    if urlparse(url).netloc != urlparse(current_url).netloc:
+        return None
+    return None if url.rstrip("/") == current_url.rstrip("/") else url
+
+
+def next_page_url(html: str, current_url: str, page_number: int) -> str | None:
+    """The site's OWN link to its next list page, or None if it publishes none.
+
+    `page_number` is the human number of the page being asked for — 2 while reading page
+    one. Three rules, in this order, every one of them measured on a real row 2026-10-15:
+
+      * `rel="next"`, on an `<a>` or the head's `<link>`: `B001257` and the 21 other
+        House Drupal rows (`<a href="?page=1" rel="next">`), `H000601`, `L000583`,
+        `R000622` and `W000830` (`/page/2/?et_blog`);
+      * an anchor whose text is NEXT: `C001066` and the 4 other ASPX rows ("Next »" →
+        `&Page=2`), `H001046` and `R000605` ("Next" → `?pagenum_rs=2`), `L000585` and
+        `S001185` ("Next >" → `?page=2`). Reduced to its letters, so "Last »" is not it;
+      * an anchor whose text is the next page's NUMBER: `H001081` prints `1`…`55` and no
+        `rel="next"`.
+
+    Why it is the site's link and not a guess: `page_url`'s guess is wrong on three of
+    the four rows it was measured against, and a wrong pager URL does not fail loudly —
+    it re-serves page one, which the duplicate rule reads as the end of the archive. That
+    is how `H001081` came back collected 10 releases deep instead of 251.
+
+    The number rule is also why the site's own link beats a guess on the 0-vs-1-based
+    question entirely: Drupal's "2" points at `?page=1` and Hayes's "2" at `?page=2`, and
+    each is right about its own site.
+    """
+    flat = flatten(html)
+    for tag in _REL_TAG.findall(flat):
+        attrs = _attrs(tag)
+        if "next" not in attrs.get("rel", "").lower().split():
+            continue
+        found = _pager_target(attrs.get("href", ""), current_url)
+        if found is not None:
+            return found
+    numbered: str | None = None
+    for match in _ANCHOR.finditer(flat):
+        text = html_lib.unescape(_TAGS.sub("", match.group(2))).strip()
+        if _LETTERS_ONLY.sub("", text.lower()) in _NEXT_WORDS:
+            found = _pager_target(match.group(1), current_url)
+            if found is not None:
+                return found
+        if numbered is None and text == str(page_number):
+            # Held rather than returned: a numbered pager usually prints "1 2 3 … Next >"
+            # so the numbers come first, and a word the site chose to call "next" is the
+            # better evidence of what it considers next.
+            numbered = _pager_target(match.group(1), current_url)
+    return numbered
 
 
 # --- reading a release page -----------------------------------------------------------
@@ -814,6 +896,13 @@ class MemberResult:
     # what counts as a member's own statement, so a URL this code takes out of a member's
     # list has to be visible to be disagreed with.
     url_rejections: list[dict[str, str]] = field(default_factory=list)
+    # How page 2 was reached: `link` — the site's own Next or numbered link; `page_url` —
+    # guessed from the list URL because the site published no such link; `none` — page 2
+    # was never asked for, because the walk ended on page one. Recorded per row because
+    # the guess is wrong on three of the four rows it was measured against, and the
+    # report has to say which rows are still resting on it.
+    page2_method: str = "none"
+    page2_url: str = ""
 
     @property
     def complete(self) -> bool:
@@ -875,6 +964,14 @@ def walk_member(
     or at `limit_pages`. The stop reason travels with the result because "complete" and
     "we gave up" must never read the same in the report.
 
+    Page two onwards is the page the SITE links to (`next_page_url`), and `page_url`'s
+    guess is used only where the site publishes no such link. Once a site has shown its
+    own pager, a page that carries no next link is the end of its archive and the walk
+    stops there rather than guessing past it: asking for a page the site says does not
+    exist is how a Drupal pager that clamps to its last page comes back as a page already
+    read, which the duplicate rule reports as `repeat` — INCOMPLETE printed beside a
+    member who was collected in full.
+
     `read_release_page`, when given, dates the anchors the list page left undated by
     reading their own release pages — the three rows (`K000377`, `R000605`, `S001181`)
     whose lists print no date at all. It is OPTIONAL because it costs one fetch per
@@ -892,17 +989,26 @@ def walk_member(
     refused_urls: set[str] = set()
     fetches = 0
     pages = 0
+    page2 = ["none", ""]
 
     def finish(result: MemberResult) -> MemberResult:
         """Every exit carries what the dating cost and what it could not do."""
         result.date_failures = failures
         result.release_page_fetches = fetches
         result.url_rejections = refusals
+        result.page2_method, result.page2_url = page2
         return result
 
     zero_based = True
+    linked: str | None = None
+    site_pages_itself = False
     for page in range(ceiling):
-        url = page_url(list_url, page, zero_based=zero_based)
+        if page == 0:
+            url = list_url
+        else:
+            url = linked or page_url(list_url, page, zero_based=zero_based)
+            if page == 1:
+                page2 = ["link" if linked else "page_url", url]
         try:
             html = read_page(url)
         except httpx.HTTPStatusError as exc:
@@ -924,8 +1030,12 @@ def walk_member(
             )
         pages += 1
         if page == 0:
-            # Asked of the site itself, once, before the second request is built.
+            # Asked of the site itself, once, before the second request is built. Only
+            # the `page_url` fallback reads it; a site that links its own next page has
+            # already answered the 0-vs-1-based question by linking it.
             zero_based = zero_based_pager(html)
+        linked = next_page_url(html, url, page + 2)
+        site_pages_itself = site_pages_itself or linked is not None
         page_refusals: list[dict[str, str]] = []
         candidates = extract_candidates(
             html, list_url, member_id, rejections=page_refusals
@@ -1017,6 +1127,15 @@ def walk_member(
                 found.append(release)
         if max(date_upper_bound(r.date) for r in fresh) < window_start:
             return finish(MemberResult(member_id, found, pages, "window"))
+        if site_pages_itself and linked is None:
+            # The site has shown us its own pager and this page carries no next link:
+            # that is the archive's own end, said in the publisher's words, and the walk
+            # does not guess past it. `page_url` here would ask for a page the site says
+            # is not there — and a pager that clamps to its last page would answer with a
+            # page already read, which `repeat` would print as INCOMPLETE beside a member
+            # collected in full. This can only be reached from page 2 onwards (the flag is
+            # only set by a page that HAD a link), so it is never the single-page case.
+            return finish(MemberResult(member_id, found, pages, *_end_of_archive(pages)))
 
     return finish(
         MemberResult(member_id, found, pages, "limit", f"stopped at {ceiling} pages")
@@ -1151,6 +1270,28 @@ def render_report(
             )
     else:
         lines.append("None: every walk reached the window's start.")
+
+    if results:
+        lines += [
+            "",
+            "## How page 2 was found, per row",
+            "",
+            "`link` is the site's own Next or numbered link, which is what the walk "
+            "follows. `page_url` is the URL GUESSED from the list URL, used only where "
+            "the site publishes no such link — measured 2026-10-14, that guess is wrong "
+            "on three of the four rows it was checked against, so a row sitting on it is "
+            "a row whose deeper pages are not proven. `none` means page 2 was never "
+            "asked for: the walk ended on page one.",
+            "",
+            "| Member | Page 2 found by | Page 2 URL |",
+            "| --- | --- | --- |",
+        ]
+        for result in sorted(results, key=lambda r: r.member_id):
+            lines.append(
+                f"| {by_id[result.member_id]['name']} ({result.member_id}) | "
+                f"`{result.page2_method}` | "
+                f"{f'<{result.page2_url}>' if result.page2_url else '—'} |"
+            )
 
     costly = [r for r in results if r.release_page_fetches]
     if costly:
@@ -1364,6 +1505,8 @@ def run(argv: list[str] | None = None) -> int:
                         "pages_read": r.pages_read,
                         "stopped": r.stopped,
                         "detail": r.detail,
+                        "page2_method": r.page2_method,
+                        "page2_url": r.page2_url,
                     }
                     for r in results
                 ],

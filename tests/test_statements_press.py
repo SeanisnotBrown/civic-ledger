@@ -697,6 +697,176 @@ def test_a_list_date_inside_its_permalinks_month_is_not_a_conflict():
     assert releases[0].date_conflict == ""
 
 
+# --- dating an anchor from its own release page (step 3b) -----------------------------
+
+# `K000377`, `R000605` and `S001181`: the list prints titles and links and NO date, in the
+# text or in the URL. Real shape, trimmed.
+ROUNDS_LIST = "https://www.rounds.senate.gov/newsroom/press-releases"
+UNDATED_LIST = """
+<div class="PageList">
+ <a href="/newsroom/press-releases/rounds-calls-for-a-federal-gas-tax-suspension">
+  Rounds Calls For A Federal Gas And Diesel Tax Suspension</a>
+ <a href="/newsroom/press-releases/rounds-issues-a-statement-on-the-usps-report">
+  Rounds Issues Statement Following Release Of The USPS OIG Report</a>
+</div>
+"""
+FIRST = f"{ROUNDS_LIST}/rounds-calls-for-a-federal-gas-tax-suspension"
+SECOND = f"{ROUNDS_LIST}/rounds-issues-a-statement-on-the-usps-report"
+
+
+def _undated_row() -> dict:
+    return _row("R000605", press_page=ROUNDS_LIST, name="Mike Rounds")
+
+
+def _release_pages(dates: dict[str, str], *, fail: tuple[str, ...] = ()):
+    """A release-page reader: a date marker per URL, no marker where the date is None,
+    and a connection error for any URL in `fail`."""
+    read_urls: list[str] = []
+
+    def read(url: str) -> str:
+        read_urls.append(url)
+        if url in fail:
+            raise httpx.ConnectError("the release page could not be reached")
+        marker = dates.get(url)
+        if marker is None:
+            return "<html><body><p>This page publishes no date marker at all.</p></body></html>"
+        return f'<html><head><meta name="date" content="{marker}"></head></html>'
+
+    read.urls = read_urls  # type: ignore[attr-defined]
+    return read
+
+
+def test_an_undated_anchor_is_a_candidate_but_never_a_release():
+    """`extract_releases` is `extract_candidates` minus the ones no date could be found
+    for, so every caller that cannot spend a fetch still gets today's answer."""
+    candidates = press.extract_candidates(UNDATED_LIST, ROUNDS_LIST, "R000605")
+    assert [(c.date, c.date_precision, c.date_source) for c in candidates] == [
+        ("", "none", "none"),
+        ("", "none", "none"),
+    ]
+    assert press.extract_releases(UNDATED_LIST, ROUNDS_LIST, "R000605") == []
+
+
+def test_a_candidate_is_dated_from_its_own_release_page():
+    candidate = press.extract_candidates(UNDATED_LIST, ROUNDS_LIST, "R000605")[0]
+    dated, failure = press.date_from_release_page(
+        candidate, _release_pages({FIRST: "2026-10-02"})
+    )
+    assert failure is None
+    assert (dated.date, dated.date_precision, dated.date_source) == (
+        "2026-10-02",
+        "day",
+        "release-page",
+    )
+
+
+def test_a_release_page_with_no_date_is_a_recorded_failure_not_an_undated_keep():
+    candidate = press.extract_candidates(UNDATED_LIST, ROUNDS_LIST, "R000605")[0]
+    kept, failure = press.date_from_release_page(candidate, _release_pages({}))
+    assert kept.date == ""
+    assert failure == {
+        "id": "R000605",
+        "url": FIRST,
+        "error": "no date on release page",
+    }
+
+
+def test_a_release_page_that_cannot_be_fetched_is_a_different_failure():
+    """Ours to retry, not the publisher's omission — so the reasons are not pooled."""
+    candidate = press.extract_candidates(UNDATED_LIST, ROUNDS_LIST, "R000605")[0]
+    kept, failure = press.date_from_release_page(
+        candidate, _release_pages({}, fail=(FIRST,))
+    )
+    assert kept.date == ""
+    assert failure is not None and failure["error"] == "ConnectError"
+
+
+def test_the_walk_dates_undated_anchors_and_counts_what_that_cost():
+    read = _release_pages({FIRST: "2026-10-02", SECOND: "2026-09-28"})
+    result = press.walk_member(
+        _undated_row(),
+        read_page=_pages(UNDATED_LIST),
+        read_release_page=read,
+        window_start="2023-01-03",
+    )
+    assert [(r.date, r.date_source) for r in result.releases] == [
+        ("2026-10-02", "release-page"),
+        ("2026-09-28", "release-page"),
+    ]
+    assert result.release_page_fetches == 2
+    assert result.date_failures == []
+
+
+def test_the_window_still_holds_when_the_date_arrives_only_after_the_fetch():
+    """The out-of-window release is left behind exactly as a list-page date would be."""
+    read = _release_pages({FIRST: "2026-10-02", SECOND: "2022-12-01"})
+    result = press.walk_member(
+        _undated_row(),
+        read_page=_pages(UNDATED_LIST),
+        read_release_page=read,
+        window_start="2023-01-03",
+    )
+    assert [r.date for r in result.releases] == ["2026-10-02"]
+
+
+def test_the_walk_stop_still_holds_when_the_dates_arrive_only_after_the_fetch():
+    """Every date on the page predates the window, so the walk stops — and stops
+    COMPLETE, which it can only know because the fetched dates were compared."""
+    read = _release_pages({FIRST: "2022-12-02", SECOND: "2022-12-01"})
+    result = press.walk_member(
+        _undated_row(),
+        read_page=_pages(UNDATED_LIST),
+        read_release_page=read,
+        window_start="2023-01-03",
+    )
+    assert result.releases == []
+    assert result.stopped == "window"
+    assert result.complete is True
+
+
+def test_a_page_whose_releases_cannot_be_dated_is_not_an_empty_page():
+    """Not `empty` and not `exhausted`: both of those describe the member's archive, and
+    this describes our reading of it. `exhausted` counts as COMPLETE, so reporting it
+    here would print an under-collected member as collected in full."""
+    read = _release_pages({})
+    result = press.walk_member(
+        _undated_row(),
+        read_page=_pages(UNDATED_LIST),
+        read_release_page=read,
+        window_start="2023-01-03",
+    )
+    assert result.stopped == "undated"
+    assert result.complete is False
+    assert "2 release(s), none of which could be dated" in result.detail
+    assert len(result.date_failures) == 2
+    assert result.releases == []
+
+
+def test_without_a_release_page_reader_nothing_changes():
+    """The screening report and `--index-only` cannot spend a fetch per anchor, so they
+    must still get today's answer: no dated releases on the first page."""
+    result = press.walk_member(
+        _undated_row(), read_page=_pages(UNDATED_LIST), window_start="2023-01-03"
+    )
+    assert result.stopped == "empty"
+    assert result.detail == "no dated releases on the first page"
+    assert result.release_page_fetches == 0
+
+
+def test_an_undatable_release_is_not_fetched_twice():
+    """A pager that re-serves a page must not re-spend a fetch on the same dead end."""
+    read = _release_pages({FIRST: "2026-10-02"})
+    result = press.walk_member(
+        _undated_row(),
+        read_page=_pages(UNDATED_LIST, UNDATED_LIST),
+        read_release_page=read,
+        window_start="2023-01-03",
+    )
+    assert result.release_page_fetches == 2
+    assert read.urls.count(SECOND) == 1
+    assert result.stopped == "repeat"
+
+
 # --- which hrefs are releases ---------------------------------------------------------
 
 
@@ -1165,6 +1335,27 @@ def test_the_report_flags_every_date_conflict_by_row_and_url():
     assert "WRONG PAGE" in text
 
 
+def test_the_report_names_what_the_dating_cost_and_every_undatable_release():
+    result = press.MemberResult(
+        "R000605",
+        [],
+        1,
+        "undated",
+        "page 0: 2 release(s), none of which could be dated from their own pages",
+        date_failures=[
+            {"id": "R000605", "url": FIRST, "error": "no date on release page"},
+            {"id": "R000605", "url": SECOND, "error": "ConnectError"},
+        ],
+        release_page_fetches=2,
+    )
+    text = _report([result], [_row("R000605", press_page=ROUNDS_LIST, name="Mike Rounds")], [])
+    assert "## Release pages read for their dates" in text
+    assert "| Mike Rounds (R000605) | 2 | 2 |" in text
+    assert f"`R000605` — no date on release page — <{FIRST}>" in text
+    assert f"`R000605` — ConnectError — <{SECOND}>" in text
+    assert "NEITHER is kept as a release" in text
+
+
 def test_the_report_says_so_plainly_when_no_date_conflicted():
     assert "None: where a release page published its own date it agreed" in _report([], [], [])
 
@@ -1283,6 +1474,67 @@ def test_index_only_reads_no_release_page_so_no_date_is_upgraded(
     monkeypatch.setattr(press, "_read_page", read)
     assert press.run(["--index-only"]) == 0
     assert [s["date"] for s in _statements(repo, "B001257")["statements"]] == ["2026-10"]
+
+
+UNDATED_RUN_LIST = """
+<div><a href="/media/press-releases/a-release-with-no-date-on-the-list-page">
+ A Release With No Date On The List Page At All</a></div>
+"""
+
+
+def test_the_run_dates_an_undated_anchor_and_records_what_it_cost(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, capsys
+):
+    def read(url: str) -> str:
+        if url.endswith("/media/press-releases"):
+            return UNDATED_RUN_LIST
+        if "/media/press-releases/" in url:
+            return '<meta name="date" content="2026-10-02">' + RELEASE_PAGE
+        return "<html></html>"
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run([]) == 0
+    assert [s["date"] for s in _statements(repo, "B001257")["statements"]] == ["2026-10-02"]
+    index = _index(repo)
+    assert index["release_page_fetches"] == {"B001257": 1}
+    assert index["date_failures"] == []
+    assert "+1 release pages read for their dates" in capsys.readouterr().out
+
+
+def test_the_run_records_an_undatable_release_as_a_failure_and_keeps_nothing(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, capsys
+):
+    def read(url: str) -> str:
+        if url.endswith("/media/press-releases"):
+            return UNDATED_RUN_LIST
+        if "/media/press-releases/" in url:
+            return RELEASE_PAGE  # a real body, and no date marker anywhere on it
+        return "<html></html>"
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run([]) == 0
+    assert _statements(repo, "B001257")["statements"] == []
+    index = _index(repo)
+    assert [f["error"] for f in index["date_failures"]] == ["no date on release page"]
+    assert "undatable releases: 1" in capsys.readouterr().out
+    report = next((repo / "docs" / "research").glob("*-press-collection-counts.md"))
+    assert "no date on release page" in report.read_text(encoding="utf-8")
+
+
+def test_index_only_never_pays_for_a_date(repo: Path, monkeypatch: pytest.MonkeyPatch):
+    """The no-spend path: an undated anchor stays undated rather than costing a fetch."""
+
+    def read(url: str) -> str:
+        if url.endswith("/media/press-releases"):
+            return UNDATED_RUN_LIST
+        if "/media/press-releases/" in url:
+            raise AssertionError(f"no release page may be fetched: {url}")
+        return "<html></html>"
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run(["--index-only"]) == 0
+    assert _statements(repo, "B001257")["statements"] == []
+    assert _index(repo)["release_page_fetches"] == {}
 
 
 def test_a_refused_row_is_never_fetched(repo: Path, monkeypatch: pytest.MonkeyPatch):

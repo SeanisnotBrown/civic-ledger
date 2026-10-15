@@ -104,7 +104,7 @@ import html as html_lib
 import json
 import re
 from collections.abc import Callable
-from dataclasses import asdict, dataclass, replace
+from dataclasses import asdict, dataclass, field, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -402,14 +402,16 @@ def _is_release_url(candidate: str, list_url: str) -> bool:
     return bool(segment) and re.search(rf"/{re.escape(segment)}/[^/]", path) is not None
 
 
-def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
-    """Every dated release one list page announces, in page order and deduplicated.
+def extract_candidates(html: str, list_url: str, member_id: str) -> list[Release]:
+    """Every release-shaped anchor one list page announces, dated where the LIST page can
+    date it, in page order and deduplicated.
 
     A date printed near the anchor wins. Failing that the publisher's own permalink date
-    is read (owner decision 5), carrying its precision. An anchor with neither is skipped
-    rather than dated by guesswork: an undated row cannot be placed inside or outside the
-    collection window, and a statement whose date is a guess cannot be compared against a
-    vote.
+    is read (owner decision 5), carrying its precision. An anchor with NEITHER comes back
+    carrying `date=""` and `date_precision="none"`: it is not a release yet, because an
+    undated row cannot be placed inside or outside the collection window. Dating it needs
+    its own release page, which is a fetch — see `date_from_release_page`, and
+    `extract_releases` for every caller that cannot spend one.
     """
     flat = flatten(html)
     out: list[Release] = []
@@ -426,8 +428,11 @@ def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
         from_url = permalink_date(url)
         if date is None:
             if from_url is None:
-                continue
-            date, precision, source = *from_url, "permalink"
+                # Undated by the list page. Kept as a candidate rather than dropped, so
+                # a caller holding a release-page reader can date it instead of guessing.
+                date, precision, source = "", "none", "none"
+            else:
+                date, precision, source = *from_url, "permalink"
         elif from_url is not None and not _same_date(date, from_url[0]):
             # Both of the publisher's own dates, disagreeing. The list page's text still
             # wins — it is the date printed beside the title the reader clicks — and the
@@ -450,6 +455,49 @@ def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
             )
         )
     return out
+
+
+def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
+    """Every DATED release one list page announces — `extract_candidates` without the
+    anchors the list page could not date. A statement whose date is a guess cannot be
+    compared against a vote, so an undated row is left out rather than dated by
+    guesswork."""
+    return [c for c in extract_candidates(html, list_url, member_id) if c.date]
+
+
+def date_from_release_page(
+    candidate: Release, read_release_page: Callable[[str], str]
+) -> tuple[Release, dict[str, str] | None]:
+    """One undated candidate, dated from its OWN release page (owner decision 5).
+
+    Returns the candidate and a failure record, exactly one of which carries the news. A
+    page that cannot be FETCHED, and a page fetched fine that publishes no date MARKER,
+    are different failures and say so: the first is ours to retry and the second is the
+    publisher's. Neither is ever kept as a release — an undated statement cannot be placed
+    in the window, and `release_page_date` never guesses from the body.
+
+    This is the one step of the collection that costs a fetch the list page did not
+    already pay for, which is why the count is reported per row.
+    """
+    try:
+        html = read_release_page(candidate.url)
+    except (RetryableHTTPError, httpx.HTTPError, OSError) as exc:
+        return candidate, {
+            "id": candidate.member_id,
+            "url": candidate.url,
+            "error": type(exc).__name__,
+        }
+    found = release_page_date(html)
+    if found is None:
+        return candidate, {
+            "id": candidate.member_id,
+            "url": candidate.url,
+            "error": "no date on release page",
+        }
+    return (
+        replace(candidate, date=found, date_precision="day", date_source="release-page"),
+        None,
+    )
 
 
 # A `?page=` pager link that starts at zero. Its presence on the first page is how the
@@ -643,8 +691,12 @@ class MemberResult:
     member_id: str
     releases: list[Release]
     pages_read: int
-    stopped: str  # window | exhausted | single-page | empty | repeat | error | limit
+    stopped: str  # window|exhausted|single-page|empty|undated|repeat|error|limit
     detail: str = ""
+    # Releases whose own page could not date them, with the reason, and the count of
+    # release-page fetches the dating cost. Both empty when no reader was given.
+    date_failures: list[dict[str, str]] = field(default_factory=list)
+    release_page_fetches: int = 0
 
     @property
     def complete(self) -> bool:
@@ -657,7 +709,8 @@ class MemberResult:
         incomplete would print INCOMPLETE beside a member who was collected in full, in
         the one report decision 4 exists to make trustworthy.
 
-        Everything else (`single-page`, `empty`, `repeat`, `error`, `limit`) stopped the
+        Everything else (`single-page`, `empty`, `undated`, `repeat`, `error`, `limit`)
+        stopped the
         walk before its natural end, or could not tell whether it had, and those counts
         are a floor rather than a total.
         """
@@ -694,6 +747,7 @@ def walk_member(
     row: dict[str, Any],
     *,
     read_page: Callable[[str], str],
+    read_release_page: Callable[[str], str] | None = None,
     window_start: str = WINDOW_START,
     limit_pages: int = 0,
 ) -> MemberResult:
@@ -703,13 +757,28 @@ def walk_member(
     lists, so everything deeper is older), at a page the extractor reads nothing from,
     or at `limit_pages`. The stop reason travels with the result because "complete" and
     "we gave up" must never read the same in the report.
+
+    `read_release_page`, when given, dates the anchors the list page left undated by
+    reading their own release pages — the three rows (`K000377`, `R000605`, `S001181`)
+    whose lists print no date at all. It is OPTIONAL because it costs one fetch per
+    undated anchor, and a caller that cannot spend those (the screening report, and
+    `--index-only`) must still get today's answer rather than a slower one.
     """
     member_id = row["id"]
     list_url = row["press_page"]
     ceiling = min(limit_pages, MAX_PAGES) if limit_pages else MAX_PAGES
     found: list[Release] = []
     seen: set[str] = set()
+    undatable: set[str] = set()
+    failures: list[dict[str, str]] = []
+    fetches = 0
     pages = 0
+
+    def finish(result: MemberResult) -> MemberResult:
+        """Every exit carries what the dating cost and what it could not do."""
+        result.date_failures = failures
+        result.release_page_fetches = fetches
+        return result
 
     zero_based = True
     for page in range(ceiling):
@@ -721,31 +790,94 @@ def walk_member(
                 # A pager URL that 404s is how most of these sites say "there is no page
                 # N" — the end of the archive, not a failed fetch, and reporting it as an
                 # error would print INCOMPLETE beside a member collected in full.
-                return MemberResult(member_id, found, pages, *_end_of_archive(page))
-            return MemberResult(member_id, found, pages, "error", f"HTTP {exc} on {url}")
+                return finish(
+                    MemberResult(member_id, found, pages, *_end_of_archive(page))
+                )
+            return finish(
+                MemberResult(member_id, found, pages, "error", f"HTTP {exc} on {url}")
+            )
         except (RetryableHTTPError, httpx.HTTPError, OSError) as exc:
-            return MemberResult(member_id, found, pages, "error", f"{type(exc).__name__} on {url}")
+            return finish(
+                MemberResult(
+                    member_id, found, pages, "error", f"{type(exc).__name__} on {url}"
+                )
+            )
         pages += 1
         if page == 0:
             # Asked of the site itself, once, before the second request is built.
             zero_based = zero_based_pager(html)
-        releases = extract_releases(html, list_url, member_id)
+        candidates = extract_candidates(html, list_url, member_id)
+        # What this page would have to beat to be new. Captured BEFORE the dating loop,
+        # which adds to `undatable` as it goes.
+        known = seen | undatable
+        if read_release_page is not None:
+            dated: list[Release] = []
+            for candidate in candidates:
+                if candidate.date or candidate.url in seen or candidate.url in undatable:
+                    dated.append(candidate)
+                    continue
+                fetches += 1
+                candidate, failure = date_from_release_page(candidate, read_release_page)
+                if failure is not None:
+                    undatable.add(candidate.url)
+                    failures.append(failure)
+                dated.append(candidate)
+            candidates = dated
+        releases = [c for c in candidates if c.date]
         fresh = [r for r in releases if r.url not in seen]
         if not releases:
+            if candidates and all(c.url in known for c in candidates):
+                # Every anchor on it was read on an earlier page. Judged on the ANCHORS
+                # rather than on the dated releases, because a page whose releases are
+                # dated from their own pages has nothing dated on it the second time
+                # round — those fetches are deliberately not spent twice — and that must
+                # not read as a page with no dates on it.
+                return finish(
+                    MemberResult(
+                        member_id,
+                        found,
+                        pages,
+                        "repeat",
+                        f"page {page} repeats a page already read",
+                    )
+                )
+            if candidates and read_release_page is not None:
+                # The page HELD releases and not one of them could be dated. Neither stop
+                # below fits: both of those describe the member's archive, and this
+                # describes our reading of it. Its own incomplete stop, so an
+                # under-collected member is never printed as collected in full.
+                return finish(
+                    MemberResult(
+                        member_id,
+                        found,
+                        pages,
+                        "undated",
+                        f"page {page}: {len(candidates)} release(s), none of which could "
+                        "be dated from their own pages",
+                    )
+                )
             if page == 0:
                 # A 200 with no items at all: the client-side wall of fact 7, on a row
                 # the owner marked accepted. Not a member who published nothing.
-                return MemberResult(
-                    member_id, found, pages, "empty", "no dated releases on the first page"
+                return finish(
+                    MemberResult(
+                        member_id, found, pages, "empty", "no dated releases on the first page"
+                    )
                 )
             # The pager ran past the end of the archive.
-            return MemberResult(member_id, found, pages, *_end_of_archive(page))
+            return finish(MemberResult(member_id, found, pages, *_end_of_archive(page)))
         if not fresh:
             # Items, but every one already seen: the pager ignored its parameter and
             # re-served a page we have. Incomplete, and silently collecting page 1 two
             # hundred times is what this stops.
-            return MemberResult(
-                member_id, found, pages, "repeat", f"page {page} repeats a page already read"
+            return finish(
+                MemberResult(
+                    member_id,
+                    found,
+                    pages,
+                    "repeat",
+                    f"page {page} repeats a page already read",
+                )
             )
         for release in fresh:
             seen.add(release.url)
@@ -755,9 +887,11 @@ def walk_member(
             if date_upper_bound(release.date) >= window_start:
                 found.append(release)
         if max(date_upper_bound(r.date) for r in fresh) < window_start:
-            return MemberResult(member_id, found, pages, "window")
+            return finish(MemberResult(member_id, found, pages, "window"))
 
-    return MemberResult(member_id, found, pages, "limit", f"stopped at {ceiling} pages")
+    return finish(
+        MemberResult(member_id, found, pages, "limit", f"stopped at {ceiling} pages")
+    )
 
 
 # --- configuration --------------------------------------------------------------------
@@ -889,6 +1023,32 @@ def render_report(
     else:
         lines.append("None: every walk reached the window's start.")
 
+    costly = [r for r in results if r.release_page_fetches]
+    if costly:
+        lines += [
+            "",
+            "## Release pages read for their dates",
+            "",
+            "These rows print no date on the list page at all, so each release's own page "
+            "was read to date it — the one fetch the list page does not already pay for. "
+            "A page that could not be fetched, and a page with no date marker on it, are "
+            "both recorded below as failures and NEITHER is kept as a release: an undated "
+            "statement cannot be placed inside or outside the window.",
+            "",
+            "| Member | Pages read for dates | Undatable |",
+            "| --- | --- | --- |",
+        ]
+        for result in sorted(costly, key=lambda r: r.member_id):
+            lines.append(
+                f"| {by_id[result.member_id]['name']} ({result.member_id}) | "
+                f"{result.release_page_fetches} | {len(result.date_failures)} |"
+            )
+        failures = [f for r in costly for f in r.date_failures]
+        if failures:
+            lines += ["", "Every undatable release, with the reason:", ""]
+            for entry in sorted(failures, key=lambda e: (e["id"], e["url"])):
+                lines.append(f"* `{entry['id']}` — {entry['error']} — <{entry['url']}>")
+
     lines += ["", "## Date conflicts — two of the publisher's own dates disagree", ""]
     if date_conflicts:
         lines.append(
@@ -961,12 +1121,23 @@ def run(argv: list[str] | None = None) -> int:
 
     results: list[MemberResult] = []
     for n, row in enumerate(accepted, start=1):
-        result = walk_member(row, read_page=_read_page, limit_pages=args.limit_pages)
+        result = walk_member(
+            row,
+            read_page=_read_page,
+            # `--index-only` is the no-fetch path, so it leaves an undated anchor undated.
+            read_release_page=None if args.index_only else _read_page,
+            limit_pages=args.limit_pages,
+        )
         results.append(result)
         flag = "" if result.complete else f"  <-- {result.stopped}: {result.detail}"
+        cost = (
+            f"  (+{result.release_page_fetches} release pages read for their dates)"
+            if result.release_page_fetches
+            else ""
+        )
         print(
             f"  [{n}/{len(accepted)}] {result.member_id} {len(result.releases):4} releases "
-            f"over {result.pages_read} pages{flag}"
+            f"over {result.pages_read} pages{cost}{flag}"
         )
 
     out_dir = data_dir.joinpath(*RAW_SUBDIR)
@@ -1052,6 +1223,12 @@ def run(argv: list[str] | None = None) -> int:
                     for r in results
                 ],
                 "text_failures": text_failures,
+                "date_failures": [f for r in results for f in r.date_failures],
+                "release_page_fetches": {
+                    r.member_id: r.release_page_fetches
+                    for r in results
+                    if r.release_page_fetches
+                },
             },
             indent=2,
         ),
@@ -1079,6 +1256,9 @@ def run(argv: list[str] | None = None) -> int:
         print(f"  text failures: {len(text_failures)}")
     if date_conflicts:
         print(f"  date conflicts: {len(date_conflicts)} — see the report, nothing was resolved")
+    date_failures = [f for r in results for f in r.date_failures]
+    if date_failures:
+        print(f"  undatable releases: {len(date_failures)} — recorded as failures, not kept")
     return 0
 
 

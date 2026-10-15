@@ -357,10 +357,14 @@ def date_verdict(d: dict[str, Any], collected: bool = False) -> str:
             "to an anchor for the extractor to attach"
         )
     if d["dated_permalinks"]:
+        # Owner decision 5 answered the question this line used to ask, and step 2 reads
+        # the permalink date — so no date stands in the way of these rows any more. What
+        # can still leave one empty is the window: a list whose newest release predates
+        # 2023-01-03 collects nothing, and `Walk stopped` is where that is reported.
         return (
-            f"{d['release_links']} release links, {d['dated_permalinks']} of them carrying "
-            "the date **only in the URL** (`/2026/10/…`). **Owner decision:** does a "
-            "publisher's own permalink date count as the statement's date?"
+            f"{d['release_links']} release links, {d['dated_permalinks']} of them dated "
+            "**only in the URL** (`/2026/10/…`), which counts as the release's own date "
+            "(owner decision 5) — so the date is not what stands in the way here"
         )
     return f"{d['release_links']} release links and NO date anywhere on the page"
 

@@ -26,6 +26,7 @@ import pytest
 import yaml
 
 from ingest import cache, press_render
+from ingest import statements_press as press
 
 # A stub renderer: reads {"url": ...} lines, answers from a scripted table, and
 # otherwise reports a failure the way the real script does.
@@ -623,15 +624,21 @@ def test_a_row_that_collects_is_not_given_something_standing_in_its_way(tmp_path
     assert press_render.date_verdict(d, collected=True).startswith("nothing —")
 
 
-def test_a_permalink_only_date_is_escalated_as_an_owner_decision(tmp_path, monkeypatch):
-    """The date is the publisher's own, but it is in the URL, and `extract_releases`
-    deliberately refuses to date a statement from anywhere it does not trust."""
+def test_a_permalink_only_date_is_no_longer_an_open_owner_decision(tmp_path, monkeypatch):
+    """Decision 5 answered it and step 2 reads the permalink date, so the line must no
+    longer put the question to the owner a second time. The page's two releases are dated
+    from their URLs — one a day, one a month only."""
     row = _cached_row(tmp_path, monkeypatch, PERMALINK_PAGE)
     d = press_render.diagnose(row)
     assert d["release_links"] == 2 and d["dated_permalinks"] == 2
     verdict = press_render.date_verdict(d)
     assert "only in the URL" in verdict
-    assert "Owner decision" in verdict
+    assert "owner decision 5" in verdict
+    assert "Owner decision" not in verdict
+    assert [
+        (r.date, r.date_precision)
+        for r in press.extract_releases(PERMALINK_PAGE, "https://x.house.gov/press-releases", "X")
+    ] == [("2026-10", "month"), ("2026-09", "month")]
 
 
 def test_a_page_with_no_release_links_is_not_blamed_on_dates(tmp_path, monkeypatch):
@@ -694,6 +701,6 @@ def test_the_screening_report_carries_the_verdict_and_the_pages_own_titles(tmp_p
     text = press_render.render_report(
         [entry], press_render.RenderStats(), window_start="2023-01-03"
     )
-    assert "Owner decision" in text
+    assert "owner decision 5" in text
     assert "release-shaped link(s)" in text
     assert "LaHood Urges" in text

@@ -1,5 +1,5 @@
 {
-  "count": 792,
+  "count": 800,
   "events": [
     {
       "action_code": "H12200",
@@ -3434,6 +3434,44 @@
       "type": "BecameLaw"
     },
     {
+      "action_code": "E40000",
+      "bill_id": "hr5345-119",
+      "committees": null,
+      "date": "2026-10-07",
+      "has_page": false,
+      "id": "hr5345-119--2026-10-07--29b338de262f",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5345",
+      "subjects": [
+        "Computer security and identity theft",
+        "Executive agency funding and structure",
+        "Social Security Administration"
+      ],
+      "text": "Became Public Law No: 119-119.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr5345-119",
+      "committees": null,
+      "date": "2026-10-07",
+      "has_page": false,
+      "id": "hr5345-119--2026-10-07--7de03814c45a",
+      "policy_area": "Social Welfare",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5345",
+      "subjects": [
+        "Computer security and identity theft",
+        "Executive agency funding and structure",
+        "Social Security Administration"
+      ],
+      "text": "Became Public Law No: 119-119.",
+      "type": "BecameLaw"
+    },
+    {
       "action_code": "E30000",
       "bill_id": "hr5345-119",
       "committees": null,
@@ -4460,6 +4498,140 @@
       "subjects": [],
       "text": "Introduced in House",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr6698-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-10-06",
+      "has_page": false,
+      "id": "hr6698-119--2026-10-06--18ece26248a3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6698",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Government information and archives",
+        "Judicial review and appeals",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Reported (Amended) by the Committee on Veterans' Affairs. H. Rept. 119-840.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr6698-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-10-06",
+      "has_page": false,
+      "id": "hr6698-119--2026-10-06--8dc587cb826c",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6698",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Government information and archives",
+        "Judicial review and appeals",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Reported (Amended) by the Committee on Veterans' Affairs. H. Rept. 119-840.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr6698-119",
+      "committees": null,
+      "date": "2026-10-06",
+      "has_page": false,
+      "id": "hr6698-119--2026-10-06--eccdcf3b9ed9",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6698",
+      "subjects": [
+        "Congressional oversight",
+        "Criminal investigation, prosecution, interrogation",
+        "Government information and archives",
+        "Judicial review and appeals",
+        "Veterans' pensions and compensation"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 737.",
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H12200",
+      "bill_id": "hr7260-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-10-06",
+      "has_page": false,
+      "id": "hr7260-119--2026-10-06--1f85c3405292",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7260",
+      "subjects": [
+        "Cemeteries and funerals",
+        "Congressional oversight",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Veterans' organizations and recognition"
+      ],
+      "text": "Reported by the Committee on Veterans' Affairs. H. Rept. 119-841.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "5000",
+      "bill_id": "hr7260-119",
+      "committees": [
+        "Veterans' Affairs Committee"
+      ],
+      "date": "2026-10-06",
+      "has_page": false,
+      "id": "hr7260-119--2026-10-06--7ea52c2679e3",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7260",
+      "subjects": [
+        "Cemeteries and funerals",
+        "Congressional oversight",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Veterans' organizations and recognition"
+      ],
+      "text": "Reported by the Committee on Veterans' Affairs. H. Rept. 119-841.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H12410",
+      "bill_id": "hr7260-119",
+      "committees": null,
+      "date": "2026-10-06",
+      "has_page": false,
+      "id": "hr7260-119--2026-10-06--f5cf4e553d65",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7260",
+      "subjects": [
+        "Cemeteries and funerals",
+        "Congressional oversight",
+        "Government information and archives",
+        "Government studies and investigations",
+        "Veterans' organizations and recognition"
+      ],
+      "text": "Placed on the Union Calendar, Calendar No. 738.",
+      "type": "Calendars"
     },
     {
       "action_code": "H11100",

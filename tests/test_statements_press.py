@@ -531,6 +531,172 @@ def test_a_month_only_december_2022_release_is_out_of_the_window():
     assert result.stopped == "window"
 
 
+# --- the release page's own date (owner decision 5, STATUS step 3) --------------------
+
+# One marker per family, measured 2026-10-15 by fetching one real release from every row
+# that reaches a release page. Real markup, trimmed.
+META_PUBLISHED = '<meta property="article:published_time" content="2026-10-07T04:00:00Z" />'
+META_DATE_SPACED = '<meta name="date" content="2026-10-07 00:00:00.0" />'
+META_DATE_REVERSED = '<meta content="2026-09-28 00:00:00.0" name="date" />'
+JSON_LD = '{"@type":"Article","datePublished":"2026-10-13T17:31:21+00:00",'
+TIME_LONG_ATTR = (
+    '<time class="Heading--time" datetime="October 2, 2026">'
+    '<span class="sr-only">Published: </span>10.02.2026</time>'
+)
+
+
+@pytest.mark.parametrize(
+    ("markup", "expected"),
+    [
+        (META_PUBLISHED, "2026-10-07"),
+        (META_DATE_SPACED, "2026-10-07"),
+        # The same CMS prints the attributes in either order, so the tag is parsed.
+        (META_DATE_REVERSED, "2026-09-28"),
+        (JSON_LD, "2026-10-13"),
+        (TIME_LONG_ATTR, "2026-10-02"),
+        ("<time>October 13, 2026</time>", "2026-10-13"),
+        # `R000622` Riley publishes no marker at all — so STATUS fact 7's "every release
+        # page carries a date" is wrong for that row, and Riley keeps its permalink date.
+        ("<html><body><p>No marker anywhere on this page.</p></body></html>", None),
+        # An edit is not a publication.
+        ('{"dateModified":"2026-10-14T00:00:00Z"}', None),
+        ('<meta name="dateModified" content="2026-10-14">', None),
+        # Not a date: no such day exists.
+        ('<meta name="date" content="2026-02-30">', None),
+        # The body is never read for a date: the first date a release mentions is usually
+        # the date of the thing it is about.
+        ("<p>The hearing was held on October 1, 2026 and ran for three hours.</p>", None),
+    ],
+)
+def test_the_markers_a_release_page_publishes_its_own_date_in(markup, expected):
+    assert press.release_page_date(markup) == expected
+
+
+@pytest.mark.parametrize(
+    ("markup", "expected"),
+    [
+        # A marker whose value is not a date must not stop the ladder.
+        ('{"datePublished":"not a date at all"}<time>October 13, 2026</time>', "2026-10-13"),
+        ('<meta name="date" content="undated"><time>October 13, 2026</time>', "2026-10-13"),
+        # A month that does not exist is not a date either.
+        ('<meta name="date" content="2026-13-01">', None),
+        # `R000605` prints a bare `<time>` label above the dated one.
+        ('<time class="label">Published</time><time>October 13, 2026</time>', "2026-10-13"),
+    ],
+)
+def test_a_marker_that_holds_no_date_does_not_stop_the_ladder(markup, expected):
+    assert press.release_page_date(markup) == expected
+
+
+def test_the_marker_order_is_fixed_and_the_first_hit_wins():
+    """Disagreeing markers are not averaged: the order is published-time, then the plain
+    date, then JSON-LD, then `<time>`."""
+    assert press.release_page_date(META_PUBLISHED + '<meta name="date" content="2026-10-09">') == (
+        "2026-10-07"
+    )
+    assert press.release_page_date(META_DATE_SPACED + JSON_LD) == "2026-10-07"
+    assert press.release_page_date(JSON_LD + "<time>October 20, 2026</time>") == "2026-10-13"
+
+
+@pytest.mark.parametrize(
+    ("path", "expected"),
+    [
+        ("/2024/02/29/a-slug", ("2024-02-29", "day")),
+        ("/2026/02/30/a-slug", None),
+        ("/2023/02/29/a-slug", None),
+        ("/2026/04/31/a-slug", None),
+        ("/2026/04/30/a-slug", ("2026-04-30", "day")),
+    ],
+)
+def test_a_permalink_day_must_be_a_real_calendar_day(path, expected):
+    """February 30th and April 31st are not dates. 2024 is a leap year and 2023 is not."""
+    assert press.permalink_date(f"https://x.house.gov{path}") == expected
+
+
+def _month_release() -> press.Release:
+    return press.Release(
+        "L000585",
+        "2026-10",
+        "A Release Dated Only In Its URL",
+        "https://lahood.house.gov/2026/10/a-slug",
+        date_precision="month",
+        date_source="permalink",
+    )
+
+
+def test_the_release_pages_date_upgrades_a_month_to_the_day_it_printed():
+    """`L000585` and `S001185`, the 20 month-only releases: the permalink gives the month
+    and the release page gives the day inside it."""
+    upgraded = press.reconcile_date(_month_release(), "2026-10-07")
+    assert (upgraded.date, upgraded.date_precision, upgraded.date_source) == (
+        "2026-10-07",
+        "day",
+        "release-page",
+    )
+    assert upgraded.date_conflict == ""
+
+
+def test_a_page_date_outside_the_permalinks_month_is_flagged_and_never_written():
+    """The reason this is flagged rather than resolved: it can mean the WRONG PAGE was
+    attached to this title, and then its date is not evidence of anything."""
+    flagged = press.reconcile_date(_month_release(), "2026-09-30")
+    assert (flagged.date, flagged.date_precision) == ("2026-10", "month")
+    assert flagged.date_conflict == (
+        "the release page says 2026-09-30, the permalink says 2026-10"
+    )
+
+
+def test_a_page_date_on_a_different_day_is_flagged_and_never_written():
+    day = press.Release(
+        "R000622",
+        "2026-10-06",
+        "A Release Dated To The Day In Its URL",
+        "https://riley.house.gov/2026/10/06/a-slug",
+        date_source="permalink",
+    )
+    flagged = press.reconcile_date(day, "2026-10-08")
+    assert flagged.date == "2026-10-06"
+    assert "the release page says 2026-10-08" in flagged.date_conflict
+
+
+def test_an_agreeing_or_absent_page_date_changes_nothing():
+    day = press.Release("X", "2026-10-06", "A Title", "https://x.house.gov/2026/10/06/a-slug")
+    assert press.reconcile_date(day, "2026-10-06") == day
+    assert press.reconcile_date(day, None) == day
+
+
+def test_two_dates_agree_at_the_precision_they_share():
+    assert press._same_date("2026-10", "2026-10-07") is True
+    assert press._same_date("2026-10-07", "2026-10") is True
+    assert press._same_date("2026-10", "2026-09") is False
+    assert press._same_date("2026-10-07", "2026-10-08") is False
+
+
+def test_a_list_date_that_disagrees_with_its_permalink_is_flagged_not_resolved():
+    """The third conflict shape: both dates are on the LIST page, one in the text beside
+    the title and one in the URL. The text still wins, and the disagreement is reported."""
+    html = (
+        '<a href="/2026/10/13/a-release-dated-twice-and-differently">'
+        "A Release Dated Twice And Differently</a><span>September 29, 2026</span>"
+    )
+    releases = press.extract_releases(html, "https://x.house.gov/press-releases", "X")
+    assert releases[0].date == "2026-09-29"
+    assert releases[0].date_source == "list-page"
+    assert releases[0].date_conflict == (
+        "the list page says 2026-09-29, the permalink says 2026-10-13"
+    )
+
+
+def test_a_list_date_inside_its_permalinks_month_is_not_a_conflict():
+    html = (
+        '<a href="/2026/10/a-release-whose-url-carries-only-the-month">'
+        "A Release Whose URL Carries Only The Month</a><span>October 7, 2026</span>"
+    )
+    releases = press.extract_releases(html, "https://x.house.gov/press-releases", "X")
+    assert releases[0].date == "2026-10-07"
+    assert releases[0].date_conflict == ""
+
+
 # --- which hrefs are releases ---------------------------------------------------------
 
 
@@ -977,6 +1143,32 @@ def test_the_report_counts_per_party():
     assert "| R | 1 |" in text
 
 
+def test_the_report_flags_every_date_conflict_by_row_and_url():
+    text = press.render_report(
+        [],
+        [],
+        [],
+        {},
+        window={"start": press.WINDOW_START, "end": "2026-10-15"},
+        text_phase="full",
+        date_conflicts=[
+            {
+                "id": "L000585",
+                "url": "https://lahood.house.gov/2026/10/a-slug",
+                "detail": "the release page says 2026-09-30, the permalink says 2026-10",
+            }
+        ],
+    )
+    assert "## Date conflicts" in text
+    assert "`L000585` — the release page says 2026-09-30, the permalink says 2026-10" in text
+    assert "<https://lahood.house.gov/2026/10/a-slug>" in text
+    assert "WRONG PAGE" in text
+
+
+def test_the_report_says_so_plainly_when_no_date_conflicted():
+    assert "None: where a release page published its own date it agreed" in _report([], [], [])
+
+
 # --- the runner -----------------------------------------------------------------------
 
 
@@ -1030,6 +1222,67 @@ def test_the_run_writes_the_index_the_statements_and_the_report(repo: Path, caps
     assert (repo / "docs" / "research" / "2026-10-14-press-collection-counts.md").exists() or list(
         (repo / "docs" / "research").glob("*-press-collection-counts.md")
     )
+
+
+MONTH_ONLY_LIST = """
+<div class="listing"><a href="/2026/10/a-release-dated-only-in-its-own-permalink">
+ A Release Dated Only In Its Own Permalink</a></div>
+"""
+
+
+def _run_with_release_page(repo: Path, monkeypatch, marker: str) -> None:
+    def read(url: str) -> str:
+        if url.endswith("/media/press-releases"):
+            return MONTH_ONLY_LIST
+        return marker + RELEASE_PAGE
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run([]) == 0
+
+
+def test_the_run_upgrades_a_month_only_date_from_the_page_it_already_fetched(
+    repo: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """Decision 5 at no extra fetch: the body phase has the release page in hand."""
+    _run_with_release_page(repo, monkeypatch, META_DATE_SPACED)
+    statements = _statements(repo, "B001257")
+    assert [s["date"] for s in statements["statements"]] == ["2026-10-07"]
+    index = _index(repo)
+    assert index["date_conflicts"] == []
+    assert [r["date_precision"] for r in index["releases"]] == ["day"]
+    assert [r["date_source"] for r in index["releases"]] == ["release-page"]
+
+
+def test_the_run_writes_the_list_pages_date_and_flags_the_page_that_disagrees(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, capsys
+):
+    """A conflict is reported, never resolved — the stored date stays the permalink's."""
+    _run_with_release_page(repo, monkeypatch, '<meta name="date" content="2026-09-30">')
+    statements = _statements(repo, "B001257")
+    assert [s["date"] for s in statements["statements"]] == ["2026-10"]
+    index = _index(repo)
+    assert len(index["date_conflicts"]) == 1
+    assert index["date_conflicts"][0]["id"] == "B001257"
+    assert "2026-09-30" in index["date_conflicts"][0]["detail"]
+    assert "date conflicts: 1" in capsys.readouterr().out
+    report = next((repo / "docs" / "research").glob("*-press-collection-counts.md"))
+    text = report.read_text(encoding="utf-8")
+    assert "## Date conflicts" in text
+    assert "a-release-dated-only-in-its-own-permalink" in text
+
+
+def test_index_only_reads_no_release_page_so_no_date_is_upgraded(
+    repo: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """`--index-only` is the no-spend, no-fetch path: the month-only date stands."""
+    def read(url: str) -> str:
+        if "/2026/" in url:
+            raise AssertionError(f"no release page may be fetched: {url}")
+        return MONTH_ONLY_LIST if url.endswith("/media/press-releases") else "<html></html>"
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run(["--index-only"]) == 0
+    assert [s["date"] for s in _statements(repo, "B001257")["statements"]] == ["2026-10"]
 
 
 def test_a_refused_row_is_never_fetched(repo: Path, monkeypatch: pytest.MonkeyPatch):

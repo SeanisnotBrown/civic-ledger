@@ -104,7 +104,7 @@ import html as html_lib
 import json
 import re
 from collections.abc import Callable
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -208,6 +208,13 @@ class Release:
     # Owner decision 5: month-only precision is stored verbatim, never padded to the 1st,
     # and is never matched against a single day's vote.
     date_precision: str = "day"
+    # Where the date came from: the list page's own text, the permalink, or the release
+    # page itself. Recorded because a conflict between two of them is reported by source.
+    date_source: str = "list-page"
+    # Set when two of the publisher's own dates disagree. Never resolved by guesswork —
+    # the date stays as it was and the conflict is printed in the report, because a
+    # disagreement can mean the WRONG PAGE was attached to this title.
+    date_conflict: str = ""
 
 
 def flatten(html: str) -> str:
@@ -292,6 +299,16 @@ _DATED_PERMALINK = re.compile(r"/20\d\d/\d{1,2}/(?:\d{1,2}/)?[^/]")
 _PERMALINK_DATE = re.compile(r"/(20\d\d)/(\d{1,2})(?:/(\d{1,2}))?(?:/|$)")
 
 
+def _real_date(year: int, month: int, day: int) -> str | None:
+    """The date as ISO, or None when no such day exists. February 30th and April 31st are
+    not dates, and a publisher that prints one has not told us when it published."""
+    if not 1 <= month <= 12:
+        return None
+    if not 1 <= day <= calendar.monthrange(year, month)[1]:
+        return None
+    return f"{year:04d}-{month:02d}-{day:02d}"
+
+
 def permalink_date(url: str) -> tuple[str, str] | None:
     """The publisher's own date out of the URL path, with its precision, or None.
 
@@ -303,21 +320,29 @@ def permalink_date(url: str) -> tuple[str, str] | None:
         Padding would put a day on the record the publisher never printed, and a day is
         what a statement is matched against a vote by.
 
-    A month outside 1-12 or a day outside 1-31 is REFUSED, not repaired: `/2026/13/` is
-    not a date, and guessing which half the publisher fumbled would invent one. There is
-    no fallback guess — the release is left undated and skipped.
+    A month outside 1-12, or a day that does not exist in that month, is REFUSED rather
+    than repaired: `/2026/13/` and `/2026/02/30/` are not dates, and guessing which half
+    the publisher fumbled would invent one. There is no fallback guess — the release is
+    left undated and skipped.
     """
     match = _PERMALINK_DATE.search(urlparse(url).path)
     if match is None:
         return None
-    year, month, day = match.group(1), int(match.group(2)), match.group(3)
+    year, month, day = int(match.group(1)), int(match.group(2)), match.group(3)
     if not 1 <= month <= 12:
         return None
     if day is None:
-        return f"{year}-{month:02d}", "month"
-    if not 1 <= int(day) <= 31:
-        return None
-    return f"{year}-{month:02d}-{int(day):02d}", "day"
+        return f"{year:04d}-{month:02d}", "month"
+    real = _real_date(year, month, int(day))
+    return (real, "day") if real is not None else None
+
+
+def _same_date(left: str, right: str) -> bool:
+    """Whether two of the publisher's own dates agree, at the precision they share. A
+    month-only `2026-10` agrees with `2026-10-07`: the month is all the publisher
+    committed to, so a day inside it is not a contradiction."""
+    width = min(len(left), len(right))
+    return left[:width] == right[:width]
 
 
 def date_upper_bound(date: str) -> str:
@@ -397,12 +422,19 @@ def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
         if url in seen or not _is_release_url(url, list_url):
             continue
         date = nearest_date(flat, match.start(), match.end())
-        precision = "day"
+        precision, source, conflict = "day", "list-page", ""
+        from_url = permalink_date(url)
         if date is None:
-            from_url = permalink_date(url)
             if from_url is None:
                 continue
-            date, precision = from_url
+            date, precision, source = *from_url, "permalink"
+        elif from_url is not None and not _same_date(date, from_url[0]):
+            # Both of the publisher's own dates, disagreeing. The list page's text still
+            # wins — it is the date printed beside the title the reader clicks — and the
+            # disagreement is reported rather than resolved by guesswork.
+            conflict = (
+                f"the list page says {date}, the permalink says {from_url[0]}"
+            )
         seen.add(url)
         # A title whose anchor swallowed the date reads "September 29, 2026 Sheehy's
         # Protect America Act ..."; the date is already a field of its own.
@@ -413,6 +445,8 @@ def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
                 title=_LEADING_DATE.sub("", title).strip() or title,
                 url=url,
                 date_precision=precision,
+                date_source=source,
+                date_conflict=conflict,
             )
         )
     return out
@@ -471,6 +505,102 @@ def release_text(html: str) -> str:
     ]
     kept = [p for p in paragraphs if len(p) >= MIN_PARAGRAPH_CHARS]
     return "\n\n".join(kept)
+
+
+# The markers a release page publishes its OWN date in, measured 2026-10-15 on one real
+# release from each row that reaches a release page: `<meta property=
+# "article:published_time">` and `<meta name="date">` (`L000585`, `S001185`, `R000605`,
+# `S001181`), JSON-LD `"datePublished"` (`K000377`), and `<time datetime="...">` whose
+# attribute holds the LONG form rather than ISO (`R000605`, `S001181`). Attribute order
+# varies between the same CMS's own pages, so the tag is parsed rather than pattern-matched
+# whole. `dateModified` is deliberately not read: it is when the office last edited the
+# page, not when the member said this.
+_META_TAG = re.compile(r"<meta\b[^>]*>", re.IGNORECASE)
+_TAG_ATTR = re.compile(r'([\w:.-]+)\s*=\s*"([^"]*)"')
+_JSON_LD_PUBLISHED = re.compile(r'"datePublished"\s*:\s*"([^"]{4,40})"')
+_TIME_TAG = re.compile(r"<time\b([^>]*)>(.*?)</time>", re.IGNORECASE | re.DOTALL)
+
+
+def _attrs(tag: str) -> dict[str, str]:
+    return {key.lower(): value for key, value in _TAG_ATTR.findall(tag)}
+
+
+# A marker's own ISO date. `_DATE_ISO` cannot be reused here: it ends in a word boundary,
+# and a timestamp like `2026-10-07T04:00:00Z` puts a word character straight after the
+# day, so the boundary fails and the date is silently missed. Measured 2026-10-15, three
+# of the five marker families publish exactly that shape.
+_MARKER_ISO = re.compile(r"(20[0-9][0-9])-([0-9]{1,2})-([0-9]{1,2})")
+
+
+def _marker_date(value: str) -> str | None:
+    """A date out of one marker's value, validated as a real calendar date."""
+    iso = _MARKER_ISO.search(value)
+    if iso is not None:
+        return _real_date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3)))
+    found = _first_date(value)
+    if found is None:
+        return None
+    year, month, day = found[1].split("-")
+    return _real_date(int(year), int(month), int(day))
+
+
+def release_page_date(html: str) -> str | None:
+    """The date the RELEASE page itself publishes, or None.
+
+    Only the publisher's own machine-readable markers count, in a fixed order, first hit
+    wins. There is deliberately NO fallback to the body text: the first date a release
+    happens to mention is usually the date of the thing it is about — a hearing, a
+    deadline, a bill's passage — and attaching that to the member's words would be a
+    guess dressed as a source. `R000622` Riley publishes no marker at all, so Riley keeps
+    the date in its permalink; STATUS fact 7's "every release page carries a date" is
+    wrong for that row.
+    """
+    flat = flatten(html)
+    metas = [_attrs(tag) for tag in _META_TAG.findall(flat)]
+    for key in ("article:published_time", "date"):
+        for attrs in metas:
+            if key not in {attrs.get("property", "").lower(), attrs.get("name", "").lower()}:
+                continue
+            found = _marker_date(attrs.get("content", ""))
+            if found is not None:
+                return found
+    ld = _JSON_LD_PUBLISHED.search(flat)
+    if ld is not None:
+        found = _marker_date(ld.group(1))
+        if found is not None:
+            return found
+    for attr_text, inner in _TIME_TAG.findall(flat):
+        found = _marker_date(_attrs(attr_text).get("datetime", "")) or _marker_date(
+            html_lib.unescape(_TAGS.sub(" ", inner))
+        )
+        if found is not None:
+            return found
+    return None
+
+
+def reconcile_date(release: Release, page_date: str | None) -> Release:
+    """The release page's own date against the date the list page gave (decision 5).
+
+    Where they AGREE the page date wins, which is what upgrades a month-only permalink
+    date to the day the publisher actually printed. Where they DISAGREE the stored date
+    is left exactly as it was and the disagreement is recorded on the record: a page date
+    outside the permalink's month, or a different day where the URL carried one, can mean
+    the WRONG PAGE was attached to this title, and in that case its date is not evidence
+    of anything. Owner rule: flag every conflict, resolve none by guesswork.
+    """
+    if page_date is None or page_date == release.date:
+        return release
+    if not _same_date(release.date, page_date):
+        return replace(
+            release,
+            date_conflict=(
+                f"the release page says {page_date}, the {release.date_source} says "
+                f"{release.date}"
+            ),
+        )
+    # They agree at the precision they share and are not the same string, which can only
+    # mean the stored date is month-only and the release page supplied the day inside it.
+    return replace(release, date=page_date, date_precision="day", date_source="release-page")
 
 
 def statement_record(release: Release, text: str) -> dict[str, Any]:
@@ -674,6 +804,7 @@ def render_report(
     window: dict[str, str],
     text_phase: str,
     text_failures: int = 0,
+    date_conflicts: list[dict[str, str]] | None = None,
 ) -> str:
     """The count report (decision 4's per-source, per-member half, for this source).
 
@@ -758,6 +889,24 @@ def render_report(
     else:
         lines.append("None: every walk reached the window's start.")
 
+    lines += ["", "## Date conflicts — two of the publisher's own dates disagree", ""]
+    if date_conflicts:
+        lines.append(
+            "Nothing below was resolved: the stored date is the one the list page or the "
+            "permalink gave, and the release page's disagreeing date is reported rather "
+            "than written. A page date outside the permalink's month, or a different day "
+            "where the URL carried one, can mean the WRONG PAGE was attached to this "
+            "title — which is a thing to check by eye, not to average."
+        )
+        lines.append("")
+        for entry in sorted(date_conflicts, key=lambda e: (e["id"], e["url"])):
+            lines.append(f"* `{entry['id']}` — {entry['detail']} — <{entry['url']}>")
+    else:
+        lines.append(
+            "None: where a release page published its own date it agreed with the date "
+            "the list page gave, to the precision they share."
+        )
+
     lines += ["", "## Refused, by id", ""]
     if refused:
         lines.append(
@@ -826,6 +975,8 @@ def run(argv: list[str] | None = None) -> int:
 
     text_counts: dict[str, int] = {}
     text_failures: list[dict[str, str]] = []
+    date_conflicts: list[dict[str, str]] = []
+    collected: list[Release] = []
     by_id = {row["id"]: row for row in accepted}
     for result in results:
         records: list[dict[str, Any]] = []
@@ -833,7 +984,11 @@ def run(argv: list[str] | None = None) -> int:
             text = ""
             if not args.index_only:
                 try:
-                    text = release_text(_read_page(release.url))
+                    html = _read_page(release.url)
+                    text = release_text(html)
+                    # Decision 5, at no extra fetch: this page is already in hand for its
+                    # body, and its own date beats the permalink's where the two agree.
+                    release = reconcile_date(release, release_page_date(html))
                 except (RetryableHTTPError, httpx.HTTPError, OSError) as exc:
                     text_failures.append(
                         {"id": result.member_id, "url": release.url, "error": type(exc).__name__}
@@ -842,7 +997,19 @@ def run(argv: list[str] | None = None) -> int:
                     text_failures.append(
                         {"id": result.member_id, "url": release.url, "error": "no body text"}
                     )
+            if release.date_conflict:
+                date_conflicts.append(
+                    {
+                        "id": result.member_id,
+                        "url": release.url,
+                        "detail": release.date_conflict,
+                    }
+                )
+            collected.append(release)
             records.append(statement_record(release, text))
+        # A date upgraded from its release page can move a record inside its own month, so
+        # the file is ordered after reconciliation rather than before it.
+        records.sort(key=lambda r: (r["date"], r["url"]), reverse=True)
         text_counts[result.member_id] = sum(1 for r in records if r["segments"])
         row = by_id[result.member_id]
         atomic_write_text(
@@ -872,7 +1039,8 @@ def run(argv: list[str] | None = None) -> int:
                 "window": window,
                 "accepted": len(accepted),
                 "refused": refused,
-                "releases": [asdict(r) for result in results for r in result.releases],
+                "releases": [asdict(r) for r in collected],
+                "date_conflicts": date_conflicts,
                 "walks": [
                     {
                         "member_id": r.member_id,
@@ -902,12 +1070,15 @@ def run(argv: list[str] | None = None) -> int:
             window=window,
             text_phase="none" if args.index_only else "full",
             text_failures=len(text_failures),
+            date_conflicts=date_conflicts,
         ),
     )
     print(f"  index:  {(out_dir / 'index.json').relative_to(root)}")
     print(f"  report: {report.relative_to(root)}")
     if text_failures:
         print(f"  text failures: {len(text_failures)}")
+    if date_conflicts:
+        print(f"  date conflicts: {len(date_conflicts)} — see the report, nothing was resolved")
     return 0
 
 

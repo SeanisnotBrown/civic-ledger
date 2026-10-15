@@ -1597,19 +1597,90 @@ def test_a_row_the_owner_has_not_checked_is_refused_by_id(tmp_path: Path):
         tmp_path / "data",
         [_row("B001257", checked=True), _row("J000299", checked=False, name="Dusty Johnson")],
     )
-    accepted, refused = press.sources(tmp_path / "data")
+    accepted, refused, no_list = press.sources(tmp_path / "data")
     assert [r["id"] for r in accepted] == ["B001257"]
     assert refused == [
         {"id": "J000299", "name": "Dusty Johnson", "reason": "owner_checked: false"}
     ]
+    assert no_list == []
 
 
 def test_a_checked_row_with_no_press_page_is_refused_too(tmp_path: Path):
     """Accepting it would walk `None`."""
     _sources_yaml(tmp_path / "data", [_row("X000001", press_page=None, checked=True)])
-    accepted, refused = press.sources(tmp_path / "data")
+    accepted, refused, _ = press.sources(tmp_path / "data")
     assert accepted == []
     assert refused[0]["reason"] == "no press_page"
+
+
+# --- a row whose site publishes no press-release list (STATUS step 6) -----------------
+
+MILLER_REASON = "site has no press-release list"
+MILLER_URLS = [
+    "https://maxmiller.house.gov/press-releases",
+    "https://maxmiller.house.gov/media/press-releases",
+    "https://maxmiller.house.gov/media",
+    "https://maxmiller.house.gov/news",
+]
+
+
+def _miller(*, checked: bool = True, **over) -> dict:
+    """`M001222` Miller as the owner's own list carries him."""
+    return {
+        **_row("M001222", name="Max L. Miller", checked=checked),
+        "press_page": "https://maxmiller.house.gov/press-releases",
+        "no_press_source": True,
+        "no_press_reason": MILLER_REASON,
+        "no_press_urls_tried": list(MILLER_URLS),
+        **over,
+    }
+
+
+def test_the_real_source_list_still_carries_millers_permanent_record():
+    """The flag, the reason and the tried URLs are the permanent record of what was
+    found; only the interim `owner_checked: false` came out. Read from the owner's own
+    file, as data — this asserts the config, not the network."""
+    rows = yaml.safe_load(
+        (press.repo_root() / "data" / "config" / "statement-sources.yaml").read_text(
+            encoding="utf-8"
+        )
+    )["members"]
+    miller = next(r for r in rows if r["id"] == "M001222")
+    assert miller["no_press_source"] is True
+    assert miller["no_press_reason"] == MILLER_REASON
+    assert miller["no_press_urls_tried"] == MILLER_URLS
+    assert miller["owner_checked"] is True
+
+
+@pytest.mark.parametrize("checked", [True, False])
+def test_a_row_with_no_press_source_is_neither_accepted_nor_refused(
+    tmp_path: Path, checked: bool
+):
+    """A third outcome. Tested before `owner_checked` and so unchanged by it: "no list
+    exists" is a fact about the site, not a stage of screening, and the interim
+    `owner_checked: false` that stood in for this flag is gone."""
+    _sources_yaml(tmp_path / "data", [_row("B001257"), _miller(checked=checked)])
+    accepted, refused, no_list = press.sources(tmp_path / "data")
+    assert [r["id"] for r in accepted] == ["B001257"]
+    assert refused == []
+    assert no_list == [
+        {
+            "id": "M001222",
+            "name": "Max L. Miller",
+            "reason": MILLER_REASON,
+            "urls_tried": MILLER_URLS,
+        }
+    ]
+
+
+def test_a_no_press_source_row_with_no_reason_still_says_what_it_is(tmp_path: Path):
+    _sources_yaml(
+        tmp_path / "data",
+        [_miller(no_press_reason=None, no_press_urls_tried=None)],
+    )
+    _, _, no_list = press.sources(tmp_path / "data")
+    assert no_list[0]["reason"] == "no press-release list"
+    assert no_list[0]["urls_tried"] == []
 
 
 def test_a_missing_source_list_is_a_refusal_not_an_empty_run(tmp_path: Path):
@@ -1775,6 +1846,42 @@ def test_the_report_prints_every_refused_url_with_its_reason():
     assert "## URLs the release filter refused, and why" in text
     assert "`R000622` — a `newsletter-subscribe` path segment" in text
     assert "<https://riley.house.gov/news/newsletter-subscribe/>" in text
+
+
+def test_the_report_prints_no_list_exists_with_the_reason_and_every_url_tried():
+    """STATUS step 6, the ruling in full: never as empty, never as failed, never counted
+    as a collection failure — and the owner's reason and tried URLs are what it prints."""
+    text = press.render_report(
+        [],
+        [],
+        [],
+        {},
+        window={"start": press.WINDOW_START, "end": "2026-10-15"},
+        text_phase="full",
+        no_list=[
+            {
+                "id": "M001222",
+                "name": "Max L. Miller",
+                "reason": MILLER_REASON,
+                "urls_tried": MILLER_URLS,
+            }
+        ],
+    )
+    assert "0 rows collected, 0 refused, 1 with no press-release list at all." in text
+    assert "## No press-release list exists, by id" in text
+    assert "not a collection failure and are not counted as one" in text
+    assert f"`M001222` Max L. Miller — {MILLER_REASON}. Tried:" in text
+    assert "    * <https://maxmiller.house.gov/media/press-releases>" in text
+    # Not in the refusals, and not in any walk count.
+    assert "`M001222` Max L. Miller — owner_checked" not in text
+    assert "INCOMPLETE" not in text
+
+
+def test_the_report_says_so_plainly_when_every_row_has_a_list():
+    assert (
+        "None: every row in the source list has a press-release list to read."
+        in _report([], [], [])
+    )
 
 
 def test_the_report_says_so_plainly_when_nothing_was_refused():
@@ -1997,6 +2104,69 @@ def test_a_refused_row_is_never_fetched(repo: Path, monkeypatch: pytest.MonkeyPa
     assert press.run([]) == 0
     assert not any("johnson" in url.lower() for url in seen)
     assert not (repo / "data" / "raw" / "press" / "statements" / "J000299.json").exists()
+
+
+def test_the_run_never_walks_a_row_with_no_press_release_list(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+):
+    """End to end: no fetch, no statements file, no walk, no failure — and the index and
+    the report both say "no list exists" with the owner's reason."""
+    _sources_yaml(tmp_path / "data", [_row("B001257"), _miller()])
+    monkeypatch.setattr(press, "repo_root", lambda: tmp_path)
+    seen: list[str] = []
+
+    def read(url: str) -> str:
+        seen.append(url)
+        if url.endswith("/media/press-releases"):
+            return HOUSE_DRUPAL
+        if "/media/press-releases/" in url:
+            return RELEASE_PAGE
+        return "<html></html>"
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run([]) == 0
+    out = capsys.readouterr().out
+    assert "1 accepted rows, 0 refused, 1 with no press-release list" in out
+    assert "no press-release list: 1 row(s) — reported as 'no list exists'" in out
+    assert not any("maxmiller" in url for url in seen)
+    assert not (tmp_path / "data" / "raw" / "press" / "statements" / "M001222.json").exists()
+
+    index = _index(tmp_path)
+    assert index["no_list"] == [
+        {
+            "id": "M001222",
+            "name": "Max L. Miller",
+            "reason": MILLER_REASON,
+            "urls_tried": MILLER_URLS,
+        }
+    ]
+    assert index["refused"] == []
+    assert [w["member_id"] for w in index["walks"]] == ["B001257"]
+
+    report = next((tmp_path / "docs" / "research").glob("*-press-collection-counts.md"))
+    text = report.read_text(encoding="utf-8")
+    assert f"`M001222` Max L. Miller — {MILLER_REASON}. Tried:" in text
+    assert "| Max L. Miller (M001222) |" not in text  # not a row in the per-member table
+
+
+def test_members_asking_for_a_row_with_no_list_is_told_so_not_refused(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, capsys
+):
+    """"Refusing M001222: owner_checked is not true" was the old, wrong answer. There is
+    no refusal here: there is no list on the site to read."""
+    _sources_yaml(tmp_path / "data", [_row("B001257"), _miller()])
+    monkeypatch.setattr(press, "repo_root", lambda: tmp_path)
+    monkeypatch.setattr(press, "_read_page", lambda _url: "<html></html>")
+    assert press.run(["--members", "M001222"]) == 0
+    out = capsys.readouterr().out
+    assert f"no press-release list exists for M001222: {MILLER_REASON}" in out
+    assert "refusing" not in out
+    assert "0 accepted rows" in out
+
+    # And asking for someone else does not mention him: the line answers the question
+    # that was asked, rather than reciting the source list.
+    assert press.run(["--members", "B001257"]) == 0
+    assert "no press-release list exists for" not in capsys.readouterr().out
 
 
 def test_members_cannot_force_a_refused_row(repo: Path, capsys):

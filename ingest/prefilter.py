@@ -908,26 +908,59 @@ def press_coverage(data_dir: Path) -> dict[str, Any]:
     comparison resting on the Congressional Record alone, and no per-party drop rate
     computed over collected text can show it — the rate is computed over what WAS
     collected. So it goes at the top of the report.
+
+    A row the owner has marked `no_press_source` is counted in its own column and NEVER
+    as a collection failure: the member's site publishes no press-release list, so there
+    is nothing to collect and nothing went wrong. It is read from the collector's own
+    index (`no_list`) rather than from the source config, for the same reason every other
+    number here is: this table reports what the collection RUN found, and the run is what
+    wrote that list.
     """
     pilot_path = data_dir / "config" / "statement-pilot.yaml"
     index_path = data_dir / "raw" / "press" / "index.json"
     if not pilot_path.exists() or not index_path.exists():
-        return {"cells": [], "non_collecting": [], "available": False}
+        return {"cells": [], "non_collecting": [], "no_list": [], "available": False}
 
     pilot = yaml.safe_load(pilot_path.read_text(encoding="utf-8"))
     index = json.loads(index_path.read_text(encoding="utf-8"))
     walks = {w["member_id"]: w for w in index.get("walks", [])}
     refused = {r["id"]: r for r in index.get("refused", [])}
+    # An index written before the collector honoured the flag simply has no such rows.
+    no_press_list = {r["id"]: r for r in index.get("no_list", [])}
 
     cells: list[dict[str, Any]] = []
     non_collecting: list[dict[str, Any]] = []
+    no_list: list[dict[str, Any]] = []
     for cell in pilot["cells"]:
-        counts = {"collected": 0, "single_page": 0, "empty": 0, "refused": 0, "other": 0}
+        counts = {
+            "collected": 0,
+            "single_page": 0,
+            "empty": 0,
+            "refused": 0,
+            "no_list": 0,
+            "other": 0,
+        }
         releases = 0
         for member in cell["members"]:
             member_id = member["id"]
             walk = walks.get(member_id)
-            if member_id in refused:
+            if member_id in no_press_list:
+                # First, and it is not a failure: no list exists to collect from. Its
+                # reason never goes into `non_collecting`, which is the failure list.
+                counts["no_list"] += 1
+                entry = no_press_list[member_id]
+                no_list.append(
+                    {
+                        "id": member_id,
+                        "name": member["name"],
+                        "party": cell["party"],
+                        "chamber": cell["chamber"],
+                        "reason": entry.get("reason", "no press-release list"),
+                        "urls_tried": list(entry.get("urls_tried") or []),
+                    }
+                )
+                reason = ""
+            elif member_id in refused:
                 counts["refused"] += 1
                 reason = f"refused — {refused[member_id]['reason']}"
             elif walk is None:
@@ -971,6 +1004,7 @@ def press_coverage(data_dir: Path) -> dict[str, Any]:
     return {
         "cells": cells,
         "non_collecting": sorted(non_collecting, key=lambda r: r["id"]),
+        "no_list": sorted(no_list, key=lambda r: r["id"]),
         "available": True,
     }
 
@@ -994,28 +1028,43 @@ def _coverage_section(coverage: dict[str, Any] | None) -> list[str]:
         "undo that after the draw, and no drop rate in this report can show it** — every "
         "rate below is computed over text that WAS collected.",
         "",
-        "| Cell | Rows | Collected | Single-page | Empty by markup | Refused | Releases |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        "| Cell | Rows | Collected | Single-page | Empty by markup | Refused "
+        "| No list exists | Releases |",
+        "| --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for cell in cells:
         lines.append(
             f"| {cell['party']} {cell['chamber']} | {cell['members']} "
             f"| {cell['collected']} | {cell['single_page']} | {cell['empty']} "
-            f"| {cell['refused']} | {cell['releases']} |"
+            f"| {cell['refused']} | {cell['no_list']} | {cell['releases']} |"
         )
     zero = [c for c in cells if c["zero_coverage"]]
     lines.append("")
     if zero:
         for cell in zero:
+            # "No list exists" is held out of the failure count on purpose: a member
+            # whose site has no press-release list did not fail to collect, and counting
+            # him among the failures would make the cell look worse than it is while
+            # hiding the one thing that is actually true about him.
+            failing = cell["members"] - cell["no_list"]
             lines.append(
                 f"**The {cell['party']} {cell['chamber']} cell has ZERO press coverage.** "
-                f"All {cell['members']} of its rows fail to collect "
+                f"{failing} of its {cell['members']} rows fail to collect "
                 f"({cell['refused']} refused, {cell['empty']} empty by markup), so for "
                 f"these members the \"say\" side of say-vs-do rests on the Congressional "
                 f"Record alone. Anything the pilot concludes about them is a conclusion "
                 f"about their floor speech, not about what their offices publish — and a "
                 f"press office and a floor speech are not the same voice."
             )
+            if cell["no_list"]:
+                lines.append("")
+                lines.append(
+                    f"{cell['no_list']} of that cell's rows publish no press-release "
+                    f"list at all. That is not one of the failures above and is not "
+                    f"counted as one: there is nothing to collect and nothing to fix, "
+                    f"and the cell's coverage cannot be improved by trying harder on "
+                    f"them. They are listed with the owner's reason below."
+                )
             lines.append("")
     else:
         lines += ["Every cell has some press coverage.", ""]
@@ -1034,6 +1083,26 @@ def _coverage_section(coverage: dict[str, Any] | None) -> list[str]:
     else:
         lines.append("None: every row in the pilot collects.")
     lines.append("")
+
+    lines += ["### Rows with no press-release list at all", ""]
+    if coverage.get("no_list"):
+        lines.append(
+            "**Not a collection failure, and not counted as one in the table above.** "
+            "The owner looked and these members' sites publish no press-release list, so "
+            "there is nothing to collect: a zero here is the site's, not ours. Every URL "
+            "tried is listed so the finding can be checked, and so a site that adds a "
+            "list later reads as a change rather than as a discovery."
+        )
+        lines.append("")
+        for row in coverage["no_list"]:
+            lines.append(
+                f"* **{row['name']}** (`{row['id']}`) — {row['party']} {row['chamber']} — "
+                f"{row['reason']}. Tried:"
+            )
+            lines.extend(f"    * <{url}>" for url in row["urls_tried"])
+        lines.append("")
+    else:
+        lines += ["None: every row in the pilot has a press-release list to read.", ""]
     return lines
 
 

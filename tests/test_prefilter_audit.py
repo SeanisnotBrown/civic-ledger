@@ -290,7 +290,13 @@ def test_the_report_says_so_when_no_member_is_flagged():
 # --- press coverage per pilot cell ----------------------------------------------------
 
 
-def _pilot_and_index(data_dir: Path, *, walks: list[dict], refused: list[dict]) -> None:
+def _pilot_and_index(
+    data_dir: Path,
+    *,
+    walks: list[dict],
+    refused: list[dict],
+    no_list: list[dict] | None = None,
+) -> None:
     (data_dir / "config").mkdir(parents=True, exist_ok=True)
     (data_dir / "raw" / "press").mkdir(parents=True, exist_ok=True)
     (data_dir / "config" / "statement-pilot.yaml").write_text(
@@ -319,7 +325,8 @@ def _pilot_and_index(data_dir: Path, *, walks: list[dict], refused: list[dict]) 
         encoding="utf-8",
     )
     (data_dir / "raw" / "press" / "index.json").write_text(
-        json.dumps({"walks": walks, "refused": refused}), encoding="utf-8"
+        json.dumps({"walks": walks, "refused": refused, "no_list": no_list or []}),
+        encoding="utf-8",
     )
 
 
@@ -412,7 +419,124 @@ def test_a_pilot_row_absent_from_the_index_is_reported_not_ignored(tmp_path: Pat
 
 def test_no_press_index_at_all_is_said_plainly_rather_than_shown_as_zeros(tmp_path: Path):
     coverage = prefilter.press_coverage(tmp_path / "data")
-    assert coverage == {"cells": [], "non_collecting": [], "available": False}
+    assert coverage == {
+        "cells": [],
+        "non_collecting": [],
+        "no_list": [],
+        "available": False,
+    }
+
+
+# --- a row whose site publishes no press-release list (STATUS step 6) -----------------
+
+MILLER = {
+    "id": "K000377",
+    "reason": "site has no press-release list",
+    "urls_tried": [
+        "https://maxmiller.house.gov/press-releases",
+        "https://maxmiller.house.gov/news",
+    ],
+}
+
+
+def test_a_row_with_no_press_list_is_never_counted_as_a_collection_failure(tmp_path: Path):
+    """STATUS step 6. `M001222` Miller's site publishes no press-release list, so his
+    zero is the site's and not ours: counted in its own column, kept out of the failure
+    counts, and kept out of the "not collecting" list entirely. (The pilot fixture here
+    carries him in `K000377`'s seat — what is under test is the flag, not the member.)"""
+    data_dir = tmp_path / "data"
+    _pilot_and_index(
+        data_dir,
+        walks=[
+            {"member_id": "H001046", "releases": 9, "pages_read": 2, "stopped": "window"},
+            {"member_id": "H000601", "releases": 578, "pages_read": 117, "stopped": "window"},
+            {"member_id": "Y000064", "releases": 20, "pages_read": 1, "stopped": "single-page"},
+        ],
+        refused=[],
+        no_list=[MILLER],
+    )
+    coverage = prefilter.press_coverage(data_dir)
+    cell = next(c for c in coverage["cells"] if c["party"] == "D")
+    assert cell["no_list"] == 1
+    assert (cell["empty"], cell["refused"], cell["other"]) == (0, 0, 0)
+    assert cell["collected"] == 1
+    assert [r["id"] for r in coverage["non_collecting"]] == []
+    assert coverage["no_list"] == [
+        {
+            "id": "K000377",
+            "name": "Mark Kelly",
+            "party": "D",
+            "chamber": "senate",
+            "reason": MILLER["reason"],
+            "urls_tried": MILLER["urls_tried"],
+        }
+    ]
+
+
+def test_the_no_list_flag_beats_a_walk_that_also_mentions_the_row(tmp_path: Path):
+    """An index can carry both — a stale walk and the owner's finding. "No list exists"
+    wins: it is the owner's own screening of the site, and the walk cannot have read a
+    list that is not there."""
+    data_dir = tmp_path / "data"
+    _pilot_and_index(
+        data_dir,
+        walks=[{"member_id": "K000377", "releases": 0, "pages_read": 1, "stopped": "empty"}],
+        refused=[{"id": "K000377", "name": "Mark Kelly", "reason": "owner_checked: false"}],
+        no_list=[MILLER],
+    )
+    cell = next(c for c in prefilter.press_coverage(data_dir)["cells"] if c["party"] == "D")
+    assert (cell["no_list"], cell["empty"], cell["refused"]) == (1, 0, 0)
+
+
+def test_a_zero_coverage_cell_does_not_blame_a_row_that_has_no_list(tmp_path: Path):
+    """The failure count holds the no-list row out: counting it among the failures would
+    make the cell look worse than it is while hiding the one true thing about it."""
+    data_dir = tmp_path / "data"
+    _pilot_and_index(
+        data_dir,
+        walks=[{"member_id": "H000601", "releases": 5, "pages_read": 2, "stopped": "window"}],
+        refused=[{"id": "H001046", "name": "Martin Heinrich", "reason": "owner_checked: false"}],
+        no_list=[MILLER],
+    )
+    coverage = prefilter.press_coverage(data_dir)
+    records = [_record(SUBSTANTIVE, member_id="H000601", granule_id="G1")]
+    result = prefilter.run_prefilter(records)
+    estimate = prefilter.estimate_spend(result["statements"], _AI_CONFIG)
+    text = prefilter.render_spend_report(
+        records, result, {"H000601": "R"}, {}, estimate, coverage
+    )
+    assert "**The D senate cell has ZERO press coverage.** 1 of its 2 rows fail" in text
+    assert "1 of that cell's rows publish no press-release list at all" in text
+    assert "not one of the failures above and is not counted as one" in text
+    assert "### Rows with no press-release list at all" in text
+    assert "**Mark Kelly** (`K000377`) — D senate — site has no press-release list" in text
+    assert "    * <https://maxmiller.house.gov/news>" in text
+    assert "| No list exists |" in text
+    # Never in the failure table.
+    assert "| Mark Kelly (`K000377`) | D | senate |" not in text
+
+
+def test_the_report_says_so_when_every_row_has_a_list(tmp_path: Path):
+    data_dir = tmp_path / "data"
+    _pilot_and_index(
+        data_dir,
+        walks=[
+            {"member_id": m, "releases": 5, "pages_read": 2, "stopped": "window"}
+            for m in ("H001046", "K000377", "H000601", "Y000064")
+        ],
+        refused=[],
+    )
+    records = [_record(SUBSTANTIVE, member_id="H000601", granule_id="G1")]
+    result = prefilter.run_prefilter(records)
+    text = prefilter.render_spend_report(
+        records,
+        result,
+        {"H000601": "R"},
+        {},
+        prefilter.estimate_spend(result["statements"], _AI_CONFIG),
+        prefilter.press_coverage(data_dir),
+    )
+    assert "None: every row in the pilot has a press-release list to read." in text
 
 
 def test_the_report_puts_coverage_first_and_names_the_empty_cell(tmp_path: Path):

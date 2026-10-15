@@ -28,6 +28,14 @@ GET sees the right `<title>` and zero dated items — and `K000394` answers 403 
 User-Agent and to a browser one alike. The owner's decision between an RSS feed (which
 reaches back only 10-20 items, not to 2023-01-03) and a rendered fetch is still owed.
 
+A THIRD outcome, and it is not a refusal: `no_press_source` on a row is the owner's own
+finding that the member's site publishes no press-release list AT ALL — `M001222` Miller,
+whose `/press-releases` serves the home page and whose `/media/press-releases`, `/news`
+and `/media` all 404. Those rows report as "no list exists", with the owner's reason and
+every URL tried, and are never printed as empty, never as failed, and never counted as a
+collection failure — not here and not in the count-before-spend report's coverage table.
+See `sources`, which tests that flag before it tests `owner_checked`.
+
 ## One extractor, not three CMSs
 
 The 32 accepted rows run on several page families: House Drupal (`/media/press-releases`,
@@ -1145,12 +1153,26 @@ def walk_member(
 # --- configuration --------------------------------------------------------------------
 
 
-def sources(data_dir: Path) -> tuple[list[dict[str, Any]], list[dict[str, str]]]:
-    """The accepted rows and the refused ones, from the owner-maintained list.
+def sources(
+    data_dir: Path,
+) -> tuple[list[dict[str, Any]], list[dict[str, str]], list[dict[str, Any]]]:
+    """The accepted rows, the refused ones, and the rows with NO PRESS-RELEASE LIST at
+    all, from the owner-maintained list.
 
-    Read-only, and the refusals are returned rather than filtered away so the report can
+    Read-only, and neither of the other two groups is filtered away, so the report can
     name them. A row with `owner_checked: true` and no `press_page` is a refusal too —
     accepting it would walk `None`.
+
+    `no_press_source` is the owner's own finding that a member's site publishes no
+    press-release list: `M001222` Miller, where `/press-releases` serves the HOME page
+    and `/media/press-releases`, `/news` and `/media` all 404. Such a row is a THIRD
+    thing, not a quiet member and not a failure of ours, and it is reported as "no list
+    exists" with the reason and every URL that was tried.
+
+    Tested FIRST, before `owner_checked`, for two reasons. It is a fact about the site
+    rather than a stage of screening, so it does not become untrue when a row is checked;
+    and the interim `owner_checked: false` that stood in for this flag while no code read
+    it is now gone, so the outcome must not depend on that guard being there.
     """
     path = data_dir / "config" / "statement-sources.yaml"
     if not path.exists():
@@ -1158,14 +1180,25 @@ def sources(data_dir: Path) -> tuple[list[dict[str, Any]], list[dict[str, str]]]
     rows = yaml.safe_load(path.read_text(encoding="utf-8"))["members"]
     accepted: list[dict[str, Any]] = []
     refused: list[dict[str, str]] = []
+    no_list: list[dict[str, Any]] = []
     for row in sorted(rows, key=lambda r: r["id"]):
-        if not row.get("owner_checked"):
+        if row.get("no_press_source"):
+            no_list.append(
+                {
+                    "id": row["id"],
+                    "name": row["name"],
+                    # The owner's words, printed as the owner wrote them.
+                    "reason": row.get("no_press_reason") or "no press-release list",
+                    "urls_tried": list(row.get("no_press_urls_tried") or []),
+                }
+            )
+        elif not row.get("owner_checked"):
             refused.append({"id": row["id"], "name": row["name"], "reason": "owner_checked: false"})
         elif not row.get("press_page"):
             refused.append({"id": row["id"], "name": row["name"], "reason": "no press_page"})
         else:
             accepted.append(row)
-    return accepted, refused
+    return accepted, refused, no_list
 
 
 def window_end(today: datetime | None = None) -> str:
@@ -1187,11 +1220,17 @@ def render_report(
     text_phase: str,
     text_failures: int = 0,
     date_conflicts: list[dict[str, str]] | None = None,
+    no_list: list[dict[str, Any]] | None = None,
 ) -> str:
     """The count report (decision 4's per-source, per-member half, for this source).
 
     Every member appears, including one the walk found nothing for, and every refusal
     appears by id: a missing row would read as "collected, published nothing".
+
+    `no_list` is the rows whose site publishes no press-release list at all. They are
+    counted separately from the refusals and from the walks, because they are neither:
+    nothing was refused and nothing failed, and the one thing the owner ruled out is
+    printing them as empty.
     """
     by_id = {row["id"]: row for row in rows}
     lines = [
@@ -1201,7 +1240,8 @@ def render_report(
         f"Source list: `data/config/statement-sources.yaml`, owner-maintained and read "
         f"only. **No AI call, no archive capture, no spend.**",
         "",
-        f"**{len(results)} rows collected, {len(refused)} refused.** "
+        f"**{len(results)} rows collected, {len(refused)} refused, "
+        f"{len(no_list or [])} with no press-release list at all.** "
         f"{sum(len(r.releases) for r in results)} releases in the window.",
         "",
     ]
@@ -1365,6 +1405,24 @@ def render_report(
             lines.append(f"* `{entry['id']}` {entry['name']} — {entry['reason']}")
     else:
         lines.append("None.")
+
+    lines += ["", "## No press-release list exists, by id", ""]
+    if no_list:
+        lines.append(
+            "**These are not a collection failure and are not counted as one anywhere in "
+            "this report.** The owner looked, and the member's site publishes no "
+            "press-release list at all — so there is nothing to collect, nothing to fix, "
+            "and no reading of this report in which these rows are members who said "
+            "nothing. Every URL that was tried is listed, so the finding can be checked "
+            "rather than taken on trust, and so a site that adds a list later is "
+            "recognised as a change rather than as a discovery."
+        )
+        lines.append("")
+        for entry in no_list:
+            lines.append(f"* `{entry['id']}` {entry['name']} — {entry['reason']}. Tried:")
+            lines.extend(f"    * <{url}>" for url in entry["urls_tried"])
+    else:
+        lines.append("None: every row in the source list has a press-release list to read.")
     return "\n".join(lines) + "\n"
 
 
@@ -1391,7 +1449,7 @@ def run(argv: list[str] | None = None) -> int:
 
     root = repo_root()
     data_dir = root / "data"
-    accepted, refused = sources(data_dir)
+    accepted, refused, no_list = sources(data_dir)
 
     if args.members:
         wanted = {m.strip() for m in args.members.split(",") if m.strip()}
@@ -1400,10 +1458,18 @@ def run(argv: list[str] | None = None) -> int:
         if asked_for_refused:
             # The source list's rule is not a default that a flag may override.
             print(f"refusing {', '.join(asked_for_refused)}: owner_checked is not true")
+        for entry in no_list:
+            if entry["id"] in wanted:
+                # Asked for by name, and still not walked — but the answer is not a
+                # refusal. There is no list on the site to read.
+                print(f"no press-release list exists for {entry['id']}: {entry['reason']}")
         accepted = [row for row in accepted if row["id"] in wanted]
 
     window = {"start": WINDOW_START, "end": window_end()}
-    print(f"collector (a): {len(accepted)} accepted rows, {len(refused)} refused")
+    print(
+        f"collector (a): {len(accepted)} accepted rows, {len(refused)} refused, "
+        f"{len(no_list)} with no press-release list"
+    )
 
     results: list[MemberResult] = []
     for n, row in enumerate(accepted, start=1):
@@ -1496,6 +1562,9 @@ def run(argv: list[str] | None = None) -> int:
                 "window": window,
                 "accepted": len(accepted),
                 "refused": refused,
+                # Read by the count-before-spend report's coverage table, which must not
+                # count these as a collection failure.
+                "no_list": no_list,
                 "releases": [asdict(r) for r in collected],
                 "date_conflicts": date_conflicts,
                 "walks": [
@@ -1537,6 +1606,7 @@ def run(argv: list[str] | None = None) -> int:
             text_phase="none" if args.index_only else "full",
             text_failures=len(text_failures),
             date_conflicts=date_conflicts,
+            no_list=no_list,
         ),
     )
     print(f"  index:  {(out_dir / 'index.json').relative_to(root)}")
@@ -1551,6 +1621,11 @@ def run(argv: list[str] | None = None) -> int:
     rejections = [e for r in results for e in r.url_rejections]
     if rejections:
         print(f"  URLs refused by the release filter: {len(rejections)} — each with its reason")
+    if no_list:
+        print(
+            f"  no press-release list: {len(no_list)} row(s) — reported as 'no list exists', "
+            "never as empty and never as a failure"
+        )
     return 0
 
 

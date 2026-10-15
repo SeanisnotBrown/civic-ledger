@@ -339,10 +339,12 @@ def diagnose(row: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def date_verdict(d: dict[str, Any]) -> str:
+def date_verdict(d: dict[str, Any], collected: bool = False) -> str:
     """One line naming what stands between this row and collection."""
     if not d.get("rendered"):
         return "the page was never rendered"
+    if collected:
+        return "nothing — the rendered page reads, and this row collects from it"
     if d["release_links"] == 0:
         return (
             "**the release list is still not in the page, even rendered** — no link on it "
@@ -353,12 +355,6 @@ def date_verdict(d: dict[str, Any]) -> str:
             f"{d['release_links']} release links and dates ARE on the page "
             f"({d['long_dates']} long, {d['iso_dates']} ISO), but none landed near enough "
             "to an anchor for the extractor to attach"
-        )
-    if d["ordinal_dates"]:
-        return (
-            f"{d['release_links']} release links, each carrying its date as "
-            f"\"October 13th, 2026\" — **an ordinal suffix**, which `_DATE_LONG` does not "
-            "match. A one-token regex change, not a judgement"
         )
     if d["dated_permalinks"]:
         return (
@@ -395,7 +391,7 @@ def screen(row: dict[str, Any], result: MemberResult) -> dict[str, Any]:
         "owner_checked": bool(row.get("owner_checked")),
         # Why the row yielded what it did, so a zero is explained rather than asserted.
         "diagnosis": diag,
-        "verdict": date_verdict(diag),
+        "verdict": date_verdict(diag, collected=bool(result.releases)),
     }
 
 

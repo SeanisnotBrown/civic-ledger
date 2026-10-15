@@ -603,15 +603,24 @@ def test_a_row_that_was_never_rendered_says_so(tmp_path, monkeypatch):
     assert "never rendered" in press_render.date_verdict(d)
 
 
-def test_an_ordinal_date_is_named_as_a_regex_gap_not_a_judgement(tmp_path, monkeypatch):
-    """`_DATE_LONG` wants "October 13, 2026"; this site prints "October 13th, 2026"."""
+def test_an_ordinal_date_counts_as_a_date_on_the_page(tmp_path, monkeypatch):
+    """Since the step-1 regex change `_DATE_LONG` matches "October 13th, 2026" as well as
+    "October 13, 2026", so an ordinal date is counted as a date the page carries. The
+    ordinal count stays: it still tells the owner which shape the publisher prints."""
     row = _cached_row(tmp_path, monkeypatch, ORDINAL_PAGE)
     d = press_render.diagnose(row)
     assert d["release_links"] == 2
     assert d["ordinal_dates"] == 2
-    assert d["long_dates"] == 0
-    assert "ordinal suffix" in press_render.date_verdict(d)
-    assert "not a judgement" in press_render.date_verdict(d)
+    assert d["long_dates"] == 2
+    assert "dates ARE on the page" in press_render.date_verdict(d)
+
+
+def test_a_row_that_collects_is_not_given_something_standing_in_its_way(tmp_path, monkeypatch):
+    """`H001046` Heinrich collects 20 releases since step 1. A report that prints "COLLECTS"
+    and then names an obstacle under it contradicts itself where the owner reads it."""
+    row = _cached_row(tmp_path, monkeypatch, ORDINAL_PAGE)
+    d = press_render.diagnose(row)
+    assert press_render.date_verdict(d, collected=True).startswith("nothing —")
 
 
 def test_a_permalink_only_date_is_escalated_as_an_owner_decision(tmp_path, monkeypatch):

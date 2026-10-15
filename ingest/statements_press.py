@@ -446,6 +446,10 @@ def _has_release_shape(candidate: str, list_url: str) -> bool:
 # the letters of a rule.
 _NEVER_A_RELEASE_SEGMENT = frozenset({"multimedia", "watch", "video", "videos"})
 _SUBSCRIBE = "subscribe"
+# The ASPX CMS's own query endpoint. `documentquery.aspx?DocumentTypeID=…` is a list of
+# documents of one type and `?IssueID=…` is a list by topic; a single release on that CMS
+# is always `documentsingle.aspx?DocumentID=…`. Owner ruling, 2026-10-15.
+_ASPX_LIST = "documentquery.aspx"
 # A `${...}` left in an href is a JavaScript template whose loop never ran: markup the
 # renderer handed back as-is, not a page that exists.
 _TEMPLATE_LITERAL = "$" + "{"
@@ -470,6 +474,14 @@ def release_url_rejection(candidate: str, list_url: str) -> str | None:
       * **a `subscribe` segment** — `R000622` Riley opens every page of his news list
         with "Subscribe to the Riley Report" → `/news/newsletter-subscribe/`. A signup
         form is not a statement.
+      * **a `documentquery.aspx` link** (owner ruling, 2026-10-15) — on the ASPX family
+        the list page's own path IS `documentquery.aspx`, so the "a different query means
+        a release" rule below, written for `H001081`, read every other list on the page
+        as a release: `C001066` collected "Speeches and Floor Statements"
+        (`?DocumentTypeID=817`) and "Protecting Consumers" (`?IssueID=111866`) as two of
+        her twelve, each wearing a neighbouring release's date. That is the worst shape
+        of leak — it does not fail visibly, it becomes a statement. A single release on
+        that CMS is `documentsingle.aspx`, which is untouched.
 
     A REASON rather than a bare `False`, because a URL dropped silently is
     indistinguishable from a URL nobody looked at. Every one of these is printed in the
@@ -488,6 +500,13 @@ def release_url_rejection(candidate: str, list_url: str) -> str | None:
         # The bare list URL, the list URL complete with its own query, and — for the ASPX
         # family, whose list URL carries `?DocumentTypeID=` — the query-less list path.
         return "the list page itself"
+    if _ASPX_LIST in path.lower():
+        # Any OTHER query on that endpoint: a different document type, or an issue
+        # category. Both are lists of releases, not releases.
+        return (
+            "a `documentquery.aspx` link — the ASPX CMS's own LIST endpoint, not a "
+            "release (a single release there is `documentsingle.aspx`)"
+        )
     segments = [segment.lower() for segment in path.split("/") if segment]
     named = next((s for s in segments if s in _NEVER_A_RELEASE_SEGMENT), None)
     if named is not None:

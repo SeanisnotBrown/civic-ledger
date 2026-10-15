@@ -1007,6 +1007,67 @@ def test_the_release_filter_refuses_nothing_it_was_not_asked_to(candidate, list_
     assert press._is_release_url(candidate, list_url) is True, why
 
 
+CASTOR_LIST = "https://castor.house.gov/news/documentquery.aspx?DocumentTypeID=821"
+PERRY_LIST = "https://perry.house.gov/news/documentquery.aspx?DocumentTypeID=2608"
+MASSIE_LIST = "https://massie.house.gov/news/documentquery.aspx?DocumentTypeID=2362"
+
+
+@pytest.mark.parametrize(
+    ("candidate", "list_url", "what_it_really_is"),
+    [
+        # Both of these were counted among Castor's twelve page-one releases in the
+        # owner-approved 2026-10-14 count report, each wearing a neighbour's date.
+        (
+            "https://castor.house.gov/news/documentquery.aspx?DocumentTypeID=817",
+            CASTOR_LIST,
+            "Speeches and Floor Statements — another document type's list",
+        ),
+        (
+            "https://castor.house.gov/news/documentquery.aspx?IssueID=111866",
+            CASTOR_LIST,
+            "Protecting Consumers — an issue category's list",
+        ),
+        (
+            "https://perry.house.gov/news/documentquery.aspx?IssueID=119133",
+            PERRY_LIST,
+            "Defense and National Security — an issue category's list",
+        ),
+        (
+            "https://massie.house.gov/news/documentquery.aspx?IssueID=112050",
+            MASSIE_LIST,
+            "Defense and National Security, on Massie's newly ratified list page",
+        ),
+        (
+            "https://massie.house.gov/news/documentquery.aspx?DocumentTypeID=2365",
+            MASSIE_LIST,
+            "Speeches and Floor Statements, which the Record already collects",
+        ),
+    ],
+)
+def test_an_aspx_query_link_is_a_list_and_never_a_release(
+    candidate, list_url, what_it_really_is
+):
+    """Owner ruling, 2026-10-15. The leak this closes did not fail visibly — it took a
+    neighbouring release's date and became a statement in the member's own list."""
+    refused = press.release_url_rejection(candidate, list_url)
+    assert refused is not None and "documentquery.aspx" in refused, what_it_really_is
+    assert press._is_release_url(candidate, list_url) is False
+
+
+def test_the_aspx_rule_leaves_a_real_release_and_the_query_keyed_family_alone():
+    """`documentsingle.aspx` is the single release on that CMS, and `H001081` — the row
+    the "a different query means a release" rule was written for — keys every release by
+    query on its own list path. Neither may be touched by this."""
+    single = "https://castor.house.gov/news/documentsingle.aspx?DocumentID=405293"
+    assert press.release_url_rejection(single, CASTOR_LIST) is None
+    assert press._is_release_url(single, CASTOR_LIST) is True
+    hayes = "https://hayes.house.gov/press-releases?ID=9146BD9B-C769"
+    assert press.release_url_rejection(hayes, "https://hayes.house.gov/press-releases") is None
+    assert press._is_release_url(hayes, "https://hayes.house.gov/press-releases") is True
+    # And the list page itself still answers with the more precise reason.
+    assert press.release_url_rejection(CASTOR_LIST, CASTOR_LIST) == "the list page itself"
+
+
 def test_the_subscribe_rule_matches_inside_a_segment_and_the_video_rules_do_not():
     """The two rules are deliberately different widths, as ruled: `watch` and its three
     siblings must equal a whole segment, because `senator-calls-for-watchdog` is a real

@@ -44,6 +44,12 @@ per CMS, one pass reads what they have in common:
   * its date is the NEAREST date to the anchor, measured from the anchor's own edges —
     see `nearest_date`, and the real bug that rule exists for.
 
+Four things wear that shape and are still not a member's statement — the list page
+itself, an href still carrying an unrendered `${...}` template, a video page, and a
+newsletter signup — and each is refused WITH ITS REASON, printed in the report by row and
+URL. See `release_url_rejection`: a URL this collector takes out of a member's statement
+list is never taken out silently.
+
 **28 of the 32 accepted rows collect.** Four do not: `K000377`, `M001222`, `R000622` and
 `W000830` return a 200 whose release list is not in the HTML — the same client-side wall
 as the eight `owner_checked: false` rows, on rows the owner marked accepted. They are
@@ -171,6 +177,17 @@ _STRIP_BLOCKS = re.compile(
     r"(?is)<(script|style|nav|header|footer|form|aside|svg|noscript)\b.*?</\1>"
 )
 _PARAGRAPH = re.compile(r"(?is)<p\b[^>]*>(.*?)</p>")
+
+# One tag's attributes, keyed by lowercased name. Every attribute this module reads is
+# read through here rather than pattern-matched in place, because attribute ORDER varies
+# between pages of the same CMS — see `release_page_date`'s `<meta>` markers, where the
+# same publisher prints `name` before `content` on one page and after it on the next.
+_TAG_ATTR = re.compile(r'([\w:.-]+)\s*=\s*"([^"]*)"')
+
+
+def _attrs(tag: str) -> dict[str, str]:
+    return {key.lower(): value for key, value in _TAG_ATTR.findall(tag)}
+
 
 _MONTHS = (
     "January",
@@ -365,8 +382,8 @@ def date_upper_bound(date: str) -> str:
 _PAGER = re.compile(r"/page/\d+/?$|[?&](?:page|Page)=\d+")
 
 
-def _is_release_url(candidate: str, list_url: str) -> bool:
-    """Whether this href is a release rather than navigation.
+def _has_release_shape(candidate: str, list_url: str) -> bool:
+    """Whether this href has the SHAPE of a release on this list.
 
     Four shapes cover all the families measured on the 32 accepted rows:
 
@@ -379,6 +396,12 @@ def _is_release_url(candidate: str, list_url: str) -> bool:
 
     Anything off-host is never a release: a member's press page links to news coverage,
     and a newspaper's article is not the member's own statement.
+
+    Shape alone is not enough — see `release_url_rejection` for the four things that wear
+    this shape and are still not a release. The split is so that a URL refused on content
+    can be reported WITH ITS REASON, while a URL that never looked like a release is not
+    reported at all: a page carries dozens of those, and a report nobody can read is a
+    report nobody reads.
     """
     here, there = urlparse(list_url), urlparse(candidate)
     if there.netloc != here.netloc:
@@ -389,9 +412,10 @@ def _is_release_url(candidate: str, list_url: str) -> bool:
         return False
     if path == base:
         # `H001081` keys each release by query string on the list's own path:
-        # `/press-releases?ID=9146BD9B-...`. A query the list page does not itself carry
-        # is what separates an item from the list, so the bare list URL is still refused.
-        return bool(there.query) and there.query != here.query
+        # `/press-releases?ID=9146BD9B-...`. The list's own path IS release-shaped here;
+        # which of these is the list page itself is `release_url_rejection`'s to say, so
+        # that refusing it leaves a line in the report rather than nothing.
+        return True
     if "documentsingle.aspx" in path.lower() or _DATED_PERMALINK.search(path):
         return True
     if base and path.startswith(base):
@@ -402,7 +426,80 @@ def _is_release_url(candidate: str, list_url: str) -> bool:
     return bool(segment) and re.search(rf"/{re.escape(segment)}/[^/]", path) is not None
 
 
-def extract_candidates(html: str, list_url: str, member_id: str) -> list[Release]:
+# Whole path SEGMENTS that are never a press release. Matched as segments and never as
+# substrings, which is the difference between refusing `/news/multimedia/watch/<clip>`
+# and refusing `senator-calls-for-watchdog` — a real release whose slug happens to carry
+# the letters of a rule.
+_NEVER_A_RELEASE_SEGMENT = frozenset({"multimedia", "watch", "video", "videos"})
+_SUBSCRIBE = "subscribe"
+# A `${...}` left in an href is a JavaScript template whose loop never ran: markup the
+# renderer handed back as-is, not a page that exists.
+_TEMPLATE_LITERAL = "$" + "{"
+
+
+def release_url_rejection(candidate: str, list_url: str) -> str | None:
+    """Why a release-SHAPED href is not a release after all, or None when nothing is.
+
+    Four refusals, each one measured 2026-10-15 against the cached rendered pages, where
+    each was being collected as a member's own words before this existed:
+
+      * **the list page itself** — "View All Press Releases" points back at the list, and
+        the list is not one of its own items. A link on the list's own path carrying a
+        DIFFERENT query is still a release: `H001081` keys every release that way.
+      * **an unrendered template literal** — `K000377` Kelly's rendered page carries
+        `.../press-releases/${item.link}` under the title "Continue Reading on Medium".
+        That is a template, not a URL, and fetching it would fetch nothing.
+      * **a `multimedia`, `watch`, `video` or `videos` segment** — `S001181` Shaheen
+        lists three `/news/multimedia/watch/<clip>` video pages among her ten "release"
+        links. A clip is not the member's words on the record, and its page carries no
+        release text to read.
+      * **a `subscribe` segment** — `R000622` Riley opens every page of his news list
+        with "Subscribe to the Riley Report" → `/news/newsletter-subscribe/`. A signup
+        form is not a statement.
+
+    A REASON rather than a bare `False`, because a URL dropped silently is
+    indistinguishable from a URL nobody looked at. Every one of these is printed in the
+    count report, by row and URL.
+    """
+    if _TEMPLATE_LITERAL in candidate:
+        return "an unrendered template literal (`${`) — markup, not a page"
+    here, there = urlparse(list_url), urlparse(candidate)
+    if there.netloc != here.netloc:
+        # Off-host was never a candidate (see `_has_release_shape`), so it is not a
+        # refusal to report either: a press page links to news coverage, and that is
+        # ordinary, not a leak.
+        return None
+    path = there.path.rstrip("/")
+    if path == here.path.rstrip("/") and (not there.query or there.query == here.query):
+        # The bare list URL, the list URL complete with its own query, and — for the ASPX
+        # family, whose list URL carries `?DocumentTypeID=` — the query-less list path.
+        return "the list page itself"
+    segments = [segment.lower() for segment in path.split("/") if segment]
+    named = next((s for s in segments if s in _NEVER_A_RELEASE_SEGMENT), None)
+    if named is not None:
+        return f"a `{named}` path segment — a video page, not a release"
+    subscribing = next((s for s in segments if _SUBSCRIBE in s), None)
+    if subscribing is not None:
+        return f"a `{subscribing}` path segment — a subscribe form, not a release"
+    return None
+
+
+def _is_release_url(candidate: str, list_url: str) -> bool:
+    """Whether this href is a release rather than navigation: release-shaped, and not
+    refused by the filter. The bare verdict, for callers that do not report a reason."""
+    return (
+        _has_release_shape(candidate, list_url)
+        and release_url_rejection(candidate, list_url) is None
+    )
+
+
+def extract_candidates(
+    html: str,
+    list_url: str,
+    member_id: str,
+    *,
+    rejections: list[dict[str, str]] | None = None,
+) -> list[Release]:
     """Every release-shaped anchor one list page announces, dated where the LIST page can
     date it, in page order and deduplicated.
 
@@ -412,6 +509,12 @@ def extract_candidates(html: str, list_url: str, member_id: str) -> list[Release
     undated row cannot be placed inside or outside the collection window. Dating it needs
     its own release page, which is a fetch — see `date_from_release_page`, and
     `extract_releases` for every caller that cannot spend one.
+
+    `rejections`, when given, is appended to with every release-SHAPED anchor the filter
+    refused and the reason it was refused (`release_url_rejection`). The walk always
+    passes one, so a URL the collector dropped is never dropped silently: it is in the
+    index and in the report, with its reason, where the owner can see what was taken out
+    of a member's statement list and disagree.
     """
     flat = flatten(html)
     out: list[Release] = []
@@ -421,7 +524,16 @@ def extract_candidates(html: str, list_url: str, member_id: str) -> list[Release
         if len(title) < MIN_TITLE_CHARS:
             continue
         url = urljoin(list_url, html_lib.unescape(match.group(1)))
-        if url in seen or not _is_release_url(url, list_url):
+        if url in seen or not _has_release_shape(url, list_url):
+            continue
+        refused = release_url_rejection(url, list_url)
+        if refused is not None:
+            # Recorded, not merely skipped — and added to `seen` so the same refusal is
+            # printed once however many times the page links it (Riley lists his
+            # newsletter signup twice at the top of every page).
+            seen.add(url)
+            if rejections is not None:
+                rejections.append({"id": member_id, "url": url, "reason": refused})
             continue
         date = nearest_date(flat, match.start(), match.end())
         precision, source, conflict = "day", "list-page", ""
@@ -564,13 +676,8 @@ def release_text(html: str) -> str:
 # whole. `dateModified` is deliberately not read: it is when the office last edited the
 # page, not when the member said this.
 _META_TAG = re.compile(r"<meta\b[^>]*>", re.IGNORECASE)
-_TAG_ATTR = re.compile(r'([\w:.-]+)\s*=\s*"([^"]*)"')
 _JSON_LD_PUBLISHED = re.compile(r'"datePublished"\s*:\s*"([^"]{4,40})"')
 _TIME_TAG = re.compile(r"<time\b([^>]*)>(.*?)</time>", re.IGNORECASE | re.DOTALL)
-
-
-def _attrs(tag: str) -> dict[str, str]:
-    return {key.lower(): value for key, value in _TAG_ATTR.findall(tag)}
 
 
 # A marker's own ISO date. `_DATE_ISO` cannot be reused here: it ends in a word boundary,
@@ -702,6 +809,11 @@ class MemberResult:
     # release-page fetches the dating cost. Both empty when no reader was given.
     date_failures: list[dict[str, str]] = field(default_factory=list)
     release_page_fetches: int = 0
+    # Every release-shaped URL the filter refused, with the reason, once per URL however
+    # many pages link it. Reported rather than dropped: the owner is the one who decides
+    # what counts as a member's own statement, so a URL this code takes out of a member's
+    # list has to be visible to be disagreed with.
+    url_rejections: list[dict[str, str]] = field(default_factory=list)
 
     @property
     def complete(self) -> bool:
@@ -776,6 +888,8 @@ def walk_member(
     seen: set[str] = set()
     undatable: set[str] = set()
     failures: list[dict[str, str]] = []
+    refusals: list[dict[str, str]] = []
+    refused_urls: set[str] = set()
     fetches = 0
     pages = 0
 
@@ -783,6 +897,7 @@ def walk_member(
         """Every exit carries what the dating cost and what it could not do."""
         result.date_failures = failures
         result.release_page_fetches = fetches
+        result.url_rejections = refusals
         return result
 
     zero_based = True
@@ -811,7 +926,16 @@ def walk_member(
         if page == 0:
             # Asked of the site itself, once, before the second request is built.
             zero_based = zero_based_pager(html)
-        candidates = extract_candidates(html, list_url, member_id)
+        page_refusals: list[dict[str, str]] = []
+        candidates = extract_candidates(
+            html, list_url, member_id, rejections=page_refusals
+        )
+        for refusal in page_refusals:
+            # Once per URL per member: a newsletter signup linked at the top of all 55
+            # pages of an archive is one refusal to report, not 55.
+            if refusal["url"] not in refused_urls:
+                refused_urls.add(refusal["url"])
+                refusals.append(refusal)
         # What this page would have to beat to be new. Captured BEFORE the dating loop,
         # which adds to `undatable` as it goes.
         known = seen | undatable
@@ -1072,6 +1196,22 @@ def render_report(
             "the list page gave, to the precision they share."
         )
 
+    rejections = [entry for result in results for entry in result.url_rejections]
+    lines += ["", "## URLs the release filter refused, and why", ""]
+    if rejections:
+        lines.append(
+            "Each of these has the SHAPE of a release on its member's list and was taken "
+            "out anyway, for the reason given. Nothing here is a silent drop: the owner "
+            "decides what counts as a member's own statement, so a URL this collector "
+            "removes from a statement list is printed where it can be disagreed with. A "
+            "URL linked on every page of an archive appears once."
+        )
+        lines.append("")
+        for entry in sorted(rejections, key=lambda e: (e["id"], e["url"])):
+            lines.append(f"* `{entry['id']}` — {entry['reason']} — <{entry['url']}>")
+    else:
+        lines.append("None: every release-shaped URL on every page read was collected.")
+
     lines += ["", "## Refused, by id", ""]
     if refused:
         lines.append(
@@ -1229,6 +1369,7 @@ def run(argv: list[str] | None = None) -> int:
                 ],
                 "text_failures": text_failures,
                 "date_failures": [f for r in results for f in r.date_failures],
+                "url_rejections": [e for r in results for e in r.url_rejections],
                 "release_page_fetches": {
                     r.member_id: r.release_page_fetches
                     for r in results
@@ -1264,6 +1405,9 @@ def run(argv: list[str] | None = None) -> int:
     date_failures = [f for r in results for f in r.date_failures]
     if date_failures:
         print(f"  undatable releases: {len(date_failures)} — recorded as failures, not kept")
+    rejections = [e for r in results for e in r.url_rejections]
+    if rejections:
+        print(f"  URLs refused by the release filter: {len(rejections)} — each with its reason")
     return 0
 
 

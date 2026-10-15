@@ -925,6 +925,191 @@ def test_what_is_never_a_release(candidate, list_url, why):
     assert press._is_release_url(candidate, list_url) is False, why
 
 
+# --- the four refusals, each measured on a cached rendered page -----------------------
+
+
+@pytest.mark.parametrize(
+    ("candidate", "list_url", "reason"),
+    [
+        # `K000377` Kelly, under the title "Continue Reading on Medium".
+        (
+            "https://www.kelly.senate.gov/newsroom/press-releases/${item.link}",
+            "https://www.kelly.senate.gov/newsroom/press-releases/",
+            "template literal",
+        ),
+        # `S001181` Shaheen lists three of these among her ten "release" links.
+        (
+            "https://www.shaheen.senate.gov/news/multimedia/watch/the-time-is-now",
+            "https://www.shaheen.senate.gov/news",
+            "`multimedia` path segment",
+        ),
+        ("https://x.house.gov/news/watch/a-clip", "https://x.house.gov/news", "`watch` path"),
+        ("https://x.house.gov/news/video/a-clip", "https://x.house.gov/news", "`video` path"),
+        ("https://x.house.gov/news/videos/a-clip", "https://x.house.gov/news", "`videos` path"),
+        # `R000622` Riley, at the top of every page of his news list.
+        (
+            "https://riley.house.gov/news/newsletter-subscribe/",
+            "https://riley.house.gov/news/",
+            "subscribe form",
+        ),
+        ("https://x.house.gov/news/subscribe", "https://x.house.gov/news", "subscribe form"),
+        # The list page itself, in its three shapes.
+        (
+            "https://x.house.gov/media/press-releases",
+            "https://x.house.gov/media/press-releases",
+            "the list page itself",
+        ),
+        (
+            "https://x.house.gov/news/documentquery.aspx?DocumentTypeID=821",
+            "https://x.house.gov/news/documentquery.aspx?DocumentTypeID=821",
+            "the list page itself",
+        ),
+        # The ASPX family's list URL carries a query; the query-less path is still the
+        # list page, and used to pass the shape test unrefused.
+        (
+            "https://x.house.gov/news/documentquery.aspx",
+            "https://x.house.gov/news/documentquery.aspx?DocumentTypeID=821",
+            "the list page itself",
+        ),
+    ],
+)
+def test_the_release_filter_refuses_with_a_reason(candidate, list_url, reason):
+    """Every refusal carries its reason: a URL dropped silently is indistinguishable from
+    a URL nobody looked at, and the owner is the one who decides what counts as a
+    member's own statement."""
+    refused = press.release_url_rejection(candidate, list_url)
+    assert refused is not None and reason in refused
+    assert press._is_release_url(candidate, list_url) is False
+
+
+@pytest.mark.parametrize(
+    ("candidate", "list_url", "why"),
+    [
+        (
+            "https://x.house.gov/media/press-releases/senator-calls-for-watchdog",
+            "https://x.house.gov/media/press-releases",
+            "a rule matches whole segments, so a slug carrying its letters is a release",
+        ),
+        (
+            "https://x.house.gov/media/press-releases/video-game-safety-act-advances",
+            "https://x.house.gov/media/press-releases",
+            "`video-game-safety-act-advances` is not the segment `video`",
+        ),
+        (
+            "https://x.house.gov/press-releases?ID=9146BD9B-C769",
+            "https://x.house.gov/press-releases",
+            "`H001081` keys every release by query on the list's own path",
+        ),
+    ],
+)
+def test_the_release_filter_refuses_nothing_it_was_not_asked_to(candidate, list_url, why):
+    assert press.release_url_rejection(candidate, list_url) is None, why
+    assert press._is_release_url(candidate, list_url) is True, why
+
+
+def test_the_subscribe_rule_matches_inside_a_segment_and_the_video_rules_do_not():
+    """The two rules are deliberately different widths, as ruled: `watch` and its three
+    siblings must equal a whole segment, because `senator-calls-for-watchdog` is a real
+    release; `subscribe` matches anywhere INSIDE a segment, because the shapes measured
+    are `newsletter-subscribe` and `subscribe-to-the-report`. The cost of the wider rule
+    is that a release whose own slug carries the word would go with them — visible in the
+    report, by URL, which is why the refusals are printed."""
+    base = "https://x.house.gov/media/press-releases"
+    assert press.release_url_rejection(f"{base}/subscribe-to-the-weekly-report", base) is not None
+    assert press.release_url_rejection(f"{base}/a-bill-to-subscribe-rural-clinics", base) is not (
+        None
+    )
+    assert press.release_url_rejection(f"{base}/senator-calls-for-watchdog", base) is None
+
+
+def test_an_off_host_url_is_not_a_release_and_not_a_refusal_to_report():
+    """A press page links to news coverage. That is ordinary, not a leak, so it is not
+    release-shaped and carries no reason — otherwise every page's refusal list would be
+    its outbound links and nobody would read it."""
+    article = "https://www.tampabay.com/news/2026/an-article"
+    assert press.release_url_rejection(article, "https://x.house.gov/news") is None
+    assert press._has_release_shape(article, "https://x.house.gov/news") is False
+    assert press._is_release_url(article, "https://x.house.gov/news") is False
+
+
+def test_every_refusal_is_logged_with_its_reason_and_only_once():
+    html = (
+        '<a href="/news/newsletter-subscribe/">Subscribe to the Riley Report</a>'
+        '<a href="/news/newsletter-subscribe/">Subscribe to the Riley Report</a>'
+        '<a href="/news/multimedia/watch/the-time-is-now">A Clip Of The Floor Speech</a>'
+        '<a href="/news/a-real-release-about-the-landline-shutoffs">'
+        "Riley Demands Answers From Verizon Over Landline Shutoffs</a>"
+        "<span>October 9, 2026</span>"
+    )
+    rejections: list[dict] = []
+    releases = press.extract_candidates(
+        html, "https://riley.house.gov/news/", "R000622", rejections=rejections
+    )
+    assert [r.title for r in releases] == [
+        "Riley Demands Answers From Verizon Over Landline Shutoffs"
+    ]
+    assert [e["url"] for e in rejections] == [
+        "https://riley.house.gov/news/newsletter-subscribe/",
+        "https://riley.house.gov/news/multimedia/watch/the-time-is-now",
+    ]
+    assert "subscribe form" in rejections[0]["reason"]
+    assert "`multimedia` path segment" in rejections[1]["reason"]
+    assert all(e["id"] == "R000622" for e in rejections)
+
+
+def test_a_caller_that_reports_nothing_still_gets_the_same_verdict():
+    """`extract_releases` and the screening smoke pass take no rejection list — they are
+    not writing the count report. The URL is still refused; it is only unreported."""
+    html = (
+        '<a href="/news/newsletter-subscribe/">Subscribe to the Riley Report</a>'
+        "<span>October 9, 2026</span>"
+    )
+    assert press.extract_releases(html, "https://riley.house.gov/news/", "R000622") == []
+    assert press.extract_candidates(html, "https://riley.house.gov/news/", "R000622") == []
+
+
+def test_a_url_that_never_looked_like_a_release_is_not_logged():
+    """The logging gate is the SHAPE test: `/videos/clip` off the list's path was never a
+    candidate, and listing it would bury the refusals that matter in page furniture."""
+    html = (
+        '<a href="/videos/a-clip-from-the-floor">A Clip From The Floor Today</a>'
+        '<a href="/news/videos/a-clip-from-the-floor">A Clip From The Floor Today</a>'
+    )
+    rejections: list[dict] = []
+    assert press.extract_candidates(
+        html, "https://riley.house.gov/news/", "R000622", rejections=rejections
+    ) == []
+    assert [e["url"] for e in rejections] == [
+        "https://riley.house.gov/news/videos/a-clip-from-the-floor"
+    ]
+
+
+def test_the_walk_reports_every_refusal_once_across_pages():
+    """Riley links his newsletter signup at the top of all 55 pages of his archive. That
+    is one refusal to print, not 55."""
+    page = (
+        '<a href="/news/newsletter-subscribe/">Subscribe to the Riley Report</a>'
+        '<a href="/news/a-release-about-the-landline-shutoffs-{n}">'
+        "Riley Demands Answers From Verizon Over Landline Shutoffs {n}</a>"
+        "<span>October {n}, 2026</span>"
+    )
+    row = _row("R000622", press_page="https://riley.house.gov/news/", name="Josh Riley")
+    result = press.walk_member(
+        row,
+        read_page=_pages(page.replace("{n}", "9"), page.replace("{n}", "8"), "<html></html>"),
+        window_start="2023-01-03",
+    )
+    assert len(result.releases) == 2
+    assert [e["url"] for e in result.url_rejections] == [
+        "https://riley.house.gov/news/newsletter-subscribe/"
+    ]
+
+
+def test_a_walk_with_nothing_refused_reports_nothing_refused():
+    result = press.walk_member(_row(), read_page=_pages(HOUSE_DRUPAL), window_start="2023-01-03")
+    assert result.url_rejections == []
+
+
 @pytest.mark.parametrize(
     ("list_url", "page", "expected"),
     [
@@ -1381,6 +1566,34 @@ def test_the_report_says_so_plainly_when_no_date_conflicted():
     assert "None: where a release page published its own date it agreed" in _report([], [], [])
 
 
+def test_the_report_prints_every_refused_url_with_its_reason():
+    """Never silent: the owner decides what counts as a member's own statement, so a URL
+    this collector removes from a statement list is printed where it can be argued with."""
+    result = press.MemberResult(
+        "R000622",
+        [],
+        1,
+        "window",
+        url_rejections=[
+            {
+                "id": "R000622",
+                "url": "https://riley.house.gov/news/newsletter-subscribe/",
+                "reason": "a `newsletter-subscribe` path segment — a subscribe form, not a release",
+            }
+        ],
+    )
+    text = _report([result], [_row("R000622", name="Josh Riley")], [])
+    assert "## URLs the release filter refused, and why" in text
+    assert "`R000622` — a `newsletter-subscribe` path segment" in text
+    assert "<https://riley.house.gov/news/newsletter-subscribe/>" in text
+
+
+def test_the_report_says_so_plainly_when_nothing_was_refused():
+    assert "None: every release-shaped URL on every page read was collected." in _report(
+        [], [], []
+    )
+
+
 # --- the runner -----------------------------------------------------------------------
 
 
@@ -1434,6 +1647,31 @@ def test_the_run_writes_the_index_the_statements_and_the_report(repo: Path, caps
     assert (repo / "docs" / "research" / "2026-10-14-press-collection-counts.md").exists() or list(
         (repo / "docs" / "research").glob("*-press-collection-counts.md")
     )
+
+
+def test_the_run_records_every_refused_url_in_the_index_and_the_report(
+    repo: Path, monkeypatch: pytest.MonkeyPatch, capsys
+):
+    listing = HOUSE_DRUPAL + (
+        '<a href="/media/press-releases/newsletter-subscribe">'
+        "Subscribe To Our Weekly Newsletter</a>"
+    )
+
+    def read(url: str) -> str:
+        if url.endswith("/media/press-releases"):
+            return listing
+        if "/media/press-releases/" in url:
+            return RELEASE_PAGE
+        return "<html></html>"
+
+    monkeypatch.setattr(press, "_read_page", read)
+    assert press.run([]) == 0
+    assert [e["url"] for e in _index(repo)["url_rejections"]] == [
+        "https://bilirakis.house.gov/media/press-releases/newsletter-subscribe"
+    ]
+    assert "URLs refused by the release filter: 1" in capsys.readouterr().out
+    report = next((repo / "docs" / "research").glob("*-press-collection-counts.md"))
+    assert "newsletter-subscribe" in report.read_text(encoding="utf-8")
 
 
 MONTH_ONLY_LIST = """

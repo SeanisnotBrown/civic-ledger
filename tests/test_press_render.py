@@ -45,11 +45,16 @@ while True:
     line = line.strip()
     if not line:
         continue
-    url = json.loads(line)["url"]
-    if url in TABLE:
-        out = dict(TABLE[url]); out["url"] = url
+    request = json.loads(line)
+    if request.get("more"):
+        queue = TABLE.get("__more__") or []
+        out = queue.pop(0) if queue else {"ok": False, "error": "no page is open to advance"}
     else:
-        out = {"url": url, "ok": False, "status": 404, "error": "HTTP 404"}
+        url = request["url"]
+        if url in TABLE:
+            out = dict(TABLE[url]); out["url"] = url
+        else:
+            out = {"url": url, "ok": False, "status": 404, "error": "HTTP 404"}
     sys.stdout.write(json.dumps(out) + "\\n")
     sys.stdout.flush()
 """
@@ -380,6 +385,217 @@ def test_the_node_binary_goes_through_the_path():
     assert press_render._node_binary() == "node"
 
 
+# --- clicking the page's own load-more control (step 5) -------------------------------
+
+# A list page with its newest items, and the same shape again with an older batch
+# appended — what one click adds.
+CLICK_PAGE_1 = """<!doctype html><html><body><div class="listing">
+  <article><a href="/news/one-thing">A Statement On One Thing That Happened</a>
+    <time>October 9, 2026</time></article>
+</div><button class="load-more">Load more</button></body></html>"""
+
+CLICK_PAGE_2 = """<!doctype html><html><body><div class="listing">
+  <article><a href="/news/one-thing">A Statement On One Thing That Happened</a>
+    <time>October 9, 2026</time></article>
+  <article><a href="/news/old-thing">Something From Before The Window Opened</a>
+    <time>December 1, 2022</time></article>
+</div><button class="load-more">Load more</button></body></html>"""
+
+CONTROL = '<button class="load-more"> "Load more" visible=true'
+
+
+class _ClickingRenderer:
+    """A renderer double that speaks the two-message protocol: one page, then whatever
+    each `advance` was scripted to answer."""
+
+    def __init__(self, first: dict, steps: list[dict] | None = None):
+        self.first = first
+        self.steps = list(steps or [])
+        self.advances = 0
+
+    def render(self, _url: str) -> dict:
+        return self.first
+
+    def advance(self) -> dict:
+        self.advances += 1
+        return self.steps.pop(0) if self.steps else {"ok": True, "clicked": False, "grew": False}
+
+
+def _rendered(html: str, *, anchors: int = 1, templated: int = 0) -> dict:
+    return {"ok": True, "status": 200, "html": html, "anchors": anchors, "templated": templated}
+
+
+def _grew(html: str, anchors: int, *, control: str | None = CONTROL) -> dict:
+    return {
+        "ok": True,
+        "clicked": True,
+        "grew": True,
+        "anchors": anchors,
+        "templated": 0,
+        "control": control,
+        "nearby": [CONTROL],
+        "html": html,
+    }
+
+
+@pytest.fixture()
+def cached(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
+    monkeypatch.setattr(cache, "RAW_DIR", tmp_path / "raw")
+    return tmp_path
+
+
+def _click(renderer, row=None, **kw) -> press_render.LoadMore:
+    return press_render.click_through(
+        renderer, row or _row("S001181"), press_render.RenderStats(), **kw
+    )
+
+
+def test_clicking_stops_when_the_oldest_item_shown_predates_the_window(cached):
+    """Stop (a), the owner's first: the list now reaches back past 2023-01-03, so there
+    is nothing deeper worth a click."""
+    renderer = _ClickingRenderer(_rendered(CLICK_PAGE_1), [_grew(CLICK_PAGE_2, 2)])
+    record = _click(renderer)
+    assert record.clicks == 1
+    assert record.stop == "window"
+    assert (record.oldest, record.newest) == ("2022-12-01", "2026-10-09")
+    assert (record.anchors_before, record.anchors_after) == (1, 2)
+    assert record.failure == ""
+
+
+def test_clicking_stops_when_the_control_stops_adding_items(cached):
+    """Stop (b): the control is still on the page and the list did not grow."""
+    renderer = _ClickingRenderer(
+        _rendered(CLICK_PAGE_1),
+        [{"ok": True, "clicked": True, "grew": False, "control": CONTROL, "nearby": [CONTROL]}],
+    )
+    record = _click(renderer)
+    assert (record.clicks, record.stop) == (0, "exhausted")
+    assert record.control == CONTROL
+    assert record.failure == ""
+
+
+def test_a_page_with_no_control_says_so_and_says_what_it_has_instead(cached):
+    """The measured answer for all four rows, 2026-10-15. A zero that does not say why
+    is indistinguishable from a page nobody looked at."""
+    renderer = _ClickingRenderer(
+        _rendered(CLICK_PAGE_1),
+        [{"ok": True, "clicked": False, "grew": False, "control": None,
+          "nearby": ['<div class="jet-smart-filters-pagination"> "" visible=false']}],
+    )
+    record = _click(renderer)
+    assert (record.clicks, record.stop) == (0, "no-control")
+    assert record.control == ""
+    assert record.failure == "the page has no load-more control to click"
+    assert "jet-smart-filters-pagination" in record.nearby[0]
+
+
+def test_clicking_stops_at_the_click_ceiling(cached):
+    """Stop (c). The cap is a config value, and a row that hits it is reported as having
+    hit it — step 7's rule then flags it for not reaching 2023-01-03."""
+    renderer = _ClickingRenderer(
+        _rendered(CLICK_PAGE_1), [_grew(CLICK_PAGE_1, 2), _grew(CLICK_PAGE_1, 3)]
+    )
+    record = _click(renderer, max_clicks=2)
+    assert (record.clicks, record.stop) == (2, "cap")
+    assert renderer.advances == 2
+
+
+def test_a_list_with_no_dates_at_all_can_only_be_stopped_by_the_control_or_the_cap(cached):
+    """`S001181` and `K000377` print no date on the list, so stop (a) has nothing to
+    read. Those rows are dated from their own release pages later; the clicking does not
+    guess a date to stop on."""
+    undated = '<a href="/news/a-release-with-no-date-anywhere-near-it">A Release With No Date</a>'
+    renderer = _ClickingRenderer(_rendered(undated), [_grew(undated, 2)])
+    record = _click(renderer, max_clicks=1)
+    assert (record.oldest, record.newest) == ("", "")
+    assert (record.clicks, record.stop) == (1, "cap")
+
+
+def test_a_first_render_that_failed_is_an_error_and_is_never_cached(cached):
+    renderer = _ClickingRenderer({"ok": False, "status": 500, "error": "HTTP 500"})
+    stats = press_render.RenderStats()
+    record = press_render.click_through(renderer, _row("S001181"), stats)
+    assert (record.stop, record.detail) == ("error", "HTTP 500")
+    assert stats.failed == 1
+    assert press_render._cached_body("https://example.house.gov/news/") is None
+    assert record.failure.startswith("the renderer could not advance")
+
+
+def test_an_advance_that_failed_keeps_what_was_already_collected(cached):
+    renderer = _ClickingRenderer(
+        _rendered(CLICK_PAGE_1), [_grew(CLICK_PAGE_1, 2), {"ok": False, "error": "Timeout"}]
+    )
+    record = _click(renderer)
+    assert (record.clicks, record.stop, record.detail) == (1, "error", "Timeout")
+    assert press_render._cached_body("https://example.house.gov/news/") == CLICK_PAGE_1
+
+
+def test_an_advance_that_grew_without_returning_html_keeps_the_page_it_had(cached):
+    """Defensive: the accumulated page is what gets cached, so a step with no HTML must
+    not replace it with nothing."""
+    renderer = _ClickingRenderer(
+        _rendered(CLICK_PAGE_1),
+        [{"ok": True, "clicked": True, "grew": True, "anchors": 2, "control": CONTROL}],
+    )
+    record = _click(renderer, max_clicks=1)
+    assert record.clicks == 1
+    assert press_render._cached_body("https://example.house.gov/news/") == CLICK_PAGE_1
+
+
+def test_the_accumulated_page_is_what_the_plain_collector_reads(cached):
+    """The contract: every batch the clicking added lands in ONE cached list page, so
+    `ingest statements-press` needs no knowledge that a browser was involved."""
+    renderer = _ClickingRenderer(_rendered(CLICK_PAGE_1), [_grew(CLICK_PAGE_2, 2)])
+    _click(renderer)
+    stored = press_render._cached_body("https://example.house.gov/news/")
+    assert stored == CLICK_PAGE_2
+    assert len(press.extract_releases(stored, "https://example.house.gov/news/", "S001181")) == 2
+
+
+def test_hrefs_still_holding_a_template_are_the_rows_failure_reason(cached):
+    """`K000377`'s `${item.link}`: a page whose links are still markup has not been read,
+    and that is reported rather than collected."""
+    renderer = _ClickingRenderer(_rendered(CLICK_PAGE_1, templated=8))
+    record = _click(renderer, max_clicks=0)
+    assert record.templated_hrefs == 8
+    assert "8 release link(s) are still unrendered" in record.failure
+
+
+def test_a_clean_stop_has_no_failure_reason():
+    assert press_render.LoadMore(stop="window").failure == ""
+    assert press_render.LoadMore(stop="cap").failure == ""
+
+
+def test_the_click_ceiling_is_a_named_config_value_not_a_number_in_the_loop():
+    assert press_render.MAX_LOAD_MORE_CLICKS == 40
+    assert press_render.LOAD_MORE_ROWS == ("J000299", "K000377", "M001184", "S001181")
+
+
+def test_advance_speaks_the_same_protocol_as_render():
+    """The transport, for real, against the stub: `{"more": true}` in, one answer out."""
+    table = {"__more__": [{"ok": True, "clicked": True, "grew": True, "anchors": 7}]}
+    with press_render.Renderer(_stub_command(table)) as renderer:
+        assert renderer.advance()["anchors"] == 7
+        # The queue is empty now, which is how a renderer with no open page answers.
+        assert renderer.advance()["ok"] is False
+
+
+def test_refresh_does_not_re_render_a_page_this_run_just_built(cached):
+    """`--refresh` must not replace a clicked-together list with one unclicked batch —
+    the walk would then read one tenth of what was collected."""
+    cache.store(
+        press_render.CACHE_SOURCE, "https://x/news/", CLICK_PAGE_2, ext="html",
+        renderer=press_render.RENDERER_NAME,
+    )
+    stats = press_render.RenderStats()
+    renderer = _ClickingRenderer(_rendered("<html>a single unclicked batch</html>"))
+    read = press_render.make_read_page(
+        renderer, stats, refresh=True, already_fresh=frozenset({"https://x/news/"})
+    )
+    assert read("https://x/news/") == CLICK_PAGE_2
+    assert stats.cached == 1 and stats.rendered == 0
+
+
 # --- the walk and the screening report ------------------------------------------------
 
 
@@ -514,6 +730,16 @@ class _FakeRenderer:
             return {"url": url, "ok": True, "status": 200, "html": self.pages[url]}
         return {"url": url, "ok": False, "status": 404, "error": "HTTP 404"}
 
+    def advance(self) -> dict:
+        """No control on the page — the measured answer for all four load-more rows."""
+        return {
+            "ok": True,
+            "clicked": False,
+            "grew": False,
+            "control": None,
+            "nearby": ['<div class="jet-smart-filters-pagination"> "" visible=false'],
+        }
+
 
 def _runner(tmp_path, monkeypatch, pages: dict[str, str], rows: list[dict] | None = None):
     _sources(tmp_path, rows)
@@ -550,6 +776,35 @@ def test_the_full_run_writes_the_screening_report(tmp_path, monkeypatch, capsys)
     assert len(reports) == 1
     assert "Josh Riley" not in reports[0].read_text(encoding="utf-8")  # name comes from the row
     assert "Member R000622" in reports[0].read_text(encoding="utf-8")
+
+
+def test_the_run_clicks_the_load_more_rows_and_reports_what_it_found(
+    tmp_path, monkeypatch, capsys
+):
+    """End to end on the four rows that have no pager URL at all: the clicking owns page
+    one, the walk reads the accumulated page back, and the report says per row how many
+    clicks, why it stopped, and what the page has instead of a control."""
+    rows = [
+        _row("K000377", press_page="https://y/news/", owner_checked=True),
+        _row("S001181", press_page="https://x/news/", owner_checked=True),
+    ]
+    pages = {"https://x/news/": CLICK_PAGE_1, "https://y/news/": CLICK_PAGE_2}
+    _runner(tmp_path, monkeypatch, pages, rows)
+    assert press_render.run(["--members", "K000377,S001181"]) == 0
+    out = capsys.readouterr().out
+    assert "S001181   load-more:   0 click(s), no-control" in out
+    assert "jet-smart-filters-pagination" in out
+    assert "FAILURE: the page has no load-more control to click" in out
+    # K000377's first page already reaches past the window, so it stops on (a) with no
+    # click and no failure — the branch that prints neither line.
+    assert "K000377   load-more:   0 click(s), window" in out
+    text = next((tmp_path / "docs" / "research").glob("*-rendered-press.md")).read_text(
+        encoding="utf-8"
+    )
+    assert "* Load-more: **0 click(s)**, stopped on (b) there is no load-more control" in text
+    assert "stopped on (a) the oldest item shown is older than the window's start" in text
+    assert "**Failure: the page has no load-more control to click**" in text
+    assert "What the page has instead, or alongside:" in text
 
 
 def test_the_full_run_defaults_to_all_eleven_rows(tmp_path, monkeypatch, capsys):

@@ -35,6 +35,18 @@ WHAT THIS MODULE DOES NOT DO:
     would be thousands of fetches against a source the owner has not accepted yet.
   * It never caches a failed render. A timeout is not a page, and a cached empty list
     would serve the plain collector a 7-day-fresh "this member published nothing".
+  * It does not decide when to stop clicking a load-more control. The renderer clicks
+    once per request and says what changed; `click_through` here decides, because the
+    stop is a date rule and the date rules live in `statements_press`.
+
+LOAD-MORE (step 5): four rows have no pager URL to follow at all — `S001181` and
+`K000377`, plus `J000299` and `M001184`, whose friendly `/media/press-releases` path
+made `page_url` guess `?page=2` and get page one back. For those, `click_through` renders
+the list and clicks the page's OWN control until the oldest item shown predates
+2023-01-03, the control stops adding items, or `MAX_LOAD_MORE_CLICKS`. Every batch stays
+in one accumulated page, and THAT is what goes into the cache — so a plain
+`uv run ingest statements-press` reads one list page holding everything and still needs
+no knowledge that a browser was involved.
 
 CI cannot run this: the `python` job has no Node, and these are live third-party sites.
 The renderer is on-demand, and its cache entries expire on the same 7-day TTL as any
@@ -49,8 +61,9 @@ import html as html_lib
 import json
 import re
 import subprocess
+import time
 from collections.abc import Callable, Iterable
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass, field
 from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
@@ -73,6 +86,7 @@ from ingest.statements_press import (
     WINDOW_START,
     MemberResult,
     _is_release_url,
+    date_upper_bound,
     extract_releases,
     flatten,
     walk_member,
@@ -104,6 +118,22 @@ RENDER_TIMEOUT_S = 120.0
 # generous; a test shrinks it rather than sitting through it.
 EXIT_TIMEOUT_S = 30.0
 SAMPLE_TITLES = 5
+
+# The rows whose list has no pager URL to follow at all, so the only way deeper is the
+# page's own load-more control (STATUS build-order step 5). `S001181` and `K000377` were
+# named there; `J000299` and `M001184` were added by the step-4 measurement, which found
+# `page_url`'s guess re-serving page one for both.
+LOAD_MORE_ROWS = ("J000299", "K000377", "M001184", "S001181")
+
+# How many times one row's load-more control may be clicked in a single run. Not a
+# magic number and not a limit on the archive: it is how deep a by-hand render goes
+# before the owner is asked to approve going deeper. At the 10-20 items a click these
+# lists add, 40 clicks is 400-800 releases — more than a year of a senator's output —
+# and each click costs a browser round trip of a second or two, so a row that needs more
+# than this is a row to decide about rather than to sit through. A row that stops here
+# is reported as stopped HERE, and step 7's rule already flags every row that cannot
+# reach 2023-01-03.
+MAX_LOAD_MORE_CLICKS = 40
 
 
 class RenderError(RuntimeError):
@@ -165,23 +195,36 @@ class Renderer:
             proc.kill()
 
     def render(self, url: str) -> dict[str, Any]:
-        """One page. Returns the renderer's own verdict; never raises on a bad page."""
+        """One page. Returns the renderer's own verdict; never raises on a bad page.
+
+        The page stays OPEN in the browser afterwards, which is what `advance` acts on.
+        """
+        return self._exchange({"url": url}, url)
+
+    def advance(self) -> dict[str, Any]:
+        """One more batch on the page `render` left open: the renderer scrolls to the
+        bottom, clicks the page's own load-more control if it has one, and reports
+        whether the list grew. WHEN to stop is this module's decision, not the
+        renderer's — the stop rules are date rules, and those live in one place."""
+        return self._exchange({"more": True}, "the open page")
+
+    def _exchange(self, request: dict[str, Any], what: str) -> dict[str, Any]:
         proc = self._proc
         if proc is None or proc.stdin is None or proc.stdout is None:
             raise RenderError("the renderer is not running")
         try:
-            proc.stdin.write(json.dumps({"url": url}) + "\n")
+            proc.stdin.write(json.dumps(request) + "\n")
             proc.stdin.flush()
             line = proc.stdout.readline()
         except (BrokenPipeError, OSError) as exc:
-            raise RenderError(f"the renderer died while rendering {url}: {exc}") from exc
+            raise RenderError(f"the renderer died while rendering {what}: {exc}") from exc
         if not line:
             stderr = proc.stderr.read() if proc.stderr else ""
-            raise RenderError(f"the renderer closed its output on {url}. stderr: {stderr[:800]}")
+            raise RenderError(f"the renderer closed its output on {what}. stderr: {stderr[:800]}")
         try:
             return json.loads(line)
         except json.JSONDecodeError as exc:
-            raise RenderError(f"the renderer returned non-JSON on {url}: {line[:200]}") from exc
+            raise RenderError(f"the renderer returned non-JSON on {what}: {line[:200]}") from exc
 
 
 def _node_binary() -> str:
@@ -217,8 +260,146 @@ def rows_to_render(data_dir: Path, ids: Iterable[str] | None = None) -> list[dic
     return found
 
 
+@dataclass
+class LoadMore:
+    """What clicking one row's own load-more control did.
+
+    Every field is in the report, because "0 releases" is the one answer this must never
+    give without saying why: a control that was never there, a control that stopped
+    adding items, and a cap the owner can raise are three different things, and the
+    fourth — `K000377`'s list still holding `${item.link}` templates — is not a
+    pagination problem at all.
+    """
+
+    clicks: int = 0
+    # window — the oldest item shown is now older than 2023-01-03 (owner's stop a);
+    # exhausted — the control stopped adding items (b); no-control — there was none to
+    # click (b, and the `nearby` list says what the page has instead); cap — the click
+    # ceiling (c); error — the renderer could not do it.
+    stop: str = "not-attempted"
+    detail: str = ""
+    anchors_before: int = 0
+    anchors_after: int = 0
+    control: str = ""
+    nearby: list[str] = field(default_factory=list)
+    # Hrefs still carrying an unresolved `${...}` template after the renderer waited for
+    # them. `K000377`'s failure reason, in a number.
+    templated_hrefs: int = 0
+    oldest: str = ""
+    newest: str = ""
+    seconds: float = 0.0
+
+    @property
+    def failure(self) -> str:
+        """The row's failure reason in one line, or "" where there is none."""
+        if self.templated_hrefs:
+            return (
+                f"{self.templated_hrefs} release link(s) are still unrendered "
+                "`${...}` templates — the page never finished building its list"
+            )
+        if self.stop == "no-control":
+            return "the page has no load-more control to click"
+        if self.stop == "error":
+            return f"the renderer could not advance the page: {self.detail}"
+        return ""
+
+
+def _date_span(html: str, list_url: str, member_id: str) -> tuple[str, str]:
+    """The oldest and newest date the LIST page itself can date, as the publisher wrote
+    them, ordered by UPPER bound — the same comparison the walk makes, so a month-only
+    `2023-01` is never read as older than the window it sits inside.
+
+    Both are "" for a list that prints no date at all (`S001181`, `R000605`): those rows
+    are dated from their own release pages later, and the clicking cannot use a date it
+    does not have. That is reported, not guessed around.
+    """
+    releases = extract_releases(html, list_url, member_id)
+    if not releases:
+        return "", ""
+    by_bound = sorted(releases, key=lambda r: date_upper_bound(r.date))
+    return by_bound[0].date, by_bound[-1].date
+
+
+def click_through(
+    renderer: Renderer,
+    row: dict[str, Any],
+    stats: RenderStats,
+    *,
+    window_start: str = WINDOW_START,
+    max_clicks: int = MAX_LOAD_MORE_CLICKS,
+) -> LoadMore:
+    """Render one row's list and click its OWN load-more control until the window is
+    reached, the control stops adding items, or the cap.
+
+    The accumulated page — every batch the clicking added — is what goes into the cache,
+    so `ingest statements-press` reads one list page holding everything and needs no
+    knowledge that a browser was involved. That is the same contract the unclicked
+    renders already keep.
+
+    The three stops are the owner's, 2026-10-15: (a) the oldest date shown is before
+    2023-01-03, (b) the control disappears or stops adding items, (c) `max_clicks`. (a)
+    is decided HERE rather than in the renderer because it is a date rule, and the date
+    rules — month-only precision, comparison by upper bound — have one definition, in
+    `statements_press`. The renderer clicks once per request and reports what changed.
+    """
+    url = row["press_page"]
+    started = time.monotonic()
+    record = LoadMore()
+    first = renderer.render(url)
+    if not first.get("ok"):
+        stats.failed += 1
+        record.stop = "error"
+        record.detail = str(first.get("error") or "render failed")
+        record.seconds = round(time.monotonic() - started, 1)
+        return record
+    stats.rendered += 1
+    html = first.get("html") or ""
+    record.anchors_before = int(first.get("anchors") or 0)
+    record.anchors_after = record.anchors_before
+    record.templated_hrefs = int(first.get("templated") or 0)
+    while True:
+        record.oldest, record.newest = _date_span(html, url, row["id"])
+        if record.oldest and date_upper_bound(record.oldest) < window_start:
+            record.stop = "window"
+            break
+        if record.clicks >= max_clicks:
+            record.stop = "cap"
+            break
+        step = renderer.advance()
+        if not step.get("ok"):
+            record.stop = "error"
+            record.detail = str(step.get("error") or "advance failed")
+            break
+        record.control = step.get("control") or record.control
+        record.nearby = step.get("nearby") or record.nearby
+        if not step.get("grew"):
+            # The control is gone, or was never there. Those read differently in the
+            # report: one is an archive that ended, the other is a page we cannot page.
+            record.stop = "exhausted" if step.get("control") else "no-control"
+            record.detail = str(step.get("error") or "")
+            break
+        record.clicks += 1
+        html = step.get("html") or html
+        record.anchors_after = int(step.get("anchors") or 0)
+        record.templated_hrefs = int(step.get("templated") or 0)
+    cache.store(
+        CACHE_SOURCE,
+        url,
+        html,
+        ext="html",
+        status=int(first.get("status") or 200),
+        renderer=RENDERER_NAME,
+    )
+    record.seconds = round(time.monotonic() - started, 1)
+    return record
+
+
 def make_read_page(
-    renderer: Renderer, stats: RenderStats, *, refresh: bool = False
+    renderer: Renderer,
+    stats: RenderStats,
+    *,
+    refresh: bool = False,
+    already_fresh: frozenset[str] = frozenset(),
 ) -> Callable[[str], str]:
     """A `read_page` for `walk_member` that renders instead of plain-fetching.
 
@@ -231,10 +412,15 @@ def make_read_page(
     so `walk_member`'s existing branches — 404 on page >= 1 is the end of the archive,
     anything else is an error — fire exactly as they do for a plain GET. A page that
     could not be rendered at all is NEVER cached.
+
+    `already_fresh` names URLs this run has just produced, which `--refresh` must not
+    re-render: a load-more row's list page was built by `click_through` out of every
+    batch it clicked, and rendering it again would replace that with a single unclicked
+    batch — the walk would then read one tenth of what was collected.
     """
 
     def read_page(url: str) -> str:
-        if not refresh:
+        if not refresh or url in already_fresh:
             cached = _cached_body(url)
             if cached is not None:
                 stats.cached += 1
@@ -369,7 +555,9 @@ def date_verdict(d: dict[str, Any], collected: bool = False) -> str:
     return f"{d['release_links']} release links and NO date anywhere on the page"
 
 
-def screen(row: dict[str, Any], result: MemberResult) -> dict[str, Any]:
+def screen(
+    row: dict[str, Any], result: MemberResult, load_more: LoadMore | None = None
+) -> dict[str, Any]:
     """What the owner needs to screen one row: the list's URL, what came back, a few
     titles in the source's own words, and how far back the walk actually reached."""
     dates = sorted(r.date for r in result.releases)
@@ -396,6 +584,10 @@ def screen(row: dict[str, Any], result: MemberResult) -> dict[str, Any]:
         # Why the row yielded what it did, so a zero is explained rather than asserted.
         "diagnosis": diag,
         "verdict": date_verdict(diag, collected=bool(result.releases)),
+        # Absent for the rows that page by URL; present for the four that can only go
+        # deeper by clicking (`LOAD_MORE_ROWS`).
+        "load_more": asdict(load_more) if load_more is not None else None,
+        "load_more_failure": load_more.failure if load_more is not None else "",
     }
 
 
@@ -463,6 +655,27 @@ def _row_sections(screens: list[dict[str, Any]]) -> list[str]:
                 f"{d['ordinal_dates']} ordinal, {d['iso_dates']} ISO, "
                 f"{d['dated_permalinks']} in permalinks"
             )
+        lm = s.get("load_more")
+        if lm:
+            stop = {
+                "window": "(a) the oldest item shown is older than the window's start",
+                "exhausted": "(b) the control stopped adding items",
+                "no-control": "(b) there is no load-more control on the page",
+                "cap": f"(c) the {MAX_LOAD_MORE_CLICKS}-click ceiling",
+                "error": "the renderer could not advance the page",
+                "not-attempted": "not attempted",
+            }.get(lm["stop"], lm["stop"])
+            lines.append(
+                f"* Load-more: **{lm['clicks']} click(s)**, stopped on {stop}; anchors "
+                f"{lm['anchors_before']} → {lm['anchors_after']}; "
+                f"{lm['seconds']}s of renderer time"
+            )
+            lines.append(f"    * Control: {lm['control'] or '*none found*'}")
+            if s["load_more_failure"]:
+                lines.append(f"    * **Failure: {s['load_more_failure']}**")
+            if lm["nearby"]:
+                lines.append("    * What the page has instead, or alongside:")
+                lines.extend(f"        * `{n}`" for n in lm["nearby"])
         if s["sample_titles"]:
             lines.append("* What the list contains:")
             lines.extend(f"    {i + 1}. {t}" for i, t in enumerate(s["sample_titles"]))
@@ -534,6 +747,12 @@ def run(argv: list[str] | None = None) -> int:
     parser.add_argument(
         "--refresh", action="store_true", help="re-render even pages already cached"
     )
+    parser.add_argument(
+        "--max-clicks",
+        type=int,
+        default=MAX_LOAD_MORE_CLICKS,
+        help=f"load-more clicks per row (default {MAX_LOAD_MORE_CLICKS})",
+    )
     args = parser.parse_args(argv)
 
     root = repo_root()
@@ -543,8 +762,31 @@ def run(argv: list[str] | None = None) -> int:
     stats = RenderStats()
 
     print(f"rendered fetch: {len(rows)} row(s)" + (" — smoke, page one only" if args.smoke else ""))
+    clicked: dict[str, LoadMore] = {}
     with Renderer() as renderer:
-        read_page = make_read_page(renderer, stats, refresh=args.refresh)
+        if not args.smoke:
+            # The load-more rows first: clicking OWNS their first page, and writes the
+            # accumulated list into the cache for the walk below to read back.
+            for row in [r for r in rows if r["id"] in LOAD_MORE_ROWS]:
+                record = click_through(renderer, row, stats, max_clicks=args.max_clicks)
+                clicked[row["id"]] = record
+                # ASCII only: this console is cp1252 and an arrow kills the whole run.
+                print(
+                    f"  {row['id']:9} load-more: {record.clicks:3} click(s), "
+                    f"{record.stop:12} anchors {record.anchors_before} -> "
+                    f"{record.anchors_after}  {record.seconds}s"
+                )
+                print(f"    control: {record.control or 'none found'}")
+                for line in record.nearby:
+                    print(f"    nearby:  {line}")
+                if record.failure:
+                    print(f"    FAILURE: {record.failure}")
+        read_page = make_read_page(
+            renderer,
+            stats,
+            refresh=args.refresh,
+            already_fresh=frozenset(r["press_page"] for r in rows if r["id"] in clicked),
+        )
         if args.smoke:
             for entry in smoke(rows, read_page=read_page):
                 if "error" in entry:
@@ -562,7 +804,10 @@ def run(argv: list[str] | None = None) -> int:
             rows, read_page=read_page, limit_pages=args.limit_pages, progress=print
         )
 
-    screens = [screen(row, result) for row, result in zip(rows, results, strict=True)]
+    screens = [
+        screen(row, result, clicked.get(row["id"]))
+        for row, result in zip(rows, results, strict=True)
+    ]
     report = render_report(screens, stats, window_start=WINDOW_START)
     out = root / "docs" / "research" / f"{datetime.now(UTC).date().isoformat()}-rendered-press.md"
     cache.atomic_write_text(out, report)

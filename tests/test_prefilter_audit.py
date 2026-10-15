@@ -439,6 +439,35 @@ MILLER = {
 }
 
 
+def test_a_sitemap_walk_counts_as_collected_not_as_a_failure(tmp_path: Path):
+    """`K000377` walks the press-release sitemap his own site publishes, which enumerates
+    the whole archive. Listing a member collected in full under "not collecting" would be
+    the worst misreport this table can make — in the one report the owner approves spend
+    against. The complete-stop set is imported from the collector, not copied."""
+    data_dir = tmp_path / "data"
+    _pilot_and_index(
+        data_dir,
+        walks=[
+            {
+                "member_id": "K000377",
+                "releases": 1082,
+                "pages_read": 2,
+                "stopped": "sitemap",
+                "detail": "1495 URL(s) in 2 sitemap(s); 413 outside the window",
+            }
+        ],
+        refused=[],
+    )
+    coverage = prefilter.press_coverage(data_dir)
+    cell = next(c for c in coverage["cells"] if c["party"] == "D")
+    assert (cell["collected"], cell["releases"]) == (1, 1082)
+    # Every other row in the fixture is absent from its walks, so each is reported as
+    # not walked — K000377 is the only one this test says anything about.
+    assert "K000377" not in [r["id"] for r in coverage["non_collecting"]]
+    assert all("not walked" in r["reason"] for r in coverage["non_collecting"])
+    assert "sitemap" in prefilter.COMPLETE_STOPS
+
+
 def test_a_row_with_no_press_list_is_never_counted_as_a_collection_failure(tmp_path: Path):
     """STATUS step 6. `M001222` Miller's site publishes no press-release list, so his
     zero is the site's and not ours: counted in its own column, kept out of the failure

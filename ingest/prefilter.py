@@ -126,6 +126,7 @@ from typing import Any
 import yaml
 
 from ingest.cache import atomic_write_text, repo_root
+from ingest.statements_press import COMPLETE_STOPS
 
 # R2's length guard, in characters of CONTENT (after the speaker's name and the
 # salutation are stripped). 200 is where the pilot corpus separates pure housekeeping
@@ -973,7 +974,11 @@ def press_coverage(data_dir: Path) -> dict[str, Any]:
                 counts["single_page"] += 1
                 releases += walk["releases"]
                 reason = ""
-            elif walk["stopped"] in ("window", "exhausted"):
+            elif walk["stopped"] in COMPLETE_STOPS:
+                # The collector's own definition, imported rather than repeated: a
+                # sitemap walk enumerates the publisher's whole index, and listing that
+                # member under "not collecting" would be the worst misreport this table
+                # can make.
                 counts["collected"] += 1
                 releases += walk["releases"]
                 reason = ""

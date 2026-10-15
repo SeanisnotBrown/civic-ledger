@@ -164,6 +164,12 @@ MAX_PAGES = 200
 # An anchor shorter than this is navigation, not a release title.
 MIN_TITLE_CHARS = 20
 
+# The stop reasons that mean a member's whole window was collected. ONE definition: the
+# count-before-spend report's coverage table reads this too, and a second copy of it
+# there is how a member collected in full came to be listed as a collection failure —
+# `walk_sitemap`'s stop was added to `MemberResult.complete` and not to that copy.
+COMPLETE_STOPS = ("window", "exhausted", "sitemap")
+
 # A paragraph shorter than this is a caption, a byline or a share prompt.
 MIN_PARAGRAPH_CHARS = 60
 
@@ -993,7 +999,7 @@ class MemberResult:
         walk before its natural end, or could not tell whether it had, and those counts
         are a floor rather than a total.
         """
-        return self.stopped in ("window", "exhausted", "sitemap")
+        return self.stopped in COMPLETE_STOPS
 
 
 def _end_of_archive(page: int) -> tuple[str, str]:

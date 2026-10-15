@@ -19,6 +19,12 @@ provenance:
     or collector (c) stays off.
   owner_checked: false on every row until a human verifies it. Collector (a) and (c) must refuse a row
     that still says false.
+  press_sitemap: 'owner-set, optional, 2026-10-15. Sitemap URLs on the member''s OWN host that
+    list press releases, for a row whose list page cannot be paged. The sitemap supplies URLS
+    ONLY. Its lastmod is when a page was last edited, so it is used once as a skip filter — a page
+    edited before 2023-01-03 cannot have been published inside the window — and is NEVER stored as
+    a statement''s date; every date comes from the release page''s own publication marker. Set on
+    K000377 alone. press_sitemap_source records the ratification.'
   no_press_source: 'owner-set, 2026-10-14. The member publishes no press-release list at all, so
     there is nothing to collect and nothing to fix. no_press_reason and no_press_urls_tried record
     what was looked for. A row carrying this must report as "no list exists", never as empty or
@@ -229,6 +235,15 @@ members:
   official_site: https://www.kelly.senate.gov
   press_page: https://www.kelly.senate.gov/newsroom/press-releases/
   press_page_source: http-200
+  press_sitemap:
+  - https://www.kelly.senate.gov/press_releases-sitemap.xml
+  - https://www.kelly.senate.gov/press_releases-sitemap2.xml
+  press_sitemap_source: 'owner-ratified 2026-10-15: the list page paginates through a JavaScript
+    filter widget that renders no control at all, so there is no page two to follow. His own
+    robots.txt points at https://www.kelly.senate.gov/sitemap_index.xml, and these two of its
+    fifteen files are nothing but press releases — 1,495 URLs, every one with a lastmod, 2020-12-03
+    to 2026-10-13. URLs only: lastmod is when a page was last EDITED and is never stored as a
+    date; each release is dated from its own page.'
   rss: null
   campaign_site: null
   campaign_issues_page: null

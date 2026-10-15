@@ -84,6 +84,14 @@ is the fallback for a list that publishes no link at all, and the report names e
 still resting on it: measured 2026-10-14, the guess is wrong on three of the four rows it
 was checked against, and a wrong pager URL does not fail loudly — it re-serves page one.
 
+One row has no pager to follow at all. `K000377`'s list paginates through a JavaScript
+filter widget that renders no control, so the owner ratified a different source for him
+on 2026-10-15: the press-release SITEMAP his own site publishes (`press_sitemap` in the
+source list). `walk_sitemap` reads it for URLs only — `<lastmod>` is when a page was last
+edited, never when it was published, so it is used once as a skip filter and never
+stored — and every date comes from the release page's own publication marker, exactly as
+it does for the rows whose lists print no dates.
+
 Six stop reasons are recorded per member, because they do not mean the same thing and the
 report must not print one as the other (see `MemberResult.complete`):
 
@@ -842,6 +850,40 @@ def release_page_date(html: str) -> str | None:
     return None
 
 
+_H1 = re.compile(r"<h1\b[^>]*>(.*?)</h1>", re.IGNORECASE | re.DOTALL)
+_TITLE_TAG = re.compile(r"<title\b[^>]*>(.*?)</title>", re.IGNORECASE | re.DOTALL)
+
+
+def release_page_title(html: str) -> str:
+    """The title a release page gives itself, or "".
+
+    `<h1>` first, measured 2026-10-15 on `K000377`'s own release pages: it carries the
+    headline alone, while `og:title` and `<title>` both carry it with " - Senator Mark
+    Kelly" glued on the end, and stripping a site's name off its own title is a guess
+    that would have to be made per site. The two suffixed markers are still read after
+    it, because a headline with a suffix beats no headline at all.
+
+    Needed only by the sitemap path: a sitemap gives a URL and no title, while a list
+    page gives the title in the anchor the reader clicks.
+    """
+    flat = flatten(html)
+    heading = _H1.search(flat)
+    if heading is not None:
+        text = html_lib.unescape(_TAGS.sub(" ", heading.group(1))).strip()
+        if text:
+            return re.sub(r"\s+", " ", text)
+    for tag in _META_TAG.findall(flat):
+        attrs = _attrs(tag)
+        if attrs.get("property", "").lower() == "og:title" and attrs.get("content", "").strip():
+            return attrs["content"].strip()
+    title = _TITLE_TAG.search(flat)
+    if title is not None:
+        text = html_lib.unescape(_TAGS.sub(" ", title.group(1))).strip()
+        if text:
+            return re.sub(r"\s+", " ", text)
+    return ""
+
+
 def reconcile_date(release: Release, page_date: str | None) -> Release:
     """The release page's own date against the date the list page gave (decision 5).
 
@@ -912,7 +954,7 @@ class MemberResult:
     member_id: str
     releases: list[Release]
     pages_read: int
-    stopped: str  # window|exhausted|single-page|empty|undated|repeat|error|limit
+    stopped: str  # window|exhausted|sitemap|single-page|empty|undated|repeat|error|limit
     detail: str = ""
     # Releases whose own page could not date them, with the reason, and the count of
     # release-page fetches the dating cost. Both empty when no reader was given.
@@ -925,9 +967,10 @@ class MemberResult:
     url_rejections: list[dict[str, str]] = field(default_factory=list)
     # How page 2 was reached: `link` — the site's own Next or numbered link; `page_url` —
     # guessed from the list URL because the site published no such link; `none` — page 2
-    # was never asked for, because the walk ended on page one. Recorded per row because
-    # the guess is wrong on three of the four rows it was measured against, and the
-    # report has to say which rows are still resting on it.
+    # was never asked for, because the walk ended on page one; `sitemap` — there were no
+    # list pages at all, the URLs came from the site's own sitemap. Recorded per row
+    # because the guess is wrong on three of the four rows it was measured against, and
+    # the report has to say which rows are still resting on it.
     page2_method: str = "none"
     page2_url: str = ""
 
@@ -935,10 +978,13 @@ class MemberResult:
     def complete(self) -> bool:
         """Whether every release in the window was collected.
 
-        Two stops mean complete, for different reasons: `window` — the walk reached a
-        page older than 2023-01-03, so everything in the window is behind us; and
+        Three stops mean complete, for different reasons: `window` — the walk reached a
+        page older than 2023-01-03, so everything in the window is behind us;
         `exhausted` — the pager ran off the end of the archive, which is what happens to
-        a member whose press archive BEGINS inside the window. Calling that second case
+        a member whose press archive BEGINS inside the window; and `sitemap` — every URL
+        in the member's own press-release sitemap was considered, which is the strongest
+        enumeration available, since it is the publisher's own index of the archive
+        rather than a walk of what their pager chose to show. Calling any of those
         incomplete would print INCOMPLETE beside a member who was collected in full, in
         the one report decision 4 exists to make trustworthy.
 
@@ -947,7 +993,7 @@ class MemberResult:
         walk before its natural end, or could not tell whether it had, and those counts
         are a floor rather than a total.
         """
-        return self.stopped in ("window", "exhausted")
+        return self.stopped in ("window", "exhausted", "sitemap")
 
 
 def _end_of_archive(page: int) -> tuple[str, str]:
@@ -1167,6 +1213,201 @@ def walk_member(
     return finish(
         MemberResult(member_id, found, pages, "limit", f"stopped at {ceiling} pages")
     )
+
+
+# --- a press-release sitemap as the URL source (owner ruling, 2026-10-15) -------------
+
+_SITEMAP_ENTRY = re.compile(r"<url\b[^>]*>(.*?)</url>", re.IGNORECASE | re.DOTALL)
+_SITEMAP_LOC = re.compile(r"<loc\b[^>]*>\s*([^<\s]+)\s*</loc>", re.IGNORECASE)
+_SITEMAP_LASTMOD = re.compile(r"<lastmod\b[^>]*>\s*([^<\s]+)\s*</lastmod>", re.IGNORECASE)
+
+# An entry with no `<lastmod>` must never be dropped by a limit that takes the newest
+# first: nothing is known about its age, and "unknown" is not "old".
+_NO_LASTMOD_SORTS_FIRST = "9999-99-99"
+
+
+@dataclass(frozen=True)
+class SitemapEntry:
+    """One `<url>` from a press-release sitemap.
+
+    `lastmod` is the publisher's LAST-MODIFIED date and is never stored as a statement's
+    date: `release_page_date` already refuses `dateModified` from a release page for
+    exactly that reason — an edit is not a publication. Its only use here is as a skip
+    filter, in the one direction that is safe: a page last EDITED before the window
+    opened cannot have been PUBLISHED inside it.
+    """
+
+    url: str
+    lastmod: str = ""
+
+
+def sitemap_entries(xml: str) -> list[SitemapEntry]:
+    """Every `<url>` in one sitemap, with its `<lastmod>` where it has one. An entry with
+    no `<loc>` is not a URL and is skipped."""
+    out: list[SitemapEntry] = []
+    for block in _SITEMAP_ENTRY.findall(xml):
+        loc = _SITEMAP_LOC.search(block)
+        if loc is None:
+            continue
+        lastmod = _SITEMAP_LASTMOD.search(block)
+        out.append(
+            SitemapEntry(
+                html_lib.unescape(loc.group(1)),
+                lastmod.group(1)[:10] if lastmod is not None else "",
+            )
+        )
+    return out
+
+
+def sitemap_release(
+    entry: SitemapEntry, member_id: str, read_release_page: Callable[[str], str]
+) -> tuple[Release, dict[str, str] | None]:
+    """One sitemap URL as a dated release, read from its OWN page.
+
+    The sitemap supplies the URL and nothing else that may be stored. The date comes
+    from the page's own publication marker — `release_page_date`, the same ladder the
+    list-page rows use — and the title from the page's own heading, both out of the one
+    fetch. A page that cannot be fetched and a page with no publication marker are
+    different failures and say so; NEITHER is kept, because an undated statement cannot
+    be placed inside or outside the window.
+    """
+    blank = Release(member_id, "", "", entry.url, date_precision="none", date_source="none")
+    try:
+        html = read_release_page(entry.url)
+    except (RetryableHTTPError, httpx.HTTPError, OSError) as exc:
+        return blank, {"id": member_id, "url": entry.url, "error": type(exc).__name__}
+    date = release_page_date(html)
+    if date is None:
+        return blank, {"id": member_id, "url": entry.url, "error": "no date on release page"}
+    # A slug is the publisher's own words too, and a statement is never dropped for want
+    # of a label — but a page that gives a heading gives a better one.
+    slug = urlparse(entry.url).path.rstrip("/").rsplit("/", 1)[-1].replace("-", " ")
+    return (
+        Release(
+            member_id,
+            date,
+            release_page_title(html) or slug or entry.url,
+            entry.url,
+            date_precision="day",
+            date_source="release-page",
+        ),
+        None,
+    )
+
+
+def walk_sitemap(
+    row: dict[str, Any],
+    *,
+    read_sitemap: Callable[[str], str],
+    read_release_page: Callable[[str], str] | None = None,
+    window_start: str = WINDOW_START,
+    limit_urls: int = 0,
+) -> MemberResult:
+    """One member's releases enumerated from the sitemap their own site publishes.
+
+    For `K000377` Kelly, whose list page paginates through a JavaScript filter widget
+    that renders no pager at all: his `robots.txt` points at a Yoast sitemap index, and
+    two of its files are nothing but press releases — 1,495 URLs, every one with a
+    `<lastmod>`. That is the whole archive, from the publisher's own index, where the
+    list page could only ever show seven items.
+
+    What this does NOT do is treat the sitemap as a source of dates. `<lastmod>` is used
+    once, as a skip filter in the only safe direction — a page last edited before
+    2023-01-03 cannot have been published inside the window — and an entry with no
+    `<lastmod>` is fetched rather than skipped, because "unknown" is not "old". Every
+    date stored comes from the release page's own publication marker.
+
+    The same release-URL filter applies as to a list page's anchors, so a sitemap entry
+    that is a video page, a subscribe form or another list is refused with its reason
+    rather than collected because a sitemap mentioned it.
+
+    `read_release_page` is optional for the same reason it is in `walk_member`: a caller
+    that cannot spend a fetch per release must still get an answer. Here the answer is
+    that there is nothing to collect — the sitemap carries no date this collector may
+    store — and that is reported rather than guessed around.
+    """
+    member_id = row["id"]
+    list_url = row["press_page"]
+    if read_release_page is None:
+        return MemberResult(
+            member_id,
+            [],
+            0,
+            "undated",
+            "a sitemap carries no date that may be stored — `<lastmod>` is when the page "
+            "was last edited — so every release needs its own page, and this run cannot "
+            "fetch one",
+        )
+
+    found: list[Release] = []
+    failures: list[dict[str, str]] = []
+    refusals: list[dict[str, str]] = []
+    seen: set[str] = set()
+    entries: list[SitemapEntry] = []
+    pages = 0
+    skipped = 0
+
+    for sitemap in row.get("press_sitemap") or []:
+        try:
+            xml = read_sitemap(sitemap)
+        except (RetryableHTTPError, httpx.HTTPError, OSError) as exc:
+            return MemberResult(
+                member_id, found, pages, "error", f"{type(exc).__name__} on {sitemap}"
+            )
+        pages += 1
+        entries.extend(sitemap_entries(xml))
+
+    candidates: list[SitemapEntry] = []
+    for entry in entries:
+        if entry.url in seen or not _has_release_shape(entry.url, list_url):
+            continue
+        seen.add(entry.url)
+        refused = release_url_rejection(entry.url, list_url)
+        if refused is not None:
+            refusals.append({"id": member_id, "url": entry.url, "reason": refused})
+            continue
+        if entry.lastmod and entry.lastmod < window_start:
+            # Edited before the window opened, so published before it too.
+            skipped += 1
+            continue
+        candidates.append(entry)
+
+    candidates.sort(key=lambda e: e.lastmod or _NO_LASTMOD_SORTS_FIRST, reverse=True)
+    in_window = len(candidates)
+    limited = bool(limit_urls) and limit_urls < in_window
+    if limited:
+        candidates = candidates[:limit_urls]
+
+    for entry in candidates:
+        release, failure = sitemap_release(entry, member_id, read_release_page)
+        if failure is not None:
+            failures.append(failure)
+            continue
+        if date_upper_bound(release.date) >= window_start:
+            found.append(release)
+        else:
+            # `<lastmod>` said it might be in the window and the page's own publication
+            # date says it is not. The page wins — it is the only date here that means
+            # "published".
+            skipped += 1
+
+    detail = (
+        f"{len(entries)} URL(s) in {pages} sitemap(s); {skipped} outside the window; "
+        f"{in_window} to read"
+    )
+    result = MemberResult(
+        member_id,
+        found,
+        pages,
+        "limit" if limited else "sitemap",
+        f"stopped at {limit_urls} of {detail}" if limited else detail,
+    )
+    result.date_failures = failures
+    result.release_page_fetches = len(candidates)
+    result.url_rejections = refusals
+    result.page2_method = "sitemap"
+    result.page2_url = (row.get("press_sitemap") or [""])[0]
+    return result
 
 
 # --- configuration --------------------------------------------------------------------
@@ -1454,6 +1695,14 @@ def _read_page(url: str) -> str:
     ).text
 
 
+def _read_sitemap(url: str) -> str:
+    """A sitemap through the same cache and the same 1/s host throttle as everything
+    else. Stored as `xml` so a sitemap is not filed on disk as a page."""
+    return cache.fetch(
+        CACHE_SOURCE, url, ext="xml", ttl_hours=CACHE_TTL_HOURS, accept_status=(200, 301, 302)
+    ).text
+
+
 def run(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="ingest statements-press",
@@ -1492,13 +1741,23 @@ def run(argv: list[str] | None = None) -> int:
 
     results: list[MemberResult] = []
     for n, row in enumerate(accepted, start=1):
-        result = walk_member(
-            row,
-            read_page=_read_page,
-            # `--index-only` is the no-fetch path, so it leaves an undated anchor undated.
-            read_release_page=None if args.index_only else _read_page,
-            limit_pages=args.limit_pages,
-        )
+        # `--index-only` is the no-fetch path, so it leaves an undated anchor undated.
+        read_release_page = None if args.index_only else _read_page
+        if row.get("press_sitemap"):
+            # The row's list page cannot be paged (`K000377`), and the site publishes its
+            # own index of the archive. Same filter, same throttle, same record shape.
+            result = walk_sitemap(
+                row,
+                read_sitemap=_read_sitemap,
+                read_release_page=read_release_page,
+            )
+        else:
+            result = walk_member(
+                row,
+                read_page=_read_page,
+                read_release_page=read_release_page,
+                limit_pages=args.limit_pages,
+            )
         results.append(result)
         flag = "" if result.complete else f"  <-- {result.stopped}: {result.detail}"
         cost = (

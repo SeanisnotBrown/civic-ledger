@@ -867,6 +867,345 @@ def test_an_undatable_release_is_not_fetched_twice():
     assert result.stopped == "repeat"
 
 
+# --- a press-release sitemap as the URL source (owner ruling, 2026-10-15) ------------
+
+KELLY_LIST = "https://www.kelly.senate.gov/newsroom/press-releases/"
+KELLY_SITEMAP = "https://www.kelly.senate.gov/press_releases-sitemap.xml"
+
+
+def _kelly_url(slug: str) -> str:
+    return f"{KELLY_LIST}{slug}/"
+
+
+# Yoast's real shape, trimmed: <loc> + <lastmod>, and one entry with no <lastmod>.
+SITEMAP_XML = f"""<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url><loc>{_kelly_url('kelly-on-the-newest-thing')}</loc>
+ <lastmod>2026-10-13T17:31:21+00:00</lastmod></url>
+<url><loc>{_kelly_url('kelly-on-a-thing-from-2022')}</loc>
+ <lastmod>2022-11-02T10:00:00+00:00</lastmod></url>
+<url><loc>{_kelly_url('kelly-on-a-thing-with-no-lastmod')}</loc></url>
+<url><loc>{_kelly_url('kelly-on-a-thing-edited-late')}</loc>
+ <lastmod>2026-09-01T00:00:00+00:00</lastmod></url>
+<url><lastmod>2026-10-01T00:00:00+00:00</lastmod></url>
+</urlset>
+"""
+
+RELEASE_PAGE_WITH_DATE = (
+    '<html><head><title>A Release - Senator Mark Kelly</title></head><body>'
+    '<h1>Kelly Introduces The Thing That Happened</h1>'
+    '<script type="application/ld+json">{{"@type":"Article",'
+    '"datePublished":"{date}T17:31:21+00:00","dateModified":"2026-10-14T00:00:00+00:00"}}</script>'
+    "<p>WASHINGTON, D.C. - Senator Mark Kelly introduced the thing today, which is a "
+    "paragraph long enough to pass the body floor and be stored as the statement.</p>"
+    "</body></html>"
+)
+
+
+def _kelly_row(**over) -> dict:
+    return {
+        **_row("K000377", press_page=KELLY_LIST, name="Mark Kelly"),
+        "press_sitemap": [KELLY_SITEMAP],
+        **over,
+    }
+
+
+def _sitemap_reader(xml: str = SITEMAP_XML):
+    def read(_url: str) -> str:
+        return xml
+
+    return read
+
+
+def _release_reader(
+    dates: dict[str, str], *, fail: tuple[str, ...] = (), undated: tuple[str, ...] = ()
+):
+    """A release-page reader keyed by slug, so a test reads like the sitemap does."""
+    read_urls: list[str] = []
+
+    def read(url: str) -> str:
+        read_urls.append(url)
+        slug = url.rstrip("/").rsplit("/", 1)[-1]
+        if slug in fail:
+            raise httpx.ConnectError("the release page could not be reached")
+        if slug in undated:
+            return "<html><body><p>This page publishes no date marker at all.</p></body></html>"
+        return RELEASE_PAGE_WITH_DATE.format(date=dates[slug])
+
+    read.urls = read_urls  # type: ignore[attr-defined]
+    return read
+
+
+def test_a_sitemap_is_read_for_its_urls_and_their_lastmod():
+    entries = press.sitemap_entries(SITEMAP_XML)
+    assert [(e.url.rstrip("/").rsplit("/", 1)[-1], e.lastmod) for e in entries] == [
+        ("kelly-on-the-newest-thing", "2026-10-13"),
+        ("kelly-on-a-thing-from-2022", "2022-11-02"),
+        ("kelly-on-a-thing-with-no-lastmod", ""),
+        ("kelly-on-a-thing-edited-late", "2026-09-01"),
+    ]
+    # The fifth <url> has no <loc>, so it is not a URL.
+    assert len(entries) == 4
+
+
+def test_a_lastmod_before_the_window_is_skipped_without_a_fetch():
+    """The one safe direction: a page last EDITED before 2023-01-03 cannot have been
+    PUBLISHED inside the window, so it costs nothing to skip."""
+    read = _release_reader(
+        {
+            "kelly-on-the-newest-thing": "2026-10-13",
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        }
+    )
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(), read_release_page=read
+    )
+    assert not any("2022" in url for url in read.urls)
+    assert len(result.releases) == 3
+    assert "1 outside the window" in result.detail
+    assert result.stopped == "sitemap"
+    assert result.complete is True
+
+
+def test_a_missing_lastmod_is_fetched_rather_than_skipped():
+    """"Unknown" is not "old". An entry with no `<lastmod>` is read, and it sorts FIRST
+    so a limit that takes the newest can never drop it."""
+    read = _release_reader(
+        {
+            "kelly-on-the-newest-thing": "2026-10-13",
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        }
+    )
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(), read_release_page=read, limit_urls=1
+    )
+    assert [u.rstrip("/").rsplit("/", 1)[-1] for u in read.urls] == [
+        "kelly-on-a-thing-with-no-lastmod"
+    ]
+    assert [r.date for r in result.releases] == ["2026-05-04"]
+    assert result.stopped == "limit"
+    assert result.complete is False
+    assert "stopped at 1 of" in result.detail
+
+
+def test_the_pages_own_date_beats_a_lastmod_that_said_it_was_in_the_window():
+    """A page edited in 2026 and published in 2022 is OUT of the window. `<lastmod>` only
+    ever gets a release considered; the publication date decides."""
+    read = _release_reader(
+        {
+            "kelly-on-the-newest-thing": "2022-12-01",
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        }
+    )
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(), read_release_page=read
+    )
+    # Walk order is newest `lastmod` first, with the no-`lastmod` entry ahead of all of
+    # them; the run sorts the member's file by the dates that were actually read.
+    assert [r.date for r in result.releases] == ["2026-05-04", "2026-09-01"]
+    assert "2 outside the window" in result.detail
+
+
+def test_a_lastmod_is_never_stored_on_the_record():
+    """The rule this exists to keep: `dateModified` is refused from a release page, and
+    `<lastmod>` is the same field by another name."""
+    read = _release_reader({"kelly-on-the-newest-thing": "2026-10-07"})
+    result = press.walk_sitemap(
+        _kelly_row(press_sitemap=[KELLY_SITEMAP]),
+        read_sitemap=_sitemap_reader(
+            f"<urlset><url><loc>{_kelly_url('kelly-on-the-newest-thing')}</loc>"
+            "<lastmod>2026-10-13T00:00:00+00:00</lastmod></url></urlset>"
+        ),
+        read_release_page=read,
+    )
+    release = result.releases[0]
+    assert (release.date, release.date_precision, release.date_source) == (
+        "2026-10-07",
+        "day",
+        "release-page",
+    )
+    record = press.statement_record(release, "body")
+    assert "2026-10-13" not in json.dumps(record)
+    assert "lastmod" not in json.dumps(record)
+
+
+def test_a_sitemap_url_with_no_publication_marker_is_a_failure_never_a_keep():
+    read = _release_reader(
+        {
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        },
+        undated=("kelly-on-the-newest-thing",),
+    )
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(), read_release_page=read
+    )
+    assert [f["error"] for f in result.date_failures] == ["no date on release page"]
+    assert len(result.releases) == 2
+
+
+def test_a_sitemap_url_that_cannot_be_fetched_is_a_different_failure():
+    read = _release_reader(
+        {
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        },
+        fail=("kelly-on-the-newest-thing",),
+    )
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(), read_release_page=read
+    )
+    assert [f["error"] for f in result.date_failures] == ["ConnectError"]
+
+
+def test_a_sitemap_that_cannot_be_fetched_stops_that_row_and_says_so():
+    def boom(_url: str) -> str:
+        raise httpx.ConnectError("refused")
+
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=boom, read_release_page=_release_reader({})
+    )
+    assert result.stopped == "error"
+    assert "ConnectError" in result.detail and KELLY_SITEMAP in result.detail
+    assert result.complete is False
+
+
+def test_the_release_filter_applies_to_sitemap_urls_too():
+    """A sitemap mentioning a video page does not make it a statement."""
+    xml = (
+        "<urlset>"
+        f"<url><loc>{KELLY_LIST}multimedia/watch/a-clip/</loc></url>"
+        f"<url><loc>{_kelly_url('kelly-on-the-newest-thing')}</loc></url>"
+        "<url><loc>https://example.com/off-host/a-release/</loc></url>"
+        "</urlset>"
+    )
+    read = _release_reader({"kelly-on-the-newest-thing": "2026-10-07"})
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(xml), read_release_page=read
+    )
+    assert len(result.releases) == 1
+    assert [e["url"] for e in result.url_rejections] == [f"{KELLY_LIST}multimedia/watch/a-clip/"]
+    assert "`multimedia` path segment" in result.url_rejections[0]["reason"]
+    # Off-host was never a candidate, so it is not a refusal to report either.
+    assert not any("example.com" in url for url in read.urls)
+
+
+def test_the_same_url_in_two_sitemaps_is_read_once():
+    row = _kelly_row(press_sitemap=[KELLY_SITEMAP, f"{KELLY_SITEMAP}2"])
+    read = _release_reader(
+        {
+            "kelly-on-the-newest-thing": "2026-10-13",
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        }
+    )
+    result = press.walk_sitemap(row, read_sitemap=_sitemap_reader(), read_release_page=read)
+    assert result.pages_read == 2
+    assert len(read.urls) == 3
+    assert len(result.releases) == 3
+
+
+def test_without_a_release_page_reader_a_sitemap_row_reports_why_it_collected_nothing():
+    """`--index-only` cannot spend a fetch per release, and a sitemap carries no date
+    that may be stored. So the answer is "nothing", with the reason."""
+    result = press.walk_sitemap(_kelly_row(), read_sitemap=_sitemap_reader())
+    assert (result.stopped, result.releases) == ("undated", [])
+    assert "`<lastmod>` is when the page was last edited" in result.detail
+    assert result.complete is False
+
+
+def test_a_sitemap_walk_records_the_sitemap_as_how_it_found_its_urls():
+    """The report's "how page 2 was found" column would otherwise read `none`, which the
+    column documents as "the walk ended on page one" — not true here."""
+    read = _release_reader(
+        {
+            "kelly-on-the-newest-thing": "2026-10-13",
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2026-09-01",
+        }
+    )
+    result = press.walk_sitemap(
+        _kelly_row(), read_sitemap=_sitemap_reader(), read_release_page=read
+    )
+    assert (result.page2_method, result.page2_url) == ("sitemap", KELLY_SITEMAP)
+    assert result.release_page_fetches == 3
+
+
+def test_a_row_with_no_sitemap_urls_at_all_reads_nothing():
+    result = press.walk_sitemap(
+        _kelly_row(press_sitemap=[]),
+        read_sitemap=_sitemap_reader(),
+        read_release_page=_release_reader({}),
+    )
+    assert (result.pages_read, result.releases, result.stopped) == (0, [], "sitemap")
+
+
+# --- the title a release page gives itself --------------------------------------------
+
+
+@pytest.mark.parametrize(
+    ("html", "expected", "why"),
+    [
+        (
+            '<h1>Kelly Introduces The Thing</h1><title>Kelly Introduces The Thing - Senator'
+            " Mark Kelly</title>",
+            "Kelly Introduces The Thing",
+            "`<h1>` carries the headline alone; the other two carry the site name too",
+        ),
+        (
+            '<meta property="og:title" content="A Headline - Senator Mark Kelly" />',
+            "A Headline - Senator Mark Kelly",
+            "a headline with a suffix beats no headline",
+        ),
+        ("<title>A Page Title</title>", "A Page Title", "last resort"),
+        ("<h1>  Spread   over\n lines  </h1>", "Spread over lines", "one line, one space"),
+        ("<h1></h1><title>A Page Title</title>", "A Page Title", "an empty h1 is no title"),
+        ('<meta property="og:title" content="" /><title>A Page Title</title>', "A Page Title", ""),
+        ("<h1><span>Nested</span> Markup</h1>", "Nested Markup", "tags come out"),
+        ("<title></title>", "", "nothing to take"),
+        ("<html><body><p>No heading at all.</p></body></html>", "", "nothing to take"),
+    ],
+)
+def test_the_title_a_release_page_gives_itself(html, expected, why):
+    assert press.release_page_title(html) == expected, why
+
+
+def test_a_page_with_no_heading_falls_back_to_the_publishers_own_slug():
+    """Not invented — the publisher's own words out of their own URL. A statement is
+    never dropped for want of a label."""
+    entry = press.SitemapEntry(_kelly_url("kelly-introduces-the-thing"), "2026-10-13")
+    release, failure = press.sitemap_release(
+        entry,
+        "K000377",
+        lambda _url: '<meta name="date" content="2026-10-07">',
+    )
+    assert failure is None
+    assert release.title == "kelly introduces the thing"
+
+
+def test_the_sitemap_row_in_the_owners_list_is_kelly_alone():
+    """Read from the owner's own file, as data: the field is set on one row, with the
+    ratification recorded, and his `owner_checked` is untouched."""
+    rows = yaml.safe_load(
+        (press.repo_root() / "data" / "config" / "statement-sources.yaml").read_text(
+            encoding="utf-8"
+        )
+    )["members"]
+    with_sitemap = [r for r in rows if r.get("press_sitemap")]
+    assert [r["id"] for r in with_sitemap] == ["K000377"]
+    kelly = with_sitemap[0]
+    assert kelly["press_sitemap"] == [
+        "https://www.kelly.senate.gov/press_releases-sitemap.xml",
+        "https://www.kelly.senate.gov/press_releases-sitemap2.xml",
+    ]
+    assert "owner-ratified 2026-10-15" in kelly["press_sitemap_source"]
+    assert kelly["owner_checked"] is True
+    assert all(url.startswith("https://www.kelly.senate.gov/") for url in kelly["press_sitemap"])
+
+
 # --- which hrefs are releases ---------------------------------------------------------
 
 
@@ -2314,6 +2653,55 @@ def test_a_page_read_goes_through_the_disk_cache(monkeypatch):
     assert seen["ttl_hours"] == press.CACHE_TTL_HOURS
     # A press list that has moved must not read as an unreadable page.
     assert 301 in seen["accept_status"] and 302 in seen["accept_status"]
+
+
+def test_a_sitemap_read_goes_through_the_disk_cache_as_xml(monkeypatch):
+    """Same cache, same 7-day TTL, same 1/s host throttle as every other fetch — and
+    filed as `xml`, so a sitemap is not stored on disk as a page."""
+    seen: dict = {}
+
+    class _Response:
+        text = "<urlset></urlset>"
+
+    def fake_fetch(source: str, url: str, **kwargs):
+        seen.update({"source": source, "url": url, **kwargs})
+        return _Response()
+
+    monkeypatch.setattr(press.cache, "fetch", fake_fetch)
+    assert press._read_sitemap(KELLY_SITEMAP) == "<urlset></urlset>"
+    assert seen["source"] == press.CACHE_SOURCE
+    assert seen["ext"] == "xml"
+    assert seen["ttl_hours"] == press.CACHE_TTL_HOURS
+
+
+def test_the_run_collects_a_sitemap_row_through_the_sitemap_path(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+):
+    """`K000377` end to end: the sitemap supplies the URLs, each release is dated from
+    its own page, and the record that lands is the shape the pre-filter reads."""
+    _sources_yaml(tmp_path / "data", [_kelly_row()])
+    monkeypatch.setattr(press, "repo_root", lambda: tmp_path)
+    monkeypatch.setattr(press, "_read_sitemap", _sitemap_reader())
+    monkeypatch.setattr(
+        press,
+        "_read_page",
+        _release_reader(
+            {
+                "kelly-on-the-newest-thing": "2026-10-13",
+                "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+                "kelly-on-a-thing-edited-late": "2026-09-01",
+            }
+        ),
+    )
+    assert press.run([]) == 0
+    statements = _statements(tmp_path, "K000377")["statements"]
+    assert [s["date"] for s in statements] == ["2026-10-13", "2026-09-01", "2026-05-04"]
+    assert statements[0]["title"] == "Kelly Introduces The Thing That Happened"
+    assert statements[0]["segments"][0].startswith("WASHINGTON, D.C.")
+    assert all(s["date_precision"] == "day" for s in statements)
+    walk = _index(tmp_path)["walks"][0]
+    assert (walk["stopped"], walk["page2_method"]) == ("sitemap", "sitemap")
+    assert prefilter.run_prefilter(statements)["statements_kept"] >= 1
 
 
 def test_the_cli_routes_to_the_press_collector(monkeypatch):

@@ -378,6 +378,159 @@ def test_heinrichs_ordinal_dates_are_read_and_stripped_from_his_titles():
     assert not any("2026" in r.title for r in releases)
 
 
+# --- the permalink date (owner decision 5) --------------------------------------------
+
+# `S001185` Sewell, `R000622` Riley and `W000830` Whitesides, measured 2026-10-14: the
+# list prints the title and nothing else, and the only date is the one in the URL.
+PERMALINK_ONLY = """
+<div class="listing">
+ <a href="/2026/10/rep-sewell-leads-a-bipartisan-letter-to-the-mexican-government">
+  Rep. Sewell Leads Bipartisan Letter To The Mexican Government</a>
+ <a href="/2026/9/rep-sewell-marks-25-years-since-the-september-11-attacks">
+  Rep. Sewell Marks 25 Years Since The September 11 Terrorist Attacks</a>
+</div>
+"""
+
+
+@pytest.mark.parametrize(
+    ("path", "expected"),
+    [
+        ("/2026/06/10/a-slug", ("2026-06-10", "day")),
+        ("/2026/6/10/a-slug", ("2026-06-10", "day")),
+        ("/2026/9/a-slug", ("2026-09", "month")),
+        ("/2026/09/a-slug", ("2026-09", "month")),
+        ("/news/2023/01/03/a-slug", ("2023-01-03", "day")),
+        ("/2026/12/31/a-slug", ("2026-12-31", "day")),
+        # Refused, with no fallback guess: an out-of-range month or day is not a date,
+        # and repairing it would invent one.
+        ("/2026/13/05/a-slug", None),
+        ("/2026/13/a-slug", None),
+        ("/2026/06/32/a-slug", None),
+        ("/2026/00/a-slug", None),
+        ("/2026/06/00/a-slug", None),
+        # Not a date at all.
+        ("/media/press-releases/a-slug", None),
+        ("/2026/1234/a-slug", None),
+        ("/1999/06/10/a-slug", None),
+    ],
+)
+def test_the_permalink_date_and_what_it_refuses(path, expected):
+    assert press.permalink_date(f"https://x.house.gov{path}") == expected
+
+
+def test_a_month_only_permalink_is_never_written_as_a_full_day_date():
+    """Owner decision 5: stored verbatim, NEVER padded to the 1st. A padded date would put
+    a day on the record the publisher never printed, and a day is what a statement is
+    matched against a vote by."""
+    date, precision = press.permalink_date("https://x.house.gov/2026/9/a-slug")
+    assert date == "2026-09"
+    assert precision == "month"
+    assert len(date) == 7
+    releases = press.extract_releases(
+        PERMALINK_ONLY, "https://sewell.house.gov/press-releases", "S001185"
+    )
+    assert [(r.date, r.date_precision) for r in releases] == [
+        ("2026-10", "month"),
+        ("2026-09", "month"),
+    ]
+    assert not any(len(r.date) == 10 for r in releases)
+
+
+def test_a_permalink_dates_a_release_the_page_leaves_undated():
+    """The rows this exists for: 10 release links on `S001185` and 20 on `W000830`, every
+    one of them undated on the page and dated in its own URL."""
+    html = (
+        '<a href="/2026/10/13/a-release-with-its-date-in-the-url">'
+        "A Release With Its Date Only In The URL</a>"
+    )
+    releases = press.extract_releases(html, "https://x.house.gov/press-releases", "X")
+    assert [(r.date, r.date_precision) for r in releases] == [("2026-10-13", "day")]
+
+
+def test_a_date_on_the_page_still_wins_over_the_permalink():
+    """The permalink is a FALLBACK. (Which of the two wins when both exist and disagree is
+    step 3's question — the release page's own date — and is not settled here.)"""
+    html = (
+        '<a href="/2026/10/13/a-release-dated-twice">A Release Dated On The Page And In '
+        "Its URL</a><span>September 29, 2026</span>"
+    )
+    releases = press.extract_releases(html, "https://x.house.gov/press-releases", "X")
+    assert [(r.date, r.date_precision) for r in releases] == [("2026-09-29", "day")]
+
+
+def test_a_release_with_no_date_anywhere_is_still_skipped():
+    """The permalink fallback must not become a guess: a URL carrying no date leaves the
+    release undated, and an undated release cannot be placed inside the window."""
+    html = (
+        '<a href="/media/press-releases/no-date-in-this-url-at-all">'
+        "A Release With No Date On The Page Or In Its URL</a>"
+    )
+    assert press.extract_releases(html, "https://x.house.gov/media/press-releases", "X") == []
+
+
+# --- the window, compared by upper bound ----------------------------------------------
+
+
+@pytest.mark.parametrize(
+    ("date", "expected"),
+    [
+        ("2023-01", "2023-01-31"),
+        ("2023-02", "2023-02-28"),
+        ("2024-02", "2024-02-29"),
+        ("2026-09", "2026-09-30"),
+        ("2023-01-03", "2023-01-03"),
+    ],
+)
+def test_the_upper_bound_of_a_stored_date(date, expected):
+    assert press.date_upper_bound(date) == expected
+
+
+def test_a_month_only_january_2023_release_is_in_the_window():
+    """The trap this is written against: compared as the bare string it stores,
+    "2023-01" sorts BEFORE the window start "2023-01-03", so a release the publisher
+    dated inside the window would be dropped as too old."""
+    html = (
+        '<a href="/2023/1/a-release-from-the-first-month-of-the-window">'
+        "A Release From The First Month Of The Window</a>"
+    )
+    releases = press.extract_releases(html, "https://x.house.gov/press-releases", "X")
+    assert [(r.date, r.date_precision) for r in releases] == [("2023-01", "month")]
+    result = press.walk_member(_row(), read_page=_pages(html), window_start="2023-01-03")
+    assert [r.date for r in result.releases] == ["2023-01"]
+
+
+def test_a_page_of_month_only_window_dates_does_not_stop_the_walk_early():
+    """The same trap in the OTHER comparison: the walk-stop takes the newest date on the
+    page, so a page of month-only January 2023 dates would read as entirely out of
+    window and stop the walk one page early."""
+    page_one = (
+        '<a href="/2023/1/a-release-from-the-first-month-of-the-window">'
+        "A Release From The First Month Of The Window</a>"
+    )
+    page_two = (
+        '<a href="/2022/12/a-release-from-before-the-window-opened">'
+        "A Release From Before The Window Opened</a>"
+    )
+    read = _pages(page_one, page_two)
+    result = press.walk_member(_row(), read_page=read, window_start="2023-01-03")
+    assert result.pages_read == 2
+    assert [r.date for r in result.releases] == ["2023-01"]
+    assert result.stopped == "window"
+    assert result.complete is True
+
+
+def test_a_month_only_december_2022_release_is_out_of_the_window():
+    html = (
+        '<a href="/2022/12/a-release-from-before-the-window-opened">'
+        "A Release From Before The Window Opened</a>"
+    )
+    releases = press.extract_releases(html, "https://x.house.gov/press-releases", "X")
+    assert [r.date for r in releases] == ["2022-12"]
+    result = press.walk_member(_row(), read_page=_pages(html), window_start="2023-01-03")
+    assert result.releases == []
+    assert result.stopped == "window"
+
+
 # --- which hrefs are releases ---------------------------------------------------------
 
 

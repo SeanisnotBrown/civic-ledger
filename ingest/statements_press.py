@@ -99,6 +99,7 @@ the committed artifact.
 from __future__ import annotations
 
 import argparse
+import calendar
 import html as html_lib
 import json
 import re
@@ -203,6 +204,10 @@ class Release:
     date: str
     title: str
     url: str
+    # "day", or "month" for a date the publisher printed as a month only — `/2026/9/`.
+    # Owner decision 5: month-only precision is stored verbatim, never padded to the 1st,
+    # and is never matched against a single day's vote.
+    date_precision: str = "day"
 
 
 def flatten(html: str) -> str:
@@ -281,6 +286,55 @@ def nearest_date(flat: str, start: int, end: int) -> str | None:
 # found zero items on pages holding nine and ten.
 _DATED_PERMALINK = re.compile(r"/20\d\d/\d{1,2}/(?:\d{1,2}/)?[^/]")
 
+# The date a dated permalink carries. On the rows measured 2026-10-14 it is the ONLY date
+# on the page: `S001185` Sewell, `R000622` Riley, `W000830` Whitesides and `L000585`
+# LaHood print nothing but the URL.
+_PERMALINK_DATE = re.compile(r"/(20\d\d)/(\d{1,2})(?:/(\d{1,2}))?(?:/|$)")
+
+
+def permalink_date(url: str) -> tuple[str, str] | None:
+    """The publisher's own date out of the URL path, with its precision, or None.
+
+    Owner decision 5, 2026-10-14: a permalink date counts as the release's date. Two
+    shapes, and the second is why precision is carried at all:
+
+      * `/2026/06/10/slug` — a day, stored as `2026-06-10`;
+      * `/2026/9/slug` — a MONTH, stored as `2026-09` and NEVER padded to the 1st.
+        Padding would put a day on the record the publisher never printed, and a day is
+        what a statement is matched against a vote by.
+
+    A month outside 1-12 or a day outside 1-31 is REFUSED, not repaired: `/2026/13/` is
+    not a date, and guessing which half the publisher fumbled would invent one. There is
+    no fallback guess — the release is left undated and skipped.
+    """
+    match = _PERMALINK_DATE.search(urlparse(url).path)
+    if match is None:
+        return None
+    year, month, day = match.group(1), int(match.group(2)), match.group(3)
+    if not 1 <= month <= 12:
+        return None
+    if day is None:
+        return f"{year}-{month:02d}", "month"
+    if not 1 <= int(day) <= 31:
+        return None
+    return f"{year}-{month:02d}-{int(day):02d}", "day"
+
+
+def date_upper_bound(date: str) -> str:
+    """The LAST day a stored date could mean: a day-precision date is itself, and a
+    month-only `2023-01` is `2023-01-31`.
+
+    BOTH window comparisons go through this. Compared as the bare string it stores,
+    month-only `2023-01` sorts BEFORE the window start `2023-01-03` — so a release the
+    publisher dated inside the window would be dropped as too old, and a whole page of
+    them would stop the walk one page early. The upper bound is the only comparison that
+    cannot throw away a release that might be in the window.
+    """
+    if len(date) == 7:
+        return f"{date}-{calendar.monthrange(int(date[:4]), int(date[5:7]))[1]:02d}"
+    return date
+
+
 # A pager link is not a release, and it passes every other test below: it is on the host,
 # under the list path, and sits next to the dates of the items it pages past.
 _PAGER = re.compile(r"/page/\d+/?$|[?&](?:page|Page)=\d+")
@@ -326,9 +380,11 @@ def _is_release_url(candidate: str, list_url: str) -> bool:
 def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
     """Every dated release one list page announces, in page order and deduplicated.
 
-    An anchor with no date near it is skipped rather than dated by guesswork: an undated
-    row cannot be placed inside or outside the collection window, and a statement whose
-    date is a guess cannot be compared against a vote.
+    A date printed near the anchor wins. Failing that the publisher's own permalink date
+    is read (owner decision 5), carrying its precision. An anchor with neither is skipped
+    rather than dated by guesswork: an undated row cannot be placed inside or outside the
+    collection window, and a statement whose date is a guess cannot be compared against a
+    vote.
     """
     flat = flatten(html)
     out: list[Release] = []
@@ -341,8 +397,12 @@ def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
         if url in seen or not _is_release_url(url, list_url):
             continue
         date = nearest_date(flat, match.start(), match.end())
+        precision = "day"
         if date is None:
-            continue
+            from_url = permalink_date(url)
+            if from_url is None:
+                continue
+            date, precision = from_url
         seen.add(url)
         # A title whose anchor swallowed the date reads "September 29, 2026 Sheehy's
         # Protect America Act ..."; the date is already a field of its own.
@@ -352,6 +412,7 @@ def extract_releases(html: str, list_url: str, member_id: str) -> list[Release]:
                 date=date,
                 title=_LEADING_DATE.sub("", title).strip() or title,
                 url=url,
+                date_precision=precision,
             )
         )
     return out
@@ -558,9 +619,12 @@ def walk_member(
             )
         for release in fresh:
             seen.add(release.url)
-            if release.date >= window_start:
+            # By UPPER bound in both places: a month-only `2023-01` is in the window,
+            # and a page of month-only dates must not stop the walk early. See
+            # `date_upper_bound`.
+            if date_upper_bound(release.date) >= window_start:
                 found.append(release)
-        if max(r.date for r in fresh) < window_start:
+        if max(date_upper_bound(r.date) for r in fresh) < window_start:
             return MemberResult(member_id, found, pages, "window")
 
     return MemberResult(member_id, found, pages, "limit", f"stopped at {ceiling} pages")

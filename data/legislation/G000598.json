@@ -407,6 +407,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10642-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-15",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10642",
+      "title": "Stop the Settlements Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1065-119",
       "congress": 119,
       "enacted_action": null,
@@ -7418,12 +7427,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 824,
-    "sponsored": 47
+    "cosponsored": 825,
+    "sponsored": 48
   },
   "member_id": "G000598",
   "source_url": "https://api.congress.gov/v3/member/G000598/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10820-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-15",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10820",
+      "title": "To require the disclosure of supervisory records of certain financial institutions that relate to Jeffrey Epstein, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr1164-119",

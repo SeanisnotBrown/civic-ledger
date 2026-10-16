@@ -2982,7 +2982,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 331,
-    "sponsored": 31
+    "sponsored": 32
   },
   "member_id": "H001101",
   "source_url": "https://api.congress.gov/v3/member/H001101/sponsored-legislation",
@@ -3004,6 +3004,15 @@
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10440",
       "title": "REACH Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10822-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-15",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10822",
+      "title": "To restrict the usage of automated license plate reader system by governmental entities, and for other purposes."
     },
     {
       "became_law": false,

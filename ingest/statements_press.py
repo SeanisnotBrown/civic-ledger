@@ -133,7 +133,7 @@ import json
 import re
 from collections.abc import Callable
 from dataclasses import asdict, dataclass, field, replace
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 from urllib.parse import urljoin, urlparse
@@ -239,6 +239,11 @@ _DATE_LONG = re.compile(
     re.IGNORECASE,
 )
 _DATE_ISO = re.compile(r"\b(20\d\d)-(\d\d)-(\d\d)\b")
+# `MM.DD.YYYY`, US order. Measured 2026-10-19 on `S001181` Shaheen, whose list prints
+# `<time>10.05.2023</time>` above each title and nothing else: unread, the nearest date
+# was one in the teaser text below ("designate October 4, 2023"), and three of her
+# releases took it. Lookarounds rather than `\b`, so a version string's tail is not one.
+_DATE_DOTTED = re.compile(r"(?<![\d.])(\d{1,2})\.(\d{1,2})\.(20\d\d)(?![\d.])")
 
 
 @dataclass(frozen=True)
@@ -273,30 +278,40 @@ def _iso_from_long(match: re.Match[str]) -> str:
     return f"{match.group(3)}-{month:02d}-{int(match.group(2)):02d}"
 
 
+def _dates_in(window: str) -> list[tuple[int, int, str]]:
+    """Every date in a window as (offset, rank, ISO date). Rank breaks a tie at the same
+    offset: ISO first, then the printed month name, then the dotted form. A dotted date
+    that is not a real calendar day is not a date at all, so it is not returned."""
+    found = [
+        (m.start(), 0, f"{m.group(1)}-{m.group(2)}-{m.group(3)}")
+        for m in _DATE_ISO.finditer(window)
+    ]
+    found += [(m.start(), 1, _iso_from_long(m)) for m in _DATE_LONG.finditer(window)]
+    for m in _DATE_DOTTED.finditer(window):
+        dotted = _real_date(int(m.group(3)), int(m.group(1)), int(m.group(2)))
+        if dotted is not None:
+            found.append((m.start(), 2, dotted))
+    return found
+
+
 def _first_date(window: str) -> tuple[int, str] | None:
     """The first date in a window, with its offset. ISO wins over the printed form at the
     same position: `<time datetime="2026-10-01">October 1, 2026</time>` carries both, and
     the machine-readable one is the publisher's own."""
-    iso = _DATE_ISO.search(window)
-    long = _DATE_LONG.search(window)
-    if iso is not None and (long is None or iso.start() <= long.start()):
-        return iso.start(), f"{iso.group(1)}-{iso.group(2)}-{iso.group(3)}"
-    if long is not None:
-        return long.start(), _iso_from_long(long)
-    return None
+    found = _dates_in(window)
+    if not found:
+        return None
+    offset, _, date = min(found, key=lambda d: (d[0], d[1]))
+    return offset, date
 
 
 def _last_date(window: str) -> tuple[int, str] | None:
     """The last date in a window, with its offset."""
-    isos = list(_DATE_ISO.finditer(window))
-    longs = list(_DATE_LONG.finditer(window))
-    iso = isos[-1] if isos else None
-    long = longs[-1] if longs else None
-    if iso is not None and (long is None or iso.start() >= long.start()):
-        return iso.start(), f"{iso.group(1)}-{iso.group(2)}-{iso.group(3)}"
-    if long is not None:
-        return long.start(), _iso_from_long(long)
-    return None
+    found = _dates_in(window)
+    if not found:
+        return None
+    offset, _, date = max(found, key=lambda d: (d[0], -d[1]))
+    return offset, date
 
 
 def nearest_date(flat: str, start: int, end: int) -> str | None:
@@ -467,6 +482,10 @@ _ASPX_LIST = "documentquery.aspx"
 # A `${...}` left in an href is a JavaScript template whose loop never ran: markup the
 # renderer handed back as-is, not a page that exists.
 _TEMPLATE_LITERAL = "$" + "{"
+# A `{{...}}` left in an href is the same thing in Handlebars / mustache form. Measured
+# 2026-10-19: `Y000064` Young's list page carries the search widget's result template,
+# `<a href="{{{data.link}}}">`, which the walk took as a release and then could not date.
+_TEMPLATE_BRACES = "{{"
 
 
 def release_url_rejection(candidate: str, list_url: str) -> str | None:
@@ -480,7 +499,8 @@ def release_url_rejection(candidate: str, list_url: str) -> str | None:
         DIFFERENT query is still a release: `H001081` keys every release that way.
       * **an unrendered template literal** — `K000377` Kelly's rendered page carries
         `.../press-releases/${item.link}` under the title "Continue Reading on Medium".
-        That is a template, not a URL, and fetching it would fetch nothing.
+        That is a template, not a URL, and fetching it would fetch nothing. The `{{`
+        form is refused the same way (`Y000064` Young, `{{{data.link}}}`, 2026-10-19).
       * **a `multimedia`, `watch`, `video` or `videos` segment** — `S001181` Shaheen
         lists three `/news/multimedia/watch/<clip>` video pages among her ten "release"
         links. A clip is not the member's words on the record, and its page carries no
@@ -503,6 +523,8 @@ def release_url_rejection(candidate: str, list_url: str) -> str | None:
     """
     if _TEMPLATE_LITERAL in candidate:
         return "an unrendered template literal (`${`) — markup, not a page"
+    if _TEMPLATE_BRACES in candidate:
+        return "an unrendered template placeholder (`{{`) — markup, not a page"
     here, there = urlparse(list_url), urlparse(candidate)
     if there.netloc != here.netloc:
         # Off-host was never a candidate (see `_has_release_shape`), so it is not a
@@ -808,10 +830,71 @@ _TIME_TAG = re.compile(r"<time\b([^>]*)>(.*?)</time>", re.IGNORECASE | re.DOTALL
 # day, so the boundary fails and the date is silently missed. Measured 2026-10-15, three
 # of the five marker families publish exactly that shape.
 _MARKER_ISO = re.compile(r"(20[0-9][0-9])-([0-9]{1,2})-([0-9]{1,2})")
+# A full timestamp that says which clock it is on: `2025-05-12T00:26:46+00:00`, `...Z`.
+_MARKER_TIMESTAMP = re.compile(
+    r"(20[0-9][0-9])-([0-9]{2})-([0-9]{2})[T ]([0-9]{2}):([0-9]{2})(?::([0-9]{2}))?"
+    r"(?:\.[0-9]+)?\s*(Z|[+-][0-9]{2}:?[0-9]{2})"
+)
+
+
+def _second_sunday_of_march(year: int) -> int:
+    first = datetime(year, 3, 1).weekday()  # Monday is 0
+    return 1 + (6 - first) % 7 + 7
+
+
+def _first_sunday_of_november(year: int) -> int:
+    first = datetime(year, 11, 1).weekday()
+    return 1 + (6 - first) % 7
+
+
+def us_eastern_date(utc: datetime) -> str:
+    """The calendar date a naive UTC instant falls on in US Eastern time.
+
+    Stored dates are on Congress's clock, US Eastern, for EVERY member — Arizona's
+    included: a statement is compared against a vote, and the vote is dated in
+    Washington. Measured 2026-10-19: `H000601` Hagerty's release pages publish
+    `"datePublished":"2025-05-12T00:26:46+00:00"` for a release his list and his permalink
+    both date May 11 — 8:26 pm Eastern — and read as UTC that put 42 of his releases a
+    day late; `K000377` Kelly, dated from his release pages alone, had 76 stored that way
+    with nothing to flag them.
+
+    HAND-WRITTEN, deliberately: Windows Python ships no time-zone database
+    (`zoneinfo.ZoneInfo("America/New_York")` raises there), and the owner's rule is no
+    new dependency, so `tzdata` is out. The rule is the one in force since 2007: EDT,
+    UTC-4, from 2:00 local on the second Sunday of March to 2:00 local on the first
+    Sunday of November; EST, UTC-5, otherwise. The window starts in 2023, so it is exact
+    for every date this collector holds. 2:00 EST is 07:00 UTC; 2:00 EDT is 06:00 UTC.
+    """
+    year = utc.year
+    edt_starts = datetime(year, 3, _second_sunday_of_march(year), 7)
+    edt_ends = datetime(year, 11, _first_sunday_of_november(year), 6)
+    hours = 4 if edt_starts <= utc < edt_ends else 5
+    return (utc - timedelta(hours=hours)).date().isoformat()
+
+
+def _timestamp_date(match: re.Match[str]) -> str | None:
+    """A timestamp with an offset, as its US Eastern date; None when it is not a real
+    instant (no such day, or an hour past 23)."""
+    year, month, day, hour, minute = (int(match.group(i)) for i in range(1, 6))
+    if _real_date(year, month, day) is None or hour > 23 or minute > 59:
+        return None
+    zone = match.group(7)
+    local = datetime(year, month, day, hour, minute)
+    if zone == "Z":
+        return us_eastern_date(local)
+    sign = -1 if zone[0] == "-" else 1
+    digits = zone[1:].replace(":", "")
+    offset = timedelta(hours=int(digits[:2]), minutes=int(digits[2:]))
+    return us_eastern_date(local - sign * offset)
 
 
 def _marker_date(value: str) -> str | None:
-    """A date out of one marker's value, validated as a real calendar date."""
+    """A date out of one marker's value, validated as a real calendar date. A timestamp
+    that carries its offset is read on the US Eastern clock (`us_eastern_date`); a bare
+    date, or a time with no offset, is the publisher's own calendar date as printed."""
+    stamp = _MARKER_TIMESTAMP.search(value)
+    if stamp is not None:
+        return _timestamp_date(stamp)
     iso = _MARKER_ISO.search(value)
     if iso is not None:
         return _real_date(int(iso.group(1)), int(iso.group(2)), int(iso.group(3)))

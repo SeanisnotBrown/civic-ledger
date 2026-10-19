@@ -599,6 +599,127 @@ def test_the_marker_order_is_fixed_and_the_first_hit_wins():
 
 
 @pytest.mark.parametrize(
+    ("markup", "expected"),
+    [
+        # `H000601` Hagerty, measured 2026-10-19: 8:26 pm Eastern on May 11. His list and
+        # his permalink `/2025/05/11/` both say May 11; read as UTC it was May 12.
+        ('"datePublished":"2025-05-12T00:26:46+00:00"', "2025-05-11"),
+        # The same instant written with `Z`, and the same with no seconds.
+        ('<meta property="article:published_time" content="2025-05-12T00:26:46Z">', "2025-05-11"),
+        ('"datePublished":"2025-05-12T00:26+00:00"', "2025-05-11"),
+        # `S001185` Sewell / `L000585` LaHood publish midnight Eastern written in UTC:
+        # 04:00Z in summer and 05:00Z in winter. Both stay on the day they name.
+        ('<meta property="article:published_time" content="2026-09-14T04:00:00Z">', "2026-09-14"),
+        ('<meta property="article:published_time" content="2026-01-14T05:00:00Z">', "2026-01-14"),
+        # One hour short of midnight Eastern in winter is still the day before.
+        ('<meta property="article:published_time" content="2026-01-14T04:59:00Z">', "2026-01-13"),
+        # Afternoon UTC is the same day in Washington.
+        ('"datePublished":"2026-10-13T17:31:21.000+00:00"', "2026-10-13"),
+        # A timestamp already on another clock: 23:30 in Arizona (UTC-7) is 02:30 Eastern
+        # the next morning, and Eastern is the clock every member's dates are stored on.
+        ('"datePublished":"2025-07-01T23:30:00-07:00"', "2025-07-02"),
+        # An offset without the colon, and one on the Eastern clock already.
+        ('"datePublished":"2025-07-01T23:30:00-0400"', "2025-07-01"),
+        ('"datePublished":"2025-12-01T23:30:00-05:00"', "2025-12-01"),
+        # No offset: the publisher's own calendar date, as printed, never shifted.
+        ('<meta name="date" content="2026-09-28 00:00:00.0" />', "2026-09-28"),
+        ('<meta name="date" content="2025-05-12T00:26:46">', "2025-05-12"),
+        # A date only, as before.
+        ('<meta name="date" content="2023-10-05">', "2023-10-05"),
+        # Not a real instant: no such day, no such hour, no such minute.
+        ('"datePublished":"2025-02-30T12:00:00Z"', None),
+        ('"datePublished":"2025-05-12T24:10:00Z"', None),
+        ('"datePublished":"2025-05-12T10:61:00Z"', None),
+    ],
+)
+def test_a_release_page_timestamp_is_read_on_the_us_eastern_clock(markup, expected):
+    assert press.release_page_date(markup) == expected
+
+
+@pytest.mark.parametrize(
+    ("utc", "expected"),
+    [
+        # 2025 spring forward: Sunday March 9, 2:00 EST = 07:00 UTC.
+        ("2025-03-09T06:59", "2025-03-09"),  # 01:59 EST
+        ("2025-03-09T07:00", "2025-03-09"),  # 03:00 EDT
+        ("2025-03-10T03:59", "2025-03-09"),  # 23:59 EDT
+        ("2025-03-09T04:59", "2025-03-08"),  # 23:59 EST, the night before
+        # 2025 fall back: Sunday November 2, 2:00 EDT = 06:00 UTC.
+        ("2025-11-02T03:59", "2025-11-01"),  # 23:59 EDT
+        ("2025-11-02T05:59", "2025-11-02"),  # 01:59 EDT
+        ("2025-11-02T06:00", "2025-11-02"),  # 01:00 EST
+        ("2025-11-03T04:59", "2025-11-02"),  # 23:59 EST
+        ("2025-11-03T05:00", "2025-11-03"),  # 00:00 EST
+        # A year whose March and November both start on a Sunday: the 8th and the 1st.
+        ("2026-03-08T07:00", "2026-03-08"),
+        ("2026-11-01T05:59", "2026-11-01"),
+        ("2026-11-02T04:59", "2026-11-01"),
+        # New Year's Eve, late, in winter.
+        ("2026-01-01T04:30", "2025-12-31"),
+    ],
+)
+def test_us_eastern_date_on_both_2025_transition_days(utc, expected):
+    from datetime import datetime
+
+    assert press.us_eastern_date(datetime.fromisoformat(utc)) == expected
+
+
+# `S001181` Shaheen's list, trimmed from the cached page of 2026-10-19: the date is a
+# dotted `<time>` ABOVE each title, and the teaser below carries a date of its own.
+SHAHEEN_LIST = """
+<time class="Heading Heading--time color-cerulean mb-2">10.07.2023</time>
+<a target="_self" href="https://www.shaheen.senate.gov/news/press/shaheen-condemns-hamas">
+ Shaheen Condemns Ongoing Violent Terrorist Attacks by Hamas on Israel </a>
+ (Washington, DC) - U.S. Senator Jeanne Shaheen (D-NH) issued the following statement...
+<time class="Heading Heading--time color-cerulean mb-2">10.05.2023</time>
+<a target="_self" href="https://www.shaheen.senate.gov/news/press/shaheen-collins-laud-passage">
+ Shaheen, Collins Laud Passage of Bipartisan Resolution to Designate Energy Efficiency Day </a>
+ (Washington, DC) - U.S. Senators Jeanne Shaheen (D-NH) and Susan Collins (R-ME) announced
+ their bipartisan resolution to designate October 4, 2023, as Energy Efficiency Day...
+"""
+
+
+def test_a_dotted_list_date_beats_a_date_in_the_teaser():
+    """Measured 2026-10-19: unread, the dotted date lost to "October 4, 2023" in the
+    teaser, and three Shaheen releases were stored on a day the list never gave them."""
+    flat = press.flatten(SHAHEEN_LIST)
+    anchor = flat.index('<a target="_self" href="https://www.shaheen.senate.gov/news/press/shaheen-collins')
+    end = flat.index("</a>", anchor) + len("</a>")
+    assert press.nearest_date(flat, anchor, end) == "2023-10-05"
+    first = flat.index('<a target="_self"')
+    assert press.nearest_date(flat, first, flat.index("</a>", first) + 4) == "2023-10-07"
+
+
+@pytest.mark.parametrize(
+    ("window", "expected"),
+    [
+        ("<time>10.05.2023</time>", "2023-10-05"),
+        ("<time>1.5.2024</time>", "2024-01-05"),
+        # US order: month first. No 13th month, and no February 30th.
+        ("<time>13.05.2023</time>", None),
+        ("<time>02.30.2024</time>", None),
+        # A version string's tail is not a date.
+        ("release v1.10.05.2023 notes", None),
+        ("build 10.05.20231", None),
+    ],
+)
+def test_the_dotted_date_form(window, expected):
+    found = press._first_date(window)
+    assert (found[1] if found else None) == expected
+    last = press._last_date(window)
+    assert (last[1] if last else None) == expected
+
+
+def test_the_first_and_last_date_are_read_across_all_three_forms():
+    """ISO, the printed month name and the dotted form are one ordered list of dates."""
+    window = "2023-10-05 then October 6, 2023 then 10.07.2023"
+    assert press._first_date(window) == (0, "2023-10-05")
+    assert press._last_date(window)[1] == "2023-10-07"
+    assert press._first_date("no date here") is None
+    assert press._last_date("no date here") is None
+
+
+@pytest.mark.parametrize(
     ("path", "expected"),
     [
         ("/2024/02/29/a-slug", ("2024-02-29", "day")),
@@ -1275,6 +1396,12 @@ def test_what_is_never_a_release(candidate, list_url, why):
             "https://www.kelly.senate.gov/newsroom/press-releases/${item.link}",
             "https://www.kelly.senate.gov/newsroom/press-releases/",
             "template literal",
+        ),
+        # `Y000064` Young: the search widget's result template, taken as a release.
+        (
+            "https://www.young.senate.gov/newsroom/press-releases/{{{data.link}}}",
+            "https://www.young.senate.gov/newsroom/press-releases/",
+            "template placeholder",
         ),
         # `S001181` Shaheen lists three of these among her ten "release" links.
         (

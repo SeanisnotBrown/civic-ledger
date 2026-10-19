@@ -1307,24 +1307,57 @@ def test_a_page_with_no_heading_falls_back_to_the_publishers_own_slug():
     assert release.title == "kelly introduces the thing"
 
 
-def test_the_sitemap_row_in_the_owners_list_is_kelly_alone():
-    """Read from the owner's own file, as data: the field is set on one row, with the
-    ratification recorded, and his `owner_checked` is untouched."""
+def test_the_sitemap_rows_in_the_owners_list_are_kelly_and_young_alone():
+    """Read from the owner's own file, as data: the field is set on two rows, each with
+    its ruling recorded, and `owner_checked` is untouched. Only Young ignores `<lastmod>`
+    (owner ruling 2026-10-19); Kelly's still bounds his walk."""
     rows = yaml.safe_load(
         (press.repo_root() / "data" / "config" / "statement-sources.yaml").read_text(
             encoding="utf-8"
         )
     )["members"]
-    with_sitemap = [r for r in rows if r.get("press_sitemap")]
-    assert [r["id"] for r in with_sitemap] == ["K000377"]
-    kelly = with_sitemap[0]
+    with_sitemap = {r["id"]: r for r in rows if r.get("press_sitemap")}
+    assert sorted(with_sitemap) == ["K000377", "Y000064"]
+    kelly, young = with_sitemap["K000377"], with_sitemap["Y000064"]
     assert kelly["press_sitemap"] == [
         "https://www.kelly.senate.gov/press_releases-sitemap.xml",
         "https://www.kelly.senate.gov/press_releases-sitemap2.xml",
     ]
     assert "owner-ratified 2026-10-15" in kelly["press_sitemap_source"]
-    assert kelly["owner_checked"] is True
-    assert all(url.startswith("https://www.kelly.senate.gov/") for url in kelly["press_sitemap"])
+    assert young["press_sitemap"] == [
+        "https://www.young.senate.gov/press_releases-sitemap.xml",
+        "https://www.young.senate.gov/press_releases-sitemap2.xml",
+        "https://www.young.senate.gov/press_releases-sitemap3.xml",
+    ]
+    assert "owner ruling 2026-10-19" in young["press_sitemap_source"]
+    assert "owner ruling 2026-10-19" in young["press_sitemap_ignore_lastmod_source"]
+    assert [r["id"] for r in rows if r.get("press_sitemap_ignore_lastmod")] == ["Y000064"]
+    for row in (kelly, young):
+        assert row["owner_checked"] is True
+        assert all(url.startswith(row["official_site"] + "/") for url in row["press_sitemap"])
+
+
+def test_a_row_can_ignore_lastmod_and_then_every_page_is_read():
+    """`Y000064` Young, owner ruling 2026-10-19: a migration re-stamped every `<lastmod>`,
+    so it does not bound the publication date and may not skip anything. The 2022 entry
+    is fetched, and its own page's date is what takes it out of the window."""
+    read = _release_reader(
+        {
+            "kelly-on-the-newest-thing": "2026-10-13",
+            "kelly-on-a-thing-from-2022": "2023-03-01",
+            "kelly-on-a-thing-with-no-lastmod": "2026-05-04",
+            "kelly-on-a-thing-edited-late": "2022-06-01",
+        }
+    )
+    result = press.walk_sitemap(
+        _kelly_row(press_sitemap_ignore_lastmod=True),
+        read_sitemap=_sitemap_reader(),
+        read_release_page=read,
+    )
+    assert len(read.urls) == 4
+    assert sorted(r.date for r in result.releases) == ["2023-03-01", "2026-05-04", "2026-10-13"]
+    assert "1 outside the window; 4 to read (`<lastmod>` ignored, owner ruling)" in result.detail
+    assert result.stopped == "sitemap"
 
 
 # --- which hrefs are releases ---------------------------------------------------------

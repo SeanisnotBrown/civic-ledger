@@ -90,7 +90,9 @@ on 2026-10-15: the press-release SITEMAP his own site publishes (`press_sitemap`
 source list). `walk_sitemap` reads it for URLs only — `<lastmod>` is when a page was last
 edited, never when it was published, so it is used once as a skip filter and never
 stored — and every date comes from the release page's own publication marker, exactly as
-it does for the rows whose lists print no dates.
+it does for the rows whose lists print no dates. `Y000064` Young joined him by owner
+ruling on 2026-10-19 (a JavaScript numbered pager the renderer does not click), with
+`press_sitemap_ignore_lastmod` set: a migration re-stamped every one of his `<lastmod>`s.
 
 Six stop reasons are recorded per member, because they do not mean the same thing and the
 report must not print one as the other (see `MemberResult.complete`):
@@ -1435,6 +1437,12 @@ def walk_sitemap(
     entries: list[SitemapEntry] = []
     pages = 0
     skipped = 0
+    # Per-row, owner-set: `press_sitemap_ignore_lastmod: true` turns the skip filter off,
+    # for a site whose `<lastmod>` stamps do not even bound the publication date. Owner
+    # ruling 2026-10-19, `Y000064` Young: a migration re-stamped all 2,138 of his entries
+    # 2024-02-21 or later, so his 2023 releases would pass the filter only by luck and
+    # every page is read for its own date instead.
+    use_lastmod = not row.get("press_sitemap_ignore_lastmod")
 
     for sitemap in row.get("press_sitemap") or []:
         try:
@@ -1455,7 +1463,7 @@ def walk_sitemap(
         if refused is not None:
             refusals.append({"id": member_id, "url": entry.url, "reason": refused})
             continue
-        if entry.lastmod and entry.lastmod < window_start:
+        if use_lastmod and entry.lastmod and entry.lastmod < window_start:
             # Edited before the window opened, so published before it too.
             skipped += 1
             continue
@@ -1482,7 +1490,7 @@ def walk_sitemap(
 
     detail = (
         f"{len(entries)} URL(s) in {pages} sitemap(s); {skipped} outside the window; "
-        f"{in_window} to read"
+        f"{in_window} to read" + ("" if use_lastmod else " (`<lastmod>` ignored, owner ruling)")
     )
     result = MemberResult(
         member_id,

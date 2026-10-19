@@ -523,6 +523,20 @@ members:
   official_site: https://www.young.senate.gov
   press_page: https://www.young.senate.gov/newsroom/press-releases/
   press_page_source: http-200
+  press_sitemap:
+  - https://www.young.senate.gov/press_releases-sitemap.xml
+  - https://www.young.senate.gov/press_releases-sitemap2.xml
+  - https://www.young.senate.gov/press_releases-sitemap3.xml
+  press_sitemap_source: 'owner ruling 2026-10-19 ("Approve sitemap"): the list page paginates
+    through a JavaScript numbered pager (JetSmartFilters, 107 pages, load-more disabled) that a
+    plain GET cannot follow and the renderer does not click. His own robots.txt points at
+    https://www.young.senate.gov/sitemap_index.xml, and these three of its twelve files are
+    nothing but press releases — 2,138 URLs, the count his list page reports. URLs only: every
+    release is dated from its own page.'
+  press_sitemap_ignore_lastmod: true
+  press_sitemap_ignore_lastmod_source: 'owner ruling 2026-10-19: every <lastmod> is 2024-02-21
+    or later, a migration re-stamp, so it cannot be used even as a skip filter — all 2,138
+    pages are read for their own dates.'
   rss: null
   campaign_site: null
   campaign_issues_page: null

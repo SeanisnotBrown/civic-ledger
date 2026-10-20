@@ -302,3 +302,208 @@ def test_the_per_source_rates_count_only_that_sources_turns():
     )
     assert next(r for r in crec if r["rule"] == "ceremonial")["D_rate"] == 100.0
     assert next(r for r in press if r["rule"] == "ceremonial")["D_rate"] == 0.0
+
+
+# --- unreadable press bodies are the collector's failures, not the filter's drops -----
+
+LOGISTICS = "I will host a town hall in Pasco County on Thursday evening."
+
+
+def _unreadable(member_id: str, slug: str) -> dict:
+    """A press record whose page had no readable body: collector (a) writes it with no
+    turns and lists its URL under `text_failures` in its index."""
+    record = _press(_record(member_id=member_id, granule_id=f"/p/{slug}"))
+    record["url"] = f"https://x.house.gov/press/{slug}"
+    return record
+
+
+def test_an_unreadable_press_body_is_a_collection_failure_not_a_drop():
+    """Measured 2026-10-20: 182 of these were logged as `no-attributable-text` and tripped
+    its uneven flag. They are set aside before the filter, never judged."""
+    unreadable = _unreadable("D000001", "no-body")
+    records = [_record(SUBSTANTIVE, member_id="D000001", granule_id="G1"), unreadable]
+    result = prefilter.run_prefilter(records, frozenset({("D000001", unreadable["url"])}))
+    assert result["drops"] == []
+    assert result["statements_unreadable"] == 1
+    assert result["collection_failures"] == [
+        {
+            "member_id": "D000001",
+            "date": "2025-06-03",
+            "source": "member_press",
+            "url": unreadable["url"],
+            "reason": "no-readable-body",
+        }
+    ]
+    assert unreadable not in result["judged_records"]
+    assert result["statements_in"] == 2 and result["statements_kept"] == 1
+
+
+def test_an_empty_press_record_that_is_not_a_recorded_failure_stops_the_run():
+    """The collector's index and its statements disagree; which is wrong is not a guess."""
+    unreadable = _unreadable("D000001", "no-body")
+    with pytest.raises(prefilter.PrefilterError, match="NOT among the collector's recorded"):
+        prefilter.run_prefilter([unreadable])
+    with pytest.raises(prefilter.PrefilterError, match="no-body"):
+        prefilter.run_prefilter([unreadable], frozenset({("R000002", unreadable["url"])}))
+
+
+def test_an_empty_record_turn_still_means_no_attributable_text():
+    """`no-attributable-text` keeps its original Record meaning, failures set or not."""
+    record = _record(member_id="D000001", granule_id="G1")
+    result = prefilter.run_prefilter([record], frozenset({("D000001", "https://other")}))
+    assert [d["rule"] for d in result["drops"]] == ["no-attributable-text"]
+    assert result["collection_failures"] == []
+
+
+def test_the_text_failures_come_from_each_collectors_own_index(tmp_path: Path):
+    raw = tmp_path / "data" / "raw"
+    (raw / "press").mkdir(parents=True)
+    (raw / "press" / "index.json").write_text(
+        json.dumps(
+            {
+                "text_failures": [
+                    {"id": "D000001", "url": "https://x/a", "error": "HTTPStatusError"},
+                    {"id": "D000001", "url": "https://x/a", "error": "no body text"},
+                    {"id": "R000002", "url": "https://x/b", "error": "no body text"},
+                ]
+            }
+        ),
+        encoding="utf-8",
+    )
+    (raw / "crec").mkdir()
+    (raw / "crec" / "index.json").write_text(json.dumps({"issues": 3}), encoding="utf-8")
+    assert prefilter.load_text_failures(tmp_path / "data") == frozenset(
+        {("D000001", "https://x/a"), ("R000002", "https://x/b")}
+    )
+    assert prefilter.load_text_failures(tmp_path / "nothing") == frozenset()
+
+
+def _unreadable_corpus() -> tuple[list[dict], frozenset]:
+    """60 unreadable Democratic press bodies against none on the Republican side: enough
+    to trip the uneven flag if they were counted as drops."""
+    bad = [_unreadable("D000001", f"no-body-{i}") for i in range(60)]
+    good = [
+        _press(_record(f"{SUBSTANTIVE} {who} {i}", member_id=who, granule_id=f"/p/{who}{i}"))
+        for i in range(30)
+        for who in ("D000001", "R000002")
+    ]
+    return bad + good, frozenset(("D000001", r["url"]) for r in bad)
+
+
+def test_the_report_lists_collection_failures_per_row_and_rates_exclude_them():
+    records, failures = _unreadable_corpus()
+    result = prefilter.run_prefilter(records, failures)
+    estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
+    text = prefilter.render_spend_report(
+        records, result, {"D000001": "D", "R000002": "R"}, {"D000001": "A Democrat"}, estimate
+    )
+    assert "## Collection failures — no readable body, per row" in text
+    assert "| A Democrat (D000001) | D | `member_press` | 60 |" in text
+    assert "| Of those, no readable body — a collection failure, never judged | 60 | 0 |" in text
+    assert "| Judged by the free pre-filter | 60 |" in text
+    # Collected 120, unreadable 60, kept 60, dropped by the filter 0.
+    assert "| `member_press` | 120 | 60 | 60 | 0 |" in text
+    assert "| `no-attributable-text` | 0 | 0 | 0 | 0.0% | 0.0% | even |" in text
+    assert "No step is flagged." in text
+    rows = prefilter.fairness(result["judged_records"], result["drops"], {"D000001": "D"})
+    assert next(r for r in rows if r["rule"] == "no-attributable-text")["D_turns"] == 30
+
+
+def test_a_report_with_no_collection_failures_says_none():
+    records = [_record(SUBSTANTIVE, member_id="D000001", granule_id="G1")]
+    result = prefilter.run_prefilter(records)
+    estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
+    text = prefilter.render_spend_report(records, result, {"D000001": "D"}, {}, estimate)
+    section = text.split("## Collection failures — no readable body, per row")[1]
+    assert section.split("##")[0].strip().endswith("None.")
+
+
+# --- every uneven step is named; the owner's acceptance covers procedural alone -------
+
+
+def _logistics_corpus() -> list[dict]:
+    """Office logistics in Democratic press releases, none in Republican ones."""
+    return [
+        _press(_record(f"{LOGISTICS} Visit {i}.", member_id="D000001", granule_id=f"/p/d{i}"))
+        for i in range(60)
+    ] + [
+        _press(_record(f"{SUBSTANTIVE} r {i}", member_id="R000002", granule_id=f"/p/r{i}"))
+        for i in range(60)
+    ]
+
+
+def test_a_new_uneven_step_is_named_and_left_for_the_owner():
+    records = _logistics_corpus()
+    result = prefilter.run_prefilter(records)
+    estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
+    text = prefilter.render_spend_report(
+        records, result, {"D000001": "D", "R000002": "R"}, {}, estimate
+    )
+    section = text.split("### Every flagged step")[1].split("## Per member")[0]
+    assert (
+        "* `office-logistics` (all sources) — D 60 of 60 turns (100.0%), R 0 of 60 turns "
+        "(0.0%); 60 turns dropped. **NEW, needs the owner's ruling.**"
+    ) in section
+    # The acceptance of 2026-10-14 is of the procedural gap; it is not lent to this one.
+    assert "Owner-accepted" not in section
+    assert "on condition that the" not in section
+
+
+def test_the_procedural_flag_carries_the_owners_acceptance_and_a_new_flag_does_not():
+    quorum = [
+        _record(
+            "Mr. X. Mr. Speaker, I suggest the absence of a quorum.",
+            member_id="R000002",
+            granule_id=f"G{i}",
+        )
+        for i in range(prefilter.UNEVEN_MIN_TURNS + 1)
+    ] + [
+        _record(f"{SUBSTANTIVE} d {i}", member_id="D000001", granule_id=f"H{i}")
+        for i in range(prefilter.UNEVEN_MIN_TURNS + 1)
+    ]
+    records = quorum + _logistics_corpus()
+    result = prefilter.run_prefilter(records)
+    estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
+    text = prefilter.render_spend_report(
+        records, result, {"D000001": "D", "R000002": "R"}, {}, estimate
+    )
+    section = text.split("### Every flagged step")[1].split("## Per member")[0]
+    procedural = next(line for line in section.splitlines() if "`procedural` (all" in line)
+    assert procedural.endswith("**Owner-accepted 2026-10-14 (R4)**, on the condition below.")
+    # Per-source flags are listed too, each under its own source.
+    assert "* `office-logistics` (`member_press`)" in section
+    assert "* `procedural` (`congressional_record`)" in section
+    for line in section.splitlines():
+        if line.startswith("* `office-logistics`"):
+            assert line.endswith("**NEW, needs the owner's ruling.**")
+    assert "on condition that the" in section and "`quorum-call`" in section
+
+
+def test_the_run_sets_unreadable_bodies_aside_and_logs_them_apart(
+    tmp_path: Path, capsys, monkeypatch
+):
+    data_dir = tmp_path / "data"
+    _corpus(data_dir)
+    _ai_yaml(data_dir, AI_CONFIG)
+    unreadable = _unreadable("D000001", "no-body")
+    press = data_dir / "raw" / "press"
+    (press / "statements").mkdir(parents=True)
+    (press / "statements" / "D000001.json").write_text(
+        json.dumps(
+            {"member": {"id": "D000001", "name": "M", "party": "D"}, "statements": [unreadable]}
+        ),
+        encoding="utf-8",
+    )
+    (press / "index.json").write_text(
+        json.dumps({"text_failures": [{"id": "D000001", "url": unreadable["url"]}]}),
+        encoding="utf-8",
+    )
+    monkeypatch.setattr(prefilter, "repo_root", lambda: tmp_path)
+    assert prefilter.run([]) == 0
+    assert "no-readable-body           1  (collection failures" in capsys.readouterr().out
+    log = json.loads(
+        (data_dir / "quality" / "statement-prefilter-drops.json").read_text(encoding="utf-8")
+    )
+    assert log["statements_unreadable"] == 1
+    assert [f["url"] for f in log["collection_failures"]] == [unreadable["url"]]
+    assert all(d["rule"] != "no-attributable-text" for d in log["drops"])

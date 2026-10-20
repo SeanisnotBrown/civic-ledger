@@ -266,6 +266,9 @@ def test_the_report_names_the_flagged_members_and_the_threshold():
         "turns_kept": 4,
         "statements": survivors,
         "drops": [],
+        "statements_unreadable": 0,
+        "collection_failures": [],
+        "judged_records": survivors,
     }
     estimate = prefilter.estimate_spend(survivors, _AI_CONFIG)
     text = prefilter.render_spend_report(

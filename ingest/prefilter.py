@@ -10,7 +10,8 @@ silent filter is a hidden editorial judgment.
 
 The input is a list of statement records: the dict shape `statements_crec.statement_record`
 emits, which collector (a) and every later collector also emit. Nothing in this module
-branches on `source`. The fields read are:
+branches on `source`; the one provenance check is on `attribution`, for an empty press
+record (rule 0 below). The fields read are:
 
     member_id  date  granule_id  source  title  segments  attribution   (required)
     granule_class  chamber  url  speakers  parsed_name  chars           (carried through)
@@ -33,6 +34,11 @@ when none did.
 Reordering changes the per-rule counts and so changes the fairness table, which would
 make the published numbers unreproducible. The order:
 
+  0. `no-readable-body`       NOT a rule and NOT a drop: a press release whose page had
+                              no readable body (collector (a)'s `text_failures`). Set
+                              aside before rule 1 as a COLLECTION failure, reported per
+                              row, and kept out of every fairness rate. A press record
+                              with no turns that is not a recorded failure stops the run.
   1. `no-attributable-text`   the Record names the member but no words could be
                               attributed (`attribution == "none"`, or no turns). 48 rows
                               in the pilot corpus. Logged, never silently passed.
@@ -151,6 +157,20 @@ DROP_RULES = (
     "office-logistics",
     "duplicate",
 )
+
+# NOT a drop rule, and deliberately not in `DROP_RULES`: a press release whose page the
+# collector fetched and found no readable body on. That is a COLLECTION failure — the
+# filter never saw any words to judge — so it is reported per row, as the collector's,
+# and kept out of the fairness rates and out of "dropped by the filter". Measured
+# 2026-10-20: 182 of these (D 140, `H001046` Heinrich alone ~106) were being logged as
+# `no-attributable-text`, a rule that means the Congressional Record named the member and
+# no words could be attributed to them — and they tripped that rule's uneven flag.
+COLLECTION_FAILURE = "no-readable-body"
+
+# The attribution collector (a) stamps on every record. A record carrying it with no
+# body text MUST be one of that collector's recorded text failures; one that is not means
+# the index and the statements disagree, and the run stops rather than guessing which.
+PRESS_ATTRIBUTION = "press-office"
 
 
 class PrefilterError(RuntimeError):
@@ -505,13 +525,32 @@ def apply_to_statement(
     return survivor, drops
 
 
-def run_prefilter(records: list[dict[str, Any]]) -> dict[str, Any]:
+def _collection_failure(record: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "member_id": record.get("member_id", ""),
+        "date": record.get("date", ""),
+        "source": record.get("source", ""),
+        "url": record.get("url", ""),
+        "reason": COLLECTION_FAILURE,
+    }
+
+
+def run_prefilter(
+    records: list[dict[str, Any]],
+    text_failures: frozenset[tuple[str, str]] = frozenset(),
+) -> dict[str, Any]:
     """Every statement through the filter, in a fixed order, with the full audit.
 
     Records are sorted by (member, date, id) first so the duplicate rule always keeps the
     EARLIEST occurrence of a repeated announcement and the drop log is byte-identical on
     a re-run — a duplicate pair whose order depends on a directory listing would otherwise
     flip which one is logged.
+
+    `text_failures` is the (member, URL) of every release a collector fetched and found
+    no readable body on (`load_text_failures`). A record with no turns that is one of
+    them is a `COLLECTION_FAILURE`: set aside BEFORE the filter, never judged, never a
+    drop. A press record with no turns that is NOT one of them raises — the collector's
+    index and its statements disagree, and which one is wrong is not this module's guess.
     """
     ordered = sorted(
         records,
@@ -525,18 +564,41 @@ def run_prefilter(records: list[dict[str, Any]]) -> dict[str, Any]:
     seen: dict[str, dict[str, str]] = {}
     survivors: list[dict[str, Any]] = []
     drops: list[dict] = []
+    failures: list[dict[str, Any]] = []
+    judged: list[dict[str, Any]] = []
+    unexplained: list[str] = []
     for record in ordered:
+        if not record.get("segments"):
+            key = (record.get("member_id", ""), record.get("url", ""))
+            if key in text_failures:
+                failures.append(_collection_failure(record))
+                continue
+            if record.get("attribution") == PRESS_ATTRIBUTION:
+                unexplained.append(f"{key[0]} {key[1]}")
+                continue
+        judged.append(record)
         survivor, record_drops = apply_to_statement(record, seen)
         drops.extend(record_drops)
         if survivor is not None:
             survivors.append(survivor)
+    if unexplained:
+        raise PrefilterError(
+            f"{len(unexplained)} press record(s) have no body text and are NOT among the "
+            "collector's recorded text failures — its index and its statements disagree, "
+            "so the run stops rather than guess which is wrong: " + "; ".join(unexplained[:5])
+        )
     return {
         "statements_in": len(ordered),
+        "statements_unreadable": len(failures),
         "statements_kept": len(survivors),
         "turns_in": sum(len(r.get("segments") or []) for r in ordered),
         "turns_kept": sum(len(s["segments"]) for s in survivors),
         "statements": survivors,
         "drops": drops,
+        "collection_failures": failures,
+        # The records the filter actually judged: every fairness rate is computed over
+        # these, so a body nobody could read never enters a party's denominator.
+        "judged_records": judged,
     }
 
 
@@ -619,6 +681,7 @@ def fairness(
         for party in ("D", "R"):
             total = pool.get(party, 0)
             row[party] = hits.get(party, 0)
+            row[f"{party}_turns"] = total
             row[f"{party}_rate"] = round(hits.get(party, 0) / total * 100, 1) if total else 0.0
         row["uneven"] = _uneven(row["D_rate"], row["R_rate"], row["turns"])
         rows.append(row)
@@ -659,6 +722,11 @@ def write_drop_log(result: dict[str, Any], data_dir: Path) -> Path:
         "turns_kept": result["turns_kept"],
         "rule_counts": rule_counts(result["drops"]),
         "drops": drops,
+        # Not drops: bodies the collector could not read, set aside before the filter.
+        "statements_unreadable": result["statements_unreadable"],
+        "collection_failures": sorted(
+            result["collection_failures"], key=lambda f: (f["member_id"], f["date"], f["url"])
+        ),
     }
     return atomic_write_text(path, json.dumps(payload, indent=2, sort_keys=False) + "\n")
 
@@ -709,6 +777,18 @@ def load_all(data_dir: Path) -> tuple[list[dict[str, Any]], dict[str, str], dict
             "and `uv run ingest statements-press`"
         )
     return records, parties, names
+
+
+def load_text_failures(data_dir: Path) -> frozenset[tuple[str, str]]:
+    """(member, URL) of every release a collector fetched and found no readable body on,
+    from each collector's own `index.json` (`text_failures`). A collector that records
+    none, or has not run, contributes nothing."""
+    failures: set[tuple[str, str]] = set()
+    for index_path in sorted((data_dir / "raw").glob("*/index.json")):
+        index = json.loads(index_path.read_text(encoding="utf-8"))
+        for entry in index.get("text_failures") or []:
+            failures.add((entry["id"], entry["url"]))
+    return frozenset(failures)
 
 
 # A rough characters-per-token for English prose, used ONLY to estimate a bill before it
@@ -1190,6 +1270,46 @@ def _audit_sample_section(
     return lines
 
 
+def _flagged_section(
+    flagged: list[tuple[str, dict[str, Any]]], drops: list[dict], parties: dict[str, str]
+) -> list[str]:
+    """Every uneven step, by name, with its counts and rates and nothing else.
+
+    The owner's 2026-10-14 acceptance (R4) is of the PROCEDURAL gap and only that one, so
+    it is attached to `procedural` alone. Any other rule that trips the flag is printed as
+    new and awaiting a ruling — stated in counts and rates, never characterised, because
+    whether it is acceptable is the owner's call (§1), not the builder's.
+    """
+    lines = ["", "### Every flagged step", ""]
+    if not flagged:
+        return lines + ["No step is flagged."]
+    for scope, row in flagged:
+        status = (
+            "**Owner-accepted 2026-10-14 (R4)**, on the condition below."
+            if row["rule"] == "procedural"
+            else "**NEW, needs the owner's ruling.**"
+        )
+        lines.append(
+            f"* `{row['rule']}` ({scope}) — D {row['D']} of {row['D_turns']} turns "
+            f"({row['D_rate']}%), R {row['R']} of {row['R_turns']} turns "
+            f"({row['R_rate']}%); {row['turns']} turns dropped. {status}"
+        )
+    if any(row["rule"] == "procedural" for _, row in flagged):
+        lines += [
+            "",
+            "The owner accepted the procedural gap on 2026-10-14 **on condition that the "
+            "drop log and this report break it down to each sub-rule**, so the structural "
+            "explanation is checkable rather than asserted (R4). The cause is that the "
+            "majority party's floor managers make the housekeeping requests.",
+            "",
+            "| Sub-rule | Turns | D | R |",
+            "| --- | --- | --- | --- |",
+        ]
+        for row in sub_rule_counts(drops, parties):
+            lines.append(f"| `{row['sub_rule']}` | {row['turns']} | {row['D']} | {row['R']} |")
+    return lines
+
+
 def render_spend_report(
     records: list[dict[str, Any]],
     result: dict[str, Any],
@@ -1212,8 +1332,13 @@ def render_spend_report(
     one-liner load on decision 7's first-run allowance.
     """
     survivors = result["statements"]
+    failures = result["collection_failures"]
+    # Every rate below is over what the filter JUDGED: a body nobody could read is the
+    # collector's failure, not a turn either party brought to the filter.
+    judged = result["judged_records"]
     by_source_in = Counter(r.get("source", "?") for r in records)
     by_source_out = Counter(s.get("source", "?") for s in survivors)
+    by_source_unreadable = Counter(f["source"] for f in failures)
     lines = [
         "# Count before spend — the report the owner approves an AI run against",
         "",
@@ -1234,6 +1359,9 @@ def render_spend_report(
         "| Step | Statements | Member turns |",
         "| --- | --- | --- |",
         f"| Collected | {result['statements_in']} | {result['turns_in']} |",
+        f"| Of those, no readable body — a collection failure, never judged "
+        f"| {result['statements_unreadable']} | 0 |",
+        f"| Judged by the free pre-filter | {len(judged)} | {result['turns_in']} |",
         f"| After the free pre-filter (decision 2) | {result['statements_kept']} "
         f"| {result['turns_kept']} |",
         f"| Of those, eligible for the AI | {estimate['triage_statements']} | — |",
@@ -1249,15 +1377,39 @@ def render_spend_report(
         "",
         "## Per source",
         "",
-        "| Source | Collected | Kept | Dropped |",
-        "| --- | --- | --- | --- |",
+        "| Source | Collected | No readable body (collection failure) | Kept "
+        "| Dropped by the filter |",
+        "| --- | --- | --- | --- | --- |",
     ]
     for source in sorted(by_source_in):
         kept = by_source_out.get(source, 0)
+        unreadable = by_source_unreadable.get(source, 0)
         lines.append(
-            f"| `{source}` | {by_source_in[source]} | {kept} "
-            f"| {by_source_in[source] - kept} |"
+            f"| `{source}` | {by_source_in[source]} | {unreadable} | {kept} "
+            f"| {by_source_in[source] - unreadable - kept} |"
         )
+
+    lines += [
+        "",
+        "## Collection failures — no readable body, per row",
+        "",
+        "A release the collector fetched and found no readable body on. **Not a filter "
+        "drop:** the filter never saw any words to judge, so these are left out of the "
+        "fairness rates below and out of \"dropped by the filter\". They are the "
+        "collector's, listed by URL under `text_failures` in its own index.",
+        "",
+    ]
+    if failures:
+        lines += ["| Member | Party | Source | Releases with no readable body |"]
+        lines += ["| --- | --- | --- | --- |"]
+        per_row = Counter((f["member_id"], f["source"]) for f in failures)
+        for (member_id, source), count in sorted(per_row.items()):
+            lines.append(
+                f"| {names.get(member_id, '?')} ({member_id}) "
+                f"| {parties.get(member_id, '?')} | `{source}` | {count} |"
+            )
+    else:
+        lines.append("None.")
 
     lines += [
         "",
@@ -1271,15 +1423,16 @@ def render_spend_report(
         "| Rule | Turns dropped | D | R | D rate | R rate | Flag |",
         "| --- | --- | --- | --- | --- | --- | --- |",
     ]
-    rows = fairness(records, result["drops"], parties)
+    rows = fairness(judged, result["drops"], parties)
     for row in rows:
         flag = "**UNEVEN**" if row["uneven"] else "even"
         lines.append(
             f"| `{row['rule']}` | {row['turns']} | {row['D']} | {row['R']} "
             f"| {row['D_rate']}% | {row['R_rate']}% | {flag} |"
         )
+    flagged = [("all sources", row) for row in rows if row["uneven"]]
 
-    sources = sorted({r.get("source", "?") for r in records})
+    sources = sorted({r.get("source", "?") for r in judged})
     if len(sources) > 1:
         lines += [
             "",
@@ -1298,29 +1451,16 @@ def render_spend_report(
             "| --- | --- | --- | --- | --- | --- |",
         ]
         for source in sources:
-            for row in fairness(records, result["drops"], parties, source=source):
+            for row in fairness(judged, result["drops"], parties, source=source):
                 flag = "**UNEVEN**" if row["uneven"] else "even"
                 lines.append(
                     f"| `{source}` | `{row['rule']}` | {row['turns']} "
                     f"| {row['D_rate']}% | {row['R_rate']}% | {flag} |"
                 )
+                if row["uneven"]:
+                    flagged.append((f"`{source}`", row))
 
-    flagged = [row for row in rows if row["uneven"]]
-    lines += ["", "### The flagged step, broken down to each sub-rule", ""]
-    if flagged:
-        lines += [
-            "The owner accepted the procedural gap on 2026-10-14 **on condition that the "
-            "drop log and this report break it down to each sub-rule**, so the structural "
-            "explanation is checkable rather than asserted (R4). The cause is that the "
-            "majority party's floor managers make the housekeeping requests.",
-            "",
-            "| Sub-rule | Turns | D | R |",
-            "| --- | --- | --- | --- |",
-        ]
-        for row in sub_rule_counts(result["drops"], parties):
-            lines.append(f"| `{row['sub_rule']}` | {row['turns']} | {row['D']} | {row['R']} |")
-    else:
-        lines.append("No step is flagged.")
+    lines += _flagged_section(flagged, result["drops"], parties)
 
     lines += [
         "",
@@ -1349,7 +1489,7 @@ def render_spend_report(
         estimate["per_member_cap"],
     )
     lines += _audit_sample_section(
-        sample_procedural_drops(records, result["drops"], parties), names
+        sample_procedural_drops(judged, result["drops"], parties), names
     )
 
     verdict = (
@@ -1414,17 +1554,21 @@ def run(argv: list[str] | None = None) -> int:
     # `rule_counts` depending on which command ran last. `load_all` tolerates a collector
     # that has not run yet, so there is no reason for a narrower path.
     records, parties, names = load_all(data_dir)
-    result = run_prefilter(records)
+    result = run_prefilter(records, load_text_failures(data_dir))
 
     print(
         f"pre-filter: {result['statements_in']} statements "
         f"({result['turns_in']} turns) -> {result['statements_kept']} kept "
         f"({result['turns_kept']} turns)"
     )
+    print(
+        f"  {COLLECTION_FAILURE:22} {result['statements_unreadable']:5}  "
+        "(collection failures, set aside before the filter, not drops)"
+    )
     for rule, count in rule_counts(result["drops"]).items():
         print(f"  {rule:22} {count:5}")
     print("  fairness (drop rate per party):")
-    for row in fairness(records, result["drops"], parties):
+    for row in fairness(result["judged_records"], result["drops"], parties):
         flag = "  <-- UNEVEN" if row["uneven"] else ""
         print(
             f"    {row['rule']:22} D {row['D_rate']:5.1f}%  R {row['R_rate']:5.1f}%{flag}"

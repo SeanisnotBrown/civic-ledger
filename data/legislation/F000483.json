@@ -3090,11 +3090,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 343,
-    "sponsored": 11
+    "sponsored": 12
   },
   "member_id": "F000483",
   "source_url": "https://api.congress.gov/v3/member/F000483/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10846-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10846",
+      "title": "To amend the Internal Revenue Code of 1986 to impose an excise tax on certain indebtedness, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr2254-119",

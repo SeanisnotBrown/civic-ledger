@@ -5502,7 +5502,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 1104,
-    "sponsored": 61
+    "sponsored": 62
   },
   "member_id": "C001118",
   "source_url": "https://api.congress.gov/v3/member/C001118/sponsored-legislation",
@@ -5524,6 +5524,15 @@
       "introduced_date": "2026-08-03",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10016",
       "title": "Veterans Entrepreneurship Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10843-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10843",
+      "title": "VACRA"
     },
     {
       "became_law": false,

@@ -280,13 +280,15 @@ def test_ordinary_prose_is_not_read_as_a_bill_citation(text):
     assert prefilter.argues_policy(text) is False
 
 
-def test_office_logistics_is_dropped():
+def test_a_town_hall_notice_is_kept_for_the_triage_gate():
+    """Owner ruling 2026-10-22: there is no office-logistics rule. A notice like this goes
+    to the Haiku triage gate, which judges substance; this filter does not remove it."""
     text = "I will host a town hall in Pasco County on Thursday evening."
-    assert prefilter.classify_turn(text) == ("office-logistics", None)
+    assert prefilter.classify_turn(text) == (None, None)
+    assert "office-logistics" not in prefilter.DROP_RULES
 
 
-def test_office_logistics_does_not_fire_on_a_tribute_that_mentions_an_internship():
-    """Deliberately narrow: the first draft of this rule mis-fired on 48 tributes."""
+def test_a_tribute_that_mentions_an_internship_is_ceremonial():
     text = (
         "I rise today to honor the exceptional dedication of one of my outstanding "
         "constituents, Brian Dillon, who has recently completed an internship."
@@ -484,7 +486,6 @@ def test_rule_counts_shows_every_rule_even_at_zero():
         "no-attributable-text": 0,
         "procedural": 0,
         "ceremonial": 1,
-        "office-logistics": 0,
         "duplicate": 0,
     }
 

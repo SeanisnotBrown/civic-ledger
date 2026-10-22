@@ -306,9 +306,6 @@ def test_the_per_source_rates_count_only_that_sources_turns():
 
 # --- unreadable press bodies are the collector's failures, not the filter's drops -----
 
-LOGISTICS = "I will host a town hall in Pasco County on Thursday evening."
-
-
 def _unreadable(member_id: str, slug: str) -> dict:
     """A press record whose page had no readable body: collector (a) writes it with no
     turns and lists its URL under `text_failures` in its index."""
@@ -421,10 +418,11 @@ def test_a_report_with_no_collection_failures_says_none():
 # --- every uneven step is named; the owner's acceptance covers procedural alone -------
 
 
-def _logistics_corpus() -> list[dict]:
-    """Office logistics in Democratic press releases, none in Republican ones."""
+def _ceremonial_press_corpus() -> list[dict]:
+    """Tributes in Democratic press releases, none in Republican ones: an uneven step the
+    owner has NOT accepted, standing in for any new one."""
     return [
-        _press(_record(f"{LOGISTICS} Visit {i}.", member_id="D000001", granule_id=f"/p/d{i}"))
+        _press(_record(f"{TRIBUTE} Visit {i}.", member_id="D000001", granule_id=f"/p/d{i}"))
         for i in range(60)
     ] + [
         _press(_record(f"{SUBSTANTIVE} r {i}", member_id="R000002", granule_id=f"/p/r{i}"))
@@ -433,7 +431,7 @@ def _logistics_corpus() -> list[dict]:
 
 
 def test_a_new_uneven_step_is_named_and_left_for_the_owner():
-    records = _logistics_corpus()
+    records = _ceremonial_press_corpus()
     result = prefilter.run_prefilter(records)
     estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
     text = prefilter.render_spend_report(
@@ -441,7 +439,7 @@ def test_a_new_uneven_step_is_named_and_left_for_the_owner():
     )
     section = text.split("### Every flagged step")[1].split("## Per member")[0]
     assert (
-        "* `office-logistics` (all sources) — D 60 of 60 turns (100.0%), R 0 of 60 turns "
+        "* `ceremonial` (all sources) — D 60 of 60 turns (100.0%), R 0 of 60 turns "
         "(0.0%); 60 turns dropped. **NEW, needs the owner's ruling.**"
     ) in section
     # The acceptance of 2026-10-14 is of the procedural gap; it is not lent to this one.
@@ -461,7 +459,7 @@ def test_the_procedural_flag_carries_the_owners_acceptance_and_a_new_flag_does_n
         _record(f"{SUBSTANTIVE} d {i}", member_id="D000001", granule_id=f"H{i}")
         for i in range(prefilter.UNEVEN_MIN_TURNS + 1)
     ]
-    records = quorum + _logistics_corpus()
+    records = quorum + _ceremonial_press_corpus()
     result = prefilter.run_prefilter(records)
     estimate = prefilter.estimate_spend(result["statements"], AI_CONFIG)
     text = prefilter.render_spend_report(
@@ -471,10 +469,10 @@ def test_the_procedural_flag_carries_the_owners_acceptance_and_a_new_flag_does_n
     procedural = next(line for line in section.splitlines() if "`procedural` (all" in line)
     assert procedural.endswith("**Owner-accepted 2026-10-14 (R4)**, on the condition below.")
     # Per-source flags are listed too, each under its own source.
-    assert "* `office-logistics` (`member_press`)" in section
+    assert "* `ceremonial` (`member_press`)" in section
     assert "* `procedural` (`congressional_record`)" in section
     for line in section.splitlines():
-        if line.startswith("* `office-logistics`"):
+        if line.startswith("* `ceremonial`"):
             assert line.endswith("**NEW, needs the owner's ruling.**")
     assert "on condition that the" in section and "`quorum-call`" in section
 

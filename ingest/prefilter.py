@@ -1,10 +1,11 @@
 """The free rule-based pre-filter (§5 Phase 3 owner decision 2). No AI, no network.
 
 Every statement a collector gathers passes through here BEFORE a cent is spent. The
-decision says what it drops — ceremonial items, office logistics, procedural floor
-remarks, and duplicates of the same announcement across sources — and says the thing
-that matters more than the list: **every drop is logged with its reason**, because a
-silent filter is a hidden editorial judgment.
+decision says what it drops — ceremonial items, procedural floor remarks, and duplicates
+of the same announcement across sources — and says the thing that matters more than the
+list: **every drop is logged with its reason**, because a silent filter is a hidden
+editorial judgment. The decision also named office logistics; the owner took that rule
+out on 2026-10-22 (below).
 
 ## Source-agnostic by contract
 
@@ -46,8 +47,7 @@ make the published numbers unreproducible. The order:
   3. `vote-explanation`       kept, but marked ineligible for AI. See R3 below.
   4. `procedural`             housekeeping turns. See R2 below.
   5. `ceremonial`             tributes, memorials, congratulations. See R1 below.
-  6. `office-logistics`       town halls, grant announcements, application deadlines.
-  7. `duplicate`              the same member's same words already kept, from any
+  6. `duplicate`              the same member's same words already kept, from any
                               source. Keyed on normalized text, so it fires across
                               collectors as well as within one.
 
@@ -88,6 +88,16 @@ unanimous-consent requests run R 321 / D 72. Decision 4 stops the run on an unev
 the owner accepted it ON CONDITION that the drop log and the report break the gap down to
 each sub-rule, so the explanation is checkable rather than asserted. `sub_rule` on every
 procedural drop is that condition, and `fairness()` publishes the table.
+
+## The owner's ruling, 2026-10-22: no office-logistics rule
+
+There was a sixth rule, `office-logistics` (town halls, office hours, application
+deadlines, grant awards announced for the district). On the step 8 corpus it dropped 124
+turns, 122 of them press releases, D 93 (0.8%) / R 31 (0.4%) — a NEW uneven step. Shown
+ten of its drops at random, the owner DROPPED THE RULE: those statements go to the
+Haiku triage gate, which judges substance, rather than being removed here. Some carried
+substance a pattern cannot see (a "week in review" naming drug prices, an appointment as
+the Speaker's veterans' advisor). A town-hall notice is now kept by this filter.
 
 ## The inserted-material cut (fact 5, owner 2026-10-13)
 
@@ -154,7 +164,6 @@ DROP_RULES = (
     "no-attributable-text",
     "procedural",
     "ceremonial",
-    "office-logistics",
     "duplicate",
 )
 
@@ -331,27 +340,6 @@ CEREMONIAL = re.compile(
     re.IGNORECASE,
 )
 
-# Office logistics. Near-absent from the Congressional Record (measured: no clean hits on
-# the pilot corpus) and common in press releases, which is the source this rule is really
-# for — written here because the filter is source-agnostic and collector (a) runs through
-# it unchanged. Deliberately narrow: it must not fire on a tribute that happens to
-# mention an internship.
-OFFICE_LOGISTICS = re.compile(
-    r"\b(?:"
-    r"will host (?:a |an |his |her |their )?(?:town hall|telephone town hall|mobile office"
-    r"|office hours|job fair|resource fair|coffee with)"
-    r"|is (?:now )?accepting applications"
-    r"|applications are (?:now )?(?:open|being accepted)"
-    r"|the deadline to apply"
-    r"|service academy nomination"
-    r"|announced? (?:today )?that [^.]{0,80}(?:has been awarded|will receive) "
-    r"(?:a |an )?\$[\d,.]+"
-    r"|my (?:district|state|mobile) office will be"
-    r"|constituent service"
-    r")\b",
-    re.IGNORECASE,
-)
-
 # Fact 5's marker: the member's OWN act of inserting material. The negative lookahead
 # keeps the floor manager's "insert extraneous material" leave request out — that one is
 # procedural, and treating it as a marker truncated 278 rows at their opening sentence.
@@ -421,9 +409,6 @@ def classify_turn(text: str) -> tuple[str | None, str | None]:
     # R1: a tribute survives whole when the same turn argues policy.
     if CEREMONIAL.search(text) and not takes_a_position:
         return "ceremonial", None
-
-    if OFFICE_LOGISTICS.search(text):
-        return "office-logistics", None
 
     return None, None
 

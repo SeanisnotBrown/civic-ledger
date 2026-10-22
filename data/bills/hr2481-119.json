@@ -1,6 +1,46 @@
 {
   "actions": [
     {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2026-10-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-129.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-10-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-129.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2026-10-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-10-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
       "action_code": "E20000",
       "committees": null,
       "date": "2026-10-14",
@@ -242,8 +282,8 @@
   ],
   "id": "hr2481-119",
   "jurisdiction": "us",
-  "latest_action": "Presented to President.",
-  "latest_action_date": "2026-10-14",
+  "latest_action": "Became Public Law No: 119-129.",
+  "latest_action_date": "2026-10-20",
   "number": 2481,
   "policy_area": "Commerce",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2481",

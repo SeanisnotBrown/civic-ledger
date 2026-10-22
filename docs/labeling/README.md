@@ -26,7 +26,7 @@ wrap for the `text` column. Fill in only the empty columns.
 | `topic` | The one area from the list below that the position is about. |
 | `stance` | `for` or `against` that policy. `mixed` only when the text argues both sides. If you can't tell, write `none` and say why in `notes`: `mixed` never means "unsure". |
 | `proposition` | What they are for or against, in one short phrase taken from the text. Not just the subject: "capping insulin at $35 a month", not "health care". |
-| `specificity` | **Leave blank for now.** Its levels haven't been defined yet (question 1 below). |
+| `specificity` | `1`, `2` or `3` (definitions below). |
 | `priority_signal` | `yes` only if the text says the issue ranks high for them ("my top priority", "I ran on this", "I'll fight for") or commits them to a concrete act: introducing, passing or blocking a specific thing. `no` for a passing mention, a reaction to the news, ceremonial wording, a group letter they co-signed, or praise for someone else's work. (Your rule of 2026-10-09.) |
 | `notes` | Anything at all: doubts, a second position, "the text is cut off". |
 
@@ -41,34 +41,33 @@ Americans · Private Legislation · Public Lands and Natural Resources · Scienc
 Communications · Social Sciences and History · Social Welfare · Sports and Recreation ·
 Taxation · Transportation and Public Works · Water Resources Development
 
+**Specificity levels** (your ruling, 2026-10-22):
+
+- `1`: names a specific bill, rule, program or number. *"I voted for the CHIPS Act."*
+- `2`: names a concrete change but nothing specific. *"We should make it easier to
+  build new homes."*
+- `3`: names only the issue. *"Housing costs are hurting families."*
+
 ## Two worked examples (made up; not in the set)
 
 1. *"Families in our district pay too much for insulin. Next week I will introduce a bill
    to cap it at $35 a month for everyone, and I won't stop until it passes."*
-   → `yes` · `Health` · `for` · `capping insulin at $35 a month for everyone` · (blank) ·
-   `yes` (commits to introducing a specific bill) · (blank)
+   → `yes` · `Health` · `for` · `capping insulin at $35 a month for everyone` · `1`
+   (names a number) · `yes` (commits to introducing a specific bill) · (blank)
 2. *"Today we honor Sergeant Maria Lopez, who gave 30 years to our county sheriff's office.
    Our community is safer because of her."*
    → `no` · and the rest blank.
 
-## Open questions for you (answer before the prompts are written)
+## Your rulings, 2026-10-22
 
-1. **What should `specificity` measure?** My recommendation is three levels: *names a
-   specific bill, rule, program or number* / *names a concrete change but nothing specific* /
-   *names only the issue*.
-   - Yes to these levels: you fill that column in on this same pass.
-   - Different levels: tell me which and they replace mine.
-   - Drop the field: the categorizer stops producing it.
-2. **Topic: the 33 broad areas, or the 974 detailed subjects?** I recommend the 33.
-   - The 33: it matches the member-page timeline filter, which already uses them.
-   - The 974: each label is finer, but there are far more ways for the AI to miss.
-3. **Which of your labels count toward the precision score?** `takes_policy_position`,
-   `topic` and `stance` are straightforward to compare. `proposition` is free text.
-   - Score it: you judge each AI phrase as "same meaning" or not, which is slower.
-   - Don't score it: it gets shown, but nothing measures how good it is.
-4. **The precision bar itself (Q-K) is still open:** how often must the AI agree with
-   you before a categorized statement may publish? It isn't needed to label this set, only
-   before anything publishes.
+1. **`specificity`** has three levels, 1 to 3, as defined above.
+2. **`topic`** is one of the 33 official broad policy areas listed above.
+3. **`proposition` is for reference only.** It is not scored. The AI's accuracy is
+   scored on `takes_policy_position`, `topic` and `stance`.
+
+**Still open: the precision bar (Q-K).** How often must the AI agree with you before a
+categorized statement may publish? It isn't needed to label this set, only before
+anything publishes.
 
 ## How the 60 were picked (for checking, not for labeling)
 

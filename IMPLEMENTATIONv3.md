@@ -264,8 +264,8 @@ good or poor statement is still ratified at task 4.
    only, as already ratified. Reason: vote data starts at the 118th, so an older statement has nothing to be
    compared against — collecting it would imply a say-vs-do comparison the record cannot support.
 2. **Free rule-based pre-filter before ANY AI call.** Drops: ceremonial items (tributes, congratulations,
-   condolences, honoring speeches), office logistics (town halls, office hours, grant-award announcements),
-   procedural floor remarks, and duplicates of the same announcement across sources. **Every drop is logged with
+   condolences, honoring speeches), procedural floor remarks (**office logistics DROPPED as a rule, owner
+   2026-10-22: those statements go to the triage gate, which judges substance, not category**), and duplicates of the same announcement across sources. **Every drop is logged with
    its reason** so the owner can audit what was filtered — a silent filter is a hidden editorial judgment.
 3. **Triage gate: `claude-haiku-5-5` answers one question per surviving statement** — "does this take a position
    on a policy?" Only a yes reaches the Opus categorizer. Own `prompt_version` in `ai.yaml`, logged like every

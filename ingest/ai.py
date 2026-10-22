@@ -26,6 +26,28 @@ Four things happen on every call:
     `ai.yaml`. When a run reaches it the next call raises `AiCapReached` and the run STOPS;
     it does not finish the batch.
 
+## Concurrency (added 2026-10-22, owner: make the triage run as fast as it can be)
+
+A `Run` may be shared by worker threads. One lock covers everything a call changes: the cap
+check and its reservation (one atomic step), the spend true-up, the counters, and the
+audit-log append — so the log holds one complete line per call, never two interleaved.
+Cache files are written atomically, because two workers can ask the same text at once.
+
+**The cap stays exact with calls in flight.** `call(..., reserve=True)` first reserves an
+UPPER BOUND on what the call can cost — input: the UTF-8 byte length of system prompt, user
+text and schema plus a fixed framing allowance (a token is never shorter than one byte);
+output: the task's `max_tokens`, which also bounds thinking — and refuses the call if
+spend plus every in-flight reservation plus this one would pass the cap. The reservation
+is released and the measured cost booked when the answer arrives. So N calls in flight
+can never carry total spend past the cap; the price is that a run can stop up to N
+reservations SHORT of it. Without `reserve`, a call behaves as it always has: refused only
+once spend has already reached the cap.
+
+**`max_retries=0` on the SDK client.** The SDK otherwise retries a 429 by itself, silently,
+and the caller's pacing never learns it is being limited. The batch caller retries on its
+own terms instead (`ingest/triage_run.py`), and reads the rate-limit headers, which
+`_live_completer` returns with each answer and the audit line now records.
+
 What is NOT here: any judgment. This module does not decide what a good statement is, what
 "priority" means, or what precision is good enough — Q-E and Q-F, ratified by the owner at
 task 4. It moves bytes and counts dollars.
@@ -40,8 +62,9 @@ from __future__ import annotations
 
 import hashlib
 import json
-from collections.abc import Callable
-from dataclasses import dataclass, field
+import threading
+from collections.abc import Callable, Mapping
+from dataclasses import dataclass, field, replace
 from datetime import UTC, datetime
 from functools import lru_cache
 from pathlib import Path
@@ -50,7 +73,38 @@ from typing import Any
 import yaml
 
 from ingest import env
-from ingest.cache import repo_root
+from ingest.cache import atomic_write_text, repo_root
+
+# The response headers that say how close the organization is to its rate limits
+# (platform.claude.com/docs/en/api/rate-limits, "Response headers").
+RATE_LIMIT_HEADERS = (
+    "retry-after",
+    "anthropic-ratelimit-requests-limit",
+    "anthropic-ratelimit-requests-remaining",
+    "anthropic-ratelimit-requests-reset",
+    "anthropic-ratelimit-tokens-limit",
+    "anthropic-ratelimit-tokens-remaining",
+    "anthropic-ratelimit-tokens-reset",
+    "anthropic-ratelimit-input-tokens-limit",
+    "anthropic-ratelimit-input-tokens-remaining",
+    "anthropic-ratelimit-input-tokens-reset",
+    "anthropic-ratelimit-output-tokens-limit",
+    "anthropic-ratelimit-output-tokens-remaining",
+    "anthropic-ratelimit-output-tokens-reset",
+)
+
+# Where `_live_completer` puts those headers in the payload. Taken out again before the
+# payload is cached: the cache is the model's answer, not the state of a rate limiter.
+RATE_LIMITS_KEY = "rate_limits"
+
+# Tokens the API adds around a request (roles, message framing) beyond the bytes we send.
+# Generous on purpose: it only makes the cap reservation an over-estimate.
+FRAMING_TOKENS = 256
+
+
+def rate_limit_headers(headers: Mapping[str, str]) -> dict[str, str]:
+    """The rate-limit headers present on one response, by name."""
+    return {name: headers[name] for name in RATE_LIMIT_HEADERS if name in headers}
 
 
 class AiError(RuntimeError):
@@ -138,6 +192,8 @@ class AiResult:
     output_tokens: int
     request_id: str | None
     stop_reason: str | None
+    # The rate-limit headers the answer came back with; empty for a cache hit.
+    rate_limits: dict[str, str] = field(default_factory=dict)
 
 
 def config_path(data_dir: Path | None = None) -> Path:
@@ -267,20 +323,35 @@ def estimate_cost(
     return calls * cost_usd(config.price(task.model), input_tokens, output_tokens)
 
 
+def max_cost_usd(task: TaskConfig, price: Price, system: str, user_text: str) -> float:
+    """An UPPER BOUND on what one call can cost: every byte sent counted as a token, plus
+    `FRAMING_TOKENS`, and the full `max_tokens` out. What `reserve=True` holds back."""
+    sent = (
+        len(system.encode("utf-8"))
+        + len(user_text.encode("utf-8"))
+        + len(json.dumps(task.output_schema).encode("utf-8"))
+        + FRAMING_TOKENS
+    )
+    return cost_usd(price, sent, task.max_tokens)
+
+
 @lru_cache(maxsize=1)
 def _sdk_client() -> Any:
     """Build the Anthropic client lazily, so importing this module needs no credential and
     the whole test suite runs without one. The key is read through `ingest.env`, whose
-    documented precedence (process env over `.env`) is what CI relies on."""
+    documented precedence (process env over `.env`) is what CI relies on. `max_retries=0`:
+    see the module docstring."""
     import anthropic
 
-    return anthropic.Anthropic(api_key=env.require("ANTHROPIC_API_KEY"))
+    return anthropic.Anthropic(api_key=env.require("ANTHROPIC_API_KEY"), max_retries=0)
 
 
 def _live_completer(request: dict[str, Any]) -> dict[str, Any]:
-    response = _sdk_client().messages.create(**request)
+    raw = _sdk_client().messages.with_raw_response.create(**request)
+    response = raw.parse()
     payload = response.to_dict(mode="json")
     payload["request_id"] = response._request_id
+    payload[RATE_LIMITS_KEY] = rate_limit_headers(raw.headers)
     return payload
 
 
@@ -301,6 +372,9 @@ class Run:
     spent_usd: float = field(default=0.0, init=False)
     calls: int = field(default=0, init=False)
     cache_hits: int = field(default=0, init=False)
+    # Upper-bound cost held back for calls in flight (`reserve=True`).
+    reserved_usd: float = field(default=0.0, init=False)
+    _lock: threading.Lock = field(default_factory=threading.Lock, init=False, repr=False)
 
     @property
     def cap(self) -> float:
@@ -316,13 +390,15 @@ class Run:
         return self._data() / "quality" / "ai-calls" / f"{self.now():%Y-%m}.jsonl"
 
     def _log(self, line: dict[str, Any]) -> None:
+        """Append one audit line. Callers hold `_lock`, so lines never interleave."""
         path = self._log_path()
         path.parent.mkdir(parents=True, exist_ok=True)
         with path.open("a", encoding="utf-8") as handle:
             handle.write(json.dumps(line, sort_keys=True, ensure_ascii=False) + "\n")
 
-    def call(self, task_name: str, user_text: str) -> AiResult:
-        """Ask one task one question about one piece of text."""
+    def call(self, task_name: str, user_text: str, *, reserve: bool = False) -> AiResult:
+        """Ask one task one question about one piece of text. Safe to call from several
+        threads at once; `reserve=True` keeps the cap exact while they do."""
         task = self.config.task(task_name)
         price = self.config.price(task.model)
         system = prompt_text(task, self.repo)
@@ -332,35 +408,51 @@ class Run:
         if cache.exists():
             payload = json.loads(cache.read_text(encoding="utf-8"))
             result = self._interpret(task, payload, ihash, cached=True, price=price)
-            self.cache_hits += 1
-            self._log(self._log_line(task, result, cached=True))
+            with self._lock:
+                self.cache_hits += 1
+                self._log(self._log_line(task, result, cached=True))
             return result
 
-        if self.spent_usd >= self.cap:
-            raise AiCapReached(
-                f"run reached its ${self.cap:.2f} cap after {self.calls} calls "
-                f"(${self.spent_usd:.4f} spent); stopping before {task.name} is called again"
-            )
+        hold = max_cost_usd(task, price, system, user_text) if reserve else 0.0
+        with self._lock:
+            if self.spent_usd >= self.cap or self.spent_usd + self.reserved_usd + hold > self.cap:
+                raise AiCapReached(
+                    f"run reached its ${self.cap:.2f} cap after {self.calls} calls "
+                    f"(${self.spent_usd:.4f} spent, ${self.reserved_usd:.4f} held for calls "
+                    f"in flight); stopping before {task.name} is called again"
+                )
+            self.reserved_usd += hold
 
-        payload = self.completer(self._request(task, system, user_text))
-        self.calls += 1
+        try:
+            payload = self.completer(self._request(task, system, user_text))
+        except BaseException:
+            with self._lock:
+                self.reserved_usd -= hold
+            raise
+        rate_limits = payload.pop(RATE_LIMITS_KEY, None) or {}
         usage = payload.get("usage") or {}
         spent = cost_usd(
             price,
             int(usage.get("input_tokens") or 0),
             int(usage.get("output_tokens") or 0),
         )
-        self.spent_usd += spent
+        with self._lock:
+            self.reserved_usd -= hold
+            self.calls += 1
+            self.spent_usd += spent
         try:
             result = self._interpret(task, payload, ihash, cached=False, price=price)
         except AiResponseError as exc:
-            self._log(
-                self._failed_log_line(task, payload, ihash, spent=spent, error=str(exc))
-            )
+            with self._lock:
+                self._log(
+                    self._failed_log_line(task, payload, ihash, spent=spent, error=str(exc))
+                )
             raise
+        result = replace(result, rate_limits=rate_limits)
         cache.parent.mkdir(parents=True, exist_ok=True)
-        cache.write_text(json.dumps(payload, indent=2, sort_keys=True), encoding="utf-8")
-        self._log(self._log_line(task, result, cached=False))
+        atomic_write_text(cache, json.dumps(payload, indent=2, sort_keys=True))
+        with self._lock:
+            self._log(self._log_line(task, result, cached=False))
         return result
 
     def _request(self, task: TaskConfig, system: str, user_text: str) -> dict[str, Any]:
@@ -450,6 +542,7 @@ class Run:
             "run_spent_usd": round(self.spent_usd, 6),
             "stop_reason": result.stop_reason,
             "request_id": result.request_id,
+            "rate_limits": result.rate_limits,
         }
 
     def _failed_log_line(

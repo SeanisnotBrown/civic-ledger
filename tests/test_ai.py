@@ -455,6 +455,120 @@ def test_real_sdk_request_is_what_we_meant(
     assert "temperature" not in seen["body"]
 
 
+def test_the_live_path_returns_the_rate_limit_headers_and_never_caches_them(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    import anthropic
+
+    def handler(request: httpx2.Request) -> httpx2.Response:
+        return httpx2.Response(
+            200,
+            headers={
+                "request-id": "req_rl",
+                "anthropic-ratelimit-requests-limit": "1000",
+                "anthropic-ratelimit-requests-remaining": "998",
+                "anthropic-ratelimit-input-tokens-limit": "2000000",
+                "anthropic-ratelimit-input-tokens-remaining": "1990000",
+                "x-unrelated": "dropped",
+            },
+            json={
+                "id": "msg_1", "type": "message", "role": "assistant",
+                "model": "claude-haiku-5-5",
+                "content": [{"type": "text", "text": '{"takes_policy_position": true}'}],
+                "stop_reason": "end_turn", "stop_sequence": None,
+                "usage": {"input_tokens": 1500, "output_tokens": 20},
+            },
+        )
+
+    client = anthropic.Anthropic(
+        api_key="test-key",
+        http_client=anthropic.DefaultHttpxClient(transport=httpx2.MockTransport(handler)),
+        max_retries=0,
+    )
+    monkeypatch.setattr(ai, "_sdk_client", lambda: client)
+    run = ai.Run(config=ai.load_config(), data_dir=tmp_path, now=lambda: FIXED_NOW)
+    result = run.call("triage_statement", "I will vote for the farm bill.")
+
+    assert result.rate_limits == {
+        "anthropic-ratelimit-requests-limit": "1000",
+        "anthropic-ratelimit-requests-remaining": "998",
+        "anthropic-ratelimit-input-tokens-limit": "2000000",
+        "anthropic-ratelimit-input-tokens-remaining": "1990000",
+    }
+    cached = tmp_path / "raw" / "anthropic" / "triage_statement" / f"{result.input_hash}.json"
+    assert ai.RATE_LIMITS_KEY not in json.loads(cached.read_text(encoding="utf-8"))
+    (line,) = _log_lines(tmp_path)
+    assert line["rate_limits"]["anthropic-ratelimit-requests-remaining"] == "998"
+
+
+def test_the_upper_bound_is_never_below_what_a_call_costs() -> None:
+    config = ai.load_config()
+    task = config.task("triage_statement")
+    price = config.price(task.model)
+    system = ai.prompt_text(task)
+    text = "I support the bill. " * 200
+    bound = ai.max_cost_usd(task, price, system, text)
+    # Even if every character were its own token and the answer ran to max_tokens:
+    worst_real = ai.cost_usd(price, len(system) + len(text), task.max_tokens)
+    assert bound >= worst_real
+
+
+def test_a_reserved_call_is_refused_when_calls_in_flight_would_pass_the_cap(
+    tmp_path: Path,
+) -> None:
+    """The cap holds with calls IN FLIGHT: each reserves an upper bound before it is sent,
+    so the one that would carry the total past the cap is refused before it is sent."""
+    import threading
+
+    config = ai.load_config()
+    task = config.task("triage_statement")
+    bound = ai.max_cost_usd(task, config.price(task.model), ai.prompt_text(task), "text 0")
+    release = threading.Event()
+    sent: list[str] = []
+
+    def completer(request: dict) -> dict:
+        sent.append(request["messages"][0]["content"])
+        release.wait(5)
+        return _payload({"takes_policy_position": True}, tokens=(10, 1))
+
+    # Room for exactly two reservations, not three.
+    run = ai.Run(
+        config=config, completer=completer, data_dir=tmp_path, now=lambda: FIXED_NOW,
+        cap_usd=bound * 2.5,
+    )
+    workers = [
+        threading.Thread(target=run.call, args=("triage_statement", f"text {i}"),
+                         kwargs={"reserve": True})
+        for i in range(2)
+    ]
+    for worker in workers:
+        worker.start()
+    while len(sent) < 2:
+        pass
+    assert run.reserved_usd == pytest.approx(bound * 2, rel=0.01)
+    with pytest.raises(ai.AiCapReached, match="held for calls in flight"):
+        run.call("triage_statement", "text 2", reserve=True)
+    release.set()
+    for worker in workers:
+        worker.join()
+    assert len(sent) == 2
+    assert run.reserved_usd == pytest.approx(0.0)
+    assert run.spent_usd <= run.cap
+    assert len(_log_lines(tmp_path)) == 2
+
+
+def test_a_failed_send_releases_its_reservation(tmp_path: Path) -> None:
+    def completer(request: dict) -> dict:
+        raise ConnectionError("network down")
+
+    run = ai.Run(
+        config=ai.load_config(), completer=completer, data_dir=tmp_path, now=lambda: FIXED_NOW
+    )
+    with pytest.raises(ConnectionError):
+        run.call("triage_statement", "text", reserve=True)
+    assert run.reserved_usd == 0.0 and run.calls == 0 and run.spent_usd == 0.0
+
+
 def test_the_client_is_built_lazily_from_the_env_key(monkeypatch: pytest.MonkeyPatch) -> None:
     """Importing this module must not need a credential — CI has none at import time."""
     ai._sdk_client.cache_clear()
@@ -463,7 +577,10 @@ def test_the_client_is_built_lazily_from_the_env_key(monkeypatch: pytest.MonkeyP
 
     monkeypatch.setenv("ANTHROPIC_API_KEY", "sk-test")
     ai._sdk_client.cache_clear()
-    assert ai._sdk_client().api_key == "sk-test"
+    client = ai._sdk_client()
+    assert client.api_key == "sk-test"
+    # The batch caller paces and retries; the SDK must not retry a 429 behind its back.
+    assert client.max_retries == 0
     ai._sdk_client.cache_clear()
 
 

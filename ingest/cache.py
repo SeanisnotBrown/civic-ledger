@@ -23,6 +23,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import threading
 import time
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -88,9 +89,11 @@ def atomic_write_text(path: Path, text: str) -> Path:
     NTFS as well as POSIX, and the fsync is what makes the *contents* durable
     before the rename publishes them — without it the rename can survive a power
     cut that the data did not. The temp file is a sibling (same volume, or
-    `os.replace` would not be atomic) and is cleaned up if the write fails."""
+    `os.replace` would not be atomic) and is cleaned up if the write fails. Its name
+    carries the thread as well as the process, so two threads writing the same path
+    (the concurrent triage run) never share a temp file."""
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    tmp = path.with_name(f"{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
     try:
         with open(tmp, "w", encoding="utf-8", newline="\n") as fh:
             fh.write(text)

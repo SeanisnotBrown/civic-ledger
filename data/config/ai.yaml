@@ -21,7 +21,7 @@
 
 # Bumped whenever any value in this file changes, so a logged call states which
 # configuration produced it. Not bumped by a comment edit.
-config_version: 1
+config_version: 2
 
 # --- Spend ---------------------------------------------------------------------------
 # Hard per-run ceiling in USD (owner decision 5, 2026-10-09). `ingest/ai.py` refuses the
@@ -60,9 +60,11 @@ tasks:
   # $0.10/$0.50 per MTok this screens ~40x cheaper than asking Opus the same thing.
   triage_statement:
     model: claude-haiku-5-5
-    prompt_version: v0-stub
-    prompt_file: ingest/prompts/triage_statement/v0-stub.md
-    prompt_sha256: b0b6a4a1294db7fc3b456493ae1e498c9a8397344b5aecddc1d4bed870b93b0f
+    # v1-stub, owner ruling 2026-10-22: office logistics is no longer a reject category;
+    # nothing is false for its category alone.
+    prompt_version: v1-stub
+    prompt_file: ingest/prompts/triage_statement/v1-stub.md
+    prompt_sha256: dc8392bfc44bd454219e54a1fd2d74c8dcfb6bc4b06373cdac5a6d4867d1c012
     effort: medium
     max_tokens: 1024
     output_schema:
@@ -73,8 +75,10 @@ tasks:
         takes_policy_position:
           type: boolean
           description: >-
-            True only if the text takes a position on an identifiable policy. Ceremonial
-            text, office logistics, procedural remarks and pure messaging are false.
+            True only if the text takes a position on an identifiable policy. Judge what
+            the text says, not its category: a funding, event or office notice is true
+            only if it states such a position. Ceremonial text, procedural remarks and pure
+            messaging with no position are false.
 
   # The categorizer. Model and effort are the owner's choice of 2026-10-09; Sonnet 5.5 at
   # effort `high` is the fallback candidate for the task-4 bake-off, scored on the same

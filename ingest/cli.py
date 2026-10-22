@@ -132,6 +132,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import prefilter
 
         return prefilter.run(args[1:])
+    if args and args[0] == "triage-run":
+        from ingest import triage_run
+
+        return triage_run.run(args[1:])
     if args and args[0] == "ms":
         from ingest import ms_legislature
 
@@ -157,6 +161,8 @@ def main(argv: list[str] | None = None) -> int:
     print("  press-render  P3 task 2a rendered fetch for the 11 client-side press lists")
     print("  prefilter     P3 decision 2 the free rule-based pre-filter (no AI, no network)")
     print("                  --dry-run: counts only, writes no drop log")
+    print("  triage-run    P3 step 9 the Haiku first pass ONLY (resumable, capped; no Opus)")
+    print("                  --limit N: at most N calls | --dry-run: counts, no call")
     print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")
     print("  legislation   INC-10 member sponsored/cosponsored -> data/legislation/")

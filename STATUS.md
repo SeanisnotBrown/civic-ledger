@@ -33,5 +33,5 @@ Long jobs: WMI `Win32_Process.Create`, **CreateFlags 0x210**, hidden, wrapped in
 ## Before any data commit or push
 `uv run ingest events && uv run ingest topics && uv run export` → `uv run verify-recompute` → `uv run ruff check .` → the pytest gate (~4 GB, ~26 min, never beside a site build) → `cd site && npm run build` + its seven `test:*` scripts + `npx playwright test`. `data/raw/gates.ps1` runs all of it.
 ```
-CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov=ingest.statements_crec --cov=ingest.prefilter --cov=ingest.statements_press --cov=ingest.press_render --cov-branch --cov-fail-under=100
+CI=true GITHUB_ACTIONS=true uv run pytest -q --cov=ingest.metrics --cov=ingest.rankings --cov=ingest.scoring --cov=ingest.classify --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics --cov=ingest.ai --cov=ingest.pilot --cov=ingest.statements_crec --cov=ingest.prefilter --cov=ingest.statements_press --cov=ingest.press_render --cov=ingest.triage_run --cov-branch --cov-fail-under=100
 ```

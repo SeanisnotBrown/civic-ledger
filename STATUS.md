@@ -2,7 +2,7 @@
 Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated** 2026-10-22 session close (builder, copilot relaying the owner). **origin/master = this STATUS commit** (on `84dd528fe`; gates `EXIT=0 all` 14:59, 1,193 passed). **Branch `p3-labeling-set` pushed, NOT merged** (`a441d1c11`, worktree `..\Civic-Ledger-label`).
 ## FIRST ACTION NEXT SESSION
 1. **CI for master** (`gh run list --branch master`); if red, fix that first.
-2. **The owner finishes labeling EV11–EV60** in `..\Civic-Ledger-label\docs\labeling\2026-10-22-eval-set.csv` (EV01–EV10 done, `a441d1c11`). Labels are evaluative: the OWNER labels; a builder or copilot may suggest only if the row's notes say so (bias flag). Commit per batch on `p3-labeling-set`; do not merge until the set is complete.
+2. **The owner finishes labeling EV11–EV60** in `..\Civic-Ledger-label\docs\labeling\2026-10-22-eval-set.csv` (EV01–EV10 done, `a441d1c11`). The OWNER labels. If a builder or copilot suggests a label, the row's `notes` must say so (bias flag). Commit per batch on `p3-labeling-set`; do not merge until the set is complete.
 3. **Write the real triage and categorizer prompts** (new versions; fix the stale Q-ids then), test both against the labeled set, record precision in `docs/data-contract.md`.
 4. **Only then the Opus categorizer run**: needs the owner's OK and a cap set for that one run, restored to 5.00 the same session. Q-K (precision bar) must be answered before anything categorized publishes.
 ## Owner decisions pending
@@ -24,9 +24,11 @@ Starts at 4 in flight, ramps to `--workers` (default 96) on rate-limit headers; 
 2026-10-22: step 9 = triage only; office-logistics dropped; manifest stamp diffs from `export` discarded; a temporary cap change does not bump `config_version`. 2026-10-14: pre-filter R1-R4 (20-drop audit holds); Extensions of Remarks kept; one-liners unchanged; `/privacy` not restored; dates stored US Eastern, month-only never matched to a day's vote, conflicts flagged never guessed; per-run cap 5.00, raised only by the owner for one run; Lighthouse fixes 1-3 in, 300 rows per member page kept.
 ## Launch lesson
 Long jobs: WMI `Win32_Process.Create`, **CreateFlags 0x210**, hidden, wrapped in `../.civic-copilot/awake.ps1`; job scripts in `data/raw/` (`gates.ps1` runs events/topics/export/verify-recompute first, writes `START` to `gates.done`, and has `faulthandler_timeout=900` + `--durations=15`; `step9.ps1`). **Stop processes only by a PID you started; never kill java/gradle/python by name.** When the other project's Android emulator + Gradle share the 15 GB of RAM, pytest slows sharply (banned-words alone >15 min).
+## Current phase
+**Phase 3 — Statements pipeline.** Task 1 DONE. Task 2: (a) press + (b) Record collected; pre-filter DONE; step 8 + step 9 first pass DONE; (c) waits on campaign issue-page URLs; (d) needs platform access. Task 3 blocked (no archive.org keys). Task 4 next: the prompts + labeled-set evaluation. **Read §5 Phase 3's owner decisions first.**
 ## Live facts
 1. **THE REPO IS PUBLIC.** `ubuntu-latest` = Ubuntu 26; Lighthouse 0.90 ratified §6.7, never lower it.
-2. `data/raw/` is gitignored: committed reports are the only record of a walk or run. No statement is publishable until `archive-links` refreshes `data/quality/archive-status.json`.
+2. `data/raw/` is gitignored: committed reports are the only record of a walk or run; press cache TTL 7 days. No statement is publishable until `archive-links` refreshes `data/quality/archive-status.json`. Rendered fetch covers six rows (`press_render.RENDER_ROWS`); CI cannot refresh them.
 3. Sources (`statement-sources.yaml`): Kelly and Young via `press_sitemap`; Miller `no_press_source`; only K000394 Kim `owner_checked: false`.
 4. AI: `claude-opus-5-5` / `claude-sonnet-5-5` / `claude-haiku-5-5`; no `temperature`; SDK `max_retries=0`. Account is **Build tier** (Haiku 5,000 RPM / 5M ITPM).
 ## Before any data commit or push

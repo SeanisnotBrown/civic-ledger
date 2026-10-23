@@ -311,6 +311,27 @@ def check_topics() -> list[str]:
     return []
 
 
+def check_priorities() -> list[str]:
+    """(10) The stated-priorities file re-derives byte-for-byte from the approved
+    statements, the members' terms and the ratified Q-B/Q-J constants (P3 task 6). A
+    drifted file would show a priority list the rules no longer support."""
+    from ingest import priorities
+    from ingest.export import _dumps
+
+    data = repo_root() / "data"
+    path = priorities.path(data)
+    if not path.exists():
+        return []
+    want = _dumps(priorities.compute(data))
+    got = path.read_text(encoding="utf-8")
+    if got != want:
+        return [
+            f"priorities — committed bytes != recompute ({len(got)} vs {len(want)} bytes); "
+            "run `uv run export`"
+        ]
+    return []
+
+
 def main(argv: list[str] | None = None) -> int:
     votes_dir = repo_root() / "data" / "votes"
     if not votes_dir.exists() or not any(votes_dir.glob("*.json")):
@@ -323,6 +344,7 @@ def main(argv: list[str] | None = None) -> int:
         + check_legislation_stats()
         + check_events()
         + check_topics()
+        + check_priorities()
     )
     n_rolls = sum(1 for _ in votes_dir.glob("*.json"))
     if failures:
@@ -349,6 +371,8 @@ def main(argv: list[str] | None = None) -> int:
         derived.append(f"{n_events} month(s) of the activity feed")
     if (repo_root() / "data" / "topics" / "index.json").exists():
         derived.append("the topic index")
+    if (repo_root() / "data" / "priorities.json").exists():
+        derived.append("the stated-priorities file")
     tail = f"; {' and '.join(derived)} recompute exactly." if derived else "."
     print(
         f"verify-recompute: OK — coverage, exact reproduction, and reciprocity match "

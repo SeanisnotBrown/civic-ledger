@@ -275,7 +275,21 @@ is owner-supplied, like INC-6 absences).
 | `paired_bill_ids` | array\<string\> | The D9 pairing RESULT: `named_measures` resolved to canonical bill ids (bill-id form passes through; an allowlisted title maps; anything else is unpaired and omitted). Resolved once in Python (`ingest/pairing.py`); the metric layer and site both read this and never re-resolve (D41). Sorted, de-duplicated. |
 | `specificity_level` | `0\|1\|2\|3` \| null | Owner-assigned; `null` = unscored. |
 | `stated_position` | `"support" \| "oppose"` \| null | Owner-assigned stance (D42) — the sibling of specificity, NOT a paraphrase. `support` ⇒ expected Yea on passage, `oppose` ⇒ Nay. The only basis for `named_measure_mismatch`; `null` → excluded from it. |
+| `topic` | string \| null | P3 task 6: the owner-approved policy area (one of the 33 official areas). `null` = not labeled: counts toward the Q-B total, toward no topic. |
+| `priority_signal` | bool \| null | P3 task 6: the owner-approved Q-J priority signal. |
 | `curator_note` | string \| null | Internal, **never rendered**. |
+
+`data/priorities.json` (P3 task 6) is DERIVED, written by `uv run export` and re-derived
+byte-for-byte by `verify-recompute` (`ingest/priorities.py`): per member with at least one
+approved statement, `approved_statements`, `distinct_topics` and `listed` (the Q-B bar in
+`thresholds.yaml` `priorities_list`: 5 approved statements across 3 topics, counted over the
+member's CURRENT term only — owner, 2026-10-23). The top-level `list_wording_ratified`
+(owner ruling 9, 2026-10-23) is false until the list wording (AES-14) is ratified; while it
+is false the site shows no list for anyone. Only a `listed`
+member carries `priorities` (topic + `support`/`oppose` + the Q-J routes that make it one:
+`signal` and/or `repetition`, with the statement ids) and `conflicted_topics` (both sides in
+the current term, so no priority). Below the bar nothing is inferred or published. The
+campaign-issue-page route is not implemented: those pages are not collected yet. Empty today.
 
 `data/statements/_title_allowlist.yaml` (owner-edited config, not a record) is the
 D9 short-title → bill-id map: the one sanctioned exception to "pair by bill id
@@ -328,6 +342,64 @@ report by row and URL, because a disagreement can mean the wrong page was attach
 title. `index.json` carries those conflicts (`date_conflicts`), the releases that no page
 could date (`date_failures`), and what the dating cost in fetches
 (`release_page_fetches`).
+
+**Categorizer precision (P3 task 4, Q-K — ratified 2026-10-23).** No statement
+categorized by the AI publishes until the categorizer prompt in use clears the precision bar
+in `data/config/thresholds.yaml` (`categorizer_precision`) on the held-out labeled set, and
+archive capture exists. The bar, proposed 2026-10-22 by the copilot and ratified by the
+owner 2026-10-23: stance 0.90 (over the AI's for/against calls),
+topic 0.90, priority_signal 0.90 (over its positive calls), specificity 0.80; proposition
+is not scored. Every field is reported by party; a D/R gap wider than 10 points stops for
+owner review. Measured with `uv run ingest prompt-eval` on the held-out hand-labeled set
+(at least 50 rows). **Caveat:** on a 60-row set one error is about 1.7 points and a 0.90
+estimate is roughly +/- 8 points. The bar is a floor, not a guarantee; the blind 1-in-10
+review log tightens it over time (rolling window of the last 50 blind items). Every
+statement is still hand-approved by the owner before it publishes: the bar decides whether
+the AI's suggestions are trustworthy enough to show him, not whether anything skips his
+review. A complete `prompt-eval` run on at least 50 labeled rows records its counts in
+`data/quality/categorizer-precision.json` (counts per field and party, the prompt versions
+and hashes measured, each field's status, any D/R gap flag; no per-row mark, no model
+answer); the publish gate trusts it only while those prompt versions are still in
+`ai.yaml`. The first-pass triage has no bar (owner, 2026-10-23) and is reported only. No
+measured precision is recorded below.
+
+**First Q-K measurement, 2026-10-23 — FAIL, gate stays closed.** `prompt-eval` on all 60
+owner-reviewed rows (`p3-labeling-set` at `89dc35914`; EV11–EV60 approved by the owner
+2026-10-23, EV02/EV03/EV10 reconciled with ruling 3), triage `v1`, categorizer `v2`, no
+prompt tuning, 104 cache hits, $0.0000: `docs/research/2026-10-23-prompt-eval-60-owner-reviewed.md`;
+`data/quality/categorizer-precision.json` records `unreviewed_labels: 0`. Precision (D / R,
+gap): stance 90% = 38/42 (86% / 95%, 9 pts) meets 90%; topic 88% = 37/42 (77% / 100%, 23
+pts) BELOW 90%; priority_signal 100% = 6/6 (2/2, 4/4, 0 pts) meets 90% (n=6, small);
+specificity 86% = 36/42 (77% / 95%, 18 pts) meets 80%; first-pass triage (no bar) 89% =
+39/44 (79% / 100%, 21 pts). Result: topic is below its bar, and the D/R gap passes 10
+points on topic, specificity and triage, so the publish gate stays closed. No prompt was
+changed; what to do about it is an owner decision.
+
+Superseded earlier run: **Measurement on file, 2026-10-23 — NOT a Q-K measurement.** `prompt-eval` on all 60 rows
+of the held-out set (`p3-labeling-set` at `4d83fe4f3`), triage `v1`, categorizer `v2`:
+`docs/research/2026-10-23-prompt-eval-60.md`. **50 of 60 labels are AI (copilot) labels,
+owner-unreviewed. This is AI-vs-AI agreement, NOT a valid Q-K measurement. The publish gate
+stays closed until the owner reviews or relabels them.** Agreement, all 60 (D / R): stance
+90% (86% / 95%), topic 88% (77% / 100%), priority_signal 100% of 6 calls, specificity 86%
+(77% / 95%), first-pass triage 89% (79% / 100%). Owner-labeled EV01–EV10 alone: stance 83%
+(5/6), topic 100% (6/6), priority_signal 1/1, specificity 83% (5/6), triage 100% (6/6).
+Copilot-labeled EV11–EV60 alone: stance 92% (33/36), topic 86% (31/36), priority_signal
+5/5, specificity 86% (31/36), triage 87% (33/38); every D/R split is in the report.
+**Owner-label conflict:** the owner's own EV02, EV03 and EV10 have priority = yes on
+credit-claiming or bill-introduction releases, which ruling 3 (2026-10-23) now says is no.
+They are listed, not changed; the owner reconciles them.
+
+**Review queue and log (P3 task 5) — NOT published.** `data/raw/review/queue.jsonl` (the
+categorized statements awaiting review) and `data/raw/review/log.jsonl` (the owner's
+blind labels and approve / edit / reject decisions, with per-field agreement marks) are
+gitignored here and, per the owner's ruling of 2026-10-23, backed up off-machine to a
+separate PRIVATE repository (the push step is a stub until that repository exists); it is
+never committed to this public repository. The log holds the owner's labels and the AI cache's `input_hash`, never the
+model's answer. Which items are blind (1 in 10) is a pure function of a fixed public seed
+and the text fingerprint (`curation/review.py::is_blind`). Nothing in the review queue
+reaches `data/statements/` while `curation/review.py::publish_gate` is closed: Q-K
+unratified, a field's rolling blind precision below its bar, or no archive path for
+categorized statements (task 3).
 
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and

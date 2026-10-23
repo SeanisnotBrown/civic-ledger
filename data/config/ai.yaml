@@ -5,9 +5,9 @@
 # reads it, and the one module every AI call goes through.
 #
 # What this file is NOT: evaluative. Nothing here decides what counts as a good or poor
-# statement, what "priority" means, or what precision is good enough — those are Q-E and
-# Q-F, ratified by the owner at task 4 and recorded in thresholds.yaml / the task-4
-# sitting, never here. This file is mechanical in the same sense as ingest/config.py.
+# statement, what "priority" means, or what precision is good enough — those are Q-J
+# (ratified 2026-10-09, §2) and Q-K (ratified 2026-10-23, recorded in thresholds.yaml
+# under `categorizer_precision`), never here. This file is mechanical in the same sense as ingest/config.py.
 #
 # THERE IS NO `temperature`. The current models reject sampling parameters with a 400;
 # `effort` (low | medium | high | xhigh | max) is the knob, and the spec's task-1 line was
@@ -21,7 +21,7 @@
 
 # Bumped whenever any value in this file changes, so a logged call states which
 # configuration produced it. Not bumped by a comment edit.
-config_version: 2
+config_version: 4
 
 # --- Spend ---------------------------------------------------------------------------
 # Hard per-run ceiling in USD (owner decision 5, 2026-10-09). `ingest/ai.py` refuses the
@@ -60,11 +60,13 @@ tasks:
   # $0.10/$0.50 per MTok this screens ~40x cheaper than asking Opus the same thing.
   triage_statement:
     model: claude-haiku-5-5
-    # v1-stub, owner ruling 2026-10-22: office logistics is no longer a reject category;
-    # nothing is false for its category alone.
-    prompt_version: v1-stub
-    prompt_file: ingest/prompts/triage_statement/v1-stub.md
-    prompt_sha256: dc8392bfc44bd454219e54a1fd2d74c8dcfb6bc4b06373cdac5a6d4867d1c012
+    # v1 (2026-10-22 overnight): the first real prompt, worded like the owner's labeling
+    # sheet. Keeps the v1-stub ruling of 2026-10-22: office logistics is no longer a reject
+    # category; nothing is false for its category alone. Step 9's first pass ran on
+    # v1-stub; its verdicts stay in data/raw/triage/v1-stub.jsonl.
+    prompt_version: v1
+    prompt_file: ingest/prompts/triage_statement/v1.md
+    prompt_sha256: b49a776f73a17679a259b512b958130f1657a0083ed5c1cfb8c0171054cb051c
     effort: medium
     max_tokens: 1024
     output_schema:
@@ -85,15 +87,19 @@ tasks:
   # held-out set. Reference input (NOT ratified):
   # docs/research/2026-10-09-categorizer-model-review.md
   #
-  # OUTPUT SCHEMA IS PROVISIONAL. Stance values and the `proposition` field are the owner's
-  # 2026-10-09 decisions and are settled. Every FIELD DEFINITION — what specificity's
-  # values mean, what establishes a priority signal, what a confidence word asserts — is
-  # ratified at task 4. Nothing categorized publishes before then.
+  # v2 (2026-10-23): owner ruling 3 — announcing an act already done ("Today I introduced
+  # a bill...") is not a priority signal; only a future pledge (Q-J b) or explicit ranking
+  # (Q-J a) counts. Otherwise as v1. Settled by the owner: the stance values and
+  # `proposition` (2026-10-09); priority_signal = Q-J (2026-10-09) + ruling 3; topic = the
+  # 33 official policy areas, specificity = 3 levels, proposition reference-only and not
+  # scored (2026-10-22); the confidence definitions and topic hints KEPT (2026-10-23).
+  # Q-K ratified 2026-10-23; v2 is unmeasured, so nothing categorized with it publishes
+  # until it clears the bar on the held-out set (curation/review.py::publish_gate).
   categorize_statement:
     model: claude-opus-5-5
-    prompt_version: v0-stub
-    prompt_file: ingest/prompts/categorize_statement/v0-stub.md
-    prompt_sha256: ada13acb61629d14fc0dfc7b0e4ca16ac3d174c49189eb1c3a98be89806785bb
+    prompt_version: v2
+    prompt_file: ingest/prompts/categorize_statement/v2.md
+    prompt_sha256: 7fb86e15aba74aa9ae8d58d95075daf1354231e7516171e066f0a5fabca85a02
     effort: medium
     # 4,096 must hold the model's thinking AND the JSON. Raise only if evaluation shows
     # real truncation (task 4).
@@ -104,10 +110,46 @@ tasks:
       required: [topic, stance, proposition, specificity, priority_signal, confidence]
       properties:
         topic:
-          type: string
           description: >-
-            One topic from the official vocabulary. The allowed set is enumerated at task
-            4; until then this is an unconstrained string and nothing publishes from it.
+            One of the 33 official policy areas (owner ruling 2026-10-22), copied exactly.
+            Null when stance is `none`.
+          anyOf:
+            - type: string
+              enum:
+                - "Agriculture and Food"
+                - "Animals"
+                - "Armed Forces and National Security"
+                - "Arts, Culture, Religion"
+                - "Civil Rights and Liberties, Minority Issues"
+                - "Commerce"
+                - "Congress"
+                - "Crime and Law Enforcement"
+                - "Economics and Public Finance"
+                - "Education"
+                - "Emergency Management"
+                - "Energy"
+                - "Environmental Protection"
+                - "Families"
+                - "Finance and Financial Sector"
+                - "Foreign Trade and International Finance"
+                - "Government Operations and Politics"
+                - "Health"
+                - "Housing and Community Development"
+                - "Immigration"
+                - "International Affairs"
+                - "Labor and Employment"
+                - "Law"
+                - "Native Americans"
+                - "Private Legislation"
+                - "Public Lands and Natural Resources"
+                - "Science, Technology, Communications"
+                - "Social Sciences and History"
+                - "Social Welfare"
+                - "Sports and Recreation"
+                - "Taxation"
+                - "Transportation and Public Works"
+                - "Water Resources Development"
+            - type: "null"
         stance:
           type: string
           enum: [for, against, mixed, none]
@@ -123,18 +165,27 @@ tasks:
             the text itself. "Against" on a topic is too broad to be checkable; opposing a
             particular restriction is not opposing the topic. Null when stance is `none`.
         specificity:
-          type: string
-          description: PROVISIONAL — anchored values are ratified at task 4.
+          description: >-
+            Owner ruling 2026-10-22. 1 = names a specific bill, rule, program or number;
+            2 = names a concrete change but nothing specific; 3 = names only the issue.
+            Null when stance is `none`.
+          anyOf:
+            - type: integer
+              enum: [1, 2, 3]
+            - type: "null"
         priority_signal:
           type: boolean
           description: >-
-            Does the text itself present this as a priority? PROVISIONAL — what counts is
-            Q-E, ratified at task 4. One statement never establishes a member's actual
-            priorities.
+            Q-J (ratified 2026-10-09): true only when the text explicitly ranks the issue or
+            makes a concrete commitment to introduce, pass or block a specific thing. An act
+            already done ("today I introduced...") is not a pledge (owner, 2026-10-23). One
+            statement never establishes a member's actual priorities; the per-member rule
+            does.
         confidence:
           type: string
           enum: [high, medium, low]
           description: >-
             The model's own assessment that every substantive label above is supported by
             the supplied text. It is a prediction, not a measurement, and is displayed as
-            model self-assessment. Its reliability is measured at task 4 (Q-F).
+            model self-assessment. Its reliability is measured against the owner's labels
+            (Q-K). The prompt's definitions were kept by the owner, 2026-10-23.

@@ -49,8 +49,9 @@ own terms instead (`ingest/triage_run.py`), and reads the rate-limit headers, wh
 `_live_completer` returns with each answer and the audit line now records.
 
 What is NOT here: any judgment. This module does not decide what a good statement is, what
-"priority" means, or what precision is good enough — Q-E and Q-F, ratified by the owner at
-task 4. It moves bytes and counts dollars.
+"priority" means, or what precision is good enough — Q-J (the stated-priority definition,
+ratified 2026-10-09) and Q-K (the precision bar, `thresholds.yaml` `categorizer_precision`).
+It moves bytes and counts dollars.
 
 Testing seam. `Run` takes a `completer`: a callable that receives the request kwargs and
 returns the API's JSON response as a dict. Tests pass a fake, so the whole suite runs with

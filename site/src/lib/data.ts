@@ -553,6 +553,39 @@ export interface Statement {
   named_measures: string[]; paired_bill_ids: string[];
   specificity_level: 0 | 1 | 2 | 3 | null;
   stated_position: "support" | "oppose" | null; curator_note: string | null;
+  // P3 task 6: owner-approved policy area and Q-J priority signal (absent on records
+  // curated before the fields existed — read as null).
+  topic?: string | null; priority_signal?: boolean | null;
+}
+
+// --- Stated priorities (P3 task 6) ---------------------------------------
+// Computed in Python (ingest/priorities.py) from the approved statements and the ratified
+// Q-B / Q-J rules, re-derived by verify-recompute; the site only reads it. A member absent
+// from the file has no approved statement on record. `priorities` exists only for a member
+// who clears the Q-B bar: below it nothing is inferred, so nothing is published.
+export interface StatedPriority {
+  topic: string; stance: "support" | "oppose";
+  routes: ("signal" | "repetition")[]; statement_ids: string[];
+}
+export interface MemberPriorities {
+  approved_statements: number; distinct_topics: number; listed: boolean;
+  priorities?: StatedPriority[]; conflicted_topics?: string[];
+}
+export interface PrioritiesFile {
+  bar: { min_approved_statements: number; min_distinct_topics: number };
+  // Owner ruling 9, 2026-10-23: false until the list wording (AES-14) is ratified; while
+  // false no priorities list is rendered for anyone.
+  list_wording_ratified: boolean;
+  members: Record<string, MemberPriorities>;
+}
+let _priorities: PrioritiesFile | null = null;
+export function getPrioritiesFile(): PrioritiesFile {
+  if (!_priorities) _priorities = readJson<PrioritiesFile>("priorities.json");
+  return _priorities;
+}
+export function getMemberPriorities(memberId: string): MemberPriorities {
+  return getPrioritiesFile().members[memberId]
+    ?? { approved_statements: 0, distinct_topics: 0, listed: false };
 }
 
 /**
@@ -1244,7 +1277,7 @@ export function getMemberActivity(memberId: string): MemberActivityItem[] {
       const paired = it.statement.paired_bill_ids
         .map((id) => getBill(id)?.policy_area)
         .find((p) => p);
-      items.push({ ...it, policyArea: paired ?? null });
+      items.push({ ...it, policyArea: it.statement.topic ?? paired ?? null });
     }
   }
   for (const { bill, action } of getSponsoredBillActions(memberId)) {

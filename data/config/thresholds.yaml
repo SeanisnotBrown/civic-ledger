@@ -1,7 +1,8 @@
 # data/config/thresholds.yaml — ratified evaluative constants (§0.8 / SD-27).
 #
 # Every value here was proposed to the owner in plain English WITH the data, chosen by
-# the owner, and committed with the reasoning + the ratification date. Nothing
+# the owner, and committed with the reasoning + the ratification date — except an entry
+# marked `ratified: false`, which is a proposal awaiting the owner and publishes nothing. Nothing
 # evaluative may publish from a value not committed here; the §6.8 guard
 # (checks/integrity.py + site/scripts/check-grade-labels.mjs) enforces that every grade
 # label rendered on the site appears verbatim below. `citation` is an external source
@@ -44,6 +45,75 @@ stated_priority:
   # Per-member rule 3: repetition. Both conditions must hold together.
   repetition_statements: 3      # approved statements sharing one topic AND one stance
   repetition_distinct_months: 2 # spread across at least this many calendar months
+
+# --- Stated-priorities list bar (Q-B, owner-ratified 2026-10-07) -----------------------
+# §2 "Q-B answered": a member's "Stated priorities" list shows only with at least this many
+# APPROVED statements covering at least this many different policy areas. Below it the page
+# says plainly there are not yet enough statements on record, and never implies the member
+# said nothing. Read by ingest/priorities.py (Phase 3 task 6). Gates the LIST only: it does
+# not gate collection, review, or the statements in the timeline.
+priorities_list:
+  ratified: "2026-10-07"
+  citation: null
+  justification: >-
+    The owner's answer to Q-B. Offered 3 / 5 / 10 / none-with-the-count-printed, he picked
+    5 with a spread of 3 topics so that no member is ever summarised from a single press
+    release, accepting that in Phase 3 roughly the better-covered half of Congress gets a
+    list and the rest waits.
+  min_approved_statements: 5
+  min_distinct_topics: 3
+  # Owner ruling 8, 2026-10-23: both counts are over the member's CURRENT term only, the
+  # same window as the Q-J priorities, so a list and its priorities draw on the same
+  # statements.
+  #
+  # Owner ruling 9, 2026-10-23: no priorities list is shown until the owner ratifies its
+  # wording (AES-14). Flip to true only in the commit that ratifies AES-14. Below the Q-B
+  # bar the honest empty state shows regardless.
+  list_wording_ratified: false
+
+# --- Categorizer precision launch bar (Q-K, owner-ratified 2026-10-23) --------------------
+# Proposed 2026-10-22 by the copilot, to whom the owner delegated a first answer; the owner
+# RATIFIED it as written on 2026-10-23. Read by `ingest/prompt_eval.py` (scores a prompt
+# against the hand-labeled set) and by the review dashboard's publish gate
+# (`curation/review.py::publish_gate`). Ratifying the bar does not open the gate: the
+# held-out labeled set (>= `min_labeled_rows`) must also clear it with the CURRENT prompts
+# (`data/quality/categorizer-precision.json`), and archive capture must exist (task 3).
+#
+# Every statement is still hand-approved by the owner before it publishes (task 5). This
+# bar decides whether the AI's suggestions are trustworthy enough to put in front of him,
+# not whether anything skips his review.
+categorizer_precision:
+  ratified: "2026-10-23"
+  proposed_by: "copilot for owner 2026-10-22"
+  proposed: "2026-10-22"
+  citation: null
+  justification: >-
+    Precision is measured per field on the held-out hand-labeled set, as the share of the
+    AI's calls the owner's own label agrees with. Stance and topic decide which votes a
+    statement is compared against, so a wrong one flips or misplaces a say-vs-do
+    comparison: 0.90. A false "priority" can move a Consistency grade, and false positives
+    are the harmful direction, so priority_signal is measured on the AI's positive calls:
+    0.90. Specificity is display only and moves no grade: 0.80. Proposition is reference
+    only and not scored (owner ruling 2026-10-22). On a 60-row set one error is about 1.7
+    points and a 0.90 estimate is roughly +/- 8 points: the bar is a floor, not a
+    guarantee, and the blind review log tightens it over time.
+  # The set the bar is measured on must have at least this many owner-labeled rows; below
+  # it a score is a smoke test, never a precision measurement.
+  min_labeled_rows: 50
+  fields:
+    stance: 0.90           # over the AI's `for` / `against` calls
+    topic: 0.90            # over the AI's topic calls
+    priority_signal: 0.90  # over the AI's positive (`true`) calls
+    specificity: 0.80      # over the AI's specificity calls; display only
+  # Fairness: every field is reported by party. A gap between D and R larger than this
+  # many percentage points on ANY field is flagged and stops for owner review. 10, not 5,
+  # because ~30 rows per party makes one or two errors look like a gap.
+  party_gap_max_points: 10
+  # After launch: the blind 1-in-10 review sample gives a rolling precision over the last
+  # this-many blind items. A field below its bar stops newly categorized statements from
+  # entering the publishable export until the owner reviews; already-approved statements
+  # stay up (each was hand-approved).
+  rolling_blind_window: 50
 
 grades:
   attendance:

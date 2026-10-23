@@ -29,10 +29,10 @@ from ingest import ai
 FIXED_NOW = datetime(2026, 10, 9, 12, 0, tzinfo=UTC)
 
 CATEGORIZED = {
-    "topic": "Agriculture",
+    "topic": "Agriculture and Food",
     "stance": "for",
     "proposition": "raising the crop insurance subsidy",
-    "specificity": "names a bill",
+    "specificity": 1,
     "priority_signal": True,
     "confidence": "high",
 }
@@ -115,6 +115,42 @@ def test_stance_enum_is_the_owners_four_values_and_proposition_is_nullable() -> 
     assert props["stance"]["enum"] == ["for", "against", "mixed", "none"]
     assert props["proposition"]["type"] == ["string", "null"]
     assert "proposition" in schema["required"]
+
+
+def _prompt_policy_areas() -> list[str]:
+    """The policy-area list exactly as the categorizer prompt prints it."""
+    task = ai.load_config().tasks["categorize_statement"]
+    text = ai.prompt_text(task)
+    block = text.split("copied exactly from this list:", 1)[1].split("\n\n", 2)[1]
+    return [a.strip() for a in " ".join(block.split("\n")).split("·")]
+
+
+def test_topic_enum_is_the_owners_33_policy_areas_and_matches_the_prompt() -> None:
+    """Owner ruling 2026-10-22: topic is one of the 33 official policy areas. The schema
+    the API enforces and the list the prompt shows the model must be the same list."""
+    topic = ai.load_config().tasks["categorize_statement"].output_schema["properties"]["topic"]
+    strings, null = topic["anyOf"]
+    assert null == {"type": "null"}
+    assert len(strings["enum"]) == len(set(strings["enum"])) == 33
+    assert _prompt_policy_areas() == strings["enum"]
+
+
+def test_specificity_is_the_owners_three_levels() -> None:
+    spec = ai.load_config().tasks["categorize_statement"].output_schema["properties"][
+        "specificity"
+    ]
+    assert spec["anyOf"] == [{"type": "integer", "enum": [1, 2, 3]}, {"type": "null"}]
+
+
+def test_no_shipped_prompt_or_config_names_the_stale_question_ids() -> None:
+    """Q-E/Q-F are the Phase 7/8 questions; the priority and precision questions are
+    Q-J and Q-K. The stubs keep their old text (editing them would change their hash)."""
+    config = ai.load_config()
+    assert "Q-E" not in ai.config_path().read_text(encoding="utf-8")
+    assert "Q-F" not in ai.config_path().read_text(encoding="utf-8")
+    for task in config.tasks.values():
+        text = ai.prompt_text(task)
+        assert "Q-E" not in text and "Q-F" not in text
 
 
 # --- config parsing -----------------------------------------------------------------
@@ -291,7 +327,7 @@ def test_a_call_returns_validated_data_and_logs_one_auditable_line(tmp_path: Pat
     (line,) = _log_lines(tmp_path)
     assert line["task"] == "categorize_statement"
     assert line["model"] == "claude-opus-5-5"
-    assert line["prompt_version"] == "v0-stub"
+    assert line["prompt_version"] == "v2"
     assert line["input_hash"] == result.input_hash
     assert line["request_id"] == "req_abc"
     assert line["cost_usd"] == pytest.approx(0.026)

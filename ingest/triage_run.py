@@ -3,7 +3,7 @@ decision 3), and NOTHING after it.
 
 **Owner ruling 2026-10-22 (step 9, option b): triage only.** The Opus categorizer waits
 until its prompt has been tested against a held-out hand-labeled set of at least 50
-statements (spec task 4); both prompts are still stubs. So this command can reach exactly
+statements (spec task 4). So this command can reach exactly
 one AI task. It builds its `ai.Run` over a configuration holding `triage_statement` ALONE,
 so a categorizer call is not merely avoided but impossible: `ai.py` would refuse it as an
 unknown task before any request was built. `tests/test_triage_run.py` fails if a request
@@ -477,6 +477,18 @@ def tally(
 _COUNTS = ("eligible", "triaged", "passed", "not_passed", "remaining")
 
 
+def prompt_status(task: ai.TaskConfig) -> str:
+    """What the report may truthfully say about the prompt that produced its verdicts. A
+    `-stub` version was never written to be evaluated; any other version is untested
+    until `uv run ingest prompt-eval` scores it on the held-out labeled set."""
+    if task.prompt_version.endswith("stub"):
+        return "a STUB: nothing here may be published or counted toward precision"
+    return (
+        "untested until scored against the held-out hand-labeled set; nothing here may "
+        "be published until the precision bar, Q-K, is ratified"
+    )
+
+
 def render_report(
     *,
     rows: dict[str, dict[str, int]],
@@ -495,8 +507,7 @@ def render_report(
         "# Triage run — the first pass (Haiku), counts only",
         "",
         f"Generated {generated} by `uv run ingest triage-run`. Task `{task.name}`, model "
-        f"`{task.model}`, prompt `{task.prompt_version}` (a STUB: nothing here may be "
-        "published or counted toward precision).",
+        f"`{task.model}`, prompt `{task.prompt_version}` ({prompt_status(task)}).",
         "",
         "**The Opus categorizer was NOT called** (owner ruling 2026-10-22, step 9 option b): "
         "it waits for a prompt tested against at least 50 hand-labeled statements.",

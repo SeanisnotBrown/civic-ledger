@@ -363,6 +363,20 @@ answer); the publish gate trusts it only while those prompt versions are still i
 `ai.yaml`. The first-pass triage has no bar (owner, 2026-10-23) and is reported only. No
 measured precision is recorded here yet.
 
+**Measurement on file, 2026-10-23 — NOT a Q-K measurement.** `prompt-eval` on all 60 rows
+of the held-out set (`p3-labeling-set` at `4d83fe4f3`), triage `v1`, categorizer `v2`:
+`docs/research/2026-10-23-prompt-eval-60.md`. **50 of 60 labels are AI (copilot) labels,
+owner-unreviewed. This is AI-vs-AI agreement, NOT a valid Q-K measurement. The publish gate
+stays closed until the owner reviews or relabels them.** Agreement, all 60 (D / R): stance
+90% (86% / 95%), topic 88% (77% / 100%), priority_signal 100% of 6 calls, specificity 86%
+(77% / 95%), first-pass triage 89% (79% / 100%). Owner-labeled EV01–EV10 alone: stance 83%
+(5/6), topic 100% (6/6), priority_signal 1/1, specificity 83% (5/6), triage 100% (6/6).
+Copilot-labeled EV11–EV60 alone: stance 92% (33/36), topic 86% (31/36), priority_signal
+5/5, specificity 86% (31/36), triage 87% (33/38); every D/R split is in the report.
+**Owner-label conflict:** the owner's own EV02, EV03 and EV10 have priority = yes on
+credit-claiming or bill-introduction releases, which ruling 3 (2026-10-23) now says is no.
+They are listed, not changed; the owner reconciles them.
+
 **Review queue and log (P3 task 5) — NOT published.** `data/raw/review/queue.jsonl` (the
 categorized statements awaiting review) and `data/raw/review/log.jsonl` (the owner's
 blind labels and approve / edit / reject decisions, with per-field agreement marks) are

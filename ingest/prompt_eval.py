@@ -510,7 +510,7 @@ def render(
         f"| Rows whose label is owner-unreviewed (copilot) | {len(result.unreviewed)} |",
         f"| Rows with no answer (refusal or malformed) | {len(result.no_answer)}"
         + (f": {', '.join(result.no_answer)}" if result.no_answer else "") + " |",
-        f"| Owner said yes, triage said no (missed; not a precision error) | "
+        f"| Label said yes, triage said no (missed; not a precision error) | "
         f"{result.triage_rejected_owner_yes} |",
         f"| Categorizer `mixed` stance calls (outside the for/against bar) | "
         f"{result.mixed_calls} |",

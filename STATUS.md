@@ -1,11 +1,9 @@
 # STATUS.md — live state (keep under 50 lines)
-Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated** 2026-10-23 ~11:15 CT (headless copilot turn, owner away). **origin/master = `0d1276f0f`, CI green** (run 39846418012). **Branch `p3-overnight-2026-10-23` pushed, NOT merged**: full local gate at `a953bad26` is **RED on one test** (below), so the merge was NOT done. **Branch `p3-labeling-set`** at `89dc35914` (owner-approved labels; worktree `../Civic-Ledger-label`); builders read it, never edit it.
+Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never append. **Updated** 2026-10-23 ~12:10 CT (headless copilot turn, owner away). **`p3-overnight-2026-10-23` MERGED to master `70159027b`; CI green, run 39989895049.** Full local gate green at `220227246` (pytest 1,282 passed, 100% cov; Playwright 72/72). The earlier `/corrections` a11y timeout was a one-off (3/3 green alone, green in the full re-run). Branch `p3-labeling-set` at `89dc35914` (worktree `../Civic-Ledger-label`); builders read it, never edit it.
 ## FIRST ACTION NEXT SESSION
-1. **Playwright `[mobile] a11y: /corrections` timed out at 150 s** (71 of 72 passed; pytest 1,282 passed, 100% cov; ruff, build, 8 `test:*` green). Log `data/raw/gates.log`. Looks like a timeout, not an axe finding; unconfirmed. Re-run `npx playwright test a11y.spec.ts` alone (emulator off); if green, re-run the full gate, then merge (owner approved merge on a green gate).
-2. **Owner decides what the Q-K FAIL means** (see Measurement; pending decision 1). No prompt is changed until he does.
-3. **archive.org keys** (`IA_S3_ACCESS` / `IA_S3_SECRET`; owner adding today), then Phase 3 task 3.
-4. **Build the review-log push step** (`review.backup_review_log`, still a stub): private repo exists, `REVIEW_LOG_BACKUP_REMOTE` is in `.env`.
-5. Next build after that: Phase 3 task 3 once the keys land.
+1. **Owner decides the Q-K FAIL / party-gap options** (pending decisions 1 and 5). No prompt is changed until he does.
+2. **archive.org keys** (`IA_S3_ACCESS` / `IA_S3_SECRET`; owner adding today) → Phase 3 task 3.
+3. **Build the review-log push step** (`review.backup_review_log`, still a stub): private repo `SeanisnotBrown/civic-ledger-review-log` exists, `REVIEW_LOG_BACKUP_REMOTE` is in `.env`.
 ## First Q-K measurement (2026-10-23) — FAIL, gate closed
 `docs/research/2026-10-23-prompt-eval-60-owner-reviewed.md` (triage v1, categorizer v2, 60 owner-reviewed rows, 104 cache hits, $0.00; `categorizer-precision.json` says `unreviewed_labels: 0`). Precision (D/R, gap): stance 90% 38/42 (86/95, 9) meets; **topic 88% 37/42 (77/100, 23) BELOW 90%**; priority_signal 100% 6/6 (n small) meets; specificity 86% 36/42 (77/95, 18) meets 80%; triage (no bar) 89% (79/100, 21). D/R gap over 10 on topic, specificity, triage. No prompt changed.
 ## Owner rulings 2026-10-23 (applied on the branch; recorded in spec §2)

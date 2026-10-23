@@ -2703,7 +2703,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 300,
-    "sponsored": 19
+    "sponsored": 20
   },
   "member_id": "O000176",
   "source_url": "https://api.congress.gov/v3/member/O000176/sponsored-legislation",
@@ -2725,6 +2725,15 @@
       "introduced_date": "2026-05-04",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/174",
       "title": "Proposing an amendment to the Constitution of the United States to provide for term limits for justices of the Supreme Court."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hjres220-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/220",
+      "title": "Proposing an amendment to the Constitution of the United States relating to a national referendum process."
     },
     {
       "became_law": false,

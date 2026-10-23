@@ -2874,11 +2874,38 @@
   ],
   "lifetime_counts": {
     "cosponsored": 319,
-    "sponsored": 16
+    "sponsored": 19
   },
   "member_id": "B001325",
   "source_url": "https://api.congress.gov/v3/member/B001325/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10859-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10859",
+      "title": "Biotech Defense Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10860-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10860",
+      "title": "Stop Beijing’s Bots Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10861-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10861",
+      "title": "Blocking Foreign Cellular Modules in Defense Systems Act of 2026"
+    },
     {
       "became_law": false,
       "bill_id": "hr2670-119",

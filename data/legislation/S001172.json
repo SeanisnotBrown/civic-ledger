@@ -1144,10 +1144,10 @@
       "title": "LEOSA Reform Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr227-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-125.",
       "introduced_date": "2025-07-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
       "title": "Clergy Act"
@@ -2303,6 +2303,15 @@
       "introduced_date": "2025-01-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/534",
       "title": "CONTAINER Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr5343-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5343",
+      "title": "Ensuring Patient Access to Critical Breakthrough Products Act"
     },
     {
       "became_law": false,
@@ -4475,7 +4484,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1818,
+    "cosponsored": 1819,
     "sponsored": 141
   },
   "member_id": "S001172",

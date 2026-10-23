@@ -9219,7 +9219,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 1024,
-    "sponsored": 57
+    "sponsored": 58
   },
   "member_id": "C001132",
   "source_url": "https://api.congress.gov/v3/member/C001132/sponsored-legislation",
@@ -9277,6 +9277,15 @@
       "introduced_date": "2026-10-06",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10754",
       "title": "Rural Disaster Fairness Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10864-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10864",
+      "title": "San Carlos Irrigation Project Divestiture Act of 2026"
     },
     {
       "became_law": false,
@@ -9531,10 +9540,10 @@
       "title": "To require the Secretary of the Interior to finalize a proposed rule to remove the Apache trout from the Federal List of Endangered and Threatened Wildlife."
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr837-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-126.",
       "introduced_date": "2025-01-31",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/837",
       "title": "To require the Secretary of Agriculture to convey the Pleasant Valley Ranger District Administrative Site to Gila County, Arizona."

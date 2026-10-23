@@ -658,10 +658,10 @@
       "title": "Ally’s Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr2481-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-129.",
       "introduced_date": "2025-04-07",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2481",
       "title": "Romance Scam Prevention Act"
@@ -2324,6 +2324,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9489-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9489",
+      "title": "GRACE for Military Survivors Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9641-119",
       "congress": 119,
       "enacted_action": null,
@@ -2618,6 +2627,15 @@
       "introduced_date": "2024-11-08",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1566",
       "title": "Honoring the service and sacrifice of America's veterans on Veterans Day, 2024."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1581-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1581",
+      "title": "Supporting the goals and ideals of Red Ribbon Week during the period of October 23 through October 31, 2026."
     },
     {
       "became_law": false,
@@ -2981,7 +2999,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1858,
+    "cosponsored": 1860,
     "sponsored": 141
   },
   "member_id": "J000295",

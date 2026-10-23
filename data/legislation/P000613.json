@@ -2629,10 +2629,10 @@
       "title": "Puppy Protection Act of 2025"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr227-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-125.",
       "introduced_date": "2025-09-15",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/227",
       "title": "Clergy Act"
@@ -10901,6 +10901,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1635-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1635",
+      "title": "Supporting the designation of October 23, 2026, as \"National Marine Sanctuary Day\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres166-119",
       "congress": 119,
       "enacted_action": null,
@@ -11963,7 +11972,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 3107,
+    "cosponsored": 3108,
     "sponsored": 231
   },
   "member_id": "P000613",

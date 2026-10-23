@@ -128,6 +128,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10582-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-22",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10582",
+      "title": "Motion Picture, Television, and Entertainment Revitalization Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1078-119",
       "congress": 119,
       "enacted_action": null,
@@ -595,10 +604,10 @@
       "title": "Stop Antisemitism on College Campuses Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr2481-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-129.",
       "introduced_date": "2025-03-31",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2481",
       "title": "Romance Scam Prevention Act"
@@ -2099,7 +2108,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 233,
+    "cosponsored": 234,
     "sponsored": 16
   },
   "member_id": "G000601",

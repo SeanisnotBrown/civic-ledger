@@ -4,7 +4,11 @@ LOCALHOST ONLY. `assert_loopback` refuses to bind any non-loopback address, so t
 tool can never be exposed on a network (brief §5.10; the app touches owner-only
 workflows and stages git commits). It supersedes the INC-6 absence-approval CLI.
 
-Two tabs:
+Three tabs:
+  * Review — P3 task 5: the AI-categorized statement queue, one at a time: suggestion +
+    confidence -> approve / edit / reject. A random 1 in 10 is BLIND (the owner labels
+    first, the suggestion is revealed after). Approvals stay in the gitignored review log;
+    nothing exports while the Q-K publish gate is closed (`curation/review.py`).
   * Statements — paste a verbatim quote + source URL, Capture (SPN2, verified), then
     Save. The Save control does not exist until a verified capture is in hand, and the
     save endpoint itself refuses without the stored `Capture` (curation.statements),
@@ -23,11 +27,13 @@ import secrets
 import sys
 from dataclasses import dataclass
 from datetime import date as _date
+from pathlib import Path
 from urllib.parse import urlsplit
 
 from flask import Flask, abort, redirect, render_template_string, request, url_for
+from markupsafe import Markup
 
-from curation import absences, statements
+from curation import absences, review, statements
 from ingest.export import MEMBERS_DIR
 from ingest.sources.archive_org import Capture, SpnClient, SpnError
 
@@ -101,7 +107,8 @@ input,select,textarea{width:100%;padding:.4rem;font:inherit}textarea{min-height:
 .ok{background:#e6ffed}.err{background:#ffecec}
 .card{border:1px solid #ccc;border-radius:.4rem;padding:1rem;margin:.8rem 0}
 button{padding:.5rem 1rem;font:inherit;margin-top:.8rem}</style></head><body>
-<nav><a href="{{ url_for('statements_tab') }}">Statements</a>
+<nav><a href="{{ url_for('review_tab') }}">Review</a>
+<a href="{{ url_for('statements_tab') }}">Statements</a>
 <a href="{{ url_for('absences_tab') }}">Absence approvals</a></nav><hr>{{ body|safe }}
 </body></html>"""
 
@@ -110,7 +117,37 @@ def _render(body: str, **ctx):
     return render_template_string(_PAGE, body=render_template_string(body, **ctx))
 
 
-def create_app() -> Flask:
+_LABEL_FIELDS = """
+  <label>Takes a position on a specific policy?</label><select name="takes_policy_position">
+    <option value="yes" {% if not v or v.takes_policy_position %}selected{% endif %}>yes</option>
+    <option value="no" {% if v and v.takes_policy_position == false %}selected{% endif %}>no
+    </option></select>
+  <label>Topic</label><select name="topic"><option value="">(none)</option>
+    {% for t in topics %}<option {% if v and v.topic == t %}selected{% endif %}>{{ t }}</option>
+    {% endfor %}</select>
+  <label>Stance</label><select name="stance">
+    {% for s in stances %}<option {% if v and v.stance == s %}selected{% endif %}>{{ s }}</option>
+    {% endfor %}</select>
+  <label>Proposition (reference only)</label>
+  <input name="proposition" value="{{ v.proposition or '' if v else '' }}">
+  <label>Specificity</label><select name="specificity"><option value="">(none)</option>
+    {% for n in (1, 2, 3) %}
+    <option {% if v and v.specificity == n %}selected{% endif %}>{{ n }}</option>{% endfor %}
+    </select>
+  <label>Priority signal (Q-J)</label><select name="priority_signal">
+    <option value="no">no</option>
+    <option value="yes" {% if v and v.priority_signal %}selected{% endif %}>yes</option></select>
+"""
+
+_SUGGESTION = """<div class="card"><strong>AI suggestion</strong> (model self-assessed
+  confidence: <strong>{{ s.confidence }}</strong>)<br>
+  Topic: {{ s.topic }} · Stance: {{ s.stance }} · Specificity: {{ s.specificity }} ·
+  Priority signal: {{ 'yes' if s.priority_signal else 'no' }}<br>
+  Proposition: {{ s.proposition }}</div>"""
+
+
+def create_app(data_dir: Path | None = None) -> Flask:
+    """`data_dir` is where the review queue and log live (tests pass a tmp dir)."""
     app = Flask(__name__)
     drafts: dict[str, _Draft] = {}
     # Per-process CSRF secret. Embedded as a hidden field in every form and required
@@ -138,6 +175,79 @@ def create_app() -> Flask:
     @app.route("/")
     def index():
         return redirect(url_for("statements_tab"))
+
+    @app.route("/review")
+    def review_tab():
+        nxt = review.next_item(data_dir)
+        gate = review.publish_gate(data_dir)
+        running = review.running_precision(data_dir)
+        body = """<h1>Review queue</h1>
+        {% if msg %}<div class="msg {{ cls }}">{{ msg }}</div>{% endif %}
+        <div class="msg err">Publishing: <strong>{{ 'OPEN' if gate.open else 'CLOSED' }}</strong>
+        {% for r in gate.reasons %}<br>· {{ r }}{% endfor %}</div>
+        <p>Running precision from your blind labels (last {{ running.window }};
+        {{ running.blind_items }} so far):
+        {% for f, t in running.blind.items() %}{{ f }}
+        {{ '—' if t['all'].precision is none else '%d%%'|format(t['all'].precision * 100) }}
+        ({{ t['all'].correct }}/{{ t['all'].called }}){% if not loop.last %} · {% endif %}
+        {% endfor %}</p>
+        {% if not nxt %}<p>Nothing waiting for review.</p>{% else %}
+        <p>{{ nxt.remaining }} waiting. {{ nxt.item.member_id }} ({{ nxt.item.party }}),
+        {{ nxt.item.date or '' }} · <a href="{{ nxt.item.url }}">source</a></p>
+        <blockquote class="card">{{ nxt.item.text }}</blockquote>
+        {% if nxt.stage == 'label' %}
+          <div class="msg ok"><strong>Blind item.</strong> Enter your own label first; the AI's
+          suggestion is shown after you save it.</div>
+          <form method="post" action="{{ url_for('review_blind') }}">
+            <input type="hidden" name="csrf" value="{{ csrf }}">
+            <input type="hidden" name="item_id" value="{{ nxt.item.id }}">
+            {{ fields(none) }}
+            <button type="submit">Save my label</button></form>
+        {% else %}
+          {% if nxt.stage == 'reveal' %}<div class="card"><strong>Your blind label</strong><br>
+            {% for k, val in nxt.blind_label.items() %}{{ k }}: {{ val }}{% if not loop.last
+            %} · {% endif %}{% endfor %}</div>{% endif %}
+          {{ suggestion(nxt.item.suggestion) }}
+          <form method="post" action="{{ url_for('review_decide') }}">
+            <input type="hidden" name="csrf" value="{{ csrf }}">
+            <input type="hidden" name="item_id" value="{{ nxt.item.id }}">
+            <button name="action" value="approve">Approve the suggestion</button>
+            <button name="action" value="reject">Reject</button>
+            <h2>Or edit</h2>
+            {{ fields(nxt.item.suggestion) }}
+            <button name="action" value="edit">Save my edit</button></form>
+        {% endif %}{% endif %}"""
+
+        topics, stances = review.topics(), review.STANCES
+
+        def fields(v):
+            return Markup(render_template_string(_LABEL_FIELDS, v=v, topics=topics,
+                                                 stances=stances))
+
+        def suggestion(s):
+            return Markup(render_template_string(_SUGGESTION, s=s))
+
+        return _render(body, nxt=nxt, gate=gate, running=running, csrf=csrf_token,
+                       fields=fields, suggestion=suggestion,
+                       msg=request.args.get("msg"), cls=request.args.get("cls", "ok"))
+
+    @app.post("/review/blind")
+    def review_blind():
+        try:
+            review.record_blind_label(request.form["item_id"], request.form.to_dict(), data_dir)
+        except review.ReviewError as exc:
+            return redirect(url_for("review_tab", msg=f"Not saved: {exc}", cls="err"))
+        return redirect(url_for("review_tab", msg="Your label is saved; here is the AI's.",
+                                cls="ok"))
+
+    @app.post("/review/decide")
+    def review_decide():
+        try:
+            line = review.record_decision(request.form["item_id"], request.form["action"],
+                                          request.form.to_dict(), data_dir)
+        except review.ReviewError as exc:
+            return redirect(url_for("review_tab", msg=f"Not saved: {exc}", cls="err"))
+        return redirect(url_for("review_tab", msg=f"Recorded: {line['action']}.", cls="ok"))
 
     @app.route("/statements")
     def statements_tab():

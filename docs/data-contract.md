@@ -343,6 +343,16 @@ statement is still hand-approved by the owner before it publishes: the bar decid
 the AI's suggestions are trustworthy enough to show him, not whether anything skips his
 review. No measured precision is recorded here yet.
 
+**Review queue and log (P3 task 5) — NOT published.** `data/raw/review/queue.jsonl` (the
+categorized statements awaiting review) and `data/raw/review/log.jsonl` (the owner's
+blind labels and approve / edit / reject decisions, with per-field agreement marks) are
+gitignored. The log holds the owner's labels and the AI cache's `input_hash`, never the
+model's answer. Which items are blind (1 in 10) is a pure function of a fixed public seed
+and the text fingerprint (`curation/review.py::is_blind`). Nothing in the review queue
+reaches `data/statements/` while `curation/review.py::publish_gate` is closed: Q-K
+unratified, a field's rolling blind precision below its bar, or no archive path for
+categorized statements (task 3).
+
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
 counts. The site build reads `dead_statement_ids` and excludes those statements until

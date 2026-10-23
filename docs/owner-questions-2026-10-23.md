@@ -129,3 +129,7 @@ waits for your approval. Nobody will see the wording until statements are approv
 - **B. Review AES-14 first.** No list can appear until you do.
 
 **Builder's pick: B.** It is your evaluative wording, and nothing is waiting on it yet.
+Unlike the other picks, this is NOT what the code does tonight. The code would show the
+list as soon as a member qualifies. No member can qualify yet: nothing is approved, and
+the export is gated. If you pick B, the builder adds a switch that keeps the list hidden
+until AES-14 is reviewed.

@@ -56,6 +56,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import json
 import re
 from collections.abc import Iterable
 from dataclasses import dataclass, field
@@ -399,7 +400,7 @@ def render(
     tri = run.config.task(TRIAGE)
     cat = run.config.task(CATEGORIZE)
     smoke = result.rows < bar.min_labeled_rows
-    bar_state = f"RATIFIED {bar.ratified_on}" if bar.ratified else "PROVISIONAL, not ratified"
+    bar_state = f"RATIFIED {bar.ratified_on}" if bar.ratified else "NOT ratified"
     lines = [
         f"# Prompt evaluation — {title(result.rows, bar)}",
         "",
@@ -500,6 +501,34 @@ def render_rows(result: Score) -> str:
     return "\n".join(lines) + "\n"
 
 
+# --- the recorded measurement (what the publish gate reads) ------------------------------
+
+
+def measurement_path(data_dir: Path | None = None) -> Path:
+    base = data_dir if data_dir is not None else repo_root() / "data"
+    return base / "quality" / "categorizer-precision.json"
+
+
+def measurement(result: Score, bar: PrecisionBar, config: ai.AiConfig, *,
+                generated: str) -> dict[str, Any]:
+    """The held-out measurement in counts only — never a per-row mark or a model answer.
+    Written only for a complete run on at least `min_labeled_rows` labeled rows; the gate
+    trusts it only while the prompt versions and hashes it names are still in `ai.yaml`."""
+    tasks = {name: {"prompt_version": config.task(name).prompt_version,
+                    "prompt_sha256": config.task(name).prompt_sha256,
+                    "model": config.task(name).model} for name in (TRIAGE, CATEGORIZE)}
+    fields = {}
+    for name in FIELDS:
+        tallies = result.by_field[name]
+        fields[name] = {
+            "called": {k: t.called for k, t in sorted(tallies.items())},
+            "correct": {k: t.correct for k, t in sorted(tallies.items())},
+            "status": bar_status(name, tallies["all"], bar, result.rows),
+        }
+    return {"generated": generated, "labeled_rows": result.rows, "tasks": tasks,
+            "fields": fields, "party_gap_flags": gap_flags(result, bar)}
+
+
 # --- command ---------------------------------------------------------------------------
 
 
@@ -549,6 +578,13 @@ def run(
     atomic_write_text(out, report)
     rows_file.parent.mkdir(parents=True, exist_ok=True)
     atomic_write_text(rows_file, render_rows(result))
+    if outcome.status == "complete" and result.rows >= bar.min_labeled_rows:
+        recorded = measurement_path(data_dir)
+        recorded.parent.mkdir(parents=True, exist_ok=True)
+        atomic_write_text(recorded, json.dumps(
+            measurement(result, bar, airun.config, generated=now.strftime("%Y-%m-%d")),
+            indent=2, sort_keys=True) + "\n")
+        print(f"prompt-eval: measurement recorded in {recorded}")
     print(f"prompt-eval: {outcome.status}; {airun.calls} calls, ${airun.spent_usd:.4f} "
           f"spent; report {out}")
     return EXIT_OK if outcome.status == "complete" else EXIT_STOPPED

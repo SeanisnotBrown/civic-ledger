@@ -129,10 +129,14 @@ const CATEGORIES: { name: string; measures: string }[] = [
 // Stated priorities (P3 task 6): Q-B decides whether a list shows at all, Q-J which topics
 // are on it — both applied in Python (ingest/priorities.py). Below the Q-B bar the page
 // says there are not yet enough statements on record and infers nothing; it never implies
-// the member said nothing. The listed branch's wording is not owner-reviewed yet (AES-14);
-// no member reaches it until approved statements exist.
+// the member said nothing. Owner ruling 9 (2026-10-23): no list renders until its wording
+// (AES-14) is ratified (`list_wording_ratified`); a member who clears the bar meanwhile
+// gets a plain line saying the list is held for review. Ruling 8: both counts are over the
+// member's current term.
 const prio = getMemberPriorities(memberId);
-const prioBar = getPrioritiesFile().bar;
+const prioFile = getPrioritiesFile();
+const prioBar = prioFile.bar;
+const showLists = prioFile.list_wording_ratified === true;
 const STANCE_WORD: Record<string, string> = { support: "In support", oppose: "In opposition" };
 const ROUTE_WORD: Record<string, string> = {
   signal: "called a priority in an approved statement",
@@ -339,7 +343,12 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
 
       <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="prio-h">
         <h3 id="prio-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Stated priorities</h3>
-        {prio.listed ? (
+        {prio.listed && !showLists ? (
+          <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-held>
+            Enough of their statements from this term have been reviewed and approved for a
+            list of stated priorities. The list is not shown yet while its wording is reviewed.
+          </p>
+        ) : prio.listed ? (
           (prio.priorities ?? []).length > 0 ? (
             <ul class="mt-2" data-priorities-list>
               {(prio.priorities ?? []).map((p) => (
@@ -358,7 +367,7 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
         ) : (
           <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-empty>
             Not enough statements on record yet. A list appears once at least
-            {" "}{prioBar.min_approved_statements} of their public statements, covering at least
+            {" "}{prioBar.min_approved_statements} of their public statements from this term, covering at least
             {" "}{prioBar.min_distinct_topics} policy areas, have been reviewed and
             approved{prio.approved_statements > 0 ? ` (${n(prio.approved_statements)} so far)` : ""}.
             This does not mean they have said nothing on these issues: a statement appears here

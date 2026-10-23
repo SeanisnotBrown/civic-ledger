@@ -34,10 +34,15 @@ Approved statements do NOT export anywhere publishable until `publish_gate` open
 opens only when every condition holds:
 
   1. the Q-K precision bar in `thresholds.yaml` is ratified by the owner (a date, not
-     `false`);
-  2. no field's rolling precision over the last `rolling_blind_window` blind labels is
+     `false`) — ratified 2026-10-23;
+  2. the held-out measurement (`data/quality/categorizer-precision.json`, written by
+     `prompt-eval` on at least `min_labeled_rows` owner-labeled rows) exists, was made with
+     the categorizer prompt `ai.yaml` names TODAY (a new prompt version needs a new
+     measurement), every barred field meets its bar, and no D/R gap is flagged (owner,
+     2026-10-23: "publishing still needs the labeled 60 to clear the bar");
+  3. no field's rolling precision over the last `rolling_blind_window` blind labels is
      below its bar (Q-K's running check);
-  3. a categorized statement can be archived before it publishes (decision 8; task 3,
+  4. a categorized statement can be archived before it publishes (decision 8; task 3,
      blocked on the archive.org keys). Until that path exists the gate stays closed
      whatever Q-K says, because `data/statements/` takes only records with a verified
      capture (`curation/statements.py::build_statement`).
@@ -69,7 +74,7 @@ ACTIONS = ("approve", "edit", "reject")
 SCORED = ("stance", "topic", "priority_signal", "specificity")
 STANCES = ("for", "against", "mixed", "none")
 
-# Condition 3 of the gate. Flipped in the commit that builds archive capture for
+# Condition 4 of the gate. Flipped in the commit that builds archive capture for
 # categorized statements (task 3) — never by hand.
 ARCHIVE_PATH_BUILT = False
 
@@ -345,6 +350,29 @@ class Gate:
     reasons: tuple[str, ...]
 
 
+def _measurement_reasons(data_dir: Path | None) -> list[str]:
+    """Condition 2: the held-out set cleared the bar with the categorizer in use today."""
+    path = prompt_eval.measurement_path(data_dir)
+    if not path.exists():
+        return ["the categorizer has not been measured on the held-out labeled set yet "
+                "(run `uv run ingest prompt-eval` on all labeled rows)"]
+    recorded = json.loads(path.read_text(encoding="utf-8"))
+    task = ai.load_config().task("categorize_statement")
+    measured = recorded["tasks"]["categorize_statement"]
+    if (measured["prompt_version"], measured["prompt_sha256"]) != (
+        task.prompt_version, task.prompt_sha256
+    ):
+        return [f"the held-out measurement is for categorizer {measured['prompt_version']}, "
+                f"not {task.prompt_version} now in ai.yaml; measure the current prompt"]
+    reasons = [f"held-out precision on {name} is {field['status']}"
+               for name, field in sorted(recorded["fields"].items())
+               if field["status"] not in ("meets", "no bar")]
+    if recorded["party_gap_flags"]:
+        reasons.append("held-out D/R gap flagged on "
+                       + ", ".join(recorded["party_gap_flags"]) + ": owner review")
+    return reasons
+
+
 def publish_gate(data_dir: Path | None = None, *, thresholds_dir: Path | None = None) -> Gate:
     """Closed unless every condition in the module docstring holds. `reasons` says why."""
     bar = prompt_eval.load_bar(thresholds_dir)
@@ -352,7 +380,8 @@ def publish_gate(data_dir: Path | None = None, *, thresholds_dir: Path | None = 
     if not bar.ratified:
         who = f", proposed by {bar.proposed_by}" if bar.proposed_by else ""
         reasons.append(f"the Q-K precision bar is not ratified by the owner{who}")
-    running = running_precision(data_dir, window=bar.rolling_blind_window)
+    reasons += _measurement_reasons(data_dir)
+    running =running_precision(data_dir, window=bar.rolling_blind_window)
     for name, minimum in bar.fields.items():
         precision = running.blind[name]["all"].precision
         if precision is not None and precision < minimum:
@@ -374,10 +403,50 @@ def export_approved(data_dir: Path | None = None, *,
                     thresholds_dir: Path | None = None) -> list[Path]:
     """The only door from the review log toward `data/statements/`. Refuses while the gate
     is closed. With it open, the export goes through `curation/statements.build_statement`
-    (verified capture required) — and that path is condition 3, not built yet."""
+    (verified capture required) — and that path is condition 4, not built yet."""
     gate = publish_gate(data_dir, thresholds_dir=thresholds_dir)
     if not gate.open:
         raise PublishGateClosed("nothing exported: " + "; ".join(gate.reasons))
     raise PublishGateClosed(  # pragma: no cover — unreachable while ARCHIVE_PATH_BUILT is False
         "export through build_statement is built together with the archive path (task 3)"
     )
+
+
+# --- owner rulings 2026-10-23 (questions 5 and 7) ----------------------------------------
+
+# Question 7: the categorizer's stance and the published Statement record's stance. `for`
+# and `against` map to the record's `support` / `oppose`; `mixed` and `none` leave it
+# blank (no stated position: the say-vs-do check skips it). Specificity 1-3 carries over
+# unchanged; topic and priority_signal carry over as approved.
+STANCE_TO_STATEMENT = {"for": "support", "against": "oppose", "mixed": None, "none": None}
+
+
+def statement_fields(label: dict[str, Any]) -> dict[str, Any]:
+    """The owner-approved label as the published Statement record's fields."""
+    return {
+        "stated_position": STANCE_TO_STATEMENT[label.get("stance") or "none"],
+        "specificity_level": label.get("specificity"),
+        "topic": label.get("topic"),
+        "priority_signal": label.get("priority_signal"),
+    }
+
+
+# Question 5: the review log stays git-ignored in this PUBLIC repository and is backed up
+# off-machine to a separate PRIVATE repository the owner creates (rule 2: the account step
+# is his). Until then the backup is a stub: it names the missing step and pushes nothing.
+BACKUP_REMOTE_ENV = "REVIEW_LOG_BACKUP_REMOTE"
+
+
+def backup_review_log(data_dir: Path | None = None) -> str:
+    """Back the review log up to the owner's private repository. STUB: the push step is
+    built once the private repository exists (STATUS, owed by a human)."""
+    from ingest import env
+
+    if not log_path(data_dir).exists():
+        return "nothing to back up: no review log yet"
+    remote = env.get(BACKUP_REMOTE_ENV)
+    if not remote:
+        return (f"not configured: the owner creates a PRIVATE GitHub repository and sets "
+                f"{BACKUP_REMOTE_ENV} in .env (STATUS, owed by a human); nothing was pushed")
+    return (f"{BACKUP_REMOTE_ENV} is set, but the push step is still a stub; nothing was "
+            "pushed")

@@ -5,6 +5,31 @@ pick, which is what the code does now, so nothing waited on these. Change any pi
 the builder changes the code. Already pending in `STATUS.md` and NOT repeated here:
 multi-topic labels, the banned-words check, ratifying Q-K, Q-C, Q-D.
 
+## ANSWERED — owner rulings, 2026-10-23 00:45 (recorded in `IMPLEMENTATIONv3.md` §2)
+
+1. Confidence word: KEEP high / medium / low as written.
+2. Topic hints: KEEP.
+3. "Today I introduced a bill..." is NOT a priority signal. Only a pledge about the future
+   (Q-J b) or explicit ranking language (Q-J a) counts; the bill already shows on the "do"
+   side. Written into `categorize_statement` v2.
+4. First-pass triage: NO precision bar. Keep reporting it.
+5. Review log: git-ignored locally PLUS an off-machine private backup to a separate PRIVATE
+   GitHub repo (the owner creates it; the push step is a stub until then). Never committed
+   to the public repo.
+6. Reject asks why (takes no position / wrong member / broken text / other). Built later,
+   after task 3 unblocks.
+7. Stance mapping: for -> support, against -> oppose, mixed / none -> blank. Specificity 1-3
+   carried unchanged.
+8. The Q-B bar counts CURRENT-TERM approved statements only (the same window as the Q-J
+   priorities).
+9. The priorities list wording waits for AES-14 review. A switch keeps every priorities list
+   hidden until AES-14 is ratified; the honest empty state still shows.
+
+**Q-K: RATIFIED as written**, 2026-10-23. Publishing still needs the labeled 60 to clear
+the bar, and the archive.org keys.
+
+The questions as they were asked follow, unchanged.
+
 ## 1. The AI's "confidence" word — what should each level mean?
 
 The categorizer says `high`, `medium` or `low` about its own labels. The builder wrote:

@@ -62,19 +62,28 @@ priorities_list:
     list and the rest waits.
   min_approved_statements: 5
   min_distinct_topics: 3
+  # Owner ruling 8, 2026-10-23: both counts are over the member's CURRENT term only, the
+  # same window as the Q-J priorities, so a list and its priorities draw on the same
+  # statements.
+  #
+  # Owner ruling 9, 2026-10-23: no priorities list is shown until the owner ratifies its
+  # wording (AES-14). Flip to true only in the commit that ratifies AES-14. Below the Q-B
+  # bar the honest empty state shows regardless.
+  list_wording_ratified: false
 
-# --- Categorizer precision launch bar (Q-K) — PROVISIONAL, NOT RATIFIED ------------------
-# Proposed 2026-10-22 by the copilot, to whom the owner delegated a provisional answer for
-# owner review on 2026-10-23. `ratified: false` keeps the publish gate CLOSED
-# (`curation/review.py::publish_gate`): nothing categorized may publish until the owner
-# sets `ratified` to the date he approves the values. Read by `ingest/prompt_eval.py`
-# (scores a prompt against the hand-labeled set) and by the review dashboard's gate.
+# --- Categorizer precision launch bar (Q-K, owner-ratified 2026-10-23) --------------------
+# Proposed 2026-10-22 by the copilot, to whom the owner delegated a first answer; the owner
+# RATIFIED it as written on 2026-10-23. Read by `ingest/prompt_eval.py` (scores a prompt
+# against the hand-labeled set) and by the review dashboard's publish gate
+# (`curation/review.py::publish_gate`). Ratifying the bar does not open the gate: the
+# held-out labeled set (>= `min_labeled_rows`) must also clear it with the CURRENT prompts
+# (`data/quality/categorizer-precision.json`), and archive capture must exist (task 3).
 #
 # Every statement is still hand-approved by the owner before it publishes (task 5). This
 # bar decides whether the AI's suggestions are trustworthy enough to put in front of him,
 # not whether anything skips his review.
 categorizer_precision:
-  ratified: false
+  ratified: "2026-10-23"
   proposed_by: "copilot for owner 2026-10-22"
   proposed: "2026-10-22"
   citation: null

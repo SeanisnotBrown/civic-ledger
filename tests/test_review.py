@@ -13,6 +13,7 @@ import yaml
 
 from curation import review
 from curation.app import create_app
+from ingest import ai, prompt_eval
 
 SUGGESTION = {"topic": "Health", "stance": "for", "proposition": "capping insulin at $35",
               "specificity": 1, "priority_signal": True, "confidence": "medium"}
@@ -183,35 +184,68 @@ def test_running_precision_comes_from_blind_labels_only_over_the_window(
 # --- the publish gate (Q-K) -------------------------------------------------------------
 
 
-def test_the_gate_is_closed_while_q_k_is_unratified(tmp_path: Path) -> None:
+def test_with_q_k_ratified_the_gate_is_still_closed_until_measured_and_archived(
+    tmp_path: Path,
+) -> None:
+    """Q-K was ratified 2026-10-23. Ratifying the bar opens nothing by itself."""
     gate = review.publish_gate(tmp_path)
     assert gate.open is False
-    assert any("Q-K precision bar is not ratified" in r and "copilot for owner" in r
-               for r in gate.reasons)
+    assert not any("not ratified" in r for r in gate.reasons)
+    assert any("not been measured on the held-out labeled set" in r for r in gate.reasons)
+    assert any("cannot be archived yet" in r for r in gate.reasons)
 
 
-def _ratified(tmp_path: Path) -> Path:
+def _thresholds(tmp_path: Path, ratified) -> Path:
     real = yaml.safe_load((Path(review.repo_root()) / "data" / "config" / "thresholds.yaml")
                           .read_text(encoding="utf-8"))
-    entry = dict(real["categorizer_precision"], ratified="2026-10-23")
+    entry = dict(real["categorizer_precision"], ratified=ratified)
     path = tmp_path / "t" / "config" / "thresholds.yaml"
     path.parent.mkdir(parents=True)
     path.write_text(yaml.safe_dump({"categorizer_precision": entry}), encoding="utf-8")
     return tmp_path / "t"
 
 
-def test_a_ratified_bar_still_leaves_the_gate_closed_until_archiving_exists(
-    tmp_path: Path,
-) -> None:
-    gate = review.publish_gate(tmp_path, thresholds_dir=_ratified(tmp_path))
-    assert gate.open is False
-    assert gate.reasons == ("categorized statements cannot be archived yet (task 3: "
-                            "archive.org keys); nothing unarchived publishes",)
+def _measured(tmp_path: Path, *, version: str | None = None, status: str = "meets",
+              gaps: list[str] = ()) -> None:
+    task = ai.load_config().task("categorize_statement")
+    path = prompt_eval.measurement_path(tmp_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({
+        "generated": "2026-10-24", "labeled_rows": 60, "party_gap_flags": list(gaps),
+        "tasks": {"categorize_statement": {
+            "prompt_version": version or task.prompt_version,
+            "prompt_sha256": task.prompt_sha256 if version is None else "x",
+            "model": task.model}},
+        "fields": {"stance": {"status": status}, "topic": {"status": "meets"},
+                   "takes_policy_position": {"status": "no bar"}},
+    }), encoding="utf-8")
+
+
+def test_an_unratified_bar_keeps_the_gate_closed(tmp_path: Path) -> None:
+    gate = review.publish_gate(tmp_path, thresholds_dir=_thresholds(tmp_path, False))
+    assert any("Q-K precision bar is not ratified" in r and "copilot for owner" in r
+               for r in gate.reasons)
+
+
+@pytest.mark.parametrize("kwargs, reason", [
+    ({"version": "v1"}, "the held-out measurement is for categorizer v1, not v2"),
+    ({"status": "BELOW"}, "held-out precision on stance is BELOW"),
+    ({"gaps": ["topic"]}, "held-out D/R gap flagged on topic: owner review"),
+])
+def test_a_stale_or_failing_measurement_keeps_the_gate_closed(tmp_path: Path, kwargs,
+                                                              reason) -> None:
+    _measured(tmp_path, **kwargs)
+    gate = review.publish_gate(tmp_path)
+    assert any(reason in r for r in gate.reasons), gate.reasons
 
 
 def test_the_gate_opens_only_when_every_condition_holds(tmp_path: Path, monkeypatch) -> None:
+    thresholds = _thresholds(tmp_path, "2026-10-23")
+    _measured(tmp_path)
+    gate = review.publish_gate(tmp_path, thresholds_dir=thresholds)
+    assert gate.reasons == ("categorized statements cannot be archived yet (task 3: "
+                            "archive.org keys); nothing unarchived publishes",)
     monkeypatch.setattr(review, "ARCHIVE_PATH_BUILT", True)
-    thresholds = _ratified(tmp_path)
     assert review.publish_gate(tmp_path, thresholds_dir=thresholds).open is True
     # A blind label below the bar closes it again (Q-K's running check).
     (item_id,) = _ids(True, 1)
@@ -226,9 +260,42 @@ def test_export_refuses_while_the_gate_is_closed_and_writes_nothing(tmp_path: Pa
     ids = _ids(False, 1)
     _queue(tmp_path, ids)
     review.record_decision(ids[0], "approve", data_dir=tmp_path)
-    with pytest.raises(review.PublishGateClosed, match="nothing exported: the Q-K"):
+    with pytest.raises(review.PublishGateClosed, match="nothing exported: the categorizer"):
         review.export_approved(tmp_path)
     assert not (tmp_path / "statements").exists()
+
+
+# --- owner rulings 2026-10-23 -----------------------------------------------------------
+
+
+@pytest.mark.parametrize("stance, position", [
+    ("for", "support"), ("against", "oppose"), ("mixed", None), ("none", None), (None, None),
+])
+def test_stance_maps_to_the_published_record_per_ruling_7(stance, position) -> None:
+    fields = review.statement_fields({"stance": stance, "specificity": 2, "topic": "Health",
+                                      "priority_signal": True})
+    assert fields == {"stated_position": position, "specificity_level": 2, "topic": "Health",
+                      "priority_signal": True}
+
+
+def test_the_review_log_is_git_ignored_in_the_public_repo() -> None:
+    import subprocess
+
+    rel = review.log_path().relative_to(review.repo_root()).as_posix()
+    probe = subprocess.run(["git", "check-ignore", "-q", rel], cwd=review.repo_root())
+    assert probe.returncode == 0
+
+
+def test_the_private_backup_is_a_stub_that_pushes_nothing(tmp_path: Path, monkeypatch) -> None:
+    assert review.backup_review_log(tmp_path) == "nothing to back up: no review log yet"
+    ids = _ids(False, 1)
+    _queue(tmp_path, ids)
+    review.record_decision(ids[0], "approve", data_dir=tmp_path)
+    monkeypatch.delenv(review.BACKUP_REMOTE_ENV, raising=False)
+    monkeypatch.setattr("ingest.env.get", lambda name, default=None: None)
+    assert review.backup_review_log(tmp_path).startswith("not configured: the owner creates")
+    monkeypatch.setattr("ingest.env.get", lambda name, default=None: "git@example:private")
+    assert "still a stub; nothing was pushed" in review.backup_review_log(tmp_path)
 
 
 # --- the Review tab ------------------------------------------------------------------

@@ -6,7 +6,7 @@
 #
 # What this file is NOT: evaluative. Nothing here decides what counts as a good or poor
 # statement, what "priority" means, or what precision is good enough — those are Q-J
-# (ratified 2026-10-09, §2) and Q-K (provisional 2026-10-22, recorded in thresholds.yaml
+# (ratified 2026-10-09, §2) and Q-K (ratified 2026-10-23, recorded in thresholds.yaml
 # under `categorizer_precision`), never here. This file is mechanical in the same sense as ingest/config.py.
 #
 # THERE IS NO `temperature`. The current models reject sampling parameters with a 400;
@@ -21,7 +21,7 @@
 
 # Bumped whenever any value in this file changes, so a logged call states which
 # configuration produced it. Not bumped by a comment edit.
-config_version: 3
+config_version: 4
 
 # --- Spend ---------------------------------------------------------------------------
 # Hard per-run ceiling in USD (owner decision 5, 2026-10-09). `ingest/ai.py` refuses the
@@ -87,16 +87,19 @@ tasks:
   # held-out set. Reference input (NOT ratified):
   # docs/research/2026-10-09-categorizer-model-review.md
   #
-  # v1 (2026-10-22 overnight). Settled by the owner: the stance values and `proposition`
-  # (2026-10-09); priority_signal = Q-J (2026-10-09); topic = the 33 official policy
-  # areas, specificity = 3 levels, proposition reference-only and not scored (2026-10-22).
-  # BUILDER-DRAFTED, owner to approve: the confidence word's definitions and the prompt's
-  # topic hints. Nothing categorized publishes until Q-K is ratified.
+  # v2 (2026-10-23): owner ruling 3 — announcing an act already done ("Today I introduced
+  # a bill...") is not a priority signal; only a future pledge (Q-J b) or explicit ranking
+  # (Q-J a) counts. Otherwise as v1. Settled by the owner: the stance values and
+  # `proposition` (2026-10-09); priority_signal = Q-J (2026-10-09) + ruling 3; topic = the
+  # 33 official policy areas, specificity = 3 levels, proposition reference-only and not
+  # scored (2026-10-22); the confidence definitions and topic hints KEPT (2026-10-23).
+  # Q-K ratified 2026-10-23; v2 is unmeasured, so nothing categorized with it publishes
+  # until it clears the bar on the held-out set (curation/review.py::publish_gate).
   categorize_statement:
     model: claude-opus-5-5
-    prompt_version: v1
-    prompt_file: ingest/prompts/categorize_statement/v1.md
-    prompt_sha256: 69a2e6549b6b358dda998f257312786b629274bc04566d5678db9ab756658d1f
+    prompt_version: v2
+    prompt_file: ingest/prompts/categorize_statement/v2.md
+    prompt_sha256: 7fb86e15aba74aa9ae8d58d95075daf1354231e7516171e066f0a5fabca85a02
     effort: medium
     # 4,096 must hold the model's thinking AND the JSON. Raise only if evaluation shows
     # real truncation (task 4).
@@ -174,7 +177,8 @@ tasks:
           type: boolean
           description: >-
             Q-J (ratified 2026-10-09): true only when the text explicitly ranks the issue or
-            makes a concrete commitment to introduce, pass or block a specific thing. One
+            makes a concrete commitment to introduce, pass or block a specific thing. An act
+            already done ("today I introduced...") is not a pledge (owner, 2026-10-23). One
             statement never establishes a member's actual priorities; the per-member rule
             does.
         confidence:
@@ -184,4 +188,4 @@ tasks:
             The model's own assessment that every substantive label above is supported by
             the supplied text. It is a prediction, not a measurement, and is displayed as
             model self-assessment. Its reliability is measured against the owner's labels
-            (Q-K). BUILDER-DRAFTED definitions in the prompt, owner to approve.
+            (Q-K). The prompt's definitions were kept by the owner, 2026-10-23.

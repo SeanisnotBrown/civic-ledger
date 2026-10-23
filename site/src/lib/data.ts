@@ -573,6 +573,9 @@ export interface MemberPriorities {
 }
 export interface PrioritiesFile {
   bar: { min_approved_statements: number; min_distinct_topics: number };
+  // Owner ruling 9, 2026-10-23: false until the list wording (AES-14) is ratified; while
+  // false no priorities list is rendered for anyone.
+  list_wording_ratified: boolean;
   members: Record<string, MemberPriorities>;
 }
 let _priorities: PrioritiesFile | null = null;

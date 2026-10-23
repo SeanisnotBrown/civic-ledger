@@ -45,9 +45,9 @@ def _no(i: int, party: str = "R") -> dict:
 # --- the bar ---------------------------------------------------------------------------
 
 
-def test_the_shipped_bar_is_the_provisional_q_k_answer_and_is_not_ratified() -> None:
+def test_the_shipped_bar_is_q_k_as_the_owner_ratified_it() -> None:
     bar = prompt_eval.load_bar()
-    assert bar.ratified is False
+    assert bar.ratified is True and bar.ratified_on == "2026-10-23"
     assert bar.proposed_by == "copilot for owner 2026-10-22"
     assert bar.fields == {"stance": 0.90, "topic": 0.90, "priority_signal": 0.90,
                           "specificity": 0.80}
@@ -261,7 +261,9 @@ def test_a_ten_row_run_is_titled_a_smoke_test_and_categorizes_only_what_triage_p
     report = out.read_text(encoding="utf-8")
     assert report.startswith(
         "# Prompt evaluation — 10-row smoke test, not a precision measurement")
-    assert "PROVISIONAL, not ratified" in report
+    assert "Q-K bar: RATIFIED 2026-10-23" in report
+    # A smoke test records no measurement for the publish gate.
+    assert not prompt_eval.measurement_path(tmp_path).exists()
     assert "not assessed (n=10 < 50)" in report
     assert "| Rows skipped as not yet labeled | 1 |" in report
     # Counts, never answers: no model label and no per-row mark in the committed report;
@@ -383,3 +385,23 @@ def test_without_a_test_seam_the_run_uses_the_live_api_and_the_repo_data(
     prompt_eval.run(["--labels", str(_ten(tmp_path)), "--ids", "EV09",
                      "--out", str(tmp_path / "r.md")])
     assert "completer" not in built[0] and built[0]["data_dir"] is None
+
+
+def test_a_full_set_records_a_counts_only_measurement_for_the_gate(tmp_path: Path) -> None:
+    rows = [_yes(i, "D" if i % 2 else "R") for i in range(1, 51)]
+    labels = _csv(tmp_path / "labels.csv", rows)
+    code = prompt_eval.run(["--labels", str(labels), "--out", str(tmp_path / "r.md"),
+                            "--cap", "5.00"], completer=FakeApi(), data_dir=tmp_path)
+    assert code == prompt_eval.EXIT_OK
+    recorded = json.loads(prompt_eval.measurement_path(tmp_path).read_text(encoding="utf-8"))
+    task = ai.load_config().task("categorize_statement")
+    assert recorded["labeled_rows"] == 50
+    assert recorded["tasks"]["categorize_statement"] == {
+        "prompt_version": task.prompt_version, "prompt_sha256": task.prompt_sha256,
+        "model": task.model}
+    assert recorded["fields"]["stance"]["status"] == "meets"
+    assert recorded["fields"]["priority_signal"]["status"] == "BELOW"  # fake says yes, owner no
+    assert recorded["fields"]["stance"]["called"] == {"D": 25, "R": 25, "all": 50}
+    assert recorded["party_gap_flags"] == []
+    text = prompt_eval.measurement_path(tmp_path).read_text(encoding="utf-8")
+    assert "capping insulin" not in text and "EV01" not in text  # counts, never answers

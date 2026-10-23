@@ -282,7 +282,10 @@ is owner-supplied, like INC-6 absences).
 `data/priorities.json` (P3 task 6) is DERIVED, written by `uv run export` and re-derived
 byte-for-byte by `verify-recompute` (`ingest/priorities.py`): per member with at least one
 approved statement, `approved_statements`, `distinct_topics` and `listed` (the Q-B bar in
-`thresholds.yaml` `priorities_list`: 5 approved statements across 3 topics). Only a `listed`
+`thresholds.yaml` `priorities_list`: 5 approved statements across 3 topics, counted over the
+member's CURRENT term only — owner, 2026-10-23). The top-level `list_wording_ratified`
+(owner ruling 9, 2026-10-23) is false until the list wording (AES-14) is ratified; while it
+is false the site shows no list for anyone. Only a `listed`
 member carries `priorities` (topic + `support`/`oppose` + the Q-J routes that make it one:
 `signal` and/or `repetition`, with the statement ids) and `conflicted_topics` (both sides in
 the current term, so no priority). Below the bar nothing is inferred or published. The
@@ -340,10 +343,11 @@ title. `index.json` carries those conflicts (`date_conflicts`), the releases tha
 could date (`date_failures`), and what the dating cost in fetches
 (`release_page_fetches`).
 
-**Categorizer precision (P3 task 4, Q-K — PROVISIONAL, not ratified).** No statement
-categorized by the AI publishes until the owner ratifies the precision bar in
-`data/config/thresholds.yaml` (`categorizer_precision`). The provisional bar, proposed
-2026-10-22 by the copilot for owner review: stance 0.90 (over the AI's for/against calls),
+**Categorizer precision (P3 task 4, Q-K — ratified 2026-10-23).** No statement
+categorized by the AI publishes until the categorizer prompt in use clears the precision bar
+in `data/config/thresholds.yaml` (`categorizer_precision`) on the held-out labeled set, and
+archive capture exists. The bar, proposed 2026-10-22 by the copilot and ratified by the
+owner 2026-10-23: stance 0.90 (over the AI's for/against calls),
 topic 0.90, priority_signal 0.90 (over its positive calls), specificity 0.80; proposition
 is not scored. Every field is reported by party; a D/R gap wider than 10 points stops for
 owner review. Measured with `uv run ingest prompt-eval` on the held-out hand-labeled set
@@ -352,12 +356,19 @@ estimate is roughly +/- 8 points. The bar is a floor, not a guarantee; the blind
 review log tightens it over time (rolling window of the last 50 blind items). Every
 statement is still hand-approved by the owner before it publishes: the bar decides whether
 the AI's suggestions are trustworthy enough to show him, not whether anything skips his
-review. No measured precision is recorded here yet.
+review. A complete `prompt-eval` run on at least 50 labeled rows records its counts in
+`data/quality/categorizer-precision.json` (counts per field and party, the prompt versions
+and hashes measured, each field's status, any D/R gap flag; no per-row mark, no model
+answer); the publish gate trusts it only while those prompt versions are still in
+`ai.yaml`. The first-pass triage has no bar (owner, 2026-10-23) and is reported only. No
+measured precision is recorded here yet.
 
 **Review queue and log (P3 task 5) — NOT published.** `data/raw/review/queue.jsonl` (the
 categorized statements awaiting review) and `data/raw/review/log.jsonl` (the owner's
 blind labels and approve / edit / reject decisions, with per-field agreement marks) are
-gitignored. The log holds the owner's labels and the AI cache's `input_hash`, never the
+gitignored here and, per the owner's ruling of 2026-10-23, backed up off-machine to a
+separate PRIVATE repository (the push step is a stub until that repository exists); it is
+never committed to this public repository. The log holds the owner's labels and the AI cache's `input_hash`, never the
 model's answer. Which items are blind (1 in 10) is a pure function of a fixed public seed
 and the text fingerprint (`curation/review.py::is_blind`). Nothing in the review queue
 reaches `data/statements/` while `curation/review.py::publish_gate` is closed: Q-K

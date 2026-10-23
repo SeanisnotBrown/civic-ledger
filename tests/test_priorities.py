@@ -97,14 +97,33 @@ def test_statements_on_both_sides_of_a_topic_set_no_priority_on_it() -> None:
     assert [p["topic"] for p in entry["priorities"]] == ["Energy"]
 
 
-def test_only_the_current_term_counts_toward_a_priority() -> None:
+def test_only_the_current_term_counts_toward_q_b_and_toward_a_priority() -> None:
+    """Owner ruling 8, 2026-10-23: Q-B counts current-term statements only, the same
+    window as the Q-J priorities."""
     old = [_s(1, date="2024-06-01", signal=True)]
     entry = priorities.member_priorities(old + [_s(2, "Energy")] + _filler(), TERM, RULES)
-    assert entry["listed"] is True  # Q-B counts every approved statement
-    assert entry["priorities"] == []
+    assert entry == {"approved_statements": 4, "distinct_topics": 2, "listed": False}
+    # Five current-term statements across three topics: listed; the old one still counts
+    # toward nothing.
+    current = [_s(2, "Energy"), _s(3, "Health", signal=True)] + _filler()
+    entry = priorities.member_priorities(old + current, TERM, RULES)
+    assert entry["approved_statements"] == 5 and entry["listed"] is True
+    assert entry["priorities"][0]["statement_ids"] == ["M1-003"]
     # No term on file: nothing is excluded.
     entry = priorities.member_priorities(old + [_s(2, "Energy")] + _filler(), None, RULES)
     assert entry["priorities"][0]["statement_ids"] == ["M1-001"]
+
+
+def test_no_list_is_shown_until_the_list_wording_is_ratified(tmp_path: Path) -> None:
+    """Owner ruling 9, 2026-10-23: the switch ships off and is copied into the file."""
+    assert priorities.load_rules().list_wording_ratified is False
+    assert json.loads(priorities.path().read_text(encoding="utf-8"))[
+        "list_wording_ratified"] is False
+    data = _dataset(tmp_path, [])
+    cfg = data / "config" / "thresholds.yaml"
+    cfg.write_text(cfg.read_text(encoding="utf-8").replace(
+        "list_wording_ratified: false", "list_wording_ratified: true"), encoding="utf-8")
+    assert priorities.compute(data)["list_wording_ratified"] is True
 
 
 def test_a_statement_without_a_stance_forms_no_priority_even_when_signalled() -> None:

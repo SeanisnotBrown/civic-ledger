@@ -4,9 +4,11 @@ Two owner rulings, applied mechanically — no AI, no judgment here:
 
   * **Q-B (2026-10-07), whether a member has a list at all:** at least
     `priorities_list.min_approved_statements` approved statements covering at least
-    `min_distinct_topics` different policy areas. Below that bar the member has NO list and
-    the page says there are not yet enough statements on record. The individual statements
-    still publish in the timeline: the thing withheld is the inference, never the record.
+    `min_distinct_topics` different policy areas — counted over the member's CURRENT term
+    only, the same window as Q-J (owner ruling 8, 2026-10-23). Below that bar the member
+    has NO list and the page says there are not yet enough statements on record. The
+    individual statements still publish in the timeline: the thing withheld is the
+    inference, never the record.
     Nothing about a below-bar member's priorities is written here — not even an empty list —
     because a published inference the page does not show is still a published inference.
   * **Q-J (2026-10-09), which topics are priorities:** a topic + stance becomes a stated
@@ -17,6 +19,10 @@ Two owner rulings, applied mechanically — no AI, no judgment here:
     spread across at least `repetition_distinct_months` calendar months. Only statements
     from the member's CURRENT term count. If the member has approved statements on both
     sides of a topic in the term, NO priority is set on that topic.
+
+**Owner ruling 9 (2026-10-23):** no list is SHOWN until its wording (AES-14) is ratified —
+`priorities_list.list_wording_ratified` in `thresholds.yaml`, copied into the file for the
+site. The empty state below the bar still shows.
 
 "Approved" = a publishable record in `data/statements/` (dead-archive ones excluded, the
 same rule the site applies): every record there was approved by the owner. A record counts
@@ -51,6 +57,9 @@ class Rules:
     min_distinct_topics: int
     repetition_statements: int
     repetition_distinct_months: int
+    # Owner ruling 9, 2026-10-23: no priorities list is SHOWN until the list wording (AES-14)
+    # is ratified. The rules still run; the site reads this switch from the file.
+    list_wording_ratified: bool = False
 
 
 def load_rules(data_dir: Path | None = None) -> Rules:
@@ -62,25 +71,28 @@ def load_rules(data_dir: Path | None = None) -> Rules:
         min_distinct_topics=int(qb["min_distinct_topics"]),
         repetition_statements=int(qj["repetition_statements"]),
         repetition_distinct_months=int(qj["repetition_distinct_months"]),
+        list_wording_ratified=qb.get("list_wording_ratified") is True,
     )
 
 
 def member_priorities(
     statements: list[dict[str, Any]], term_start: str | None, rules: Rules
 ) -> dict[str, Any]:
-    """One member's entry. `statements` are that member's approved records."""
-    topics = {s["topic"] for s in statements if s.get("topic")}
+    """One member's entry. `statements` are that member's approved records. Both Q-B and
+    Q-J count the CURRENT term only (owner ruling 8, 2026-10-23), so a list and the
+    priorities on it always draw on the same statements."""
+    in_term = [s for s in statements
+               if term_start is None or s["date"][:10] >= term_start[:10]]
+    topics = {s["topic"] for s in in_term if s.get("topic")}
     entry: dict[str, Any] = {
-        "approved_statements": len(statements),
+        "approved_statements": len(in_term),
         "distinct_topics": len(topics),
-        "listed": (len(statements) >= rules.min_approved_statements
+        "listed": (len(in_term) >= rules.min_approved_statements
                    and len(topics) >= rules.min_distinct_topics),
     }
     if not entry["listed"]:
         return entry
 
-    in_term = [s for s in statements
-               if term_start is None or s["date"][:10] >= term_start[:10]]
     groups: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
     for s in in_term:
         if s.get("topic") and s.get("stated_position") in STANCES:
@@ -137,6 +149,7 @@ def compute(data_dir: Path | None = None) -> dict[str, Any]:
             "min_approved_statements": rules.min_approved_statements,
             "min_distinct_topics": rules.min_distinct_topics,
         },
+        "list_wording_ratified": rules.list_wording_ratified,
         "members": {
             member_id: member_priorities(items, starts.get(member_id), rules)
             for member_id, items in sorted(by_member.items())

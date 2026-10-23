@@ -327,7 +327,7 @@ def test_a_call_returns_validated_data_and_logs_one_auditable_line(tmp_path: Pat
     (line,) = _log_lines(tmp_path)
     assert line["task"] == "categorize_statement"
     assert line["model"] == "claude-opus-5-5"
-    assert line["prompt_version"] == "v1"
+    assert line["prompt_version"] == "v2"
     assert line["input_hash"] == result.input_hash
     assert line["request_id"] == "req_abc"
     assert line["cost_usd"] == pytest.approx(0.026)

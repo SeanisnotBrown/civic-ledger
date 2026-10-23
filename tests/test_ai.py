@@ -117,6 +117,22 @@ def test_stance_enum_is_the_owners_four_values_and_proposition_is_nullable() -> 
     assert "proposition" in schema["required"]
 
 
+def _no_position_rule(task_name: str) -> str:
+    """The paragraph carrying owner ruling R2 (2026-10-23) in a task's prompt."""
+    text = ai.prompt_text(ai.load_config().tasks[task_name])
+    (paragraph,) = [p for p in text.split("\n\n") if "check presentations" in p]
+    return paragraph.split("\nSuch text is", 1)[0].split("\nFor such text", 1)[0]
+
+
+def test_the_no_position_rule_is_worded_identically_in_both_prompts() -> None:
+    """R2 (owner, 2026-10-23): the triage and categorizer prompts carry the same rule, word
+    for word, for every party; each prompt adds only its own one-line consequence."""
+    triage = _no_position_rule("triage_statement")
+    assert triage == _no_position_rule("categorize_statement")
+    assert triage.startswith("Announcements of grants or funding awards")
+    assert "Credit-claiming for a\npast vote is not a position by itself." in triage
+
+
 def _prompt_policy_areas() -> list[str]:
     """The policy-area list exactly as the categorizer prompt prints it."""
     task = ai.load_config().tasks["categorize_statement"]
@@ -327,7 +343,7 @@ def test_a_call_returns_validated_data_and_logs_one_auditable_line(tmp_path: Pat
     (line,) = _log_lines(tmp_path)
     assert line["task"] == "categorize_statement"
     assert line["model"] == "claude-opus-5-5"
-    assert line["prompt_version"] == "v2"
+    assert line["prompt_version"] == "v3"
     assert line["input_hash"] == result.input_hash
     assert line["request_id"] == "req_abc"
     assert line["cost_usd"] == pytest.approx(0.026)

@@ -232,7 +232,7 @@ def test_an_unratified_bar_keeps_the_gate_closed(tmp_path: Path) -> None:
 
 
 @pytest.mark.parametrize("kwargs, reason", [
-    ({"version": "v1"}, "the held-out measurement is for categorizer v1, not v2"),
+    ({"version": "v1"}, "the held-out measurement is for categorizer v1, not v3"),
     ({"status": "BELOW"}, "held-out precision on stance is BELOW"),
     ({"gaps": ["topic"]}, "held-out D/R gap flagged on topic: owner review"),
     # Copilot-labeled rows can never satisfy Q-K, even when every bar is met.

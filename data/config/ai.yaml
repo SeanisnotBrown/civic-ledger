@@ -21,7 +21,7 @@
 
 # Bumped whenever any value in this file changes, so a logged call states which
 # configuration produced it. Not bumped by a comment edit.
-config_version: 4
+config_version: 5
 
 # --- Spend ---------------------------------------------------------------------------
 # Hard per-run ceiling in USD (owner decision 5, 2026-10-09). `ingest/ai.py` refuses the
@@ -64,9 +64,14 @@ tasks:
     # sheet. Keeps the v1-stub ruling of 2026-10-22: office logistics is no longer a reject
     # category; nothing is false for its category alone. Step 9's first pass ran on
     # v1-stub; its verdicts stay in data/raw/triage/v1-stub.jsonl.
-    prompt_version: v1
-    prompt_file: ingest/prompts/triage_statement/v1.md
-    prompt_sha256: b49a776f73a17679a259b512b958130f1657a0083ed5c1cfb8c0171054cb051c
+    # v2 (2026-10-23): owner ruling R2 only — grant and funding announcements,
+    # commemorative or recognition resolutions, ceremonies, event appearances and check
+    # presentations take no position unless the text also argues for or against a specific
+    # policy change; credit-claiming for a past vote is not a position by itself. Worded
+    # identically in categorize_statement v3. Unmeasured (R3: a fresh held-out 60).
+    prompt_version: v2
+    prompt_file: ingest/prompts/triage_statement/v2.md
+    prompt_sha256: 6191a0245185c95e6b76ec1b6ad1a11aabafe108b26748ce4dd2f87ab796cabd
     effort: medium
     max_tokens: 1024
     output_schema:
@@ -95,11 +100,17 @@ tasks:
   # scored (2026-10-22); the confidence definitions and topic hints KEPT (2026-10-23).
   # Q-K ratified 2026-10-23; v2 is unmeasured, so nothing categorized with it publishes
   # until it clears the bar on the held-out set (curation/review.py::publish_gate).
+  # v2 measured 2026-10-23 on the original 60: FAIL on topic and the D/R gap
+  # (docs/research/2026-10-23-prompt-eval-60-owner-reviewed.md).
+  #
+  # v3 (2026-10-23): owner ruling R2 only — the no-position rule, worded identically in
+  # triage_statement v2. Otherwise as v2. Unmeasured: R3 says the original 60 are spent for
+  # any changed prompt, so v3 is measured on a fresh held-out 60 (p3-labeling-set-2).
   categorize_statement:
     model: claude-opus-5-5
-    prompt_version: v2
-    prompt_file: ingest/prompts/categorize_statement/v2.md
-    prompt_sha256: 7fb86e15aba74aa9ae8d58d95075daf1354231e7516171e066f0a5fabca85a02
+    prompt_version: v3
+    prompt_file: ingest/prompts/categorize_statement/v3.md
+    prompt_sha256: 6423d845ee2164fdb218b1459faad4ff278284ec5a4111b656affe805a5a6716
     effort: medium
     # 4,096 must hold the model's thinking AND the JSON. Raise only if evaluation shows
     # real truncation (task 4).

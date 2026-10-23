@@ -148,6 +148,14 @@ class Row:
     party: str
     text: str
     label: Label
+    # True when the row's `notes` say the label is not the owner's own reviewed judgment
+    # (`COPILOT-LABELED` / `owner-unreviewed`). Such a label can be scored for information,
+    # but it can never count toward Q-K: only owner-reviewed labels measure precision.
+    unreviewed: bool = False
+
+
+# The bias flag the labeling sheet puts in `notes` on a label the owner has not reviewed.
+UNREVIEWED_FLAG = re.compile(r"copilot-labeled|owner-unreviewed", re.IGNORECASE)
 
 
 def _yes_no(value: str, *, column: str, row_id: str) -> bool | None:
@@ -218,7 +226,8 @@ def read_labels(path: Path, ids: set[str] | None = None) -> tuple[list[Row], lis
                 unlabeled.append(raw["id"])
                 continue
             rows.append(Row(id=raw["id"], party=raw["party"].strip(), text=raw["text"],
-                            label=label))
+                            label=label,
+                            unreviewed=bool(UNREVIEWED_FLAG.search(raw.get("notes") or ""))))
     return rows, unlabeled
 
 
@@ -279,6 +288,7 @@ class Score:
     no_answer: list[str]
     mixed_calls: int
     triage_rejected_owner_yes: int
+    unreviewed: list[str] = field(default_factory=list)  # ids whose label is not the owner's
 
 
 def score(rows: Iterable[Row], preds: dict[str, Prediction], unlabeled: list[str]) -> Score:
@@ -304,7 +314,8 @@ def score(rows: Iterable[Row], preds: dict[str, Prediction], unlabeled: list[str
                 tally.called += 1
                 tally.correct += int(ok)
     return Score(rows=len(rows), unlabeled=unlabeled, by_field=by_field, per_row=per_row,
-                 no_answer=no_answer, mixed_calls=mixed, triage_rejected_owner_yes=missed)
+                 no_answer=no_answer, mixed_calls=mixed, triage_rejected_owner_yes=missed,
+                 unreviewed=[r.id for r in rows if r.unreviewed])
 
 
 def party_gap_points(tallies: dict[str, Tally]) -> float | None:
@@ -315,9 +326,12 @@ def party_gap_points(tallies: dict[str, Tally]) -> float | None:
     return abs(d - r) * 100
 
 
-def bar_status(name: str, tally: Tally, bar: PrecisionBar, rows: int) -> str:
+def bar_status(name: str, tally: Tally, bar: PrecisionBar, rows: int,
+               unreviewed: int = 0) -> str:
     if name not in bar.fields:
         return "no bar"
+    if unreviewed:
+        return f"not assessed ({unreviewed} labels owner-unreviewed)"
     if rows < bar.min_labeled_rows:
         return f"not assessed (n={rows} < {bar.min_labeled_rows})"
     if tally.precision is None:
@@ -380,7 +394,29 @@ def _pct(t: Tally) -> str:
     return "—" if t.precision is None else f"{t.precision:.0%} ({t.correct}/{t.called})"
 
 
-def title(rows: int, bar: PrecisionBar) -> str:
+def _field_table(result: Score, bar: PrecisionBar) -> list[str]:
+    """One precision table: each field, all and by party, against its bar."""
+    lines = [
+        "| Field | Bar | All | D | R | D/R gap | Status |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for name in FIELDS:
+        t = result.by_field[name]
+        gap = party_gap_points(t)
+        bar_text = f"{bar.fields[name]:.0%}" if name in bar.fields else "none"
+        gap_text = "—" if gap is None else f"{gap:.0f} pts"
+        status = bar_status(name, t["all"], bar, result.rows, len(result.unreviewed))
+        lines.append(
+            f"| `{name}` | {bar_text} | {_pct(t['all'])} | {_pct(t['D'])} | {_pct(t['R'])} | "
+            f"{gap_text} | {status} |"
+        )
+    return lines
+
+
+def title(rows: int, bar: PrecisionBar, unreviewed: int = 0) -> str:
+    if unreviewed:
+        return (f"{rows} rows, {unreviewed} with owner-unreviewed AI labels: agreement check, "
+                "not a Q-K measurement")
     if rows < bar.min_labeled_rows:
         return f"{rows}-row smoke test, not a precision measurement"
     return f"Precision on {rows} hand-labeled statements"
@@ -396,13 +432,15 @@ def render(
     ids: str | None,
     generated: str,
     rows_path: str,
+    splits: tuple[tuple[str, Score], ...] = (),
 ) -> str:
     tri = run.config.task(TRIAGE)
     cat = run.config.task(CATEGORIZE)
-    smoke = result.rows < bar.min_labeled_rows
+    unreviewed = len(result.unreviewed)
+    smoke = result.rows < bar.min_labeled_rows and not unreviewed
     bar_state = f"RATIFIED {bar.ratified_on}" if bar.ratified else "NOT ratified"
     lines = [
-        f"# Prompt evaluation — {title(result.rows, bar)}",
+        f"# Prompt evaluation — {title(result.rows, bar, unreviewed)}",
         "",
         f"Generated {generated} by `uv run ingest prompt-eval`. Labels: `{labels_path}`"
         + (f", rows `{ids}`" if ids else "") + ".",
@@ -423,30 +461,35 @@ def render(
             "parties on this few rows is noise, not a finding.",
             "",
         ]
+    if unreviewed:
+        lines += [
+            f"**{unreviewed} of {result.rows} labels are AI (copilot) labels, "
+            "owner-unreviewed. This is AI-vs-AI agreement, NOT a valid Q-K measurement. The "
+            "publish gate stays closed until the owner reviews or relabels them.**",
+            "",
+        ]
     lines += [
         "## Precision by field",
         "",
-        "Precision = the share of the AI's calls on a field that the owner's label agrees "
-        "with. `proposition` is never scored (owner ruling 2026-10-22).",
+        "Precision = the share of the AI's calls on a field that the label agrees with. "
+        "`proposition` is never scored (owner ruling 2026-10-22).",
         "",
-        "| Field | Bar | All | D | R | D/R gap | Status |",
-        "| --- | --- | --- | --- | --- | --- | --- |",
+        *_field_table(result, bar),
     ]
-    for name in FIELDS:
-        t = result.by_field[name]
-        gap = party_gap_points(t)
-        bar_text = f"{bar.fields[name]:.0%}" if name in bar.fields else "none"
-        gap_text = "—" if gap is None else f"{gap:.0f} pts"
-        lines.append(
-            f"| `{name}` | {bar_text} | {_pct(t['all'])} | {_pct(t['D'])} | {_pct(t['R'])} | "
-            f"{gap_text} | {bar_status(name, t['all'], bar, result.rows)} |"
-        )
+    for heading, part in splits:
+        lines += ["", f"### {heading} ({part.rows} rows)", "", *_field_table(part, bar)]
     flags = gap_flags(result, bar)
     lines += [""]
-    if flags and not smoke:
+    if flags and not smoke and not unreviewed:
         lines.append(
             f"**STOP for owner review:** the D/R gap passes {bar.party_gap_max_points:.0f} "
             f"points on {', '.join(f'`{f}`' for f in flags)}."
+        )
+    elif flags and unreviewed:
+        lines.append(
+            f"Gap over {bar.party_gap_max_points:.0f} points on "
+            f"{', '.join(f'`{f}`' for f in flags)} — measured partly against owner-unreviewed "
+            "labels, so it is a lead to check, not a finding."
         )
     elif flags:
         lines.append(
@@ -464,6 +507,7 @@ def render(
         "| --- | --- |",
         f"| Labeled rows scored | {result.rows} |",
         f"| Rows skipped as not yet labeled | {len(result.unlabeled)} |",
+        f"| Rows whose label is owner-unreviewed (copilot) | {len(result.unreviewed)} |",
         f"| Rows with no answer (refusal or malformed) | {len(result.no_answer)}"
         + (f": {', '.join(result.no_answer)}" if result.no_answer else "") + " |",
         f"| Owner said yes, triage said no (missed; not a precision error) | "
@@ -523,10 +567,14 @@ def measurement(result: Score, bar: PrecisionBar, config: ai.AiConfig, *,
         fields[name] = {
             "called": {k: t.called for k, t in sorted(tallies.items())},
             "correct": {k: t.correct for k, t in sorted(tallies.items())},
-            "status": bar_status(name, tallies["all"], bar, result.rows),
+            "status": bar_status(name, tallies["all"], bar, result.rows,
+                                 len(result.unreviewed)),
         }
+    # How many labels are NOT the owner's reviewed judgment (copilot-labeled). The publish
+    # gate stays closed while this is above zero: only owner-reviewed labels satisfy Q-K.
     return {"generated": generated, "labeled_rows": result.rows, "tasks": tasks,
-            "fields": fields, "party_gap_flags": gap_flags(result, bar)}
+            "fields": fields, "party_gap_flags": gap_flags(result, bar),
+            "unreviewed_labels": len(result.unreviewed)}
 
 
 # --- command ---------------------------------------------------------------------------
@@ -564,6 +612,12 @@ def run(
           f"cap ${args.cap:.2f}")
     preds, outcome = predict(airun, rows)
     result = score(rows, preds, unlabeled)
+    splits: tuple[tuple[str, Score], ...] = ()
+    if result.unreviewed:
+        owner = [r for r in rows if not r.unreviewed]
+        copilot = [r for r in rows if r.unreviewed]
+        splits = (("Owner-labeled rows", score(owner, preds, [])),
+                  ("Copilot-labeled rows, owner-unreviewed", score(copilot, preds, [])))
     now = datetime.now(UTC)
     out = Path(args.out) if args.out else (
         repo_root() / "docs" / "research" / f"{now:%Y-%m-%d}-prompt-eval.md"
@@ -573,7 +627,7 @@ def run(
     report = render(result=result, bar=bar, outcome=outcome, run=airun,
                     labels_path=args.labels, ids=args.ids,
                     generated=now.strftime("%Y-%m-%d %H:%M UTC"),
-                    rows_path=f"data/{rows_name}")
+                    rows_path=f"data/{rows_name}", splits=splits)
     out.parent.mkdir(parents=True, exist_ok=True)
     atomic_write_text(out, report)
     rows_file.parent.mkdir(parents=True, exist_ok=True)

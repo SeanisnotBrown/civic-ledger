@@ -39,7 +39,9 @@ opens only when every condition holds:
      `prompt-eval` on at least `min_labeled_rows` owner-labeled rows) exists, was made with
      the categorizer prompt `ai.yaml` names TODAY (a new prompt version needs a new
      measurement), every barred field meets its bar, and no D/R gap is flagged (owner,
-     2026-10-23: "publishing still needs the labeled 60 to clear the bar");
+     2026-10-23: "publishing still needs the labeled 60 to clear the bar"). EVERY label in
+     it must be the owner's reviewed judgment: a measurement with any copilot-labeled,
+     owner-unreviewed row (`unreviewed_labels` > 0, or not stated) never opens the gate;
   3. no field's rolling precision over the last `rolling_blind_window` blind labels is
      below its bar (Q-K's running check);
   4. a categorized statement can be archived before it publishes (decision 8; task 3,
@@ -357,6 +359,13 @@ def _measurement_reasons(data_dir: Path | None) -> list[str]:
         return ["the categorizer has not been measured on the held-out labeled set yet "
                 "(run `uv run ingest prompt-eval` on all labeled rows)"]
     recorded = json.loads(path.read_text(encoding="utf-8"))
+    # Only owner-reviewed labels can satisfy Q-K (copilot, 2026-10-23). A measurement that
+    # does not say how many of its labels are unreviewed is treated as unreviewed.
+    unreviewed = recorded.get("unreviewed_labels")
+    if unreviewed is None or unreviewed > 0:
+        count = "an unknown number of" if unreviewed is None else str(unreviewed)
+        return [f"the held-out measurement rests on {count} labels the owner has not "
+                "reviewed (copilot-labeled); only owner-reviewed labels can satisfy Q-K"]
     task = ai.load_config().task("categorize_statement")
     measured = recorded["tasks"]["categorize_statement"]
     if (measured["prompt_version"], measured["prompt_sha256"]) != (

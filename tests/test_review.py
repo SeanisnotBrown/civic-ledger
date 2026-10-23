@@ -205,8 +205,11 @@ def _thresholds(tmp_path: Path, ratified) -> Path:
     return tmp_path / "t"
 
 
+_OMIT = object()
+
+
 def _measured(tmp_path: Path, *, version: str | None = None, status: str = "meets",
-              gaps: list[str] = ()) -> None:
+              gaps: list[str] = (), unreviewed=0) -> None:
     task = ai.load_config().task("categorize_statement")
     path = prompt_eval.measurement_path(tmp_path)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -218,6 +221,7 @@ def _measured(tmp_path: Path, *, version: str | None = None, status: str = "meet
             "model": task.model}},
         "fields": {"stance": {"status": status}, "topic": {"status": "meets"},
                    "takes_policy_position": {"status": "no bar"}},
+        **({} if unreviewed is _OMIT else {"unreviewed_labels": unreviewed}),
     }), encoding="utf-8")
 
 
@@ -231,6 +235,9 @@ def test_an_unratified_bar_keeps_the_gate_closed(tmp_path: Path) -> None:
     ({"version": "v1"}, "the held-out measurement is for categorizer v1, not v2"),
     ({"status": "BELOW"}, "held-out precision on stance is BELOW"),
     ({"gaps": ["topic"]}, "held-out D/R gap flagged on topic: owner review"),
+    # Copilot-labeled rows can never satisfy Q-K, even when every bar is met.
+    ({"unreviewed": 50}, "rests on 50 labels the owner has not reviewed"),
+    ({"unreviewed": _OMIT}, "rests on an unknown number of labels the owner has not"),
 ])
 def test_a_stale_or_failing_measurement_keeps_the_gate_closed(tmp_path: Path, kwargs,
                                                               reason) -> None:

@@ -13,6 +13,7 @@ import random
 import shutil
 import threading
 import time
+from dataclasses import replace
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -578,3 +579,13 @@ def test_the_live_completer_and_the_wall_clock_are_the_defaults(tmp_path, monkey
     assert triage_run.run([]) == triage_run.EXIT_OK
     assert len(fake.sent) == 2
     assert list((root / "docs" / "research").glob("*-triage-run.md"))
+
+
+def test_the_report_calls_a_stub_a_stub_and_nothing_else_one() -> None:
+    """A report must not label a real prompt version a STUB, nor a stub anything else."""
+    task = ai.load_config().task(triage_run.TASK)
+    stub = replace(task, prompt_version="v1-stub")
+    real = replace(task, prompt_version="v1")
+    assert triage_run.prompt_status(stub).startswith("a STUB")
+    assert "STUB" not in triage_run.prompt_status(real)
+    assert "untested" in triage_run.prompt_status(real)

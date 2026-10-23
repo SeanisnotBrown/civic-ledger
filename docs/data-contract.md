@@ -329,6 +329,20 @@ title. `index.json` carries those conflicts (`date_conflicts`), the releases tha
 could date (`date_failures`), and what the dating cost in fetches
 (`release_page_fetches`).
 
+**Categorizer precision (P3 task 4, Q-K — PROVISIONAL, not ratified).** No statement
+categorized by the AI publishes until the owner ratifies the precision bar in
+`data/config/thresholds.yaml` (`categorizer_precision`). The provisional bar, proposed
+2026-10-22 by the copilot for owner review: stance 0.90 (over the AI's for/against calls),
+topic 0.90, priority_signal 0.90 (over its positive calls), specificity 0.80; proposition
+is not scored. Every field is reported by party; a D/R gap wider than 10 points stops for
+owner review. Measured with `uv run ingest prompt-eval` on the held-out hand-labeled set
+(at least 50 rows). **Caveat:** on a 60-row set one error is about 1.7 points and a 0.90
+estimate is roughly +/- 8 points. The bar is a floor, not a guarantee; the blind 1-in-10
+review log tightens it over time (rolling window of the last 50 blind items). Every
+statement is still hand-approved by the owner before it publishes: the bar decides whether
+the AI's suggestions are trustworthy enough to show him, not whether anything skips his
+review. No measured precision is recorded here yet.
+
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
 counts. The site build reads `dead_statement_ids` and excludes those statements until

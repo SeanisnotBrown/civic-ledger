@@ -43,6 +43,7 @@ jobs:
           --cov=ingest.legislation_stats --cov=ingest.events --cov=ingest.topics
           --cov=ingest.ai --cov=ingest.pilot --cov=ingest.statements_crec
           --cov=ingest.prefilter --cov=ingest.statements_press --cov=ingest.press_render --cov=ingest.triage_run
+          --cov=ingest.prompt_eval
           --cov-branch --cov-fail-under=100 --cov-report=term-missing
       - name: Verify-recompute (recompute-and-match over the dataset)
         run: uv run verify-recompute

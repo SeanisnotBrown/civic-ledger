@@ -45,6 +45,49 @@ stated_priority:
   repetition_statements: 3      # approved statements sharing one topic AND one stance
   repetition_distinct_months: 2 # spread across at least this many calendar months
 
+# --- Categorizer precision launch bar (Q-K) — PROVISIONAL, NOT RATIFIED ------------------
+# Proposed 2026-10-22 by the copilot, to whom the owner delegated a provisional answer for
+# owner review on 2026-10-23. `ratified: false` keeps the publish gate CLOSED
+# (`curation/review.py::publish_gate`): nothing categorized may publish until the owner
+# sets `ratified` to the date he approves the values. Read by `ingest/prompt_eval.py`
+# (scores a prompt against the hand-labeled set) and by the review dashboard's gate.
+#
+# Every statement is still hand-approved by the owner before it publishes (task 5). This
+# bar decides whether the AI's suggestions are trustworthy enough to put in front of him,
+# not whether anything skips his review.
+categorizer_precision:
+  ratified: false
+  proposed_by: "copilot for owner 2026-10-22"
+  proposed: "2026-10-22"
+  citation: null
+  justification: >-
+    Precision is measured per field on the held-out hand-labeled set, as the share of the
+    AI's calls the owner's own label agrees with. Stance and topic decide which votes a
+    statement is compared against, so a wrong one flips or misplaces a say-vs-do
+    comparison: 0.90. A false "priority" can move a Consistency grade, and false positives
+    are the harmful direction, so priority_signal is measured on the AI's positive calls:
+    0.90. Specificity is display only and moves no grade: 0.80. Proposition is reference
+    only and not scored (owner ruling 2026-10-22). On a 60-row set one error is about 1.7
+    points and a 0.90 estimate is roughly +/- 8 points: the bar is a floor, not a
+    guarantee, and the blind review log tightens it over time.
+  # The set the bar is measured on must have at least this many owner-labeled rows; below
+  # it a score is a smoke test, never a precision measurement.
+  min_labeled_rows: 50
+  fields:
+    stance: 0.90           # over the AI's `for` / `against` calls
+    topic: 0.90            # over the AI's topic calls
+    priority_signal: 0.90  # over the AI's positive (`true`) calls
+    specificity: 0.80      # over the AI's specificity calls; display only
+  # Fairness: every field is reported by party. A gap between D and R larger than this
+  # many percentage points on ANY field is flagged and stops for owner review. 10, not 5,
+  # because ~30 rows per party makes one or two errors look like a gap.
+  party_gap_max_points: 10
+  # After launch: the blind 1-in-10 review sample gives a rolling precision over the last
+  # this-many blind items. A field below its bar stops newly categorized statements from
+  # entering the publishable export until the owner reviews; already-approved statements
+  # stay up (each was hand-approved).
+  rolling_blind_window: 50
+
 grades:
   attendance:
     metric: attendance          # the Tier-2 metric key this grades (data/metrics.json)

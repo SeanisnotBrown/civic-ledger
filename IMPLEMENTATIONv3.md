@@ -442,7 +442,7 @@ good or poor statement is still ratified at task 4.
 | Q-H | Owner's reference sites for design | Phase 10 |
 | Q-I | Which states first | Phase 11 |
 | Q-J | What counts as a "stated priority" | **Answered 2026-10-09** (§2) |
-| Q-K | The precision launch bar — minimum measured categorizer precision before a categorized statement may publish | Phase 3 task 4 |
+| Q-K | The precision launch bar — minimum measured categorizer precision before a categorized statement may publish | **Provisional answer 2026-10-22 (copilot, owner review pending)** — `thresholds.yaml` `categorizer_precision`, `ratified: false`; the publish gate stays closed until the owner ratifies it. Phase 3 task 4 |
 
 A phase may say "blocked on Q-N" in `STATUS.md` if the owner wants to answer later.
 

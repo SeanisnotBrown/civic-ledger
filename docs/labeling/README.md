@@ -27,7 +27,7 @@ wrap for the `text` column. Fill in only the empty columns.
 | `stance` | `for` or `against` that policy. `mixed` only when the text argues both sides. If you can't tell, write `none` and say why in `notes`: `mixed` never means "unsure". |
 | `proposition` | What they are for or against, in one short phrase taken from the text. Not just the subject: "capping insulin at $35 a month", not "health care". |
 | `specificity` | `1`, `2` or `3` (definitions below). |
-| `priority_signal` | `yes` only if the text says the issue ranks high for them ("my top priority", "I ran on this", "I'll fight for") or commits them to a concrete act: introducing, passing or blocking a specific thing. `no` for a passing mention, a reaction to the news, ceremonial wording, a group letter they co-signed, or praise for someone else's work. (Your rule of 2026-10-09.) |
+| `priority_signal` | `yes` ONLY for explicit ranking language ("my top priority", "I ran on this") or a pledge about the future ("I'll fight for", "I am committed to"). `no` for announcing a bill that is already introduced, claiming credit for something already done, a passing mention, a reaction to the news, ceremonial wording, a group letter they co-signed, or praise for someone else's work. (Owner ruling 3, 2026-10-23; supersedes the 2026-10-09 rule that counted introducing, passing or blocking a thing as a signal.) |
 | `notes` | Anything at all: doubts, a second position, "the text is cut off". |
 
 **Topic list** (the official 33 policy areas; copy one exactly):

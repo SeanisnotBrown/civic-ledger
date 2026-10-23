@@ -361,9 +361,21 @@ review. A complete `prompt-eval` run on at least 50 labeled rows records its cou
 and hashes measured, each field's status, any D/R gap flag; no per-row mark, no model
 answer); the publish gate trusts it only while those prompt versions are still in
 `ai.yaml`. The first-pass triage has no bar (owner, 2026-10-23) and is reported only. No
-measured precision is recorded here yet.
+measured precision is recorded below.
 
-**Measurement on file, 2026-10-23 — NOT a Q-K measurement.** `prompt-eval` on all 60 rows
+**First Q-K measurement, 2026-10-23 — FAIL, gate stays closed.** `prompt-eval` on all 60
+owner-reviewed rows (`p3-labeling-set` at `89dc35914`; EV11–EV60 approved by the owner
+2026-10-23, EV02/EV03/EV10 reconciled with ruling 3), triage `v1`, categorizer `v2`, no
+prompt tuning, 104 cache hits, $0.0000: `docs/research/2026-10-23-prompt-eval-60-owner-reviewed.md`;
+`data/quality/categorizer-precision.json` records `unreviewed_labels: 0`. Precision (D / R,
+gap): stance 90% = 38/42 (86% / 95%, 9 pts) meets 90%; topic 88% = 37/42 (77% / 100%, 23
+pts) BELOW 90%; priority_signal 100% = 6/6 (2/2, 4/4, 0 pts) meets 90% (n=6, small);
+specificity 86% = 36/42 (77% / 95%, 18 pts) meets 80%; first-pass triage (no bar) 89% =
+39/44 (79% / 100%, 21 pts). Result: topic is below its bar, and the D/R gap passes 10
+points on topic, specificity and triage, so the publish gate stays closed. No prompt was
+changed; what to do about it is an owner decision.
+
+Superseded earlier run: **Measurement on file, 2026-10-23 — NOT a Q-K measurement.** `prompt-eval` on all 60 rows
 of the held-out set (`p3-labeling-set` at `4d83fe4f3`), triage `v1`, categorizer `v2`:
 `docs/research/2026-10-23-prompt-eval-60.md`. **50 of 60 labels are AI (copilot) labels,
 owner-unreviewed. This is AI-vs-AI agreement, NOT a valid Q-K measurement. The publish gate

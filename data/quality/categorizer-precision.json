@@ -11,7 +11,7 @@
         "R": 4,
         "all": 6
       },
-      "status": "not assessed (50 labels owner-unreviewed)"
+      "status": "meets"
     },
     "specificity": {
       "called": {
@@ -24,7 +24,7 @@
         "R": 19,
         "all": 36
       },
-      "status": "not assessed (50 labels owner-unreviewed)"
+      "status": "meets"
     },
     "stance": {
       "called": {
@@ -37,7 +37,7 @@
         "R": 19,
         "all": 38
       },
-      "status": "not assessed (50 labels owner-unreviewed)"
+      "status": "meets"
     },
     "takes_policy_position": {
       "called": {
@@ -63,7 +63,7 @@
         "R": 20,
         "all": 37
       },
-      "status": "not assessed (50 labels owner-unreviewed)"
+      "status": "BELOW"
     }
   },
   "generated": "2026-10-23",
@@ -85,5 +85,5 @@
       "prompt_version": "v1"
     }
   },
-  "unreviewed_labels": 50
+  "unreviewed_labels": 0
 }

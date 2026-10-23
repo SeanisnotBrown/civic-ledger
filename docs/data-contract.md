@@ -275,7 +275,18 @@ is owner-supplied, like INC-6 absences).
 | `paired_bill_ids` | array\<string\> | The D9 pairing RESULT: `named_measures` resolved to canonical bill ids (bill-id form passes through; an allowlisted title maps; anything else is unpaired and omitted). Resolved once in Python (`ingest/pairing.py`); the metric layer and site both read this and never re-resolve (D41). Sorted, de-duplicated. |
 | `specificity_level` | `0\|1\|2\|3` \| null | Owner-assigned; `null` = unscored. |
 | `stated_position` | `"support" \| "oppose"` \| null | Owner-assigned stance (D42) — the sibling of specificity, NOT a paraphrase. `support` ⇒ expected Yea on passage, `oppose` ⇒ Nay. The only basis for `named_measure_mismatch`; `null` → excluded from it. |
+| `topic` | string \| null | P3 task 6: the owner-approved policy area (one of the 33 official areas). `null` = not labeled: counts toward the Q-B total, toward no topic. |
+| `priority_signal` | bool \| null | P3 task 6: the owner-approved Q-J priority signal. |
 | `curator_note` | string \| null | Internal, **never rendered**. |
+
+`data/priorities.json` (P3 task 6) is DERIVED, written by `uv run export` and re-derived
+byte-for-byte by `verify-recompute` (`ingest/priorities.py`): per member with at least one
+approved statement, `approved_statements`, `distinct_topics` and `listed` (the Q-B bar in
+`thresholds.yaml` `priorities_list`: 5 approved statements across 3 topics). Only a `listed`
+member carries `priorities` (topic + `support`/`oppose` + the Q-J routes that make it one:
+`signal` and/or `repetition`, with the statement ids) and `conflicted_topics` (both sides in
+the current term, so no priority). Below the bar nothing is inferred or published. The
+campaign-issue-page route is not implemented: those pages are not collected yet. Empty today.
 
 `data/statements/_title_allowlist.yaml` (owner-edited config, not a record) is the
 D9 short-title → bill-id map: the one sanctioned exception to "pair by bill id

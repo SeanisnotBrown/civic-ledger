@@ -47,6 +47,18 @@
       "title": "Paired Bill Ids",
       "type": "array"
     },
+    "priority_signal": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Priority Signal"
+    },
     "source_url": {
       "title": "Source Url",
       "type": "string"
@@ -88,6 +100,18 @@
     "text": {
       "title": "Text",
       "type": "string"
+    },
+    "topic": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Topic"
     },
     "venue": {
       "title": "Venue",

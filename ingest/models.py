@@ -650,6 +650,12 @@ class Statement(_Strict):
     # it is an owner classification, the sibling of specificity_level, and the ONLY basis
     # for named_measure_mismatch (D42). None = unassigned → excluded from that comparison.
     stated_position: Literal["support", "oppose"] | None = None
+    # P3 task 6: the owner-approved policy area (one of the 33 official areas) and Q-J
+    # priority signal, set when a statement is approved in the review dashboard. Both feed
+    # the stated-priorities rules (ingest/priorities.py); None = not labeled, which still
+    # counts toward the Q-B statement total but toward no topic and no priority.
+    topic: str | None = None
+    priority_signal: bool | None = None
     curator_note: str | None = None  # internal, never rendered
 
     @field_validator("date")

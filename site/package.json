@@ -15,6 +15,7 @@
     "test:feed-ids": "node scripts/check-feed-ids.mjs",
     "test:action-rows": "node scripts/check-action-rows.mjs",
     "test:motions": "node scripts/check-motion-coverage.mjs",
+    "test:priorities": "node scripts/check-priorities.mjs",
     "test:e2e": "playwright test",
     "test:lighthouse": "lhci autorun"
   },

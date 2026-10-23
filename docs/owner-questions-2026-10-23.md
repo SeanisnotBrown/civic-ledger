@@ -102,3 +102,30 @@ export an approved statement, the two must be mapped.
 
 **Builder's pick: A.** It changes nothing already published. Nothing exports until Q-K is
 ratified and archiving exists, so this can wait.
+
+## 8. Which statements count toward the "5 across 3 topics" bar (Q-B)?
+
+Your rule for priorities (Q-J) uses only statements from the member's current term. Q-B, the
+bar for showing a list at all, does not say. The code counts every approved statement since
+January 2023 toward Q-B, and only current-term statements toward priorities.
+
+- **A. Every approved statement counts toward Q-B** (what the code does). More members get a
+  list. A member who spoke mostly last term may show a list that says no priority meets the
+  rule yet.
+- **B. Only current-term statements count.** Fewer members get a list, but every list that
+  shows draws on the same statements as its priorities.
+
+**Builder's pick: A.** Q-B exists so that no member is summarized from too little, and older
+approved statements are still on the record.
+
+## 9. Wording of a member's priorities list (AES-14)
+
+No member has a list today: no statements are approved yet. When one does, each line
+currently reads like *"Health — In support, called a priority in an approved statement
+(1 approved statement)"*. The audit item AES-14 covers this panel and its wording, and it
+waits for your approval. Nobody will see the wording until statements are approved.
+
+- **A. Approve this wording for now.** Lists can appear as soon as statements are approved.
+- **B. Review AES-14 first.** No list can appear until you do.
+
+**Builder's pick: B.** It is your evaluative wording, and nothing is waiting on it yet.

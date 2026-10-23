@@ -11,7 +11,8 @@
 //   * an overall grade — four of the five categories are not graded yet (§2), and
 //     one category called "overall" would be a false frame (rule 0);
 //   * a consistency verdict — it is measured against the member's own public
-//     statements, and none are collected yet (Phase 3);
+//     statements and is held until Phase 6 (§2), so nothing here compares what a member
+//     said with how they voted (rule 0);
 //   * weight sliders — there is nothing to weigh against while one category is graded.
 import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
@@ -24,7 +25,8 @@ import {
   getMemberRanks, getRankings, getMemberGrade, getManifest, getGrades,
   getGradedAttendanceByChamber, getMemberVotes, tallyPartySides, getMemberLegislation,
   byIntroducedDesc, getMemberCommittees, inOfficeSince, hasServiceGap, memberPhotoUrl,
-  votedBillIds, ACTIVITY_KIND_LABEL, holdsSeatAsOf, asOfDate,
+  votedBillIds, ACTIVITY_KIND_LABEL, holdsSeatAsOf, asOfDate, getMemberPriorities,
+  getPrioritiesFile,
 } from "../../../lib/data";
 import type { MemberActivityItem, ActivityKind } from "../../../lib/data";
 import { STATE_NAME } from "../../../lib/states";
@@ -123,6 +125,19 @@ const CATEGORIES: { name: string; measures: string }[] = [
   { name: "Responsiveness",
     measures: "The share of requests for comment their office answers within 14 days." },
 ];
+
+// Stated priorities (P3 task 6): Q-B decides whether a list shows at all, Q-J which topics
+// are on it — both applied in Python (ingest/priorities.py). Below the Q-B bar the page
+// says there are not yet enough statements on record and infers nothing; it never implies
+// the member said nothing. The listed branch's wording is not owner-reviewed yet (AES-14);
+// no member reaches it until approved statements exist.
+const prio = getMemberPriorities(memberId);
+const prioBar = getPrioritiesFile().bar;
+const STANCE_WORD: Record<string, string> = { support: "In support", oppose: "In opposition" };
+const ROUTE_WORD: Record<string, string> = {
+  signal: "called a priority in an approved statement",
+  repetition: "repeated across approved statements in more than one month",
+};
 
 const legislation = isFirstPage ? getMemberLegislation(memberId) : undefined;
 const sponsored = legislation ? [...legislation.sponsored].sort(byIntroducedDesc) : [];
@@ -324,11 +339,32 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
 
       <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="prio-h">
         <h3 id="prio-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Stated priorities</h3>
-        <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600">
-          Not collected yet. Their own public statements — press releases, floor speeches,
-          campaign issue pages, official social accounts — will appear here, each beside
-          how they voted on it.
-        </p>
+        {prio.listed ? (
+          (prio.priorities ?? []).length > 0 ? (
+            <ul class="mt-2" data-priorities-list>
+              {(prio.priorities ?? []).map((p) => (
+                <li class="py-1 text-[13px] text-neutral-700">
+                  <span class="font-medium text-text">{p.topic}</span>
+                  {" — "}{STANCE_WORD[p.stance]}, {p.routes.map((r) => ROUTE_WORD[r]).join("; ")}
+                  {" "}({n(p.statement_ids.length)} approved {p.statement_ids.length === 1 ? "statement" : "statements"})
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-none>
+              None of their approved statements meets the rule for a stated priority yet.
+            </p>
+          )
+        ) : (
+          <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-empty>
+            Not enough statements on record yet. A list appears once at least
+            {" "}{prioBar.min_approved_statements} of their public statements, covering at least
+            {" "}{prioBar.min_distinct_topics} policy areas, have been reviewed and
+            approved{prio.approved_statements > 0 ? ` (${n(prio.approved_statements)} so far)` : ""}.
+            This does not mean they have said nothing on these issues: a statement appears here
+            only after it is collected and reviewed, and that work has only begun.
+          </p>
+        )}
       </section>
 
       {mm && (

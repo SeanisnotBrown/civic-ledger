@@ -46,6 +46,23 @@ stated_priority:
   repetition_statements: 3      # approved statements sharing one topic AND one stance
   repetition_distinct_months: 2 # spread across at least this many calendar months
 
+# --- Stated-priorities list bar (Q-B, owner-ratified 2026-10-07) -----------------------
+# §2 "Q-B answered": a member's "Stated priorities" list shows only with at least this many
+# APPROVED statements covering at least this many different policy areas. Below it the page
+# says plainly there are not yet enough statements on record, and never implies the member
+# said nothing. Read by ingest/priorities.py (Phase 3 task 6). Gates the LIST only: it does
+# not gate collection, review, or the statements in the timeline.
+priorities_list:
+  ratified: "2026-10-07"
+  citation: null
+  justification: >-
+    The owner's answer to Q-B. Offered 3 / 5 / 10 / none-with-the-count-printed, he picked
+    5 with a spread of 3 topics so that no member is ever summarised from a single press
+    release, accepting that in Phase 3 roughly the better-covered half of Congress gets a
+    list and the rest waits.
+  min_approved_statements: 5
+  min_distinct_topics: 3
+
 # --- Categorizer precision launch bar (Q-K) — PROVISIONAL, NOT RATIFIED ------------------
 # Proposed 2026-10-22 by the copilot, to whom the owner delegated a provisional answer for
 # owner review on 2026-10-23. `ratified: false` keeps the publish gate CLOSED

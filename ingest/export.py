@@ -396,6 +396,11 @@ def main(argv: list[str] | None = None) -> int:
 
     _ = sys.argv[1:] if argv is None else argv
     schemas = export_schemas()
+    # P3 task 6: the stated-priorities file depends on every approved statement and every
+    # member's current term — a whole-dataset artifact, like the schemas.
+    from ingest import priorities
+
+    priorities_path = priorities.write()
     now = datetime.now(UTC).replace(microsecond=0)
     generated_at = os.environ.get(
         "CIVIC_GENERATED_AT", now.isoformat().replace("+00:00", "Z")
@@ -403,6 +408,7 @@ def main(argv: list[str] | None = None) -> int:
     commit = os.environ.get("CIVIC_COMMIT") or _git_head()
     export_manifest(generated_at, commit)
     print(f"export: wrote {len(schemas)} schema(s) to {SCHEMA_DIR.relative_to(repo_root())}/")
+    print(f"export: wrote stated priorities to {priorities_path.relative_to(repo_root())}")
     print(f"export: wrote manifest (commit {commit}) to {MANIFEST_PATH.relative_to(repo_root())}")
     return 0
 

@@ -1,7 +1,8 @@
 # data/config/thresholds.yaml — ratified evaluative constants (§0.8 / SD-27).
 #
 # Every value here was proposed to the owner in plain English WITH the data, chosen by
-# the owner, and committed with the reasoning + the ratification date. Nothing
+# the owner, and committed with the reasoning + the ratification date — except an entry
+# marked `ratified: false`, which is a proposal awaiting the owner and publishes nothing. Nothing
 # evaluative may publish from a value not committed here; the §6.8 guard
 # (checks/integrity.py + site/scripts/check-grade-labels.mjs) enforces that every grade
 # label rendered on the site appears verbatim below. `citation` is an external source

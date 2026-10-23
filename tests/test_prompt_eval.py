@@ -264,8 +264,13 @@ def test_a_ten_row_run_is_titled_a_smoke_test_and_categorizes_only_what_triage_p
     assert "PROVISIONAL, not ratified" in report
     assert "not assessed (n=10 < 50)" in report
     assert "| Rows skipped as not yet labeled | 1 |" in report
-    # Counts, never answers: no model label appears in the report.
+    # Counts, never answers: no model label and no per-row mark in the committed report;
+    # the marks go to the gitignored side file.
     assert "capping insulin" not in report and '"stance"' not in report
+    assert "| EV01 |" not in report
+    assert "`data/raw/labeling/report-rows.md`" in report
+    rows = (tmp_path / "raw" / "labeling" / "report-rows.md").read_text(encoding="utf-8")
+    assert "| EV01 | yes | yes | no | yes | yes |" in rows
     # Every call was logged by ai.py into the tmp audit log, not the repository's.
     log = list((tmp_path / "quality" / "ai-calls").glob("*.jsonl"))
     assert len(log) == 1 and len(log[0].read_text().splitlines()) == 18
@@ -347,7 +352,7 @@ def _render(result: prompt_eval.Score, tmp_path: Path) -> str:
     run = ai.Run(config=ai.load_config(), completer=FakeApi(), data_dir=tmp_path)
     return prompt_eval.render(result=result, bar=prompt_eval.load_bar(),
                               outcome=prompt_eval.Outcome(), run=run, labels_path="l.csv",
-                              ids=None, generated="now")
+                              ids=None, generated="now", rows_path="r.md")
 
 
 def test_a_wide_party_gap_on_a_full_set_stops_for_owner_review(tmp_path: Path) -> None:

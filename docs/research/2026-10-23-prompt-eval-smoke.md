@@ -1,6 +1,6 @@
 # Prompt evaluation — 10-row smoke test, not a precision measurement
 
-Generated 2026-10-23 03:27 UTC by `uv run ingest prompt-eval`. Labels: `data/raw/labeling/eval-set-a441d1c11.csv`, rows `EV01-EV10`.
+Generated 2026-10-23 03:34 UTC by `uv run ingest prompt-eval`. Labels: `data/raw/labeling/eval-set-a441d1c11.csv`, rows `EV01-EV10`.
 
 - Triage: `claude-haiku-5-5`, prompt `v1` (sha256 `b49a776f73a1`), effort `medium`
 - Categorizer: `claude-opus-5-5`, prompt `v1` (sha256 `69a2e6549b6b`), effort `medium`
@@ -32,25 +32,10 @@ Gap over 10 points on `stance`, `specificity` — on a smoke test this is noise 
 | Owner said yes, triage said no (missed; not a precision error) | 1 |
 | Categorizer `mixed` stance calls (outside the for/against bar) | 0 |
 | How the run ended | `complete` |
-| API calls (cache hits are free) | 16 (0 cache hits) |
-| Spent | $0.1369 of a $0.50 run cap |
+| API calls (cache hits are free) | 0 (16 cache hits) |
+| Spent | $0.0000 of a $0.50 run cap |
 
-## Per row: did the owner agree with each call the AI made?
-
-`yes` / `no` per call; blank = the AI made no call on that field. The model's own labels are not printed here (counts, never answers); they are in the gitignored cache under the `input_hash` the audit log records.
-
-| Row | `stance` | `topic` | `priority_signal` | `specificity` | `takes_policy_position` |
-| --- | --- | --- | --- | --- | --- |
-| EV01 | no | yes |  | yes | yes |
-| EV02 | yes | yes |  | yes | yes |
-| EV03 | yes | yes | yes | yes | yes |
-| EV04 |  |  |  |  |  |
-| EV05 | yes | yes | yes | no | yes |
-| EV06 | yes | yes |  | yes | yes |
-| EV07 |  |  |  |  |  |
-| EV08 |  |  |  |  |  |
-| EV09 |  |  |  |  |  |
-| EV10 | yes | yes | yes | yes | yes |
+Per-row agreement marks are NOT in this report: next to the owner's public labels they would give away the model's answer for each statement (counts, never answers). They are in the gitignored `data/raw/labeling/2026-10-23-prompt-eval-smoke-rows.md`.
 
 ## Notes (builder, 2026-10-23 overnight)
 
@@ -62,3 +47,7 @@ Gap over 10 points on `stance`, `specificity` — on a smoke test this is noise 
 - Spend: $0.1369 (10 Haiku triage calls, 6 Opus categorizer calls), every call logged in
   `data/quality/ai-calls/2026-10.jsonl`. The ai.yaml cap stays $5.00; this run's own cap
   was $0.50.
+- This file was regenerated from the cache after per-row marks moved out of committed
+  reports (0 calls, $0; hence "0 (16 cache hits)" above). The live run's spend is the
+  $0.1369 noted above. The first version, with the per-row table, stays in git history
+  at `10fea6609`; it was not rewritten.

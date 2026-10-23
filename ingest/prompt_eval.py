@@ -43,9 +43,11 @@ sequential with `reserve=True`, so the cap is exact. A refusal or malformed answ
 answer" for that row, counted and reported; any other API error stops the run, and the
 report says how far it got. Re-runs are free: answers are cached by input hash.
 
-The report holds counts and per-row agree/disagree marks, never the model's labels: the
-repository holds counts, never answers (the same rule as `ingest/triage_run.py`). The
-answers are in the gitignored cache the audit log's `input_hash` names.
+The committed report holds counts only, never the model's labels: the repository holds
+counts, never answers (the same rule as `ingest/triage_run.py`). Per-row agree/disagree
+marks go to a gitignored side file under `data/raw/labeling/`, because next to the owner's
+public labels they would reveal the model's answer per statement. The answers themselves
+are in the gitignored cache the audit log's `input_hash` names.
 
     uv run ingest prompt-eval --labels data/raw/labeling/eval-set.csv --ids EV01-EV10
 """
@@ -392,6 +394,7 @@ def render(
     labels_path: str,
     ids: str | None,
     generated: str,
+    rows_path: str,
 ) -> str:
     tri = run.config.task(TRIAGE)
     cat = run.config.task(CATEGORIZE)
@@ -471,11 +474,20 @@ def render(
         f"| API calls (cache hits are free) | {run.calls} ({run.cache_hits} cache hits) |",
         f"| Spent | ${run.spent_usd:.4f} of a ${run.cap:.2f} run cap |",
         "",
-        "## Per row: did the owner agree with each call the AI made?",
+        "Per-row agreement marks are NOT in this report: next to the owner's public labels "
+        "they would give away the model's answer for each statement (counts, never "
+        f"answers). They are in the gitignored `{rows_path}`.",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def render_rows(result: Score) -> str:
+    """Per-row agree/disagree marks, for the gitignored side file only."""
+    lines = [
+        "# Per row: did the owner agree with each call the AI made?",
         "",
-        "`yes` / `no` per call; blank = the AI made no call on that field. The model's own "
-        "labels are not printed here (counts, never answers); they are in the gitignored "
-        "cache under the `input_hash` the audit log records.",
+        "`yes` / `no` per call; blank = the AI made no call on that field. Gitignored: with "
+        "the owner's labels these marks reveal the model's answer per statement.",
         "",
         "| Row | " + " | ".join(f"`{f}`" for f in FIELDS) + " |",
         "| --- | " + " | ".join("---" for _ in FIELDS) + " |",
@@ -527,11 +539,16 @@ def run(
     out = Path(args.out) if args.out else (
         repo_root() / "docs" / "research" / f"{now:%Y-%m-%d}-prompt-eval.md"
     )
+    rows_name = f"raw/labeling/{out.stem}-rows.md"
+    rows_file = (data_dir if data_dir is not None else repo_root() / "data") / rows_name
     report = render(result=result, bar=bar, outcome=outcome, run=airun,
                     labels_path=args.labels, ids=args.ids,
-                    generated=now.strftime("%Y-%m-%d %H:%M UTC"))
+                    generated=now.strftime("%Y-%m-%d %H:%M UTC"),
+                    rows_path=f"data/{rows_name}")
     out.parent.mkdir(parents=True, exist_ok=True)
     atomic_write_text(out, report)
+    rows_file.parent.mkdir(parents=True, exist_ok=True)
+    atomic_write_text(rows_file, render_rows(result))
     print(f"prompt-eval: {outcome.status}; {airun.calls} calls, ${airun.spent_usd:.4f} "
           f"spent; report {out}")
     return EXIT_OK if outcome.status == "complete" else EXIT_STOPPED

@@ -15,7 +15,7 @@ from ingest.prompt_eval import Label, Prediction, Row
 COLUMNS = [
     "id", "member", "party", "chamber", "source", "date", "date_precision", "url", "text",
     "takes_policy_position", "topic", "stance", "proposition", "specificity",
-    "priority_signal", "notes", "text_sha256",
+    "priority_signal", "notes", "text_sha256", "topic_secondary",
 ]
 
 
@@ -174,6 +174,67 @@ def test_a_topic_match_ignores_case_and_spacing_only() -> None:
     assert bad.by_field["topic"]["all"].correct == 0
 
 
+def test_a_secondary_topic_reads_from_the_sheet_and_a_sheet_without_it_still_scores(
+    tmp_path: Path,
+) -> None:
+    """Owner ruling R1, 2026-10-23: an optional `topic_secondary` column. The original 60's
+    sheet has no such column and must read exactly as before."""
+    path = _csv(tmp_path / "l.csv", [_yes(1, topic_secondary=" Taxation "), _yes(2)])
+    rows, _ = prompt_eval.read_labels(path)
+    assert rows[0].label.topic_secondary == "Taxation"
+    assert rows[1].label.topic_secondary is None
+    old = tmp_path / "old.csv"
+    with old.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=COLUMNS[:-1])
+        writer.writeheader()
+        writer.writerow({c: v for c, v in _yes(1).items() if c in COLUMNS})
+    (row,), _ = prompt_eval.read_labels(old)
+    assert row.label == Label(True, "Health", "for", 1, False)
+
+
+def test_topic_counts_the_primary_or_the_secondary_and_primary_only_is_kept_apart() -> None:
+    """R1: the AI's one topic is correct when it is the label's primary OR secondary topic.
+    `topic_primary_only` keeps the old scoring visible beside it."""
+    two = Label(True, "Health", "for", 1, False, topic_secondary="Taxation")
+    rows = [_row(1, "D", two), _row(2, "D", two), _row(3, "R", two),
+            _row(4, "R", Label(False))]
+    preds = {
+        "EV01": Prediction(True, dict(CAT, topic="Health")),      # primary
+        "EV02": Prediction(True, dict(CAT, topic="taxation")),    # secondary
+        "EV03": Prediction(True, dict(CAT, topic="Education")),   # neither
+        "EV04": Prediction(True, dict(CAT, topic="Health")),      # owner said no
+    }
+    result = prompt_eval.score(rows, preds, [])
+    topic = result.by_field["topic"]["all"]
+    primary = result.by_field["topic_primary_only"]["all"]
+    assert (topic.correct, topic.called) == (2, 4)
+    assert (primary.correct, primary.called) == (1, 4)
+    assert result.per_row["EV02"]["topic"] is True
+    assert result.per_row["EV02"]["topic_primary_only"] is False
+
+
+def test_primary_only_is_never_a_gap_flag_and_has_no_bar(tmp_path: Path) -> None:
+    """Information only: a wide D/R gap on `topic_primary_only` must not stop the run or
+    close the publish gate."""
+    two = Label(True, "Health", "for", 1, False, topic_secondary="Taxation")
+    rows = [_row(i, "D", two) for i in range(25)] + [_row(100 + i, "R", two)
+                                                      for i in range(25)]
+    preds = {r.id: Prediction(True, dict(CAT, topic="Taxation" if r.party == "D" else "Health"))
+             for r in rows}
+    result = prompt_eval.score(rows, preds, [])
+    assert prompt_eval.party_gap_points(result.by_field["topic_primary_only"]) == 100
+    bar = prompt_eval.load_bar()
+    assert prompt_eval.gap_flags(result, bar) == []
+    report = _render(result, tmp_path)
+    assert "STOP" not in report
+    assert ("| `topic_primary_only` | none | 50% (25/50) | 0% (0/25) | 100% (25/25) | "
+            "100 pts | no bar |") in report
+    assert "| `topic` | 90% | 100% (50/50) |" in report
+    recorded = prompt_eval.measurement(result, bar, ai.load_config(), generated="now")
+    assert recorded["fields"]["topic_primary_only"]["status"] == "no bar"
+    assert recorded["party_gap_flags"] == []
+
+
 def test_a_triage_miss_is_counted_but_is_not_a_precision_error() -> None:
     result = prompt_eval.score([_row(1, "D", YES)], {"EV01": Prediction(False)}, [])
     assert result.triage_rejected_owner_yes == 1
@@ -272,7 +333,7 @@ def test_a_ten_row_run_is_titled_a_smoke_test_and_categorizes_only_what_triage_p
     assert "| EV01 |" not in report
     assert "`data/raw/labeling/report-rows.md`" in report
     rows = (tmp_path / "raw" / "labeling" / "report-rows.md").read_text(encoding="utf-8")
-    assert "| EV01 | yes | yes | no | yes | yes |" in rows
+    assert "| EV01 | yes | yes | yes | no | yes | yes |" in rows
     # Every call was logged by ai.py into the tmp audit log, not the repository's.
     log = list((tmp_path / "quality" / "ai-calls").glob("*.jsonl"))
     assert len(log) == 1 and len(log[0].read_text().splitlines()) == 18

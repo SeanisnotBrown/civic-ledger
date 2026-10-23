@@ -23,8 +23,10 @@ with — the thing Q-K bars, because a call is what reaches the owner as a sugge
   * `stance` — over the categorizer's `for` / `against` calls (Q-K's own wording); correct
     when the owner said `yes` with the same stance. A `mixed` call is counted separately.
   * `topic` — over the categorizer's non-null topics; correct when the owner said `yes`
-    with the same policy area (his primary topic: a second topic lives in `notes` while
-    the multi-topic question is open).
+    and the AI's one topic is the label's primary OR its optional secondary topic
+    (`topic_secondary`; owner ruling R1, 2026-10-23). The AI still returns one topic.
+    `topic_primary_only` scores the same calls against the primary alone, so the effect
+    of R1 stays visible; it has no bar and is never a D/R gap flag.
   * `priority_signal` — over the categorizer's `true` calls; correct when the owner said
     `yes`. False positives are the harmful direction (Q-K).
   * `specificity` — over the categorizer's non-null levels; correct on the same level.
@@ -74,6 +76,11 @@ CATEGORIZE = "categorize_statement"
 PARTIES = ("D", "R")
 # Report order. The four Q-K fields first, then the triage field, which has no bar.
 FIELDS = ("stance", "topic", "priority_signal", "specificity", "takes_policy_position")
+# Every reported field. `topic_primary_only` is information only (`topic` scored against
+# the label's primary alone, as before owner ruling R1): it is not in FIELDS, so it has no
+# bar, is never a D/R gap flag and never closes the publish gate.
+REPORTED = ("stance", "topic", "topic_primary_only", "priority_signal", "specificity",
+            "takes_policy_position")
 DEFAULT_CAP_USD = 0.50
 
 EXIT_OK = 0
@@ -140,6 +147,9 @@ class Label:
     stance: str | None = None
     specificity: int | None = None
     priority_signal: bool | None = None
+    # Owner ruling R1, 2026-10-23: an optional second policy area. A sheet without the
+    # column (the original 60) reads as None.
+    topic_secondary: str | None = None
 
 
 @dataclass(frozen=True)
@@ -192,6 +202,7 @@ def _label(raw: dict[str, str]) -> Label | None:
         specificity=specificity,
         priority_signal=_yes_no(raw.get("priority_signal", ""), column="priority_signal",
                                 row_id=row_id),
+        topic_secondary=(raw.get("topic_secondary") or "").strip() or None,
     )
 
 
@@ -261,7 +272,11 @@ def calls(row: Row, pred: Prediction) -> dict[str, bool]:
     if cat.get("stance") in ("for", "against"):
         out["stance"] = yes and owner.stance == cat["stance"]
     if cat.get("topic"):
-        out["topic"] = yes and owner.topic is not None and _same_topic(owner.topic, cat["topic"])
+        primary = yes and owner.topic is not None and _same_topic(owner.topic, cat["topic"])
+        secondary = (yes and owner.topic_secondary is not None
+                     and _same_topic(owner.topic_secondary, cat["topic"]))
+        out["topic"] = primary or secondary  # owner ruling R1, 2026-10-23
+        out["topic_primary_only"] = primary
     if cat.get("priority_signal") is True:
         out["priority_signal"] = yes and owner.priority_signal is True
     if cat.get("specificity") is not None:
@@ -293,7 +308,7 @@ class Score:
 
 def score(rows: Iterable[Row], preds: dict[str, Prediction], unlabeled: list[str]) -> Score:
     rows = list(rows)
-    by_field = {f: {"all": Tally(), **{p: Tally() for p in PARTIES}} for f in FIELDS}
+    by_field = {f: {"all": Tally(), **{p: Tally() for p in PARTIES}} for f in REPORTED}
     per_row: dict[str, dict[str, bool]] = {}
     no_answer: list[str] = []
     mixed = 0
@@ -400,7 +415,7 @@ def _field_table(result: Score, bar: PrecisionBar) -> list[str]:
         "| Field | Bar | All | D | R | D/R gap | Status |",
         "| --- | --- | --- | --- | --- | --- | --- |",
     ]
-    for name in FIELDS:
+    for name in REPORTED:
         t = result.by_field[name]
         gap = party_gap_points(t)
         bar_text = f"{bar.fields[name]:.0%}" if name in bar.fields else "none"
@@ -472,7 +487,10 @@ def render(
         "## Precision by field",
         "",
         "Precision = the share of the AI's calls on a field that the label agrees with. "
-        "`proposition` is never scored (owner ruling 2026-10-22).",
+        "`proposition` is never scored (owner ruling 2026-10-22). `topic` counts the AI's "
+        "one topic correct when it is the label's primary or secondary topic (owner ruling "
+        "R1, 2026-10-23); `topic_primary_only` scores the same calls against the primary "
+        "alone, for information: it has no bar and is never a D/R gap flag.",
         "",
         *_field_table(result, bar),
     ]
@@ -534,12 +552,12 @@ def render_rows(result: Score) -> str:
         "`yes` / `no` per call; blank = the AI made no call on that field. Gitignored: with "
         "the owner's labels these marks reveal the model's answer per statement.",
         "",
-        "| Row | " + " | ".join(f"`{f}`" for f in FIELDS) + " |",
-        "| --- | " + " | ".join("---" for _ in FIELDS) + " |",
+        "| Row | " + " | ".join(f"`{f}`" for f in REPORTED) + " |",
+        "| --- | " + " | ".join("---" for _ in REPORTED) + " |",
     ]
     for row_id, verdicts in result.per_row.items():
         cells = [
-            "" if f not in verdicts else ("yes" if verdicts[f] else "no") for f in FIELDS
+            "" if f not in verdicts else ("yes" if verdicts[f] else "no") for f in REPORTED
         ]
         lines.append(f"| {row_id} | " + " | ".join(cells) + " |")
     return "\n".join(lines) + "\n"
@@ -562,7 +580,8 @@ def measurement(result: Score, bar: PrecisionBar, config: ai.AiConfig, *,
                     "prompt_sha256": config.task(name).prompt_sha256,
                     "model": config.task(name).model} for name in (TRIAGE, CATEGORIZE)}
     fields = {}
-    for name in FIELDS:
+    # `topic_primary_only` carries status "no bar", which the publish gate ignores.
+    for name in REPORTED:
         tallies = result.by_field[name]
         fields[name] = {
             "called": {k: t.called for k, t in sorted(tallies.items())},

@@ -30,7 +30,7 @@ It is spent: owner ruling 3 below says it may not grade any changed prompt.
 
 | Column | What to write |
 | --- | --- |
-| `takes_policy_position` | `yes` if the text takes a position on a specific policy (a bill, a program, a rule, a level of spending, a change in law). Otherwise `no`, and leave the rest of the row blank except `notes`. Announcements of grants or funding awards, commemorative or recognition resolutions, ceremonies, event appearances and check presentations are `no`, unless the text also argues for or against a specific policy change. Credit-claiming for a past vote is not a position by itself (ruling 2 below). |
+| `takes_policy_position` | `yes` if the text takes a position on a specific policy (a bill, a program, a rule, a level of spending, a change in law). Otherwise `no`, and leave the rest of the row blank except `notes`. Announcements of grants or funding awards, commemorative or recognition resolutions, ceremonies, event appearances and check presentations are `no`, unless the text also argues for or against a specific policy change. Mentioning a past vote only to take credit for funding or an event is not a position by itself; stating how one voted on a named bill is a position (ruling 2 below). |
 | `topic` | The one area from the list below that the main position is about (the primary topic). |
 | `topic_secondary` | Optional. A second area from the same list, only when the text takes a position in a second area too. Otherwise blank. |
 | `stance` | `for` or `against` that policy. `mixed` only when the text argues both sides. If you can't tell, write `none` and say why in `notes`: `mixed` never means "unsure". |
@@ -80,8 +80,9 @@ areas; `proposition` is for reference only and not scored.
 2. **No-position rule**, the same for every party, in both AI prompts and in this sheet:
    announcements of grants or funding awards, commemorative or recognition resolutions,
    ceremonies, event appearances and check presentations take NO policy position, unless
-   the text also argues for or against a specific policy change. Credit-claiming for a past
-   vote is not a position by itself.
+   the text also argues for or against a specific policy change. Mentioning a past vote only
+   to take credit for funding or an event is not a position by itself; stating how one voted
+   on a named bill is a position.
 3. **The first 60 are spent** for any changed prompt. A changed prompt is measured on a
    fresh held-out 60: this set.
 

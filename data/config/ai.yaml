@@ -67,11 +67,13 @@ tasks:
     # v2 (2026-10-23): owner ruling R2 only — grant and funding announcements,
     # commemorative or recognition resolutions, ceremonies, event appearances and check
     # presentations take no position unless the text also argues for or against a specific
-    # policy change; credit-claiming for a past vote is not a position by itself. Worded
-    # identically in categorize_statement v3. Unmeasured (R3: a fresh held-out 60).
+    # policy change; mentioning a past vote only to take credit for funding or an event is
+    # not a position by itself, but stating how one voted on a named bill is (R2a, owner
+    # 2026-10-23 14:06 CT). Worded identically in categorize_statement v3.
+    # Unmeasured (R3: a fresh held-out 60).
     prompt_version: v2
     prompt_file: ingest/prompts/triage_statement/v2.md
-    prompt_sha256: 6191a0245185c95e6b76ec1b6ad1a11aabafe108b26748ce4dd2f87ab796cabd
+    prompt_sha256: 02263e1507114f088b10481306a3d81979a1ea9fbeecb762f7e9f19244a4d4dd
     effort: medium
     max_tokens: 1024
     output_schema:
@@ -110,7 +112,7 @@ tasks:
     model: claude-opus-5-5
     prompt_version: v3
     prompt_file: ingest/prompts/categorize_statement/v3.md
-    prompt_sha256: 6423d845ee2164fdb218b1459faad4ff278284ec5a4111b656affe805a5a6716
+    prompt_sha256: 2b4352e05ff17aa370fac578cb23b4f8b32927fda1060e89d8174d0100dc13c1
     effort: medium
     # 4,096 must hold the model's thinking AND the JSON. Raise only if evaluation shows
     # real truncation (task 4).

@@ -130,7 +130,10 @@ def test_the_no_position_rule_is_worded_identically_in_both_prompts() -> None:
     triage = _no_position_rule("triage_statement")
     assert triage == _no_position_rule("categorize_statement")
     assert triage.startswith("Announcements of grants or funding awards")
-    assert "Credit-claiming for a\npast vote is not a position by itself." in triage
+    assert (
+        "Mentioning a past vote only\nto take credit for funding or an event is not a position "
+        "by itself; stating how one voted\non a named bill is a position."
+    ) in triage
 
 
 def _prompt_policy_areas() -> list[str]:

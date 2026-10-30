@@ -32,11 +32,14 @@ class _Json:
      ("Juli 1, 2025,  11:56 AM", "KeyError")],  # passes the regex, unknown month
 )
 def test_senate_bad_vote_date_quarantines_instead_of_aborting(
-    raw, exc_name, monkeypatch, capsys
+    raw, exc_name, monkeypatch, capsys, tmp_path
 ):
     """Before D87 the pre-parse guard caught only ET.ParseError, so `_parse_date`'s
     ValueError/KeyError escaped `run()` and every LATER roll that night went
     un-ingested with no quarantine file and no gap report."""
+    # run() deletes data/quality/senate-outage.json when the menus answer; keep it
+    # away from the committed notice.
+    monkeypatch.setattr("ingest.cache.repo_root", lambda: tmp_path)
     quarantined: list[tuple[str, str]] = []
     monkeypatch.setattr(config, "CONGRESSES", [119])
     monkeypatch.setattr(senate_votes, "SESSIONS", {119: (1,)})

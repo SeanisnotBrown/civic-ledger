@@ -16,6 +16,7 @@
     "test:action-rows": "node scripts/check-action-rows.mjs",
     "test:motions": "node scripts/check-motion-coverage.mjs",
     "test:priorities": "node scripts/check-priorities.mjs",
+    "test:senate-notice": "node scripts/check-senate-notice.mjs",
     "test:e2e": "playwright test",
     "test:lighthouse": "lhci autorun"
   },

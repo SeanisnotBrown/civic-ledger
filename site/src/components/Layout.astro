@@ -11,14 +11,15 @@
 // an official source" line went with them — the site earns that by the links
 // working when you click them, not by claiming it in a footer.
 import "../styles/global.css";
-import { getManifest } from "../lib/data";
-import { formatDate } from "../lib/display";
+import { getManifest, getSenateOutage } from "../lib/data";
+import { formatDate, senateOutageLine } from "../lib/display";
 
 interface Props { title: string; description?: string }
 const { title, description } = Astro.props;
 
 const manifest = getManifest();
 const updated = formatDate(manifest.generated_at);
+const senateOutage = getSenateOutage();
 
 // Primary tabs. `match` decides the active tab from the current path so a detail
 // page still highlights its section: a federal member/vote/bill page lights
@@ -75,6 +76,7 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
 
     <footer class="mx-auto max-w-[1180px] px-6 py-10 text-xs text-neutral-500">
       <p>Data last updated {updated}.</p>
+      {senateOutage && <p class="mt-1.5">{senateOutageLine(senateOutage)}</p>}
       <p class="mt-1.5 flex flex-wrap items-center gap-x-2">
         <a href="/methods" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Methodology</a>
         <span aria-hidden="true">·</span>

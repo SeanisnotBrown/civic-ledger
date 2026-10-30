@@ -1342,6 +1342,22 @@ export interface CommitteeSeat {
   committee_id: string; name: string; parent_name: string | null;
   rank: number | null; title: string | null; source_url: string;
 }
+// Present only while senate.gov refuses our vote-menu requests (ingest/senate_votes.py,
+// owner ruling 2026-10-29); the first successful Senate ingest deletes it. Absent -> null
+// -> no notice line anywhere.
+export interface SenateOutage {
+  outage_start: string; last_roll_id: string; last_roll_date: string; source_url: string;
+}
+let _senateOutage: SenateOutage | null | undefined;
+export function getSenateOutage(): SenateOutage | null {
+  if (_senateOutage !== undefined) return _senateOutage;
+  const p = path.join(DATA_DIR, "quality", "senate-outage.json");
+  _senateOutage = fs.existsSync(p)
+    ? (JSON.parse(fs.readFileSync(p, "utf-8")) as SenateOutage)
+    : null;
+  return _senateOutage;
+}
+
 export interface CommitteeMembership {
   source_url: string; seat_count: number; members: Record<string, CommitteeSeat[]>;
 }

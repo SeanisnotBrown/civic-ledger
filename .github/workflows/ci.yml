@@ -96,6 +96,9 @@ jobs:
       - name: Stated priorities (Q-B empty state below the bar; no say-vs-do claim — P3 task 6)
         working-directory: site
         run: npm run test:priorities
+      - name: Senate outage notice (owner's line iff data/quality/senate-outage.json exists)
+        working-directory: site
+        run: npm run test:senate-notice
       - name: Install Playwright browser
         working-directory: site
         run: npx playwright install --with-deps chromium

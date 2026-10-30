@@ -20,6 +20,14 @@ on:
     # free runners, only made less likely.
     - cron: "07 05 * * *" # 05:07 UTC daily
   workflow_dispatch:
+    inputs:
+      # A manual catch-up after nights that published nothing (owner ruling 2026-10-29:
+      # six nights lost to the senate.gov block, so the first good run needs ~192 h).
+      # The scheduled run has no inputs and keeps 36; see the bill-activity step.
+      since_hours:
+        description: "bill-activity --since window in hours (scheduled runs use 36)"
+        type: string
+        default: "36"
 
 concurrency:
   group: nightly
@@ -70,6 +78,9 @@ jobs:
         env:
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
           LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }}
+          # Through env, never interpolated into the script; a schedule event has no
+          # inputs, so it falls back to 36. A non-number makes bill-activity exit 2.
+          SINCE_HOURS: ${{ github.event.inputs.since_hours || '36' }}
         run: |
           set -euo pipefail
 
@@ -146,11 +157,16 @@ jobs:
           #    the active set is held. That decays on its own; the local `--congress 119`
           #    backfill is what ends it outright, at zero Actions minutes.
           #
+          #    CATCH-UP (owner ruling 2026-10-29): a run that follows nights which
+          #    published nothing must widen the window by hand, or those nights' bill
+          #    updates are skipped silently. `workflow_dispatch` takes `since_hours`;
+          #    the schedule always uses 36.
+          #
           #    OPERATIONAL NOTE: with ~427 covered bills updated per day, data/bills will
           #    change almost every night, so the step-2 classify gate fires nightly and
           #    the step-4 "quiet night" branch is now rare. A commit and a Workers Builds
           #    deploy per day IS the SD-33 cadence, not a regression.
-          uv run ingest bill-activity --since 36
+          uv run ingest bill-activity --since "$SINCE_HOURS"
 
           #    Legislation (D86): ONE /member/{id} request per member probes the
           #    lifetime sponsored/cosponsored counts; only members whose counts moved

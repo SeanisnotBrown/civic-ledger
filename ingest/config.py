@@ -76,6 +76,18 @@ ACTIVITY_FETCH_FAILURE_MIN_TOLERATED: int = 2
 LEGISLATION_FETCH_FAILURE_MAX_FRACTION: float = 0.02
 LEGISLATION_FETCH_FAILURE_MIN_TOLERATED: int = 2
 
+# How long `ingest senate-votes` tolerates a senate.gov block on its vote MENUS
+# before failing the night again. Owner ruling 2026-10-29: from 2026-10-24
+# senate.gov's firewall returned 403 to the nightly runner (even the homepage), and
+# because `senate-votes` failed, six nights published nothing at all - House votes
+# and bill activity included. While ONLY the four menu fetches fail with an HTTP
+# status error, the run exits 0 and keeps data/quality/senate-outage.json, which
+# puts the "Senate votes shown through ..." line on the site (rule 0: the reader is
+# told the Senate record is behind). Past this many days in a row the run fails
+# hard, so a block that never lifts cannot hide behind a green nightly. Tally,
+# validation, gap and per-roll failures were never covered by this and stay fatal.
+SENATE_MENU_OUTAGE_MAX_DAYS: int = 14
+
 # --- vote_class (§A1) -----------------------------------------------------
 # Acceptance ceiling for the `other` class (INC-5).
 MAX_OTHER_RATE: float = 0.05

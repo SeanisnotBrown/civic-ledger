@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-10-14",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Armed Services Committee"
@@ -56,8 +68,8 @@
   ],
   "id": "hr10604-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Committee on Veterans' Affairs, and in addition to the Committee on Armed Services, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
-  "latest_action_date": "2026-09-24",
+  "latest_action": "Referred to the Subcommittee on Economic Opportunity.",
+  "latest_action_date": "2026-10-14",
   "number": 10604,
   "policy_area": null,
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10604",

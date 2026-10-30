@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Oversight and Investigations Subcommittee"
+      ],
+      "date": "2026-09-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Oversight and Investigations.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Veterans' Affairs Committee"
@@ -38,8 +50,8 @@
   "cosponsor_ids": [],
   "id": "hr10417-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the House Committee on Veterans' Affairs.",
-  "latest_action_date": "2026-09-16",
+  "latest_action": "Referred to the Subcommittee on Oversight and Investigations.",
+  "latest_action_date": "2026-09-29",
   "number": 10417,
   "policy_area": "Armed Forces and National Security",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10417",

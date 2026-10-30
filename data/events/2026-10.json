@@ -1,6 +1,817 @@
 {
-  "count": 1292,
+  "count": 1360,
   "events": [
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10908-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10908-119--2026-10-26--36833e59ebb9",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10908",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10908-119",
+      "committees": [
+        "Ways and Means Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10908-119--2026-10-26--c7a6e44df76b",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10908",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10908-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10908-119--2026-10-26--d918a8da15a3",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10908",
+      "subjects": [],
+      "text": "Referred to the Committee on Energy and Commerce, and in addition to the Committee on Ways and Means, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10908-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10908-119--2026-10-26--e6bd99e79076",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10908",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10909-119",
+      "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10909-119--2026-10-26--0c3037fb8ba3",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10909",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10909-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10909-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10909",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10909-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10909-119--2026-10-26--610fac1e4b6c",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10909",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10909-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10909-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10909",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10909-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10909-119--2026-10-26--fb57c36f562e",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10909",
+      "subjects": [],
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committees on Homeland Security, and Energy and Commerce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10910-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10910-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10910",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10910-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10910-119--2026-10-26--4458090d9a16",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10910",
+      "subjects": [],
+      "text": "Referred to the House Committee on Agriculture.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10910-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10910-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10910",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10911-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10911-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10911",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10911-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10911-119--2026-10-26--4458090d9a16",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10911",
+      "subjects": [],
+      "text": "Referred to the House Committee on Agriculture.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "B00100",
+      "bill_id": "hr10911-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10911-119--2026-10-26--b4c603f5f54f",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10911",
+      "subjects": [],
+      "text": "Sponsor introductory remarks on measure. (CR E1127)",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10911-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10911-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10911",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10912-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10912-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10912",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10912-119",
+      "committees": [
+        "Foreign Affairs Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10912-119--2026-10-26--cf03281097df",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10912",
+      "subjects": [],
+      "text": "Referred to the House Committee on Foreign Affairs.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10912-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10912-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10912",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10913-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10913-119--2026-10-26--2b3c18eaaa2b",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10913",
+      "subjects": [],
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10913-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10913-119--2026-10-26--36833e59ebb9",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10913",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10913-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10913-119--2026-10-26--e6bd99e79076",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10913",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10914-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10914-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10914",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10914-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10914-119--2026-10-26--4458090d9a16",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10914",
+      "subjects": [],
+      "text": "Referred to the House Committee on Agriculture.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10914-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10914-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10914",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10915-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10915-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10915",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10915-119",
+      "committees": [
+        "Science, Space, and Technology Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10915-119--2026-10-26--88c34f5c0984",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10915",
+      "subjects": [],
+      "text": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10915-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10915-119--2026-10-26--c636612d73b8",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10915",
+      "subjects": [],
+      "text": "Referred to the Committee on Science, Space, and Technology, and in addition to the Committee on Oversight and Government Reform, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10915-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10915-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10915",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10916-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10916-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10916",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10916-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10916-119--2026-10-26--880b245b1692",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10916",
+      "subjects": [],
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Agriculture, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10916-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10916-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10916",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10916-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10916-119--2026-10-26--f5587f33f43e",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10916",
+      "subjects": [],
+      "text": "Referred to the Committee on Natural Resources, and in addition to the Committee on Agriculture, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "bill_id": "hr10917-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10917-119--2026-10-26--36833e59ebb9",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10917",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10917-119",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10917-119--2026-10-26--471f25237feb",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10917",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Natural Resources, Energy and Commerce, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10917-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10917-119--2026-10-26--4cdd790f6b1f",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10917",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Natural Resources, Energy and Commerce, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10917-119",
+      "committees": [
+        "Agriculture Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10917-119--2026-10-26--758d0467c5be",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10917",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Natural Resources, Energy and Commerce, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10917-119",
+      "committees": [
+        "Education and Workforce Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10917-119--2026-10-26--c575d01f4154",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10917",
+      "subjects": [],
+      "text": "Referred to the Committee on Agriculture, and in addition to the Committees on Natural Resources, Energy and Commerce, and Education and Workforce, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10917-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr10917-119--2026-10-26--e6bd99e79076",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10917",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "28000",
+      "bill_id": "hr1744-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr1744-119--2026-10-26--800596624260",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
+      "subjects": [
+        "Human rights",
+        "International organizations and cooperation",
+        "Religion",
+        "U.S. Commission on International Religious Freedom"
+      ],
+      "text": "Presented to President.",
+      "type": "President"
+    },
+    {
+      "action_code": "E20000",
+      "bill_id": "hr1744-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr1744-119--2026-10-26--c5af5ff2ce35",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
+      "subjects": [
+        "Human rights",
+        "International organizations and cooperation",
+        "Religion",
+        "U.S. Commission on International Religious Freedom"
+      ],
+      "text": "Presented to President.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "28000",
+      "bill_id": "hr8205-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr8205-119--2026-10-26--800596624260",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
+      "subjects": [
+        "Department of Health and Human Services",
+        "Drug therapy",
+        "Food and Drug Administration (FDA)",
+        "Government information and archives",
+        "Health programs administration and funding",
+        "Internet, web applications, social media",
+        "Medical research",
+        "National Institutes of Health (NIH)",
+        "Neurological disorders",
+        "Public-private cooperation",
+        "Research administration and funding"
+      ],
+      "text": "Presented to President.",
+      "type": "President"
+    },
+    {
+      "action_code": "E20000",
+      "bill_id": "hr8205-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hr8205-119--2026-10-26--c5af5ff2ce35",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
+      "subjects": [
+        "Department of Health and Human Services",
+        "Drug therapy",
+        "Food and Drug Administration (FDA)",
+        "Government information and archives",
+        "Health programs administration and funding",
+        "Internet, web applications, social media",
+        "Medical research",
+        "National Institutes of Health (NIH)",
+        "Neurological disorders",
+        "Public-private cooperation",
+        "Research administration and funding"
+      ],
+      "text": "Presented to President.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1639-119",
+      "committees": [
+        "Armed Services Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hres1639-119--2026-10-26--b7e70a3386e3",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1639",
+      "subjects": [],
+      "text": "Referred to the House Committee on Armed Services.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1639-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hres1639-119--2026-10-26--cd94418ebe39",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1639",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1640-119",
+      "committees": [
+        "Financial Services Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hres1640-119--2026-10-26--245bf560b46d",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1640",
+      "subjects": [],
+      "text": "Referred to the House Committee on Financial Services.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1640-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hres1640-119--2026-10-26--cd94418ebe39",
+      "policy_area": "Finance and Financial Sector",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1640",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hres1641-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hres1641-119--2026-10-26--a6e69cdce88f",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1641",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres1641-119",
+      "committees": null,
+      "date": "2026-10-26",
+      "has_page": false,
+      "id": "hres1641-119--2026-10-26--cd94418ebe39",
+      "policy_area": "Arts, Culture, Religion",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1641",
+      "subjects": [],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
+    },
     {
       "action_code": "Intro-H",
       "bill_id": "hjres220-119",
@@ -1762,6 +2573,53 @@
     },
     {
       "action_code": "Intro-H",
+      "bill_id": "hr10886-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr10886-119--2026-10-22--1843c5a0d094",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10886",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "bill_id": "hr10886-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr10886-119--2026-10-22--3f1edbbe7eed",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10886",
+      "subjects": [],
+      "text": "Introduced in House",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "bill_id": "hr10886-119",
+      "committees": [
+        "Oversight and Government Reform Committee"
+      ],
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr10886-119--2026-10-22--7a6e07762c86",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10886",
+      "subjects": [],
+      "text": "Referred to the House Committee on Oversight and Government Reform.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
       "bill_id": "hr10887-119",
       "committees": null,
       "date": "2026-10-22",
@@ -3076,6 +3934,166 @@
       "type": "Committee"
     },
     {
+      "action_code": "36000",
+      "bill_id": "hr7022-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr7022-119--2026-10-22--03ee1fa92d71",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7022",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Emergency communications systems",
+        "Federal Communications Commission (FCC)",
+        "Spacecraft and satellites",
+        "Telephone and wireless communication",
+        "User charges and fees"
+      ],
+      "text": "Became Public Law No: 119-136.",
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E40000",
+      "bill_id": "hr7022-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr7022-119--2026-10-22--0d3a107c612d",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7022",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Emergency communications systems",
+        "Federal Communications Commission (FCC)",
+        "Spacecraft and satellites",
+        "Telephone and wireless communication",
+        "User charges and fees"
+      ],
+      "text": "Became Public Law No: 119-136.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr7022-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr7022-119--2026-10-22--6a73e5970b58",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7022",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Emergency communications systems",
+        "Federal Communications Commission (FCC)",
+        "Spacecraft and satellites",
+        "Telephone and wireless communication",
+        "User charges and fees"
+      ],
+      "text": "Signed by President.",
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "bill_id": "hr7022-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr7022-119--2026-10-22--b9ec13401164",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7022",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Emergency communications systems",
+        "Federal Communications Commission (FCC)",
+        "Spacecraft and satellites",
+        "Telephone and wireless communication",
+        "User charges and fees"
+      ],
+      "text": "Signed by President.",
+      "type": "President"
+    },
+    {
+      "action_code": "E40000",
+      "bill_id": "hr952-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr952-119--2026-10-22--5334af443135",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Became Public Law No: 119-135.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr952-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr952-119--2026-10-22--6a73e5970b58",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Signed by President.",
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "bill_id": "hr952-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr952-119--2026-10-22--b9ec13401164",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Signed by President.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr952-119",
+      "committees": null,
+      "date": "2026-10-22",
+      "has_page": false,
+      "id": "hr952-119--2026-10-22--d0c2a4f57e76",
+      "policy_area": "Public Lands and Natural Resources",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",
+      "subjects": [
+        "California",
+        "Land transfers"
+      ],
+      "text": "Became Public Law No: 119-135.",
+      "type": "BecameLaw"
+    },
+    {
       "action_code": "H11100",
       "bill_id": "hres1634-119",
       "committees": [
@@ -3251,6 +4269,23 @@
       "subjects": [],
       "text": "Submitted in House",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10758-119",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-10-20",
+      "has_page": false,
+      "id": "hr10758-119--2026-10-20--d6d5472e4dac",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10758",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
     },
     {
       "action_code": "E40000",
@@ -7293,17 +8328,19 @@
     {
       "action_code": null,
       "bill_id": "s5682-119",
-      "committees": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5682-119--2026-10-15--877ac27e2db4",
+      "id": "s5682-119--2026-10-15--4f0a02a40a90",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5682",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Foreign Relations.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Foreign Relations under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -7338,32 +8375,19 @@
     {
       "action_code": null,
       "bill_id": "s5683-119",
-      "committees": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5683-119--2026-10-15--fbc8b7bd67b5",
+      "id": "s5683-119--2026-10-15--d2a23a0e3447",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5683",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Armed Services.",
-      "type": "Floor"
-    },
-    {
-      "action_code": null,
-      "bill_id": "s5684-119",
-      "committees": null,
-      "date": "2026-10-15",
-      "has_page": false,
-      "id": "s5684-119--2026-10-15--0ec68c687c2e",
-      "policy_area": null,
-      "rollcall_id": null,
-      "source_system": "Senate",
-      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5684",
-      "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Homeland Security and Governmental Affairs.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Armed Services under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -7382,18 +8406,20 @@
     },
     {
       "action_code": null,
-      "bill_id": "s5685-119",
-      "committees": null,
+      "bill_id": "s5684-119",
+      "committees": [
+        "Homeland Security and Governmental Affairs Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5685-119--2026-10-15--084a4958cbe4",
+      "id": "s5684-119--2026-10-15--f8bd16556c83",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
-      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5685",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5684",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Banking, Housing, and Urban Affairs.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Homeland Security and Governmental Affairs under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -7408,6 +8434,23 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5685",
       "subjects": [],
       "text": "Introduced in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5685-119",
+      "committees": [
+        "Banking, Housing, and Urban Affairs Committee"
+      ],
+      "date": "2026-10-15",
+      "has_page": false,
+      "id": "s5685-119--2026-10-15--ade617ff7efd",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5685",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on Banking, Housing, and Urban Affairs under authority of the order of the Senate of 09/30/2026.",
       "type": "IntroReferral"
     },
     {
@@ -7428,17 +8471,36 @@
     {
       "action_code": null,
       "bill_id": "s5686-119",
-      "committees": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5686-119--2026-10-15--fbc8b7bd67b5",
+      "id": "s5686-119--2026-10-15--d2a23a0e3447",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5686",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Armed Services.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Armed Services under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s5687-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-10-15",
+      "has_page": false,
+      "id": "s5687-119--2026-10-15--1ac510e69f24",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5687",
+      "subjects": [],
+      "text": "Read twice and referred to the Committee on the Judiciary under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -7454,21 +8516,6 @@
       "subjects": [],
       "text": "Introduced in Senate",
       "type": "IntroReferral"
-    },
-    {
-      "action_code": null,
-      "bill_id": "s5687-119",
-      "committees": null,
-      "date": "2026-10-15",
-      "has_page": false,
-      "id": "s5687-119--2026-10-15--e62a7c221172",
-      "policy_area": null,
-      "rollcall_id": null,
-      "source_system": "Senate",
-      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5687",
-      "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on the Judiciary.",
-      "type": "Floor"
     },
     {
       "action_code": "10000",
@@ -7488,32 +8535,36 @@
     {
       "action_code": null,
       "bill_id": "s5688-119",
-      "committees": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5688-119--2026-10-15--b69316cedb8a",
+      "id": "s5688-119--2026-10-15--a39eeb315111",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5688",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Energy and Natural Resources.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": null,
       "bill_id": "s5689-119",
-      "committees": null,
+      "committees": [
+        "Finance Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5689-119--2026-10-15--7c16bb6d1ba9",
+      "id": "s5689-119--2026-10-15--7e8569ed4b87",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5689",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Finance.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Finance under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -7548,32 +8599,36 @@
     {
       "action_code": null,
       "bill_id": "s5690-119",
-      "committees": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "s5690-119--2026-10-15--b69316cedb8a",
+      "id": "s5690-119--2026-10-15--a39eeb315111",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5690",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Energy and Natural Resources.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Energy and Natural Resources under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": null,
       "bill_id": "sjres221-119",
-      "committees": null,
+      "committees": [
+        "Foreign Relations Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "sjres221-119--2026-10-15--877ac27e2db4",
+      "id": "sjres221-119--2026-10-15--4f0a02a40a90",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/221",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Foreign Relations.",
-      "type": "Floor"
+      "text": "Read twice and referred to the Committee on Foreign Relations under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -7591,34 +8646,72 @@
       "type": "IntroReferral"
     },
     {
-      "action_code": null,
+      "action_code": "10025",
       "bill_id": "sres950-119",
-      "committees": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "sres950-119--2026-10-15--5975ff66c2e3",
+      "id": "sres950-119--2026-10-15--d5e76bb01755",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/950",
+      "subjects": [],
+      "text": "Submitted in Senate",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": null,
+      "bill_id": "sres950-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-10-15",
+      "has_page": false,
+      "id": "sres950-119--2026-10-15--e07854dfe287",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/950",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered referred to the Committee on the Judiciary.",
-      "type": "Floor"
+      "text": "Referred to the Committee on the Judiciary under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "10025",
+      "bill_id": "sres951-119",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-10-15",
+      "has_page": false,
+      "id": "sres951-119--2026-10-15--d5e76bb01755",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/951",
+      "subjects": [],
+      "text": "Submitted in Senate",
+      "type": "IntroReferral"
     },
     {
       "action_code": null,
       "bill_id": "sres951-119",
-      "committees": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
       "date": "2026-10-15",
       "has_page": false,
-      "id": "sres951-119--2026-10-15--f5e222bd58ae",
+      "id": "sres951-119--2026-10-15--e07854dfe287",
       "policy_area": null,
       "rollcall_id": null,
       "source_system": "Senate",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/951",
       "subjects": [],
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered referred to the Committee on The Judiciary.",
-      "type": "Floor"
+      "text": "Referred to the Committee on the Judiciary under authority of the order of the Senate of 09/30/2026.",
+      "type": "IntroReferral"
     },
     {
       "action_code": null,
@@ -7661,6 +8754,91 @@
       ],
       "text": "Message on Senate action sent to the House.",
       "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10590-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-10-14",
+      "has_page": false,
+      "id": "hr10590-119--2026-10-14--3935622b6792",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10590",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10604-119",
+      "committees": [
+        "Economic Opportunity Subcommittee"
+      ],
+      "date": "2026-10-14",
+      "has_page": false,
+      "id": "hr10604-119--2026-10-14--3935622b6792",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10604",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Economic Opportunity.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10648-119",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-10-14",
+      "has_page": false,
+      "id": "hr10648-119--2026-10-14--c792f4f69258",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10648",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10654-119",
+      "committees": [
+        "Disability Assistance and Memorial Affairs Subcommittee"
+      ],
+      "date": "2026-10-14",
+      "has_page": false,
+      "id": "hr10654-119--2026-10-14--db3f11bb1a13",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10654",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Disability Assistance and Memorial Affairs.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10655-119",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-10-14",
+      "has_page": false,
+      "id": "hr10655-119--2026-10-14--c792f4f69258",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10655",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Health.",
+      "type": "Committee"
     },
     {
       "action_code": null,

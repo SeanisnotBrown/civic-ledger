@@ -2,13 +2,15 @@
   "actions": [
     {
       "action_code": null,
-      "committees": null,
+      "committees": [
+        "Armed Services Committee"
+      ],
       "date": "2026-10-15",
       "rollcall_id": null,
       "source_system": "Senate",
-      "text": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Armed Services.",
+      "text": "Read twice and referred to the Committee on Armed Services under authority of the order of the Senate of 09/30/2026.",
       "time": null,
-      "type": "Floor"
+      "type": "IntroReferral"
     },
     {
       "action_code": "10000",
@@ -28,7 +30,7 @@
   ],
   "id": "s5683-119",
   "jurisdiction": "us",
-  "latest_action": "Under authority of the order of the Senate of September 30, 2026, ordered read twice and referred to the Committee on Armed Services.",
+  "latest_action": "Read twice and referred to the Committee on Armed Services under authority of the order of the Senate of 09/30/2026.",
   "latest_action_date": "2026-10-15",
   "number": 5683,
   "policy_area": null,

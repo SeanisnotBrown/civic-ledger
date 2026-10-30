@@ -44,6 +44,24 @@ export function formatDate(iso: string): string {
   return `${MONTHS[Number(mo) - 1]} ${Number(d)}, ${y}`;
 }
 
+/** ISO date -> "Oct 24" (no year). Same parsing rules as formatDate. */
+export function formatMonthDay(iso: string): string {
+  return formatDate(iso).replace(/, \d{4}$/, "");
+}
+
+/**
+ * The reader line shown while data/quality/senate-outage.json exists (owner's wording,
+ * verbatim, ruling 2026-10-29). Both dates come from the notice, which `ingest
+ * senate-votes` writes from the record: the newest Senate roll held and the first night
+ * senate.gov refused us. Rendered beside "Data last updated" (footer) and "Dataset last
+ * updated" (homepage) only; site/scripts/check-senate-notice.mjs pins the wording.
+ */
+export function senateOutageLine(notice: { last_roll_date: string; outage_start: string }): string {
+  return `Senate votes shown through ${formatDate(notice.last_roll_date)}. ` +
+    `Since ${formatMonthDay(notice.outage_start)}, senate.gov has blocked our automated ` +
+    `requests, so newer Senate votes may not appear yet.`;
+}
+
 /** "hr2-119" -> "H.R. 2 (119th)" for display; unknown shapes pass through. */
 export function billLabel(billId: string): string {
   const m = /^([a-z]+)(\d+)-(\d+)$/.exec(billId);

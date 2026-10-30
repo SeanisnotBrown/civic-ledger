@@ -2045,6 +2045,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr3111-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-26",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3111",
+      "title": "Fresh Start Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3119-119",
       "congress": 119,
       "enacted_action": null,
@@ -6050,7 +6059,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1234,
+    "cosponsored": 1235,
     "sponsored": 137
   },
   "member_id": "M001215",
@@ -6192,10 +6201,10 @@
       "title": "Biochar Research Network Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1721-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-127.",
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1721",
       "title": "Critical Infrastructure Manufacturing Feasibility Act"

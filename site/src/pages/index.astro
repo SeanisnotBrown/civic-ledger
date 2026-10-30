@@ -19,9 +19,9 @@
 import Layout from "../components/Layout.astro";
 import ActivityItem from "../components/ActivityItem.astro";
 import {
-  getManifest, getDelegationsByState, recentChamberActivity,
+  getManifest, getDelegationsByState, getSenateOutage, recentChamberActivity,
 } from "../lib/data";
-import { formatDate } from "../lib/display";
+import { formatDate, senateOutageLine } from "../lib/display";
 import { STATE_NAME } from "../lib/states";
 
 // The headline the owner picked (2026-10-07, option B): the Q-A sentence's own
@@ -33,6 +33,8 @@ const manifest = getManifest();
 const n = (x: number | unknown) => Number(x ?? 0).toLocaleString("en-US");
 const c = manifest.counts as Record<string, any>;
 const updated = formatDate(manifest.generated_at);
+// Shown beside the line above only while senate.gov blocks the Senate ingest.
+const senateOutage = getSenateOutage();
 
 // Find your representatives: members who actually hold a seat as of the dataset's
 // own date, grouped by state and ordered by state NAME (§2 — state first; address
@@ -221,6 +223,9 @@ const ENTRY_LINKS = [
       recorded votes across {n(c.bills)} bills —
       {" "}<a href="/methods" class="text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text">how every figure is produced</a>.
     </p>
+    {senateOutage && (
+      <p class="mt-1.5 text-[12px] text-neutral-500">{senateOutageLine(senateOutage)}</p>
+    )}
   </section>
 </Layout>
 

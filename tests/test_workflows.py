@@ -51,3 +51,16 @@ def test_nightly_fetches_the_bill_activity_delta_before_the_projections() -> Non
     assert activity < events < topics, (
         "the delta must land before the data/events and data/topics projections"
     )
+
+
+def test_nightly_since_window_is_a_dispatch_input_defaulting_to_36() -> None:
+    """Owner ruling 2026-10-29: after nights that published nothing, a manual run
+    widens the bill-activity window (`since_hours`); the schedule keeps 36. The input
+    reaches the script through env, never interpolated into it."""
+    text = NIGHTLY.read_text(encoding="utf-8")
+    dispatch = text[text.index("workflow_dispatch:"):text.index("concurrency:")]
+    assert "since_hours:" in dispatch
+    assert 'default: "36"' in dispatch
+    assert "SINCE_HOURS: ${{ github.event.inputs.since_hours || '36' }}" in text
+    assert 'uv run ingest bill-activity --since "$SINCE_HOURS"' in text
+    assert "--since ${{" not in text

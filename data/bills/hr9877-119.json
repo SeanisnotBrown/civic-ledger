@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Health Subcommittee"
+      ],
+      "date": "2026-09-29",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Health.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Foreign Affairs Committee"
@@ -221,8 +233,8 @@
   ],
   "id": "hr9877-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Committee on Energy and Commerce, and in addition to the Committees on Ways and Means, Agriculture, Oversight and Government Reform, Education and Workforce, the Judiciary, the Budget, Veterans' Affairs, Natural Resources, Armed Services, Homeland Security, Financial Services, Transportation and Infrastructure, and Foreign Affairs, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
-  "latest_action_date": "2026-07-22",
+  "latest_action": "Referred to the Subcommittee on Health.",
+  "latest_action_date": "2026-09-29",
   "number": 9877,
   "policy_area": "Health",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9877",

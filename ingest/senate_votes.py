@@ -270,10 +270,70 @@ def _clear_quarantine(rc_id: str) -> None:
     )
 
 
+# --- senate.gov block on the vote menus (owner ruling 2026-10-29) ---------
+
+
+def _today() -> str:
+    """UTC calendar date of this run, "YYYY-MM-DD". UTC, not Eastern, because the
+    nightly is dated in UTC (`date -u` in its commit message): the 05:07 UTC run on
+    2026-10-24 is the first night the block was seen, and the outage start is that
+    run's date. A seam so the tests can pin the clock."""
+    from datetime import UTC, datetime
+
+    return datetime.now(UTC).date().isoformat()
+
+
+def outage_notice_path():
+    from ingest.cache import repo_root
+
+    return repo_root() / "data" / "quality" / "senate-outage.json"
+
+
+def _last_senate_roll() -> tuple[str, str, str] | None:
+    """(rollcall id, "YYYY-MM-DD", source_url) of the newest Senate roll on disk,
+    read from the record itself so the site's "shown through" date is never typed
+    by hand. Ids sort chronologically (fixed-width congress, session, zero-padded
+    roll)."""
+    import json
+
+    from ingest.export import VOTES_DIR
+
+    paths = sorted(VOTES_DIR.glob("s-*.json"))
+    if not paths:
+        return None
+    rc = json.loads(paths[-1].read_text(encoding="utf-8"))["rollcall"]
+    return rc["id"], rc["date"][:10], rc["source_url"]
+
+
+def write_outage_notice(outage_start: str | None = None) -> dict:
+    """Write data/quality/senate-outage.json and return it. An existing notice keeps
+    its `outage_start` (the clock runs from the FIRST blocked night); otherwise
+    `outage_start`, else today. Deterministic and sorted, so a night that changes
+    nothing rewrites it byte-identically (no daily churn)."""
+    import json
+
+    from ingest.cache import atomic_write_text
+
+    path = outage_notice_path()
+    if path.exists():
+        outage_start = json.loads(path.read_text(encoding="utf-8"))["outage_start"]
+    notice: dict = {"outage_start": outage_start or _today()}
+    last = _last_senate_roll()
+    if last is not None:
+        notice["last_roll_id"], notice["last_roll_date"], notice["source_url"] = last
+    atomic_write_text(path, json.dumps(notice, indent=2, sort_keys=True) + "\n")
+    return notice
+
+
 def run(argv: list[str] | None = None) -> int:
     """Ingest every Senate roll call for the covered Congresses → data/votes/s-*
     + data/absences/. Idempotent/resumable (cached fetches). Fails (nonzero) on any
-    covered-member gap, roll validation failure, or enumeration break (§6.1)."""
+    covered-member gap, roll validation failure, or enumeration break (§6.1). The
+    one exception: when the ONLY failures are HTTP status errors on the vote menus
+    (senate.gov blocking us), it keeps the outage notice and exits 0, until
+    config.SENATE_MENU_OUTAGE_MAX_DAYS have passed."""
+    from datetime import date as date_cls
+
     import httpx
 
     from ingest import config, coverage, incremental
@@ -302,6 +362,7 @@ def run(argv: list[str] | None = None) -> int:
     ms_failures: list[str] = []   # NEW/unexpected validation failures (hard fail)
     accepted: list[str] = []      # quarantines on the owner's accept-list (not a failure)
     fetch_failures: list[str] = []
+    menu_blocked: list[str] = []  # HTTP status errors on a vote MENU only (ruling 2026-10-29)
     n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
 
@@ -309,6 +370,14 @@ def run(argv: list[str] | None = None) -> int:
         for session in SESSIONS[congress]:
             try:
                 menu = senate_xml.parse_menu(senate_xml.vote_menu(congress, session).text)
+            except httpx.HTTPStatusError as exc:
+                # senate.gov answering with a status (the 2026-10-24 Akamai 403) is
+                # the one failure tolerated, and only up to the deadline below. Not
+                # retried: cache._live_get retries only 429/5xx/transport errors.
+                menu_blocked.append(
+                    f"menu {congress}/{session}: HTTP {exc.response.status_code}"
+                )
+                continue
             except fetch_errors as exc:
                 fetch_failures.append(f"menu {congress}/{session}: {type(exc).__name__}")
                 continue
@@ -373,10 +442,29 @@ def run(argv: list[str] | None = None) -> int:
     elif gaps_path.exists():
         gaps_path.unlink()
 
+    past_deadline = False
+    if menu_blocked:
+        notice = write_outage_notice()
+        days = (
+            date_cls.fromisoformat(_today()) - date_cls.fromisoformat(notice["outage_start"])
+        ).days
+        past_deadline = days > config.SENATE_MENU_OUTAGE_MAX_DAYS
+    else:
+        outage_notice_path().unlink(missing_ok=True)  # menus answered: the block is over
+
     for label, (got, count) in session_counts.items():
         print(f"  {label}: ingested {got} rolls (max roll {count})")
     print(f"civic-ledger senate-votes: {n_votes} new/refreshed roll calls, "
           f"{n_abs} absence stubs, {n_skipped} finalized rolls skipped.")
+    if menu_blocked:
+        print(f"WARN: senate.gov refused {len(menu_blocked)} vote menu(s) since "
+              f"{notice['outage_start']} ({days} day(s)); kept data/quality/"
+              f"senate-outage.json for the site notice: {menu_blocked}")
+    if past_deadline:
+        print(f"FAIL: senate.gov has refused the Senate vote menus for {days} days in a "
+              f"row (since {notice['outage_start']}), more than the "
+              f"{config.SENATE_MENU_OUTAGE_MAX_DAYS} days allowed. Senate votes are no "
+              f"longer being kept current; someone has to get the block lifted.")
     if fetch_failures:
         print(f"FAIL: {len(fetch_failures)} fetch(es) failed (re-run to retry): "
               f"{fetch_failures[:10]}")
@@ -388,4 +476,4 @@ def run(argv: list[str] | None = None) -> int:
               f"failure (data/quality/accepted-quarantine.yaml): {accepted[:10]}")
     if gaps:
         print(f"FAIL: {len(gaps)} covered-member/enumeration gap(s) -> data/quality/senate-gaps.md")
-    return 1 if (fetch_failures or ms_failures or gaps) else 0
+    return 1 if (fetch_failures or ms_failures or gaps or past_deadline) else 0

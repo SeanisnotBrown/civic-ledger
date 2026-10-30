@@ -1,5 +1,5 @@
 {
-  "count": 2096,
+  "count": 2097,
   "events": [
     {
       "action_code": "H11100",
@@ -52455,6 +52455,27 @@
       ],
       "text": "Message on Senate action sent to the House.",
       "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "bill_id": "s1546-119",
+      "committees": [
+        "Intellectual Property Subcommittee"
+      ],
+      "date": "2025-10-08",
+      "has_page": false,
+      "id": "s1546-119--2025-10-08--4ecf392aff20",
+      "policy_area": "Commerce",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1546",
+      "subjects": [
+        "Intellectual property",
+        "Judicial procedure and administration",
+        "Judicial review and appeals"
+      ],
+      "text": "Senate Subcommittee on Intellectual Property. Hearings held. With printed Hearing: S.Hrg. 119-282.",
+      "type": "Committee"
     },
     {
       "action_code": null,

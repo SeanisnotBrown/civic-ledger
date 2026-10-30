@@ -1,6 +1,46 @@
 {
   "actions": [
     {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2026-10-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-135.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-10-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-135.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2026-10-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-10-22",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
       "action_code": "E20000",
       "committees": null,
       "date": "2026-10-14",
@@ -104,7 +144,7 @@
       "date": "2026-02-12",
       "rollcall_id": null,
       "source_system": "Senate",
-      "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held.",
+      "text": "Committee on Energy and Natural Resources Subcommittee on Public Lands, Forests, and Mining. Hearings held. With printed Hearing: S.Hrg. 119-305.",
       "time": null,
       "type": "Committee"
     },
@@ -218,8 +258,8 @@
   "cosponsor_ids": [],
   "id": "hr952-119",
   "jurisdiction": "us",
-  "latest_action": "Presented to President.",
-  "latest_action_date": "2026-10-14",
+  "latest_action": "Became Public Law No: 119-135.",
+  "latest_action_date": "2026-10-22",
   "number": 952,
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/952",

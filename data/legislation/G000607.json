@@ -525,7 +525,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 58,
-    "sponsored": 9
+    "sponsored": 10
   },
   "member_id": "G000607",
   "source_url": "https://api.congress.gov/v3/member/G000607/sponsored-legislation",
@@ -591,7 +591,16 @@
       "enacted_action": null,
       "introduced_date": "2026-10-15",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10819",
-      "title": "To establish a United States-India Interparliamentary Group."
+      "title": "United States-India Interparliamentary Group Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10910-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-26",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10910",
+      "title": "Dunkin’s Law"
     },
     {
       "became_law": false,

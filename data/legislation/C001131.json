@@ -2027,6 +2027,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr3127-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3127",
+      "title": "Fairness to Freedom Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3133-119",
       "congress": 119,
       "enacted_action": null,
@@ -6554,8 +6563,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 728,
-    "sponsored": 18
+    "cosponsored": 729,
+    "sponsored": 19
   },
   "member_id": "C001131",
   "source_url": "https://api.congress.gov/v3/member/C001131/sponsored-legislation",
@@ -6712,6 +6721,15 @@
       "introduced_date": "2024-10-01",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-resolution/1525",
       "title": "Calling for comprehensive legislation that addresses United States policies contributing to forced migration and displacement, promotes an immigration system that addresses the root causes of migration, reaffirms United States commitment to asylum, and provides a roadmap to citizenship for immigrants living in the United States."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1642-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-10-29",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1642",
+      "title": "Expressing the sense of the House of Representatives that Congress must refuse to provide any additional funds or exceptional regulatory support to companies or financial institutions facing insolvency or financial collapse due to exposures to acute stress within the artificial intelligence market and must provide support to all harmed Americans instead."
     }
   ]
 }

@@ -335,6 +335,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10832-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-02",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10832",
+      "title": "IRAN Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10841-119",
       "congress": 119,
       "enacted_action": null,
@@ -6725,12 +6734,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 747,
-    "sponsored": 67
+    "cosponsored": 748,
+    "sponsored": 68
   },
   "member_id": "S001221",
   "source_url": "https://api.congress.gov/v3/member/S001221/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hjres221-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-02",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-joint-resolution/221",
+      "title": "Proposing an amendment to the Constitution of the United States giving Congress power to regulate campaign contributions for Federal elections."
+    },
     {
       "became_law": false,
       "bill_id": "hr10004-119",
@@ -6819,7 +6837,7 @@
       "enacted_action": null,
       "introduced_date": "2026-10-29",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10943",
-      "title": "To amend the William Wilberforce Trafficking Victims Protection Reauthorization Act of 2008 to direct the Secretary of Health and Human Services to provide counsel for unaccompanied alien children in immigration proceedings, and for other purposes."
+      "title": "Counsel for Kids Act of 2026"
     },
     {
       "became_law": false,

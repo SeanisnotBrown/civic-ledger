@@ -16,10 +16,13 @@ Read `MISSION.md`, then `IMPLEMENTATIONv3.md`, then this. Replace lines, never a
 - `uv run ingest capture`: source URLs of statements that passed the pre-filter AND triage `true` (ledger for the triage prompt `ai.yaml` names), one at a time, into gitignored `data/raw/archive/captures.jsonl` (`captured` / `failed` / `dead`, latest wins); raw SPN2 responses kept first; 429 stops (exit 2); `--limit`, `--retry-failed`, `--dry-run`. Refuses (exit 5) unless live capture is opted in.
 - `review.export_approved` writes `data/statements/` only with the gate open AND a live capture; ruling-7 stance mapping; `ARCHIVE_PATH_BUILT = True`. `archive-links` marks dead captures; no capture URL reaches the committed report.
 - Builder-chosen published wording, owner may change: `venue` = "Press release" / "Congressional Record". Exported statements carry empty `named_measures`, so named-measure mismatch cannot fire for them.
+## Queued (build later)
+1. **Reject asks why** (takes no position / wrong member / broken text / other): task 3 is built, so it is built next after the categorize-and-queue command, per owner ruling 6.
 ## Owner decisions pending
 1. **Narrowing the banned-words check** (989–1,283 s of a ~25 min pytest; crashed once 2026-10-29). A check rule: his OK.
 2. **Q-C** Phase 4 bars, **Q-D** Phase 5 floor schedule; `/corrections` repo claims and GitHub links; proposal: `bill-activity` fetches from its last successful run, not a fixed 36 h.
 3. **The Record party gap** (`docs/research/2026-10-23-triage-party-gap.md`, 5 options); **AES-14** / **AES-29**; social (`docs/research/2026-10-23-social-access.md`); the party-gap doc's 20 quoted stub rejects.
+4. **The Opus categorizer run:** the owner approved ONE preview-only run (ruling (d): cap $20, local preview, nothing publishes). Any non-preview / publishable categorizer run still waits on a passing held-out Q-K measurement and his OK + a cap for that one run, restored to 5.00 the same session.
 ## Labeling sets
 Set 1 (`p3-labeling-set`, `89dc35914`): owner-approved; SPENT for changed prompts (R3); v1/v2 FAIL. Set 2 (`p3-labeling-set-2`, `10f0571e0`): owner-unreviewed; 2026-10-29 agreement check on `p3-prompts-v3` ($0.9481): stance 89% / topic 84% / priority 78% / specificity 95%, D/R gap flag on 5 fields, a lead only (`docs/research/2026-10-29-prompt-eval-set-2.md`). Never score the set-2 sheet directly until the decision-5 build lands.
 ## Flags to carry (observations, no verdict)

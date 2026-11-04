@@ -15,6 +15,13 @@ a no-change week is byte-identical) and exits nonzero when any link is DEAD — 
 GitHub Actions failure notification is the alert channel (like nightly). This is NOT
 in the default `uv run checks` suite: it is network + weekly (checks/run.py stays
 offline-deterministic).
+
+It also sweeps the local capture file (`ingest/capture.py`, P3 task 3): every capture of a
+statement not yet published. A DEAD one is written back to that gitignored file as `dead`,
+so the review export skips it and `uv run ingest capture` asks again. The capture file
+names which statements passed the triage gate (a model output), so it reaches the
+committed report as counts only, never as URLs. It does not exist in CI (`data/raw/` is
+gitignored), where the sweep covers published statements alone.
 """
 
 from __future__ import annotations
@@ -23,9 +30,11 @@ import json
 
 import httpx
 
+from ingest import capture
 from ingest.cache import repo_root
 
 STATUS_PATH = repo_root() / "data" / "quality" / "archive-status.json"
+CAPTURES_PATH = capture.ledger_path(repo_root() / "data")
 _TIMEOUT = httpx.Timeout(30.0, connect=15.0)
 _USER_AGENT = "civic-ledger/0.0 (+https://github.com/SeanisnotBrown/civic-ledger)"
 
@@ -37,6 +46,12 @@ def _load_statements() -> list[dict]:
     from ingest import statements_io
 
     return statements_io.load_statements(exclude_dead=False)
+
+
+def _load_captures() -> list[dict]:
+    """Every live capture in the local capture file (none when the file is absent)."""
+    return [e for e in capture.load_captures(CAPTURES_PATH).values()
+            if e["status"] == capture.CAPTURED]
 
 
 def classify_head(client: httpx.Client, archive_url: str) -> str:
@@ -77,13 +92,41 @@ def sweep(statements: list[dict], client: httpx.Client) -> dict:
     }
 
 
+def sweep_captures(captures: list[dict], client: httpx.Client) -> dict:
+    """HEAD each live capture. Returns counts plus the dead entries to mark."""
+    verdicts = {e["url"]: classify_head(client, e["archive_url"])
+                for e in sorted(captures, key=lambda e: e["url"])}
+    return {
+        "checked": len(verdicts),
+        "alive": sum(v == "alive" for v in verdicts.values()),
+        "unreachable": sum(v == "unreachable" for v in verdicts.values()),
+        "dead": [e for e in sorted(captures, key=lambda e: e["url"])
+                 if verdicts[e["url"]] == "dead"],
+    }
+
+
+def _report_captures(captures: list[dict], client: httpx.Client) -> None:
+    result = sweep_captures(captures, client)
+    if result["dead"]:
+        capture.mark_dead(CAPTURES_PATH, result["dead"])
+    print(f"archive-links: swept {result['checked']} unpublished capture(s): "
+          f"{result['alive']} alive, {len(result['dead'])} dead (marked; "
+          f"`uv run ingest capture` recaptures them), {result['unreachable']} unreachable.")
+
+
 def main() -> int:
     statements = _load_statements()
-    if not statements:
-        print("archive-links: no curated statements yet — sweep inactive (no-op).")
+    captures = _load_captures()
+    if not statements and not captures:
+        print("archive-links: no curated statements or captures yet - sweep inactive "
+              "(no-op).")
         return 0
 
     with httpx.Client() as client:
+        if captures:
+            _report_captures(captures, client)
+        if not statements:
+            return 0
         report = sweep(statements, client)
 
     STATUS_PATH.parent.mkdir(parents=True, exist_ok=True)

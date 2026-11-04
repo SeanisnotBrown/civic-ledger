@@ -1,0 +1,8 @@
+# data/config/archive.yaml — archive capture switch (§5 Phase 3 task 3; owner decision 8).
+#
+# `uv run ingest capture` sends a statement's source URL to archive.org's Save Page Now
+# ONLY when `live_capture` is true. Owner ruling 2026-11-04: the step is built and tested
+# behind fakes, and live capture stays OFF until the owner turns it on (archive.org keys
+# in .env, or his OK to run without them at 1 capture / 15 s). Mechanical, not
+# evaluative: it decides whether a request is sent, never what publishes.
+live_capture: false

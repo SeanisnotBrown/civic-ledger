@@ -62,6 +62,8 @@ def build_statement(
     capture: Capture,
     specificity_level: Literal[0, 1, 2, 3] | None = None,
     stated_position: Literal["support", "oppose"] | None = None,
+    topic: str | None = None,
+    priority_signal: bool | None = None,
     curator_note: str | None = None,
 ) -> Statement:
     """Assemble a Statement from owner input + a VERIFIED capture. Refuses without a
@@ -93,6 +95,8 @@ def build_statement(
         paired_bill_ids=resolve_pairs(named_measures),
         specificity_level=specificity_level,
         stated_position=stated_position,
+        topic=topic,
+        priority_signal=priority_signal,
         curator_note=curator_note,
     )
 

@@ -44,12 +44,14 @@ opens only when every condition holds:
      owner-unreviewed row (`unreviewed_labels` > 0, or not stated) never opens the gate;
   3. no field's rolling precision over the last `rolling_blind_window` blind labels is
      below its bar (Q-K's running check);
-  4. a categorized statement can be archived before it publishes (decision 8; task 3,
-     blocked on the archive.org keys). Until that path exists the gate stays closed
-     whatever Q-K says, because `data/statements/` takes only records with a verified
-     capture (`curation/statements.py::build_statement`).
+  4. a categorized statement can be archived before it publishes (decision 8; task 3).
+     The path exists (`ingest/capture.py`, built 2026-11-04 behind fakes; live capture is
+     switched by `data/config/archive.yaml`, off until the owner turns it on).
 
-Nothing in this module writes to `data/statements/`.
+With the gate open, `export_approved` is the one writer of `data/statements/`, and it
+writes a statement only when its source URL has a LIVE capture in the capture file
+(`ingest/capture.py`): one that never captured, failed, or died is skipped with its
+reason, because `curation/statements.py::build_statement` takes only a verified capture.
 """
 
 from __future__ import annotations
@@ -62,8 +64,10 @@ from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
-from ingest import ai, prompt_eval
+from curation.statements import build_statement
+from ingest import ai, capture, prompt_eval
 from ingest.cache import repo_root
+from ingest.export import export_statement
 from ingest.prompt_eval import Label, Prediction, Row, Tally
 
 # 1 in BLIND_EVERY items is blind (spec task 5). The seed is fixed and public so the blind
@@ -76,9 +80,10 @@ ACTIONS = ("approve", "edit", "reject")
 SCORED = ("stance", "topic", "priority_signal", "specificity")
 STANCES = ("for", "against", "mixed", "none")
 
-# Condition 4 of the gate. Flipped in the commit that builds archive capture for
-# categorized statements (task 3) — never by hand.
-ARCHIVE_PATH_BUILT = False
+# Condition 4 of the gate. Flipped 2026-11-04 in the commit that built archive capture for
+# categorized statements (task 3) — never by hand. It says the path EXISTS; whether a
+# real capture is ever sent is `data/config/archive.yaml`, off until the owner says so.
+ARCHIVE_PATH_BUILT = True
 
 
 class ReviewError(ValueError):
@@ -397,8 +402,8 @@ def publish_gate(data_dir: Path | None = None, *, thresholds_dir: Path | None = 
             reasons.append(f"rolling blind precision on {name} is {precision:.0%}, below "
                            f"its {minimum:.0%} bar")
     if not ARCHIVE_PATH_BUILT:
-        reasons.append("categorized statements cannot be archived yet (task 3: archive.org "
-                       "keys); nothing unarchived publishes")
+        reasons.append("categorized statements cannot be archived yet (task 3); nothing "
+                       "unarchived publishes")
     return Gate(open=not reasons, reasons=tuple(reasons))
 
 
@@ -408,17 +413,61 @@ def approved(data_dir: Path | None = None) -> list[dict[str, Any]]:
             if e["event"] == "decision" and e["action"] in ("approve", "edit")]
 
 
+# The published record's `venue`, from the collector that gathered the statement: where it
+# was said, as the record names it. Provenance, not judgment.
+VENUE = {"member_press": "Press release", "congressional_record": "Congressional Record"}
+
+
+@dataclass(frozen=True)
+class Export:
+    """What one export wrote, and each approved statement it did not write, with why."""
+
+    written: tuple[Path, ...]
+    skipped: tuple[tuple[str, str], ...]
+
+
+def _export_one(item_id: str, label: dict[str, Any], captures: dict[str, dict[str, Any]],
+                data_dir: Path | None, out_dir: Path) -> Path:
+    """One approved statement to `out_dir`, or ValueError saying why it cannot go."""
+    item = _find(item_id, data_dir)
+    if not item.url:
+        raise ValueError("no source URL")
+    if not item.date:
+        raise ValueError("no date")
+    if item.source not in VENUE:
+        raise ValueError(f"unknown source {item.source!r}")
+    cap = capture.verified_capture(item.url, captures)
+    if cap is None:
+        status = (captures.get(item.url) or {}).get("status", "not captured")
+        raise ValueError(f"no live archive capture ({status}); nothing unarchived publishes")
+    statement = build_statement(
+        member_id=item.member_id, text=item.text, date=item.date,
+        venue=VENUE[item.source], source_url=item.url, named_measures=[], capture=cap,
+        **statement_fields(label),
+    )
+    return export_statement(statement, out_dir)
+
+
 def export_approved(data_dir: Path | None = None, *,
-                    thresholds_dir: Path | None = None) -> list[Path]:
-    """The only door from the review log toward `data/statements/`. Refuses while the gate
-    is closed. With it open, the export goes through `curation/statements.build_statement`
-    (verified capture required) — and that path is condition 4, not built yet."""
+                    thresholds_dir: Path | None = None) -> Export:
+    """The only door from the review log to `data/statements/`. Refuses everything while
+    the gate is closed. With it open, each approved statement goes through
+    `curation/statements.build_statement` with its live capture, and one that cannot go
+    (no live capture, no date, unknown member) is skipped with its reason, never written."""
     gate = publish_gate(data_dir, thresholds_dir=thresholds_dir)
     if not gate.open:
         raise PublishGateClosed("nothing exported: " + "; ".join(gate.reasons))
-    raise PublishGateClosed(  # pragma: no cover — unreachable while ARCHIVE_PATH_BUILT is False
-        "export through build_statement is built together with the archive path (task 3)"
-    )
+    captures = capture.load_captures(capture.ledger_path(_data(data_dir)))
+    out_dir = _data(data_dir) / "statements"
+    written: list[Path] = []
+    skipped: list[tuple[str, str]] = []
+    for decision in approved(data_dir):
+        try:
+            written.append(_export_one(decision["item_id"], decision["label"], captures,
+                                       data_dir, out_dir))
+        except ValueError as exc:
+            skipped.append((decision["item_id"], str(exc)))
+    return Export(written=tuple(sorted(written)), skipped=tuple(skipped))
 
 
 # --- owner rulings 2026-10-23 (questions 5 and 7) ----------------------------------------

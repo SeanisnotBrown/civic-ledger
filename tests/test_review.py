@@ -11,9 +11,9 @@ from pathlib import Path
 import pytest
 import yaml
 
-from curation import review
+from curation import review, statements
 from curation.app import create_app
-from ingest import ai, prompt_eval
+from ingest import ai, capture, prompt_eval
 
 SUGGESTION = {"topic": "Health", "stance": "for", "proposition": "capping insulin at $35",
               "specificity": 1, "priority_signal": True, "confidence": "medium"}
@@ -184,15 +184,14 @@ def test_running_precision_comes_from_blind_labels_only_over_the_window(
 # --- the publish gate (Q-K) -------------------------------------------------------------
 
 
-def test_with_q_k_ratified_the_gate_is_still_closed_until_measured_and_archived(
-    tmp_path: Path,
-) -> None:
-    """Q-K was ratified 2026-10-23. Ratifying the bar opens nothing by itself."""
+def test_with_q_k_ratified_the_gate_is_still_closed_until_measured(tmp_path: Path) -> None:
+    """Q-K was ratified 2026-10-23. Ratifying the bar opens nothing by itself. The archive
+    path exists since task 3 (2026-11-04), so it is no longer a reason."""
     gate = review.publish_gate(tmp_path)
     assert gate.open is False
     assert not any("not ratified" in r for r in gate.reasons)
     assert any("not been measured on the held-out labeled set" in r for r in gate.reasons)
-    assert any("cannot be archived yet" in r for r in gate.reasons)
+    assert not any("cannot be archived yet" in r for r in gate.reasons)
 
 
 def _thresholds(tmp_path: Path, ratified) -> Path:
@@ -249,11 +248,13 @@ def test_a_stale_or_failing_measurement_keeps_the_gate_closed(tmp_path: Path, kw
 def test_the_gate_opens_only_when_every_condition_holds(tmp_path: Path, monkeypatch) -> None:
     thresholds = _thresholds(tmp_path, "2026-10-23")
     _measured(tmp_path)
-    gate = review.publish_gate(tmp_path, thresholds_dir=thresholds)
-    assert gate.reasons == ("categorized statements cannot be archived yet (task 3: "
-                            "archive.org keys); nothing unarchived publishes",)
-    monkeypatch.setattr(review, "ARCHIVE_PATH_BUILT", True)
     assert review.publish_gate(tmp_path, thresholds_dir=thresholds).open is True
+    # Without the archive path (condition 4) nothing opens it.
+    with monkeypatch.context() as m:
+        m.setattr(review, "ARCHIVE_PATH_BUILT", False)
+        gate = review.publish_gate(tmp_path, thresholds_dir=thresholds)
+        assert gate.reasons == ("categorized statements cannot be archived yet (task 3); "
+                                "nothing unarchived publishes",)
     # A blind label below the bar closes it again (Q-K's running check).
     (item_id,) = _ids(True, 1)
     _queue(tmp_path, [item_id])
@@ -270,6 +271,114 @@ def test_export_refuses_while_the_gate_is_closed_and_writes_nothing(tmp_path: Pa
     with pytest.raises(review.PublishGateClosed, match="nothing exported: the categorizer"):
         review.export_approved(tmp_path)
     assert not (tmp_path / "statements").exists()
+
+
+# --- the export to data/statements/ (task 3) --------------------------------------------
+
+
+def _item_line(tmp_path: Path, item_id: str, **fields) -> None:
+    path = review.queue_path(tmp_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    line = {"id": item_id, "member_id": "M000001", "party": "D", "text": f"text {item_id[:6]}",
+            "url": f"https://example.house.gov/{item_id[:6]}", "date": "2026-10-01",
+            "source": "member_press", "input_hash": "h", "prompt_version": "v1",
+            "suggestion": dict(SUGGESTION)}
+    line.update(fields)
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(line) + "\n")
+
+
+def _capture_line(tmp_path: Path, url: str, status: str = "captured") -> None:
+    path = capture.ledger_path(tmp_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    line = {"url": url, "status": status, "ts": "2026-11-04T00:00:00Z",
+            "archive_url": f"https://web.archive.org/web/20261104000000/{url}",
+            "timestamp": "20261104000000", "captured_at": "2026-11-04T00:00:00Z"}
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(line) + "\n")
+
+
+@pytest.fixture
+def open_gate(tmp_path: Path, monkeypatch) -> Path:
+    """The gate open (ratified bar, a passing measurement) and M000001 a covered member."""
+    monkeypatch.setattr(statements, "_covered_member_ids", lambda: {"M000001"})
+    thresholds = _thresholds(tmp_path, "2026-10-23")
+    _measured(tmp_path)
+    assert review.publish_gate(tmp_path, thresholds_dir=thresholds).open
+    return thresholds
+
+
+def test_export_refuses_a_statement_without_a_live_capture(tmp_path: Path, open_gate) -> None:
+    ids = _ids(False, 4)
+    for item_id in ids:
+        _item_line(tmp_path, item_id)
+        review.record_decision(item_id, "approve", data_dir=tmp_path)
+    url = [f"https://example.house.gov/{i[:6]}" for i in ids]
+    _capture_line(tmp_path, url[0])
+    _capture_line(tmp_path, url[1], "failed")
+    _capture_line(tmp_path, url[2])
+    _capture_line(tmp_path, url[2], "dead")  # captured, then died: the latest line wins
+    result = review.export_approved(tmp_path, thresholds_dir=open_gate)
+    assert len(result.written) == 1
+    assert dict(result.skipped) == {
+        ids[1]: "no live archive capture (failed); nothing unarchived publishes",
+        ids[2]: "no live archive capture (dead); nothing unarchived publishes",
+        ids[3]: "no live archive capture (not captured); nothing unarchived publishes",
+    }
+    assert [p.name for p in (tmp_path / "statements").iterdir()] == [result.written[0].name]
+
+
+@pytest.mark.parametrize("fields, reason", [
+    ({"url": None}, "no source URL"),
+    ({"date": None}, "no date"),
+    ({"source": "social"}, "unknown source 'social'"),
+    ({"member_id": "X000009"}, "'X000009' is not a covered member"),
+])
+def test_export_skips_what_cannot_be_a_record(tmp_path: Path, open_gate, fields,
+                                              reason) -> None:
+    (item_id,) = _ids(False, 1)
+    _item_line(tmp_path, item_id, **fields)
+    _capture_line(tmp_path, f"https://example.house.gov/{item_id[:6]}")
+    review.record_decision(item_id, "approve", data_dir=tmp_path)
+    result = review.export_approved(tmp_path, thresholds_dir=open_gate)
+    assert result.written == ()
+    ((skipped_id, why),) = result.skipped
+    assert skipped_id == item_id and reason in why
+
+
+def test_export_writes_deterministic_sorted_json_with_source_url(tmp_path: Path,
+                                                                 open_gate) -> None:
+    approve_id, edit_id, reject_id = _ids(False, 3)
+    for item_id in (approve_id, edit_id, reject_id):
+        source = "congressional_record" if item_id == edit_id else "member_press"
+        _item_line(tmp_path, item_id, source=source)
+        _capture_line(tmp_path, f"https://example.house.gov/{item_id[:6]}")
+    review.record_decision(approve_id, "approve", data_dir=tmp_path)
+    review.record_decision(edit_id, "edit", dict(OWNER_DIFF, stance="mixed"),
+                           data_dir=tmp_path)
+    review.record_decision(reject_id, "reject", data_dir=tmp_path)
+    first = review.export_approved(tmp_path, thresholds_dir=open_gate)
+    assert first.skipped == () and len(first.written) == 2  # the rejected one never goes
+    texts = [p.read_text(encoding="utf-8") for p in first.written]
+    for text in texts:
+        record = json.loads(text)
+        assert text == json.dumps(record, sort_keys=True, indent=2, ensure_ascii=False) + "\n"
+    records = {json.loads(t)["text"]: json.loads(t) for t in texts}
+    approved = records[f"text {approve_id[:6]}"]
+    assert approved["source_url"] == f"https://example.house.gov/{approve_id[:6]}"
+    assert approved["archive_url"] == ("https://web.archive.org/web/20261104000000/"
+                                       + approved["source_url"])
+    assert approved["archive_captured_at"] == "2026-11-04T00:00:00Z"
+    # The 2026-10-23 stance mapping: for -> support, mixed -> blank.
+    assert (approved["stated_position"], approved["topic"], approved["specificity_level"],
+            approved["priority_signal"], approved["venue"]) == (
+        "support", "Health", 1, True, "Press release")
+    edited = records[f"text {edit_id[:6]}"]
+    assert (edited["stated_position"], edited["topic"], edited["specificity_level"],
+            edited["venue"]) == (None, "Taxation", 2, "Congressional Record")
+    # A second export rewrites the same bytes.
+    second = review.export_approved(tmp_path, thresholds_dir=open_gate)
+    assert [p.read_text(encoding="utf-8") for p in second.written] == texts
 
 
 # --- owner rulings 2026-10-23 -----------------------------------------------------------

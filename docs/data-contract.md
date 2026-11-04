@@ -401,6 +401,17 @@ reaches `data/statements/` while `curation/review.py::publish_gate` is closed: Q
 unratified, a field's rolling blind precision below its bar, or no archive path for
 categorized statements (task 3).
 
+**Archive capture file (P3 task 3) — NOT published.** `data/raw/archive/captures.jsonl`
+(gitignored) records, per source URL, the Save Page Now capture of every statement that
+passed the pre-filter and the triage gate (`uv run ingest capture`): `captured`, `failed`,
+or `dead` (written by `uv run archive-links`), latest line wins; the raw SPN2 responses sit
+beside it under `data/raw/archive/responses/`. It names which pages passed the triage gate,
+a model output, so it never enters this repository; `archive-status.json` carries no URL
+from it. `curation/review.py::export_approved` writes an approved statement to
+`data/statements/` only when its source URL's latest line is `captured`, with `venue`
+"Press release" or "Congressional Record" from the collector and `named_measures` empty.
+Live capture is switched by `data/config/archive.yaml` (`live_capture`, off).
+
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and
 counts. The site build reads `dead_statement_ids` and excludes those statements until

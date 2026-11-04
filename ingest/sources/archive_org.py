@@ -22,12 +22,15 @@ guidance. Without them we fall back to unauthenticated capture and honor the §6
 ceiling of ≤ 1 capture / 15 s. Keys are header-only, never logged or placed in a URL.
 
 The HTTP client is injectable so tests drive the full poll loop through
-`httpx.MockTransport` with no network.
+`httpx.MockTransport` with no network. `on_response` (optional) receives every SPN2
+response BEFORE it is parsed, so a caller can keep the raw payload on disk (rule 4)
+without the POST ever being replayed from a cache.
 """
 
 from __future__ import annotations
 
 import time
+from collections.abc import Callable
 from dataclasses import dataclass
 
 import httpx
@@ -49,6 +52,10 @@ _last_unauth_capture_at: float | None = None
 class SpnError(Exception):
     """A capture failed, timed out, or produced an archive_url that does not resolve.
     The caller must treat this as "no verified capture" and refuse to save."""
+
+
+class SpnRateLimited(SpnError):
+    """SPN2 answered 429. Not a failed capture: the URL is asked again on a later run."""
 
 
 @dataclass(frozen=True)
@@ -88,6 +95,7 @@ class SpnClient:
         timeout_s: float = 180.0,
         sleep=time.sleep,
         monotonic=time.monotonic,
+        on_response: Callable[[str, str, httpx.Response], None] | None = None,
     ) -> None:
         self._client = client or httpx.Client(timeout=_HTTP_TIMEOUT, follow_redirects=True)
         self._owns_client = client is None
@@ -96,6 +104,13 @@ class SpnClient:
         self._sleep = sleep
         self._monotonic = monotonic
         self._auth = _auth_header()
+        self._on_response = on_response
+
+    def _seen(self, kind: str, url: str, resp: httpx.Response) -> httpx.Response:
+        """Hand the raw response to `on_response` (kind: save / status / verify) first."""
+        if self._on_response is not None:
+            self._on_response(kind, url, resp)
+        return resp
 
     @property
     def authenticated(self) -> bool:
@@ -124,9 +139,10 @@ class SpnClient:
 
     def _submit(self, url: str) -> str:
         self._rate_limit_unauth()
-        resp = self._client.post(SAVE_URL, data={"url": url}, headers=self._headers())
+        resp = self._seen("save", url, self._client.post(SAVE_URL, data={"url": url},
+                                                          headers=self._headers()))
         if resp.status_code == 429:
-            raise SpnError("SPN2 rate limited (429) — try again later")
+            raise SpnRateLimited("SPN2 rate limited (429) — try again later")
         if resp.status_code >= 400:
             raise SpnError(f"SPN2 save returned {resp.status_code}")
         try:
@@ -137,12 +153,13 @@ class SpnClient:
             raise SpnError("SPN2 save response carried no job_id")
         return job_id
 
-    def _poll(self, job_id: str) -> str:
+    def _poll(self, job_id: str, url: str = "") -> str:
         """Poll the status endpoint until success (returns the timestamp), error, or
         timeout. Deadline is wall-clock via the injected monotonic clock."""
         deadline = self._monotonic() + self._timeout_s
         while True:
-            resp = self._client.get(f"{STATUS_URL}/{job_id}", headers=self._headers())
+            resp = self._seen("status", url, self._client.get(f"{STATUS_URL}/{job_id}",
+                                                              headers=self._headers()))
             if resp.status_code >= 400:
                 raise SpnError(f"SPN2 status returned {resp.status_code}")
             body = resp.json()
@@ -160,11 +177,11 @@ class SpnClient:
                 raise SpnError(f"SPN2 capture timed out after {self._timeout_s:.0f}s")
             self._sleep(self._poll_interval_s)
 
-    def _verify(self, archive_url: str) -> None:
+    def _verify(self, archive_url: str, url: str = "") -> None:
         """HEAD the snapshot URL; a non-2xx/3xx means the capture did not actually
         land, so we refuse to treat it as verified (no verified capture, no save)."""
         try:
-            resp = self._client.head(archive_url)
+            resp = self._seen("verify", url, self._client.head(archive_url))
         except httpx.HTTPError as exc:
             raise SpnError(f"could not verify {archive_url}: {exc}") from exc
         if resp.status_code >= 400:
@@ -175,9 +192,9 @@ class SpnClient:
         or raising `SpnError`. The returned archive_url is guaranteed to have
         resolved (HEAD-checked) at capture time."""
         job_id = self._submit(url)
-        timestamp = self._poll(job_id)
+        timestamp = self._poll(job_id, url)
         archive_url = f"{WAYBACK_PREFIX}/{timestamp}/{url}"
-        self._verify(archive_url)
+        self._verify(archive_url, url)
         return Capture(
             original_url=url,
             archive_url=archive_url,

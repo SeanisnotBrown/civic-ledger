@@ -328,6 +328,24 @@ def test_export_refuses_a_statement_without_a_live_capture(tmp_path: Path, open_
     assert [p.name for p in (tmp_path / "statements").iterdir()] == [result.written[0].name]
 
 
+def test_a_preview_item_never_exports_even_with_the_gate_open(tmp_path: Path, open_gate) -> None:
+    """Owner 2026-11-04: the preview run is for looking at, never for publishing."""
+    (item_id,) = _ids(False, 1)
+    _item_line(tmp_path, item_id, preview="copilot-run, owner-unreviewed")
+    _capture_line(tmp_path, f"https://example.house.gov/{item_id[:6]}")
+    review.record_decision(item_id, "approve", data_dir=tmp_path)
+    result = review.export_approved(tmp_path, thresholds_dir=open_gate)
+    assert result.written == () and not (tmp_path / "statements").exists()
+    assert "a preview never publishes" in result.skipped[0][1]
+
+
+def test_the_review_tab_shows_the_preview_mark(tmp_path: Path) -> None:
+    (item_id,) = _ids(False, 1)
+    _item_line(tmp_path, item_id, preview="copilot-run, owner-unreviewed")
+    html = create_app(tmp_path).test_client().get("/review").get_data(as_text=True)
+    assert "Preview item (copilot-run, owner-unreviewed)" in html
+
+
 @pytest.mark.parametrize("fields, reason", [
     ({"url": None}, "no source URL"),
     ({"date": None}, "no date"),

@@ -410,7 +410,14 @@ a model output, so it never enters this repository; `archive-status.json` carrie
 from it. `curation/review.py::export_approved` writes an approved statement to
 `data/statements/` only when its source URL's latest line is `captured`, with `venue`
 "Press release" or "Congressional Record" from the collector and `named_measures` empty.
-Live capture is switched by `data/config/archive.yaml` (`live_capture`, off).
+Live capture is switched by `data/config/archive.yaml` (`live_capture`, off) or `--live-capture`
+for one local run.
+
+**Categorize run (P3) — NOT published.** `uv run ingest categorize-run` writes the review
+queue: pre-filter, triage, capture, categorizer. Its count-before-spend reports and spend
+ledger sit in gitignored `data/raw/categorize/`. Every item it queues carries
+`preview: copilot-run, owner-unreviewed`, and `export_approved` never exports a preview
+item, with the gate open or not.
 
 `data/quality/archive-status.json` (INC-11) is the weekly archive-link sweep's
 committed report: `dead_statement_ids` (sorted) plus `dead`/`unreachable` detail and

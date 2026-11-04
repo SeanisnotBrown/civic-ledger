@@ -136,6 +136,10 @@ def main(argv: list[str] | None = None) -> int:
         from ingest import triage_run
 
         return triage_run.run(args[1:])
+    if args and args[0] == "categorize-run":
+        from ingest import categorize_run
+
+        return categorize_run.run(args[1:])
     if args and args[0] == "capture":
         from ingest import capture
 
@@ -171,9 +175,11 @@ def main(argv: list[str] | None = None) -> int:
     print("                  --dry-run: counts only, writes no drop log")
     print("  triage-run    P3 step 9 the Haiku first pass ONLY (resumable, capped; no Opus)")
     print("                  --limit N: at most N calls | --dry-run: counts, no call")
+    print("  categorize-run P3 pre-filter, triage, capture, categorize -> review queue")
+    print("                  counts only unless --approved-cap USD (preview items only)")
     print("  capture       P3 task 3 archive the statements the triage gate passed")
     print("                  (live only when data/config/archive.yaml switches it on)")
-    print("                  --limit N | --retry-failed | --dry-run: counts, nothing sent")
+    print("                  --limit N | --retry-failed | --live-capture | --dry-run")
     print("  prompt-eval   P3 task 4 score the prompts against the owner's labeled set")
     print("  topics        V2-11 official topic vocabulary -> data/topics/index.json")
     print("  classify      INC-5 vote_class classifier (run AFTER an ingest)")

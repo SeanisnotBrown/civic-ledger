@@ -149,6 +149,30 @@ def test_opt_in_on_builds_the_live_client(tmp_path, monkeypatch, capsys) -> None
     assert "authenticated (IA S3 keys)" in capsys.readouterr().out
 
 
+def test_the_command_line_opts_in_for_one_run(tmp_path, monkeypatch) -> None:
+    """`archive.yaml` is committed and stays off: a local live run uses the flag."""
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True}, live=False)
+    built = {}
+
+    class StandIn:
+        authenticated = False
+
+        def __init__(self, **kwargs) -> None:
+            built.update(kwargs)
+
+        def capture(self, url):
+            return archive_org.Capture(url, f"https://web.archive.org/web/1/{url}",
+                                       "20261104120000", "2026-11-04T12:00:00Z")
+
+        def close(self) -> None:
+            pass
+
+    monkeypatch.setattr(capture, "SpnClient", StandIn)
+    assert _go(["--live-capture"]) == capture.EXIT_OK
+    assert built["client"] is None
+    assert _lines(data_dir)[0]["status"] == "captured"
+
+
 # --- what is captured -----------------------------------------------------------------------
 
 

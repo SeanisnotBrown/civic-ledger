@@ -40,6 +40,7 @@ def test_network_error_is_unreachable_not_dead() -> None:
 
 def test_main_is_noop_without_statements(monkeypatch, capsys) -> None:
     monkeypatch.setattr(archive_links, "_load_statements", lambda: [])
+    monkeypatch.setattr(archive_links, "_load_captures", lambda: [])  # never the real file
     assert archive_links.main() == 0
     assert "no curated statements" in capsys.readouterr().out
 

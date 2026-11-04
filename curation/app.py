@@ -194,6 +194,8 @@ def create_app(data_dir: Path | None = None) -> Flask:
         {% if not nxt %}<p>Nothing waiting for review.</p>{% else %}
         <p>{{ nxt.remaining }} waiting. {{ nxt.item.member_id }} ({{ nxt.item.party }}),
         {{ nxt.item.date or '' }} · <a href="{{ nxt.item.url }}">source</a></p>
+        {% if nxt.item.preview %}<div class="msg err">Preview item ({{ nxt.item.preview }}):
+        it never publishes.</div>{% endif %}
         <blockquote class="card">{{ nxt.item.text }}</blockquote>
         {% if nxt.stage == 'label' %}
           <div class="msg ok"><strong>Blind item.</strong> Enter your own label first; the AI's

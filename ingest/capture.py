@@ -9,8 +9,10 @@ statement is never captured: archive quota is not spent on text that can never p
 ## Live capture is OFF until the owner turns it on (owner ruling 2026-11-04)
 
 The step is built and tested behind fakes. It sends a real request only when
-`data/config/archive.yaml` says `live_capture: true`; otherwise it reports what it would
-capture and refuses (exit 5) before any request is built. With the IA S3 keys in `.env`
+`data/config/archive.yaml` says `live_capture: true`, or the command line opts in for one
+run with `--live-capture` (that file is committed, so it stays off and a local run uses the
+flag); otherwise it reports what it would capture and refuses (exit 5) before any request
+is built. With the IA S3 keys in `.env`
 the client authenticates; without them it captures at most one page every 15 seconds.
 
 ## The capture file
@@ -46,7 +48,8 @@ at a time), so a run cut short has captured every member to about the same depth
 is not a failed capture: the run stops there (exit 2) and a re-run resumes.
 
     uv run ingest capture --dry-run          # what would be captured; nothing sent
-    uv run ingest capture --limit 20         # at most 20 captures (live only if switched on)
+    uv run ingest capture --limit 20         # at most 20 captures (live only if opted in)
+    uv run ingest capture --live-capture     # opt in to real requests for this run
     uv run ingest capture --retry-failed     # also ask again for URLs that failed
 """
 
@@ -212,7 +215,7 @@ def capture_all(spn: SpnClient, urls: list[str], path: Path, *, limit: int = 0,
 def run(argv: list[str] | None = None, *, client: httpx.Client | None = None,
         sleep: Callable[[float], None] = time.sleep) -> int:
     """`client` is for tests only: a fake transport. With no client, a real request is
-    built only when `archive.yaml` switches live capture on."""
+    built only when `archive.yaml` or `--live-capture` opts in."""
     parser = argparse.ArgumentParser(
         prog="ingest capture",
         description="P3 task 3: archive the statements the triage gate passed.",
@@ -221,6 +224,8 @@ def run(argv: list[str] | None = None, *, client: httpx.Client | None = None,
                         help="at most this many captures (0 = no limit)")
     parser.add_argument("--retry-failed", action="store_true",
                         help="also ask again for URLs whose capture failed")
+    parser.add_argument("--live-capture", action="store_true",
+                        help="send real captures to archive.org for this run")
     parser.add_argument("--dry-run", action="store_true", help="counts only; nothing sent")
     args = parser.parse_args(argv)
 
@@ -243,7 +248,7 @@ def run(argv: list[str] | None = None, *, client: httpx.Client | None = None,
     if args.dry_run or not todo:
         print("  nothing sent")
         return EXIT_OK
-    if client is None and not live_capture_enabled(data_dir):
+    if client is None and not (args.live_capture or live_capture_enabled(data_dir)):
         print(f"  REFUSED: live capture is off ({CONFIG.as_posix()} live_capture: false, "
               "owner ruling 2026-11-04); nothing sent")
         return EXIT_REFUSED

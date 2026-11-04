@@ -52,6 +52,7 @@ With the gate open, `export_approved` is the one writer of `data/statements/`, a
 writes a statement only when its source URL has a LIVE capture in the capture file
 (`ingest/capture.py`): one that never captured, failed, or died is skipped with its
 reason, because `curation/statements.py::build_statement` takes only a verified capture.
+A preview item (`ingest/categorize_run.py`, owner 2026-11-04) is never exported at all.
 """
 
 from __future__ import annotations
@@ -140,6 +141,8 @@ class Item:
     input_hash: str
     prompt_version: str
     suggestion: dict[str, Any]
+    # Set on items from a preview run (`ingest/categorize_run.py`). Never exported.
+    preview: str | None = None
 
     @property
     def blind(self) -> bool:
@@ -151,7 +154,7 @@ def _item(raw: dict[str, Any]) -> Item:
         id=raw["id"], member_id=raw["member_id"], party=raw["party"], text=raw["text"],
         url=raw.get("url"), date=raw.get("date"), source=raw.get("source"),
         input_hash=raw["input_hash"], prompt_version=raw["prompt_version"],
-        suggestion=dict(raw["suggestion"]),
+        suggestion=dict(raw["suggestion"]), preview=raw.get("preview"),
     )
 
 
@@ -430,6 +433,8 @@ def _export_one(item_id: str, label: dict[str, Any], captures: dict[str, dict[st
                 data_dir: Path | None, out_dir: Path) -> Path:
     """One approved statement to `out_dir`, or ValueError saying why it cannot go."""
     item = _find(item_id, data_dir)
+    if item.preview:
+        raise ValueError(f"preview item ({item.preview}); a preview never publishes")
     if not item.url:
         raise ValueError("no source URL")
     if not item.date:

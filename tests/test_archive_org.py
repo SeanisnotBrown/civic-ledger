@@ -13,6 +13,7 @@ from ingest.sources.archive_org import (
     SpnClient,
     SpnError,
     SpnRateLimited,
+    SpnUnreachable,
     _timestamp_to_iso,
 )
 
@@ -191,30 +192,85 @@ def test_cdx_vouches_only_for_a_good_row_at_that_timestamp(cdx) -> None:
         spn.capture(URL)
 
 
-def test_a_dropped_connection_on_either_check_is_asked_again() -> None:
-    answers = iter([httpx.ConnectError("reset"), httpx.Response(200)])
+def _drops(times: int, then=lambda _req: httpx.Response(200)):
+    """A handler that loses the connection `times` times, then answers with `then`."""
+    left = iter(range(times))
 
-    def head(_req: httpx.Request) -> httpx.Response:
-        answer = next(answers)
-        if isinstance(answer, Exception):
-            raise answer
-        return answer
+    def handler(req: httpx.Request) -> httpx.Response:
+        if next(left, None) is not None:
+            raise httpx.ConnectError("refused")
+        return then(req)
 
-    def cdx(_req: httpx.Request) -> httpx.Response:
-        raise httpx.ConnectError("reset")
+    return handler
 
-    spn, waits, _calls = _saved(head, cdx)
+
+def test_a_dropped_connection_on_the_check_is_sent_again() -> None:
+    spn, waits, _calls = _saved(_drops(1))
     assert spn.capture(URL).timestamp == STAMP
-    assert waits == [archive_org.VERIFY_BACKOFF_S[0]]
+    assert waits == [archive_org.TRANSPORT_BACKOFF_S[0]]
 
 
-def test_a_connection_that_stays_down_is_a_failure() -> None:
-    def head(_req: httpx.Request) -> httpx.Response:
-        raise httpx.ConnectError("reset")
-
-    spn, _waits, _calls = _saved(head)
-    with pytest.raises(SpnError, match="could not verify"):
+def test_a_connection_that_stays_down_on_the_check_is_unreachable() -> None:
+    spn, waits, calls = _saved(_drops(99))
+    with pytest.raises(SpnUnreachable):
         spn.capture(URL)
+    assert waits == list(archive_org.TRANSPORT_BACKOFF_S)
+    assert _heads(calls) == len(archive_org.TRANSPORT_BACKOFF_S) + 1
+
+
+def test_cdx_staying_down_is_unreachable_not_unlisted() -> None:
+    spn, _waits, _calls = _saved(lambda _req: httpx.Response(503), _drops(99))
+    with pytest.raises(SpnUnreachable):
+        spn.capture(URL)
+
+
+@pytest.mark.parametrize("method", ["POST", "GET"])
+def test_a_transport_error_on_the_save_or_the_poll_is_sent_again(method) -> None:
+    drop = _drops(2, then=lambda _req: None)
+    waits: list[float] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == method:
+            drop(req)
+        if req.method == "POST":
+            return httpx.Response(200, json={"job_id": "J"})
+        if req.method == "GET":
+            return httpx.Response(200, json={"status": "success", "timestamp": STAMP})
+        return httpx.Response(200)
+
+    archive_org._last_unauth_capture_at = None
+    spn = SpnClient(client=_client(handler), poll_interval_s=0, sleep=waits.append)
+    assert spn.capture(URL).timestamp == STAMP
+    assert waits == list(archive_org.TRANSPORT_BACKOFF_S[:2])
+
+
+@pytest.mark.parametrize("error", [httpx.ConnectTimeout("t"), httpx.ReadTimeout("t"),
+                                   httpx.ReadError("reset"), httpx.ConnectError("refused")])
+def test_every_transport_error_ends_as_unreachable_on_the_save(error) -> None:
+    def handler(_req: httpx.Request) -> httpx.Response:
+        raise error
+
+    with pytest.raises(SpnUnreachable):
+        _spn(handler).capture(URL)
+
+
+def test_an_error_that_is_not_transport_fails_the_url() -> None:
+    def handler(_req: httpx.Request) -> httpx.Response:
+        raise httpx.TooManyRedirects("loop")
+
+    with pytest.raises(SpnError, match="request failed") as caught:
+        _spn(handler).capture(URL)
+    assert not isinstance(caught.value, SpnUnreachable)
+
+
+def test_a_status_answer_that_is_not_json_fails_the_url() -> None:
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            return httpx.Response(200, json={"job_id": "J"})
+        return httpx.Response(200, text="<html>offline</html>")
+
+    with pytest.raises(SpnError, match="not JSON"):
+        _spn(handler).capture(URL)
 
 
 @pytest.mark.parametrize(("head", "cdx"), [(429, 200), (503, 429)])

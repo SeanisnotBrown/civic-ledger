@@ -53,10 +53,10 @@ only what is left. The run stops at the cap and does not finish the batch.
 
 Exit 0 complete (or counted only); 2 api-error or an SPN2 429; 3 cap; 4 stopped
 (`data/raw/triage.stop`); 5 live capture not opted in; 6 estimate over the cap; 7 a
-fairness flag awaiting review. Every answer already received is saved, and a re-run
-resumes: the ledger, the capture file and the queue are all skipped, and the AI cache
-serves anything asked before. The exception is a failed capture among this run's own
-statements, which every resume asks for again.
+fairness flag awaiting review; 8 archive.org unreachable. Every answer already received
+is saved, and a re-run resumes: the ledger, the capture file and the queue are all skipped,
+and the AI cache serves anything asked before. The exception is a failed capture among
+this run's own statements, which every resume asks for again.
 
     uv run ingest categorize-run                                    # counts only, no call
     uv run ingest categorize-run --per-member 15                    # the same at 15
@@ -103,6 +103,7 @@ EXIT_STOPPED = 4
 EXIT_REFUSED = capture.EXIT_REFUSED
 EXIT_OVER_CAP = 6
 EXIT_FAIRNESS = 7
+EXIT_UNREACHABLE = capture.EXIT_UNREACHABLE
 _EXIT = {"cap": EXIT_CAP, "api-error": EXIT_API_ERROR, "stopped": EXIT_STOPPED}
 
 
@@ -594,7 +595,7 @@ def _spend(args: argparse.Namespace, session: ai.Run, data_dir: Path,
     print(f"  capture {archived.status}: {archived.captured} captured, "
           f"{archived.failed} failed")
     if archived.status != "complete":
-        return EXIT_API_ERROR
+        return capture.STOP_EXIT[archived.status]
 
     captures = capture.load_captures(path)
     live = [s for s in chosen if s.get("url")

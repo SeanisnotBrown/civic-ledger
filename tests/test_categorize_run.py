@@ -442,6 +442,27 @@ def test_a_resume_retries_only_its_own_failed_captures(tmp_path, monkeypatch) ->
     assert len(_queue(data_dir)) == 2
 
 
+def test_archive_org_going_down_stops_the_run_and_a_resume_pays_for_nothing_twice(
+        tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch)
+
+    def refused(_req: httpx.Request) -> httpx.Response:
+        raise httpx.ConnectError("refused")
+
+    model = Model()
+    client = httpx.Client(transport=httpx.MockTransport(refused))
+    assert _paid(model, client=client) == categorize_run.EXIT_UNREACHABLE
+    assert model.triaged == 4 and model.categorized == 0
+    assert not capture.ledger_path(data_dir).exists()  # no URL is marked failed
+    spent = json.loads(categorize_run.spend_path(data_dir, "preview-1")
+                       .read_text(encoding="utf-8"))
+    assert spent["spent_usd"] > 0  # the paid triage is on the books
+    again = Model()
+    assert _paid(again) == categorize_run.EXIT_OK
+    assert again.triaged == 0 and again.categorized == 4
+    assert len(_queue(data_dir)) == 4
+
+
 # --- the categorizer's failures ------------------------------------------------------------
 
 

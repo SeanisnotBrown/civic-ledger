@@ -360,3 +360,43 @@ def test_a_429_on_the_recheck_stops_the_run(tmp_path, monkeypatch) -> None:
     assert _go(["--retry-failed"], client=client) == capture.EXIT_RATE_LIMITED
     assert not [req for req in calls if req.method == "POST"]
     assert len(_lines(data_dir)) == 1
+
+
+# --- archive.org out of reach --------------------------------------------------------------
+
+
+def _down(times: int) -> httpx.Client:
+    """`_handler` behind a connection that is refused `times` times first."""
+    left = iter(range(times))
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if next(left, None) is not None:
+            raise httpx.ConnectError("refused")
+        return _handler(req)
+
+    return httpx.Client(transport=httpx.MockTransport(handler))
+
+
+def test_a_transport_error_then_success_is_a_capture(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    assert _go(client=_down(2)) == capture.EXIT_OK
+    assert capture.load_captures(capture.ledger_path(data_dir))[GOOD]["status"] == "captured"
+
+
+def test_archive_org_staying_down_stops_cleanly_and_a_resume_picks_the_url_up(
+        tmp_path, monkeypatch, capsys) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True, BAD: True})
+    assert _go(client=_down(99)) == capture.EXIT_UNREACHABLE
+    assert not capture.ledger_path(data_dir).exists()  # no URL is marked failed
+    assert "archive.org unreachable" in capsys.readouterr().out
+    assert _go(client=_fake()) == capture.EXIT_OK
+    captures = capture.load_captures(capture.ledger_path(data_dir))
+    assert capture.verified_capture(GOOD, captures) is not None
+
+
+def test_archive_org_going_down_on_a_recheck_stops_and_keeps_the_line(tmp_path,
+                                                                      monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _failed_check(data_dir, GOOD)
+    assert _go(["--retry-failed"], client=_down(99)) == capture.EXIT_UNREACHABLE
+    assert len(_lines(data_dir)) == 1

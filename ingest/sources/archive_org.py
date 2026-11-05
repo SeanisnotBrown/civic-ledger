@@ -18,6 +18,10 @@ The flow (verified against archive.org's SPN2 public API):
      a snapshot that is there (seen 2026-11-05), so when the HEAD fails the CDX index
      is asked for that exact timestamp, and a 5xx is checked again over a bounded window.
 
+A refused connection, a reset or a timeout says nothing about the page, so it never fails
+a capture: every request rides one out over `TRANSPORT_BACKOFF_S`, then `SpnUnreachable`
+ends the run and the URL is asked again on a later one.
+
 Auth (H6): with IA S3 keys (IA_S3_ACCESS / IA_S3_SECRET) we send
 `Authorization: LOW {access}:{secret}` — higher rate limits, per archive.org
 guidance. Without them we fall back to unauthenticated capture and honor the §6.1
@@ -34,6 +38,7 @@ from __future__ import annotations
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
+from typing import Any
 
 import httpx
 
@@ -53,6 +58,8 @@ _last_unauth_capture_at: float | None = None
 
 # Seconds to wait before each new check of a snapshot playback answered with a 5xx.
 VERIFY_BACKOFF_S = (10.0, 30.0, 60.0, 120.0)
+# Seconds to wait before sending a request again after a transport error.
+TRANSPORT_BACKOFF_S = (30.0, 60.0, 120.0)
 
 
 class SpnError(Exception):
@@ -63,6 +70,11 @@ class SpnError(Exception):
 class SpnRateLimited(SpnError):
     """archive.org answered 429. Not a failed capture: the URL is asked again on a later
     run."""
+
+
+class SpnUnreachable(SpnError):
+    """archive.org stayed out of reach past the backoff. Not a failed capture: the URL is
+    asked again on a later run."""
 
 
 @dataclass(frozen=True)
@@ -133,6 +145,20 @@ class SpnClient:
             hdrs["Authorization"] = self._auth
         return hdrs
 
+    def _send(self, request: Callable[[], httpx.Response]) -> httpx.Response:
+        """`request()`, sent again after a transport error until the backoff runs out."""
+        waits = iter(TRANSPORT_BACKOFF_S)
+        while True:
+            try:
+                return request()
+            except httpx.TransportError as exc:
+                wait = next(waits, None)
+                if wait is None:
+                    raise SpnUnreachable(f"archive.org unreachable: {exc}") from exc
+                self._sleep(wait)
+            except httpx.HTTPError as exc:
+                raise SpnError(f"archive.org request failed: {exc}") from exc
+
     def _rate_limit_unauth(self) -> None:
         """Enforce the §6.1 ≤ 1 capture / 15 s ceiling in unauthenticated mode."""
         global _last_unauth_capture_at
@@ -146,8 +172,8 @@ class SpnClient:
 
     def _submit(self, url: str) -> str:
         self._rate_limit_unauth()
-        resp = self._seen("save", url, self._client.post(SAVE_URL, data={"url": url},
-                                                          headers=self._headers()))
+        resp = self._seen("save", url, self._send(lambda: self._client.post(
+            SAVE_URL, data={"url": url}, headers=self._headers())))
         if resp.status_code == 429:
             raise SpnRateLimited("SPN2 rate limited (429) — try again later")
         if resp.status_code >= 400:
@@ -165,11 +191,14 @@ class SpnClient:
         timeout. Deadline is wall-clock via the injected monotonic clock."""
         deadline = self._monotonic() + self._timeout_s
         while True:
-            resp = self._seen("status", url, self._client.get(f"{STATUS_URL}/{job_id}",
-                                                              headers=self._headers()))
+            resp = self._seen("status", url, self._send(lambda: self._client.get(
+                f"{STATUS_URL}/{job_id}", headers=self._headers())))
             if resp.status_code >= 400:
                 raise SpnError(f"SPN2 status returned {resp.status_code}")
-            body = resp.json()
+            try:
+                body: dict[str, Any] = resp.json()
+            except ValueError as exc:
+                raise SpnError(f"SPN2 status response was not JSON: {exc}") from exc
             status = body.get("status")
             if status == "success":
                 ts = body.get("timestamp")
@@ -185,15 +214,11 @@ class SpnClient:
             self._sleep(self._poll_interval_s)
 
     def _indexed(self, timestamp: str, url: str) -> bool:
-        """True when CDX lists a 2xx/3xx snapshot of `url` at exactly `timestamp`. CDX
-        being unreachable proves nothing, so it reads as not listed."""
-        try:
-            resp = self._seen("cdx", url, self._client.get(
-                CDX_URL, headers={"User-Agent": _USER_AGENT},
-                params={"url": url, "from": timestamp, "to": timestamp, "output": "json",
-                        "fl": "timestamp,statuscode"}))
-        except httpx.HTTPError:
-            return False
+        """True when CDX lists a 2xx/3xx snapshot of `url` at exactly `timestamp`."""
+        resp = self._seen("cdx", url, self._send(lambda: self._client.get(
+            CDX_URL, headers={"User-Agent": _USER_AGENT},
+            params={"url": url, "from": timestamp, "to": timestamp, "output": "json",
+                    "fl": "timestamp,statuscode"})))
         if resp.status_code == 429:
             raise SpnRateLimited("CDX rate limited (429) — try again later")
         try:
@@ -206,23 +231,16 @@ class SpnClient:
     def _verify(self, archive_url: str, timestamp: str, url: str = "") -> None:
         """HEAD the snapshot URL, then ask CDX. Neither one vouching for it means the
         capture did not land, so we refuse to treat it as verified (no verified capture,
-        no save). Only a 5xx or a dropped connection is worth asking about again."""
+        no save). Only a 5xx is worth asking about again."""
         for wait in (*VERIFY_BACKOFF_S, None):
-            try:
-                resp = self._seen("verify", url, self._client.head(archive_url))
-            except httpx.HTTPError as exc:
-                problem, again = f"could not verify {archive_url}: {exc}", True
-            else:
-                if resp.status_code == 429:
-                    raise SpnRateLimited("snapshot check rate limited (429) — try again later")
-                if resp.status_code < 400:
-                    return
-                problem = f"archive_url did not resolve (HTTP {resp.status_code}): {archive_url}"
-                again = resp.status_code >= 500
-            if self._indexed(timestamp, url):
+            resp = self._seen("verify", url, self._send(lambda: self._client.head(archive_url)))
+            if resp.status_code == 429:
+                raise SpnRateLimited("snapshot check rate limited (429) — try again later")
+            if resp.status_code < 400 or self._indexed(timestamp, url):
                 return
-            if wait is None or not again:
-                raise SpnError(problem)
+            if wait is None or resp.status_code < 500:
+                raise SpnError(
+                    f"archive_url did not resolve (HTTP {resp.status_code}): {archive_url}")
             self._sleep(wait)
 
     def confirm(self, url: str, timestamp: str) -> Capture:

@@ -48,7 +48,8 @@ re-run skips every URL already captured, so a re-run sends nothing it already ha
 
 One capture at a time, in the triage queue's order (each member newest first, one member
 at a time), so a run cut short has captured every member to about the same depth. A 429
-is not a failed capture: the run stops there (exit 2) and a re-run resumes.
+is not a failed capture: the run stops there (exit 2) and a re-run resumes. Neither is
+archive.org staying out of reach past the client's backoff: exit 8, and a re-run resumes.
 
     uv run ingest capture --dry-run          # what would be captured; nothing sent
     uv run ingest capture --limit 20         # at most 20 captures (live only if opted in)
@@ -74,7 +75,13 @@ import yaml
 
 from ingest import ai, prefilter, triage_run
 from ingest.cache import repo_root
-from ingest.sources.archive_org import Capture, SpnClient, SpnError, SpnRateLimited
+from ingest.sources.archive_org import (
+    Capture,
+    SpnClient,
+    SpnError,
+    SpnRateLimited,
+    SpnUnreachable,
+)
 
 CONFIG = Path("config") / "archive.yaml"
 LEDGER = Path("raw") / "archive" / "captures.jsonl"
@@ -87,6 +94,8 @@ DEAD = "dead"
 EXIT_OK = 0
 EXIT_RATE_LIMITED = 2
 EXIT_REFUSED = 5
+EXIT_UNREACHABLE = 8
+STOP_EXIT = {"rate-limited": EXIT_RATE_LIMITED, "unreachable": EXIT_UNREACHABLE}
 
 SNAPSHOT_IN_ERROR = re.compile(r"/web/(\d{14})/")
 
@@ -187,7 +196,7 @@ def response_writer(data_dir: Path, now: Callable[[], str] = _now
 
 @dataclass
 class Outcome:
-    status: str = "complete"  # complete | limit | rate-limited
+    status: str = "complete"  # complete | limit | rate-limited | unreachable
     captured: int = 0
     failed: int = 0
 
@@ -199,7 +208,7 @@ def _attempt(spn: SpnClient, url: str, entry: dict[str, Any] | None) -> Capture:
     if found:
         try:
             return spn.confirm(url, found.group(1))
-        except SpnRateLimited:
+        except (SpnRateLimited, SpnUnreachable):
             raise
         except SpnError:
             pass
@@ -223,6 +232,10 @@ def capture_all(spn: SpnClient, urls: list[str], path: Path, *, limit: int = 0,
         except SpnRateLimited as exc:
             progress(f"  stopped: {exc}; a re-run resumes")
             outcome.status = "rate-limited"
+            break
+        except SpnUnreachable as exc:
+            progress(f"  stopped: {exc}; a re-run resumes")
+            outcome.status = "unreachable"
             break
         except SpnError as exc:
             _append(path, {"url": url, "status": FAILED, "error": str(exc), "ts": now()})
@@ -284,7 +297,7 @@ def run(argv: list[str] | None = None, *, client: httpx.Client | None = None,
     finally:
         spn.close()
     print(f"  {outcome.status}: {outcome.captured} captured, {outcome.failed} failed")
-    return EXIT_RATE_LIMITED if outcome.status == "rate-limited" else EXIT_OK
+    return STOP_EXIT.get(outcome.status, EXIT_OK)
 
 
 if __name__ == "__main__":  # pragma: no cover

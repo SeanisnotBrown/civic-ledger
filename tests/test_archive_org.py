@@ -437,3 +437,52 @@ def test_recover_with_nothing_listed_is_an_error() -> None:
     spn, _calls = _pending(lambda _req: httpx.Response(200, json=[]))
     with pytest.raises(SpnError, match="no snapshot since"):
         spn.recover(URL, "20261105000000")
+
+
+# --- a save refused because the account's sessions are full --------------------------------
+
+FULL = {"status": "error", "status_ext": "error:user-session-limit",
+        "message": "You have already reached the limit of active Save Page Now sessions."}
+
+
+def _refused(times: int, answer=lambda: httpx.Response(429, json=FULL)):
+    """SPN2 refuses `times` saves with `answer`, then takes them. Returns the client, its
+    waits and the saves it saw."""
+    waits: list[float] = []
+    saves: list[httpx.Request] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            saves.append(req)
+            if len(saves) <= times:
+                return answer()
+            return httpx.Response(200, json={"job_id": "J"})
+        if req.method == "GET":
+            return httpx.Response(200, json={"status": "success", "timestamp": STAMP})
+        return httpx.Response(200)
+
+    archive_org._last_unauth_capture_at = None
+    return SpnClient(client=_client(handler), poll_interval_s=0, sleep=waits.append,
+                     monotonic=lambda: 1e6 + len(saves) * 100), waits, saves
+
+
+def test_a_full_session_429_waits_and_saves_again() -> None:
+    spn, waits, saves = _refused(2)
+    assert spn.capture(URL).timestamp == STAMP
+    assert waits == list(archive_org.SESSION_BACKOFF_S[:2])
+    assert len(saves) == 3
+
+
+def test_sessions_that_stay_full_stop_the_run() -> None:
+    spn, waits, saves = _refused(99)
+    with pytest.raises(SpnRateLimited):
+        spn.capture(URL)
+    assert waits == list(archive_org.SESSION_BACKOFF_S)
+    assert len(saves) == len(archive_org.SESSION_BACKOFF_S) + 1
+
+
+def test_any_other_429_stops_at_once() -> None:
+    spn, waits, saves = _refused(99, lambda: httpx.Response(429, text="slow down"))
+    with pytest.raises(SpnRateLimited):
+        spn.capture(URL)
+    assert waits == [] and len(saves) == 1

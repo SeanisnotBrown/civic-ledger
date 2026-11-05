@@ -20,6 +20,10 @@ The flow (verified against archive.org's SPN2 public API):
      a snapshot that is there (seen 2026-11-05), so when the HEAD fails the CDX index
      is asked for that exact timestamp, and a 5xx is checked again over a bounded window.
 
+SPN2 answers a save with a 429 `error:user-session-limit` while the account's sessions are
+full, and says to wait a minute (seen 2026-11-05, with sessions free again seconds later).
+That save waits and goes again over `SESSION_BACKOFF_S`; any other 429 stops the run.
+
 A refused connection, a reset or a timeout says nothing about the page, so it never fails
 a capture: every request rides one out over `TRANSPORT_BACKOFF_S`, then `SpnUnreachable`
 ends the run and the URL is asked again on a later one.
@@ -67,6 +71,9 @@ _last_unauth_capture_at: float | None = None
 VERIFY_BACKOFF_S = (10.0, 30.0, 60.0, 120.0)
 # Seconds to wait before sending a request again after a transport error.
 TRANSPORT_BACKOFF_S = (30.0, 60.0, 120.0)
+# Seconds to wait before sending a save again while the account's sessions are full.
+SESSION_BACKOFF_S = (60.0, 120.0, 240.0)
+SESSION_LIMIT = "error:user-session-limit"
 
 
 class SpnError(Exception):
@@ -202,11 +209,18 @@ class SpnClient:
         _last_unauth_capture_at = self._monotonic()
 
     def _submit(self, url: str) -> str:
-        self._rate_limit_unauth()
-        resp = self._seen("save", url, self._send(lambda: self._client.post(
-            SAVE_URL, data={"url": url, "skip_first_archive": "1"}, headers=self._headers())))
-        if resp.status_code == 429:
-            raise SpnRateLimited("SPN2 rate limited (429) — try again later")
+        waits = iter(SESSION_BACKOFF_S)
+        while True:
+            self._rate_limit_unauth()
+            resp = self._seen("save", url, self._send(lambda: self._client.post(
+                SAVE_URL, data={"url": url, "skip_first_archive": "1"},
+                headers=self._headers())))
+            if resp.status_code != 429:
+                break
+            wait = next(waits, None)
+            if wait is None or SESSION_LIMIT not in resp.text:
+                raise SpnRateLimited("SPN2 rate limited (429) — try again later")
+            self._sleep(wait)
         if resp.status_code >= 400:
             raise SpnError(f"SPN2 save returned {resp.status_code}")
         try:
@@ -239,7 +253,7 @@ class SpnClient:
                 return ts
             if status == "error":
                 ext = body.get("status_ext") or body.get("message") or "unknown"
-                if ext == "error:user-session-limit":
+                if ext == SESSION_LIMIT:
                     raise SpnRateLimited("SPN2 session limit reached — try again later")
                 raise SpnError(f"SPN2 capture failed: {ext}")
             # status == "pending" (or an unknown transient state) → keep polling.

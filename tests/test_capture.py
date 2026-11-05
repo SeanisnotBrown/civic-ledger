@@ -588,3 +588,30 @@ def test_a_429_from_cdx_on_a_recovery_stops_the_run(tmp_path, monkeypatch) -> No
     assert _go(["--retry-failed"], client=client) == capture.EXIT_RATE_LIMITED
     assert not [req for req in calls if req.method == "POST"]
     assert len(_lines(data_dir)) == 1
+
+
+# --- the account's sessions full -----------------------------------------------------------
+
+
+def _full(times: int) -> httpx.Client:
+    """`_handler`, with the first `times` saves refused for full sessions."""
+    left = iter(range(times))
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST" and next(left, None) is not None:
+            return httpx.Response(429, json={"status_ext": "error:user-session-limit"})
+        return _handler(req)
+
+    return httpx.Client(transport=httpx.MockTransport(handler))
+
+
+def test_full_sessions_cost_a_wait_not_the_run(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    assert _go(client=_full(1)) == capture.EXIT_OK
+    assert capture.load_captures(capture.ledger_path(data_dir))[GOOD]["status"] == "captured"
+
+
+def test_sessions_that_stay_full_stop_without_failing_the_url(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    assert _go(client=_full(99)) == capture.EXIT_RATE_LIMITED
+    assert not capture.ledger_path(data_dir).exists()

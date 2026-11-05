@@ -22,7 +22,9 @@ The flow (verified against archive.org's SPN2 public API):
 
 SPN2 answers a save with a 429 `error:user-session-limit` while the account's sessions are
 full, and says to wait a minute (seen 2026-11-05, with sessions free again seconds later).
-That save waits and goes again over `SESSION_BACKOFF_S`; any other 429 stops the run.
+That save waits and goes again over `SESSION_BACKOFF_S`, and a 429 on the status poll waits
+the same way and keeps polling; any other 429 on a save stops the run. A 429 never fails a
+URL.
 
 A refused connection, a reset or a timeout says nothing about the page, so it never fails
 a capture: every request rides one out over `TRANSPORT_BACKOFF_S`, then `SpnUnreachable`
@@ -74,6 +76,8 @@ TRANSPORT_BACKOFF_S = (30.0, 60.0, 120.0)
 # Seconds to wait before sending a save again while the account's sessions are full.
 SESSION_BACKOFF_S = (60.0, 120.0, 240.0)
 SESSION_LIMIT = "error:user-session-limit"
+# Seconds a job may stay pending before the client stops polling it.
+POLL_TIMEOUT_S = 360.0
 
 
 class SpnError(Exception):
@@ -84,6 +88,15 @@ class SpnError(Exception):
 class SpnRateLimited(SpnError):
     """archive.org answered 429. Not a failed capture: the URL is asked again on a later
     run."""
+
+
+class SpnSnapshotMissing(SpnError):
+    """SPN2 made a snapshot and neither playback nor CDX shows it yet. `timestamp` is that
+    snapshot's: it can appear later, so the caller may hold it and check again."""
+
+    def __init__(self, message: str, timestamp: str) -> None:
+        super().__init__(message)
+        self.timestamp = timestamp
 
 
 class SpnUnreachable(SpnError):
@@ -125,7 +138,7 @@ class SpnClient:
         *,
         client: httpx.Client | None = None,
         poll_interval_s: float = 6.0,
-        timeout_s: float = 360.0,
+        timeout_s: float = POLL_TIMEOUT_S,
         sleep=time.sleep,
         monotonic=time.monotonic,
         on_response: Callable[[str, str, httpx.Response], None] | None = None,
@@ -236,9 +249,17 @@ class SpnClient:
         timeout, when a snapshot CDX lists from `since` on is the answer. Deadline is
         wall-clock via the injected monotonic clock."""
         deadline = self._monotonic() + self._timeout_s
+        waits = iter(SESSION_BACKOFF_S)
         while True:
             resp = self._seen("status", url, self._send(lambda: self._client.get(
                 f"{STATUS_URL}/{job_id}", headers=self._headers())))
+            if resp.status_code == 429:
+                wait = next(waits, None)
+                if wait is None:
+                    raise SpnRateLimited("SPN2 status rate limited (429) — try again later")
+                self._sleep(wait)
+                continue
+            waits = iter(SESSION_BACKOFF_S)
             if resp.status_code >= 400:
                 raise SpnError(f"SPN2 status returned {resp.status_code}")
             try:
@@ -300,8 +321,9 @@ class SpnClient:
             if resp.status_code < 400 or self._indexed(timestamp, url):
                 return
             if wait is None or resp.status_code < 500:
-                raise SpnError(
-                    f"archive_url did not resolve (HTTP {resp.status_code}): {archive_url}")
+                raise SpnSnapshotMissing(
+                    f"archive_url did not resolve (HTTP {resp.status_code}): {archive_url}",
+                    timestamp)
             self._sleep(wait)
 
     def confirm(self, url: str, timestamp: str) -> Capture:

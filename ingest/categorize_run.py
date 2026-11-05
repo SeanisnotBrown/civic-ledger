@@ -53,7 +53,8 @@ only what is left. The run stops at the cap and does not finish the batch.
 
 Exit 0 complete (or counted only); 2 api-error or an SPN2 429; 3 cap; 4 stopped
 (`data/raw/triage.stop`); 5 live capture not opted in; 6 estimate over the cap; 7 a
-fairness flag awaiting review; 8 archive.org unreachable. Every answer already received
+fairness flag awaiting review (capture's is checked after the capture phase and before
+the categorizer spends anything); 8 archive.org unreachable. Every answer already received
 is saved, and a re-run resumes: the ledger, the capture file and the queue are all skipped,
 and the AI cache serves anything asked before. The exception is a failed capture among
 this run's own statements, which every resume asks for again.
@@ -95,6 +96,7 @@ DEFAULT_WORKERS = 4
 # The one uneven rule the owner has accepted (R4, 2026-10-14).
 OWNER_ACCEPTED_RULES = frozenset({"procedural"})
 STEPS = ("prefilter", "triage")
+REVIEWABLE = (*STEPS, "capture")
 
 EXIT_OK = 0
 EXIT_API_ERROR = 2
@@ -153,16 +155,30 @@ def triage_rows(order: list[dict[str, Any]], verdicts: dict[str, dict[str, Any]]
     """The gate's drop rate per party, over the statements it has answered, over all
     sources and per source. Same shape and same test as the pre-filter's rows."""
     answered = [s for s in order if triage_run.fingerprint(s) in verdicts]
+    return _rows("triage-gate", answered, parties, lambda s: not verdicts[
+        triage_run.fingerprint(s)][triage_run.VERDICT_FIELD])
+
+
+def capture_rows(chosen: list[dict[str, Any]], captures: dict[str, dict[str, Any]],
+                 parties: dict[str, str]) -> list[dict[str, Any]]:
+    """The capture step's drop rate per party: the chosen statements with no live capture,
+    so they cannot reach the categorizer. A pending snapshot has none yet."""
+    return _rows("capture", chosen, parties,
+                 lambda s: capture.verified_capture(s.get("url", ""), captures) is None)
+
+
+def _rows(rule: str, statements: list[dict[str, Any]], parties: dict[str, str],
+          dropped_by: Callable[[dict[str, Any]], bool]) -> list[dict[str, Any]]:
+    """One step's drop rate per party, over all sources and per source."""
     rows: list[dict[str, Any]] = []
-    if not answered:
+    if not statements:
         return rows
-    for source in (None, *sorted({s.get("source", "") for s in answered})):
-        scoped = [s for s in answered if source is None or s.get("source") == source]
-        row: dict[str, Any] = {"rule": "triage-gate", "scope": source or "all sources"}
+    for source in (None, *sorted({s.get("source", "") for s in statements})):
+        scoped = [s for s in statements if source is None or s.get("source") == source]
+        row: dict[str, Any] = {"rule": rule, "scope": source or "all sources"}
         for party in ("D", "R"):
             mine = [s for s in scoped if parties.get(s["member_id"]) == party]
-            dropped = sum(not verdicts[triage_run.fingerprint(s)][triage_run.VERDICT_FIELD]
-                          for s in mine)
+            dropped = sum(dropped_by(s) for s in mine)
             row[party] = dropped
             row[f"{party}_turns"] = len(mine)
             row[f"{party}_rate"] = round(dropped / len(mine) * 100, 1) if mine else 0.0
@@ -458,7 +474,8 @@ def _parser() -> argparse.ArgumentParser:
                         help=f"categorizer calls in flight (default {DEFAULT_WORKERS})")
     parser.add_argument("--live-capture", action="store_true",
                         help="send real captures to archive.org for this run")
-    parser.add_argument("--fairness-reviewed", action="append", default=[], choices=STEPS,
+    parser.add_argument("--fairness-reviewed", action="append", default=[],
+                        choices=REVIEWABLE,
                         help="this step's fairness flag has been reviewed; go on")
     parser.add_argument("--run-name", default=DEFAULT_RUN_NAME,
                         help=f"the run the cap covers (default {DEFAULT_RUN_NAME})")
@@ -552,7 +569,7 @@ def run(
 
     try:
         return _spend(args, session, data_dir, order, verdicts, ledger_path, parties,
-                      per_member, queued, client, stop_file, save_spend, sleep, clock)
+                      per_member, queued, client, stop_file, save_spend, sleep, clock, stamp)
     finally:
         save_spend()
         print(f"  spent this invocation ${session.spent_usd:.4f}; this run "
@@ -564,7 +581,7 @@ def _spend(args: argparse.Namespace, session: ai.Run, data_dir: Path,
            parties: dict[str, str], per_member: int, queued: set[str],
            client: httpx.Client | None, stop_file: Path,
            save_spend: Callable[..., None], sleep: Callable[[float], None],
-           clock: Callable[[], float]) -> int:
+           clock: Callable[[], float], stamp: datetime) -> int:
     """Everything after the checks: triage, fairness, capture, categorize, queue."""
     todo = triage_run.to_ask(order, verdicts)
     gate = triage_run.triage(session, todo, ledger_path, stop_file=stop_file, sleep=sleep,
@@ -583,23 +600,34 @@ def _spend(args: argparse.Namespace, session: ai.Run, data_dir: Path,
     chosen = select(order, verdicts, per_member)
     path = capture.ledger_path(data_dir)
     urls = list(dict.fromkeys(s["url"] for s in chosen if s.get("url")))
-    known = capture.load_captures(path)
-    wanted = capture.to_capture(urls, known, retry_failed=True)
+    wanted = capture.to_capture(urls, capture.load_captures(path), retry_failed=True,
+                                today=capture.today())
     print(f"  capture: {len(urls)} source URL(s), {len(wanted)} to send")
     spn = capture.SpnClient(client=client, sleep=sleep,
                             on_response=capture.response_writer(data_dir))
     try:
         workers = capture.capture_workers(spn, data_dir)
         print(f"  up to {workers} capture(s) at a time")
-        archived = capture.capture_all(spn, wanted, path, known=known, workers=workers)
+        archived = capture.run_captures(spn, urls, path, retry_failed=True, workers=workers)
     finally:
         spn.close()
     print(f"  capture {archived.status}: {archived.captured} captured, "
-          f"{archived.failed} failed")
+          f"{archived.failed} failed, {archived.pending} pending, {archived.skipped} skipped "
+          f"({capture.NOT_FOUND} today, one save a day)")
     if archived.status != "complete":
         return capture.STOP_EXIT[archived.status]
 
     captures = capture.load_captures(path)
+    rows = capture_rows(chosen, captures, parties)
+    flagged = new_flags(rows)
+    print("  fairness, capture: " + ("FLAGGED" if flagged else "no new flag"))
+    for row in rows:
+        print(_rate_line(row, row in flagged))
+    _save(data_dir, f"{stamp.date().isoformat()}-capture-fairness.json",
+          {"generated": stamp.isoformat(timespec="seconds"), "fairness": rows,
+           "pending": archived.pending, "skipped_not_found_today": archived.skipped})
+    if _flagged("capture", rows, args.fairness_reviewed):
+        return EXIT_FAIRNESS
     live = [s for s in chosen if s.get("url")
             and capture.verified_capture(s["url"], captures) is not None]
     uncaptured = Counter(parties.get(s["member_id"], "?") for s in chosen if s not in live)

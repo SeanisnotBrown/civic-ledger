@@ -7,6 +7,7 @@ from __future__ import annotations
 import json
 import shutil
 import threading
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 import httpx
@@ -615,3 +616,186 @@ def test_sessions_that_stay_full_stop_without_failing_the_url(tmp_path, monkeypa
     data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
     assert _go(client=_full(99)) == capture.EXIT_RATE_LIMITED
     assert not capture.ledger_path(data_dir).exists()
+
+
+# --- a 429 on the poll left a failed line --------------------------------------------------
+
+
+def test_a_retry_recovers_a_url_failed_by_a_poll_429_from_cdx(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    capture._append(capture.ledger_path(data_dir), {
+        "url": GOOD, "status": "failed", "ts": "2026-11-05T20:33:02+00:00",
+        "error": "SPN2 status returned 429"})
+    landed = "20261105203105"
+    client, calls = _cdx([["timestamp", "statuscode"], [landed, "200"]])
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_OK
+    assert not [req for req in calls if req.method == "POST"]
+    # The search starts the poll deadline and the slack before the line.
+    assert [req.url.params["from"] for req in calls if "cdx" in req.url.path] == [
+        "20261105202602"]
+    assert capture.load_captures(capture.ledger_path(data_dir))[GOOD]["timestamp"] == landed
+
+
+# --- a snapshot out of sight: pending ------------------------------------------------------
+
+SAVED = "20261105202334"
+SNAP = f"https://web.archive.org/web/{SAVED}/{GOOD}"
+
+
+def _clock(minutes: float) -> str:
+    moment = datetime(2026, 11, 5, 20, 23, 34, tzinfo=UTC) + timedelta(minutes=minutes)
+    return moment.isoformat(timespec="seconds")
+
+
+class Checks(Stub):
+    """A stub whose `confirm` answers from `found`, or raises `error`, keeping the calls."""
+
+    def __init__(self, found: bool = False, error: Exception | None = None,
+                 act=lambda _url: None) -> None:
+        super().__init__(act)
+        self.found = found
+        self.error = error
+        self.confirmed: list[str] = []
+
+    def confirm(self, url: str, stamp: str) -> archive_org.Capture:
+        self.confirmed.append(url)
+        if self.error is not None:
+            raise self.error
+        if not self.found:
+            raise archive_org.SpnSnapshotMissing("did not resolve", stamp)
+        return archive_org.Capture(url, SNAP, stamp, "2026-11-05T20:23:34Z")
+
+
+def _pending_line(path: Path, url: str = GOOD) -> None:
+    capture._append(path, {"url": url, "status": "pending", "timestamp": SAVED,
+                           "error": "archive_url did not resolve (HTTP 404)",
+                           "ts": _clock(0)})
+
+
+def test_a_404_on_a_fresh_snapshot_is_pending_not_failed(tmp_path, monkeypatch) -> None:
+    fresh = datetime.now(UTC).strftime("%Y%m%d%H%M%S")
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "HEAD":
+            return httpx.Response(404)
+        if req.method == "GET" and "/save/status/" in str(req.url):
+            return httpx.Response(200, json={"status": "success", "timestamp": fresh})
+        return _handler(req)
+
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    assert _go(client=client) == capture.EXIT_OK
+    entry = capture.load_captures(capture.ledger_path(data_dir))[GOOD]
+    assert entry["status"] == "pending" and entry["timestamp"] == fresh
+    assert capture.verified_capture(GOOD, {GOOD: entry}) is None
+
+
+def test_a_pending_line_is_never_sent_again(tmp_path: Path) -> None:
+    path = tmp_path / "c.jsonl"
+    _pending_line(path)
+    stub = Checks()
+    outcome = capture.run_captures(stub, [GOOD], path, retry_failed=True, workers=1,
+                                   now=lambda: _clock(5))
+    assert stub.calls == [] and outcome.pending == 1
+    assert capture.load_captures(path)[GOOD]["status"] == "pending"
+
+
+def test_a_pending_snapshot_that_appears_is_captured(tmp_path: Path) -> None:
+    path = tmp_path / "c.jsonl"
+    _pending_line(path)
+    outcome = capture.recheck_pending(Checks(found=True), [GOOD], path, now=lambda: _clock(5))
+    entry = capture.load_captures(path)[GOOD]
+    assert outcome.captured == 1 and entry["status"] == "captured"
+    assert entry["archive_url"] == SNAP
+
+
+@pytest.mark.parametrize(("minutes", "status"), [(29, "pending"), (30, "failed")])
+def test_pending_turns_failed_only_after_the_window(tmp_path: Path, minutes, status) -> None:
+    path = tmp_path / "c.jsonl"
+    _pending_line(path)
+    capture.recheck_pending(Checks(), [GOOD], path, now=lambda: _clock(minutes))
+    entry = capture.load_captures(path)[GOOD]
+    assert entry["status"] == status
+    if status == "failed":
+        assert "/web/" not in entry["error"]  # the next retry is a fresh save
+
+
+def test_the_phase_checks_pending_snapshots_again_at_its_end(tmp_path: Path) -> None:
+    path = tmp_path / "c.jsonl"
+    other = "https://example.house.gov/other"
+    _pending_line(path)
+    stub = Checks()
+    stub.act = lambda _url: setattr(stub, "found", True)  # it appears during the phase
+    outcome = capture.run_captures(stub, [GOOD, other], path, retry_failed=True, workers=1,
+                                   now=lambda: _clock(5))
+    assert stub.confirmed == [GOOD, GOOD] and stub.calls == [other]
+    assert outcome.captured == 2 and outcome.pending == 0
+
+
+@pytest.mark.parametrize(("error", "status"), [
+    (archive_org.SpnRateLimited("429"), "rate-limited"),
+    (archive_org.SpnUnreachable("down"), "unreachable"),
+])
+def test_a_stop_on_a_recheck_keeps_the_line_and_sends_nothing(tmp_path, error, status) -> None:
+    path = tmp_path / "c.jsonl"
+    _pending_line(path)
+    stub = Checks(error=error)
+    outcome = capture.run_captures(stub, [GOOD], path, retry_failed=True, workers=1,
+                                   now=lambda: _clock(5), progress=lambda _line: None)
+    assert outcome.status == status and stub.calls == []
+    assert capture.load_captures(path)[GOOD]["status"] == "pending"
+
+
+def test_a_pending_line_alone_still_gets_its_recheck(tmp_path, monkeypatch, capsys) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _pending_line(capture.ledger_path(data_dir))
+    client, calls = _cdx([])
+    assert _go(client=client) == capture.EXIT_OK
+    assert not [req for req in calls if req.method == "POST"]
+    assert "1 pending; 0 to capture" in capsys.readouterr().out
+
+
+# --- error:not-found: one save a day -------------------------------------------------------
+
+
+def _not_found(path: Path, stamp: str, url: str = GOOD) -> None:
+    capture._append(path, {"url": url, "status": "failed", "ts": stamp,
+                           "error": "SPN2 capture failed: error:not-found"})
+
+
+def test_not_found_is_skipped_for_the_rest_of_the_eastern_day(tmp_path: Path) -> None:
+    path = tmp_path / "c.jsonl"
+    _not_found(path, "2026-11-05T20:20:25+00:00")
+    stub = Stub()
+    # 04:59 UTC on the 6th is still 23:59 on the 5th in US Eastern time.
+    outcome = capture.run_captures(stub, [GOOD], path, retry_failed=True, workers=1,
+                                   now=lambda: "2026-11-06T04:59:00+00:00")
+    assert stub.calls == [] and outcome.skipped == 1
+
+
+def test_not_found_is_asked_again_the_next_eastern_day(tmp_path: Path) -> None:
+    path = tmp_path / "c.jsonl"
+    _not_found(path, "2026-11-05T20:20:25+00:00")
+    stub = Stub()
+    outcome = capture.run_captures(stub, [GOOD], path, retry_failed=True, workers=1,
+                                   now=lambda: "2026-11-06T05:01:00+00:00")
+    assert stub.calls == [GOOD] and outcome.skipped == 0
+
+
+def test_only_not_found_is_held_back(tmp_path: Path) -> None:
+    path = tmp_path / "c.jsonl"
+    capture._append(path, {"url": GOOD, "status": "failed", "ts": _clock(0),
+                           "error": "SPN2 capture failed: error:gateway-timeout"})
+    stub = Stub()
+    capture.run_captures(stub, [GOOD], path, retry_failed=True, workers=1,
+                         now=lambda: _clock(1))
+    assert stub.calls == [GOOD]
+
+
+def test_the_command_reports_what_it_skipped(tmp_path, monkeypatch, capsys) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True, BAD: True})
+    _not_found(capture.ledger_path(data_dir), capture._now())
+    _not_found(capture.ledger_path(data_dir), capture._now(), BAD)
+    assert _go(["--retry-failed"], client=_fake()) == capture.EXIT_OK
+    out = capsys.readouterr().out
+    assert "0 to capture" in out and "nothing sent" in out

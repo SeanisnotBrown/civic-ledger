@@ -16,7 +16,7 @@ import pytest
 import yaml
 
 from curation import review
-from ingest import ai, capture, categorize_run, triage_run
+from ingest import ai, capture, categorize_run, prefilter, triage_run
 from ingest.sources import archive_org
 from tests.test_capture import _fake, _handler
 from tests.test_prefilter import SUBSTANTIVE, _record
@@ -464,6 +464,60 @@ def test_archive_org_going_down_stops_the_run_and_a_resume_pays_for_nothing_twic
     assert _paid(again) == categorize_run.EXIT_OK
     assert again.triaged == 0 and again.categorized == 4
     assert len(_queue(data_dir)) == 4
+
+
+# --- the capture step's fairness check ------------------------------------------------------
+
+
+def _lose_the_democrat(req: httpx.Request) -> httpx.Response:
+    """Every D000001 page fails at archive.org; the rest save."""
+    if req.method == "POST" and "D000001" in req.content.decode():
+        return httpx.Response(200, json={"job_id": "fail"})
+    return _handler(req)
+
+
+def test_an_uneven_capture_step_stops_before_the_categorizer_spends(tmp_path, monkeypatch,
+                                                                    capsys) -> None:
+    data_dir = _repo(tmp_path, monkeypatch)
+    monkeypatch.setattr(prefilter, "UNEVEN_MIN_TURNS", 1)
+    model = Model()
+    client = httpx.Client(transport=httpx.MockTransport(_lose_the_democrat))
+    assert _paid(model, client=client) == categorize_run.EXIT_FAIRNESS
+    assert model.categorized == 0 and _queue(data_dir) == []
+    out = capsys.readouterr().out
+    assert "fairness, capture: FLAGGED" in out and "--fairness-reviewed capture" in out
+    saved = json.loads((data_dir / "raw" / "categorize" / "2026-11-04-capture-fairness.json")
+                       .read_text(encoding="utf-8"))
+    row = saved["fairness"][0]
+    assert (row["rule"], row["scope"], row["D_rate"], row["R_rate"]) == (
+        "capture", "all sources", 100.0, 0.0)
+    assert row["uneven"] is True and saved["pending"] == 0
+    # Reviewed, the run goes on with what it captured.
+    again = Model()
+    client = httpx.Client(transport=httpx.MockTransport(_lose_the_democrat))
+    assert _paid(again, "--fairness-reviewed", "triage", "--fairness-reviewed", "capture",
+                 client=client) == categorize_run.EXIT_OK
+    assert again.categorized == 2
+    assert {x["member_id"] for x in _queue(data_dir)} == {"R000002"}
+
+
+def test_an_even_capture_step_reports_and_goes_on(tmp_path, monkeypatch, capsys) -> None:
+    data_dir = _repo(tmp_path, monkeypatch)
+    assert _paid(Model()) == categorize_run.EXIT_OK
+    assert "fairness, capture: no new flag" in capsys.readouterr().out
+    assert (data_dir / "raw" / "categorize" / "2026-11-04-capture-fairness.json").exists()
+
+
+def test_capture_rows_count_a_pending_or_urlless_statement_as_not_captured() -> None:
+    chosen = [{"member_id": "D1", "source": "s", "url": "a"},
+              {"member_id": "D1", "source": "s", "url": "b"},
+              {"member_id": "R1", "source": "s"}]
+    live = {"status": "captured", "archive_url": "x", "timestamp": "t", "captured_at": "c"}
+    rows = categorize_run.capture_rows(
+        chosen, {"a": live, "b": {"status": "pending", "timestamp": "t"}},
+        {"D1": "D", "R1": "R"})
+    assert (rows[0]["D"], rows[0]["D_turns"], rows[0]["R"], rows[0]["R_turns"]) == (1, 2, 1, 1)
+    assert categorize_run.capture_rows([], {}, {}) == []
 
 
 # --- the categorizer's failures ------------------------------------------------------------

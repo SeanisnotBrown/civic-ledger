@@ -486,3 +486,44 @@ def test_any_other_429_stops_at_once() -> None:
     with pytest.raises(SpnRateLimited):
         spn.capture(URL)
     assert waits == [] and len(saves) == 1
+
+
+# --- a 429 on the status poll --------------------------------------------------------------
+
+
+def _poll_refused(times: int):
+    """The status poll draws an HTML 429 `times` times, then the job succeeds."""
+    waits: list[float] = []
+    left = iter(range(times))
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            return httpx.Response(200, json={"job_id": "J"})
+        if req.method == "HEAD":
+            return httpx.Response(200)
+        if next(left, None) is not None:
+            return httpx.Response(429, text="<h1>429 Too Many Requests</h1>")
+        return httpx.Response(200, json={"status": "success", "timestamp": STAMP})
+
+    archive_org._last_unauth_capture_at = None
+    return SpnClient(client=_client(handler), poll_interval_s=0, sleep=waits.append), waits
+
+
+def test_a_429_on_the_poll_waits_and_keeps_polling() -> None:
+    spn, waits = _poll_refused(2)
+    assert spn.capture(URL).timestamp == STAMP
+    assert waits == list(archive_org.SESSION_BACKOFF_S[:2])
+
+
+def test_a_poll_that_stays_refused_stops_and_never_fails_the_url() -> None:
+    spn, waits = _poll_refused(99)
+    with pytest.raises(SpnRateLimited):
+        spn.capture(URL)
+    assert waits == list(archive_org.SESSION_BACKOFF_S)
+
+
+def test_a_missing_snapshot_carries_its_timestamp() -> None:
+    spn, _waits, _calls = _saved(lambda _req: httpx.Response(404))
+    with pytest.raises(archive_org.SpnSnapshotMissing) as caught:
+        spn.capture(URL)
+    assert caught.value.timestamp == STAMP

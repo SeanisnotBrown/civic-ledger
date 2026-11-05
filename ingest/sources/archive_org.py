@@ -35,6 +35,7 @@ without the POST ever being replayed from a cache.
 
 from __future__ import annotations
 
+import threading
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -46,6 +47,7 @@ from ingest import env
 
 SAVE_URL = "https://web.archive.org/save"
 STATUS_URL = "https://web.archive.org/save/status"
+USER_STATUS_URL = "https://web.archive.org/save/status/user"
 WAYBACK_PREFIX = "https://web.archive.org/web"
 CDX_URL = "https://web.archive.org/cdx/search/cdx"
 
@@ -54,6 +56,8 @@ _HTTP_TIMEOUT = httpx.Timeout(60.0, connect=15.0)
 
 # §6.1 unauthenticated ceiling: at most one capture every 15 seconds.
 UNAUTH_MIN_INTERVAL_S = 15.0
+# SPN2's documented ceiling is 7 captures a minute for an account: one save every 9 s.
+SAVE_MIN_INTERVAL_S = 9.0
 _last_unauth_capture_at: float | None = None
 
 # Seconds to wait before each new check of a snapshot playback answered with a 5xx.
@@ -124,6 +128,8 @@ class SpnClient:
         self._monotonic = monotonic
         self._auth = _auth_header()
         self._on_response = on_response
+        self._save_lock = threading.Lock()
+        self._last_save_at: float | None = None
 
     def _seen(self, kind: str, url: str, resp: httpx.Response) -> httpx.Response:
         """Hand the raw response to `on_response` (kind: save / status / verify) first."""
@@ -159,10 +165,32 @@ class SpnClient:
             except httpx.HTTPError as exc:
                 raise SpnError(f"archive.org request failed: {exc}") from exc
 
+    def available_sessions(self) -> int:
+        """The capture sessions SPN2 reports free for this account. 1 without keys, or when
+        it does not say: the safe answer, and the first save finds out the rest."""
+        if not self.authenticated:
+            return 1
+        try:
+            resp = self._seen("sessions", USER_STATUS_URL, self._send(lambda: self._client.get(
+                USER_STATUS_URL, params={"_t": str(time.time_ns())}, headers=self._headers())))
+            return int(resp.json()["available"])
+        except (SpnError, ValueError, KeyError, TypeError):
+            return 1
+
+    def _space_saves(self) -> None:
+        """Hold this client's saves to `SAVE_MIN_INTERVAL_S` apart, across every worker."""
+        with self._save_lock:
+            if self._last_save_at is not None:
+                wait = SAVE_MIN_INTERVAL_S - (self._monotonic() - self._last_save_at)
+                if wait > 0:
+                    self._sleep(wait)
+            self._last_save_at = self._monotonic()
+
     def _rate_limit_unauth(self) -> None:
         """Enforce the §6.1 ≤ 1 capture / 15 s ceiling in unauthenticated mode."""
         global _last_unauth_capture_at
         if self.authenticated:
+            self._space_saves()
             return
         if _last_unauth_capture_at is not None:
             wait = UNAUTH_MIN_INTERVAL_S - (self._monotonic() - _last_unauth_capture_at)
@@ -207,6 +235,8 @@ class SpnClient:
                 return ts
             if status == "error":
                 ext = body.get("status_ext") or body.get("message") or "unknown"
+                if ext == "error:user-session-limit":
+                    raise SpnRateLimited("SPN2 session limit reached — try again later")
                 raise SpnError(f"SPN2 capture failed: {ext}")
             # status == "pending" (or an unknown transient state) → keep polling.
             if self._monotonic() >= deadline:

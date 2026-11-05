@@ -589,7 +589,9 @@ def _spend(args: argparse.Namespace, session: ai.Run, data_dir: Path,
     spn = capture.SpnClient(client=client, sleep=sleep,
                             on_response=capture.response_writer(data_dir))
     try:
-        archived = capture.capture_all(spn, wanted, path, known=known)
+        workers = capture.capture_workers(spn, data_dir)
+        print(f"  up to {workers} capture(s) at a time")
+        archived = capture.capture_all(spn, wanted, path, known=known, workers=workers)
     finally:
         spn.close()
     print(f"  capture {archived.status}: {archived.captured} captured, "

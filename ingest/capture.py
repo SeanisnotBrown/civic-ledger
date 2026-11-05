@@ -46,8 +46,12 @@ re-run skips every URL already captured, so a re-run sends nothing it already ha
 
 ## Rate limits
 
-One capture at a time, in the triage queue's order (each member newest first, one member
-at a time), so a run cut short has captured every member to about the same depth. A 429
+Each capture waits minutes on archive.org's queue, so several run at once: at most
+`max_concurrent_captures` (`data/config/archive.yaml`) or the sessions SPN2 reports free,
+whichever is lower, one at a time without keys, and saves stay 9 s apart for the account's
+7 a minute. URLs are taken in the triage queue's order (each member newest first, one
+member at a time), so a run cut short has captured every member to about the same depth,
+and a line lands in the capture file when its capture ends. A 429
 is not a failed capture: the run stops there (exit 2) and a re-run resumes. Neither is
 archive.org staying out of reach past the client's backoff: exit 8, and a re-run resumes.
 
@@ -63,8 +67,10 @@ import argparse
 import hashlib
 import json
 import re
+import threading
 import time
 from collections.abc import Callable
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -92,6 +98,8 @@ FAILED = "failed"
 DEAD = "dead"
 
 EXIT_OK = 0
+DEFAULT_MAX_CONCURRENT = 4
+
 EXIT_RATE_LIMITED = 2
 EXIT_REFUSED = 5
 EXIT_UNREACHABLE = 8
@@ -104,13 +112,23 @@ def ledger_path(data_dir: Path) -> Path:
     return data_dir / LEDGER
 
 
-def live_capture_enabled(data_dir: Path) -> bool:
-    """True only when `archive.yaml` says `live_capture: true`. A missing file is off."""
+def _config(data_dir: Path) -> dict[str, Any]:
     path = data_dir / CONFIG
     if not path.exists():
-        return False
-    raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    return raw.get("live_capture") is True
+        return {}
+    return yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+
+
+def live_capture_enabled(data_dir: Path) -> bool:
+    """True only when `archive.yaml` says `live_capture: true`. A missing file is off."""
+    return _config(data_dir).get("live_capture") is True
+
+
+def capture_workers(spn: SpnClient, data_dir: Path) -> int:
+    """The captures to keep in flight: `max_concurrent_captures` or the sessions SPN2
+    reports free, whichever is lower, and never fewer than one."""
+    ceiling = int(_config(data_dir).get("max_concurrent_captures", DEFAULT_MAX_CONCURRENT))
+    return max(1, min(ceiling, spn.available_sessions()))
 
 
 def _now() -> str:
@@ -216,35 +234,59 @@ def _attempt(spn: SpnClient, url: str, entry: dict[str, Any] | None) -> Capture:
 
 
 def capture_all(spn: SpnClient, urls: list[str], path: Path, *, limit: int = 0,
-                known: dict[str, dict[str, Any]] | None = None,
+                known: dict[str, dict[str, Any]] | None = None, workers: int = 1,
                 now: Callable[[], str] = _now,
                 progress: Callable[[str], None] = print) -> Outcome:
-    """Capture each URL in turn, recording every result as it arrives. `known` is the
-    capture file as loaded, so a failed URL's snapshot is checked before a new save."""
+    """Capture the URLs with at most `workers` in flight, recording every result as it
+    arrives. `known` is the capture file as loaded, so a failed URL's snapshot is checked
+    before a new save. A stop lets the captures in flight finish and starts no more."""
     known = known or {}
     outcome = Outcome()
-    for sent, url in enumerate(urls):
-        if limit and sent >= limit:
-            outcome.status = "limit"
-            break
-        try:
-            cap = _attempt(spn, url, known.get(url))
-        except SpnRateLimited as exc:
-            progress(f"  stopped: {exc}; a re-run resumes")
-            outcome.status = "rate-limited"
-            break
-        except SpnUnreachable as exc:
-            progress(f"  stopped: {exc}; a re-run resumes")
-            outcome.status = "unreachable"
-            break
-        except SpnError as exc:
-            _append(path, {"url": url, "status": FAILED, "error": str(exc), "ts": now()})
-            outcome.failed += 1
-            continue
-        _append(path, {"url": url, "status": CAPTURED, "archive_url": cap.archive_url,
-                       "timestamp": cap.timestamp, "captured_at": cap.captured_at,
-                       "ts": now()})
-        outcome.captured += 1
+    pending = iter(urls[:limit] if limit else urls)
+    lock = threading.Lock()
+    stop = threading.Event()
+
+    def halt(status: str, exc: SpnError) -> None:
+        stop.set()
+        with lock:
+            outcome.status = status
+        progress(f"  stopped: {exc}; a re-run resumes")
+
+    def record(line: dict[str, Any]) -> None:
+        with lock:
+            _append(path, line)
+            if line["status"] == CAPTURED:
+                outcome.captured += 1
+            else:
+                outcome.failed += 1
+
+    def work() -> None:
+        while not stop.is_set():
+            with lock:
+                url = next(pending, None)
+            if url is None:
+                return
+            try:
+                cap = _attempt(spn, url, known.get(url))
+            except SpnRateLimited as exc:
+                halt("rate-limited", exc)
+            except SpnUnreachable as exc:
+                halt("unreachable", exc)
+            except SpnError as exc:
+                record({"url": url, "status": FAILED, "error": str(exc), "ts": now()})
+            except Exception:
+                stop.set()
+                raise
+            else:
+                record({"url": url, "status": CAPTURED, "archive_url": cap.archive_url,
+                        "timestamp": cap.timestamp, "captured_at": cap.captured_at,
+                        "ts": now()})
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        for running in [pool.submit(work) for _ in range(workers)]:
+            running.result()
+    if outcome.status == "complete" and limit and len(urls) > limit:
+        outcome.status = "limit"
     return outcome
 
 
@@ -293,7 +335,10 @@ def run(argv: list[str] | None = None, *, client: httpx.Client | None = None,
     print("  authenticated (IA S3 keys)" if spn.authenticated
           else "  unauthenticated: at most 1 capture every 15 s")
     try:
-        outcome = capture_all(spn, todo, path, limit=args.limit, known=captures)
+        workers = capture_workers(spn, data_dir)
+        print(f"  up to {workers} capture(s) at a time")
+        outcome = capture_all(spn, todo, path, limit=args.limit, known=captures,
+                              workers=workers)
     finally:
         spn.close()
     print(f"  {outcome.status}: {outcome.captured} captured, {outcome.failed} failed")

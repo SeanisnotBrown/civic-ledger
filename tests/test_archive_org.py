@@ -286,3 +286,72 @@ def test_confirm_checks_a_snapshot_without_a_save() -> None:
     spn, _waits, calls = _saved(lambda _req: httpx.Response(200))
     assert spn.confirm(URL, STAMP).captured_at == "2026-11-05T16:36:22Z"
     assert [req.method for req in calls] == ["HEAD"]
+
+
+# --- sessions and pacing -------------------------------------------------------------------
+
+
+def _authed(monkeypatch, handler, **kwargs) -> SpnClient:
+    monkeypatch.setenv("IA_S3_ACCESS", "AK")
+    monkeypatch.setenv("IA_S3_SECRET", "SK")
+    return SpnClient(client=_client(handler), poll_interval_s=0, **kwargs)
+
+
+def test_available_sessions_reads_the_account_status(monkeypatch) -> None:
+    seen = {}
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        seen.update(path=req.url.path, auth=req.headers["authorization"], t=req.url.params["_t"])
+        return httpx.Response(200, json={"available": 3, "processing": 0})
+
+    assert _authed(monkeypatch, handler).available_sessions() == 3
+    assert seen["path"] == "/save/status/user" and seen["auth"] == "LOW AK:SK" and seen["t"]
+
+
+def test_available_sessions_is_one_without_keys_and_sends_nothing(monkeypatch) -> None:
+    monkeypatch.delenv("IA_S3_ACCESS", raising=False)
+
+    def handler(_req: httpx.Request) -> httpx.Response:
+        raise AssertionError("a request without keys")
+
+    assert _spn(handler).available_sessions() == 1
+
+
+@pytest.mark.parametrize("answer", [
+    lambda _req: httpx.Response(401, json={"message": "log in"}),
+    lambda _req: httpx.Response(429, json={"message": "slow down"}),
+    lambda _req: httpx.Response(200, text="<html>"),
+    lambda _req: httpx.Response(200, json={"available": None}),
+    _drops(99),
+])
+def test_available_sessions_is_one_when_it_cannot_tell(monkeypatch, answer) -> None:
+    assert _authed(monkeypatch, answer, sleep=lambda _s: None).available_sessions() == 1
+
+
+def test_authenticated_saves_stay_spaced_for_the_per_minute_ceiling(monkeypatch) -> None:
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            return httpx.Response(200, json={"job_id": "J"})
+        if req.method == "GET":
+            return httpx.Response(200, json={"status": "success", "timestamp": STAMP})
+        return httpx.Response(200)
+
+    waits: list[float] = []
+    clock = iter([100.0, 103.0, 112.0, 200.0, 200.0])
+    spn = _authed(monkeypatch, handler, sleep=waits.append, monotonic=lambda: next(clock, 300.0))
+    spn._submit(URL)
+    spn._submit(URL)
+    assert waits == [archive_org.SAVE_MIN_INTERVAL_S - 3.0]
+    spn._submit(URL)
+    assert len(waits) == 1  # long enough has passed
+
+
+def test_the_session_limit_stops_rather_than_fails_the_url() -> None:
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            return httpx.Response(200, json={"job_id": "J"})
+        return httpx.Response(200, json={"status": "error",
+                                         "status_ext": "error:user-session-limit"})
+
+    with pytest.raises(SpnRateLimited):
+        _spn(handler).capture(URL)

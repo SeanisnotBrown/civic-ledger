@@ -406,6 +406,9 @@ def test_the_live_opt_in_builds_the_real_client(tmp_path, monkeypatch) -> None:
             return archive_org.Capture(url, f"https://web.archive.org/web/1/{url}",
                                        "20261104120000", "2026-11-04T12:00:00Z")
 
+        def available_sessions(self) -> int:
+            return 1
+
         def close(self) -> None:
             built["closed"] = True
 

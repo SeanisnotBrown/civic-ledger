@@ -6,3 +6,7 @@
 # in .env, or his OK to run without them at 1 capture / 15 s). Mechanical, not
 # evaluative: it decides whether a request is sent, never what publishes.
 live_capture: false
+
+# The most captures in flight at once. A run uses this or the sessions SPN2 reports free
+# for the account, whichever is lower, and one at a time without keys. Mechanical.
+max_concurrent_captures: 4

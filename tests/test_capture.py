@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import json
 import shutil
+import threading
 from pathlib import Path
 
 import httpx
@@ -136,6 +137,9 @@ def test_opt_in_on_builds_the_live_client(tmp_path, monkeypatch, capsys) -> None
         def __init__(self, **kwargs) -> None:
             built.update(kwargs)
 
+        def available_sessions(self) -> int:
+            return 1
+
         def capture(self, url):
             return archive_org.Capture(url, f"https://web.archive.org/web/1/{url}",
                                        "20261104120000", "2026-11-04T12:00:00Z")
@@ -159,6 +163,9 @@ def test_the_command_line_opts_in_for_one_run(tmp_path, monkeypatch) -> None:
 
         def __init__(self, **kwargs) -> None:
             built.update(kwargs)
+
+        def available_sessions(self) -> int:
+            return 1
 
         def capture(self, url):
             return archive_org.Capture(url, f"https://web.archive.org/web/1/{url}",
@@ -400,3 +407,125 @@ def test_archive_org_going_down_on_a_recheck_stops_and_keeps_the_line(tmp_path,
     _failed_check(data_dir, GOOD)
     assert _go(["--retry-failed"], client=_down(99)) == capture.EXIT_UNREACHABLE
     assert len(_lines(data_dir)) == 1
+
+
+# --- several captures at once --------------------------------------------------------------
+
+
+class Stub:
+    """An SPN client that records its calls; `act(url)` runs inside each capture."""
+
+    def __init__(self, act=lambda _url: None) -> None:
+        self.act = act
+        self.lock = threading.Lock()
+        self.calls: list[str] = []
+        self.flying = 0
+        self.peak = 0
+
+    def capture(self, url: str) -> archive_org.Capture:
+        with self.lock:
+            self.calls.append(url)
+            self.flying += 1
+            self.peak = max(self.peak, self.flying)
+        try:
+            self.act(url)
+        finally:
+            with self.lock:
+                self.flying -= 1
+        return archive_org.Capture(url, f"https://web.archive.org/web/20261104120000/{url}",
+                                   "20261104120000", "2026-11-04T12:00:00Z")
+
+
+def _urls(n: int) -> list[str]:
+    return [f"https://example.house.gov/{i}" for i in range(n)]
+
+
+def test_captures_in_flight_reach_the_bound_and_never_pass_it(tmp_path: Path) -> None:
+    together = threading.Barrier(3, timeout=10)
+    first_wave = iter(range(3))
+
+    def act(_url: str) -> None:
+        if next(first_wave, None) is not None:
+            together.wait()
+
+    stub = Stub(act)
+    outcome = capture.capture_all(stub, _urls(20), tmp_path / "c.jsonl", workers=3,
+                                  now=lambda: "t")
+    assert stub.peak == 3
+    assert outcome.captured == 20 and outcome.failed == 0 and outcome.status == "complete"
+    assert len(capture.load_captures(tmp_path / "c.jsonl")) == 20
+
+
+@pytest.mark.parametrize(("error", "status"), [
+    (archive_org.SpnRateLimited("429"), "rate-limited"),
+    (archive_org.SpnUnreachable("down"), "unreachable"),
+])
+def test_a_stop_from_any_worker_stops_them_all(tmp_path: Path, error, status) -> None:
+    urls = _urls(30)
+    released = threading.Event()
+
+    def act(url: str) -> None:
+        if url == urls[0]:
+            raise error
+        assert released.wait(10)
+
+    stub = Stub(act)
+    outcome = capture.capture_all(stub, urls, tmp_path / "c.jsonl", workers=3, now=lambda: "t",
+                                  progress=lambda _line: released.set())
+    assert outcome.status == status
+    assert len(stub.calls) <= 3  # the ones in flight, and nothing after
+    captures = capture.load_captures(tmp_path / "c.jsonl")
+    assert urls[0] not in captures  # a stop never fails the URL
+    assert outcome.captured == len(captures) == len(stub.calls) - 1
+
+
+def test_an_unexpected_error_stops_the_workers_and_surfaces(tmp_path: Path) -> None:
+    def act(_url: str) -> None:
+        raise RuntimeError("a bug")
+
+    stub = Stub(act)
+    with pytest.raises(RuntimeError, match="a bug"):
+        capture.capture_all(stub, _urls(30), tmp_path / "c.jsonl", workers=3, now=lambda: "t")
+    assert len(stub.calls) <= 3
+
+
+def test_workers_give_the_same_results_as_the_serial_path(tmp_path: Path) -> None:
+    urls = [*_urls(7), BAD, *[f"{u}/x" for u in _urls(5)]]
+    results = {}
+    for workers in (1, 4):
+        path = tmp_path / f"{workers}.jsonl"
+        spn = archive_org.SpnClient(client=_fake(), poll_interval_s=0, sleep=lambda _s: None)
+        outcome = capture.capture_all(spn, urls, path, workers=workers, now=lambda: "t")
+        results[workers] = (outcome, capture.load_captures(path))
+    assert results[1] == results[4]
+    assert results[1][0].failed == 1 and results[1][0].captured == len(urls) - 1
+
+
+def test_a_limit_holds_with_workers(tmp_path: Path) -> None:
+    stub = Stub()
+    outcome = capture.capture_all(stub, _urls(10), tmp_path / "c.jsonl", limit=4, workers=3,
+                                  now=lambda: "t")
+    assert outcome.status == "limit" and sorted(stub.calls) == sorted(_urls(4))
+
+
+@pytest.mark.parametrize(("config", "free", "expected"), [
+    (None, 9, capture.DEFAULT_MAX_CONCURRENT),  # no file: the default
+    ({"max_concurrent_captures": 4}, 3, 3),     # SPN2 has fewer free
+    ({"max_concurrent_captures": 2}, 3, 2),     # the config is lower
+    ({"max_concurrent_captures": 4}, 0, 1),     # never fewer than one
+])
+def test_the_bound_is_the_lower_of_the_config_and_the_free_sessions(tmp_path, config, free,
+                                                                    expected) -> None:
+    class Sessions:
+        def available_sessions(self) -> int:
+            return free
+
+    if config is not None:
+        (tmp_path / "config").mkdir()
+        (tmp_path / "config" / "archive.yaml").write_text(yaml.safe_dump(config),
+                                                          encoding="utf-8")
+    assert capture.capture_workers(Sessions(), tmp_path) == expected
+
+
+def test_the_shipped_bound_is_four() -> None:
+    assert capture._config(Path(ai.repo_root()) / "data")["max_concurrent_captures"] == 4

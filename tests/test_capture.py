@@ -529,3 +529,62 @@ def test_the_bound_is_the_lower_of_the_config_and_the_free_sessions(tmp_path, co
 
 def test_the_shipped_bound_is_four() -> None:
     assert capture._config(Path(ai.repo_root()) / "data")["max_concurrent_captures"] == 4
+
+
+# --- a failed line for a save that timed out -----------------------------------------------
+
+
+def _timed_out(data_dir: Path, url: str) -> None:
+    capture._append(capture.ledger_path(data_dir), {
+        "url": url, "status": "failed", "ts": "2026-11-05T18:11:02+00:00",
+        "error": "SPN2 capture timed out after 180s"})
+
+
+def _cdx(rows: list[list[str]] | int) -> tuple[httpx.Client, list[httpx.Request]]:
+    """`_handler` with CDX answering `rows`, or that status when it is a number."""
+    calls: list[httpx.Request] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        calls.append(req)
+        if req.url.path == "/cdx/search/cdx":
+            if isinstance(rows, int):
+                return httpx.Response(rows)
+            return httpx.Response(200, json=rows)
+        return _handler(req)
+
+    return httpx.Client(transport=httpx.MockTransport(handler)), calls
+
+
+def test_a_retry_recovers_a_timed_out_save_from_cdx_without_a_new_save(tmp_path,
+                                                                       monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _timed_out(data_dir, GOOD)
+    landed = "20261105181104"
+    client, calls = _cdx([["timestamp", "statuscode"], [landed, "200"]])
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_OK
+    assert not [req for req in calls if req.method == "POST"]
+    # The search starts before the save: 18:11:02 less the 180 s deadline and the slack.
+    assert [req.url.params["from"] for req in calls if "cdx" in req.url.path] == [
+        "20261105180702"]
+    entry = capture.load_captures(capture.ledger_path(data_dir))[GOOD]
+    assert entry["status"] == "captured" and entry["timestamp"] == landed
+
+
+def test_a_retry_saves_again_when_cdx_has_nothing_from_the_timed_out_save(tmp_path,
+                                                                          monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _timed_out(data_dir, GOOD)
+    client, calls = _cdx([])
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_OK
+    assert len([req for req in calls if req.method == "POST"]) == 1
+    entry = capture.load_captures(capture.ledger_path(data_dir))[GOOD]
+    assert entry["status"] == "captured" and entry["timestamp"] == "20261104120000"
+
+
+def test_a_429_from_cdx_on_a_recovery_stops_the_run(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _timed_out(data_dir, GOOD)
+    client, calls = _cdx(429)
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_RATE_LIMITED
+    assert not [req for req in calls if req.method == "POST"]
+    assert len(_lines(data_dir)) == 1

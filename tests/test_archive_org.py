@@ -355,3 +355,85 @@ def test_the_session_limit_stops_rather_than_fails_the_url() -> None:
 
     with pytest.raises(SpnRateLimited):
         _spn(handler).capture(URL)
+
+
+# --- a save that outlives the poll deadline ------------------------------------------------
+
+
+def _pending(cdx) -> tuple[SpnClient, list[httpx.Request]]:
+    """SPN2 accepts the save and never finishes the job inside the deadline."""
+    calls: list[httpx.Request] = []
+    ticks = iter(range(0, 100000, 400))
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        calls.append(req)
+        if req.method == "POST":
+            return httpx.Response(200, json={"job_id": "J"})
+        if req.method == "HEAD":
+            return httpx.Response(200)
+        if req.url.path == "/cdx/search/cdx":
+            return cdx(req)
+        return httpx.Response(200, json={"status": "pending"})
+
+    archive_org._last_unauth_capture_at = None
+    spn = SpnClient(client=_client(handler), poll_interval_s=0, sleep=lambda _s: None,
+                    monotonic=lambda: float(next(ticks)))
+    return spn, calls
+
+
+def test_a_timeout_with_a_cdx_snapshot_from_that_save_is_a_capture() -> None:
+    later = "20991231000000"
+    seen = {}
+
+    def cdx(req: httpx.Request) -> httpx.Response:
+        seen.update(req.url.params)
+        return httpx.Response(200, json=[["timestamp", "statuscode"], [later, "200"]])
+
+    spn, calls = _pending(cdx)
+    cap = spn.capture(URL)
+    assert cap.timestamp == later
+    assert sum(req.method == "POST" for req in calls) == 1  # no second save
+    assert seen["url"] == URL and "to" not in seen and len(seen["from"]) == 14
+
+
+@pytest.mark.parametrize("rows", [
+    [],
+    [["timestamp", "statuscode"]],
+    [["timestamp", "statuscode"], ["20200101000000", "200"]],  # older than the save
+    [["timestamp", "statuscode"], ["20991231000000", "503"]],  # not a good snapshot
+])
+def test_a_timeout_with_no_snapshot_from_that_save_fails(rows) -> None:
+    spn, _calls = _pending(lambda _req: httpx.Response(200, json=rows))
+    with pytest.raises(SpnError, match="timed out after"):
+        spn.capture(URL)
+
+
+def test_saves_ask_spn2_to_skip_the_first_archive_check() -> None:
+    bodies: list[dict[str, str]] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            bodies.append(dict(httpx.QueryParams(req.content.decode())))
+            return httpx.Response(200, json={"job_id": "J"})
+        if req.method == "GET":
+            return httpx.Response(200, json={"status": "success", "timestamp": STAMP})
+        return httpx.Response(200)
+
+    _spn(handler).capture(URL)
+    assert bodies == [{"url": URL, "skip_first_archive": "1"}]
+
+
+def test_the_poll_deadline_is_six_minutes() -> None:
+    assert SpnClient(client=_client(lambda _req: httpx.Response(200)))._timeout_s == 360.0
+
+
+def test_recover_finds_the_snapshot_and_sends_no_save() -> None:
+    spn, calls = _pending(lambda _req: httpx.Response(200, json=LISTED))
+    assert spn.recover(URL, "20261105000000").timestamp == STAMP
+    assert not [req for req in calls if req.method == "POST"]
+
+
+def test_recover_with_nothing_listed_is_an_error() -> None:
+    spn, _calls = _pending(lambda _req: httpx.Response(200, json=[]))
+    with pytest.raises(SpnError, match="no snapshot since"):
+        spn.recover(URL, "20261105000000")

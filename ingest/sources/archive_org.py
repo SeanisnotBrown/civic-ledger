@@ -8,10 +8,12 @@ Why it does NOT go through cache.py: a capture is a mutating POST (it creates a 
 Wayback snapshot), not an idempotent GET, so it must never be cached or replayed.
 
 The flow (verified against archive.org's SPN2 public API):
-  1. POST https://web.archive.org/save  (Accept: application/json; body `url=`) →
-     {"url", "job_id"};
+  1. POST https://web.archive.org/save  (Accept: application/json; body `url=` and
+     `skip_first_archive=1`, which SPN2 documents as faster) → {"url", "job_id"};
   2. poll GET https://web.archive.org/save/status/{job_id} until status is
-     "success" (→ timestamp) or "error" (→ status_ext/message), or we time out;
+     "success" (→ timestamp) or "error" (→ status_ext/message), or we time out, when
+     a snapshot CDX lists from after the save still counts (jobs ran past 180 s on
+     2026-11-05 and landed anyway);
   3. build archive_url = https://web.archive.org/web/{timestamp}/{original_url} and
      HEAD-verify it actually resolves before returning — VERIFIED means the snapshot
      exists, not merely that the job reported success (value #1). Playback can 503 for
@@ -39,6 +41,7 @@ import threading
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
+from datetime import UTC, datetime
 from typing import Any
 
 import httpx
@@ -115,7 +118,7 @@ class SpnClient:
         *,
         client: httpx.Client | None = None,
         poll_interval_s: float = 6.0,
-        timeout_s: float = 180.0,
+        timeout_s: float = 360.0,
         sleep=time.sleep,
         monotonic=time.monotonic,
         on_response: Callable[[str, str, httpx.Response], None] | None = None,
@@ -201,7 +204,7 @@ class SpnClient:
     def _submit(self, url: str) -> str:
         self._rate_limit_unauth()
         resp = self._seen("save", url, self._send(lambda: self._client.post(
-            SAVE_URL, data={"url": url}, headers=self._headers())))
+            SAVE_URL, data={"url": url, "skip_first_archive": "1"}, headers=self._headers())))
         if resp.status_code == 429:
             raise SpnRateLimited("SPN2 rate limited (429) — try again later")
         if resp.status_code >= 400:
@@ -214,9 +217,10 @@ class SpnClient:
             raise SpnError("SPN2 save response carried no job_id")
         return job_id
 
-    def _poll(self, job_id: str, url: str = "") -> str:
+    def _poll(self, job_id: str, url: str = "", since: str = "") -> str:
         """Poll the status endpoint until success (returns the timestamp), error, or
-        timeout. Deadline is wall-clock via the injected monotonic clock."""
+        timeout, when a snapshot CDX lists from `since` on is the answer. Deadline is
+        wall-clock via the injected monotonic clock."""
         deadline = self._monotonic() + self._timeout_s
         while True:
             resp = self._seen("status", url, self._send(lambda: self._client.get(
@@ -240,23 +244,36 @@ class SpnClient:
                 raise SpnError(f"SPN2 capture failed: {ext}")
             # status == "pending" (or an unknown transient state) → keep polling.
             if self._monotonic() >= deadline:
+                found = self._snapshot_since(since, url)
+                if found is not None:
+                    return found
                 raise SpnError(f"SPN2 capture timed out after {self._timeout_s:.0f}s")
             self._sleep(self._poll_interval_s)
 
-    def _indexed(self, timestamp: str, url: str) -> bool:
-        """True when CDX lists a 2xx/3xx snapshot of `url` at exactly `timestamp`."""
+    def _listed(self, url: str, **window: str) -> list[str]:
+        """The timestamps of the 2xx/3xx snapshots of `url` CDX lists in `window`, oldest
+        first."""
         resp = self._seen("cdx", url, self._send(lambda: self._client.get(
             CDX_URL, headers={"User-Agent": _USER_AGENT},
-            params={"url": url, "from": timestamp, "to": timestamp, "output": "json",
-                    "fl": "timestamp,statuscode"})))
+            params={"url": url, "output": "json", "fl": "timestamp,statuscode", **window})))
         if resp.status_code == 429:
             raise SpnRateLimited("CDX rate limited (429) — try again later")
         try:
             rows = resp.json()
         except ValueError:
-            return False
-        return (resp.status_code < 400 and isinstance(rows, list)
-                and any(row[0] == timestamp and row[1][:1] in ("2", "3") for row in rows[1:]))
+            return []
+        if resp.status_code >= 400 or not isinstance(rows, list):
+            return []
+        return [row[0] for row in rows[1:] if row[1][:1] in ("2", "3")]
+
+    def _indexed(self, timestamp: str, url: str) -> bool:
+        """True when CDX lists a good snapshot of `url` at exactly `timestamp`."""
+        return timestamp in self._listed(url, **{"from": timestamp, "to": timestamp})
+
+    def _snapshot_since(self, since: str, url: str) -> str | None:
+        """The first good snapshot of `url` CDX lists at or after `since`, or None."""
+        found = [t for t in self._listed(url, **{"from": since}) if t >= since]
+        return found[0] if found else None
 
     def _verify(self, archive_url: str, timestamp: str, url: str = "") -> None:
         """HEAD the snapshot URL, then ask CDX. Neither one vouching for it means the
@@ -285,9 +302,18 @@ class SpnClient:
             captured_at=_timestamp_to_iso(timestamp),
         )
 
+    def recover(self, url: str, since: str) -> Capture:
+        """The verified `Capture` for a save that timed out at our end, from the snapshot
+        CDX lists at or after `since`, or `SpnError`. Sends no save."""
+        found = self._snapshot_since(since, url)
+        if found is None:
+            raise SpnError(f"CDX lists no snapshot since {since}")
+        return self.confirm(url, found)
+
     def capture(self, url: str) -> Capture:
         """Run the full capture → poll → verify flow, returning a verified `Capture`
         or raising `SpnError`. The returned archive_url was vouched for at capture time,
         by a HEAD or by the CDX index."""
+        since = datetime.now(UTC).strftime("%Y%m%d%H%M%S")
         job_id = self._submit(url)
-        return self.confirm(url, self._poll(job_id, url))
+        return self.confirm(url, self._poll(job_id, url, since))

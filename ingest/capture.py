@@ -32,7 +32,8 @@ again on the next run (hidden until recaptured, §2 Snapshots); a `failed` one o
 `--retry-failed`, so a page archive.org cannot save is not re-sent every run. That flag
 covers every URL the gate passed; `categorize-run` retries the failed URLs of its own
 selection on every resume. A `failed` line that names a snapshot means SPN2 saved the page
-and only the check failed, so a retry checks that snapshot again before any new save.
+and only the check failed, so a retry checks that snapshot again before any new save. A
+line for a save that timed out asks CDX for a snapshot from that save the same way.
 
 The file names which source URLs passed the triage gate, a model output: like the triage
 ledger it stays under `data/raw/` and never enters the public repository.
@@ -72,7 +73,7 @@ import time
 from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -106,6 +107,10 @@ EXIT_UNREACHABLE = 8
 STOP_EXIT = {"rate-limited": EXIT_RATE_LIMITED, "unreachable": EXIT_UNREACHABLE}
 
 SNAPSHOT_IN_ERROR = re.compile(r"/web/(\d{14})/")
+TIMEOUT_IN_ERROR = re.compile(r"timed out after (\d+)s")
+# A timed-out line is written after the save went out by the deadline and the save's own
+# time on the wire, so the search for its snapshot starts this much further back.
+SAVE_SLACK_S = 60
 
 
 def ledger_path(data_dir: Path) -> Path:
@@ -219,17 +224,27 @@ class Outcome:
     failed: int = 0
 
 
+def _save_time(entry: dict[str, Any], seconds: str) -> str:
+    """When a timed-out line's save went out, as a Wayback timestamp."""
+    sent = datetime.fromisoformat(entry["ts"]) - timedelta(seconds=int(seconds) + SAVE_SLACK_S)
+    return sent.astimezone(UTC).strftime("%Y%m%d%H%M%S")
+
+
 def _attempt(spn: SpnClient, url: str, entry: dict[str, Any] | None) -> Capture:
-    """The capture for `url`: the snapshot its failed line names if that one is there,
+    """The capture for `url`: the snapshot its failed line points at if that one is there,
     else a new save. `entry` is the URL's latest line."""
-    found = SNAPSHOT_IN_ERROR.search((entry or {}).get("error", ""))
-    if found:
-        try:
-            return spn.confirm(url, found.group(1))
-        except (SpnRateLimited, SpnUnreachable):
-            raise
-        except SpnError:
-            pass
+    error = (entry or {}).get("error", "")
+    snapshot = SNAPSHOT_IN_ERROR.search(error)
+    timed_out = TIMEOUT_IN_ERROR.search(error)
+    try:
+        if snapshot:
+            return spn.confirm(url, snapshot.group(1))
+        if timed_out:
+            return spn.recover(url, _save_time(entry or {}, timed_out.group(1)))
+    except (SpnRateLimited, SpnUnreachable):
+        raise
+    except SpnError:
+        pass
     return spn.capture(url)
 
 

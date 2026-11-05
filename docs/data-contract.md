@@ -269,7 +269,7 @@ is owner-supplied, like INC-6 absences).
 | `text` | string | The statement, VERBATIM. There is deliberately no paraphrase field. |
 | `date` / `venue` | string | When and where it was said. |
 | `source_url` | string | The primary source. |
-| `archive_url` | string | Permanent Wayback snapshot; **required** — no verified capture, no save (D43). HEAD-verified at capture time and swept weekly (see archive-status). |
+| `archive_url` | string | Permanent Wayback snapshot; **required** — no verified capture, no save (D43). Verified at capture time (a HEAD, or the CDX index listing that exact snapshot when playback is down) and swept weekly (see archive-status). |
 | `archive_captured_at` | string | ISO-8601 UTC of the snapshot. |
 | `named_measures` | array\<string\> | Measures the statement names, verbatim (bill ids or short titles). |
 | `paired_bill_ids` | array\<string\> | The D9 pairing RESULT: `named_measures` resolved to canonical bill ids (bill-id form passes through; an allowlisted title maps; anything else is unpaired and omitted). Resolved once in Python (`ingest/pairing.py`); the metric layer and site both read this and never re-resolve (D41). Sorted, de-duplicated. |

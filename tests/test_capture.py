@@ -304,3 +304,59 @@ def test_mark_dead_appends_one_line_each(tmp_path: Path) -> None:
     assert capture.load_captures(path) == {"a": {"url": "a", "status": "dead",
                                                  "archive_url": "w/a",
                                                  "ts": "2026-11-04T00:00:00Z"}}
+
+
+# --- a failed line that names a snapshot ---------------------------------------------------
+
+OLD = "20261105163622"
+
+
+def _failed_check(data_dir: Path, url: str) -> None:
+    """The line a 503 on the snapshot check left: SPN2 saved the page at OLD."""
+    capture._append(capture.ledger_path(data_dir), {
+        "url": url, "status": "failed", "ts": "2026-11-05T16:36:45+00:00",
+        "error": f"archive_url did not resolve (HTTP 503): "
+                 f"https://web.archive.org/web/{OLD}/{url}"})
+
+
+def _recording(head_status: int) -> tuple[httpx.Client, list[httpx.Request]]:
+    """`_handler`, except a check of the OLD snapshot answers `head_status`."""
+    calls: list[httpx.Request] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        calls.append(req)
+        if req.method == "HEAD" and OLD in str(req.url):
+            return httpx.Response(head_status)
+        return _handler(req)
+
+    return httpx.Client(transport=httpx.MockTransport(handler)), calls
+
+
+def test_a_retry_marks_a_snapshot_that_now_resolves_without_a_new_save(tmp_path,
+                                                                       monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _failed_check(data_dir, GOOD)
+    client, calls = _recording(200)
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_OK
+    assert not [req for req in calls if req.method == "POST"]
+    entry = capture.load_captures(capture.ledger_path(data_dir))[GOOD]
+    assert entry["status"] == "captured" and entry["timestamp"] == OLD
+
+
+def test_a_retry_saves_again_when_the_named_snapshot_is_gone(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _failed_check(data_dir, GOOD)
+    client, calls = _recording(404)
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_OK
+    assert len([req for req in calls if req.method == "POST"]) == 1
+    entry = capture.load_captures(capture.ledger_path(data_dir))[GOOD]
+    assert entry["status"] == "captured" and entry["timestamp"] == "20261104120000"
+
+
+def test_a_429_on_the_recheck_stops_the_run(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch, {GOOD: True})
+    _failed_check(data_dir, GOOD)
+    client, calls = _recording(429)
+    assert _go(["--retry-failed"], client=client) == capture.EXIT_RATE_LIMITED
+    assert not [req for req in calls if req.method == "POST"]
+    assert len(_lines(data_dir)) == 1

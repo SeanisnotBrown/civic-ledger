@@ -18,7 +18,7 @@ import yaml
 from curation import review
 from ingest import ai, capture, categorize_run, triage_run
 from ingest.sources import archive_org
-from tests.test_capture import _fake
+from tests.test_capture import _fake, _handler
 from tests.test_prefilter import SUBSTANTIVE, _record
 from tests.test_triage_run import REQUEST, FakeClock, _limited
 
@@ -412,6 +412,34 @@ def test_the_live_opt_in_builds_the_real_client(tmp_path, monkeypatch) -> None:
     monkeypatch.setattr(capture, "SpnClient", StandIn)
     assert _paid(Model(), "--live-capture", client=None) == categorize_run.EXIT_OK
     assert built["client"] is None and built["closed"] is True
+
+
+def test_a_resume_retries_only_its_own_failed_captures(tmp_path, monkeypatch) -> None:
+    data_dir = _repo(tmp_path, monkeypatch)
+    site = "https://example.house.gov"
+    mine, snapshot, outside = f"{site}/D000001/1", f"{site}/R000002/1", f"{site}/D000001/0"
+    ledger = capture.ledger_path(data_dir)
+    capture._append(ledger, {"url": mine, "status": "failed", "error": "SPN2 save returned 503"})
+    capture._append(ledger, {"url": outside, "status": "failed",
+                             "error": "SPN2 save returned 503"})
+    capture._append(ledger, {"url": snapshot, "status": "failed", "error": (
+        "archive_url did not resolve (HTTP 503): "
+        f"https://web.archive.org/web/20261105163622/{snapshot}")})
+    saved: list[str] = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        if req.method == "POST":
+            saved.append(dict(httpx.QueryParams(req.content.decode()))["url"])
+        return _handler(req)
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    assert _paid(Model(), "--per-member", "1", client=client) == categorize_run.EXIT_OK
+    assert saved == [mine]  # the snapshot needed no save; the outsider was never asked
+    captures = capture.load_captures(ledger)
+    assert captures[mine]["status"] == "captured"
+    assert captures[snapshot]["timestamp"] == "20261105163622"
+    assert captures[outside]["status"] == "failed"
+    assert len(_queue(data_dir)) == 2
 
 
 # --- the categorizer's failures ------------------------------------------------------------

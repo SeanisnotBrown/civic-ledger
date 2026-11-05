@@ -14,7 +14,9 @@ The flow (verified against archive.org's SPN2 public API):
      "success" (→ timestamp) or "error" (→ status_ext/message), or we time out;
   3. build archive_url = https://web.archive.org/web/{timestamp}/{original_url} and
      HEAD-verify it actually resolves before returning — VERIFIED means the snapshot
-     exists, not merely that the job reported success (value #1).
+     exists, not merely that the job reported success (value #1). Playback can 503 for
+     a snapshot that is there (seen 2026-11-05), so when the HEAD fails the CDX index
+     is asked for that exact timestamp, and a 5xx is checked again over a bounded window.
 
 Auth (H6): with IA S3 keys (IA_S3_ACCESS / IA_S3_SECRET) we send
 `Authorization: LOW {access}:{secret}` — higher rate limits, per archive.org
@@ -40,6 +42,7 @@ from ingest import env
 SAVE_URL = "https://web.archive.org/save"
 STATUS_URL = "https://web.archive.org/save/status"
 WAYBACK_PREFIX = "https://web.archive.org/web"
+CDX_URL = "https://web.archive.org/cdx/search/cdx"
 
 _USER_AGENT = "civic-ledger/0.0 (+https://github.com/SeanisnotBrown/civic-ledger)"
 _HTTP_TIMEOUT = httpx.Timeout(60.0, connect=15.0)
@@ -48,6 +51,9 @@ _HTTP_TIMEOUT = httpx.Timeout(60.0, connect=15.0)
 UNAUTH_MIN_INTERVAL_S = 15.0
 _last_unauth_capture_at: float | None = None
 
+# Seconds to wait before each new check of a snapshot playback answered with a 5xx.
+VERIFY_BACKOFF_S = (10.0, 30.0, 60.0, 120.0)
+
 
 class SpnError(Exception):
     """A capture failed, timed out, or produced an archive_url that does not resolve.
@@ -55,7 +61,8 @@ class SpnError(Exception):
 
 
 class SpnRateLimited(SpnError):
-    """SPN2 answered 429. Not a failed capture: the URL is asked again on a later run."""
+    """archive.org answered 429. Not a failed capture: the URL is asked again on a later
+    run."""
 
 
 @dataclass(frozen=True)
@@ -177,27 +184,62 @@ class SpnClient:
                 raise SpnError(f"SPN2 capture timed out after {self._timeout_s:.0f}s")
             self._sleep(self._poll_interval_s)
 
-    def _verify(self, archive_url: str, url: str = "") -> None:
-        """HEAD the snapshot URL; a non-2xx/3xx means the capture did not actually
-        land, so we refuse to treat it as verified (no verified capture, no save)."""
+    def _indexed(self, timestamp: str, url: str) -> bool:
+        """True when CDX lists a 2xx/3xx snapshot of `url` at exactly `timestamp`. CDX
+        being unreachable proves nothing, so it reads as not listed."""
         try:
-            resp = self._seen("verify", url, self._client.head(archive_url))
-        except httpx.HTTPError as exc:
-            raise SpnError(f"could not verify {archive_url}: {exc}") from exc
-        if resp.status_code >= 400:
-            raise SpnError(f"archive_url did not resolve (HTTP {resp.status_code}): {archive_url}")
+            resp = self._seen("cdx", url, self._client.get(
+                CDX_URL, headers={"User-Agent": _USER_AGENT},
+                params={"url": url, "from": timestamp, "to": timestamp, "output": "json",
+                        "fl": "timestamp,statuscode"}))
+        except httpx.HTTPError:
+            return False
+        if resp.status_code == 429:
+            raise SpnRateLimited("CDX rate limited (429) — try again later")
+        try:
+            rows = resp.json()
+        except ValueError:
+            return False
+        return (resp.status_code < 400 and isinstance(rows, list)
+                and any(row[0] == timestamp and row[1][:1] in ("2", "3") for row in rows[1:]))
 
-    def capture(self, url: str) -> Capture:
-        """Run the full capture → poll → verify flow, returning a verified `Capture`
-        or raising `SpnError`. The returned archive_url is guaranteed to have
-        resolved (HEAD-checked) at capture time."""
-        job_id = self._submit(url)
-        timestamp = self._poll(job_id, url)
+    def _verify(self, archive_url: str, timestamp: str, url: str = "") -> None:
+        """HEAD the snapshot URL, then ask CDX. Neither one vouching for it means the
+        capture did not land, so we refuse to treat it as verified (no verified capture,
+        no save). Only a 5xx or a dropped connection is worth asking about again."""
+        for wait in (*VERIFY_BACKOFF_S, None):
+            try:
+                resp = self._seen("verify", url, self._client.head(archive_url))
+            except httpx.HTTPError as exc:
+                problem, again = f"could not verify {archive_url}: {exc}", True
+            else:
+                if resp.status_code == 429:
+                    raise SpnRateLimited("snapshot check rate limited (429) — try again later")
+                if resp.status_code < 400:
+                    return
+                problem = f"archive_url did not resolve (HTTP {resp.status_code}): {archive_url}"
+                again = resp.status_code >= 500
+            if self._indexed(timestamp, url):
+                return
+            if wait is None or not again:
+                raise SpnError(problem)
+            self._sleep(wait)
+
+    def confirm(self, url: str, timestamp: str) -> Capture:
+        """The verified `Capture` for a snapshot SPN2 already made, or `SpnError`. Sends
+        no save."""
         archive_url = f"{WAYBACK_PREFIX}/{timestamp}/{url}"
-        self._verify(archive_url, url)
+        self._verify(archive_url, timestamp, url)
         return Capture(
             original_url=url,
             archive_url=archive_url,
             timestamp=timestamp,
             captured_at=_timestamp_to_iso(timestamp),
         )
+
+    def capture(self, url: str) -> Capture:
+        """Run the full capture → poll → verify flow, returning a verified `Capture`
+        or raising `SpnError`. The returned archive_url was vouched for at capture time,
+        by a HEAD or by the CDX index."""
+        job_id = self._submit(url)
+        return self.confirm(url, self._poll(job_id, url))

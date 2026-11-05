@@ -20,7 +20,7 @@ the client authenticates; without them it captures at most one page every 15 sec
 `data/raw/archive/captures.jsonl` (gitignored), one JSON line per event, append-only, the
 latest line for a URL wins:
 
-  * `captured` — a verified capture: the snapshot HEAD-resolved when it was made;
+  * `captured` — a verified capture: the snapshot HEAD-resolved or CDX listed it;
   * `failed`   — SPN2 reported an error, timed out, or the snapshot did not resolve;
   * `dead`     — a capture that later stopped resolving (`uv run archive-links` writes it).
 
@@ -29,7 +29,10 @@ what `curation/statements.py::build_statement` checks the capture against. Only 
 whose latest line is `captured` has a live capture; the review export reads this file and
 exports nothing else. A `failed` or `dead` URL is never exported. A `dead` one is asked
 again on the next run (hidden until recaptured, §2 Snapshots); a `failed` one only with
-`--retry-failed`, so a page archive.org cannot save is not re-sent every run.
+`--retry-failed`, so a page archive.org cannot save is not re-sent every run. That flag
+covers every URL the gate passed; `categorize-run` retries the failed URLs of its own
+selection on every resume. A `failed` line that names a snapshot means SPN2 saved the page
+and only the check failed, so a retry checks that snapshot again before any new save.
 
 The file names which source URLs passed the triage gate, a model output: like the triage
 ledger it stays under `data/raw/` and never enters the public repository.
@@ -37,7 +40,7 @@ ledger it stays under `data/raw/` and never enters the public repository.
 ## Raw responses first (rule 4)
 
 A capture is a mutating POST, so it never goes through `cache.py` and is never replayed.
-Every SPN2 response (save, status, verify) is appended to
+Every SPN2 response (save, status, verify, cdx) is appended to
 `data/raw/archive/responses/<sha256(url)[:16]>.jsonl` BEFORE the client parses it, and a
 re-run skips every URL already captured, so a re-run sends nothing it already has.
 
@@ -58,6 +61,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import time
 from collections.abc import Callable
 from dataclasses import dataclass
@@ -83,6 +87,8 @@ DEAD = "dead"
 EXIT_OK = 0
 EXIT_RATE_LIMITED = 2
 EXIT_REFUSED = 5
+
+SNAPSHOT_IN_ERROR = re.compile(r"/web/(\d{14})/")
 
 
 def ledger_path(data_dir: Path) -> Path:
@@ -186,17 +192,34 @@ class Outcome:
     failed: int = 0
 
 
+def _attempt(spn: SpnClient, url: str, entry: dict[str, Any] | None) -> Capture:
+    """The capture for `url`: the snapshot its failed line names if that one is there,
+    else a new save. `entry` is the URL's latest line."""
+    found = SNAPSHOT_IN_ERROR.search((entry or {}).get("error", ""))
+    if found:
+        try:
+            return spn.confirm(url, found.group(1))
+        except SpnRateLimited:
+            raise
+        except SpnError:
+            pass
+    return spn.capture(url)
+
+
 def capture_all(spn: SpnClient, urls: list[str], path: Path, *, limit: int = 0,
+                known: dict[str, dict[str, Any]] | None = None,
                 now: Callable[[], str] = _now,
                 progress: Callable[[str], None] = print) -> Outcome:
-    """Capture each URL in turn, recording every result as it arrives."""
+    """Capture each URL in turn, recording every result as it arrives. `known` is the
+    capture file as loaded, so a failed URL's snapshot is checked before a new save."""
+    known = known or {}
     outcome = Outcome()
     for sent, url in enumerate(urls):
         if limit and sent >= limit:
             outcome.status = "limit"
             break
         try:
-            cap = spn.capture(url)
+            cap = _attempt(spn, url, known.get(url))
         except SpnRateLimited as exc:
             progress(f"  stopped: {exc}; a re-run resumes")
             outcome.status = "rate-limited"
@@ -257,7 +280,7 @@ def run(argv: list[str] | None = None, *, client: httpx.Client | None = None,
     print("  authenticated (IA S3 keys)" if spn.authenticated
           else "  unauthenticated: at most 1 capture every 15 s")
     try:
-        outcome = capture_all(spn, todo, path, limit=args.limit)
+        outcome = capture_all(spn, todo, path, limit=args.limit, known=captures)
     finally:
         spn.close()
     print(f"  {outcome.status}: {outcome.captured} captured, {outcome.failed} failed")

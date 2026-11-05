@@ -55,7 +55,8 @@ Exit 0 complete (or counted only); 2 api-error or an SPN2 429; 3 cap; 4 stopped
 (`data/raw/triage.stop`); 5 live capture not opted in; 6 estimate over the cap; 7 a
 fairness flag awaiting review. Every answer already received is saved, and a re-run
 resumes: the ledger, the capture file and the queue are all skipped, and the AI cache
-serves anything asked before.
+serves anything asked before. The exception is a failed capture among this run's own
+statements, which every resume asks for again.
 
     uv run ingest categorize-run                                    # counts only, no call
     uv run ingest categorize-run --per-member 15                    # the same at 15
@@ -581,12 +582,13 @@ def _spend(args: argparse.Namespace, session: ai.Run, data_dir: Path,
     chosen = select(order, verdicts, per_member)
     path = capture.ledger_path(data_dir)
     urls = list(dict.fromkeys(s["url"] for s in chosen if s.get("url")))
-    wanted = capture.to_capture(urls, capture.load_captures(path))
+    known = capture.load_captures(path)
+    wanted = capture.to_capture(urls, known, retry_failed=True)
     print(f"  capture: {len(urls)} source URL(s), {len(wanted)} to send")
     spn = capture.SpnClient(client=client, sleep=sleep,
                             on_response=capture.response_writer(data_dir))
     try:
-        archived = capture.capture_all(spn, wanted, path)
+        archived = capture.capture_all(spn, wanted, path, known=known)
     finally:
         spn.close()
     print(f"  capture {archived.status}: {archived.captured} captured, "

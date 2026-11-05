@@ -1,6 +1,100 @@
 {
-  "count": 22,
+  "count": 26,
   "events": [
+    {
+      "action_code": "E30000",
+      "bill_id": "hr1744-119",
+      "committees": null,
+      "date": "2026-11-03",
+      "has_page": false,
+      "id": "hr1744-119--2026-11-03--3c3c21c863b7",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
+      "subjects": [
+        "Human rights",
+        "International organizations and cooperation",
+        "Religion",
+        "U.S. Commission on International Religious Freedom"
+      ],
+      "text": "Signed by President.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr1744-119",
+      "committees": null,
+      "date": "2026-11-03",
+      "has_page": false,
+      "id": "hr1744-119--2026-11-03--f3ff54030663",
+      "policy_area": "International Affairs",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
+      "subjects": [
+        "Human rights",
+        "International organizations and cooperation",
+        "Religion",
+        "U.S. Commission on International Religious Freedom"
+      ],
+      "text": "Signed by President.",
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "bill_id": "hr8205-119",
+      "committees": null,
+      "date": "2026-11-03",
+      "has_page": false,
+      "id": "hr8205-119--2026-11-03--3c3c21c863b7",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
+      "subjects": [
+        "Department of Health and Human Services",
+        "Drug therapy",
+        "Food and Drug Administration (FDA)",
+        "Government information and archives",
+        "Health programs administration and funding",
+        "Internet, web applications, social media",
+        "Medical research",
+        "National Institutes of Health (NIH)",
+        "Neurological disorders",
+        "Public-private cooperation",
+        "Research administration and funding"
+      ],
+      "text": "Signed by President.",
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "bill_id": "hr8205-119",
+      "committees": null,
+      "date": "2026-11-03",
+      "has_page": false,
+      "id": "hr8205-119--2026-11-03--f3ff54030663",
+      "policy_area": "Health",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
+      "subjects": [
+        "Department of Health and Human Services",
+        "Drug therapy",
+        "Food and Drug Administration (FDA)",
+        "Government information and archives",
+        "Health programs administration and funding",
+        "Internet, web applications, social media",
+        "Medical research",
+        "National Institutes of Health (NIH)",
+        "Neurological disorders",
+        "Public-private cooperation",
+        "Research administration and funding"
+      ],
+      "text": "Signed by President.",
+      "type": "BecameLaw"
+    },
     {
       "action_code": "1000",
       "bill_id": "hjres221-119",

@@ -391,7 +391,9 @@ They are listed, not changed; the owner reconciles them.
 
 **Review queue and log (P3 task 5) — NOT published.** `data/raw/review/queue.jsonl` (the
 categorized statements awaiting review) and `data/raw/review/log.jsonl` (the owner's
-blind labels and approve / edit / reject decisions, with per-field agreement marks) are
+blind labels and approve / edit / reject decisions, with per-field agreement marks; a
+reject also records its `reason`, one of `takes no position`, `wrong member`, `broken
+text`, `other` (owner ruling 6), and a `note`, required for `other`) are
 gitignored here and, per the owner's ruling of 2026-10-23, backed up off-machine to a
 separate PRIVATE repository (the push step is a stub until that repository exists); it is
 never committed to this public repository. The log holds the owner's labels and the AI cache's `input_hash`, never the

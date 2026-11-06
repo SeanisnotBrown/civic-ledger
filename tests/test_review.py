@@ -48,6 +48,7 @@ OWNER_SAME = {"takes_policy_position": "yes", "topic": "Health", "stance": "for"
               "proposition": "insulin", "specificity": "1", "priority_signal": "yes"}
 OWNER_DIFF = {"takes_policy_position": "yes", "topic": "Taxation", "stance": "against",
               "specificity": "2", "priority_signal": "no"}
+REJECT = {"reason": "takes no position"}
 
 
 # --- blind sampling ------------------------------------------------------------------
@@ -67,7 +68,7 @@ def test_next_item_is_one_at_a_time_in_queue_order(tmp_path: Path) -> None:
     assert nxt.item.id == ids[0] and nxt.stage == "review" and nxt.remaining == 3
     review.record_decision(ids[0], "approve", data_dir=tmp_path)
     assert review.next_item(tmp_path).item.id == ids[1]
-    review.record_decision(ids[1], "reject", data_dir=tmp_path)
+    review.record_decision(ids[1], "reject", REJECT, data_dir=tmp_path)
     review.record_decision(ids[2], "approve", data_dir=tmp_path)
     assert review.next_item(tmp_path) is None
 
@@ -122,9 +123,54 @@ def test_approve_adopts_the_suggestion_and_reject_carries_no_label(tmp_path: Pat
     _queue(tmp_path, ids)
     approve = review.record_decision(ids[0], "approve", data_dir=tmp_path)
     assert approve["label"]["topic"] == "Health" and all(approve["agree"].values())
-    reject = review.record_decision(ids[1], "reject", data_dir=tmp_path)
+    reject = review.record_decision(ids[1], "reject", REJECT, data_dir=tmp_path)
     assert "label" not in reject and "agree" not in reject
+    assert reject["reason"] == "takes no position" and reject["note"] is None
+    assert "reason" not in approve and "note" not in approve
     assert [e["item_id"] for e in review.approved(tmp_path)] == [ids[0]]
+
+
+def test_the_reject_reasons_are_the_four_the_owner_ruled() -> None:
+    assert review.REJECT_REASONS == ("takes no position", "wrong member", "broken text",
+                                     "other")
+
+
+@pytest.mark.parametrize("reason", review.REJECT_REASONS)
+def test_each_ruled_reason_is_logged_with_its_note(tmp_path: Path, reason) -> None:
+    (item_id,) = _ids(False, 1)
+    _queue(tmp_path, [item_id])
+    review.record_decision(item_id, "reject", {"reason": reason, "note": " why "},
+                           data_dir=tmp_path)
+    (line,) = review.load_log(tmp_path)
+    assert line["action"] == "reject"
+    assert line["reason"] == reason and line["note"] == "why"
+
+
+@pytest.mark.parametrize("form, match", [
+    (None, "needs a reason"),
+    ({}, "needs a reason"),
+    ({"reason": ""}, "needs a reason"),
+    ({"reason": "bad vibes"}, "needs a reason"),
+    ({"reason": "Other", "note": "wrong case"}, "needs a reason"),
+    ({"reason": "other"}, "needs a note"),
+    ({"reason": "other", "note": "   "}, "needs a note"),
+])
+def test_a_reject_without_a_valid_reason_writes_nothing(tmp_path: Path, form, match) -> None:
+    (item_id,) = _ids(False, 1)
+    _queue(tmp_path, [item_id])
+    with pytest.raises(review.ReviewError, match=match):
+        review.record_decision(item_id, "reject", form, data_dir=tmp_path)
+    assert review.load_log(tmp_path) == []
+    assert review.next_item(tmp_path).item.id == item_id  # still waiting
+
+
+def test_a_blind_item_cannot_be_rejected_before_its_label(tmp_path: Path) -> None:
+    (item_id,) = _ids(True, 1)
+    _queue(tmp_path, [item_id])
+    with pytest.raises(review.ReviewError, match="enter your own label"):
+        review.record_decision(item_id, "reject", REJECT, data_dir=tmp_path)
+    review.record_blind_label(item_id, OWNER_SAME, tmp_path)
+    assert review.record_decision(item_id, "reject", REJECT, data_dir=tmp_path)["blind"]
 
 
 @pytest.mark.parametrize("form, match", [
@@ -153,7 +199,7 @@ def test_bad_actions_and_unknown_items_are_refused(tmp_path: Path) -> None:
         review.record_decision("nope", "approve", data_dir=tmp_path)
     review.record_decision(ids[0], "approve", data_dir=tmp_path)
     with pytest.raises(review.ReviewError, match="already decided"):
-        review.record_decision(ids[0], "reject", data_dir=tmp_path)
+        review.record_decision(ids[0], "reject", REJECT, data_dir=tmp_path)
 
 
 # --- running precision -----------------------------------------------------------------
@@ -374,7 +420,7 @@ def test_export_writes_deterministic_sorted_json_with_source_url(tmp_path: Path,
     review.record_decision(approve_id, "approve", data_dir=tmp_path)
     review.record_decision(edit_id, "edit", dict(OWNER_DIFF, stance="mixed"),
                            data_dir=tmp_path)
-    review.record_decision(reject_id, "reject", data_dir=tmp_path)
+    review.record_decision(reject_id, "reject", REJECT, data_dir=tmp_path)
     first = review.export_approved(tmp_path, thresholds_dir=open_gate)
     assert first.skipped == () and len(first.written) == 2  # the rejected one never goes
     texts = [p.read_text(encoding="utf-8") for p in first.written]
@@ -475,6 +521,52 @@ def test_the_review_tab_shows_a_non_blind_suggestion_and_records_a_decision(
                                                 action="edit"), follow_redirects=True)
     assert "Nothing waiting for review." in r.get_data(as_text=True)
     assert not (tmp_path / "statements").exists()
+
+
+def test_reject_has_its_own_form_that_asks_why(tmp_path: Path) -> None:
+    ids = _ids(False, 1)
+    _queue(tmp_path, ids)
+    html = create_app(tmp_path).test_client().get("/review").get_data(as_text=True)
+    main, reject = re.findall(r"<form.*?</form>", html, re.S)
+    assert 'value="approve"' in main and 'value="edit"' in main
+    assert 'value="reject"' not in main and 'name="reason"' not in main
+    assert 'value="reject"' in reject and 'name="note"' in reject
+    assert 'name="csrf"' in reject and f'name="item_id" value="{ids[0]}"' in reject
+    assert re.findall(r"<option>(.*?)</option>", reject) == list(review.REJECT_REASONS)
+    assert '<option value="">' in reject  # no reason is preselected
+
+
+def test_a_blind_item_shows_no_reject_form_until_it_is_labeled(tmp_path: Path) -> None:
+    (item_id,) = _ids(True, 1)
+    _queue(tmp_path, [item_id])
+    html = create_app(tmp_path).test_client().get("/review").get_data(as_text=True)
+    assert 'name="reason"' not in html
+
+
+def test_the_review_tab_records_a_reject_and_its_reason(tmp_path: Path) -> None:
+    ids = _ids(False, 1)
+    _queue(tmp_path, ids)
+    client = create_app(tmp_path).test_client()
+    r = client.post("/review/decide", data={"csrf": _csrf(client), "item_id": ids[0],
+                                            "action": "reject", "reason": "other",
+                                            "note": "a staff bio"}, follow_redirects=True)
+    assert "Recorded: reject." in r.get_data(as_text=True)
+    (line,) = review.load_log(tmp_path)
+    assert (line["reason"], line["note"]) == ("other", "a staff bio")
+
+
+@pytest.mark.parametrize("fields, shown", [
+    ({}, "Not saved: a reject needs a reason"),
+    ({"reason": "other", "note": ""}, "Not saved: a reject for reason other needs a note"),
+])
+def test_a_refused_reject_is_shown_and_not_logged(tmp_path: Path, fields, shown) -> None:
+    ids = _ids(False, 1)
+    _queue(tmp_path, ids)
+    client = create_app(tmp_path).test_client()
+    r = client.post("/review/decide", data=dict(fields, csrf=_csrf(client), item_id=ids[0],
+                                                action="reject"), follow_redirects=True)
+    assert shown in r.get_data(as_text=True)
+    assert review.load_log(tmp_path) == []
 
 
 def test_review_errors_are_shown_not_raised(tmp_path: Path) -> None:

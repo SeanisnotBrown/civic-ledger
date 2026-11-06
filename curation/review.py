@@ -21,7 +21,8 @@ is revealed, and running precision is computed from those blind labels only.
   * `blind_label` — the owner's label for a blind item, entered before the reveal, with
     the per-field agreement between it and the AI's calls (`ingest.prompt_eval.calls`,
     the same scoring the held-out evaluation uses).
-  * `decision` — approve / edit / reject, with the final label for approve and edit.
+  * `decision` — approve / edit / reject, with the final label for approve and edit, and
+    for a reject its `reason` (`REJECT_REASONS`, owner ruling 6) and `note`.
 
 The log stores the owner's labels and agreement marks, never the model's answer: that stays
 in the AI cache under the `input_hash` the line names (counts, never answers — the rule
@@ -80,6 +81,8 @@ BLIND_SEED = "civic-ledger-review-blind-2026-10-23"
 ACTIONS = ("approve", "edit", "reject")
 SCORED = ("stance", "topic", "priority_signal", "specificity")
 STANCES = ("for", "against", "mixed", "none")
+# Owner ruling 6 (2026-10-23), in the ruling's own words. `other` needs a note.
+REJECT_REASONS = ("takes no position", "wrong member", "broken text", "other")
 
 # Condition 4 of the gate. Flipped 2026-11-04 in the commit that built archive capture for
 # categorized statements (task 3) — never by hand. It says the path EXISTS; whether a
@@ -248,6 +251,18 @@ def clean_label(form: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def clean_reject(form: dict[str, Any]) -> dict[str, Any]:
+    """The owner's reason for a reject from a form, validated. A note is optional, except
+    on `other`, where the reason is the note."""
+    reason = str(form.get("reason", "")).strip()
+    if reason not in REJECT_REASONS:
+        raise ReviewError(f"a reject needs a reason: one of {', '.join(REJECT_REASONS)}")
+    note = str(form.get("note", "")).strip() or None
+    if reason == "other" and note is None:
+        raise ReviewError("a reject for reason other needs a note")
+    return {"reason": reason, "note": note}
+
+
 def agreement(item: Item, label: dict[str, Any]) -> dict[str, bool]:
     """For each field the AI made a call on: does the owner's label agree? The held-out
     evaluation's own scoring, so the running number and the launch number mean the same."""
@@ -285,8 +300,8 @@ def record_blind_label(item_id: str, form: dict[str, Any], data_dir: Path | None
 
 def record_decision(item_id: str, action: str, form: dict[str, Any] | None = None,
                     data_dir: Path | None = None, *, now: str | None = None) -> dict[str, Any]:
-    """Approve (adopt the suggestion), edit (the owner's label) or reject. A blind item
-    cannot be decided until its blind label is on file."""
+    """Approve (adopt the suggestion), edit (the owner's label) or reject (with a reason).
+    A blind item cannot be decided until its blind label is on file."""
     if action not in ACTIONS:
         raise ReviewError(f"action must be one of {', '.join(ACTIONS)}")
     item = _find(item_id, data_dir)
@@ -309,6 +324,8 @@ def record_decision(item_id: str, action: str, form: dict[str, Any] | None = Non
     elif action == "edit":
         line["label"] = clean_label(form or {})
         line["agree"] = agreement(item, line["label"])
+    else:
+        line.update(clean_reject(form or {}))
     _append(data_dir, line)
     return line
 

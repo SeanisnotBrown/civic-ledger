@@ -182,12 +182,30 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10832-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10832",
+      "title": "IRAN Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1085-119",
       "congress": 119,
       "enacted_action": null,
       "introduced_date": "2025-02-06",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1085",
       "title": "CARGO Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10959-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10959",
+      "title": "To amend the Patient Protection and Affordable Care Act to require Exchanges to provide for special enrollment periods related to changes in plan provider networks."
     },
     {
       "became_law": false,
@@ -2351,6 +2369,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9489-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9489",
+      "title": "GRACE for Military Survivors Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9596-119",
       "congress": 119,
       "enacted_action": null,
@@ -2666,7 +2693,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 296,
+    "cosponsored": 299,
     "sponsored": 33
   },
   "member_id": "M001230",

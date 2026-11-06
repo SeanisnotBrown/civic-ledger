@@ -2387,6 +2387,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr3521-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3521",
+      "title": "Clinical Trial Modernization Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr3523-118",
       "congress": 118,
       "enacted_action": null,
@@ -5293,10 +5302,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-07-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -6254,6 +6263,15 @@
       "introduced_date": "2026-04-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1162",
       "title": "Supporting the goals and ideals of Glisten's (formerly GLSEN's) 2026 Day of Silence in bringing attention to anti-LGBTQI+ bullying, harassment, discrimination, and other forms of victimization faced by individuals in schools, and calling communities across the country to action to demand equal educational opportunity, basic civil rights protections, and freedom from erasure for all students, particularly LGBTQI+ young people, in K-12 schools."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1187-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1187",
+      "title": "Supporting the designation of the week of August 24 through August 28, 2026, as the fourth annual \"National Community Health Worker Awareness Week\"."
     },
     {
       "became_law": false,
@@ -7247,7 +7265,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 3258,
+    "cosponsored": 3260,
     "sponsored": 185
   },
   "member_id": "B001281",

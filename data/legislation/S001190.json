@@ -5374,10 +5374,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-14",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -6464,6 +6464,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1474-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1474",
+      "title": "Supporting the designation of \"Serbian American Heritage Month\" and celebrating the history, culture, and contributions of Serbian Americans to the United States."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres1511-119",
       "congress": 119,
       "enacted_action": null,
@@ -7238,7 +7247,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2127,
+    "cosponsored": 2128,
     "sponsored": 220
   },
   "member_id": "S001190",

@@ -478,6 +478,15 @@
       "title": "Shirley Chisholm Congressional Gold Medal Act"
     },
     {
+      "became_law": false,
+      "bill_id": "hr10955-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10955",
+      "title": "To amend the Internal Revenue Code of 1986 to modify the age limitations on eligibility for the earned income tax credit."
+    },
+    {
       "became_law": true,
       "bill_id": "hr1097-118",
       "congress": 118,
@@ -5635,10 +5644,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-20",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -7751,7 +7760,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 861,
+    "cosponsored": 862,
     "sponsored": 49
   },
   "member_id": "F000477",

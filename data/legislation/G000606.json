@@ -524,6 +524,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10593-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10593",
+      "title": "Permanently Authorizing PILT Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10596-119",
       "congress": 119,
       "enacted_action": null,
@@ -3457,10 +3466,10 @@
       "title": "Agent Orange Service Medal Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-07-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -3851,6 +3860,15 @@
       "introduced_date": "2026-07-20",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9048",
       "title": "Celiac Safety Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr9090-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9090",
+      "title": "Advancing Menopause Care and Mid-Life Women’s Health Act"
     },
     {
       "became_law": false,
@@ -4754,7 +4772,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 528,
+    "cosponsored": 530,
     "sponsored": 17
   },
   "member_id": "G000606",

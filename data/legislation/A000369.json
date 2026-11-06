@@ -560,6 +560,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1708-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1708",
+      "title": "Rebuild America’s Health Care Schools Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr175-118",
       "congress": 118,
       "enacted_action": null,
@@ -2431,10 +2440,10 @@
       "title": "Bonneville Power Leadership Recruitment Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-05-26",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -3062,7 +3071,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1597,
+    "cosponsored": 1598,
     "sponsored": 108
   },
   "member_id": "A000369",

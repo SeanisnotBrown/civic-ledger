@@ -506,6 +506,24 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10816-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10816",
+      "title": "DORIE Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10817-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10817",
+      "title": "U.S.S. Doris Miller Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10820-119",
       "congress": 119,
       "enacted_action": null,
@@ -8497,10 +8515,10 @@
       "title": "Provider Reimbursement Stability Act of 2026"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-06-10",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -9677,7 +9695,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1075,
+    "cosponsored": 1077,
     "sponsored": 81
   },
   "member_id": "V000138",

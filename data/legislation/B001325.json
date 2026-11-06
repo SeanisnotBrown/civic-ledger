@@ -2892,7 +2892,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 321,
-    "sponsored": 19
+    "sponsored": 20
   },
   "member_id": "B001325",
   "source_url": "https://api.congress.gov/v3/member/B001325/sponsored-legislation",
@@ -2923,6 +2923,15 @@
       "introduced_date": "2026-10-22",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10861",
       "title": "Blocking Foreign Cellular Modules in Defense Systems Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10954-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10954",
+      "title": "To amend the Federal Food, Drug, and Cosmetic Act to deem an abortion drug misbranded unless it contains a \"Do Not Flush\" warning label and to require a catch kit, and for other purposes."
     },
     {
       "became_law": false,

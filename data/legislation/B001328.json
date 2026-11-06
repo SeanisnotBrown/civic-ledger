@@ -110,6 +110,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr18-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/18",
+      "title": "Bipartisan Background Checks Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1810-119",
       "congress": 119,
       "enacted_action": null,
@@ -125,6 +134,15 @@
       "introduced_date": "2026-09-14",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/20",
       "title": "Richard L. Trumka Protecting the Right to Organize Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr2102-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2102",
+      "title": "Major Richard Star Act"
     },
     {
       "became_law": false,
@@ -434,8 +452,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 48,
-    "sponsored": 5
+    "cosponsored": 50,
+    "sponsored": 6
   },
   "member_id": "B001328",
   "source_url": "https://api.congress.gov/v3/member/B001328/sponsored-legislation",
@@ -484,6 +502,15 @@
       "introduced_date": "2026-10-22",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1636",
       "title": "Constituent Casework Continuity Resolution"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1648-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1648",
+      "title": "Congress at Work Resolution"
     }
   ]
 }

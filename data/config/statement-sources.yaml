@@ -14,11 +14,16 @@ provenance:
     live at /media-center/press-releases, a path the draft''s candidate list did not try. No 403, no
     bot block, no difference between the project UA and a browser UA — so a future draft should try
     /media-center/press-releases too.'
-  campaign_site / campaign_issues_page: left null deliberately. No official dataset carries a campaign
-    domain, and a wrong guess would point the collector at a different person. The owner fills these,
-    or collector (c) stays off.
-  owner_checked: false on every row until a human verifies it. Collector (a) and (c) must refuse a row
-    that still says false.
+  campaign_site / campaign_issues_page: 'copilot-authored, not reviewed by Sean (2026-11-04, copilot
+    call under the owner''s ground rules of that date). Researched from public sources: each site was
+    confirmed by its own paid-for-by line, read live or from a Wayback capture where the live site
+    answers 403 (the row''s comment says so). A null means none was found with confidence, and its
+    comment says why. No official dataset carries a campaign domain, so every row carries
+    campaign_source, and collector (c) refuses a URL without it. campaign_cycle is the run the page
+    belongs to. campaign_issue_pages names the sub-pages of a list that shares no name with them.'
+  owner_checked: false on every row until a human verifies it. Collector (a) must refuse a row that
+    still says false. It records the owner's check of the PRESS page and says nothing about a campaign
+    URL, so collector (c) reads campaign_source instead (2026-11-04).
   press_sitemap: 'owner-set, optional, 2026-10-15. Sitemap URLs on the member''s OWN host that
     list press releases, for a row whose list page cannot be paged. The sitemap supplies URLS
     ONLY. Its lastmod is when a page was last edited, so it is used once as a skip filter — a page
@@ -41,8 +46,10 @@ members:
   press_page: https://bilirakis.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://bilirakis.house.gov/index.php?format=feed&type=rss
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://bilirakisforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://bilirakisforcongress.com/issues.html  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: C001059
   name: Jim Costa
@@ -53,8 +60,10 @@ members:
   press_page: https://costa.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://costa.house.gov/index.php?format=feed&type=rss
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.jimcosta.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.jimcosta.com/issues  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: C001066
   name: Kathy Castor
@@ -65,8 +74,10 @@ members:
   press_page: https://castor.house.gov/news/documentquery.aspx?DocumentTypeID=821
   press_page_source: 'owner-directed: the Press Releases document type, not the mixed /news feed'
   rss: http://castor.house.gov/news/rss.aspx
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://castorforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page: its nav has none, /issues/ and /priorities/ are 404; /delivering-for-florida/ lists project dollars, not positions
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: C001119
   name: Angie Craig
@@ -77,8 +88,10 @@ members:
   press_page: https://craig.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://angiecraig.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://angiecraig.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: D000623
   name: Mark DeSaulnier
@@ -89,8 +102,10 @@ members:
   press_page: https://desaulnier.house.gov/media-center/press-releases
   press_page_source: owner-supplied, GET 200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://desaulnierforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://desaulnierforcongress.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: D000628
   name: Neal P. Dunn
@@ -101,8 +116,10 @@ members:
   press_page: https://dunn.house.gov/news/documentquery.aspx?DocumentTypeID=27
   press_page_source: 'the site''s own menu: Press Releases (DocumentTypeID=27)'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: null  # copilot-authored, not reviewed by Sean: no live campaign site: nealdunn.com, still his FEC-listed site, now redirects to an unrelated casino page and no other domain was found; genuine issues text survives at https://web.archive.org/web/20260119120100/https://www.nealdunn.com/issues
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: D000629
   name: Sharice Davids
@@ -113,8 +130,10 @@ members:
   press_page: https://davids.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://shariceforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://shariceforcongress.com/priorities/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: E000235
   name: Mike Ezell
@@ -125,8 +144,10 @@ members:
   press_page: https://ezell.house.gov/news/documentquery.aspx?DocumentTypeID=27
   press_page_source: 'the site''s own menu: Press Releases (DocumentTypeID=27)'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.mikeezell.ms/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.mikeezell.ms/#Issues  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: F000454
   name: Bill Foster
@@ -137,8 +158,10 @@ members:
   press_page: https://foster.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://foster.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.billfoster.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.billfoster.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: F000482
   name: Julie Fedorchak
@@ -149,8 +172,10 @@ members:
   press_page: https://fedorchak.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://fedorchaknd.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://fedorchaknd.com/issues/  # copilot-authored, not reviewed by Sean: reached by trying the path: the site's nav does not link it
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: G000553
   name: Al Green
@@ -161,8 +186,10 @@ members:
   press_page: https://algreen.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://algreen.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.algreen.org  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.algreen.org/issues  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: H000601
   name: Bill Hagerty
@@ -173,8 +200,10 @@ members:
   press_page: https://www.hagerty.senate.gov/press-releases/
   press_page_source: http-200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://teamhagerty.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page in its nav (Wayback capture 2026-07-29, disclaimer 'Paid for by Team Hagerty'); the live site answers 403; /issues/ has only a 2020 capture
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: H001046
   name: Martin Heinrich
@@ -185,8 +214,10 @@ members:
   press_page: https://www.heinrich.senate.gov/newsroom/press-releases
   press_page_source: 'owner-directed: the dedicated list behind the newsroom hub (renders client-side)'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.martinheinrich.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.martinheinrich.com/issues  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: H001081
   name: Jahana Hayes
@@ -197,8 +228,10 @@ members:
   press_page: https://hayes.house.gov/press-releases
   press_page_source: http-200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://jahanahayes.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://jahanahayes.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: H001102
   name: Mark Harris
@@ -209,8 +242,10 @@ members:
   press_page: https://markharris.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.markharrisforcongress.org/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.markharrisforcongress.org/issues  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: J000299
   name: Mike Johnson
@@ -224,8 +259,10 @@ members:
     DocumentTypeID=27. Previously /media/press-releases (owner-directed 2026-10-14), and before that
     /media/.'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.mikejohnsonforlouisiana.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page: its nav has none, /issues and /priorities are 404; contrastforamerica.com is a national message page, not his positions
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: K000377
   name: Mark Kelly
@@ -245,8 +282,10 @@ members:
     to 2026-10-13. URLs only: lastmod is when a page was last EDITED and is never stored as a
     date; each release is dated from its own page.'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.markkelly.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.markkelly.com/the-mission/  # copilot-authored, not reviewed by Sean: read from a Wayback capture of 2026-04-17; the live site answers 403
+  campaign_cycle: '2022'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: K000388
   name: Trent Kelly
@@ -258,8 +297,10 @@ members:
   press_page_source: 'owner-directed: the Press Releases document type; stored as the canonical /newsroom/
     path the server redirects to'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://kellyformississippi.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page: nav is About and Donate only, /issues is 404; About is biography
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: K000394
   name: Andy Kim
@@ -271,8 +312,10 @@ members:
   press_page_source: owner-supplied, verified release list; 403 from this machine, browser loads it.
     /feed/ and /rss answer 200 but carry 1 item dated 2026-03-31, so the feed is not a usable substitute.
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.andykim.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.andykim.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: false
 - id: K000403
   name: Mike Kennedy
@@ -283,8 +326,10 @@ members:
   press_page: https://mikekennedy.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://mikekennedyforutah.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://mikekennedyforutah.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: L000583
   name: Barry Loudermilk
@@ -295,8 +340,10 @@ members:
   press_page: https://loudermilk.house.gov/category/press-releases/
   press_page_source: owner-supplied from the site menu, unverified
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.standwithbarry.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.standwithbarry.com/issues/  # copilot-authored, not reviewed by Sean: read from a Wayback capture of 2026-07-15; the live site answers 403
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: L000585
   name: Darin LaHood
@@ -307,8 +354,10 @@ members:
   press_page: https://lahood.house.gov/press-releases
   press_page_source: http-200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://lahoodforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://lahoodforcongress.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: M001143
   name: Betty McCollum
@@ -319,8 +368,10 @@ members:
   press_page: https://mccollum.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://mccollum.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.mccollumforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page: its nav has none, /issues, /priorities, /on-the-issues and /where-i-stand are 404; About is biography
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: M001184
   name: Thomas Massie
@@ -334,8 +385,10 @@ members:
     DocumentTypeID=2362. NOT 2365 ("Speeches and Floor Statements"), which the Congressional Record
     already collects. Previously /media/press-releases (owner-directed 2026-10-14).'
   rss: http://massie.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://thomasmassie.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://thomasmassie.com/#ISSUES  # copilot-authored, not reviewed by Sean: a section of the home page; /issues is 404
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: M001194
   name: John R. Moolenaar
@@ -346,8 +399,10 @@ members:
   press_page: https://moolenaar.house.gov/media-center/press-releases
   press_page_source: owner-supplied, GET 200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.johnmoolenaarforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.johnmoolenaarforcongress.com/issues  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: M001222
   name: Max L. Miller
@@ -358,8 +413,10 @@ members:
   press_page: https://maxmiller.house.gov/press-releases
   press_page_source: http-200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://votemaxmiller.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://votemaxmiller.com/priorities  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
   no_press_source: true
   no_press_reason: site has no press-release list
@@ -377,8 +434,10 @@ members:
   press_page: https://mcbride.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://sarahmcbride.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://sarahmcbride.com/priorities/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: P000605
   name: Scott Perry
@@ -389,8 +448,10 @@ members:
   press_page: https://perry.house.gov/news/documentquery.aspx?DocumentTypeID=2608
   press_page_source: 'the site''s own menu: Press Releases (DocumentTypeID=2608)'
   rss: http://perry.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://patriotsforperry.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://patriotsforperry.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: R000605
   name: Mike Rounds
@@ -401,8 +462,10 @@ members:
   press_page: https://www.rounds.senate.gov/newsroom/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://roundsforsenate.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://roundsforsenate.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: R000622
   name: Josh Riley
@@ -414,8 +477,10 @@ members:
   press_page_source: 'unchanged: his own menu labels /news as Press Releases and offers no separate
     list'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://joshrileyforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://joshrileyforcongress.com/policy-positions/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: S001145
   name: Janice D. Schakowsky
@@ -426,8 +491,10 @@ members:
   press_page: https://schakowsky.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://schakowsky.house.gov/index.php?format=feed&type=rss
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://janschakowsky.org/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page: its nav has none, /issues/ and /priorities/ are 404; About is biography
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: S001181
   name: Jeanne Shaheen
@@ -440,8 +507,10 @@ members:
     pager, and it links /news/press as the press-release list (beside /news/in-the-news and
     /news/multimedia). Previously /news (http-200).'
   rss: http://www.shaheen.senate.gov/rss/
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://jeanneshaheen.org  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://jeanneshaheen.org/priorities/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2020'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: S001185
   name: Terri A. Sewell
@@ -452,8 +521,19 @@ members:
   press_page: https://sewell.house.gov/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://sewell.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://sewellforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://sewellforcongress.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_issue_pages:  # copilot-authored, not reviewed by Sean: the list links these and they share no name with it
+  - https://sewellforcongress.com/affordability/
+  - https://sewellforcongress.com/healthcare/
+  - https://sewellforcongress.com/voting-rights/
+  - https://sewellforcongress.com/infrastructure/
+  - https://sewellforcongress.com/education/
+  - https://sewellforcongress.com/veterans/
+  - https://sewellforcongress.com/seniors/
+  - https://sewellforcongress.com/historic-preservation/
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: S001232
   name: Tim Sheehy
@@ -464,8 +544,10 @@ members:
   press_page: https://www.sheehy.senate.gov/newsroom/press-releases/
   press_page_source: http-200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://timformt.com  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean: site has no issues page: nav has none, /issues/ and /news/issue/ are 404; its sitemap lists 13 unlinked /news/issue/<slug>/ pages, 10 with text, not used because the site links none of them
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: U000040
   name: Lauren Underwood
@@ -476,8 +558,18 @@ members:
   press_page: https://underwood.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://underwoodforcongress.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://underwoodforcongress.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_issue_pages:  # copilot-authored, not reviewed by Sean: the list links these and they share no name with it
+  - https://underwoodforcongress.com/healthcare
+  - https://underwoodforcongress.com/reproductive-freedom
+  - https://underwoodforcongress.com/gun-violence
+  - https://underwoodforcongress.com/climate-change
+  - https://underwoodforcongress.com/immigration
+  - https://underwoodforcongress.com/our-veterans
+  - https://underwoodforcongress.com/our-economy
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: V000130
   name: Juan Vargas
@@ -488,8 +580,10 @@ members:
   press_page: https://vargas.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: http://vargas.house.gov/rss.xml
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.votevargas.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.votevargas.com/meet-juan#priorities  # copilot-authored, not reviewed by Sean: no standalone issues page: this is the 'What Juan Fights For' section of the bio page
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: W000821
   name: Bruce Westerman
@@ -500,8 +594,10 @@ members:
   press_page: https://westerman.house.gov/media-center/press-releases
   press_page_source: owner-supplied, GET 200
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://brucewesterman.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://brucewesterman.com/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: W000830
   name: George Whitesides
@@ -512,8 +608,10 @@ members:
   press_page: https://whitesides.house.gov/category/press-releases/
   press_page_source: found in the site's own navigation menu (WordPress category list)
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://www.georgewhitesides.com/  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://www.georgewhitesides.com/policies/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2026'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: Y000064
   name: Todd Young
@@ -538,8 +636,10 @@ members:
     or later, a migration re-stamp, so it cannot be used even as a skip filter — all 2,138
     pages are read for their own dates.'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: https://toddyoung.org  # copilot-authored, not reviewed by Sean
+  campaign_issues_page: https://toddyoung.org/issues/  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2022'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true
 - id: Z000018
   name: Ryan K. Zinke
@@ -550,6 +650,8 @@ members:
   press_page: https://zinke.house.gov/media/press-releases
   press_page_source: 'owner-directed: the dedicated press-release list behind the hub'
   rss: null
-  campaign_site: null
-  campaign_issues_page: null
+  campaign_site: null  # copilot-authored, not reviewed by Sean: no live campaign site: ryanzinke.com now carries a thank-you paid for by a leadership PAC and /issues is 404; 2024-cycle issues text survives at https://web.archive.org/web/20260216223410/https://www.ryanzinke.com/issues/
+  campaign_issues_page: null  # copilot-authored, not reviewed by Sean
+  campaign_cycle: '2024'  # copilot-authored, not reviewed by Sean
+  campaign_source: copilot-authored, not reviewed by Sean
   owner_checked: true

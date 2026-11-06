@@ -740,14 +740,14 @@ def load_all(data_dir: Path) -> tuple[list[dict[str, Any]], dict[str, str], dict
     The pre-filter is source-agnostic and the cross-source duplicate rule only works if
     both sources are in the same pass, so the count-before-spend report reads them
     together. A collector that has not run yet contributes nothing and is not an error:
-    (c) waits on campaign URLs and (d) on platform access.
+    (d) waits on platform access.
     """
     raw = data_dir / "raw"
     records: list[dict[str, Any]] = []
     parties: dict[str, str] = {}
     names: dict[str, str] = {}
     found = False
-    for subdir in ("crec", "press"):
+    for subdir in ("crec", "press", "campaign"):
         statements_dir = raw / subdir / "statements"
         if not statements_dir.is_dir():
             continue

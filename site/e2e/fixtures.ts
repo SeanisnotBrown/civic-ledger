@@ -149,20 +149,26 @@ const topics = topicPaths();
  *  "the latest term overlapped the latest covered Congress". 16 members matched that on
  *  2026-10-09, and the member page's "No longer serving." note was suppressed for every
  *  one of them. */
-function membersBySeatStatus(): { departed: string; sitting: string } {
+function membersBySeatStatus(): { departed: string; sitting: string; projected: string | null } {
   const asOf = JSON.parse(
     fs.readFileSync(path.join(DATA, "manifest.json"), "utf-8")).generated_at.slice(0, 10);
   const dir = path.join(DATA, "members");
   const departed: string[] = [];
   const sitting: string[] = [];
+  // A serving appointee whose recorded `end` (the expected special-election date) is
+  // already past the dataset date: still sitting (Husted / Moody, 2026-11).
+  const projected: string[] = [];
   for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".json")).sort()) {
     const m = JSON.parse(fs.readFileSync(path.join(dir, f), "utf-8"));
     if (m.jurisdiction !== "us") continue;
-    const holds = (m.terms ?? []).some((t: { start: string; end: string }) =>
-      t.start <= asOf && asOf <= t.end);
+    const holds = (m.terms ?? []).some(
+      (t: { start: string; end: string; end_projected?: boolean }) =>
+        t.start <= asOf && (t.end_projected || asOf <= t.end));
     // Only members the page actually prints the line for (it needs an in-office-since date).
     if ((m.terms ?? []).length === 0) continue;
     (holds ? sitting : departed).push(m.id);
+    if ((m.terms ?? []).some((t: { end: string; end_projected?: boolean }) =>
+      t.end_projected && t.end < asOf)) projected.push(m.id);
   }
   if (departed.length === 0 || sitting.length === 0) {
     throw new Error("roster has no departed/sitting pair to test the seat-status note");
@@ -170,6 +176,7 @@ function membersBySeatStatus(): { departed: string; sitting: string } {
   return {
     departed: departed.includes("C001078") ? "C001078" : departed[0],
     sitting: sitting[0],
+    projected: projected[0] ?? null,
   };
 }
 

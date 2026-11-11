@@ -52,13 +52,16 @@ after that run, about 2.5 days missed (plus the 14 h hole).
 
 Recommended: A, after the fix is merged and one scheduled run has passed.
 
-## Flag (observation, no change made)
+## Flag: fixed on the branch (copilot call, 2026-11-11)
 
-Checked in the built site (gate build, no change made): the member pages for
-Husted (H001104) and Moody (M001244) say "In office since 2025" and then "No
-longer serving." (`site/src/pages/m/[member]/[page].astro:220`). The site's
-`holdsSeatAsOf` (`site/src/lib/data.ts:902`) compares the raw term `end` with the
-dataset date, so the projected 2026-11-03 end counts as a departure there. This
-predates the fix and is not changed by it; the homepage state finder uses the same
-helper. Both senators voted on 2026-11-09 and 2026-11-10. This is a statement the
-record contradicts (rule 0); a wording/logic change is the owner's call.
+Before the fix, the built site said "In office since 2025" then "No longer
+serving." on the Husted (H001104) and Moody (M001244) pages, and the homepage
+state finder listed only Moreno for Ohio and only Scott for Florida (537 members
+"currently in office"). Cause: the site's `holdsSeatAsOf` compared the raw term
+`end` (the projected 2026-11-03) with the dataset date. Both senators voted on
+2026-11-09 and 2026-11-10, so this was a false statement (rule 0).
+
+Copilot call: `holdsSeatAsOf` now treats an `end_projected` term as open, the same
+rule as the ingest. No wording changed: the existing "No longer serving." line
+simply stops appearing for them, and they return to the finder (539 in office).
+Reversible in one commit.

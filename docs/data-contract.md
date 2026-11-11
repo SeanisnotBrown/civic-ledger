@@ -289,7 +289,8 @@ is false the site shows no list for anyone. Only a `listed`
 member carries `priorities` (topic + `support`/`oppose` + the Q-J routes that make it one:
 `signal` and/or `repetition`, with the statement ids) and `conflicted_topics` (both sides in
 the current term, so no priority). Below the bar nothing is inferred or published. The
-campaign-issue-page route is not implemented: those pages are not collected yet. Empty today.
+campaign-issue-page route is not implemented: the pages are collected (P3 task 2c, raw only)
+but nothing reads them into this file. Empty today.
 
 `data/statements/_title_allowlist.yaml` (owner-edited config, not a record) is the
 D9 short-title → bill-id map: the one sanctioned exception to "pair by bill id
@@ -342,6 +343,18 @@ report by row and URL, because a disagreement can mean the wrong page was attach
 title. `index.json` carries those conflicts (`date_conflicts`), the releases that no page
 could date (`date_failures`), and what the dating cost in fetches
 (`release_page_fetches`).
+
+**Campaign issue pages (P3 task 2c).** `data/raw/campaign/statements/{member}.json` carries
+collector (c)'s candidate statements in the same shape, one per issue. **The URLs in
+`statement-sources.yaml` are copilot-authored, not reviewed by Sean** (2026-11-04): each row's
+`campaign_source` says so and rides on every record, in the index and at the top of the count
+report. `attribution` is `campaign-site`. **These records are undated:** `date` is `""` and
+`date_precision` is `"undated"`, because a page's own marker is the day the page was created
+(`page_marker_date`, for information, never a statement's date), and `retrieved` says when the
+words were on the page, not when they were said. `campaign_cycle` is the run the page belongs
+to, which is decision 1's window for this source. Fail closed: `curation/review.py` exports
+nothing with no date or with a source outside `VENUE`, so no campaign statement can publish
+until both are decided, and an undated record sorts last under decision 7's newest-25 cap.
 
 **Categorizer precision (P3 task 4, Q-K — ratified 2026-10-23).** No statement
 categorized by the AI publishes until the categorizer prompt in use clears the precision bar

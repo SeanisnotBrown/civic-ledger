@@ -84,7 +84,7 @@ def test_both_collectors_outputs_load_into_one_pass(tmp_path: Path):
 
 
 def test_a_collector_that_has_not_run_contributes_nothing_and_is_not_an_error(tmp_path: Path):
-    """(c) waits on campaign URLs and (d) on platform access."""
+    """(d) waits on platform access."""
     _corpus(tmp_path / "data")
     records, _, _ = prefilter.load_all(tmp_path / "data")
     assert len(records) == 2

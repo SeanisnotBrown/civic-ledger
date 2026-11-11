@@ -73,7 +73,9 @@ testpaths = ["tests"]
 # published nothing. And press_render.py, for the same reason one level down: it reads
 # the seven rows the owner has not accepted in order to render them, so its branches are
 # what keep "read the row" from becoming "accept the row", and its cache-write branch
-# decides whether a FAILED render gets stored as a member's empty press archive.
+# decides whether a FAILED render gets stored as a member's empty press archive. And
+# statements_campaign.py: its branches decide whether a domain that no longer belongs to a
+# member gets its words filed under that member's name.
 [tool.coverage.run]
 branch = true
 

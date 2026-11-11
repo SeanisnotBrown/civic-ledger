@@ -95,6 +95,45 @@ def test_party_switch_preserved_in_terms():
     assert member.party == "R"  # current = latest term
 
 
+def _appointee_entry(bioguide: str, end: str) -> dict:
+    return {
+        "id": {"bioguide": bioguide, "lis": "S999"},
+        "name": {"first": "Ap", "last": "Pointee", "official_full": "Ap Pointee"},
+        "terms": [
+            {"type": "sen", "start": "2023-10-03", "end": end, "state": "CA",
+             "party": "Democrat", "how": "appointment", "end-type": "special-election"},
+        ],
+    }
+
+
+def test_projected_end_only_for_a_currently_serving_appointee():
+    # congress-legislators: a serving appointee's `end` with `end-type:
+    # special-election` is the EXPECTED election date. A departed appointee keeps the
+    # key in legislators-historical.yaml with the real end (Butler, 2024-12-08).
+    serving = _appointee_entry("Z000001", "2026-11-03")
+    departed = _appointee_entry("Z000002", "2024-12-08")
+    by_id = {
+        m.id: m
+        for m in legislators.covered_members(
+            [serving, departed], config.CONGRESSES, current_ids={"Z000001"}
+        )
+    }
+    assert by_id["Z000001"].terms[-1].end_projected is True
+    assert by_id["Z000001"].terms[-1].end == "2026-11-03"  # upstream's date, kept
+    assert by_id["Z000002"].terms[-1].end_projected is False
+    # Without current_ids (the default) nothing is projected.
+    (m,) = legislators.covered_members([serving], config.CONGRESSES)
+    assert m.terms[-1].end_projected is False
+
+
+def test_end_projected_omitted_from_json_unless_true():
+    plain = Term(start="2025-01-03", end="2027-01-03", party="R", chamber="senate")
+    assert "end_projected" not in plain.model_dump()
+    flagged = plain.model_copy(update={"end_projected": True})
+    assert flagged.model_dump()["end_projected"] is True
+    assert Term.model_validate(flagged.model_dump()) == flagged
+
+
 def test_absence_reason_requires_source():
     Absence(member_id="m", rollcall_id="r")  # no reason → fine
     with pytest.raises(ValidationError):

@@ -148,3 +148,25 @@ def test_expected_on_subtracts_all_three_exceptions():
     assert coverage.expected_on(terms, "2024-08-01", delegates) == {
         "M001165", "NEW", "REGULAR"
     }
+
+
+def test_member_terms_open_ends_a_projected_end(tmp_path):
+    # `end_projected`: upstream's `end` is the expected special-election date of a
+    # serving appointee, not a departure, so the roster keeps them past it. An
+    # unflagged term (same dates) still ends where it says.
+    import json
+
+    (tmp_path / "P.json").write_text(json.dumps({
+        "id": "P", "chamber": "senate",
+        "terms": [{"start": "2025-01-21", "end": "2026-11-03", "chamber": "senate",
+                   "party": "R", "end_projected": True}],
+    }), encoding="utf-8")
+    (tmp_path / "Q.json").write_text(json.dumps({
+        "id": "Q", "chamber": "senate",
+        "terms": [{"start": "2025-01-21", "end": "2026-11-03", "chamber": "senate",
+                   "party": "R"}],
+    }), encoding="utf-8")
+    terms = coverage.member_terms(tmp_path, "senate")
+    assert terms["P"] == [("2025-01-21", coverage.OPEN_END)]
+    assert coverage.covered_on(terms, "2026-11-09") == {"P"}
+    assert coverage.covered_on(terms, "2026-11-01") == {"P", "Q"}

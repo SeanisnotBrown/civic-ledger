@@ -54,5 +54,11 @@ Recommended: A, after the fix is merged and one scheduled run has passed.
 
 ## Flag (observation, no change made)
 
-Member pages for Husted and Moody may show a term ending 2026-11-03, a date
-upstream says is only expected. Not checked or changed here (out of scope).
+Checked in the built site (gate build, no change made): the member pages for
+Husted (H001104) and Moody (M001244) say "In office since 2025" and then "No
+longer serving." (`site/src/pages/m/[member]/[page].astro:220`). The site's
+`holdsSeatAsOf` (`site/src/lib/data.ts:902`) compares the raw term `end` with the
+dataset date, so the projected 2026-11-03 end counts as a departure there. This
+predates the fix and is not changed by it; the homepage state finder uses the same
+helper. Both senators voted on 2026-11-09 and 2026-11-10. This is a statement the
+record contradicts (rule 0); a wording/logic change is the owner's call.

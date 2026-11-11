@@ -158,14 +158,24 @@ class Row:
     party: str
     text: str
     label: Label
-    # True when the row's `notes` say the label is not the owner's own reviewed judgment
-    # (`COPILOT-LABELED` / `owner-unreviewed`). Such a label can be scored for information,
-    # but it can never count toward Q-K: only owner-reviewed labels measure precision.
+    # True unless the row's `notes` carry the owner's `OWNER-REVIEWED` mark and no
+    # `COPILOT-LABELED` / `owner-unreviewed` flag (fail closed, owner ruling 2026-11-04).
+    # Such a label can be scored for information, but it can never count toward Q-K: only
+    # owner-reviewed labels measure precision.
     unreviewed: bool = False
 
 
 # The bias flag the labeling sheet puts in `notes` on a label the owner has not reviewed.
+# It wins over the mark below: a row carrying both is unreviewed.
 UNREVIEWED_FLAG = re.compile(r"copilot-labeled|owner-unreviewed", re.IGNORECASE)
+# The mark only the owner adds to `notes` on a label he has reviewed (owner ruling
+# 2026-11-04). Case-insensitive, a whole token: `not-owner-reviewed` is not the mark.
+OWNER_REVIEWED_MARK = re.compile(r"(?<![\w-])owner-reviewed(?![\w-])", re.IGNORECASE)
+
+
+def is_unreviewed(notes: str) -> bool:
+    """A label counts as owner-reviewed ONLY with the explicit mark and no unreviewed flag."""
+    return bool(UNREVIEWED_FLAG.search(notes)) or not OWNER_REVIEWED_MARK.search(notes)
 
 
 def _yes_no(value: str, *, column: str, row_id: str) -> bool | None:
@@ -238,7 +248,7 @@ def read_labels(path: Path, ids: set[str] | None = None) -> tuple[list[Row], lis
                 continue
             rows.append(Row(id=raw["id"], party=raw["party"].strip(), text=raw["text"],
                             label=label,
-                            unreviewed=bool(UNREVIEWED_FLAG.search(raw.get("notes") or ""))))
+                            unreviewed=is_unreviewed(raw.get("notes") or "")))
     return rows, unlabeled
 
 
@@ -303,7 +313,7 @@ class Score:
     no_answer: list[str]
     mixed_calls: int
     triage_rejected_owner_yes: int
-    unreviewed: list[str] = field(default_factory=list)  # ids whose label is not the owner's
+    unreviewed: list[str] = field(default_factory=list)  # ids not marked OWNER-REVIEWED
 
 
 def score(rows: Iterable[Row], preds: dict[str, Prediction], unlabeled: list[str]) -> Score:
@@ -346,7 +356,7 @@ def bar_status(name: str, tally: Tally, bar: PrecisionBar, rows: int,
     if name not in bar.fields:
         return "no bar"
     if unreviewed:
-        return f"not assessed ({unreviewed} labels owner-unreviewed)"
+        return f"not assessed ({unreviewed} labels not owner-reviewed)"
     if rows < bar.min_labeled_rows:
         return f"not assessed (n={rows} < {bar.min_labeled_rows})"
     if tally.precision is None:
@@ -430,7 +440,7 @@ def _field_table(result: Score, bar: PrecisionBar) -> list[str]:
 
 def title(rows: int, bar: PrecisionBar, unreviewed: int = 0) -> str:
     if unreviewed:
-        return (f"{rows} rows, {unreviewed} with owner-unreviewed AI labels: agreement check, "
+        return (f"{rows} rows, {unreviewed} with labels not owner-reviewed: agreement check, "
                 "not a Q-K measurement")
     if rows < bar.min_labeled_rows:
         return f"{rows}-row smoke test, not a precision measurement"
@@ -478,9 +488,10 @@ def render(
         ]
     if unreviewed:
         lines += [
-            f"**{unreviewed} of {result.rows} labels are AI (copilot) labels, "
-            "owner-unreviewed. This is AI-vs-AI agreement, NOT a valid Q-K measurement. The "
-            "publish gate stays closed until the owner reviews or relabels them.**",
+            f"**{unreviewed} of {result.rows} labels are not owner-reviewed (no "
+            "`OWNER-REVIEWED` mark in `notes`, or flagged copilot-labeled / owner-unreviewed). "
+            "This is agreement with unreviewed labels, NOT a valid Q-K measurement. The "
+            "publish gate stays closed until the owner reviews them and marks each one.**",
             "",
         ]
     lines += [
@@ -506,8 +517,8 @@ def render(
     elif flags and unreviewed:
         lines.append(
             f"Gap over {bar.party_gap_max_points:.0f} points on "
-            f"{', '.join(f'`{f}`' for f in flags)} — measured partly against owner-unreviewed "
-            "labels, so it is a lead to check, not a finding."
+            f"{', '.join(f'`{f}`' for f in flags)} — measured partly against labels not "
+            "owner-reviewed, so it is a lead to check, not a finding."
         )
     elif flags:
         lines.append(
@@ -525,7 +536,7 @@ def render(
         "| --- | --- |",
         f"| Labeled rows scored | {result.rows} |",
         f"| Rows skipped as not yet labeled | {len(result.unlabeled)} |",
-        f"| Rows whose label is owner-unreviewed (copilot) | {len(result.unreviewed)} |",
+        f"| Rows whose label is not owner-reviewed | {len(result.unreviewed)} |",
         f"| Rows with no answer (refusal or malformed) | {len(result.no_answer)}"
         + (f": {', '.join(result.no_answer)}" if result.no_answer else "") + " |",
         f"| Label said yes, triage said no (missed; not a precision error) | "
@@ -589,8 +600,9 @@ def measurement(result: Score, bar: PrecisionBar, config: ai.AiConfig, *,
             "status": bar_status(name, tallies["all"], bar, result.rows,
                                  len(result.unreviewed)),
         }
-    # How many labels are NOT the owner's reviewed judgment (copilot-labeled). The publish
-    # gate stays closed while this is above zero: only owner-reviewed labels satisfy Q-K.
+    # How many labels are NOT marked owner-reviewed (no `OWNER-REVIEWED` mark, or flagged).
+    # The publish gate stays closed while this is above zero: only owner-reviewed labels
+    # satisfy Q-K.
     return {"generated": generated, "labeled_rows": result.rows, "tasks": tasks,
             "fields": fields, "party_gap_flags": gap_flags(result, bar),
             "unreviewed_labels": len(result.unreviewed)}
@@ -634,9 +646,9 @@ def run(
     splits: tuple[tuple[str, Score], ...] = ()
     if result.unreviewed:
         owner = [r for r in rows if not r.unreviewed]
-        copilot = [r for r in rows if r.unreviewed]
-        splits = (("Owner-labeled rows", score(owner, preds, [])),
-                  ("Copilot-labeled rows, owner-unreviewed", score(copilot, preds, [])))
+        unmarked = [r for r in rows if r.unreviewed]
+        splits = (("Owner-reviewed rows", score(owner, preds, [])),
+                  ("Rows not owner-reviewed", score(unmarked, preds, [])))
     now = datetime.now(UTC)
     out = Path(args.out) if args.out else (
         repo_root() / "docs" / "research" / f"{now:%Y-%m-%d}-prompt-eval.md"

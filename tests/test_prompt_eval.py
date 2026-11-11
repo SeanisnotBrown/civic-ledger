@@ -303,8 +303,18 @@ class FakeApi:
         return _answer(CAT)
 
 
+# The owner's explicit mark on a label he reviewed (owner ruling 2026-11-04). The `_yes` /
+# `_no` rows carry no mark, so they are unreviewed unless a test adds it.
+MARK = "OWNER-REVIEWED"
+
+
+def _marked(row: dict) -> dict:
+    return {**row, "notes": MARK}
+
+
 def _ten(tmp_path: Path) -> Path:
-    rows = [_yes(i, "D" if i <= 5 else "R") for i in range(1, 9)] + [_no(9), _no(10)]
+    rows = [_marked(_yes(i, "D" if i <= 5 else "R")) for i in range(1, 9)]
+    rows += [_marked(_no(9)), _marked(_no(10))]
     rows.append({"id": "EV11", "party": "D", "text": "policy unlabeled"})
     return _csv(tmp_path / "labels.csv", rows)
 
@@ -449,7 +459,7 @@ def test_without_a_test_seam_the_run_uses_the_live_api_and_the_repo_data(
 
 
 def test_a_full_set_records_a_counts_only_measurement_for_the_gate(tmp_path: Path) -> None:
-    rows = [_yes(i, "D" if i % 2 else "R") for i in range(1, 51)]
+    rows = [_yes(i, "D" if i % 2 else "R", notes=MARK) for i in range(1, 51)]
     labels = _csv(tmp_path / "labels.csv", rows)
     code = prompt_eval.run(["--labels", str(labels), "--out", str(tmp_path / "r.md"),
                             "--cap", "5.00"], completer=FakeApi(), data_dir=tmp_path)
@@ -477,7 +487,7 @@ def test_copilot_labels_are_flagged_scored_apart_and_never_a_q_k_measurement(
 ) -> None:
     from curation import review
 
-    rows = [_yes(i, "D" if i % 2 else "R") for i in range(1, 11)]
+    rows = [_yes(i, "D" if i % 2 else "R", notes=MARK) for i in range(1, 11)]
     rows += [_yes(i, "D" if i % 2 else "R", notes=FLAG) for i in range(11, 61)]
     labels = _csv(tmp_path / "labels.csv", rows)
     parsed, _ = prompt_eval.read_labels(labels)
@@ -487,17 +497,18 @@ def test_copilot_labels_are_flagged_scored_apart_and_never_a_q_k_measurement(
                            completer=FakeApi(), data_dir=tmp_path)
     assert code == prompt_eval.EXIT_OK
     report = out.read_text(encoding="utf-8")
-    assert ("**50 of 60 labels are AI (copilot) labels, owner-unreviewed. This is AI-vs-AI "
-            "agreement, NOT a valid Q-K measurement. The publish gate stays closed until the "
-            "owner reviews or relabels them.**") in report
+    assert ("**50 of 60 labels are not owner-reviewed (no `OWNER-REVIEWED` mark in `notes`, "
+            "or flagged copilot-labeled / owner-unreviewed). This is agreement with unreviewed "
+            "labels, NOT a valid Q-K measurement. The publish gate stays closed until the "
+            "owner reviews them and marks each one.**") in report
     assert "not a Q-K measurement" in report.splitlines()[0]
-    assert "### Owner-labeled rows (10 rows)" in report
-    assert "### Copilot-labeled rows, owner-unreviewed (50 rows)" in report
-    assert "not assessed (50 labels owner-unreviewed)" in report
-    assert "| Rows whose label is owner-unreviewed (copilot) | 50 |" in report
+    assert "### Owner-reviewed rows (10 rows)" in report
+    assert "### Rows not owner-reviewed (50 rows)" in report
+    assert "not assessed (50 labels not owner-reviewed)" in report
+    assert "| Rows whose label is not owner-reviewed | 50 |" in report
     recorded = json.loads(prompt_eval.measurement_path(tmp_path).read_text(encoding="utf-8"))
     assert recorded["unreviewed_labels"] == 50
-    assert recorded["fields"]["stance"]["status"] == "not assessed (50 labels owner-unreviewed)"
+    assert recorded["fields"]["stance"]["status"] == "not assessed (50 labels not owner-reviewed)"
     gate = review.publish_gate(tmp_path)
     assert gate.open is False
     assert any("rests on 50 labels the owner has not reviewed" in r for r in gate.reasons)
@@ -510,4 +521,51 @@ def test_a_wide_gap_measured_against_unreviewed_labels_is_a_lead_not_a_stop(
     result.unreviewed = ["EV100"]
     report = _render(result, tmp_path)
     assert "STOP" not in report
-    assert "measured partly against owner-unreviewed labels" in report
+    assert "measured partly against labels not owner-reviewed" in report
+
+
+# --- the owner-reviewed mark (owner ruling 2026-11-04: fail closed) ----------------------
+
+
+@pytest.mark.parametrize(("notes", "unreviewed"), [
+    ("", True),                                        # no mark: unreviewed
+    ("labeler note, R2a re-checked", True),
+    ("OWNER-REVIEWED", False),                         # the mark: reviewed
+    ("owner-reviewed 2026-11-04", False),              # case-insensitive
+    ("BORDERLINE; Owner-Reviewed", False),
+    (f"{MARK}, owner-unreviewed", True),               # a flag beats the mark
+    (f"COPILOT-LABELED 2026-10-23; {MARK}", True),
+    ("not-owner-reviewed", True),                      # a whole token only
+    ("OWNER-REVIEWED-pending", True),
+])
+def test_a_label_is_owner_reviewed_only_with_the_explicit_mark(
+    tmp_path: Path, notes: str, unreviewed: bool,
+) -> None:
+    (row,), _ = prompt_eval.read_labels(_csv(tmp_path / "l.csv", [_yes(1, notes=notes)]))
+    assert row.unreviewed is unreviewed
+
+
+def test_a_sheet_with_no_marked_row_never_yields_a_bar_verdict_or_opens_the_gate(
+    tmp_path: Path,
+) -> None:
+    from curation import review
+
+    # The set-2 hazard: 60 labeled rows, no flag and no mark in `notes`.
+    rows = [_yes(i, "D" if i % 2 else "R", notes="BORDERLINE" if i % 3 else "")
+            for i in range(1, 61)]
+    labels = _csv(tmp_path / "labels.csv", rows)
+    out = tmp_path / "r.md"
+    code = prompt_eval.run(["--labels", str(labels), "--out", str(out), "--cap", "5.00"],
+                           completer=FakeApi(), data_dir=tmp_path)
+    assert code == prompt_eval.EXIT_OK
+    report = out.read_text(encoding="utf-8")
+    assert "not a Q-K measurement" in report.splitlines()[0]
+    assert "| meets |" not in report and "| BELOW |" not in report
+    assert "STOP for owner review" not in report
+    recorded = json.loads(prompt_eval.measurement_path(tmp_path).read_text(encoding="utf-8"))
+    assert recorded["unreviewed_labels"] == 60
+    statuses = {f["status"] for f in recorded["fields"].values()}
+    assert statuses <= {"no bar", "not assessed (60 labels not owner-reviewed)"}
+    gate = review.publish_gate(tmp_path)
+    assert gate.open is False
+    assert any("rests on 60 labels the owner has not reviewed" in r for r in gate.reasons)

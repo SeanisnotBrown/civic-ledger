@@ -2,13 +2,57 @@
   "actions": [
     {
       "action_code": null,
+      "committees": null,
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "committees": [
         "Judiciary Committee"
       ],
       "date": "2026-10-15",
       "rollcall_id": null,
       "source_system": "Senate",
-      "text": "Referred to the Committee on the Judiciary under authority of the order of the Senate of 09/30/2026.",
+      "text": "Referred to the Committee on the Judiciary under authority of the order of the Senate of 09/30/2026. (text: CR S5358-5359)",
       "time": null,
       "type": "IntroReferral"
     },
@@ -32,8 +76,8 @@
   ],
   "id": "sres951-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Committee on the Judiciary under authority of the order of the Senate of 09/30/2026.",
-  "latest_action_date": "2026-10-15",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+  "latest_action_date": "2026-11-10",
   "number": 951,
   "policy_area": null,
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/951",

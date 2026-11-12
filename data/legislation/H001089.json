@@ -758,6 +758,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s1892-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1892",
+      "title": "Crime Victims Fund Stabilization Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "s1907-118",
       "congress": 118,
       "enacted_action": null,
@@ -4175,11 +4184,20 @@
       "introduced_date": "2024-12-21",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/942",
       "title": "A resolution congratulating the Washington University in St. Louis Bears women's soccer team for winning the 2024 NCAA Division III Women's Soccer Championship."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres958-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-11",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/958",
+      "title": "A resolution recognizing the week of November 9 through November 13, 2026, as \"National Veterans Small Business Week\"."
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 976,
-    "sponsored": 349
+    "cosponsored": 978,
+    "sponsored": 353
   },
   "member_id": "H001089",
   "source_url": "https://api.congress.gov/v3/member/H001089/sponsored-legislation",

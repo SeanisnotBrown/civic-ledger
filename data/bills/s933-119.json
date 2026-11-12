@@ -2,6 +2,40 @@
   "actions": [
     {
       "action_code": null,
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 689.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-156.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-156.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "committees": [
         "Commerce, Science, and Transportation Committee"
       ],
@@ -53,8 +87,8 @@
   ],
   "id": "s933-119",
   "jurisdiction": "us",
-  "latest_action": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
-  "latest_action_date": "2026-03-04",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 689.",
+  "latest_action_date": "2026-11-09",
   "number": 933,
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/933",

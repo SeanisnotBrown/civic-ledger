@@ -1199,6 +1199,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1502-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-11",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1502",
+      "title": "North Platte Canteen Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1510-118",
       "congress": 118,
       "enacted_action": null,
@@ -8362,10 +8371,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-07-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -10429,7 +10438,16 @@
       "enacted_action": null,
       "introduced_date": "2026-10-29",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1644",
-      "title": "Supporting the goals and ideals of October as \"National Domestic Violence Awareness Month\"."
+      "title": "Original National Domestic Violence Awareness Month Resolution of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1653-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1653",
+      "title": "Honoring the service and sacrifice of America's veterans on Veterans Day, 2026."
     },
     {
       "became_law": false,
@@ -11558,8 +11576,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1552,
-    "sponsored": 78
+    "cosponsored": 1554,
+    "sponsored": 79
   },
   "member_id": "C001125",
   "source_url": "https://api.congress.gov/v3/member/C001125/sponsored-legislation",
@@ -11626,6 +11644,15 @@
       "introduced_date": "2026-10-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10771",
       "title": "Emergency Preparedness in Higher Education Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10961-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10961",
+      "title": "To direct the Secretary of Veterans Affairs to report on the Warrior Training Advancement Course of the Veterans Benefits Administration."
     },
     {
       "became_law": false,

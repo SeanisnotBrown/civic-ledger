@@ -488,6 +488,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr4253-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/4253",
+      "title": "Expanding Access to Mental Health Services in Schools Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr4611-119",
       "congress": 119,
       "enacted_action": null,
@@ -1123,7 +1132,7 @@
       "enacted_action": null,
       "introduced_date": "2026-10-29",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1644",
-      "title": "Supporting the goals and ideals of October as \"National Domestic Violence Awareness Month\"."
+      "title": "Original National Domestic Violence Awareness Month Resolution of 2026"
     },
     {
       "became_law": false,
@@ -1136,12 +1145,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 126,
-    "sponsored": 4
+    "cosponsored": 127,
+    "sponsored": 5
   },
   "member_id": "M001245",
   "source_url": "https://api.congress.gov/v3/member/M001245/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr10991-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-11",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10991",
+      "title": "SPARKS Act"
+    },
     {
       "became_law": false,
       "bill_id": "hr8581-119",

@@ -479,6 +479,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10554-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10554",
+      "title": "SCREEN Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10556-119",
       "congress": 119,
       "enacted_action": null,
@@ -629,6 +638,15 @@
       "introduced_date": "2024-04-17",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1097",
       "title": "Everett Alvarez, Jr. Congressional Gold Medal Act of 2023"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10985-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10985",
+      "title": "To require reporting by the Department of Defense on the use of open-air burn pits, and for other purposes."
     },
     {
       "became_law": false,
@@ -1225,10 +1243,10 @@
       "title": "Agent Orange Service Medal Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1744-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-137.",
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
       "title": "United States Commission on International Religious Freedom Reauthorization Act of 2026"
@@ -5266,10 +5284,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -7004,7 +7022,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 3101,
+    "cosponsored": 3103,
     "sponsored": 305
   },
   "member_id": "B001257",

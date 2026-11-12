@@ -299,6 +299,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10682-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10682",
+      "title": "To amend the Internal Revenue Code of 1986 to provide parity in the taxation of professional sports franchises under the limitation on the deduction for certain employee remuneration, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10692-119",
       "congress": 119,
       "enacted_action": null,
@@ -3430,10 +3439,10 @@
       "title": "Bottles and Breastfeeding Equipment Screening Enhancement Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-07-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -3899,6 +3908,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr9899-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9899",
+      "title": "Afghanistan TPS Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr9905-119",
       "congress": 119,
       "enacted_action": null,
@@ -4331,7 +4349,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 481,
+    "cosponsored": 483,
     "sponsored": 13
   },
   "member_id": "L000606",

@@ -371,12 +371,30 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10504-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10504",
+      "title": "CURE Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10527-119",
       "congress": 119,
       "enacted_action": null,
       "introduced_date": "2026-09-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10527",
       "title": "Smithsonian Integrity and Historical Independence Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10545-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10545",
+      "title": "Freedom from Intimidation in Elections Act"
     },
     {
       "became_law": true,
@@ -3851,6 +3869,15 @@
       "introduced_date": "2025-11-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5249",
       "title": "Limit on Sweeping Executive Reorganization Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr5271-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5271",
+      "title": "Pakistan Freedom and Accountability Act"
     },
     {
       "became_law": false,
@@ -7472,7 +7499,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 830,
+    "cosponsored": 833,
     "sponsored": 48
   },
   "member_id": "G000598",

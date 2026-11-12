@@ -5042,6 +5042,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr7765-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7765",
+      "title": "Fair Future Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr7770-118",
       "congress": 118,
       "enacted_action": null,
@@ -5275,10 +5284,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-15",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -7067,7 +7076,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2580,
+    "cosponsored": 2581,
     "sponsored": 126
   },
   "member_id": "V000131",

@@ -101,6 +101,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10279-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-11",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10279",
+      "title": "To designate the facility of the United States Postal Service located at 9995 Southeast Federal Highway in Hobe Sound, Florida, as the \"Special Operations Chief Petty Officer Aaron Carson Vaughn Post Office Building\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10554-119",
       "congress": 119,
       "enacted_action": null,
@@ -1432,10 +1441,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-05-14",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -2000,7 +2009,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2180,
+    "cosponsored": 2181,
     "sponsored": 112
   },
   "member_id": "D000600",

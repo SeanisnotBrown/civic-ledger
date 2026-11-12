@@ -245,6 +245,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10787-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10787",
+      "title": "Access to Medical Supplies Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1085-119",
       "congress": 119,
       "enacted_action": null,
@@ -5492,7 +5501,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 7670,
+    "cosponsored": 7671,
     "sponsored": 952
   },
   "member_id": "S000522",
@@ -5661,10 +5670,10 @@
       "title": "Social Security Cost of Living Increase Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1744-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-137.",
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
       "title": "United States Commission on International Religious Freedom Reauthorization Act of 2026"

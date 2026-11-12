@@ -1,6 +1,96 @@
 {
   "actions": [
     {
+      "action_code": null,
+      "committees": null,
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 695.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": "H38310",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "time": "19:00:03",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37300",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": "h-119-2-0315",
+      "source_system": "House floor actions",
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 397 - 2 (Roll no. 315). (text: CR H6096)",
+      "time": "19:00:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": "h-119-2-0315",
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by the Yeas and Nays: (2/3 required): 397 - 2 (Roll no. 315). (text: CR H6096)",
+      "time": "19:00:01",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered as unfinished business. (consideration: CR H6107-6108)",
+      "time": "18:31:21",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H37220",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "At the conclusion of debate, the Yeas and Nays were demanded and ordered. Pursuant to the provisions of clause 8, rule XX, the Chair announced that further proceedings on the motion would be postponed.",
+      "time": "15:28:17",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H8D000",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "DEBATE - The House proceeded with forty minutes of debate on H.R. 3978.",
+      "time": "15:22:54",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30000",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Considered under suspension of the rules. (consideration: CR H6096-6097)",
+      "time": "15:22:53",
+      "type": "Floor"
+    },
+    {
+      "action_code": "H30300",
+      "committees": null,
+      "date": "2026-11-09",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Mr. Latta moved to suspend the rules and pass the bill, as amended.",
+      "time": "15:22:34",
+      "type": "Floor"
+    },
+    {
       "action_code": "H12410",
       "committees": null,
       "date": "2026-11-05",
@@ -137,8 +227,8 @@
   ],
   "id": "hr3978-119",
   "jurisdiction": "us",
-  "latest_action": "Placed on the Union Calendar, Calendar No. 768.",
-  "latest_action_date": "2026-11-05",
+  "latest_action": "Received in the Senate. Read twice. Placed on Senate Legislative Calendar under General Orders. Calendar No. 695.",
+  "latest_action_date": "2026-11-10",
   "number": 3978,
   "policy_area": "Energy",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3978",

@@ -335,6 +335,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1502-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1502",
+      "title": "North Platte Canteen Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr152-118",
       "congress": 118,
       "enacted_action": null,
@@ -1684,10 +1693,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-06-02",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -2072,6 +2081,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1653-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1653",
+      "title": "Honoring the service and sacrifice of America's veterans on Veterans Day, 2026."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres166-119",
       "congress": 119,
       "enacted_action": null,
@@ -2342,7 +2360,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2316,
+    "cosponsored": 2318,
     "sponsored": 143
   },
   "member_id": "C001051",

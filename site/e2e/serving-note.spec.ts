@@ -23,3 +23,11 @@ test("a sitting member's page does not", async ({ page }) => {
   await page.goto(`/m/${SEAT_STATUS.sitting}/1`);
   await expect(page.getByText("No longer serving.")).toHaveCount(0);
 });
+
+// 2026-11-11: a serving appointee whose recorded end is only the expected
+// special-election date (`end_projected`) still holds the seat after that date.
+test("a serving appointee past a projected end is not marked as departed", async ({ page }) => {
+  test.skip(SEAT_STATUS.projected === null, "no projected-end appointee in this dataset");
+  await page.goto(`/m/${SEAT_STATUS.projected}/1`);
+  await expect(page.getByText("No longer serving.")).toHaveCount(0);
+});

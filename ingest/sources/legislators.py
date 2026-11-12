@@ -149,18 +149,26 @@ def is_covered(entry: dict, congresses: list[int]) -> bool:
     return any(_term_overlaps(t, c) for t in terms for c in congresses)
 
 
-def _to_member(entry: dict, congresses: list[int]) -> Member:
+def _to_member(entry: dict, congresses: list[int], current_ids: set[str]) -> Member:
     latest = entry["terms"][-1]
     name = entry["name"]
     display = name.get("official_full") or f"{name['first']} {name['last']}"
     chamber = _CHAMBER[latest["type"]]
 
+    # `end-type: special-election` means a projected end ONLY while upstream still
+    # lists the member as serving (legislators-current.yaml): departed appointees
+    # keep the key in legislators-historical.yaml (Butler, B001320, ended
+    # 2024-12-08) with `end` already the real last day.
+    projected = entry["id"]["bioguide"] in current_ids and (
+        latest.get("end-type") == "special-election"
+    )
     terms = [
         Term(
             start=t["start"],
             end=t["end"],
             party=party_code(t["party"]),
             chamber=_CHAMBER[t["type"]],
+            end_projected=projected and t is latest,
         )
         for t in sorted(entry["terms"], key=lambda t: (t["start"], t["end"]))
     ]
@@ -178,14 +186,17 @@ def _to_member(entry: dict, congresses: list[int]) -> Member:
     )
 
 
-def covered_members(raw: list[dict], congresses: list[int]) -> list[Member]:
+def covered_members(
+    raw: list[dict], congresses: list[int], current_ids: set[str] | None = None
+) -> list[Member]:
     """Filter raw congress-legislators entries (current+historical merged, see
     `merge_raw`) to the covered set — every member of both chambers, including
     the 6 non-voting delegates (D61), who served a covered Congress — then
     construct validated `Member`s. Returns them sorted by bioguide id (stable
-    export order). Filter-before-construct is load-bearing (see module docstring)."""
+    export order). Filter-before-construct is load-bearing (see module docstring).
+    `current_ids` = bioguides in legislators-current.yaml (for `Term.end_projected`)."""
     members = [
-        _to_member(entry, congresses)
+        _to_member(entry, congresses, current_ids or set())
         for entry in raw
         if is_covered(entry, congresses)
     ]

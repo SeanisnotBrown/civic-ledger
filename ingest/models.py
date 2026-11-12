@@ -15,7 +15,7 @@ from __future__ import annotations
 from datetime import date as _date
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, field_validator, model_validator
+from pydantic import BaseModel, ConfigDict, field_validator, model_serializer, model_validator
 
 Party = Literal["D", "R", "I"]
 Chamber = Literal["house", "senate"]
@@ -42,6 +42,21 @@ class Term(_Strict):
     end: str
     party: Party
     chamber: Chamber
+    # True only on the latest term of a senator upstream still lists as SERVING by
+    # appointment with `end-type: special-election`: congress-legislators then
+    # documents `end` as the EXPECTED special-election date, not the last day served
+    # (its README, `how`), and replaces it with the real date once the successor is
+    # sworn in. `end` is kept as upstream wrote it (no date is invented); the flag
+    # tells `coverage.member_terms` not to treat it as a departure. Omitted from
+    # the JSON when False, so every other member record is byte-identical.
+    end_projected: bool = False
+
+    @model_serializer(mode="wrap")
+    def _omit_unprojected(self, handler):
+        data = handler(self)
+        if not data.get("end_projected"):
+            data.pop("end_projected", None)
+        return data
 
 
 class Member(_Strict):

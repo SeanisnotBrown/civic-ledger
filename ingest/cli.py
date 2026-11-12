@@ -24,7 +24,8 @@ def _members() -> int:
     current_raw = yaml.safe_load(legislators.current().text)
     historical_raw = yaml.safe_load(legislators.historical().text)
     raw = legislators.merge_raw(current_raw, historical_raw)
-    members = legislators.covered_members(raw, config.CONGRESSES)
+    current_ids = {e["id"]["bioguide"] for e in current_raw}
+    members = legislators.covered_members(raw, config.CONGRESSES, current_ids)
 
     by_chamber = {"house": 0, "senate": 0}
     for m in members:

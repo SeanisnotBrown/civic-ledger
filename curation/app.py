@@ -214,10 +214,18 @@ def create_app(data_dir: Path | None = None) -> Flask:
             <input type="hidden" name="csrf" value="{{ csrf }}">
             <input type="hidden" name="item_id" value="{{ nxt.item.id }}">
             <button name="action" value="approve">Approve the suggestion</button>
-            <button name="action" value="reject">Reject</button>
             <h2>Or edit</h2>
             {{ fields(nxt.item.suggestion) }}
             <button name="action" value="edit">Save my edit</button></form>
+          <form method="post" action="{{ url_for('review_decide') }}">
+            <input type="hidden" name="csrf" value="{{ csrf }}">
+            <input type="hidden" name="item_id" value="{{ nxt.item.id }}">
+            <h2>Or reject</h2>
+            <label>Why?</label><select name="reason" required>
+              <option value="">(choose a reason)</option>
+              {% for r in reasons %}<option>{{ r }}</option>{% endfor %}</select>
+            <label>Note (needed for other)</label><input name="note">
+            <button name="action" value="reject">Reject</button></form>
         {% endif %}{% endif %}"""
 
         topics, stances = review.topics(), review.STANCES
@@ -230,7 +238,7 @@ def create_app(data_dir: Path | None = None) -> Flask:
             return Markup(render_template_string(_SUGGESTION, s=s))
 
         return _render(body, nxt=nxt, gate=gate, running=running, csrf=csrf_token,
-                       fields=fields, suggestion=suggestion,
+                       fields=fields, suggestion=suggestion, reasons=review.REJECT_REASONS,
                        msg=request.args.get("msg"), cls=request.args.get("cls", "ok"))
 
     @app.post("/review/blind")

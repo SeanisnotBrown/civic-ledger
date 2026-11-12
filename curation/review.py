@@ -21,7 +21,8 @@ is revealed, and running precision is computed from those blind labels only.
   * `blind_label` — the owner's label for a blind item, entered before the reveal, with
     the per-field agreement between it and the AI's calls (`ingest.prompt_eval.calls`,
     the same scoring the held-out evaluation uses).
-  * `decision` — approve / edit / reject, with the final label for approve and edit.
+  * `decision` — approve / edit / reject, with the final label for approve and edit, and
+    for a reject its `reason` (`REJECT_REASONS`, owner ruling 6) and `note`.
 
 The log stores the owner's labels and agreement marks, never the model's answer: that stays
 in the AI cache under the `input_hash` the line names (counts, never answers — the rule
@@ -40,8 +41,9 @@ opens only when every condition holds:
      the categorizer prompt `ai.yaml` names TODAY (a new prompt version needs a new
      measurement), every barred field meets its bar, and no D/R gap is flagged (owner,
      2026-10-23: "publishing still needs the labeled 60 to clear the bar"). EVERY label in
-     it must be the owner's reviewed judgment: a measurement with any copilot-labeled,
-     owner-unreviewed row (`unreviewed_labels` > 0, or not stated) never opens the gate;
+     it must be the owner's reviewed judgment: a measurement with any row not marked
+     `OWNER-REVIEWED` by the owner (owner ruling 2026-11-04), or flagged copilot-labeled /
+     owner-unreviewed (`unreviewed_labels` > 0, or not stated), never opens the gate;
   3. no field's rolling precision over the last `rolling_blind_window` blind labels is
      below its bar (Q-K's running check);
   4. a categorized statement can be archived before it publishes (decision 8; task 3).
@@ -80,6 +82,8 @@ BLIND_SEED = "civic-ledger-review-blind-2026-10-23"
 ACTIONS = ("approve", "edit", "reject")
 SCORED = ("stance", "topic", "priority_signal", "specificity")
 STANCES = ("for", "against", "mixed", "none")
+# Owner ruling 6 (2026-10-23), in the ruling's own words. `other` needs a note.
+REJECT_REASONS = ("takes no position", "wrong member", "broken text", "other")
 
 # Condition 4 of the gate. Flipped 2026-11-04 in the commit that built archive capture for
 # categorized statements (task 3) — never by hand. It says the path EXISTS; whether a
@@ -248,6 +252,18 @@ def clean_label(form: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def clean_reject(form: dict[str, Any]) -> dict[str, Any]:
+    """The owner's reason for a reject from a form, validated. A note is optional, except
+    on `other`, where the reason is the note."""
+    reason = str(form.get("reason", "")).strip()
+    if reason not in REJECT_REASONS:
+        raise ReviewError(f"a reject needs a reason: one of {', '.join(REJECT_REASONS)}")
+    note = str(form.get("note", "")).strip() or None
+    if reason == "other" and note is None:
+        raise ReviewError("a reject for reason other needs a note")
+    return {"reason": reason, "note": note}
+
+
 def agreement(item: Item, label: dict[str, Any]) -> dict[str, bool]:
     """For each field the AI made a call on: does the owner's label agree? The held-out
     evaluation's own scoring, so the running number and the launch number mean the same."""
@@ -285,8 +301,8 @@ def record_blind_label(item_id: str, form: dict[str, Any], data_dir: Path | None
 
 def record_decision(item_id: str, action: str, form: dict[str, Any] | None = None,
                     data_dir: Path | None = None, *, now: str | None = None) -> dict[str, Any]:
-    """Approve (adopt the suggestion), edit (the owner's label) or reject. A blind item
-    cannot be decided until its blind label is on file."""
+    """Approve (adopt the suggestion), edit (the owner's label) or reject (with a reason).
+    A blind item cannot be decided until its blind label is on file."""
     if action not in ACTIONS:
         raise ReviewError(f"action must be one of {', '.join(ACTIONS)}")
     item = _find(item_id, data_dir)
@@ -309,6 +325,8 @@ def record_decision(item_id: str, action: str, form: dict[str, Any] | None = Non
     elif action == "edit":
         line["label"] = clean_label(form or {})
         line["agree"] = agreement(item, line["label"])
+    else:
+        line.update(clean_reject(form or {}))
     _append(data_dir, line)
     return line
 
@@ -367,13 +385,15 @@ def _measurement_reasons(data_dir: Path | None) -> list[str]:
         return ["the categorizer has not been measured on the held-out labeled set yet "
                 "(run `uv run ingest prompt-eval` on all labeled rows)"]
     recorded = json.loads(path.read_text(encoding="utf-8"))
-    # Only owner-reviewed labels can satisfy Q-K (copilot, 2026-10-23). A measurement that
-    # does not say how many of its labels are unreviewed is treated as unreviewed.
+    # Only owner-reviewed labels can satisfy Q-K (copilot, 2026-10-23; the explicit
+    # `OWNER-REVIEWED` mark, owner ruling 2026-11-04). A measurement that does not say how
+    # many of its labels are unreviewed is treated as unreviewed.
     unreviewed = recorded.get("unreviewed_labels")
     if unreviewed is None or unreviewed > 0:
         count = "an unknown number of" if unreviewed is None else str(unreviewed)
         return [f"the held-out measurement rests on {count} labels the owner has not "
-                "reviewed (copilot-labeled); only owner-reviewed labels can satisfy Q-K"]
+                "reviewed (not marked OWNER-REVIEWED); only owner-reviewed labels can "
+                "satisfy Q-K"]
     task = ai.load_config().task("categorize_statement")
     measured = recorded["tasks"]["categorize_statement"]
     if (measured["prompt_version"], measured["prompt_sha256"]) != (

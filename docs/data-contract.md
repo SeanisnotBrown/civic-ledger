@@ -360,7 +360,9 @@ review. A complete `prompt-eval` run on at least 50 labeled rows records its cou
 `data/quality/categorizer-precision.json` (counts per field and party, the prompt versions
 and hashes measured, each field's status, any D/R gap flag; no per-row mark, no model
 answer); the publish gate trusts it only while those prompt versions are still in
-`ai.yaml`. The first-pass triage has no bar (owner, 2026-10-23) and is reported only. No
+`ai.yaml`. **A label counts as owner-reviewed only when its `notes` carry the token `OWNER-REVIEWED`
+(any case, whole token), added by the owner alone; a row without it, or also flagged `copilot-labeled` / `owner-unreviewed`, counts as unreviewed (owner ruling 2026-11-04, fail closed).**
+Any unreviewed row sets `unreviewed_labels` above zero, so no bar is assessed and the gate stays closed. The first-pass triage has no bar (owner, 2026-10-23) and is reported only. No
 measured precision is recorded below.
 
 **First Q-K measurement, 2026-10-23 — FAIL, gate stays closed.** `prompt-eval` on all 60
@@ -391,7 +393,9 @@ They are listed, not changed; the owner reconciles them.
 
 **Review queue and log (P3 task 5) — NOT published.** `data/raw/review/queue.jsonl` (the
 categorized statements awaiting review) and `data/raw/review/log.jsonl` (the owner's
-blind labels and approve / edit / reject decisions, with per-field agreement marks) are
+blind labels and approve / edit / reject decisions, with per-field agreement marks; a
+reject also records its `reason`, one of `takes no position`, `wrong member`, `broken
+text`, `other` (owner ruling 6), and a `note`, required for `other`) are
 gitignored here and, per the owner's ruling of 2026-10-23, backed up off-machine to a
 separate PRIVATE repository (the push step is a stub until that repository exists); it is
 never committed to this public repository. The log holds the owner's labels and the AI cache's `input_hash`, never the

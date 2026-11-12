@@ -61,6 +61,29 @@ QUARANTINE_MAX_FRACTION: float = 0.02
 ACTIVITY_FETCH_FAILURE_MAX_FRACTION: float = 0.02
 ACTIVITY_FETCH_FAILURE_MIN_TOLERATED: int = 2
 
+# The scheduled bill-activity window (`--since-published`, 2026-11-11). The nightly
+# covers everything since the LAST PUBLISHED nightly: hours since the committed
+# data/manifest.json `generated_at` + MARGIN, never less than FLOOR. A night that
+# fails publishes no manifest, so the next run widens by itself and no manual
+# catch-up is needed (the fixed 36 h window lost 2026-11-07 11:57 -> 11-08 02:00 and
+# 11-09 14:00 -> the next passing run). A stale manifest (a quiet night commits
+# nothing) only widens the window; FLOOR keeps it from ever being narrower than the
+# fixed 36 h it replaces.
+#   FLOOR 36: the window every scheduled run used since 2026-10-08.
+#   MARGIN 12: that window's slack over the 24 h cron (36 - 24). It must exceed the
+#     gap between bill-activity and export in the published run (~12 min; ~3.5-4 h
+#     on Sundays, when `legislation --full` runs between them).
+#   MAX 192: the largest window ever run, the owner's 2026-10-29 catch-up: 843 bills,
+#     whole job 2 h 47 min. Worst case at D88's 435 bills/day is ~3,480 bills: ~1 h
+#     if held (1 request each at 1 req/s), ~3.9 h if all new (4 requests), inside
+#     GitHub's 6 h job limit. The longest gap between published nightlies so far is
+#     161 h (2026-10-23 -> 10-30), ~179 h with margin at the next scheduled run.
+#     Above MAX the run fails loudly before fetching anything; a manual dispatch with
+#     an explicit `since_hours` is the override and is not capped.
+ACTIVITY_WINDOW_FLOOR_HOURS: float = 36.0
+ACTIVITY_WINDOW_MARGIN_HOURS: float = 12.0
+ACTIVITY_WINDOW_MAX_HOURS: float = 192.0
+
 # The same ceiling for the nightly `ingest legislation` member sweep. 2026-10-07
 # (nightly 37652899299): three of 639 member requests to api.congress.gov returned
 # ReadTimeout — each already retried five times with 2s->60s backoff in

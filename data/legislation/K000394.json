@@ -7445,6 +7445,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s4545-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/4545",
+      "title": "Scientific Integrity Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "s455-119",
       "congress": 119,
       "enacted_action": null,
@@ -9263,8 +9272,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2045,
-    "sponsored": 238
+    "cosponsored": 2046,
+    "sponsored": 242
   },
   "member_id": "K000394",
   "source_url": "https://api.congress.gov/v3/member/K000394/sponsored-legislation",

@@ -4179,7 +4179,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 464,
-    "sponsored": 30
+    "sponsored": 31
   },
   "member_id": "M001232",
   "source_url": "https://api.congress.gov/v3/member/M001232/sponsored-legislation",
@@ -4192,6 +4192,15 @@
       "introduced_date": "2026-10-01",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10684",
       "title": "DOE Bioenergy Program Reauthorization Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11022-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11022",
+      "title": "AGRI–FLOOD Resilience and Infrastructure Act"
     },
     {
       "became_law": false,

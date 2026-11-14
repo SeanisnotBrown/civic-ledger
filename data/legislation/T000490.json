@@ -1315,10 +1315,10 @@
       "title": "Gun Owner Registration Information Protection Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr7730-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-142.",
       "introduced_date": "2026-06-08",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7730",
       "title": "Bankruptcy Threshold Adjustment Act"
@@ -1785,7 +1785,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 198,
-    "sponsored": 38
+    "sponsored": 39
   },
   "member_id": "T000490",
   "source_url": "https://api.congress.gov/v3/member/T000490/sponsored-legislation",
@@ -1825,6 +1825,15 @@
       "introduced_date": "2026-10-15",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10831",
       "title": "Acquired Lands Revenue Modernization Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11031-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11031",
+      "title": "CDL Fraud Tipline Act"
     },
     {
       "became_law": false,

@@ -3773,6 +3773,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5552-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5552",
+      "title": "Motion Picture, Television, and Entertainment Revitalization Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "s5554-119",
       "congress": 119,
       "enacted_action": null,
@@ -6428,8 +6437,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 739,
-    "sponsored": 63
+    "cosponsored": 740,
+    "sponsored": 64
   },
   "member_id": "B001319",
   "source_url": "https://api.congress.gov/v3/member/B001319/sponsored-legislation",

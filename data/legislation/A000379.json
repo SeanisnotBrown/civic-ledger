@@ -281,6 +281,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10507-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10507",
+      "title": "Justice for Veterans and Victims of Terrorism Act of 2026"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10514-118",
       "congress": 118,
       "enacted_action": null,
@@ -2737,10 +2746,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-05-07",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -3314,6 +3323,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres358-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/358",
+      "title": "A resolution seeking justice for the Japanese citizens abducted by North Korea."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres362-118",
       "congress": 118,
       "enacted_action": null,
@@ -3575,7 +3593,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 397,
+    "cosponsored": 399,
     "sponsored": 55
   },
   "member_id": "A000379",

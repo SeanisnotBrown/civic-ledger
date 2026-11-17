@@ -685,10 +685,10 @@
       "title": "Grown in America Act of 2025"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1744-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-137.",
       "introduced_date": "2025-02-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
       "title": "United States Commission on International Religious Freedom Reauthorization Act of 2026"
@@ -3737,6 +3737,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1653-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1653",
+      "title": "Honoring the service and sacrifice of America's veterans on Veterans Day, 2026."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres216-119",
       "congress": 119,
       "enacted_action": null,
@@ -4052,7 +4061,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2518,
+    "cosponsored": 2519,
     "sponsored": 124
   },
   "member_id": "C001063",

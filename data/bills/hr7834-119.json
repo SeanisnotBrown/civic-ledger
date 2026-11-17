@@ -3,10 +3,30 @@
     {
       "action_code": null,
       "committees": null,
+      "date": "2026-11-16",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-11-16",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Passed Senate without amendment by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": null,
       "date": "2026-09-17",
       "rollcall_id": null,
       "source_system": "Senate",
-      "text": "Received in the Senate.",
+      "text": "Received in the Senate, read twice.",
       "time": null,
       "type": "IntroReferral"
     },
@@ -172,8 +192,8 @@
   ],
   "id": "hr7834-119",
   "jurisdiction": "us",
-  "latest_action": "Received in the Senate.",
-  "latest_action_date": "2026-09-17",
+  "latest_action": "Passed Senate without amendment by Unanimous Consent. (consideration: CR S5701)",
+  "latest_action_date": "2026-11-16",
   "number": 7834,
   "policy_area": "Crime and Law Enforcement",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7834",

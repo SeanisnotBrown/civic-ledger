@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2026-11-12",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Indian and Insular Affairs.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Natural Resources Committee"
@@ -43,8 +55,8 @@
   ],
   "id": "hr10458-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the House Committee on Natural Resources.",
-  "latest_action_date": "2026-09-16",
+  "latest_action": "Referred to the Subcommittee on Indian and Insular Affairs.",
+  "latest_action_date": "2026-11-12",
   "number": 10458,
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10458",

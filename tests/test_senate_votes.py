@@ -223,3 +223,52 @@ def test_senate_vote_export_deterministic(tmp_path):
     assert a.read_bytes() == b.read_bytes()
     assert a.name == "s-119-1-0001.json"
     assert b"\r\n" not in a.read_bytes()
+
+
+# --- appointed senator past the projected special-election date (2026-11-10) ----
+
+
+def test_appointee_with_projected_end_is_on_roster_after_that_date(tmp_path):
+    # Regression: the 2026-11-10 and 2026-11-11 nightlies failed on s-119-2-0257 /
+    # 0258 with UnknownMember for Husted (S438, H001104) and Moody (S439, M001244).
+    # congress-legislators records each appointed term's `end` as the EXPECTED
+    # special-election date (2026-11-03, `end-type: special-election`), yet both
+    # still voted on 2026-11-09. Real roll 257 XML, real upstream term values.
+    from ingest import coverage
+    from ingest.export import export_members
+    from ingest.models import Member, Term
+
+    xml = (SAMPLES / "senate_vote_detail_119_2_00257.xml").read_text(encoding="utf-8")
+    xwalk = _full_xwalk(xml)
+    xwalk.update({"S438": "H001104", "S439": "M001244"})
+    appointees = [
+        Member(
+            id=bio, ids={"lis": lis}, name=name, party="R", state=state, district=None,
+            chamber="senate", serving=True,
+            terms=[Term(start="2025-01-21", end="2026-11-03", party="R", chamber="senate",
+                        end_projected=True)],
+        )
+        for bio, lis, name, state in (
+            ("H001104", "S438", "Jon Husted", "OH"), ("M001244", "S439", "Ashley Moody", "FL")
+        )
+    ]
+    export_members(appointees, out_dir=tmp_path)
+    terms = coverage.member_terms(tmp_path, "senate")
+    others = set(xwalk.values()) - {"H001104", "M001244"}
+    roster = coverage.covered_on(terms, "2026-11-09") | others
+
+    rc, mvs, _ = senate_votes.parse_rollcall(xml, 119, 2, xwalk, (73, 25), covered=roster)
+    assert rc.id == "s-119-2-0257"
+    assert rc.totals == {"yea": 73, "nay": 25, "present": 0, "not_voting": 2}
+    assert {"H001104", "M001244"} <= {mv.member_id for mv in mvs}
+
+    # Without the projection flag (the pre-fix roster) the same roll quarantines.
+    unflagged = {bio: [(s, "2026-11-03")] for bio, [(s, _e)] in terms.items()}
+    with pytest.raises(senate_votes.UnknownMember, match="H001104"):
+        senate_votes.parse_rollcall(
+            xml, 119, 2, xwalk, (73, 25),
+            covered=coverage.covered_on(unflagged, "2026-11-09") | others,
+        )
+    # R-2 still holds: a voter with no roster record at all is still refused.
+    with pytest.raises(senate_votes.UnknownMember, match="H001104"):
+        senate_votes.parse_rollcall(xml, 119, 2, xwalk, (73, 25), covered=others)

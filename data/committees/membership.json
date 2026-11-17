@@ -3494,6 +3494,14 @@
     "title": null
    },
    {
+    "committee_id": "HSFA07",
+    "name": "Western Hemisphere",
+    "parent_name": "House Committee on Foreign Affairs",
+    "rank": 7,
+    "source_url": "https://foreignaffairs.house.gov/",
+    "title": null
+   },
+   {
     "committee_id": "HSGO33",
     "name": "Federal Law Enforcement",
     "parent_name": "House Committee on Oversight and Government Reform",
@@ -3689,6 +3697,16 @@
     "parent_name": "House Committee on Transportation and Infrastructure",
     "rank": 19,
     "source_url": "https://transportation.house.gov/",
+    "title": null
+   }
+  ],
+  "B001328": [
+   {
+    "committee_id": "HSBA",
+    "name": "House Committee on Financial Services",
+    "parent_name": null,
+    "rank": 24,
+    "source_url": "https://financialservices.house.gov/",
     "title": null
    }
   ],
@@ -4033,7 +4051,7 @@
     "committee_id": "SSAP18",
     "name": "Departments of Labor, Health and Human Services, and Education, and Related Agencies",
     "parent_name": "Senate Committee on Appropriations",
-    "rank": 9,
+    "rank": 10,
     "source_url": "http://www.appropriations.senate.gov/",
     "title": "Ex Officio"
    },
@@ -4041,7 +4059,7 @@
     "committee_id": "SSAP22",
     "name": "Energy and Water Development",
     "parent_name": "Senate Committee on Appropriations",
-    "rank": 9,
+    "rank": 10,
     "source_url": "http://www.appropriations.senate.gov/",
     "title": "Ex Officio"
    },
@@ -4049,7 +4067,7 @@
     "committee_id": "SSAP23",
     "name": "Financial Services and General Government",
     "parent_name": "Senate Committee on Appropriations",
-    "rank": 5,
+    "rank": 6,
     "source_url": "http://www.appropriations.senate.gov/",
     "title": "Ex Officio"
    },
@@ -4261,7 +4279,7 @@
     "committee_id": "SSEV09",
     "name": "Chemical Safety, Waste Management, Environmental Justice, and Regulatory Oversight",
     "parent_name": "Senate Committee on Environment and Public Works",
-    "rank": 5,
+    "rank": 6,
     "source_url": "http://www.epw.senate.gov/",
     "title": "Ex Officio"
    },
@@ -4269,7 +4287,7 @@
     "committee_id": "SSEV10",
     "name": "Clean Air, Climate, and Nuclear Innovation and Safety",
     "parent_name": "Senate Committee on Environment and Public Works",
-    "rank": 8,
+    "rank": 9,
     "source_url": "http://www.epw.senate.gov/",
     "title": "Ex Officio"
    },
@@ -4285,7 +4303,7 @@
     "committee_id": "SSEV08",
     "name": "Transportation and Infrastructure",
     "parent_name": "Senate Committee on Environment and Public Works",
-    "rank": 8,
+    "rank": 9,
     "source_url": "http://www.epw.senate.gov/",
     "title": "Ex Officio"
    }
@@ -7939,7 +7957,7 @@
     "committee_id": "HSFA17",
     "name": "Oversight and Intelligence",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 4,
+    "rank": 3,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
    }
@@ -11482,6 +11500,22 @@
     "rank": 3,
     "source_url": "https://smallbusiness.house.gov/",
     "title": null
+   },
+   {
+    "committee_id": "HSVR03",
+    "name": "Health",
+    "parent_name": "House Committee on Veterans' Affairs",
+    "rank": 5,
+    "source_url": "https://veterans.house.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "HSVR11",
+    "name": "Technology Modernization",
+    "parent_name": "House Committee on Veterans' Affairs",
+    "rank": 2,
+    "source_url": "https://veterans.house.gov/",
+    "title": null
    }
   ],
   "G000605": [
@@ -11607,6 +11641,144 @@
     "parent_name": null,
     "rank": 36,
     "source_url": "https://transportation.house.gov/",
+    "title": null
+   }
+  ],
+  "G000608": [
+   {
+    "committee_id": "SSAP",
+    "name": "Senate Committee on Appropriations",
+    "parent_name": null,
+    "rank": 15,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSEV",
+    "name": "Senate Committee on Environment and Public Works",
+    "parent_name": null,
+    "rank": 10,
+    "source_url": "http://www.epw.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSBU",
+    "name": "Senate Committee on the Budget",
+    "parent_name": null,
+    "rank": 11,
+    "source_url": "http://www.budget.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSJU",
+    "name": "Senate Committee on the Judiciary",
+    "parent_name": null,
+    "rank": 12,
+    "source_url": "http://www.judiciary.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSAP16",
+    "name": "Commerce, Justice, Science, and Related Agencies",
+    "parent_name": "Senate Committee on Appropriations",
+    "rank": 9,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSAP18",
+    "name": "Departments of Labor, Health and Human Services, and Education, and Related Agencies",
+    "parent_name": "Senate Committee on Appropriations",
+    "rank": 9,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSAP22",
+    "name": "Energy and Water Development",
+    "parent_name": "Senate Committee on Appropriations",
+    "rank": 9,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSAP23",
+    "name": "Financial Services and General Government",
+    "parent_name": "Senate Committee on Appropriations",
+    "rank": 5,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSAP19",
+    "name": "Military Construction, Veterans Affairs, and Related Agencies",
+    "parent_name": "Senate Committee on Appropriations",
+    "rank": 9,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSAP24",
+    "name": "Transportation, Housing and Urban Development, and Related Agencies",
+    "parent_name": "Senate Committee on Appropriations",
+    "rank": 9,
+    "source_url": "http://www.appropriations.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSEV09",
+    "name": "Chemical Safety, Waste Management, Environmental Justice, and Regulatory Oversight",
+    "parent_name": "Senate Committee on Environment and Public Works",
+    "rank": 5,
+    "source_url": "http://www.epw.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSEV10",
+    "name": "Clean Air, Climate, and Nuclear Innovation and Safety",
+    "parent_name": "Senate Committee on Environment and Public Works",
+    "rank": 8,
+    "source_url": "http://www.epw.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSEV08",
+    "name": "Transportation and Infrastructure",
+    "parent_name": "Senate Committee on Environment and Public Works",
+    "rank": 8,
+    "source_url": "http://www.epw.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSJU04",
+    "name": "Border Security and Immigration",
+    "parent_name": "Senate Committee on the Judiciary",
+    "rank": 7,
+    "source_url": "http://www.judiciary.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSJU22",
+    "name": "Crime and Counterterrorism",
+    "parent_name": "Senate Committee on the Judiciary",
+    "rank": 6,
+    "source_url": "http://www.judiciary.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSJU25",
+    "name": "Federal Courts, Oversight, Agency Action, and Federal Rights",
+    "parent_name": "Senate Committee on the Judiciary",
+    "rank": 6,
+    "source_url": "http://www.judiciary.senate.gov/",
+    "title": null
+   },
+   {
+    "committee_id": "SSJU28",
+    "name": "Privacy, Technology, and the Law",
+    "parent_name": "Senate Committee on the Judiciary",
+    "rank": 6,
+    "source_url": "http://www.judiciary.senate.gov/",
     "title": null
    }
   ],
@@ -14447,7 +14619,7 @@
     "committee_id": "HSFA07",
     "name": "Western Hemisphere",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 3,
+    "rank": 4,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
    }
@@ -14526,6 +14698,14 @@
     "rank": 2,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
+   },
+   {
+    "committee_id": "HSFA17",
+    "name": "Oversight and Intelligence",
+    "parent_name": "House Committee on Foreign Affairs",
+    "rank": 1,
+    "source_url": "https://foreignaffairs.house.gov/",
+    "title": "Ranking Member"
    },
    {
     "committee_id": "HSFA07",
@@ -14999,7 +15179,7 @@
     "committee_id": "HSFA13",
     "name": "Middle East and North Africa",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 2,
+    "rank": 5,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
    }
@@ -20236,8 +20416,8 @@
     "title": null
    },
    {
-    "committee_id": "HSFA17",
-    "name": "Oversight and Intelligence",
+    "committee_id": "HSFA13",
+    "name": "Middle East and North Africa",
     "parent_name": "House Committee on Foreign Affairs",
     "rank": 1,
     "source_url": "https://foreignaffairs.house.gov/",
@@ -23476,6 +23656,14 @@
     "rank": 3,
     "source_url": "https://appropriations.house.gov/",
     "title": null
+   },
+   {
+    "committee_id": "HSFA16",
+    "name": "Africa",
+    "parent_name": "House Committee on Foreign Affairs",
+    "rank": 5,
+    "source_url": "https://foreignaffairs.house.gov/",
+    "title": null
    }
   ],
   "P000608": [
@@ -25709,9 +25897,9 @@
     "committee_id": "HSFA13",
     "name": "Middle East and North Africa",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 1,
+    "rank": 2,
     "source_url": "https://foreignaffairs.house.gov/",
-    "title": "Ranking Member"
+    "title": null
    }
   ],
   "S000510": [
@@ -26586,10 +26774,10 @@
     "title": null
    },
    {
-    "committee_id": "HSFA17",
-    "name": "Oversight and Intelligence",
+    "committee_id": "HSFA13",
+    "name": "Middle East and North Africa",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 3,
+    "rank": 6,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
    },
@@ -27355,7 +27543,7 @@
     "committee_id": "HSFA07",
     "name": "Western Hemisphere",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 4,
+    "rank": 2,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
    },
@@ -29001,7 +29189,7 @@
     "committee_id": "HSFA07",
     "name": "Western Hemisphere",
     "parent_name": "House Committee on Foreign Affairs",
-    "rank": 2,
+    "rank": 3,
     "source_url": "https://foreignaffairs.house.gov/",
     "title": null
    },
@@ -30900,6 +31088,14 @@
     "rank": 1,
     "source_url": "https://appropriations.house.gov/",
     "title": "Ranking Member"
+   },
+   {
+    "committee_id": "HSFA17",
+    "name": "Oversight and Intelligence",
+    "parent_name": "House Committee on Foreign Affairs",
+    "rank": 4,
+    "source_url": "https://foreignaffairs.house.gov/",
+    "title": null
    }
   ],
   "W000798": [
@@ -32223,6 +32419,6 @@
    }
   ]
  },
- "seat_count": 3895,
+ "seat_count": 3919,
  "source_url": "https://github.com/unitedstates/congress-legislators"
 }

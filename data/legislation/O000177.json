@@ -1312,7 +1312,7 @@
       "enacted_action": null,
       "introduced_date": "2026-07-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8660",
-      "title": "Valuing Employee Stock Today Act"
+      "title": "VEST Act"
     },
     {
       "became_law": false,
@@ -1578,11 +1578,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 175,
-    "sponsored": 19
+    "sponsored": 20
   },
   "member_id": "O000177",
   "source_url": "https://api.congress.gov/v3/member/O000177/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr11024-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11024",
+      "title": "Allergy & Asthma Patient Protection Act of 2026"
+    },
     {
       "became_law": false,
       "bill_id": "hr1837-119",
@@ -1593,10 +1602,10 @@
       "title": "Timely Departure Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1945-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-141.",
       "introduced_date": "2025-03-06",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1945",
       "title": "America's National Churchill Museum National Historic Landmark Act"

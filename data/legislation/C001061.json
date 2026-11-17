@@ -2738,15 +2738,6 @@
     },
     {
       "became_law": false,
-      "bill_id": "hr3090-118",
-      "congress": 118,
-      "enacted_action": null,
-      "introduced_date": "2023-10-10",
-      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3090",
-      "title": "PAST Act of 2023"
-    },
-    {
-      "became_law": false,
       "bill_id": "hr31-118",
       "congress": 118,
       "enacted_action": null,
@@ -5069,6 +5060,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr5399-118",
+      "congress": 118,
+      "enacted_action": null,
+      "introduced_date": "2023-10-10",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/5399",
+      "title": "Humane Cosmetics Act of 2023"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr5401-119",
       "congress": 119,
       "enacted_action": null,
@@ -6886,10 +6886,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-06-02",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -8489,6 +8489,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1663-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1663",
+      "title": "Expressing opposition to the use of State power against people in the United States seeking essential health care, including criminalization of the full range of sexual and reproductive health care such as abortion, gender-affirming care, and contraceptive care, and disapproving of State punishment of people for their pregnancy outcomes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres173-118",
       "congress": 118,
       "enacted_action": null,
@@ -9443,7 +9452,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 4353,
+    "cosponsored": 4354,
     "sponsored": 235
   },
   "member_id": "C001061",

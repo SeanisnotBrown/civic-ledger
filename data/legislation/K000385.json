@@ -488,6 +488,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10628-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10628",
+      "title": "Biosimilars Access and Affordability Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10640-119",
       "congress": 119,
       "enacted_action": null,
@@ -5698,10 +5707,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-05-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -7045,7 +7054,16 @@
       "enacted_action": null,
       "introduced_date": "2026-10-29",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1644",
-      "title": "Supporting the goals and ideals of October as \"National Domestic Violence Awareness Month\"."
+      "title": "Original National Domestic Violence Awareness Month Resolution of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1653-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1653",
+      "title": "Honoring the service and sacrifice of America's veterans on Veterans Day, 2026."
     },
     {
       "became_law": false,
@@ -7724,7 +7742,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2800,
+    "cosponsored": 2802,
     "sponsored": 160
   },
   "member_id": "K000385",

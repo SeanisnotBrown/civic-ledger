@@ -48,6 +48,12 @@ from pathlib import Path
 
 from ingest.sources.legislators import VOTING_STATES
 
+# Stand-in end for a term whose recorded `end` is only projected (`Term.end_projected`:
+# a serving appointee whose upstream `end` is the special-election date). The member
+# stays on the roster until congress-legislators records the real last day. Coverage
+# logic only; never exported (the member record keeps upstream's date).
+OPEN_END = "9999-12-31"
+
 
 def member_terms(members_dir: Path, chamber: str) -> dict[str, list[tuple[str, str]]]:
     """{bioguide: [(start, end), ...]} for every committed member's `chamber`
@@ -66,7 +72,11 @@ def member_terms(members_dir: Path, chamber: str) -> dict[str, list[tuple[str, s
         return out
     for path in sorted(members_dir.glob("*.json")):
         m = json.loads(path.read_text(encoding="utf-8"))
-        terms = [(t["start"], t["end"]) for t in m["terms"] if t["chamber"] == chamber]
+        terms = [
+            (t["start"], OPEN_END if t.get("end_projected") else t["end"])
+            for t in m["terms"]
+            if t["chamber"] == chamber
+        ]
         if terms:
             out[m["id"]] = terms
     return out

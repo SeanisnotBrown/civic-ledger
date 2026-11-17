@@ -5907,7 +5907,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 2118,
-    "sponsored": 1149
+    "sponsored": 1156
   },
   "member_id": "C001098",
   "source_url": "https://api.congress.gov/v3/member/C001098/sponsored-legislation",
@@ -7867,6 +7867,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5708-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5708",
+      "title": "A bill to designate the community-based outpatient clinic of the Department of Veterans Affairs in Victoria, Texas, as the \"Master Sergeant Roy P. Benavidez VA Clinic\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "s571-119",
       "congress": 119,
       "enacted_action": null,
@@ -8106,7 +8115,7 @@
       "enacted_action": null,
       "introduced_date": "2025-03-11",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/933",
-      "title": "NASA Transition Authorization Act of 2025"
+      "title": "NASA Authorization Act of 2026"
     },
     {
       "became_law": false,

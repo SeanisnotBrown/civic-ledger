@@ -66,6 +66,6 @@ OK). No copilot recommendation beyond the data.
 1. Review the 579 preview items in the Review tab (STATUS FIRST ACTION 1; steps in `PREVIEW-HOW-TO.txt`).
 2. Review the 19 set-2 rows where the AI and the label disagree, borderline first (STATUS FIRST ACTION 2).
 3. The Record party gap, before any real (non-preview) run (STATUS Owner decisions 3).
-4. PR #2, the campaign issue-page collector: held for you because a merge deploys (STATUS FIRST ACTION 4).
+4. PR #2, the campaign issue-page collector: held for you because a merge deploys; it now conflicts with master and needs updating first (STATUS FIRST ACTION 4).
 5. A private GitHub repo for the review-log backup (STATUS Owed by a human 2).
 6. 13 statements left uncategorized at the $20 cap; about $0.35 more AI spend (STATUS Owner decisions 5).

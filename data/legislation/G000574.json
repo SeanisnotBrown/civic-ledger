@@ -5366,6 +5366,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s5722-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-16",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/5722",
+      "title": "A bill to amend the definition of professional degree in the Higher Education Act of 1965."
+    },
+    {
+      "became_law": false,
       "bill_id": "s593-119",
       "congress": 119,
       "enacted_action": null,
@@ -6491,8 +6500,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 2813,
-    "sponsored": 285
+    "cosponsored": 2814,
+    "sponsored": 286
   },
   "member_id": "G000574",
   "source_url": "https://api.congress.gov/v3/member/G000574/sponsored-legislation",

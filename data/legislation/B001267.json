@@ -2621,6 +2621,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "s3492-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-16",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/3492",
+      "title": "Essential Caregivers Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "s3502-118",
       "congress": 118,
       "enacted_action": null,
@@ -6590,8 +6599,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 3325,
-    "sponsored": 991
+    "cosponsored": 3327,
+    "sponsored": 992
   },
   "member_id": "B001267",
   "source_url": "https://api.congress.gov/v3/member/B001267/sponsored-legislation",

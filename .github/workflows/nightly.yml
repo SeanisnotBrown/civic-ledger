@@ -21,13 +21,13 @@ on:
     - cron: "07 05 * * *" # 05:07 UTC daily
   workflow_dispatch:
     inputs:
-      # A manual catch-up after nights that published nothing (owner ruling 2026-10-29:
-      # six nights lost to the senate.gov block, so the first good run needs ~192 h).
-      # The scheduled run has no inputs and keeps 36; see the bill-activity step.
+      # Blank (the default, and every scheduled run) = since the last published
+      # nightly; see the bill-activity step. A number is an explicit override in
+      # hours (e.g. a deliberate catch-up above config.ACTIVITY_WINDOW_MAX_HOURS).
       since_hours:
-        description: "bill-activity --since window in hours (scheduled runs use 36)"
+        description: "bill-activity window in hours; blank = since the last published nightly"
         type: string
-        default: "36"
+        default: ""
 
 concurrency:
   group: nightly
@@ -79,8 +79,8 @@ jobs:
           CONGRESS_API_KEY: ${{ secrets.CONGRESS_API_KEY }}
           LEGISCAN_API_KEY: ${{ secrets.LEGISCAN_API_KEY }}
           # Through env, never interpolated into the script; a schedule event has no
-          # inputs, so it falls back to 36. A non-number makes bill-activity exit 2.
-          SINCE_HOURS: ${{ github.event.inputs.since_hours || '36' }}
+          # inputs, so it is empty (= --since-published). A non-number exits 2.
+          SINCE_HOURS: ${{ github.event.inputs.since_hours || '' }}
         run: |
           set -euo pipefail
 
@@ -115,30 +115,28 @@ jobs:
           #    are paid only by a genuinely new bill. That is SD-33 cost constraint 2 and
           #    the difference between ~5-7 min/night and ~19-29 (D88 (7)).
           #
-          #    WHY 36 h, stated explicitly rather than left to the code default (which is
-          #    still 30): the cron is 24 h, so the window is pure slack for a late start,
-          #    a retried run or a workflow_dispatch rehearsal, and re-seeing a bill is
-          #    idempotent (D90). 48 h was considered and REJECTED on cost: D88 measured
-          #    280-435 covered bills updated per day, so each extra 6 h is ~70-110 bills
-          #    on top of the D86 nightly's ~900-1,400, and doubling the window would put
-          #    the month against the 2,000-minute free allowance (H24).
-          #
-          #    WIDENED 30 -> 36 on 2026-10-08. 30 h assumed runs land ~24 h apart with
-          #    ~6 h of slack. They do not: GitHub delayed every scheduled run 5-9 h over
-          #    2026-09-27..10-08, and the measured run-to-run gaps reached 27.7 h
-          #    (10-04 14:47 -> 10-05 18:30), leaving 2.3 h of margin. One 9-h-late night
-          #    after an early one would exceed 30 h and silently skip a bill updated in
-          #    the gap — no error, no alarm. 36 h restores ~8 h of real margin for
-          #    ~70-110 extra bills a night.
+          #    THE WINDOW (2026-11-11): everything since the LAST PUBLISHED nightly.
+          #    `--since-published` reads the committed data/manifest.json `generated_at`
+          #    (written only by a night that passed every gate and pushed) and fetches
+          #    hours-since-then + 12 h margin, never less than 36 h. A failed night
+          #    publishes no manifest, so the next run widens by itself: no manual
+          #    catch-up, which the fixed window needed after every outage (it lost
+          #    2026-11-07 11:57 -> 11-08 02:00 UTC and everything after 11-09 14:00).
+          #    A stale manifest (a quiet night commits nothing) only widens it. The
+          #    12 h margin is the old fixed window's slack (36 - 24) and covers the
+          #    bill-activity -> export gap (~3.5-4 h on Sundays). Above 192 h
+          #    (config.ACTIVITY_WINDOW_MAX_HOURS: the largest window ever run, the
+          #    2026-10-29 catch-up) the step fails before fetching and prints the
+          #    dispatch to run; `since_hours` overrides and is not capped. Re-seeing a
+          #    bill is idempotent (D90). History: fixed 30 h, widened to 36 on
+          #    2026-10-08 for late GitHub starts; constants in ingest/config.py.
           #
           #    WHY HERE, after `ingest bills` and before `ingest legislation`:
           #      * after bills, so a newly-voted bill exists before the delta refreshes it,
           #        and so the /actions responses `ingest bills` just fetched for the voted
           #        bills are served from the raw cache (zero extra requests for them);
           #      * before legislation, so the Sunday `--full` re-page (~3.5 h) does not
-          #        shift this step's wall-clock from night to night - consecutive runs of
-          #        this step stay ~24 h apart, which is what makes a 30 h window a real
-          #        guarantee rather than an average;
+          #        delay this step's start from night to night;
           #      * before steps 3e/3f, which PROJECT data/bills into data/events and
           #        data/topics (verify-recompute invariants 8 and 9).
           #
@@ -157,16 +155,15 @@ jobs:
           #    the active set is held. That decays on its own; the local `--congress 119`
           #    backfill is what ends it outright, at zero Actions minutes.
           #
-          #    CATCH-UP (owner ruling 2026-10-29): a run that follows nights which
-          #    published nothing must widen the window by hand, or those nights' bill
-          #    updates are skipped silently. `workflow_dispatch` takes `since_hours`;
-          #    the schedule always uses 36.
-          #
           #    OPERATIONAL NOTE: with ~427 covered bills updated per day, data/bills will
           #    change almost every night, so the step-2 classify gate fires nightly and
           #    the step-4 "quiet night" branch is now rare. A commit and a Workers Builds
           #    deploy per day IS the SD-33 cadence, not a regression.
-          uv run ingest bill-activity --since "$SINCE_HOURS"
+          if [ -n "$SINCE_HOURS" ]; then
+            uv run ingest bill-activity --since "$SINCE_HOURS"
+          else
+            uv run ingest bill-activity --since-published
+          fi
 
           #    Legislation (D86): ONE /member/{id} request per member probes the
           #    lifetime sponsored/cosponsored counts; only members whose counts moved

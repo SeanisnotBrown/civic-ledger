@@ -2424,7 +2424,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 269,
-    "sponsored": 45
+    "sponsored": 46
   },
   "member_id": "L000603",
   "source_url": "https://api.congress.gov/v3/member/L000603/sponsored-legislation",
@@ -2455,6 +2455,15 @@
       "introduced_date": "2025-02-06",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1079",
       "title": "CARTEL Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11046-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-17",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11046",
+      "title": "To amend the Homeland Security Act of 2002 to establish within the Cybersecurity and Infrastructure Security Agency the National Cyber and AI Investigations Board to investigate significant cyber incidents, cyber incidents involving terrorism, and cyber incidents involving artificial intelligence, to determine root causes and develop recommendations to prevent similar incidents and address terrorism threats to the United States, including threats relating to the malicious use of information systems or artificial intelligence by covered foreign adversaries, including terrorist organizations, and for other purposes."
     },
     {
       "became_law": false,

@@ -3,12 +3,24 @@
     {
       "action_code": "H11100",
       "committees": [
+        "Homeland Security Committee"
+      ],
+      "date": "2026-09-02",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11100",
+      "committees": [
         "Judiciary Committee"
       ],
       "date": "2026-09-02",
       "rollcall_id": null,
       "source_system": "House floor actions",
-      "text": "Referred to the House Committee on the Judiciary.",
+      "text": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
       "time": null,
       "type": "IntroReferral"
     },
@@ -45,7 +57,7 @@
   ],
   "id": "hr10226-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the House Committee on the Judiciary.",
+  "latest_action": "Referred to the Committee on the Judiciary, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
   "latest_action_date": "2026-09-02",
   "number": 10226,
   "policy_area": null,

@@ -1,6 +1,30 @@
 {
   "actions": [
     {
+      "action_code": "H19000",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 23.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H23000",
       "committees": [
         "Environment Subcommittee"
@@ -102,8 +126,8 @@
   ],
   "id": "hr3194-119",
   "jurisdiction": "us",
-  "latest_action": "Forwarded by Subcommittee to Full Committee by Voice Vote.",
-  "latest_action_date": "2026-07-14",
+  "latest_action": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 23.",
+  "latest_action_date": "2026-09-02",
   "number": 3194,
   "policy_area": "Environmental Protection",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3194",

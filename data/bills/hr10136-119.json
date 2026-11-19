@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": null,
+      "committees": [
+        "Agriculture, Nutrition, and Forestry Committee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H38310",
       "committees": null,
       "date": "2026-11-17",
@@ -16,7 +28,7 @@
       "date": "2026-11-17",
       "rollcall_id": null,
       "source_system": "House floor actions",
-      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote.",
+      "text": "On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H6243)",
       "time": "16:54:20",
       "type": "Floor"
     },
@@ -26,7 +38,7 @@
       "date": "2026-11-17",
       "rollcall_id": null,
       "source_system": "Library of Congress",
-      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote.",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H6243)",
       "time": "16:54:20",
       "type": "Floor"
     },
@@ -46,7 +58,7 @@
       "date": "2026-11-17",
       "rollcall_id": null,
       "source_system": "House floor actions",
-      "text": "Considered under suspension of the rules.",
+      "text": "Considered under suspension of the rules. (consideration: CR H6243-6244)",
       "time": "16:45:33",
       "type": "Floor"
     },
@@ -192,8 +204,8 @@
   "cosponsor_ids": [],
   "id": "hr10136-119",
   "jurisdiction": "us",
-  "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
-  "latest_action_date": "2026-11-17",
+  "latest_action": "Received in the Senate and Read twice and referred to the Committee on Agriculture, Nutrition, and Forestry.",
+  "latest_action_date": "2026-11-18",
   "number": 10136,
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10136",

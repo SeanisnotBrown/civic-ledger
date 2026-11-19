@@ -1578,7 +1578,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 175,
-    "sponsored": 20
+    "sponsored": 21
   },
   "member_id": "O000177",
   "source_url": "https://api.congress.gov/v3/member/O000177/sponsored-legislation",
@@ -1591,6 +1591,15 @@
       "introduced_date": "2026-11-12",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11024",
       "title": "Allergy & Asthma Patient Protection Act of 2026"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11070-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-18",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11070",
+      "title": "To improve Federal student loan disclosures, and for other purposes."
     },
     {
       "became_law": false,

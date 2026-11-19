@@ -1830,11 +1830,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 203,
-    "sponsored": 17
+    "sponsored": 18
   },
   "member_id": "L000607",
   "source_url": "https://api.congress.gov/v3/member/L000607/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr11064-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-18",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11064",
+      "title": "To require the Secretary of Energy to establish a Data Center Community Assistance Program, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr1712-119",

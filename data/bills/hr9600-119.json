@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": null,
+      "committees": [
+        "Energy and Natural Resources Committee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
       "action_code": "H38310",
       "committees": null,
       "date": "2026-11-17",
@@ -16,7 +28,7 @@
       "date": "2026-11-17",
       "rollcall_id": "h-119-2-0325",
       "source_system": "House floor actions",
-      "text": "On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 365 - 36 (Roll no. 325).",
+      "text": "On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 365 - 36 (Roll no. 325). (text: CR H6242)",
       "time": "19:05:36",
       "type": "Floor"
     },
@@ -26,7 +38,7 @@
       "date": "2026-11-17",
       "rollcall_id": "h-119-2-0325",
       "source_system": "Library of Congress",
-      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 365 - 36 (Roll no. 325).",
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 365 - 36 (Roll no. 325). (text: CR H6242)",
       "time": "19:05:36",
       "type": "Floor"
     },
@@ -36,7 +48,7 @@
       "date": "2026-11-17",
       "rollcall_id": null,
       "source_system": "House floor actions",
-      "text": "Considered as unfinished business.",
+      "text": "Considered as unfinished business. (consideration: CR H6251)",
       "time": "18:56:50",
       "type": "Floor"
     },
@@ -66,7 +78,7 @@
       "date": "2026-11-17",
       "rollcall_id": null,
       "source_system": "House floor actions",
-      "text": "Considered under suspension of the rules.",
+      "text": "Considered under suspension of the rules. (consideration: CR H6242-6243)",
       "time": "16:34:31",
       "type": "Floor"
     },
@@ -214,8 +226,8 @@
   ],
   "id": "hr9600-119",
   "jurisdiction": "us",
-  "latest_action": "Motion to reconsider laid on the table Agreed to without objection.",
-  "latest_action_date": "2026-11-17",
+  "latest_action": "Received in the Senate and Read twice and referred to the Committee on Energy and Natural Resources.",
+  "latest_action_date": "2026-11-18",
   "number": 9600,
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9600",

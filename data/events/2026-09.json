@@ -1,5 +1,5 @@
 {
-  "count": 4524,
+  "count": 4544,
   "events": [
     {
       "action_code": "H11000",
@@ -51788,26 +51788,6 @@
       "type": "Floor"
     },
     {
-      "action_code": "8000",
-      "bill_id": "hr2140-119",
-      "committees": null,
-      "date": "2026-09-15",
-      "has_page": true,
-      "id": "hr2140-119--2026-09-15--69fa5571c401",
-      "policy_area": "Environmental Protection",
-      "rollcall_id": "h-119-2-0304",
-      "source_system": "Library of Congress",
-      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2140",
-      "subjects": [
-        "Air quality",
-        "Climate change and greenhouse gases",
-        "Motor fuels",
-        "Motor vehicles"
-      ],
-      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 343 - 79 (Roll no. 304).",
-      "type": "Floor"
-    },
-    {
       "action_code": "H30000",
       "bill_id": "hr2140-119",
       "committees": null,
@@ -51865,6 +51845,26 @@
         "Motor vehicles"
       ],
       "text": "Motion to reconsider laid on the table Agreed to without objection.",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr2140-119",
+      "committees": null,
+      "date": "2026-09-15",
+      "has_page": true,
+      "id": "hr2140-119--2026-09-15--9d100e948f5b",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": "h-119-2-0304",
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2140",
+      "subjects": [
+        "Air quality",
+        "Climate change and greenhouse gases",
+        "Motor fuels",
+        "Motor vehicles"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill Agreed to by the Yeas and Nays: (2/3 required): 343 - 79 (Roll no. 304). (text: CR H5679)",
       "type": "Floor"
     },
     {
@@ -55359,25 +55359,6 @@
       "type": "Floor"
     },
     {
-      "action_code": "8000",
-      "bill_id": "hr9615-119",
-      "committees": null,
-      "date": "2026-09-15",
-      "has_page": false,
-      "id": "hr9615-119--2026-09-15--569736abebfa",
-      "policy_area": "Environmental Protection",
-      "rollcall_id": null,
-      "source_system": "Library of Congress",
-      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9615",
-      "subjects": [
-        "Energy storage, supplies, demand",
-        "Hazardous wastes and toxic substances",
-        "Solid waste and recycling"
-      ],
-      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote.",
-      "type": "Floor"
-    },
-    {
       "action_code": "H30300",
       "bill_id": "hr9615-119",
       "committees": null,
@@ -55432,6 +55413,25 @@
         "Solid waste and recycling"
       ],
       "text": "Considered under suspension of the rules. (consideration: CR H5678-5679)",
+      "type": "Floor"
+    },
+    {
+      "action_code": "8000",
+      "bill_id": "hr9615-119",
+      "committees": null,
+      "date": "2026-09-15",
+      "has_page": false,
+      "id": "hr9615-119--2026-09-15--c8c4917e65ab",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9615",
+      "subjects": [
+        "Energy storage, supplies, demand",
+        "Hazardous wastes and toxic substances",
+        "Solid waste and recycling"
+      ],
+      "text": "Passed/agreed to in House: On motion to suspend the rules and pass the bill, as amended Agreed to by voice vote. (text: CR H5678)",
       "type": "Floor"
     },
     {
@@ -55786,7 +55786,7 @@
         "Natural Resources Committee"
       ],
       "date": "2026-09-15",
-      "has_page": false,
+      "has_page": true,
       "id": "hr9640-119--2026-09-15--300d2fc51ed5",
       "policy_area": "Energy",
       "rollcall_id": null,
@@ -55807,7 +55807,7 @@
         "Energy and Mineral Resources Subcommittee"
       ],
       "date": "2026-09-15",
-      "has_page": false,
+      "has_page": true,
       "id": "hr9640-119--2026-09-15--820927ca484f",
       "policy_area": "Energy",
       "rollcall_id": null,
@@ -55828,7 +55828,7 @@
         "Natural Resources Committee"
       ],
       "date": "2026-09-15",
-      "has_page": false,
+      "has_page": true,
       "id": "hr9640-119--2026-09-15--c007478aef8b",
       "policy_area": "Energy",
       "rollcall_id": null,
@@ -82817,6 +82817,134 @@
       "type": "Floor"
     },
     {
+      "action_code": "H15001",
+      "bill_id": "hr2140-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hr2140-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2140",
+      "subjects": [
+        "Air quality",
+        "Climate change and greenhouse gases",
+        "Motor fuels",
+        "Motor vehicles"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr2140-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hr2140-119--2026-09-02--c9477a42817e",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2140",
+      "subjects": [
+        "Air quality",
+        "Climate change and greenhouse gases",
+        "Motor fuels",
+        "Motor vehicles"
+      ],
+      "text": "Ordered to be Reported by the Yeas and Nays: 43 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr3194-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr3194-119--2026-09-02--098e9e6cda5e",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3194",
+      "subjects": [
+        "Air quality",
+        "Railroads",
+        "State and local government operations"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 23.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr3194-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr3194-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3194",
+      "subjects": [
+        "Air quality",
+        "Railroads",
+        "State and local government operations"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr3978-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hr3978-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3978",
+      "subjects": [
+        "Energy efficiency and conservation",
+        "Industrial facilities",
+        "Nuclear power"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr3978-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hr3978-119--2026-09-02--48970584e076",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3978",
+      "subjects": [
+        "Energy efficiency and conservation",
+        "Industrial facilities",
+        "Nuclear power"
+      ],
+      "text": "Ordered to be Reported by the Yeas and Nays: 44 - 0.",
+      "type": "Committee"
+    },
+    {
       "action_code": "H8D000",
       "bill_id": "hr4586-119",
       "committees": null,
@@ -82851,6 +82979,50 @@
         "Parks, recreation areas, trails"
       ],
       "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr5549-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr5549-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5549",
+      "subjects": [
+        "Building construction",
+        "Industrial facilities",
+        "Licensing and registrations",
+        "Nuclear power"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr5549-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr5549-119--2026-09-02--48970584e076",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/5549",
+      "subjects": [
+        "Building construction",
+        "Industrial facilities",
+        "Licensing and registrations",
+        "Nuclear power"
+      ],
+      "text": "Ordered to be Reported by the Yeas and Nays: 44 - 0.",
       "type": "Committee"
     },
     {
@@ -83025,6 +83197,54 @@
       "type": "Committee"
     },
     {
+      "action_code": "H15001",
+      "bill_id": "hr9084-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9084-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9084",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Energy",
+        "Government ethics and transparency, public corruption",
+        "Government information and archives",
+        "Industrial facilities",
+        "Nuclear power"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9084-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9084-119--2026-09-02--8aebf92f26d7",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9084",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Department of Energy",
+        "Government ethics and transparency, public corruption",
+        "Government information and archives",
+        "Industrial facilities",
+        "Nuclear power"
+      ],
+      "text": "Ordered to be Reported by the Yeas and Nays: 41 - 0.",
+      "type": "Committee"
+    },
+    {
       "action_code": "H21000",
       "bill_id": "hr9269-119",
       "committees": [
@@ -83050,6 +83270,50 @@
       "type": "Committee"
     },
     {
+      "action_code": "H19000",
+      "bill_id": "hr9317-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9317-119--2026-09-02--31590a12a756",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9317",
+      "subjects": [
+        "Air quality",
+        "Climate change and greenhouse gases",
+        "Motor vehicles",
+        "State and local government operations"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 26 - 22.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9317-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9317-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9317",
+      "subjects": [
+        "Air quality",
+        "Climate change and greenhouse gases",
+        "Motor vehicles",
+        "State and local government operations"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
       "action_code": "H21000",
       "bill_id": "hr9600-119",
       "committees": [
@@ -83067,6 +83331,182 @@
         "Monuments and memorials"
       ],
       "text": "Subcommittee Hearings Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9612-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hr9612-119--2026-09-02--02abdd652975",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9612",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Building construction",
+        "Licensing and registrations",
+        "Nuclear Regulatory Commission (NRC)",
+        "Nuclear power"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 43 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9612-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": true,
+      "id": "hr9612-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9612",
+      "subjects": [
+        "Administrative law and regulatory procedures",
+        "Building construction",
+        "Licensing and registrations",
+        "Nuclear Regulatory Commission (NRC)",
+        "Nuclear power"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9613-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9613-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9613",
+      "subjects": [
+        "Advisory bodies",
+        "Electric power generation and transmission",
+        "Licensing and registrations",
+        "Nuclear power"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9613-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9613-119--2026-09-02--8ce4f2c86c62",
+      "policy_area": "Energy",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9613",
+      "subjects": [
+        "Advisory bodies",
+        "Electric power generation and transmission",
+        "Licensing and registrations",
+        "Nuclear power"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 41 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9614-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9614-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9614",
+      "subjects": [
+        "Federal officials",
+        "Government employee pay, benefits, personnel management",
+        "Nuclear Regulatory Commission (NRC)",
+        "Wages and earnings"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9614-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9614-119--2026-09-02--ad33ef395b9e",
+      "policy_area": "Government Operations and Politics",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9614",
+      "subjects": [
+        "Federal officials",
+        "Government employee pay, benefits, personnel management",
+        "Nuclear Regulatory Commission (NRC)",
+        "Wages and earnings"
+      ],
+      "text": "Ordered to be Reported by the Yeas and Nays: 42 - 0.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "bill_id": "hr9615-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9615-119--2026-09-02--37c6b9c413fb",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9615",
+      "subjects": [
+        "Energy storage, supplies, demand",
+        "Hazardous wastes and toxic substances",
+        "Solid waste and recycling"
+      ],
+      "text": "Committee Consideration and Mark-up Session Held",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H19000",
+      "bill_id": "hr9615-119",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-09-02",
+      "has_page": false,
+      "id": "hr9615-119--2026-09-02--866097b5d846",
+      "policy_area": "Environmental Protection",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9615",
+      "subjects": [
+        "Energy storage, supplies, demand",
+        "Hazardous wastes and toxic substances",
+        "Solid waste and recycling"
+      ],
+      "text": "Ordered to be Reported (Amended) by the Yeas and Nays: 46 - 0.",
       "type": "Committee"
     },
     {

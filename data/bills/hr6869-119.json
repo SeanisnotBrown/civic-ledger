@@ -1,6 +1,42 @@
 {
   "actions": [
     {
+      "action_code": "H19000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "committees": [
+        "Water, Wildlife and Fisheries Subcommittee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee on Water, Wildlife and Fisheries Discharged",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H21000",
       "committees": [
         "Water, Wildlife and Fisheries Subcommittee"
@@ -62,8 +98,8 @@
   "cosponsor_ids": [],
   "id": "hr6869-119",
   "jurisdiction": "us",
-  "latest_action": "Subcommittee Hearings Held",
-  "latest_action_date": "2026-09-16",
+  "latest_action": "Ordered to be Reported by Unanimous Consent.",
+  "latest_action_date": "2026-11-18",
   "number": 6869,
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6869",

@@ -552,7 +552,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 61,
-    "sponsored": 12
+    "sponsored": 13
   },
   "member_id": "G000607",
   "source_url": "https://api.congress.gov/v3/member/G000607/sponsored-legislation",
@@ -646,6 +646,15 @@
       "introduced_date": "2026-11-10",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10980",
       "title": "Promoting Resilient Buildings Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11097-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11097",
+      "title": "To authorize the purchase of the Potter Valley Hydroelectric Project in northern California, and for other purposes."
     },
     {
       "became_law": false,

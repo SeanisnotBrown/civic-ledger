@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H21000",
+      "committees": [
+        "Indian and Insular Affairs Subcommittee"
+      ],
+      "date": "2026-11-19",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee Hearings Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11000",
       "committees": [
         "Indian and Insular Affairs Subcommittee"
@@ -50,8 +62,8 @@
   "cosponsor_ids": [],
   "id": "hr10307-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Subcommittee on Indian and Insular Affairs.",
-  "latest_action_date": "2026-11-12",
+  "latest_action": "Subcommittee Hearings Held",
+  "latest_action_date": "2026-11-19",
   "number": 10307,
   "policy_area": "Native Americans",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10307",

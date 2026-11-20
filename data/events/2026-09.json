@@ -1,5 +1,5 @@
 {
-  "count": 4544,
+  "count": 4555,
   "events": [
     {
       "action_code": "H11000",
@@ -11049,6 +11049,57 @@
       "subjects": [],
       "text": "Passed/agreed to in Senate: Submitted in the Senate, considered, and agreed to without amendment and with a preamble by Unanimous Consent. (consideration: CR S5123; text: CR S5076)",
       "type": "Floor"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10568-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-09-25",
+      "has_page": false,
+      "id": "hr10568-119--2026-09-25--0af72eeb0b68",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10568",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10569-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-09-25",
+      "has_page": false,
+      "id": "hr10569-119--2026-09-25--0af72eeb0b68",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10569",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10594-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-09-25",
+      "has_page": false,
+      "id": "hr10594-119--2026-09-25--0af72eeb0b68",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10594",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
     },
     {
       "action_code": "36000",
@@ -23329,6 +23380,23 @@
       "type": "Floor"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr10519-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-09-22",
+      "has_page": false,
+      "id": "hr10519-119--2026-09-22--5ff4ef584bc6",
+      "policy_area": "Armed Forces and National Security",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10519",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
+    },
+    {
       "action_code": null,
       "bill_id": "hr2302-119",
       "committees": null,
@@ -25981,6 +26049,40 @@
       "type": "IntroReferral"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr10494-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-09-18",
+      "has_page": false,
+      "id": "hr10494-119--2026-09-18--3289dd6c7d32",
+      "policy_area": "Taxation",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10494",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10503-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-09-18",
+      "has_page": false,
+      "id": "hr10503-119--2026-09-18--3289dd6c7d32",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10503",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
       "action_code": "E40000",
       "bill_id": "hr5334-119",
       "committees": null,
@@ -26248,6 +26350,23 @@
       ],
       "text": "Received in the Senate and Read twice and referred to the Committee on the Judiciary.",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10474-119",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-09-17",
+      "has_page": false,
+      "id": "hr10474-119--2026-09-17--61b54c5dee76",
+      "policy_area": "Science, Technology, Communications",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10474",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "type": "Committee"
     },
     {
       "action_code": "Intro-H",
@@ -39885,7 +40004,7 @@
         "Budget Committee"
       ],
       "date": "2026-09-16",
-      "has_page": false,
+      "has_page": true,
       "id": "hr4464-119--2026-09-16--90fdc3ef6a67",
       "policy_area": "Economics and Public Finance",
       "rollcall_id": null,
@@ -39910,7 +40029,7 @@
         "Budget Committee"
       ],
       "date": "2026-09-16",
-      "has_page": false,
+      "has_page": true,
       "id": "hr4464-119--2026-09-16--f05abb4c6aa8",
       "policy_area": "Economics and Public Finance",
       "rollcall_id": null,
@@ -49846,6 +49965,23 @@
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10306",
       "subjects": [],
       "text": "Ordered to be Reported in the Nature of a Substitute by Unanimous Consent.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10368-119",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-09-15",
+      "has_page": false,
+      "id": "hr10368-119--2026-09-15--92ea949b4f2c",
+      "policy_area": "Transportation and Public Works",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10368",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
       "type": "Committee"
     },
     {
@@ -76610,6 +76746,40 @@
       "type": "Committee"
     },
     {
+      "action_code": "H11000",
+      "bill_id": "hr10259-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-09-04",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-04--31d89c78803d",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10259-119",
+      "committees": [
+        "Oversight, Investigations, and Accountability Subcommittee"
+      ],
+      "date": "2026-09-04",
+      "has_page": false,
+      "id": "hr10259-119--2026-09-04--c652029201c0",
+      "policy_area": "Immigration",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10259",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Oversight, Investigations, and Accountability.",
+      "type": "Committee"
+    },
+    {
       "action_code": "1000",
       "bill_id": "hr10298-119",
       "committees": null,
@@ -77065,6 +77235,23 @@
       "subjects": [],
       "text": "Submitted in House",
       "type": "IntroReferral"
+    },
+    {
+      "action_code": "H11000",
+      "bill_id": "hr10226-119",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-09-03",
+      "has_page": false,
+      "id": "hr10226-119--2026-09-03--ae538c9e770b",
+      "policy_area": null,
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10226",
+      "subjects": [],
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "type": "Committee"
     },
     {
       "action_code": "1000",

@@ -3612,7 +3612,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 401,
-    "sponsored": 55
+    "sponsored": 56
   },
   "member_id": "A000379",
   "source_url": "https://api.congress.gov/v3/member/A000379/sponsored-legislation",
@@ -3634,6 +3634,15 @@
       "introduced_date": "2026-10-01",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10644",
       "title": "Faith and Rural Small Business Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11083-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11083",
+      "title": "To direct the Secretary of Defense to establish a pilot program to provide educational continuity services to eligible dependents of members of the Armed Forces enrolled in elementary schools or secondary schools, and for other purposes."
     },
     {
       "became_law": false,

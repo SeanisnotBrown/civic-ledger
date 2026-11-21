@@ -1974,7 +1974,7 @@
   ],
   "lifetime_counts": {
     "cosponsored": 224,
-    "sponsored": 39
+    "sponsored": 40
   },
   "member_id": "M001242",
   "source_url": "https://api.congress.gov/v3/member/M001242/sponsored-legislation",
@@ -2266,6 +2266,15 @@
       "introduced_date": "2026-04-30",
       "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/708",
       "title": "A resolution amending rule XXXVII of the Standing Rules of the Senate to prohibit Senators from trading on prediction markets."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres967-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-20",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/967",
+      "title": "A resolution honoring the life and legacy of Fiona the hippopotamus of the Cincinnati Zoo and Botanical Garden, and expressing the gratitude of the Senate to the staff of the Cincinnati Zoo for their extraordinary care and dedication."
     }
   ]
 }

@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Emergency Management and Technology Subcommittee"
+      ],
+      "date": "2026-10-06",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Emergency Management and Technology.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Homeland Security Committee"
@@ -54,8 +66,8 @@
   ],
   "id": "hr10743-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Committee on Transportation and Infrastructure, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
-  "latest_action_date": "2026-10-05",
+  "latest_action": "Referred to the Subcommittee on Emergency Management and Technology.",
+  "latest_action_date": "2026-10-06",
   "number": 10743,
   "policy_area": null,
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10743",

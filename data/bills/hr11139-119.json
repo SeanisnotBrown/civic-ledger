@@ -1,0 +1,55 @@
+{
+  "actions": [
+    {
+      "action_code": "H11100",
+      "committees": [
+        "Energy and Commerce Committee"
+      ],
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "House floor actions",
+      "text": "Referred to the House Committee on Energy and Commerce.",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "Intro-H",
+      "committees": null,
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    },
+    {
+      "action_code": "1000",
+      "committees": null,
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Introduced in House",
+      "time": null,
+      "type": "IntroReferral"
+    }
+  ],
+  "cbo_estimates": [],
+  "congress": 119,
+  "cosponsor_ids": [
+    "M001225",
+    "N000147",
+    "S001205",
+    "W000822"
+  ],
+  "id": "hr11139-119",
+  "jurisdiction": "us",
+  "latest_action": "Referred to the House Committee on Energy and Commerce.",
+  "latest_action_date": "2026-11-20",
+  "number": 11139,
+  "policy_area": null,
+  "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11139",
+  "sponsor_id": "S001145",
+  "subjects": [],
+  "title_official": "To amend the Consumer Product Safety Act to strike provisions relating to the maximum civil penalties for violations of product safety standards.",
+  "type": "hr"
+}

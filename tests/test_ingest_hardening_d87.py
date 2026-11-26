@@ -117,6 +117,7 @@ def test_legiscan_http_error_omits_the_api_key(tmp_path, monkeypatch):
             request=httpx.Request("GET", f"https://api.legiscan.com/?key={secret}&op=x"),
         ),
     )
+    monkeypatch.setattr(legiscan._live_get.retry, "sleep", lambda s: None)  # 5xx retries
 
     with pytest.raises(legiscan.LegiScanHTTPError) as ei:
         legiscan._get("getDatasetList", state="MS")

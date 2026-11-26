@@ -2,6 +2,50 @@
   "actions": [
     {
       "action_code": null,
+      "committees": null,
+      "date": "2026-11-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S5727)",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": "17000",
+      "committees": null,
+      "date": "2026-11-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Passed/agreed to in Senate: Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent.",
+      "time": null,
+      "type": "Floor"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-11-17",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Discharge"
+    },
+    {
+      "action_code": "14500",
+      "committees": [
+        "Judiciary Committee"
+      ],
+      "date": "2026-11-17",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Senate Committee on the Judiciary discharged by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "committees": [
         "Judiciary Committee"
       ],
@@ -32,8 +76,8 @@
   ],
   "id": "sres949-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Committee on the Judiciary. (text: CR S5274)",
-  "latest_action_date": "2026-09-30",
+  "latest_action": "Resolution agreed to in Senate without amendment and with a preamble by Unanimous Consent. (consideration: CR S5727)",
+  "latest_action_date": "2026-11-17",
   "number": 949,
   "policy_area": null,
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/949",

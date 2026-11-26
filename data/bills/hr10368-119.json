@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-09-15",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Homeland Security Committee"
@@ -41,8 +53,8 @@
   ],
   "id": "hr10368-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the House Committee on Homeland Security.",
-  "latest_action_date": "2026-09-14",
+  "latest_action": "Referred to the Subcommittee on Transportation and Maritime Security.",
+  "latest_action_date": "2026-09-15",
   "number": 10368,
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10368",

@@ -1,6 +1,30 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Border Security and Enforcement Subcommittee"
+      ],
+      "date": "2026-10-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Border Security and Enforcement.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H11000",
+      "committees": [
+        "Transportation and Maritime Security Subcommittee"
+      ],
+      "date": "2026-10-20",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Transportation and Maritime Security.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Homeland Security Committee"
@@ -50,8 +74,8 @@
   "cosponsor_ids": [],
   "id": "hr10845-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the Committee on Ways and Means, and in addition to the Committee on Homeland Security, for a period to be subsequently determined by the Speaker, in each case for consideration of such provisions as fall within the jurisdiction of the committee concerned.",
-  "latest_action_date": "2026-10-19",
+  "latest_action": "Referred to the Subcommittee on Border Security and Enforcement.",
+  "latest_action_date": "2026-10-20",
   "number": 10845,
   "policy_area": null,
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10845",

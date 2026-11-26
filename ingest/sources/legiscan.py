@@ -18,6 +18,12 @@ import json
 from datetime import UTC, datetime
 
 import httpx
+from tenacity import (
+    retry,
+    retry_if_exception_type,
+    stop_after_attempt,
+    wait_exponential,
+)
 
 from ingest import env
 from ingest.cache import _USER_AGENT, DEFAULT_TTL_HOURS, RAW_DIR
@@ -34,6 +40,12 @@ class LegiScanHTTPError(Exception):
     our own type keeps the key out of tracebacks and out of any log the owner pastes when
     asking for help — the same guarantee the module docstring makes for the cache.
     """
+
+
+class LegiScanServerError(LegiScanHTTPError):
+    """A 5xx from LegiScan (incl. Cloudflare's 52x, e.g. the 2026-11-16 nightly's 526).
+    Retried by `_live_get`; once the attempts run out it propagates, and being a
+    `LegiScanHTTPError` it fails the run exactly as before."""
 
 
 def available() -> bool:
@@ -54,6 +66,31 @@ def _is_fresh(meta_path, ttl_hours: float) -> bool:
     return age_h < ttl_hours
 
 
+@retry(
+    # The §6.1 attempts and backoff `cache._live_get` uses for every other source:
+    # 5xx and timeouts/network errors (httpx.TransportError) retry, 5 attempts,
+    # backoff 2s→60s. Unlike `cache`, 429 is NOT retried: LegiScan's limit is a
+    # monthly quota. A 4xx (bad key, quota, bad params) will not heal on a retry,
+    # so it returns at once and `_get` raises it.
+    retry=retry_if_exception_type((LegiScanServerError, httpx.TransportError)),
+    stop=stop_after_attempt(5),
+    wait=wait_exponential(multiplier=1, min=2, max=60),
+    reraise=True,
+)
+def _live_get(op: str, params: dict) -> httpx.Response:
+    resp = httpx.get(
+        BASE,
+        params=params,
+        headers={"User-Agent": _USER_AGENT},
+        timeout=60,
+        follow_redirects=True,
+    )
+    if resp.status_code >= 500:
+        # NOT raise_for_status(): its message embeds the URL, hence `key=<secret>`.
+        raise LegiScanServerError(f"LegiScan {op} returned HTTP {resp.status_code}")
+    return resp
+
+
 def _get(op: str, ttl_hours: float | None = None, **params) -> dict:
     """Call a LegiScan operation through a TTL'd disk cache (D52; the spike's uncached
     `_get` re-fetched — and re-counted quota — on every call). A cached response within
@@ -72,13 +109,7 @@ def _get(op: str, ttl_hours: float | None = None, **params) -> dict:
         return json.loads(data_path.read_text(encoding="utf-8"))
 
     key = env.require("LEGISCAN_API_KEY")
-    resp = httpx.get(
-        BASE,
-        params={**query, "key": key},
-        headers={"User-Agent": _USER_AGENT},
-        timeout=60,
-        follow_redirects=True,
-    )
+    resp = _live_get(op, {**query, "key": key})
     if resp.status_code >= 400:
         # NOT raise_for_status(): its message embeds the URL, hence `key=<secret>`.
         raise LegiScanHTTPError(f"LegiScan {op} returned HTTP {resp.status_code}")

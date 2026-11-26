@@ -1,6 +1,46 @@
 {
   "actions": [
     {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-145.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-145.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
+      "action_code": "E30000",
+      "committees": null,
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-11-20",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Signed by President.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
       "action_code": "E20000",
       "committees": null,
       "date": "2026-11-12",
@@ -244,8 +284,8 @@
   ],
   "id": "hr8352-119",
   "jurisdiction": "us",
-  "latest_action": "Presented to President.",
-  "latest_action_date": "2026-11-12",
+  "latest_action": "Became Public Law No: 119-145.",
+  "latest_action_date": "2026-11-20",
   "number": 8352,
   "policy_area": "Law",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8352",

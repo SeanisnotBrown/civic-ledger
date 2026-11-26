@@ -1,6 +1,42 @@
 {
   "actions": [
     {
+      "action_code": "H19000",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Ordered to be Reported (Amended) by Unanimous Consent.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H15001",
+      "committees": [
+        "Natural Resources Committee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Committee Consideration and Mark-up Session Held",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "H25000",
+      "committees": [
+        "Federal Lands Subcommittee"
+      ],
+      "date": "2026-11-18",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Subcommittee on Federal Lands Discharged",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H21000",
       "committees": [
         "Federal Lands Subcommittee"
@@ -62,8 +98,8 @@
   "cosponsor_ids": [],
   "id": "hr8735-119",
   "jurisdiction": "us",
-  "latest_action": "Subcommittee Hearings Held",
-  "latest_action_date": "2026-05-21",
+  "latest_action": "Ordered to be Reported (Amended) by Unanimous Consent.",
+  "latest_action_date": "2026-11-18",
   "number": 8735,
   "policy_area": "Public Lands and Natural Resources",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8735",

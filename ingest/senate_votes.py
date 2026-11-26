@@ -270,7 +270,8 @@ def _clear_quarantine(rc_id: str) -> None:
     )
 
 
-# --- senate.gov block on the vote menus (owner ruling 2026-10-29) ---------
+# --- senate.gov block on the vote menus (owner ruling 2026-10-29) and on single
+# --- vote files (owner ruling 2026-11-25, Q2 = B) --------------------------
 
 
 def _today() -> str:
@@ -305,22 +306,41 @@ def _last_senate_roll() -> tuple[str, str, str] | None:
     return rc["id"], rc["date"][:10], rc["source_url"]
 
 
-def write_outage_notice(outage_start: str | None = None) -> dict:
+def write_outage_notice(
+    outage_start: str | None = None, missing_rolls: tuple[str, ...] | list[str] = ()
+) -> dict:
     """Write data/quality/senate-outage.json and return it. An existing notice keeps
     its `outage_start` (the clock runs from the FIRST blocked night); otherwise
     `outage_start`, else today. Deterministic and sorted, so a night that changes
-    nothing rewrites it byte-identically (no daily churn)."""
+    nothing rewrites it byte-identically (no daily churn).
+
+    `missing_rolls` (owner ruling 2026-11-25, Q2): the Senate roll ids whose vote FILE
+    senate.gov refused tonight. The notice also keeps any id the previous notice listed
+    that is STILL not on disk (a roll skipped tonight because its menu was blocked is
+    still missing), and a roll that has since been fetched drops off. The key is
+    written only when the list is non-empty, so a menu-only notice is byte-identical to
+    the one written before this ruling. The site names the COUNT beside the ratified
+    line: `last_roll_date` is the newest roll held, and with a hole behind it "shown
+    through" alone would imply no earlier vote is absent (rule 0)."""
     import json
 
     from ingest.cache import atomic_write_text
+    from ingest.export import VOTES_DIR
 
     path = outage_notice_path()
+    missing = set(missing_rolls)
     if path.exists():
-        outage_start = json.loads(path.read_text(encoding="utf-8"))["outage_start"]
+        prior = json.loads(path.read_text(encoding="utf-8"))
+        outage_start = prior["outage_start"]
+        missing |= {
+            r for r in prior.get("missing_rolls", []) if not (VOTES_DIR / f"{r}.json").exists()
+        }
     notice: dict = {"outage_start": outage_start or _today()}
     last = _last_senate_roll()
     if last is not None:
         notice["last_roll_id"], notice["last_roll_date"], notice["source_url"] = last
+    if missing:
+        notice["missing_rolls"] = sorted(missing)
     atomic_write_text(path, json.dumps(notice, indent=2, sort_keys=True) + "\n")
     return notice
 
@@ -330,8 +350,11 @@ def run(argv: list[str] | None = None) -> int:
     + data/absences/. Idempotent/resumable (cached fetches). Fails (nonzero) on any
     covered-member gap, roll validation failure, or enumeration break (§6.1). The
     one exception: when the ONLY failures are HTTP status errors on the vote menus
-    (senate.gov blocking us), it keeps the outage notice and exits 0, until
-    config.SENATE_MENU_OUTAGE_MAX_DAYS have passed."""
+    (owner ruling 2026-10-29) or on single vote FILES (owner ruling 2026-11-25, Q2 = B,
+    HTTP 403 only) -- senate.gov blocking us -- it keeps the outage notice and exits 0, until
+    config.SENATE_MENU_OUTAGE_MAX_DAYS have passed (one shared day count). A refused
+    file is skipped for the night, never retried within it (rule 4); the roll is
+    fetched again the next night, because a roll not on disk is never "final"."""
     from datetime import date as date_cls
 
     import httpx
@@ -362,7 +385,8 @@ def run(argv: list[str] | None = None) -> int:
     ms_failures: list[str] = []   # NEW/unexpected validation failures (hard fail)
     accepted: list[str] = []      # quarantines on the owner's accept-list (not a failure)
     fetch_failures: list[str] = []
-    menu_blocked: list[str] = []  # HTTP status errors on a vote MENU only (ruling 2026-10-29)
+    menu_blocked: list[str] = []  # HTTP status errors on a vote MENU (ruling 2026-10-29)
+    file_blocked: dict[str, str] = {}  # roll id -> reason: a refused vote FILE (ruling 2026-11-25)
     n_votes = n_abs = n_skipped = 0
     session_counts: dict[str, tuple[int, int]] = {}
 
@@ -396,11 +420,23 @@ def run(argv: list[str] | None = None) -> int:
                 try:
                     detail = senate_xml.vote_detail(congress, session, roll).text
                 except fetch_errors as exc:
+                    status = (
+                        exc.response.status_code
+                        if isinstance(exc, httpx.HTTPStatusError) else None
+                    )
+                    if status == 403:
+                        # senate.gov REFUSING one vote file (2026-11-13: 0257/0258) is
+                        # tolerated like a refused menu, under the same deadline: the roll
+                        # is skipped tonight and fetched again tomorrow. Not retried now
+                        # (rule 4). 403 ONLY (copilot call, 2026-11-26): the ruling was
+                        # about a refusal, so a 404 or any other status stays fatal.
+                        file_blocked[rc_id] = f"HTTPStatusError HTTP 403 {exc.request.url}"
+                        continue
                     reason = type(exc).__name__
-                    if isinstance(exc, httpx.HTTPStatusError):
+                    if status is not None:
                         # The status and URL, not just the type: on 2026-11-13 the log
                         # said only "HTTPStatusError", so the code had to be inferred.
-                        reason += f" HTTP {exc.response.status_code} {exc.request.url}"
+                        reason += f" HTTP {status} {exc.request.url}"
                     fetch_failures.append(f"{rc_id}: {reason}")
                     continue
                 try:
@@ -448,14 +484,14 @@ def run(argv: list[str] | None = None) -> int:
         gaps_path.unlink()
 
     past_deadline = False
-    if menu_blocked:
-        notice = write_outage_notice()
+    if menu_blocked or file_blocked:
+        notice = write_outage_notice(missing_rolls=sorted(file_blocked))
         days = (
             date_cls.fromisoformat(_today()) - date_cls.fromisoformat(notice["outage_start"])
         ).days
         past_deadline = days > config.SENATE_MENU_OUTAGE_MAX_DAYS
     else:
-        outage_notice_path().unlink(missing_ok=True)  # menus answered: the block is over
+        outage_notice_path().unlink(missing_ok=True)  # menus and files answered: the block is over
 
     for label, (got, count) in session_counts.items():
         print(f"  {label}: ingested {got} rolls (max roll {count})")
@@ -465,8 +501,16 @@ def run(argv: list[str] | None = None) -> int:
         print(f"WARN: senate.gov refused {len(menu_blocked)} vote menu(s) since "
               f"{notice['outage_start']} ({days} day(s)); kept data/quality/"
               f"senate-outage.json for the site notice: {menu_blocked}")
+    if file_blocked:
+        print(f"WARN: senate.gov refused {len(file_blocked)} Senate vote file(s) since "
+              f"{notice['outage_start']} ({days} day(s)); skipped tonight, fetched again "
+              f"next night; the site notice lists them as missing: "
+              f"{[f'{rc}: {why}' for rc, why in sorted(file_blocked.items())]}")
     if past_deadline:
-        print(f"FAIL: senate.gov has refused the Senate vote menus for {days} days in a "
+        what = " and ".join(
+            w for w, hit in (("vote menus", menu_blocked), ("vote files", file_blocked)) if hit
+        )
+        print(f"FAIL: senate.gov has refused the Senate {what} for {days} days in a "
               f"row (since {notice['outage_start']}), more than the "
               f"{config.SENATE_MENU_OUTAGE_MAX_DAYS} days allowed. Senate votes are no "
               f"longer being kept current; someone has to get the block lifted.")

@@ -183,7 +183,12 @@ jobs:
           #    nothing is fetched or rewritten (a sine_die session is a near-always
           #    no-op, and the manifest wall-clock is untouched so it can't false-trip
           #    the diff-gate). A new/changed session re-ingests data/state/ms/.
-          uv run ingest ms
+          #    OWNER RULING 2026-11-25 (Q3 = B): a LegiScan/Mississippi failure must not
+          #    cost the FEDERAL night (2026-11-16 died here on a LegiScan HTTP 526). It
+          #    is logged loudly, data/state/ms/ is put back to the committed (last good)
+          #    state so no half-written partition reaches `checks`, and the federal
+          #    steps below run and publish. Only this step is guarded.
+          uv run ingest ms || { ms_rc=$?; echo "::warning::ingest ms failed (exit $ms_rc): Mississippi pages keep their last good data tonight; federal data still publishes."; git checkout -- data/state/ms/; git clean -fdq -- data/state/ms/; }
 
           # 2) Re-fetching a recent roll re-exports it as provisional `unclassified`
           #    (D24). If any vote data moved, re-classify to restore/assign vote_class.

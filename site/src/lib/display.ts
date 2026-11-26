@@ -55,11 +55,34 @@ export function formatMonthDay(iso: string): string {
  * senate-votes` writes from the record: the newest Senate roll held and the first night
  * senate.gov refused us. Rendered beside "Data last updated" (footer) and "Dataset last
  * updated" (homepage) only; site/scripts/check-senate-notice.mjs pins the wording.
+ *
+ * COPILOT-AUTHORED, NOT REVIEWED BY SEAN (owner ruling 2026-11-25, Q2 = B): when
+ * senate.gov refused single vote FILES, the notice lists them in `missing_rolls`. The
+ * date in the first sentence is then the newest roll held, which can sit AFTER a missing
+ * one, so "shown through" alone would imply no earlier vote is absent (rule 0). Only in
+ * that case is a third sentence appended after the owner's two, which stay word for
+ * word: "Our record is also missing N Senate vote(s) for the same reason."
  */
-export function senateOutageLine(notice: { last_roll_date: string; outage_start: string }): string {
+export function senateOutageLine(
+  notice: { last_roll_date: string; outage_start: string; missing_rolls?: string[] },
+): string {
+  const n = notice.missing_rolls?.length ?? 0;
   return `Senate votes shown through ${formatDate(notice.last_roll_date)}. ` +
     `Since ${formatMonthDay(notice.outage_start)}, senate.gov has blocked our automated ` +
-    `requests, so newer Senate votes may not appear yet.`;
+    `requests, so newer Senate votes may not appear yet.` +
+    (n > 0 ? ` Our record is also missing ${n} Senate ${n === 1 ? "vote" : "votes"} for the same reason.` : "");
+}
+
+/**
+ * The footer line on Mississippi pages (COPILOT-AUTHORED, NOT REVIEWED BY SEAN; copilot
+ * call 2026-11-26, rule 0). The footer's "Data last updated" is the FEDERAL manifest's
+ * date, and since Q3 a failed Mississippi refresh leaves those pages on older data. The
+ * date is `generated_at` of data/state/ms/manifest.json, which `ingest ms` rewrites only
+ * when it re-exports (a failed night or an unchanged dataset leaves it alone), so it is
+ * the date the Mississippi data last changed: from the data, never the build clock.
+ */
+export function msDataLine(manifest: { generated_at: string }): string {
+  return `Mississippi data last updated ${formatDate(manifest.generated_at)}.`;
 }
 
 /** "hr2-119" -> "H.R. 2 (119th)" for display; unknown shapes pass through. */

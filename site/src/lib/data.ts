@@ -1353,6 +1353,8 @@ export interface CommitteeSeat {
 // -> no notice line anywhere.
 export interface SenateOutage {
   outage_start: string; last_roll_id: string; last_roll_date: string; source_url: string;
+  // Roll ids whose vote FILE senate.gov refused (owner ruling 2026-11-25, Q2); absent when none.
+  missing_rolls?: string[];
 }
 let _senateOutage: SenateOutage | null | undefined;
 export function getSenateOutage(): SenateOutage | null {

@@ -73,6 +73,18 @@ export function senateOutageLine(
     (n > 0 ? ` Our record is also missing ${n} Senate ${n === 1 ? "vote" : "votes"} for the same reason.` : "");
 }
 
+/**
+ * The footer line on Mississippi pages (COPILOT-AUTHORED, NOT REVIEWED BY SEAN; copilot
+ * call 2026-11-26, rule 0). The footer's "Data last updated" is the FEDERAL manifest's
+ * date, and since Q3 a failed Mississippi refresh leaves those pages on older data. The
+ * date is `generated_at` of data/state/ms/manifest.json, which `ingest ms` rewrites only
+ * when it re-exports (a failed night or an unchanged dataset leaves it alone), so it is
+ * the date the Mississippi data last changed: from the data, never the build clock.
+ */
+export function msDataLine(manifest: { generated_at: string }): string {
+  return `Mississippi data last updated ${formatDate(manifest.generated_at)}.`;
+}
+
 /** "hr2-119" -> "H.R. 2 (119th)" for display; unknown shapes pass through. */
 export function billLabel(billId: string): string {
   const m = /^([a-z]+)(\d+)-(\d+)$/.exec(billId);

@@ -14,6 +14,11 @@
 //     statements and is held until Phase 6 (§2), so nothing here compares what a member
 //     said with how they voted (rule 0);
 //   * weight sliders — there is nothing to weigh against while one category is graded.
+//
+// AES-14 (preview, copilot call, awaits Sean): the four "Not yet graded" category cards and
+// the "Stated priorities" panel are closed <details> AFTER the recorded work (tiles,
+// committees, bills), before the timeline. Wording is unchanged; see
+// docs/design/2026-11-26-aes-14-29-preview.md.
 import Layout from "../../../components/Layout.astro";
 import VoteRow from "../../../components/VoteRow.astro";
 import ActionRow from "../../../components/ActionRow.astro";
@@ -304,15 +309,6 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
             <a href="/methods#grade-attendance" class="underline decoration-line underline-offset-2 hover:text-text">Open the formula</a>
           </p>
         </div>
-        {CATEGORIES.map((cat) => (
-          <div class="rounded-lg border border-line bg-surface p-5">
-            <div class="flex items-baseline justify-between gap-2">
-              <h3 class="text-[14px] font-medium text-text">{cat.name}</h3>
-              <span class="text-[12px] text-neutral-500">Not yet graded</span>
-            </div>
-            <p class="mt-2 text-[12px] leading-relaxed text-neutral-600">{cat.measures}</p>
-          </div>
-        ))}
       </div>
 
       {tally && tally.placed + tally.unplaced > 0 && (
@@ -340,41 +336,6 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
 
       <!-- Scroll 2 — Priorities and work -->
       <h2 class="mt-10 text-[20px] font-medium text-text" id="work">Priorities and work</h2>
-
-      <section class="mt-4 rounded-lg border border-line bg-surface p-5" aria-labelledby="prio-h">
-        <h3 id="prio-h" class="text-[11px] font-medium uppercase tracking-[0.1em] text-neutral-500">Stated priorities</h3>
-        {prio.listed && !showLists ? (
-          <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-held>
-            Enough of their statements from this term have been reviewed and approved for a
-            list of stated priorities. The list is not shown yet while its wording is reviewed.
-          </p>
-        ) : prio.listed ? (
-          (prio.priorities ?? []).length > 0 ? (
-            <ul class="mt-2" data-priorities-list>
-              {(prio.priorities ?? []).map((p) => (
-                <li class="py-1 text-[13px] text-neutral-700">
-                  <span class="font-medium text-text">{p.topic}</span>
-                  {" — "}{STANCE_WORD[p.stance]}, {p.routes.map((r) => ROUTE_WORD[r]).join("; ")}
-                  {" "}({n(p.statement_ids.length)} approved {p.statement_ids.length === 1 ? "statement" : "statements"})
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-none>
-              None of their approved statements meets the rule for a stated priority yet.
-            </p>
-          )
-        ) : (
-          <p class="mt-2 max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-empty>
-            Not enough statements on record yet. A list appears once at least
-            {" "}{prioBar.min_approved_statements} of their public statements from this term, covering at least
-            {" "}{prioBar.min_distinct_topics} policy areas, have been reviewed and
-            approved{prio.approved_statements > 0 ? ` (${n(prio.approved_statements)} so far)` : ""}.
-            This does not mean they have said nothing on these issues: a statement appears here
-            only after it is collected and reviewed, and that work has only begun.
-          </p>
-        )}
-      </section>
 
       {mm && (
         <section class="mt-4 grid grid-cols-2 gap-3.5 sm:grid-cols-3" aria-label="Record summary">
@@ -461,6 +422,81 @@ const periodLabel = `${getManifest().congresses.map((c) => `${c}th`).join("–")
             )}
           </section>
         ))}
+      </div>
+
+      <!-- AES-14 (copilot call, preview, awaits Sean): what is planned but not yet real sits
+           AFTER the recorded work, collapsed. Every sentence is the one that used to sit above
+           the record, verbatim. Nothing new is worded: each summary line is built from existing
+           sentences, so a closed disclosure can never read as if a category or a statement
+           exists when it does not (rule 0). Ruling 9 stands: no list renders. -->
+      <div class="mt-8 space-y-2.5" data-planned-disclosures>
+        <details class="group rounded-lg border border-line bg-surface" data-not-yet-graded>
+          <summary class="flex min-h-[44px] cursor-pointer list-none flex-wrap items-center gap-x-2 gap-y-1 px-4 py-2.5 text-[13px] text-neutral-700 hover:text-text [&::-webkit-details-marker]:hidden">
+            <span aria-hidden="true" class="text-[11px] text-neutral-500 transition-transform group-open:rotate-90">▸</span>
+            <span class="font-medium text-text">Not yet graded</span>
+            <span class="text-neutral-500">{CATEGORIES.map((c) => c.name).join(", ")}</span>
+          </summary>
+          <div class="grid gap-3.5 border-t border-line p-4 sm:grid-cols-2">
+            {CATEGORIES.map((cat) => (
+              <div class="rounded-lg border border-line bg-bg p-4">
+                <div class="flex items-baseline justify-between gap-2">
+                  <h3 class="text-[14px] font-medium text-text">{cat.name}</h3>
+                  <span class="text-[12px] text-neutral-500">Not yet graded</span>
+                </div>
+                <p class="mt-2 text-[12px] leading-relaxed text-neutral-600">{cat.measures}</p>
+              </div>
+            ))}
+          </div>
+        </details>
+
+        <details class="group rounded-lg border border-line bg-surface" data-stated-priorities>
+          <summary class="flex min-h-[44px] cursor-pointer list-none flex-wrap items-center gap-x-2 gap-y-1 px-4 py-2.5 text-[13px] text-neutral-700 hover:text-text [&::-webkit-details-marker]:hidden">
+            <span aria-hidden="true" class="text-[11px] text-neutral-500 transition-transform group-open:rotate-90">▸</span>
+            <span class="font-medium text-text">Stated priorities</span>
+            {prio.listed && !showLists ? (
+              <span class="text-neutral-500">The list is not shown yet while its wording is reviewed.</span>
+            ) : prio.listed ? (
+              (prio.priorities ?? []).length > 0
+                ? null
+                : <span class="text-neutral-500">None of their approved statements meets the rule for a stated priority yet.</span>
+            ) : (
+              <span class="text-neutral-500">Not enough statements on record yet.</span>
+            )}
+          </summary>
+          <div class="border-t border-line p-4">
+            {prio.listed && !showLists ? (
+              <p class="max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-held>
+                Enough of their statements from this term have been reviewed and approved for a
+                list of stated priorities. The list is not shown yet while its wording is reviewed.
+              </p>
+            ) : prio.listed ? (
+              (prio.priorities ?? []).length > 0 ? (
+                <ul data-priorities-list>
+                  {(prio.priorities ?? []).map((p) => (
+                    <li class="py-1 text-[13px] text-neutral-700">
+                      <span class="font-medium text-text">{p.topic}</span>
+                      {" — "}{STANCE_WORD[p.stance]}, {p.routes.map((r) => ROUTE_WORD[r]).join("; ")}
+                      {" "}({n(p.statement_ids.length)} approved {p.statement_ids.length === 1 ? "statement" : "statements"})
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p class="max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-none>
+                  None of their approved statements meets the rule for a stated priority yet.
+                </p>
+              )
+            ) : (
+              <p class="max-w-[70ch] text-[13px] leading-relaxed text-neutral-600" data-priorities-empty>
+                Not enough statements on record yet. A list appears once at least
+                {" "}{prioBar.min_approved_statements} of their public statements from this term, covering at least
+                {" "}{prioBar.min_distinct_topics} policy areas, have been reviewed and
+                approved{prio.approved_statements > 0 ? ` (${n(prio.approved_statements)} so far)` : ""}.
+                This does not mean they have said nothing on these issues: a statement appears here
+                only after it is collected and reviewed, and that work has only begun.
+              </p>
+            )}
+          </div>
+        </details>
       </div>
     </>
   )}

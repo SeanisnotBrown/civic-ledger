@@ -8,6 +8,11 @@ import Badge from "./Badge.astro";
 import { POSITION_LABEL, formatDate, billLabel } from "../lib/display";
 import { motionMeaning, positionEffect } from "../lib/motions";
 
+// AES-29 (preview, copilot call, awaits Sean): the shared action-row pattern - status + date,
+// prominent title, official action, record links (see ActivityItem.astro, ActionRow.astro).
+// Text is unchanged. Moved: the roll-call number and the bill link joined the last line with
+// "Official record", and the absence reason sits before that line, with the rest of the action.
+//
 // `filterTopic` is set on the member activity page so its Type / Policy area selects
 // can hide the row; it is absent everywhere else and then renders nothing.
 // `billTitle` is the official title of the measure the roll call was on. The question
@@ -49,16 +54,14 @@ const didWhat = positionEffect(rc.question, position, billTitle);
 // as a fallback.
 const amendment = rc.amendment_sponsor ?? rc.amendment_number ?? null;
 ---
-<li class="border-b border-neutral-100 py-3" data-kind="vote" data-topic={filterTopic ?? ""}>
-  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-    <span class="font-semibold">{POSITION_LABEL[position]}</span>
+<li class="border-t border-line py-3.5 first:border-0" data-kind="vote" data-topic={filterTopic ?? ""}>
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+    <span class="text-[13px] font-semibold text-text">{POSITION_LABEL[position]}</span>
     <Badge voteClass={rc.vote_class} />
-    <span class="text-xs text-neutral-500">
-      {formatDate(rc.date)} · Roll <a href={`/v/${rc.id}`} class="underline hover:text-neutral-800">#{rc.number}</a>
-    </span>
+    <span class="text-[12px] tabular-nums text-neutral-500">{formatDate(rc.date)}</span>
   </div>
-  {billTitle && <p class="mt-1 text-sm leading-snug text-text" data-clamp>{billTitle}</p>}
-  <p class="mt-1 text-sm text-neutral-800">{rc.question}</p>
+  {billTitle && <p class="mt-1.5 text-[15px] font-medium leading-snug text-text" data-clamp>{billTitle}</p>}
+  <p class="mt-1 text-[13px] leading-relaxed text-neutral-700">{rc.question}</p>
   {amendment && (
     <p class="mt-1 text-xs text-neutral-600">
       <span class="text-neutral-500">Amendment:</span> {amendment}
@@ -73,12 +76,6 @@ const amendment = rc.amendment_sponsor ?? rc.amendment_number ?? null;
       <a href="/methods#motions" class="underline decoration-line underline-offset-2 hover:text-neutral-800">how these are written</a>
     </p>
   )}
-  <div class="mt-1 flex flex-wrap gap-x-3 text-xs text-neutral-500">
-    {rc.bill_id && (
-      <a href={`/b/${rc.bill_id}`} class="underline hover:text-neutral-800">{billLabel(rc.bill_id)}</a>
-    )}
-    <a href={rc.source_url} rel="nofollow" class="underline hover:text-neutral-800">Official record</a>
-  </div>
   {notVoting && (
     <p class="mt-1 text-xs text-neutral-600">
       {absence?.stated_reason
@@ -93,4 +90,11 @@ const amendment = rc.amendment_sponsor ?? rc.amendment_number ?? null;
         : <span>No explanation on record.</span>}
     </p>
   )}
+  <p class="mt-1.5 flex flex-wrap gap-x-3 gap-y-1 text-[12px] text-neutral-500">
+    {rc.bill_id && (
+      <a href={`/b/${rc.bill_id}`} class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(rc.bill_id)}</a>
+    )}
+    <a href={`/v/${rc.id}`} class="underline decoration-line underline-offset-2 hover:text-text">Roll #{rc.number}</a>
+    <a href={rc.source_url} rel="nofollow" class="underline decoration-line underline-offset-2 hover:text-text">Official record</a>
+  </p>
 </li>

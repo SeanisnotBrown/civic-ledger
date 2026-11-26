@@ -4,6 +4,12 @@
 // summarised or reworded. `committees` is shown because it is often the only thing
 // distinguishing otherwise identical rows on the same day.
 //
+// AES-29 (preview, copilot call, awaits Sean): the shared action-row pattern - status + date,
+// prominent title, official action, record links (see ActivityItem.astro, VoteRow.astro).
+// The bill's official title is NEW on this row (existing data, no new wording): without it the
+// row named a bill only by number. Added because the pattern's title slot would otherwise be
+// empty; it lengthens every action row, so it is a call for Sean.
+//
 // The bill link follows the SD-33 3(c) rule: /b/{id} only when that page was built
 // (a bill that reached a recorded vote), otherwise the bill's own page on
 // congress.gov, so no link points at a URL that was never generated.
@@ -13,18 +19,19 @@ import { formatDate, billLabel } from "../lib/display";
 interface Props { bill: Bill; action: BillAction; hasPage: boolean; filterTopic?: string }
 const { bill, action, hasPage, filterTopic } = Astro.props as Props;
 ---
-<li class="border-b border-line py-3" data-kind="action" data-topic={filterTopic ?? ""}>
-  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+<li class="border-t border-line py-3.5 first:border-0" data-kind="action" data-topic={filterTopic ?? ""}>
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
     <span class="rounded bg-surface px-1.5 py-0.5 text-[11px] text-neutral-600">Bill action</span>
-    <span class="text-xs text-neutral-500">
-      {formatDate(action.date)} ·
-      {" "}{hasPage
-        ? <a href={`/b/${bill.id}`} class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(bill.id)}</a>
-        : <a href={bill.source_url} rel="nofollow" class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(bill.id)}</a>}
-    </span>
+    <span class="text-[12px] tabular-nums text-neutral-500">{formatDate(action.date)}</span>
   </div>
-  <p class="mt-1 text-sm leading-snug text-neutral-700">{action.text}</p>
+  {bill.title_official && <p class="mt-1.5 text-[15px] font-medium leading-snug text-text" data-clamp>{bill.title_official}</p>}
+  <p class="mt-1 text-[13px] leading-relaxed text-neutral-600">{action.text}</p>
   {action.committees && action.committees.length > 0 && (
-    <p class="mt-1 text-xs text-neutral-500">{action.committees.join(" · ")}</p>
+    <p class="mt-1 text-[12px] text-neutral-500">{action.committees.join(" · ")}</p>
   )}
+  <p class="mt-1.5 text-[12px] text-neutral-500">
+    {hasPage
+      ? <a href={`/b/${bill.id}`} class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(bill.id)}</a>
+      : <a href={bill.source_url} rel="nofollow" class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(bill.id)}</a>}
+  </p>
 </li>

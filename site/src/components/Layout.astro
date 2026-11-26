@@ -115,11 +115,14 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className =
-          "mt-0.5 text-[11px] text-neutral-500 underline decoration-line underline-offset-2 hover:text-text";
+          "mt-1 py-0.5 text-[12px] text-accent-300 underline decoration-accent-700 underline-offset-2 hover:text-text"; // AES-29 preview: a clearer disclosure control, wording unchanged
         btn.setAttribute("aria-expanded", "false");
         const label = () => {
           const open = btn.getAttribute("aria-expanded") === "true";
-          btn.textContent = open ? "Show less" : "Show the full title";
+          // "action" is copilot-authored wording (AES-29 preview, not reviewed by Sean): the
+          // homepage band also clamps the action text, whose control used to read "title".
+          const what = el.dataset.clampKind === "action" ? "action" : "title";
+          btn.textContent = open ? "Show less" : `Show the full ${what}`;
         };
         label();
         btn.addEventListener("click", () => {

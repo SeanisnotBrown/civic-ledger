@@ -7,6 +7,11 @@
 // The bill link follows the SD-33 3(c) rule: /b/{id} only when that page exists
 // (the bill reached a recorded vote), otherwise the bill's own congress.gov page.
 //
+// AES-29 (preview, copilot call, awaits Sean): ONE action-row pattern shared with the member
+// timeline (ActionRow.astro, VoteRow.astro): status + date, prominent title, the official
+// action text, then the record links. No text was added or removed; the bill link moved from
+// beside the date to the last line and the title got the larger size.
+//
 // `compact` is the homepage band: the title and the action text are each clamped
 // to two lines (the expand control comes from Layout, and with JavaScript off
 // nothing is clamped) and the policy area is dropped. Nothing is REMOVED in
@@ -23,25 +28,26 @@ const href = e.has_page ? `/b/${e.bill_id}` : e.source_url;
 // tiers and what became law. The accent marks them so the lead reads as the lead.
 const lead = row.tier <= 3;
 ---
-<li class={`border-t border-line first:border-0 ${compact ? "py-2.5" : "py-3"}`}>
-  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+<li class={`border-t border-line first:border-0 ${compact ? "py-3" : "py-3.5"}`}>
+  <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
     <span class={`rounded px-1.5 py-0.5 text-[11px] ${lead
       ? "bg-accent/15 text-accent-300"
       : "bg-surface text-neutral-600"}`}>{row.tierLabel}</span>
     <span class="text-[12px] text-neutral-500">
-      <a href={href} rel={e.has_page ? undefined : "nofollow"}
-         class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(e.bill_id)}</a>
-      <span aria-hidden="true"> · </span>
       <span class="tabular-nums">{formatDate(e.date)}</span>
       {!compact && e.policy_area && <><span aria-hidden="true"> · </span>{e.policy_area}</>}
     </span>
   </div>
-  {row.title && <p class="mt-1.5 text-[13px] leading-snug text-text" data-clamp>{row.title}</p>}
-  <p class="mt-1 text-[12px] leading-relaxed text-neutral-600" data-clamp={compact ? true : undefined}>{e.text}</p>
+  {row.title && <p class="mt-1.5 text-[15px] font-medium leading-snug text-text" data-clamp>{row.title}</p>}
+  <p class="mt-1 text-[13px] leading-relaxed text-neutral-600" data-clamp={compact ? true : undefined} data-clamp-kind={compact ? "action" : undefined}>{e.text}</p>
   {row.margin && (
-    <p class="mt-1 text-[11px] text-neutral-500">
+    <p class="mt-1 text-[12px] text-neutral-500">
       {row.margin.sharePct}% of the yea/nay votes cast were on the winning side —
       {" "}<a href={`/v/${row.margin.rollcallId}`} class="underline decoration-line underline-offset-2 hover:text-text">see the roll call</a>.
     </p>
   )}
+  <p class="mt-1.5 text-[12px] text-neutral-500">
+    <a href={href} rel={e.has_page ? undefined : "nofollow"}
+       class="underline decoration-line underline-offset-2 hover:text-text">{billLabel(e.bill_id)}</a>
+  </p>
 </li>

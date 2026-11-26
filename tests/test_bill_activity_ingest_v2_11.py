@@ -524,3 +524,108 @@ def test_the_backfill_still_fails_on_any_fetch_failure(monkeypatch, tmp_path, ca
     _wire_with_failures(monkeypatch, tmp_path, items, {"hr4-119"})
     assert bills.run_activity(["--congress", "119"]) == 1
     assert "FAIL: 1 bill(s) failed to fetch" in capsys.readouterr().out
+
+
+# --- the nightly window: since the last published run (2026-11-11) -----------
+# The fixed 36 h window could not recover nights that published nothing (it lost
+# 2026-11-07 11:57 -> 11-08 02:00 UTC and everything after 11-09 14:00). The
+# nightly now reads the committed manifest's `generated_at` instead.
+import re  # noqa: E402
+from datetime import UTC, datetime, timedelta  # noqa: E402
+
+from ingest import config  # noqa: E402
+
+_NOW = datetime(2026, 11, 12, 13, 0, tzinfo=UTC)
+
+
+def _manifest(tmp_path, hours_ago: float | None):
+    path = tmp_path / "data" / "manifest.json"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    if hours_ago is not None:
+        stamp = (_NOW - timedelta(hours=hours_ago)).isoformat().replace("+00:00", "Z")
+        path.write_text(json.dumps({"generated_at": stamp}), encoding="utf-8")
+    return path
+
+
+def test_window_first_run_without_a_manifest_falls_back_to_36(tmp_path):
+    hours, why = bills.since_published_hours(_NOW, tmp_path / "data" / "manifest.json")
+    assert hours == config.ACTIVITY_WINDOW_FLOOR_HOURS == 36.0
+    assert "floor" in why
+
+
+@pytest.mark.parametrize("body", ["{}", "not json", '{"generated_at": "yesterday"}'])
+def test_window_unreadable_manifest_falls_back_to_36(tmp_path, body):
+    path = _manifest(tmp_path, None)
+    path.write_text(body, encoding="utf-8")
+    assert bills.since_published_hours(_NOW, path)[0] == 36.0
+
+
+@pytest.mark.parametrize("hours_ago", [20.0, 24.0])
+def test_window_normal_next_day_run_keeps_36(tmp_path, hours_ago):
+    # 24 h + 12 h margin = 36; an early run (20 h) never drops below the floor.
+    assert bills.since_published_hours(_NOW, _manifest(tmp_path, hours_ago))[0] == 36.0
+
+
+def test_window_a_late_run_widens_past_36(tmp_path):
+    # The 27.7 h run-to-run gap measured in 2026-10 left only 2.3 h of margin at 30 h.
+    hours = bills.since_published_hours(_NOW, _manifest(tmp_path, 27.7))[0]
+    assert hours == pytest.approx(39.7)
+
+
+def _stamp_days_ago(tmp_path, days: float) -> None:
+    # run_activity reads the real clock, so these stamps are relative to it.
+    stamp = (datetime.now(UTC).replace(microsecond=0) - timedelta(days=days))
+    _manifest(tmp_path, None).write_text(
+        json.dumps({"generated_at": stamp.isoformat().replace("+00:00", "Z")}),
+        encoding="utf-8",
+    )
+
+
+def test_window_after_a_three_day_outage_covers_the_outage(monkeypatch, tmp_path):
+    _wire(monkeypatch, tmp_path, [])
+    _stamp_days_ago(tmp_path, 3)
+    seen: list = []
+    monkeypatch.setattr(
+        "ingest.sources.congress_gov.bills_updated_since",
+        lambda since, until: seen.append((since, until)) or [],
+    )
+    assert bills.run_activity(["--since-published"]) == 0
+    (since, until), = seen
+    hours = (until - since).total_seconds() / 3600
+    # Published 72 h ago: the window is those 72 h + the 12 h margin.
+    assert hours == pytest.approx(72.0 + config.ACTIVITY_WINDOW_MARGIN_HOURS, abs=0.1)
+
+
+def test_window_above_the_ceiling_fails_before_fetching(monkeypatch, tmp_path, capsys):
+    calls = _wire(monkeypatch, tmp_path, [_item(1)])
+    _stamp_days_ago(tmp_path, 9)  # 216 h + 12 h margin = 228 h > 192
+    fetched: list = []
+    monkeypatch.setattr("ingest.sources.congress_gov.bills_updated_since",
+                        lambda *a, **k: fetched.append(a) or [_item(1)])
+    assert bills.run_activity(["--since-published"]) == 1
+    out = capsys.readouterr().out
+    assert "ACTIVITY_WINDOW_MAX_HOURS" in out and re.search(r"since_hours=22[89] ", out)
+    assert fetched == [] and calls == []
+
+
+def test_window_explicit_since_overrides_and_is_not_capped(monkeypatch, tmp_path):
+    _wire(monkeypatch, tmp_path, [])
+    _stamp_days_ago(tmp_path, 9)
+    seen: list = []
+    monkeypatch.setattr(
+        "ingest.sources.congress_gov.bills_updated_since",
+        lambda since, until: seen.append((since, until)) or [],
+    )
+    assert bills.run_activity(["--since", "240"]) == 0
+    (since, until), = seen
+    assert (until - since) == timedelta(hours=240)
+
+
+@pytest.mark.parametrize(
+    "argv",
+    [["--since-published", "--since", "36"], ["--since", "36", "--since-published"],
+     ["--since-published", "--congress", "119"]],
+)
+def test_window_since_published_is_exclusive(argv):
+    with pytest.raises(ValueError):
+        bills._parse_activity_args(argv)

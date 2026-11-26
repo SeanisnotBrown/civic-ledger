@@ -21,6 +21,7 @@ from __future__ import annotations
 
 import html
 import json
+import math
 import re
 
 from pydantic import ValidationError
@@ -491,7 +492,8 @@ def _in_ci() -> bool:
 
 def _parse_activity_args(argv: list[str]) -> dict:
     """`--congress N` (enumerate that Congress whole) | `--since HOURS` (default
-    30) | `--limit N` | `--allow-ci` | `--refresh-all`. Raises ValueError on
+    30) | `--since-published` (the nightly: since the last published run, see
+    `since_published_hours`) | `--limit N` | `--allow-ci` | `--refresh-all`. Raises ValueError on
     anything else so a typo'd flag can never silently become a 43-hour run.
 
     **A backfill RESUMES by default** (`skip_existing` True whenever `--congress`
@@ -505,10 +507,15 @@ def _parse_activity_args(argv: list[str]) -> dict:
         "congress": None, "since": 30.0, "limit": None,
         "allow_ci": False, "refresh_all": False,
     }
+    since_given = False
     i = 0
     while i < len(argv):
         a = argv[i]
         if a == "--skip-existing":  # now the default for a backfill; kept as a no-op
+            i += 1
+            continue
+        if a == "--since-published":
+            opts["since_published"] = True
             i += 1
             continue
         if a in ("--allow-ci", "--refresh-all"):
@@ -523,6 +530,7 @@ def _parse_activity_args(argv: list[str]) -> dict:
                 opts[a[2:]] = float(raw) if a == "--since" else int(raw)
             except ValueError:
                 raise ValueError(f"{a} needs a number, got {raw!r}") from None
+            since_given = since_given or a == "--since"
             i += 2
             continue
         raise ValueError(f"unknown argument {a!r}")
@@ -533,6 +541,8 @@ def _parse_activity_args(argv: list[str]) -> dict:
         )
     if opts["since"] <= 0:
         raise ValueError("--since must be positive")
+    if opts.get("since_published") and (since_given or opts["congress"] is not None):
+        raise ValueError("--since-published cannot be combined with --since or --congress")
     if opts["refresh_all"] and opts["congress"] is None:
         raise ValueError(
             "--refresh-all is a backfill flag and needs --congress N; the --since "
@@ -543,6 +553,31 @@ def _parse_activity_args(argv: list[str]) -> dict:
     # exists to refresh.
     opts["skip_existing"] = opts["congress"] is not None and not opts["refresh_all"]
     return opts
+
+
+def since_published_hours(now, manifest_path) -> tuple[float, str]:
+    """The nightly window in hours, and how it was derived (printed). Covers everything
+    since the last PUBLISHED nightly: hours since the committed manifest's
+    `generated_at` + config.ACTIVITY_WINDOW_MARGIN_HOURS, never under
+    config.ACTIVITY_WINDOW_FLOOR_HOURS. No manifest, or no readable `generated_at`,
+    falls back to the floor (the fixed 36 h window this replaces). Pure given its
+    arguments; the ceiling is the caller's check."""
+    from datetime import datetime
+
+    from ingest import config
+
+    floor = config.ACTIVITY_WINDOW_FLOOR_HOURS
+    try:
+        stamp = json.loads(manifest_path.read_text(encoding="utf-8"))["generated_at"]
+        last = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+        ago = (now - last).total_seconds() / 3600
+    except (OSError, ValueError, KeyError, TypeError, AttributeError):
+        return floor, f"no readable generated_at in {manifest_path.name}; floor {floor:g} h"
+    hours = max(floor, ago + config.ACTIVITY_WINDOW_MARGIN_HOURS)
+    return hours, (
+        f"last published nightly {stamp} ({ago:.1f} h ago) + "
+        f"{config.ACTIVITY_WINDOW_MARGIN_HOURS:g} h margin, floor {floor:g} h"
+    )
 
 
 def config_congresses() -> list[int]:
@@ -628,6 +663,22 @@ def run_activity(argv: list[str] | None = None) -> int:
         from datetime import UTC, datetime, timedelta
 
         now = datetime.now(UTC).replace(microsecond=0)
+        if opts.get("since_published"):
+            from ingest.cache import repo_root
+
+            opts["since"], why = since_published_hours(
+                now, repo_root() / "data" / "manifest.json"
+            )
+            print(f"bill-activity window {opts['since']:.1f} h: {why}.")
+            if opts["since"] > config.ACTIVITY_WINDOW_MAX_HOURS:
+                print(
+                    f"FAIL: the window since the last published nightly is "
+                    f"{opts['since']:.1f} h, over config.ACTIVITY_WINDOW_MAX_HOURS "
+                    f"({config.ACTIVITY_WINDOW_MAX_HOURS:g} h). Nothing was fetched.\n"
+                    f"  To catch up deliberately, run the nightly by hand with "
+                    f"since_hours={math.ceil(opts['since'])} (not capped)."
+                )
+                return 1
         since = now - timedelta(hours=opts["since"])
         scope = f"updated in the last {opts['since']:g} h"
         items = [

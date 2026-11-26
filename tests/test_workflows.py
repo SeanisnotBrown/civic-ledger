@@ -53,14 +53,17 @@ def test_nightly_fetches_the_bill_activity_delta_before_the_projections() -> Non
     )
 
 
-def test_nightly_since_window_is_a_dispatch_input_defaulting_to_36() -> None:
-    """Owner ruling 2026-10-29: after nights that published nothing, a manual run
-    widens the bill-activity window (`since_hours`); the schedule keeps 36. The input
-    reaches the script through env, never interpolated into it."""
+def test_nightly_window_is_since_last_published_with_a_dispatch_override() -> None:
+    """2026-11-11: the scheduled run covers everything since the last published
+    nightly (`--since-published`); a dispatch `since_hours` is an explicit override
+    (owner ruling 2026-10-29's catch-up). The input reaches the script through env,
+    never interpolated into it."""
     text = NIGHTLY.read_text(encoding="utf-8")
     dispatch = text[text.index("workflow_dispatch:"):text.index("concurrency:")]
     assert "since_hours:" in dispatch
-    assert 'default: "36"' in dispatch
-    assert "SINCE_HOURS: ${{ github.event.inputs.since_hours || '36' }}" in text
+    assert 'default: ""' in dispatch
+    assert "SINCE_HOURS: ${{ github.event.inputs.since_hours || '' }}" in text
     assert 'uv run ingest bill-activity --since "$SINCE_HOURS"' in text
+    assert "uv run ingest bill-activity --since-published" in text
+    assert 'if [ -n "$SINCE_HOURS" ]; then' in text
     assert "--since ${{" not in text

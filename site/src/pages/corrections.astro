@@ -4,16 +4,24 @@ import { getCorrections } from "../lib/data";
 import { formatDate } from "../lib/display";
 
 const corrections = getCorrections();
+// copilot-authored, not reviewed by Sean (copilot call 2026-11-26, preview
+// branch, unmerged): the repo URL, the commit links, the issues/commits links
+// and the sentences marked below restore what D59 (2026-08-13) stripped while
+// the repo was private. The repo went public 2026-10-13 (IMPLEMENTATIONv3 §2).
+// Each restored claim was checked against the repo as it is today; see
+// docs/research/2026-11-26-public-repo-claims-preview.md.
+const repo = "https://github.com/SeanisnotBrown/civic-ledger";
 ---
 <Layout title="Corrections — Civic Ledger">
   <h1 class="text-2xl font-semibold tracking-tight">Corrections</h1>
+  {/* copilot-authored, not reviewed by Sean: intro paragraph (restores the "public" wording and the repository link). */}
   <p class="mt-2 max-w-prose text-neutral-700">
-    Corrections are made as ordinary commits to the operator's dataset —
-    never silent edits, never force-pushes. Every commit tagged
-    <code>correction:</code> is listed below with the date, what changed, and
-    the primary source it was checked against. The dataset's repository is
-    not currently public, so this log is the public record of every
-    correction made.
+    Corrections are made as ordinary public commits — never silent edits,
+    never force-pushes. Every commit tagged <code>correction:</code> is listed
+    below with the date, what changed, and the primary source it was checked
+    against, with a link to the exact change. The full history of the
+    published dataset is in the
+    <a href={repo} rel="nofollow" class="underline hover:text-neutral-800">public repository</a>.
   </p>
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Log</h2>
@@ -25,7 +33,8 @@ const corrections = getCorrections();
         <li class="py-3">
           <div class="flex flex-wrap items-baseline gap-x-2 text-sm">
             <span class="text-xs text-neutral-500">{formatDate(c.date)}</span>
-            <span class="font-mono text-xs text-neutral-600">{c.commit}</span>
+            {/* copilot-authored, not reviewed by Sean: commit link restored */}
+            <a href={`${repo}/commit/${c.commit}`} rel="nofollow" class="font-mono text-xs underline hover:text-neutral-800">{c.commit}</a>
           </div>
           <p class="mt-0.5 text-sm text-neutral-800">{c.subject}</p>
         </li>
@@ -34,11 +43,20 @@ const corrections = getCorrections();
   )}
 
   <h2 class="mt-8 text-sm font-semibold uppercase tracking-wide text-neutral-500">Report an error</h2>
+  {/* copilot-authored, not reviewed by Sean: the whole "Report an error" paragraph and the two links under it. */}
   <p class="mt-1 max-w-prose text-sm text-neutral-700">
     Found something wrong? Every fact on this site links to the official
-    government record it came from — check the source first. This site does
-    not yet have a public channel for submitting a correction report; see
+    government record it came from — check the source first. To report an
+    error, open an issue on the repository (it needs a free GitHub account),
+    citing the official record. The
+    <a href={`${repo}/blob/master/docs/correction-process.md`} rel="nofollow" class="underline hover:text-neutral-800">correction process</a>
+    describes how a report is checked, and
     <a href="/methods" class="underline hover:text-neutral-800">methodology</a>
-    for how every figure is sourced and verified.
+    describes how every figure is sourced and verified.
+  </p>
+  <p class="mt-2 text-sm">
+    <a href={`${repo}/issues`} rel="nofollow" class="underline hover:text-neutral-800">Report a correction</a>
+    {" · "}
+    <a href={`${repo}/commits`} rel="nofollow" class="underline hover:text-neutral-800">Full change history</a>
   </p>
 </Layout>

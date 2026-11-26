@@ -11,8 +11,8 @@
 // an official source" line went with them — the site earns that by the links
 // working when you click them, not by claiming it in a footer.
 import "../styles/global.css";
-import { getManifest, getSenateOutage } from "../lib/data";
-import { formatDate, senateOutageLine } from "../lib/display";
+import { getManifest, getMsManifest, getSenateOutage } from "../lib/data";
+import { formatDate, msDataLine, senateOutageLine } from "../lib/display";
 
 interface Props { title: string; description?: string }
 const { title, description } = Astro.props;
@@ -28,6 +28,12 @@ const senateOutage = getSenateOutage();
 // active only on the exact root. aria-current="page" marks it
 // for assistive tech.
 const path = Astro.url.pathname;
+// COPILOT-AUTHORED, NOT REVIEWED BY SEAN (copilot call 2026-11-26, rule 0): on the
+// Mississippi pages the footer's date is the federal one, which a failed Mississippi
+// refresh no longer moves with them. So there the federal line is labeled "Federal" and
+// the Mississippi data's own date (data/state/ms/manifest.json) follows it.
+const isMs = path === "/ms" || path.startsWith("/ms/");
+const msLine = isMs ? msDataLine(getMsManifest()) : null;
 const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
   { href: "/", label: "Home", match: (p) => p === "/" },
   { href: "/federal", label: "Members",
@@ -75,7 +81,8 @@ const TABS: { href: string; label: string; match: (p: string) => boolean }[] = [
     </main>
 
     <footer class="mx-auto max-w-[1180px] px-6 py-10 text-xs text-neutral-500">
-      <p>Data last updated {updated}.</p>
+      <p>{isMs ? "Federal data" : "Data"} last updated {updated}.</p>
+      {msLine && <p class="mt-1.5">{msLine}</p>}
       {senateOutage && <p class="mt-1.5">{senateOutageLine(senateOutage)}</p>}
       <p class="mt-1.5 flex flex-wrap items-center gap-x-2">
         <a href="/methods" class="text-neutral-500 underline decoration-line underline-offset-2 hover:text-text">Methodology</a>

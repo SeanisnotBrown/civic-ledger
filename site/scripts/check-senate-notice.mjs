@@ -27,6 +27,17 @@ const OWNER =
 const got = senateOutageLine({ last_roll_date: "2026-09-30", outage_start: "2026-10-24" });
 if (got !== OWNER) failures.push(`wording drifted:\n  got:  ${got}\n  want: ${OWNER}`);
 
+// COPILOT-AUTHORED, NOT REVIEWED BY SEAN (owner ruling 2026-11-25, Q2): with refused vote
+// FILES the notice lists them and the owner's two sentences gain a third. The first two
+// stay word for word, and no third sentence appears without a missing roll.
+const plus = (ids) =>
+  senateOutageLine({ last_roll_date: "2026-09-30", outage_start: "2026-10-24", missing_rolls: ids });
+const WANT_ONE = OWNER + " Our record is also missing 1 Senate vote for the same reason.";
+const WANT_TWO = OWNER + " Our record is also missing 2 Senate votes for the same reason.";
+if (plus(["s-119-2-0257"]) !== WANT_ONE) failures.push(`missing-vote wording (1) drifted: ${plus(["s-119-2-0257"])}`);
+if (plus(["s-119-2-0257", "s-119-2-0258"]) !== WANT_TWO) failures.push("missing-vote wording (2) drifted");
+if (plus([]) !== OWNER) failures.push("an empty missing_rolls must leave the owner's line unchanged");
+
 const notice = existsSync(NOTICE) ? JSON.parse(readFileSync(NOTICE, "utf-8")) : null;
 const line = notice ? senateOutageLine(notice) : null;
 for (const rel of PAGES) {

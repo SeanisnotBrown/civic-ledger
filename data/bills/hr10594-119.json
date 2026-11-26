@@ -1,6 +1,18 @@
 {
   "actions": [
     {
+      "action_code": "H11000",
+      "committees": [
+        "Cybersecurity and Infrastructure Protection Subcommittee"
+      ],
+      "date": "2026-09-25",
+      "rollcall_id": null,
+      "source_system": "House committee actions",
+      "text": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
       "action_code": "H11100",
       "committees": [
         "Homeland Security Committee"
@@ -43,8 +55,8 @@
   ],
   "id": "hr10594-119",
   "jurisdiction": "us",
-  "latest_action": "Referred to the House Committee on Homeland Security.",
-  "latest_action_date": "2026-09-24",
+  "latest_action": "Referred to the Subcommittee on Cybersecurity and Infrastructure Protection.",
+  "latest_action_date": "2026-09-25",
   "number": 10594,
   "policy_area": "Science, Technology, Communications",
   "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10594",

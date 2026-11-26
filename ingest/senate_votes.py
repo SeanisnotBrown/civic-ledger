@@ -396,7 +396,12 @@ def run(argv: list[str] | None = None) -> int:
                 try:
                     detail = senate_xml.vote_detail(congress, session, roll).text
                 except fetch_errors as exc:
-                    fetch_failures.append(f"{rc_id}: {type(exc).__name__}")
+                    reason = type(exc).__name__
+                    if isinstance(exc, httpx.HTTPStatusError):
+                        # The status and URL, not just the type: on 2026-11-13 the log
+                        # said only "HTTPStatusError", so the code had to be inferred.
+                        reason += f" HTTP {exc.response.status_code} {exc.request.url}"
+                    fetch_failures.append(f"{rc_id}: {reason}")
                     continue
                 try:
                     date = _parse_date(ET.fromstring(detail).findtext("vote_date") or "")

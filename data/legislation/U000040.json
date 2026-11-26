@@ -263,6 +263,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10429-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-18",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10429",
+      "title": "To designate the facility of the United States Postal Service located at 901 Lake Street in Oak Park, Illinois, as the \"Detective Allan Reddins Post Office Building\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr10438-118",
       "congress": 118,
       "enacted_action": null,
@@ -335,6 +344,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr11009-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11009",
+      "title": "Pregnancy Loss Protection Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1101-119",
       "congress": 119,
       "enacted_action": null,
@@ -350,6 +368,15 @@
       "introduced_date": "2025-04-28",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1106",
       "title": "Scientific Integrity Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11117-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11117",
+      "title": "To amend the Public Health Service Act to authorize grants to States, Indian Tribes, Tribal organizations, and political subdivisions thereof to hire, employ, train, and dispatch mental health professionals to respond in lieu of law enforcement officers in emergencies involving one or more persons with a mental illness or an intellectual or developmental disability, and for other purposes."
     },
     {
       "became_law": false,
@@ -3259,10 +3286,10 @@
       "title": "Bottles and Breastfeeding Equipment Screening Enhancement Act"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-05-07",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -4394,8 +4421,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1129,
-    "sponsored": 131
+    "cosponsored": 1132,
+    "sponsored": 134
   },
   "member_id": "U000040",
   "source_url": "https://api.congress.gov/v3/member/U000040/sponsored-legislation",
@@ -4435,6 +4462,33 @@
       "introduced_date": "2026-09-16",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10410",
       "title": "Educating Future Nurses Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10974-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10974",
+      "title": "DHS Funding Accountability Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11078-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11078",
+      "title": "To amend title 10, United States Code, to require the Secretary of Homeland Security to maintain an annual limit on the amount of tuition assistance available for a member of the Coast Guard when the Coast Guard is not operating as a service in the Navy at an amount equal to the annual limit established by the Secretary of Defense with respect to tuition reimbursement for members of the Armed Forces, and for other purposes."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11079-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11079",
+      "title": "To amend the Employee Retirement Income Security Act of 1974, title XXVII of the Public Health Service Act, and the Internal Revenue Code of 1986 to require group health plans and health insurance issuers offering group or individual health insurance coverage to provide coverage for additional preventive and management care for individuals with chronic conditions without the imposition of cost sharing requirement, and for other purposes."
     },
     {
       "became_law": false,

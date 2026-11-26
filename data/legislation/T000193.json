@@ -6779,6 +6779,24 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1660-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1660",
+      "title": "Expressing support for the goals of National Adoption Day and National Adoption Month by promoting national awareness of adoption and the children awaiting families, celebrating children and families involved in adoption, and encouraging the people of the United States to secure safety, permanency, and well-being for all children."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1673-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1673",
+      "title": "Supporting the goals and ideals of \"National Rural Health Day\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres173-118",
       "congress": 118,
       "enacted_action": null,
@@ -7436,12 +7454,21 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 5608,
-    "sponsored": 256
+    "cosponsored": 5610,
+    "sponsored": 257
   },
   "member_id": "T000193",
   "source_url": "https://api.congress.gov/v3/member/T000193/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hr11080-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11080",
+      "title": "To amend the Homeland Security Act of 2002 to require the use of body-worn cameras and dashboard cameras in the Department of Homeland Security, and for other purposes."
+    },
     {
       "became_law": false,
       "bill_id": "hr2086-119",

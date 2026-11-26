@@ -21,7 +21,11 @@ export type VoteClass =
   | "passage" | "amendment" | "procedural" | "nomination" | "veto_override" | "other";
 
 export type Jurisdiction = "us" | "ms";
-export interface Term { start: string; end: string; party: Party; chamber: Chamber; }
+// `end_projected`: `end` is only the expected special-election date of a serving
+// appointee (ingest/models.py `Term.end_projected`); absent on every other term.
+export interface Term {
+  start: string; end: string; party: Party; chamber: Chamber; end_projected?: boolean;
+}
 export interface Member {
   id: string; ids: Record<string, string>; name: string; party: Party;
   state: string; district: number | null; chamber: Chamber; jurisdiction: Jurisdiction;
@@ -898,9 +902,11 @@ export function asOfDate(): string {
  *  coverage (a member who resigned in March still had rolls to be present for) and
  *  the WRONG one for "find your representatives": it keeps 16 members whose terms
  *  have since ended, which showed up as Florida, Ohio, Oklahoma and South Carolina
- *  each listing three senators. A seat is held only while a term covers the date. */
+ *  each listing three senators. A seat is held only while a term covers the date.
+ *  A projected end (`end_projected`) is not a departure: the term stays open until
+ *  upstream records the real last day, as in ingest/coverage.py. */
 export function holdsSeatAsOf(member: Member, asOf: string): boolean {
-  return member.terms.some((t) => t.start <= asOf && asOf <= t.end);
+  return member.terms.some((t) => t.start <= asOf && (t.end_projected || asOf <= t.end));
 }
 
 /** Members currently holding a federal seat, grouped by state: senators by name,

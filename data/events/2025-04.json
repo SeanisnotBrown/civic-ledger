@@ -10373,7 +10373,7 @@
       "committees": null,
       "date": "2025-04-29",
       "has_page": true,
-      "id": "hr973-119--2025-04-29--e6bd7c58fbbd",
+      "id": "hr973-119--2025-04-29--a0262a2c4a83",
       "policy_area": "Commerce",
       "rollcall_id": null,
       "source_system": "Senate",
@@ -10384,7 +10384,7 @@
         "Pedestrians and bicycling",
         "Product safety and quality"
       ],
-      "text": "Received in the Senate.",
+      "text": "Received in the Senate, read twice.",
       "type": "IntroReferral"
     },
     {
@@ -64330,13 +64330,17 @@
         "Disability Assistance and Memorial Affairs Subcommittee"
       ],
       "date": "2025-04-04",
-      "has_page": false,
+      "has_page": true,
       "id": "hr2102-119--2025-04-04--3f39f5fd6afa",
       "policy_area": "Armed Forces and National Security",
       "rollcall_id": null,
       "source_system": "House committee actions",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2102",
-      "subjects": [],
+      "subjects": [
+        "Military personnel and dependents",
+        "Veterans' pensions and compensation",
+        "Wages and earnings"
+      ],
       "text": "Referred to the Subcommittee on Disability Assistance and Memorial Affairs.",
       "type": "Committee"
     },

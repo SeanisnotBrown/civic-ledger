@@ -1623,11 +1623,20 @@
   ],
   "lifetime_counts": {
     "cosponsored": 874,
-    "sponsored": 126
+    "sponsored": 128
   },
   "member_id": "M001184",
   "source_url": "https://api.congress.gov/v3/member/M001184/sponsored-legislation",
   "sponsored": [
+    {
+      "became_law": false,
+      "bill_id": "hconres126-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-concurrent-resolution/126",
+      "title": "Directing the President, pursuant to section 5(c) of the War Powers Resolution, to remove United States Armed Forces from hostilities with Iran."
+    },
     {
       "became_law": false,
       "bill_id": "hconres38-119",
@@ -2077,6 +2086,15 @@
       "introduced_date": "2026-07-15",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1430",
       "title": "Providing for consideration of the bill (H.R.185) to advance responsible policies."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1655-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1655",
+      "title": "Impeaching Peter Brian Hegseth, Secretary of Defense, for high crimes and misdemeanors."
     },
     {
       "became_law": false,

@@ -668,6 +668,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr2527-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/2527",
+      "title": "Early Detection of Vision Impairments for Children Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr2537-118",
       "congress": 118,
       "enacted_action": null,
@@ -1591,7 +1600,7 @@
       "enacted_action": null,
       "introduced_date": "2026-01-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6213",
-      "title": "Heat Workforce Standards Act of 2025"
+      "title": "Heat Workforce Standards Act of 2026"
     },
     {
       "became_law": false,
@@ -1709,6 +1718,15 @@
       "introduced_date": "2024-05-15",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/6951",
       "title": "College Cost Reduction Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr6976-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-11",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6976",
+      "title": "Duty Status Reform Act"
     },
     {
       "became_law": false,
@@ -1999,10 +2017,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -2486,7 +2504,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1531,
+    "cosponsored": 1533,
     "sponsored": 52
   },
   "member_id": "D000616",

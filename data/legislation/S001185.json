@@ -542,21 +542,21 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr10682-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-24",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10682",
+      "title": "To amend the Internal Revenue Code of 1986 to provide parity in the taxation of professional sports franchises under the limitation on the deduction for certain employee remuneration, and for other purposes."
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1073-118",
       "congress": 118,
       "enacted_action": null,
       "introduced_date": "2023-02-17",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1073",
       "title": "To direct the Joint Committee of Congress on the Library to obtain a statue of Shirley Chisholm for placement in the United States Capitol."
-    },
-    {
-      "became_law": false,
-      "bill_id": "hr1077-118",
-      "congress": 118,
-      "enacted_action": null,
-      "introduced_date": "2024-02-06",
-      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1077",
-      "title": "Congressional Tribute to Constance Baker Motley Act of 2023"
     },
     {
       "became_law": false,
@@ -584,6 +584,15 @@
       "introduced_date": "2023-02-17",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1088",
       "title": "Shirley Chisholm Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr10955-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-05",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10955",
+      "title": "EITC Age Parity Act of 2026"
     },
     {
       "became_law": true,
@@ -620,6 +629,15 @@
       "introduced_date": "2025-02-06",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1103",
       "title": "New Markets Tax Credit Extension Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11041-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-17",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11041",
+      "title": "Medicare Cost Cap Act of 2026"
     },
     {
       "became_law": false,
@@ -3293,6 +3311,15 @@
       "introduced_date": "2023-01-24",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/34",
       "title": "Assuring Medicare’s Promise Act of 2023"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr3413-118",
+      "congress": 118,
+      "enacted_action": null,
+      "introduced_date": "2024-02-06",
+      "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3413",
+      "title": "AM Radio for Every Vehicle Act of 2023"
     },
     {
       "became_law": false,
@@ -7687,10 +7714,10 @@
       "title": "TANF State Expenditure Integrity Act of 2024"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-21",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -9344,12 +9371,39 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1641-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-17",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1641",
+      "title": "Honoring the contributions of Indian Americans and supporting the designation of July as \"Indian American Heritage Month\"."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres166-119",
       "congress": 119,
       "enacted_action": null,
       "introduced_date": "2025-04-07",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/166",
       "title": "Expressing support for the Iranian people's desires for a democratic, secular, and nonnuclear Republic of Iran, and condemning the Iranian regime's terrorism, regional proxy war, internal suppression, and for other purposes."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1660-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1660",
+      "title": "Expressing support for the goals of National Adoption Day and National Adoption Month by promoting national awareness of adoption and the children awaiting families, celebrating children and families involved in adoption, and encouraging the people of the United States to secure safety, permanency, and well-being for all children."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1673-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1673",
+      "title": "Supporting the goals and ideals of \"National Rural Health Day\"."
     },
     {
       "became_law": false,
@@ -10532,7 +10586,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 3232,
+    "cosponsored": 3238,
     "sponsored": 125
   },
   "member_id": "S001185",

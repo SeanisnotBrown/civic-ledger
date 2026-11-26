@@ -1,6 +1,26 @@
 {
   "actions": [
     {
+      "action_code": "E40000",
+      "committees": null,
+      "date": "2026-11-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-138.",
+      "time": null,
+      "type": "President"
+    },
+    {
+      "action_code": "36000",
+      "committees": null,
+      "date": "2026-11-03",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Became Public Law No: 119-138.",
+      "time": null,
+      "type": "BecameLaw"
+    },
+    {
       "action_code": "E30000",
       "committees": null,
       "date": "2026-11-03",
@@ -396,7 +416,7 @@
   ],
   "id": "hr8205-119",
   "jurisdiction": "us",
-  "latest_action": "Signed by President.",
+  "latest_action": "Became Public Law No: 119-138.",
   "latest_action_date": "2026-11-03",
   "number": 8205,
   "policy_area": "Health",

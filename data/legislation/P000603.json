@@ -1037,6 +1037,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "sjres216-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-joint-resolution/216",
+      "title": "A joint resolution providing for congressional disapproval of the proposed foreign military sale to the Government of Saudi Arabia of certain defense articles and services."
+    },
+    {
+      "became_law": false,
       "bill_id": "sjres22-118",
       "congress": 118,
       "enacted_action": null,
@@ -1601,11 +1610,20 @@
       "introduced_date": "2024-12-10",
       "source_url": "https://www.congress.gov/bill/118th-congress/senate-resolution/925",
       "title": "A resolution relating to the death of the Honorable Fred R. Harris, former Senator for the State of Oklahoma."
+    },
+    {
+      "became_law": false,
+      "bill_id": "sres959-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-17",
+      "source_url": "https://www.congress.gov/bill/119th-congress/senate-resolution/959",
+      "title": "A resolution recognizing the death of John Davison \"Jay\" Rockefeller IV, former Senator for the State of West Virginia."
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1134,
-    "sponsored": 1114
+    "cosponsored": 1136,
+    "sponsored": 1116
   },
   "member_id": "P000603",
   "source_url": "https://api.congress.gov/v3/member/P000603/sponsored-legislation",

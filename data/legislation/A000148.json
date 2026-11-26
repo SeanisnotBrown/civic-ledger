@@ -560,6 +560,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1502-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-11",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1502",
+      "title": "North Platte Canteen Congressional Gold Medal Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1509-119",
       "congress": 119,
       "enacted_action": null,
@@ -1871,6 +1880,15 @@
       "introduced_date": "2025-06-04",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3740",
       "title": "Equal Access to Justice for Victims of Gun Violence Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr3757-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3757",
+      "title": "Pride In Mental Health Act of 2025"
     },
     {
       "became_law": false,
@@ -3457,10 +3475,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-04-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -4502,7 +4520,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 1008,
+    "cosponsored": 1010,
     "sponsored": 26
   },
   "member_id": "A000148",
@@ -4533,7 +4551,7 @@
       "enacted_action": null,
       "introduced_date": "2026-10-22",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10857",
-      "title": "To amend the Federal Food, Drug, and Cosmetic Act and Public Health Service Act to advance the next-generation of clinical development of novel treatments and cures, and for other purposes."
+      "title": "Faster Clinical Trials Act"
     },
     {
       "became_law": false,

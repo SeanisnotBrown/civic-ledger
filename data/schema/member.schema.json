@@ -16,6 +16,11 @@
           "title": "End",
           "type": "string"
         },
+        "end_projected": {
+          "default": false,
+          "title": "End Projected",
+          "type": "boolean"
+        },
         "party": {
           "enum": [
             "D",

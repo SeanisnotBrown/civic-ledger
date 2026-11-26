@@ -2,6 +2,40 @@
   "actions": [
     {
       "action_code": null,
+      "committees": null,
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 694.",
+      "time": null,
+      "type": "Calendars"
+    },
+    {
+      "action_code": null,
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Senate",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-160.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": "14000",
+      "committees": [
+        "Commerce, Science, and Transportation Committee"
+      ],
+      "date": "2026-11-10",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "text": "Committee on Commerce, Science, and Transportation. Reported by Senator Cruz with an amendment in the nature of a substitute. With written report No. 119-160.",
+      "time": null,
+      "type": "Committee"
+    },
+    {
+      "action_code": null,
       "committees": [
         "Commerce, Science, and Transportation Committee"
       ],
@@ -52,8 +86,8 @@
   ],
   "id": "s1759-119",
   "jurisdiction": "us",
-  "latest_action": "Committee on Commerce, Science, and Transportation. Ordered to be reported with an amendment in the nature of a substitute favorably.",
-  "latest_action_date": "2026-07-22",
+  "latest_action": "Placed on Senate Legislative Calendar under General Orders. Calendar No. 694.",
+  "latest_action_date": "2026-11-10",
   "number": 1759,
   "policy_area": "Transportation and Public Works",
   "source_url": "https://www.congress.gov/bill/119th-congress/senate-bill/1759",

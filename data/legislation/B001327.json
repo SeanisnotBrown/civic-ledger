@@ -541,10 +541,10 @@
       "title": "Prevent Family Fire Act of 2025"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1703-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-140.",
       "introduced_date": "2025-09-30",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1703",
       "title": "Choices for Increased Mobility Act of 2026"
@@ -2162,6 +2162,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr6809-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-17",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/6809",
+      "title": "Alyssa’s Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr6997-119",
       "congress": 119,
       "enacted_action": null,
@@ -2882,7 +2891,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 320,
+    "cosponsored": 321,
     "sponsored": 25
   },
   "member_id": "B001327",

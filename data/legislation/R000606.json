@@ -785,6 +785,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1288-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-24",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1288",
+      "title": "DRIVE Act of 2025"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1307-119",
       "congress": 119,
       "enacted_action": null,
@@ -1234,10 +1243,10 @@
       "title": "Water Affordability, Transparency, Equity, and Reliability Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr1744-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-137.",
       "introduced_date": "2026-03-27",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1744",
       "title": "United States Commission on International Religious Freedom Reauthorization Act of 2026"
@@ -7486,7 +7495,7 @@
       "enacted_action": null,
       "introduced_date": "2026-10-29",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1644",
-      "title": "Supporting the goals and ideals of October as \"National Domestic Violence Awareness Month\"."
+      "title": "Original National Domestic Violence Awareness Month Resolution of 2026"
     },
     {
       "became_law": false,
@@ -8165,7 +8174,7 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 3759,
+    "cosponsored": 3760,
     "sponsored": 149
   },
   "member_id": "R000606",

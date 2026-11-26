@@ -380,6 +380,24 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr11113-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11113",
+      "title": "Commission To Study the Potential Creation of a National Museum of American LGBTQI+ History and Culture Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11114-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11114",
+      "title": "National Museum of American LGBTQI+ History and Culture Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1118-118",
       "congress": 118,
       "enacted_action": null,
@@ -587,6 +605,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr1317-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1317",
+      "title": "I CAN Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr1323-118",
       "congress": 118,
       "enacted_action": null,
@@ -746,6 +773,15 @@
       "introduced_date": "2023-04-26",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/1459",
       "title": "PRECISE Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr1464-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-24",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/1464",
+      "title": "MODERN WIC Act of 2025"
     },
     {
       "became_law": false,
@@ -2375,6 +2411,15 @@
       "introduced_date": "2026-09-14",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3243",
       "title": "Therapeutic Fraud Prevention Act of 2025"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr3277-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-10",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/3277",
+      "title": "Ensuring Lasting Smiles Act"
     },
     {
       "became_law": false,
@@ -5195,6 +5240,15 @@
     },
     {
       "became_law": false,
+      "bill_id": "hr7815-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/7815",
+      "title": "Red Star Service Banner Act"
+    },
+    {
+      "became_law": false,
       "bill_id": "hr782-118",
       "congress": 118,
       "enacted_action": null,
@@ -5383,10 +5437,10 @@
       "title": "Social Security Fairness Act of 2023"
     },
     {
-      "became_law": false,
+      "became_law": true,
       "bill_id": "hr8205-119",
       "congress": 119,
-      "enacted_action": null,
+      "enacted_action": "Became Public Law No: 119-138.",
       "introduced_date": "2026-07-09",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/8205",
       "title": "Accelerating Access to Critical Therapies for ALS Reauthorization Act of 2026"
@@ -5714,6 +5768,15 @@
       "introduced_date": "2024-08-13",
       "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/926",
       "title": "Supreme Court Ethics, Recusal, and Transparency Act of 2023"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr9289-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-18",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/9289",
+      "title": "Keep Public Funds in Public Schools Act of 2026"
     },
     {
       "became_law": false,
@@ -6176,6 +6239,33 @@
     },
     {
       "became_law": false,
+      "bill_id": "hres1653-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-09",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1653",
+      "title": "Honoring the service and sacrifice of America's veterans on Veterans Day, 2026."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1673-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-19",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1673",
+      "title": "Supporting the goals and ideals of \"National Rural Health Day\"."
+    },
+    {
+      "became_law": false,
+      "bill_id": "hres1674-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-20",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/1674",
+      "title": "Supporting the goals and principles of Transgender Day of Remembrance by recognizing the epidemic of violence toward transgender people and memorializing the lives lost this year."
+    },
+    {
+      "became_law": false,
       "bill_id": "hres173-118",
       "congress": 118,
       "enacted_action": null,
@@ -6617,8 +6707,8 @@
     }
   ],
   "lifetime_counts": {
-    "cosponsored": 735,
-    "sponsored": 25
+    "cosponsored": 745,
+    "sponsored": 26
   },
   "member_id": "S001225",
   "source_url": "https://api.congress.gov/v3/member/S001225/sponsored-legislation",
@@ -6649,6 +6739,15 @@
       "introduced_date": "2026-09-24",
       "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/10605",
       "title": "SUNRAY for Energy Act"
+    },
+    {
+      "became_law": false,
+      "bill_id": "hr11030-119",
+      "congress": 119,
+      "enacted_action": null,
+      "introduced_date": "2026-11-12",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-bill/11030",
+      "title": "Fair Premiums for Farmers Act"
     },
     {
       "became_law": false,

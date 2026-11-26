@@ -1,5 +1,5 @@
 {
-  "count": 3059,
+  "count": 3058,
   "events": [
     {
       "action_code": "H11000",
@@ -72,7 +72,7 @@
         "Financial Services Committee"
       ],
       "date": "2025-11-28",
-      "has_page": false,
+      "has_page": true,
       "id": "hr1013-119--2025-11-28--2ccb09fc352b",
       "policy_area": "Finance and Financial Sector",
       "rollcall_id": null,
@@ -95,7 +95,7 @@
         "Financial Services Committee"
       ],
       "date": "2025-11-28",
-      "has_page": false,
+      "has_page": true,
       "id": "hr1013-119--2025-11-28--c0da00317f16",
       "policy_area": "Finance and Financial Sector",
       "rollcall_id": null,
@@ -116,7 +116,7 @@
       "bill_id": "hr1013-119",
       "committees": null,
       "date": "2025-11-28",
-      "has_page": false,
+      "has_page": true,
       "id": "hr1013-119--2025-11-28--fbf2cf5c6736",
       "policy_area": "Finance and Financial Sector",
       "rollcall_id": null,
@@ -37356,26 +37356,6 @@
       "type": "Floor"
     },
     {
-      "action_code": "Intro-H",
-      "bill_id": "hres878-119",
-      "committees": null,
-      "date": "2025-11-17",
-      "has_page": true,
-      "id": "hres878-119--2025-11-17--27c990bb7f78",
-      "policy_area": "Congress",
-      "rollcall_id": null,
-      "source_system": "Library of Congress",
-      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/878",
-      "subjects": [
-        "House of Representatives",
-        "Illinois",
-        "Legislative rules and procedure",
-        "Members of Congress"
-      ],
-      "text": "Introduced in House",
-      "type": "IntroReferral"
-    },
-    {
       "action_code": "H30000",
       "bill_id": "hres878-119",
       "committees": null,
@@ -37394,6 +37374,26 @@
       ],
       "text": "Considered as privileged matter. (consideration: CR H4692-4698)",
       "type": "Floor"
+    },
+    {
+      "action_code": "1025",
+      "bill_id": "hres878-119",
+      "committees": null,
+      "date": "2025-11-17",
+      "has_page": true,
+      "id": "hres878-119--2025-11-17--53fa3846ba83",
+      "policy_area": "Congress",
+      "rollcall_id": null,
+      "source_system": "Library of Congress",
+      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/878",
+      "subjects": [
+        "House of Representatives",
+        "Illinois",
+        "Legislative rules and procedure",
+        "Members of Congress"
+      ],
+      "text": "Submitted in House",
+      "type": "IntroReferral"
     },
     {
       "action_code": "H35000",
@@ -37474,26 +37474,6 @@
       ],
       "text": "POSTPONED PROCEEDINGS - At the conclusion of debate on H. Res. 878, the Chair put the question on agreeing to the resolution and by voice vote announced that the ayes had prevailed. Ms. Perez demanded the yeas and nays and the Chair postponed further proceedings until a time to be announced.",
       "type": "Floor"
-    },
-    {
-      "action_code": "1000",
-      "bill_id": "hres878-119",
-      "committees": null,
-      "date": "2025-11-17",
-      "has_page": true,
-      "id": "hres878-119--2025-11-17--fd9931c626a3",
-      "policy_area": "Congress",
-      "rollcall_id": null,
-      "source_system": "Library of Congress",
-      "source_url": "https://www.congress.gov/bill/119th-congress/house-resolution/878",
-      "subjects": [
-        "House of Representatives",
-        "Illinois",
-        "Legislative rules and procedure",
-        "Members of Congress"
-      ],
-      "text": "Introduced in House",
-      "type": "IntroReferral"
     },
     {
       "action_code": "H12700",

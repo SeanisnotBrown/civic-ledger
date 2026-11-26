@@ -7,9 +7,10 @@ whose ONLY failures are HTTP status errors on the vote menus exits 0 and keeps
 data/quality/senate-outage.json (the site's reader line is built from it); anything
 else stays fatal; the first success deletes the notice; past
 config.SENATE_MENU_OUTAGE_MAX_DAYS the run fails hard again. 2026-11-25 Q2 = B: a
-refused vote FILE (a 4xx status on one roll's detail) is the same kind of block: that
-roll is skipped for the night, listed in the notice as `missing_rolls`, retried the next
-night, and counted in the same 14 days. Offline: no network, no writes outside tmp_path.
+refused vote FILE (an HTTP 403 on one roll's detail; any other status stays fatal) is
+the same kind of block: that roll is skipped for the night, listed in the notice as
+`missing_rolls`, retried the next night, and counted in the same 14 days. Offline: no
+network, no writes outside tmp_path.
 """
 
 from __future__ import annotations
@@ -95,7 +96,7 @@ def test_menu_403_only_exits_0_and_writes_the_notice(repo, monkeypatch, capsys):
     ["menu_timeout", "detail_timeout", "detail_429_exhausted", "tally_mismatch"],
 )
 def test_a_menu_block_mixed_with_any_other_failure_is_still_fatal(case, repo, monkeypatch):
-    """Only 4xx status errors on the menus and the vote files are tolerated: a menu
+    """Only status errors on the menus and 403s on the vote files are tolerated: a menu
     timeout, a vote-file timeout, a vote file whose 429/5xx retries ran out, or a
     validation failure still fails the night, even beside a menu block."""
     def menu(c, s):
@@ -170,14 +171,11 @@ def two_rolls(repo, monkeypatch):
     return state
 
 
-@pytest.mark.parametrize("code", [403, 404])
 def test_one_refused_vote_file_exits_0_skips_it_and_writes_the_notice(
-    code, two_rolls, repo, capsys
+    two_rolls, repo, capsys
 ):
     """Q2 = B: roll 2's file is refused, 1 still ingests, the night passes. The refused
     file is asked for ONCE (rule 4), logged with its code and URL, and the notice lists it."""
-    two_rolls["code"] = code
-
     assert senate_votes.run() == 0
     assert two_rolls["saved"] == ["s-119-2-0001"]
     assert two_rolls["fetched"].count((2, 2)) == 1
@@ -186,9 +184,26 @@ def test_one_refused_vote_file_exits_0_skips_it_and_writes_the_notice(
     assert notice["outage_start"] == "2026-10-29"
     out = capsys.readouterr().out
     warn = next(ln for ln in out.splitlines() if ln.startswith("WARN: senate.gov refused 1 "))
-    assert f"s-119-2-0002: HTTPStatusError HTTP {code} {FILE_URL}" in warn
+    assert f"s-119-2-0002: HTTPStatusError HTTP 403 {FILE_URL}" in warn
     assert "vote menu" not in out and "FAIL" not in out
     out.encode("ascii")  # plain ASCII on stdout
+
+
+@pytest.mark.parametrize("code", [400, 401, 404, 410])
+def test_a_vote_file_status_other_than_403_still_fails_the_night(
+    code, two_rolls, repo, capsys
+):
+    """Copilot call (2026-11-26): only a 403 REFUSAL is tolerated. A 404 or any other
+    status on a vote file fails the night as it did before Q2, logged with its code and
+    URL (PR #5), and no outage notice is written for it."""
+    two_rolls["code"] = code
+
+    assert senate_votes.run() == 1
+    out = capsys.readouterr().out
+    fail = next(ln for ln in out.splitlines() if ln.startswith("FAIL: "))
+    assert f"s-119-2-0002: HTTPStatusError HTTP {code} {FILE_URL}" in fail
+    assert not _notice(repo).exists()
+    assert "WARN" not in out
 
 
 def test_a_refused_file_beside_a_fatal_failure_still_fails_the_night(

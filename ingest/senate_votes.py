@@ -350,8 +350,8 @@ def run(argv: list[str] | None = None) -> int:
     + data/absences/. Idempotent/resumable (cached fetches). Fails (nonzero) on any
     covered-member gap, roll validation failure, or enumeration break (§6.1). The
     one exception: when the ONLY failures are HTTP status errors on the vote menus
-    (owner ruling 2026-10-29) or on single vote FILES (owner ruling 2026-11-25, Q2 = B)
-    -- senate.gov blocking us -- it keeps the outage notice and exits 0, until
+    (owner ruling 2026-10-29) or on single vote FILES (owner ruling 2026-11-25, Q2 = B,
+    HTTP 403 only) -- senate.gov blocking us -- it keeps the outage notice and exits 0, until
     config.SENATE_MENU_OUTAGE_MAX_DAYS have passed (one shared day count). A refused
     file is skipped for the night, never retried within it (rule 4); the roll is
     fetched again the next night, because a roll not on disk is never "final"."""
@@ -419,20 +419,25 @@ def run(argv: list[str] | None = None) -> int:
                     continue
                 try:
                     detail = senate_xml.vote_detail(congress, session, roll).text
-                except httpx.HTTPStatusError as exc:
-                    # senate.gov refusing ONE vote file (2026-11-13: 0257/0258 got 4xx)
-                    # is tolerated like a refused menu, under the same deadline: the roll
-                    # is skipped tonight and fetched again tomorrow. Not retried now (rule
-                    # 4); `cache._live_get` already retried 429/5xx before they surfaced
-                    # as RetryableHTTPError, which stays fatal below. The status and URL
-                    # are logged, not just the type: on 2026-11-13 the log said only
-                    # "HTTPStatusError", so the code had to be inferred.
-                    file_blocked[rc_id] = (
-                        f"HTTPStatusError HTTP {exc.response.status_code} {exc.request.url}"
-                    )
-                    continue
                 except fetch_errors as exc:
-                    fetch_failures.append(f"{rc_id}: {type(exc).__name__}")
+                    status = (
+                        exc.response.status_code
+                        if isinstance(exc, httpx.HTTPStatusError) else None
+                    )
+                    if status == 403:
+                        # senate.gov REFUSING one vote file (2026-11-13: 0257/0258) is
+                        # tolerated like a refused menu, under the same deadline: the roll
+                        # is skipped tonight and fetched again tomorrow. Not retried now
+                        # (rule 4). 403 ONLY (copilot call, 2026-11-26): the ruling was
+                        # about a refusal, so a 404 or any other status stays fatal.
+                        file_blocked[rc_id] = f"HTTPStatusError HTTP 403 {exc.request.url}"
+                        continue
+                    reason = type(exc).__name__
+                    if status is not None:
+                        # The status and URL, not just the type: on 2026-11-13 the log
+                        # said only "HTTPStatusError", so the code had to be inferred.
+                        reason += f" HTTP {status} {exc.request.url}"
+                    fetch_failures.append(f"{rc_id}: {reason}")
                     continue
                 try:
                     date = _parse_date(ET.fromstring(detail).findtext("vote_date") or "")

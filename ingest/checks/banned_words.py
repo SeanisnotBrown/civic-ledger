@@ -18,6 +18,7 @@ terms; it is manually reviewed. A hit anywhere else fails the build.
 
 from __future__ import annotations
 
+import functools
 import re
 from pathlib import Path
 
@@ -116,19 +117,82 @@ def _iter_text_files(root: Path):
             yield path, relposix
 
 
+# --- Fast clean-file prefilter --------------------------------------------------
+#
+# Almost every scanned file is clean, so the cost is dominated by proving that.
+# The original loop ran every one of the 12 patterns over every line of every
+# file. The prefilter below answers "can this file contain ANY hit?" with one
+# pass over the whole text. It may only ever err toward "maybe" (a false
+# candidate is re-checked by the exact per-line scan); it must never say "clean"
+# for a file the exact scan would flag. Every file it passes is still read in
+# full, and every file it flags goes through the original per-line scan, so the
+# reported (path, line, term) hits, their order, and `main`'s messages are
+# unchanged.
+#
+# Why whole-text matching is a safe superset of per-line matching: no banned term
+# contains a line-break character (spaces are literal ' '), and every character
+# `str.splitlines` breaks on is a non-word character, so `\b` behaves the same at
+# a line edge as in the middle of the text.
+_UNION: re.Pattern[str] = re.compile(
+    "|".join(rf"\b{re.escape(term)}\b" for term in BANNED), re.IGNORECASE
+)
+_LOWER_TERMS: tuple[str, ...] = tuple(term.lower() for term in BANNED)
+
+
+@functools.cache
+def _fold_chars() -> tuple[str, ...]:
+    """Non-ASCII characters that IGNORECASE treats as equal to a character in a term.
+
+    Derived by sweeping every code point (about 0.1 s, once per process) rather
+    than hard-coded, so a different Unicode database cannot silently narrow the
+    scan. Today: U+0130, U+0131, U+017F (long s) and U+212A (Kelvin sign).
+    """
+    alphabet = sorted(set("".join(BANNED)))
+    any_term_char = re.compile("|".join(re.escape(ch) for ch in alphabet), re.IGNORECASE)
+    return tuple(
+        chr(cp) for cp in range(128, 0x110000) if any_term_char.fullmatch(chr(cp))
+    )
+
+
+def _maybe_has_hit(text: str) -> bool:
+    """True if `text` might hold a banned term; False only if it surely holds none."""
+    # Fast path. If the text has none of the fold characters, every character that
+    # can take part in a match is an ASCII letter (or space/hyphen), `str.lower()`
+    # maps those exactly as IGNORECASE compares them, and it keeps the remaining
+    # characters one-for-one (the only length-changing lowercase, U+0130, is itself
+    # a fold character), so a plain substring test, with no word boundary, is a
+    # superset of the boundary match. Substring search runs at memory speed.
+    if not any(ch in text for ch in _fold_chars()):
+        lowered = text.lower()
+        if not any(term in lowered for term in _LOWER_TERMS):
+            return False
+    # Candidate, or text with a fold character: the exact whole-text regex decides.
+    return _UNION.search(text) is not None
+
+
+def _scan_text(text: str) -> list[tuple[int, str]]:
+    """Exact scan: (1-based line, term) for every term on every line."""
+    found: list[tuple[int, str]] = []
+    for lineno, line in enumerate(text.splitlines(), start=1):
+        for pattern, term in _PATTERNS:
+            if pattern.search(line):
+                found.append((lineno, term))
+    return found
+
+
 def find_hits(root: Path | None = None) -> list[tuple[str, int, str]]:
     """Return (relpath, 1-based line, banned-term) for every violation."""
     root = root or repo_root()
     hits: list[tuple[str, int, str]] = []
     for path, relposix in _iter_text_files(root):
         try:
-            text = path.read_text(encoding="utf-8", errors="replace")
+            text = path.read_bytes().decode("utf-8", errors="replace")
         except OSError:
             continue
-        for lineno, line in enumerate(text.splitlines(), start=1):
-            for pattern, term in _PATTERNS:
-                if pattern.search(line):
-                    hits.append((relposix, lineno, term))
+        if not _maybe_has_hit(text):
+            continue
+        for lineno, term in _scan_text(text):
+            hits.append((relposix, lineno, term))
     return hits
 
 

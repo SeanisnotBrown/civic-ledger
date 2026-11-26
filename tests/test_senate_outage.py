@@ -127,6 +127,36 @@ def test_success_after_an_outage_deletes_the_notice(repo, monkeypatch):
     assert not path.exists()
 
 
+@pytest.mark.parametrize("menu_ok", [True, False])
+def test_a_refused_vote_file_logs_its_status_and_url(menu_ok, repo, monkeypatch, capsys):
+    """2026-11-13 logged only "s-119-2-0257: HTTPStatusError", so the code was a guess.
+    The failure line now names the status and the URL; the run still fails (exit 1),
+    whether or not a menu is blocked the same night."""
+    def menu(c, s):
+        if not menu_ok and s == 1:
+            raise _status(403)
+        return _Text("<menu/>")
+
+    def detail(c, s, r):
+        if s == 1:
+            raise httpx.ConnectTimeout("timed out")  # not a status: name only, as before
+        raise _status(403, senate_xml.detail_url(c, s, r))
+
+    monkeypatch.setattr(senate_xml, "vote_menu", menu)
+    monkeypatch.setattr(senate_xml, "parse_menu", lambda text: {257: (60, 40)})
+    monkeypatch.setattr(incremental, "roll_is_final", lambda *a, **k: False)
+    monkeypatch.setattr(senate_xml, "vote_detail", detail)
+
+    assert senate_votes.run() == 1
+    out = capsys.readouterr().out
+    line = next(ln for ln in out.splitlines() if ln.startswith("FAIL: "))
+    assert ("s-119-2-0257: HTTPStatusError HTTP 403 https://www.senate.gov/legislative/"
+            "LIS/roll_call_votes/vote1192/vote_119_2_00257.xml") in line
+    if menu_ok:
+        assert "'s-119-1-0257: ConnectTimeout'" in line
+    line.encode("ascii")  # plain ASCII on stdout
+
+
 @pytest.mark.parametrize(
     "today,rc", [("2026-11-07", 0), ("2026-11-08", 1)],
 )
